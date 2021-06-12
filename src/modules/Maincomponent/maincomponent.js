@@ -4,24 +4,35 @@ import { Row, Column } from "simple-flexbox";
 
 const MainContainer = styled.div`
   display: flex;
+
+  flex-flow: nowrap;
   width: 100%;
   padding: 48px 70px 48px 70px;
   background-color: #f5f6f9;
 `;
- const Trending = styled.div`
- width: 281px;
- height: 176px;
- margin: 18px 26px 51px 0px;
- padding: 25px 18px 25px 18px;
- border-radius: 5px;
- background-color: #ffffff;
- border: 1px solid red;
-   `;
+const Trending = styled.div`
+  width: 340%;
+  height: 536px;
+  margin: 18px 26px 51px 0px;
+  padding: 25px 18px 25px 18px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 1px solid red;
+`;
 
+const Node = styled.div`
+  width: 333%;
+  height: 270px;
+  margin: 18px 26px 51px 0px;
+  padding: 25px 18px 25px 18px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 1px solid red;
+`;
 const Title = styled.text`
   width: 177px;
   height: 21px;
-  font-family: "Raleway" !important;
+  font-family: Raleway !important;
   font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
@@ -68,7 +79,9 @@ export default function MainComponent() {
         <Row>
           <Column>
             <Title>Writing Speed</Title>
-            <Box></Box>
+            <Box>
+              <Speedtitle></Speedtitle>
+            </Box>
           </Column>
           <Column>
             <Title>Reading Speed</Title>
@@ -78,18 +91,13 @@ export default function MainComponent() {
         <Row>
           <Column>
             <Title>Nodes</Title>
-            <Box></Box>
+            <Node></Node>
           </Column>
         </Row>
       </Column>
       <Column>
-        <Row>
-          <Trending>
-
-          <Title>Trending</Title>
-          <Box></Box>
-          </Trending>
-        </Row>
+        <Title>Top 20 Trending</Title>
+        <Trending></Trending>
       </Column>
     </MainContainer>
   );

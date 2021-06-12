@@ -100,7 +100,7 @@ text-align: left;
 color: #ffffff;
 background: transparent;
 margin-top: 22px;
-margin-left: 234px;
+margin-left: 205px;
 }
 `;
 
