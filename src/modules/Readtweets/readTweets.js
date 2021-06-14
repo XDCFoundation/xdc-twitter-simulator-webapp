@@ -6,28 +6,28 @@ const Container = styled.div`
   display: flex;
 `;
 const SubContainer = styled.div`
-  //   width: 37%;
-
-  //   height: 933px;
-
+  width: 47%;
   border-radius: 5px;
   border: solid 1px #343965;
   background-color: #191d43;
+
+  height: 865px;
 `;
 const Mainheading = styled.span`
   color: #d6d6d6;
-  padding: 15px;
+
   font-size: 15px;
   font-weight: 600;
   font-stretch: normal;
+  padding: 18px;
 `;
 const Numberoftweets = styled.span`
   color: #d6d6d6;
 
-  font-family: Raleway !important;
   font-size: 42px;
+  margin-left: 64%;
   padding: 1px;
-  margin-left: 304px;
+
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -43,11 +43,14 @@ const Email = styled.span`
   color: #8290a4;
   font-size: 14px;
   margin-left: 15px;
+  // font-family: Raleway !important;
 `;
 const Content = styled.span`
   color: #d6d6d6;
-  font-size: 14px;
+
   margin-left: 15px;
+  font-size: 12px;
+  // font-family: Raleway !important;
 `;
 const Box = styled.div`
   border: solid 1px #343965;
@@ -58,9 +61,11 @@ const Time = styled.span`
   color: #8290a4;
   font-size: 13px;
   line-height: 1.15;
+  left: 42%;
   padding: 5px;
-  left: 470px;
+
   position: absolute;
+  // font-family: Raleway !important;
 `;
 export default function ReadTweets() {
   return (
@@ -81,8 +86,8 @@ export default function ReadTweets() {
 
               <Email>@lisaray</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -97,8 +102,8 @@ export default function ReadTweets() {
 
               <Email>@henrygolding</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -113,8 +118,8 @@ export default function ReadTweets() {
 
               <Email>@clairebrowne</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -129,8 +134,8 @@ export default function ReadTweets() {
 
               <Email>@shawnmurphy</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -145,8 +150,8 @@ export default function ReadTweets() {
 
               <Email>@susanmurphy</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -161,8 +166,8 @@ export default function ReadTweets() {
 
               <Email>@jackryan</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -177,8 +182,8 @@ export default function ReadTweets() {
 
               <Email>@cersielannister</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -193,8 +198,8 @@ export default function ReadTweets() {
 
               <Email>@jcole</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -209,8 +214,8 @@ export default function ReadTweets() {
 
               <Email>@Harrymag</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
@@ -225,8 +230,8 @@ export default function ReadTweets() {
 
               <Email>@Harrymag</Email>
               <Content>
-                The Lorem Ipsum text is not only there as a placeholder. You can
-                select
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore
               </Content>
             </Column>
           </Row>
