@@ -23,7 +23,7 @@ const Mainheading = styled.span`
 `;
 const Numberoftweets = styled.span`
   color: #d6d6d6;
-
+  font-family: Raleway;
   font-size: 42px;
   margin-left: 64%;
   padding: 1px;
@@ -37,20 +37,21 @@ const Name = styled.span`
   color: #d6d6d6;
   font-size: 14px;
   margin-left: 15px;
+  font-family: Raleway !important;
 `;
 const Image = styled.img``;
 const Email = styled.span`
   color: #8290a4;
   font-size: 14px;
   margin-left: 15px;
-  // font-family: Raleway !important;
+  font-family: Raleway !important;
 `;
 const Content = styled.span`
   color: #d6d6d6;
 
   margin-left: 15px;
   font-size: 12px;
-  // font-family: Raleway !important;
+  font-family: Raleway !important;
 `;
 const Box = styled.div`
   border: solid 1px #343965;
@@ -65,7 +66,7 @@ const Time = styled.span`
   padding: 5px;
 
   position: absolute;
-  // font-family: Raleway !important;
+  font-family: Raleway !important;
 `;
 export default function ReadTweets() {
   return (
