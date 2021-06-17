@@ -20,12 +20,11 @@ class Routes extends BaseComponent {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router history={history}>
           <Switch>
-            {/*<Route exact path={"/"} component={Login} />*/}
             {/*<Route exact path={"/sign-up"} component={SignUp} />*/}
             <Route exact path={"/savedtweets"} component={Saved} />
             <Route exact path={"/readtweets"} component={Read} />
               <Route exact path={'/header'} component={Header}/>
-              <Route exact path={'/main'} component={Main}/>
+              <Route exact path={'/'} component={Main}/>
             <Redirect exact from="*" to="/" />
           </Switch>
         </Router>
