@@ -12,6 +12,8 @@ import Read from "./modules/Readtweets";
 import Header from "./modules/Header";
 import Main from "./modules/Maincomponent";
 
+import Search from "./modules/searchlisting";
+
 class Routes extends BaseComponent {
   componentDidMount() {}
 
@@ -23,6 +25,7 @@ class Routes extends BaseComponent {
             {/*<Route exact path={"/sign-up"} component={SignUp} />*/}
             <Route exact path={"/savedtweets"} component={Saved} />
             <Route exact path={"/readtweets"} component={Read} />
+            <Route exact path={"/searchlist"} component={Search} />
               <Route exact path={'/header'} component={Header}/>
               <Route exact path={'/'} component={Main}/>
             <Redirect exact from="*" to="/" />
