@@ -9,6 +9,7 @@ import { history } from "./managers/history";
 import BaseComponent from "./modules/baseComponent";
 import Saved from "./modules/SavedTweets";
 import Read from "./modules/Readtweets";
+import Footer from "./modules/Footer";
 
 class Routes extends BaseComponent {
   componentDidMount() {}
@@ -22,6 +23,7 @@ class Routes extends BaseComponent {
             <Route exact path={"/sign-up"} component={SignUp} />
             <Route exact path={"/savedtweets"} component={Saved} />
             <Route exact path={"/readtweets"} component={Read} />
+            <Route exact path={"/footer"} component={Footer} />
             <Redirect exact from="*" to="/" />
           </Switch>
         </Router>
