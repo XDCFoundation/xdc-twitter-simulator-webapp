@@ -9,6 +9,8 @@ import { history } from "./managers/history";
 import BaseComponent from "./modules/baseComponent";
 import Saved from "./modules/SavedTweets";
 import Read from "./modules/Readtweets";
+import Header from "./modules/Header";
+import Main from "./modules/Maincomponent";
 
 class Routes extends BaseComponent {
   componentDidMount() {}
@@ -18,10 +20,12 @@ class Routes extends BaseComponent {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router history={history}>
           <Switch>
-            <Route exact path={"/"} component={Login} />
-            <Route exact path={"/sign-up"} component={SignUp} />
+            {/*<Route exact path={"/"} component={Login} />*/}
+            {/*<Route exact path={"/sign-up"} component={SignUp} />*/}
             <Route exact path={"/savedtweets"} component={Saved} />
             <Route exact path={"/readtweets"} component={Read} />
+              <Route exact path={'/header'} component={Header}/>
+              <Route exact path={'/main'} component={Main}/>
             <Redirect exact from="*" to="/" />
           </Switch>
         </Router>
