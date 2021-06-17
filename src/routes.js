@@ -10,6 +10,10 @@ import BaseComponent from "./modules/baseComponent";
 import Saved from "./modules/SavedTweets";
 import Read from "./modules/Readtweets";
 import Footer from "./modules/Footer";
+import Header from "./modules/Header";
+import Main from "./modules/Maincomponent";
+
+import Search from "./modules/searchlisting";
 
 class Routes extends BaseComponent {
   componentDidMount() {}
@@ -19,11 +23,13 @@ class Routes extends BaseComponent {
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router history={history}>
           <Switch>
-            <Route exact path={"/"} component={Login} />
-            <Route exact path={"/sign-up"} component={SignUp} />
+            {/*<Route exact path={"/sign-up"} component={SignUp} />*/}
             <Route exact path={"/savedtweets"} component={Saved} />
             <Route exact path={"/readtweets"} component={Read} />
             <Route exact path={"/footer"} component={Footer} />
+            <Route exact path={"/searchlist"} component={Search} />
+            <Route exact path={"/header"} component={Header} />
+            <Route exact path={"/"} component={Main} />
             <Redirect exact from="*" to="/" />
           </Switch>
         </Router>
