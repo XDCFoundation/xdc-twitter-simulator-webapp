@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Row, Column } from "simple-flexbox";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 const Container = styled.div``;
 const Subcontainer = styled.div`
