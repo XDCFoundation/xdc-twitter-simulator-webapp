@@ -1,104 +1,111 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
-import { Row, Column } from "simple-flexbox";
+import { Column, Row } from "simple-flexbox";
+import Grid from "@material-ui/core/Grid";
+import SavedTweets from "../Savedtweets";
+import ReadTweets from "../Readtweets";
 
-const MainContainer = styled.div`
-  display: flex;
+const useStyles = makeStyles((theme) => ({
+  main: {
+    backgroundColor: "#f5f6f9",
+  },
+  root: {
+    flexGrow: 1,
+    padding: "98px 98px",
+  },
+  grid: {
+    marginRight: "20px",
+  },
+  grid2: {
+    marginTop: "53px",
+  },
+  grid3: {
+    marginTop: "53px",
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
 
-  flex-flow: nowrap;
-  width: 100%;
-  padding: 48px 70px 48px 70px;
-  background-color: #f5f6f9;
+const Text = styled.div`
+  font-weight: 900;
+  margin-bottom: 10px;
 `;
-const Trending = styled.div`
-  width: 340%;
-  height: 536px;
-  margin: 18px 26px 51px 0px;
-  padding: 25px 18px 25px 18px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  border: 1px solid red;
-`;
-
-const Node = styled.div`
-  width: 333%;
-  height: 270px;
-  margin: 18px 26px 51px 0px;
-  padding: 25px 18px 25px 18px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  border: 1px solid red;
-`;
-const Title = styled.text`
-  width: 177px;
-  height: 21px;
-  font-family: Raleway !important;
-  font-size: 18px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.17;
-  letter-spacing: normal;
-  text-align: left;
-  color: #09184b;
-`;
-
-const Box = styled.div`
-  width: 281px;
-  height: 176px;
-  margin: 18px 26px 51px 0px;
-  padding: 25px 18px 25px 18px;
-  border-radius: 5px;
-  background-color: #ffffff;
-  border: 1px solid red;
-`;
-const Speedtitle = styled.text`
-  width: 117px;
-  height: 21px;
-  margin: 0 199.1px 9px 0;
-  font-family: "Raleway", sans-serif !important;
-  font-size: 18px;
-  font-weight: 600;
-`;
-
-const Speed = styled.text`
-  width: 78px;
-  height: 26px;
-  margin: 9px 238.1px 24px 0;
-  font-family: "Raleway", sans-serif !important;
-  font-size: 22px;
-  font-weight: 600;
-  text-align: left;
-  color: #3366ff;
-`;
-// Xinfin twitter
 export default function MainComponent() {
+  const classes = useStyles();
+
   return (
-    <MainContainer>
-      <Column>
-        <Row>
-          <Column>
-            <Title>Writing Speed</Title>
-            <Box>
-              <Speedtitle></Speedtitle>
-            </Box>
-          </Column>
-          <Column>
-            <Title>Reading Speed</Title>
-            <Box></Box>
-          </Column>
-        </Row>
-        <Row>
-          <Column>
-            <Title>Nodes</Title>
-            <Node></Node>
-          </Column>
-        </Row>
-      </Column>
-      <Column>
-        <Title>Top 20 Trending</Title>
-        <Trending></Trending>
-      </Column>
-    </MainContainer>
+    <div className={classes.main}>
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Row className="justify-space-between w-100">
+              <Row className="w-100">
+                <Grid item xs={6} className={classes.grid}>
+                  <Text>Writing Data</Text>
+                  <Paper className={classes.paper}>
+                    HTML Tutorial CSS Tutorial JavaScript Tutorial How To
+                    Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial
+                    Bootstrap Tutorial PHP Tutorial Java Tutorial C++ Tutorial
+                  </Paper>
+                </Grid>
+
+                <Grid item xs={6}>
+                  <Text>Reading Data</Text>
+                  <Paper className={classes.paper}>
+                    HTML Tutorial CSS Tutorial JavaScript Tutorial How To
+                    Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial
+                    Bootstrap Tutorial PHP Tutorial Java Tutorial C++ Tutorial
+                  </Paper>
+                </Grid>
+              </Row>
+            </Row>
+            <Row className="justify-space-between w-100">
+              <Row className="w-100">
+                <Grid item xs={12} className={classes.grid2}>
+                  <Text>Writing Data</Text>
+                  <Paper className={classes.paper}>
+                    HTML Tutorial CSS Tutorial JavaScript Tutorial How To
+                    Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial
+                    Bootstrap Tutorial PHP Tutorial Java Tutorial C++ Tutorial
+                  </Paper>
+                </Grid>
+              </Row>
+            </Row>
+          </Grid>
+          <Grid item xs={6}>
+            <Text>Top 20 trending</Text>
+            <Paper className={classes.paper}>
+              HTML Tutorial CSS Tutorial JavaScript Tutorial How To Tutorial SQL
+              Tutorial Python Tutorial W3.CSS Tutorial Bootstrap Tutorial PHP
+              Tutorial Java Tutorial C++ TutorialHTML Tutorial CSS Tutorial
+              JavaScript Tutorial How To Tutorial SQL Tutorial Python Tutorial
+              W3.CSS Tutorial Bootstrap Tutorial PHP Tutorial Java Tutorial C++
+              TutorialHTML Tutorial CSS Tutorial JavaScript Tutorial How To
+              Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial Bootstrap
+              Tutorial PHP Tutorial Java Tutorial C++ TutorialHTML Tutorial CSS
+              Tutorial JavaScript Tutorial How To Tutorial SQL Tutorial Python
+              Tutorial W3.CSS Tutorial Bootstrap Tutorial PHP Tutorial Java
+              Tutorial C++ TutorialHTML Tutorial CSS Tutorial JavaScript
+              Tutorial How To Tutorial SQL Tutorial Python Tutorial W3.CSS
+              Tutorial Bootstrap Tutorial PHP Tutorial Java Tutorial C++
+              Tutorial Tutorial C++ TutorialHTML Tutorial CSS Tutorial
+              JavaScript Tutorial How To Tutorial SQL Tutorial Python Tutorial
+              W3.CSS Tutorial Bootstrap Tutorial
+            </Paper>
+          </Grid>
+          <Grid item xs={6} className={classes.grid3}>
+            <SavedTweets />
+          </Grid>
+          <Grid item xs={6} className={classes.grid3}>
+            <ReadTweets />
+          </Grid>
+        </Grid>
+      </div>
+    </div>
   );
 }
