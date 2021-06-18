@@ -1,12 +1,13 @@
 import BaseComponent from "../baseComponent";
-import React from "react";
-import SavedTweets from "./Savedtweets";
 
-export default class Saved extends BaseComponent {
+import React from "react";
+import ReadTweets from "./readTweets";
+
+export default class Read extends BaseComponent {
   render() {
     return (
       <div>
-        <SavedTweets />
+        <ReadTweets />
       </div>
     );
   }
