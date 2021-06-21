@@ -6,11 +6,10 @@ const Container = styled.div`
   display: flex;
 `;
 const SubContainer = styled.div`
-  width: 47%;
+  width: 100%;
   border-radius: 5px;
   border: solid 1px #343965;
   background-color: #191d43;
-
   height: 865px;
 `;
 const Mainheading = styled.span`
