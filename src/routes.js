@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { Login, SignUp } from "./modules";
 import { history } from "./managers/history";
 import BaseComponent from "./modules/baseComponent";
-import Saved from "./modules/Savedtweets";
+import Saved from "./modules/SavedTweets";
 import Read from "./modules/Readtweets";
 import Header from "./modules/Header";
 import Main from "./modules/Maincomponent";
