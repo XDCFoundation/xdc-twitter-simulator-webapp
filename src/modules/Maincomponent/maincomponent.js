@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
-import SavedTweets from "../Savedtweets";
+import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 
 const useStyles = makeStyles((theme) => ({
