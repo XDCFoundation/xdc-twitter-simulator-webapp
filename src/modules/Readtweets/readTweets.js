@@ -22,45 +22,47 @@ const Numberoftweets = styled.span`
   color: #09184b;
   font-family: Raleway;
   font-size: 42px;
-  margin-left: 64%;
-  padding: 1px;
-
+  margin-left: 51%;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.17;
 `;
 const Name = styled.span`
-  color: #d6d6d6;
   font-size: 14px;
+  color: #09184b;
   margin-left: 15px;
   font-family: Raleway !important;
 `;
-const Image = styled.img``;
+const Image = styled.img`
+  margin-top: 21px;
+  margin-left: -11px;
+`;
 const Email = styled.span`
-  color: #8290a4;
   font-size: 14px;
   margin-left: 15px;
   font-family: Raleway !important;
+  // border: solid 1px #e8e8e8;
+  background-color: #ffffff;
+  color: #8290a4;
 `;
 const Content = styled.span`
-  color: #d6d6d6;
-
+  color: #09184b;
   margin-left: 15px;
   font-size: 12px;
   font-family: Raleway !important;
 `;
 const Box = styled.div`
-  border: solid 1px #343965;
+  border: solid 1px #e8e8e8;
   padding: 5px;
 `;
 const Time = styled.span`
   color: #8290a4;
   font-size: 13px;
   line-height: 1.15;
-
+  color: #8290a4;
   padding: 5px;
-  right: 125px;
+  right: 12%;
 
   position: absolute;
   font-family: Raleway !important;
@@ -70,13 +72,13 @@ export default function ReadTweets() {
     <Container>
       <SubContainer>
         <Row>
-          <Mainheading> Read Tweets</Mainheading>
+          <Mainheading> Saved Tweets</Mainheading>
           <div>
             {" "}
             <Image src="/images/infoicon.svg" />
           </div>
 
-          <Numberoftweets>740k</Numberoftweets>
+          <Numberoftweets>800k</Numberoftweets>
         </Row>
         <Box>
           <Row>
@@ -89,7 +91,7 @@ export default function ReadTweets() {
               <Email>@lisaray</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -105,7 +107,7 @@ export default function ReadTweets() {
               <Email>@henrygolding</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -121,7 +123,7 @@ export default function ReadTweets() {
               <Email>@clairebrowne</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -137,7 +139,7 @@ export default function ReadTweets() {
               <Email>@shawnmurphy</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -153,7 +155,7 @@ export default function ReadTweets() {
               <Email>@susanmurphy</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -169,7 +171,7 @@ export default function ReadTweets() {
               <Email>@jackryan</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -185,7 +187,7 @@ export default function ReadTweets() {
               <Email>@cersielannister</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -201,7 +203,7 @@ export default function ReadTweets() {
               <Email>@jcole</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -217,7 +219,7 @@ export default function ReadTweets() {
               <Email>@Harrymag</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
@@ -233,7 +235,7 @@ export default function ReadTweets() {
               <Email>@Harrymag</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore
+                eiusmod tempor incididunt ut
               </Content>
             </Column>
           </Row>
