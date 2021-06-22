@@ -1,87 +1,92 @@
 import React from "react";
-import styled from "styled-components";
 import { Row, Column } from "simple-flexbox";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
 `;
 const SubContainer = styled.div`
-  width: 100%;
   border-radius: 5px;
   border: solid 1px #343965;
-  background-color: #191d43;
-  height: 914px;
 `;
 const Mainheading = styled.span`
-  color: #d6d6d6;
-  padding: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #09184b;
   font-size: 15px;
   font-weight: 600;
   font-stretch: normal;
+  padding: 18px;
 `;
 const Numberoftweets = styled.span`
-  color: #d6d6d6;
-
-  font-family: Raleway !important;
+  color: #09184b;
+  font-family: Raleway;
   font-size: 42px;
+  margin-left: 64%;
   padding: 1px;
+
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.17;
-  margin-left: 60%;
 `;
 const Name = styled.span`
   color: #d6d6d6;
   font-size: 14px;
-  font-family: Raleway !important;
   margin-left: 15px;
+  font-family: Raleway !important;
 `;
 const Image = styled.img``;
 const Email = styled.span`
   color: #8290a4;
   font-size: 14px;
-  font-family: Raleway !important;
   margin-left: 15px;
+  font-family: Raleway !important;
 `;
 const Content = styled.span`
   color: #d6d6d6;
-  font-size: 14px;
+
   margin-left: 15px;
-  font-family: Raleway !important;
   font-size: 12px;
+  font-family: Raleway !important;
 `;
 const Box = styled.div`
   border: solid 1px #343965;
-
-  padding: 6px;
+  padding: 5px;
 `;
 const Time = styled.span`
   color: #8290a4;
   font-size: 13px;
   line-height: 1.15;
+
   padding: 5px;
+  right: 125px;
+
+  position: absolute;
   font-family: Raleway !important;
-  margin-left: 453px;
 `;
-export default function SavedTweets() {
+export default function ReadTweets() {
   return (
     <Container>
       <SubContainer>
         <Row>
-          <Mainheading> Saved Tweets</Mainheading>
-          <Image />
-          <Numberoftweets>800k</Numberoftweets>
+          <Mainheading> Read Tweets</Mainheading>
+          <div>
+            {" "}
+            <Image src="/images/infoicon.svg" />
+          </div>
+
+          <Numberoftweets>740k</Numberoftweets>
         </Row>
         <Box>
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Lisa Ray</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@lisaray</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -93,11 +98,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Harry Golding</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@henrygolding</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -109,11 +114,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Claire Browne</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@clairebrowne</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -125,11 +130,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Shawn </Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@shawnmurphy</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -141,11 +146,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Susan Murphy</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@susanmurphy</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -157,11 +162,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Jack Ryan</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@jackryan</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -173,11 +178,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>Cersie Lannister</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@cersielannister</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
@@ -189,11 +194,11 @@ export default function SavedTweets() {
           <Row>
             <Column>
               <Row>
-                <Name>Harry Maguire</Name>
+                <Name>J Cole</Name>
                 <Time>01:00pm</Time>
               </Row>
 
-              <Email>@Harrymag</Email>
+              <Email>@jcole</Email>
               <Content>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore
