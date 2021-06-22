@@ -6,22 +6,20 @@ const Container = styled.div`
   display: flex;
 `;
 const SubContainer = styled.div`
-  width: 100%;
   border-radius: 5px;
   border: solid 1px #343965;
-  background-color: #191d43;
-  height: 865px;
 `;
 const Mainheading = styled.span`
-  color: #d6d6d6;
-
+  white-space: nowrap;
+  overflow: hidden;
+  color: #09184b;
   font-size: 15px;
   font-weight: 600;
   font-stretch: normal;
   padding: 18px;
 `;
 const Numberoftweets = styled.span`
-  color: #d6d6d6;
+  color: #09184b;
   font-family: Raleway;
   font-size: 42px;
   margin-left: 64%;
@@ -54,15 +52,15 @@ const Content = styled.span`
 `;
 const Box = styled.div`
   border: solid 1px #343965;
-
-  padding: 6px;
+  padding: 5px;
 `;
 const Time = styled.span`
   color: #8290a4;
   font-size: 13px;
   line-height: 1.15;
-  left: 42%;
+
   padding: 5px;
+  right: 125px;
 
   position: absolute;
   font-family: Raleway !important;
@@ -73,7 +71,11 @@ export default function ReadTweets() {
       <SubContainer>
         <Row>
           <Mainheading> Read Tweets</Mainheading>
-          <Image />
+          <div>
+            {" "}
+            <Image src="/images/infoicon.svg" />
+          </div>
+
           <Numberoftweets>740k</Numberoftweets>
         </Row>
         <Box>

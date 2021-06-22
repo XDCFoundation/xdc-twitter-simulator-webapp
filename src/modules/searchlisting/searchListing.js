@@ -10,6 +10,9 @@ const SubContainer = styled.div`
   border: solid 1px #343965;
   background-color: #191d43;
   height: 914px;
+  margin-left: 227px;
+
+  margin-top: 22px;
 `;
 const Mainheading = styled.span`
   color: #d6d6d6;
@@ -55,13 +58,17 @@ const Time = styled.span`
 const HomeImage = styled.img``;
 const Dashboardbutton = styled.button`
   color: #ffffff;
-  width: 35%;
+
   border: none;
+  width: 25%;
   height: 45px;
   border-radius: 6px;
   background-color: #222864;
 `;
-const Buttondiv = styled.div``;
+const Buttondiv = styled.div`
+  margin-left: 227px;
+  margin-top: 25px;
+`;
 
 export default function Searchlist() {
   return (
@@ -74,7 +81,7 @@ export default function Searchlist() {
         <SubContainer>
           <Row>
             <Mainheading> Search Results</Mainheading>
-            <Image />
+            {/* <Image src="/images/infoicon.svg" /> */}
           </Row>
           <Box>
             <Row>
