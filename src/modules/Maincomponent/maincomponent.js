@@ -102,7 +102,7 @@ export default function MainComponent() {
             <SavedTweets />
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
-            {/* <ReadTweets /> */}
+            <ReadTweets />
           </Grid>
         </Grid>
       </div>

@@ -17,7 +17,9 @@ import {
 const theme = createMuiTheme({
   typography: {
     // Tell Material-UI what the font-size on the html element is.
-    htmlFontSize: "16px",
+    htmlFontSize: "22px",
+    whiteSpace: "nowrap",
+    fontFamily: "Raleway sans-serif !important",
   },
 });
 
@@ -26,10 +28,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
   },
-  typography: {
-    // Tell Material-UI what the font-size on the html element is.
-    // htmlFontSize: 14,
-  },
+
+  // content: {
+  //   whiteSpace: "nowrap",
+  //   fontFamily: "Raleway sans-serif !important",
+  // },
 }));
 export default function SavedTweets() {
   const classes = useStyles();
@@ -42,144 +45,402 @@ export default function SavedTweets() {
               <Column>
                 <Row>
                   <Typography
+                    className="content"
                     variant="h5"
-                    style={{ fontFamily: "Raleway sans-serif !important" }}
+                    style={{ whiteSpace: "nowrap" }}
                   >
                     Saved Tweets
                   </Typography>
-                  <Typography
-                    variant="h4"
-                    style={{ whiteSpace: "nowrap", marginLeft: "75%" }}
+                  <Paper
+                    variant="h5"
+                    style={{
+                      whiteSpace: "nowrap",
+                      boxShadow: "none",
+                      align: "justify",
+                      position: "absolute",
+                      right: "52%",
+                    }}
                   >
                     800k
-                  </Typography>
+                  </Paper>
                 </Row>
                 <Row>
-                  <Typography>Lisa Ray</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Lisa Ray
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@lisaray</Typography>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      @lisaray
+                    </Typography>
                     <ThemeProvider theme={theme}>
-                      <Typography
-                        className
-                        // style={{ whiteSpace: "nowrap" }}
-                        overflow="hidden"
-                        font-family="Raleway sans-serif !important"
+                      <Paper
+                        noWrap
+                        className="content"
                         gutterBottom
+                        style={{
+                          fontSize: "14px",
+                          color: "#09184b",
+                          boxShadow: "none",
+                        }}
                       >
                         {" "}
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut
-                      </Typography>
+                      </Paper>
                     </ThemeProvider>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>Harry Golding</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Harry Golding
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@henrygolding</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      @henrygolding
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>Claire Browne</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Claire Browne
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@clairebrowne</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      @clairebrowne
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>Shawn</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Shawn
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@shawnmurphy</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      @shawnmurphy
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>Jack Ryan</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Jack Ryan
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@jackryan</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      @jackryan
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>Cersie Lannister</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Cersie Lannister
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@cersielannister</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                      }}
+                    >
+                      @cersielannister
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>J Cole</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    J Cole
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@jcole</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                      }}
+                    >
+                      @jcole
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
                 <Row>
-                  <Typography>Harry Maguire</Typography>
-                  <Typography style={{ marginLeft: "75%" }}>01:00pm</Typography>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Harry Maguire
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "52%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
                 <Row>
                   <Column>
-                    <Typography>@Harrymag</Typography>
-                    <Typography style={{}}>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                      }}
+                    >
+                      @Harrymag
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                      }}
+                    >
                       {" "}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
-                    </Typography>
+                    </Paper>
                   </Column>
                 </Row>
               </Column>
