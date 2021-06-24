@@ -54,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     marginTop: "-67px",
+    backgroundColor: "#191d43",
+  },
+  image: {
+    marginTop: "-31%",
+    marginLeft: "10%",
   },
 }));
 const Text = styled.div`
@@ -71,7 +76,11 @@ export default function Searchlist() {
     <div className={classes.main}>
       <div className={classes.root}>
         <Grid xs={2}>
-          <Image src="public/images/home.svg" />
+          <img
+            className={classes.image}
+            style={{ width: "16%" }}
+            src="/images/home.svg"
+          />
           <Paper className={classes.dashboard}> Dashboard</Paper>
         </Grid>
         <Grid container spacing={3}>

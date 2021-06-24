@@ -4,6 +4,9 @@ import { Row } from "simple-flexbox";
 import "../styles/App.css";
 import DarkMode from "../components/DarkMode";
 import "../styles/App.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 const Container = styled.div`
   width: 100%;
@@ -106,21 +109,6 @@ margin-left: 355px;
 }
 `;
 
-// const Share = styled.menu`
-//   display: -webkit-box;
-//   display: -webkit-flex;
-//   display: -ms-flexbox;
-//   display: flex;
-//   font-size: 15px;
-//   font-weight: 500;
-//   font-stretch: normal;
-//   font-style: normal;
-//   line-height: 1.19;
-//   text-align: left;
-//   color: #ffffff;
-//   background: transparent;
-//   margin-top: 22px;
-// `;
 const Line = styled.div`
   height: 20px;
   margin: 22px 5px 0px 5px;
