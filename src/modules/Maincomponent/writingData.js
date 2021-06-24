@@ -54,7 +54,7 @@ export default function App() {
 
 
     return (
-        <div style={{ height: 100, width: 270 }}>
+        <div style={{ height: 70}}>
             <MyResponsiveLine data={data} />
         </div>
     );
