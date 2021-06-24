@@ -70,7 +70,6 @@ const Button = styled.button`
 
 const Advancesearch = styled.button`
   width: 155px;
-  margin-left:
   font-family: Raleway;
   font-size: 12px;
   font-weight: 500;
@@ -103,7 +102,7 @@ color: #ffffff;
 background: transparent;
 margin-top: 22px;
 margin-left: 355px;
-}
+
 `;
 
 // const Share = styled.menu`
@@ -144,7 +143,7 @@ const Archive = styled.button`
 export default function HeaderComponent() {
   return (
     <Container>
-      <Row>
+      <Row  style={{width:"100%"}}>
         <Image src="../../images/TwitterS.svg" alt=" " />
 
         <Span>Twitter D-App</Span>

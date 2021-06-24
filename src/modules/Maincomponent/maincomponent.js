@@ -8,6 +8,7 @@ import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData"
 import ReadingData from "./readingData"
+import MapChart from "./map";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -15,22 +16,49 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
-    padding: "98px 98px",
+    padding: "45px",
   },
   grid: {
     marginRight: "20px",
   },
   grid2: {
-    marginTop: "53px",
+    marginTop: "50px",
   },
   grid3: {
-    marginTop: "53px",
+    marginTop: "50px",
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
+  map:{
+   display:"flex",
+   flexDirection:"row",
+   justifyContent:"spaceAround"
+  },
+  node:{
+    fontFamily: "Raleway",
+    fontSize: "16px",
+    fontWeight: 600,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    marginTop:"3%",
+    lineHeight:1.5,
+    color: "#09184b"
+  }, maxTps:{
+    fontFamily: "Raleway",
+    fontSize: "16px",
+    fontWeight: 600,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: 1.17,
+    letterSpacing: "normal",
+    marginLeft:"5%",
+    marginTop:"3%",
+    lineHeight:1.5,
+    color: "#09184b"
+  }
 }));
 
 const Text = styled.div`
@@ -69,11 +97,14 @@ export default function MainComponent() {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <Text>Writing Data</Text>
                   <Paper className={classes.paper}>
-                    HTML Tutorial CSS Tutorial JavaScript Tutorial How To
-                    Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial
-                    Bootstrap Tutorial PHP Tutorial Java Tutorial C++ Tutorial
+                    <div className={classes.map}>
+                    <div className={classes.node}>Nodes<br/> 8</div>
+                    <div className={classes.maxTps}>Current Max TPS<br/> 1/1000</div>
+                    <div style={{width:"50%",marginLeft:"5%"}}>
+                  <MapChart/>
+                  </div>
+                  </div>
                   </Paper>
                 </Grid>
               </Row>
@@ -82,22 +113,8 @@ export default function MainComponent() {
           <Grid item xs={6}>
             <Text>Top 20 trending</Text>
             <Paper className={classes.paper}>
-              HTML Tutorial CSS Tutorial JavaScript Tutorial How To Tutorial SQL
-              Tutorial Python Tutorial W3.CSS Tutorial Bootstrap Tutorial PHP
-              Tutorial Java Tutorial C++ TutorialHTML Tutorial CSS Tutorial
-              JavaScript Tutorial How To Tutorial SQL Tutorial Python Tutorial
-              W3.CSS Tutorial Bootstrap Tutorial PHP Tutorial Java Tutorial C++
-              TutorialHTML Tutorial CSS Tutorial JavaScript Tutorial How To
-              Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial Bootstrap
-              Tutorial PHP Tutorial Java Tutorial C++ TutorialHTML Tutorial CSS
-              Tutorial JavaScript Tutorial How To Tutorial SQL Tutorial Python
-              Tutorial W3.CSS Tutorial Bootstrap Tutorial PHP Tutorial Java
-              Tutorial C++ TutorialHTML Tutorial CSS Tutorial JavaScript
-              Tutorial How To Tutorial SQL Tutorial Python Tutorial W3.CSS
-              Tutorial Bootstrap Tutorial PHP Tutorial Java Tutorial C++
-              Tutorial Tutorial C++ TutorialHTML Tutorial CSS Tutorial
-              JavaScript Tutorial How To Tutorial SQL Tutorial Python Tutorial
-              W3.CSS Tutorial Bootstrap Tutorial
+              <div style={{width:"94%",height:"50%"}}><MapChart/></div>
+            
             </Paper>
           </Grid>
           <Grid item xs={6} className={classes.grid3}>

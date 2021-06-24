@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from '@nivo/line';
 import '../../assets/styles/custom.css';
 
+// const point={}
+
 const data = [
     {
         "id": "japan",
@@ -52,7 +54,7 @@ export default function App() {
 
 
     return (
-        <div style={{ height: 100, width: 270 }}>
+        <div style={{ height:70 }}>
             <ReadingData data={data} />
         </div>
     );
