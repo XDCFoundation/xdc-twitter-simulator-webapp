@@ -6,6 +6,8 @@ import { Column, Row } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
 import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
+import MyResponsiveLine from "./writingData"
+import ReadingData from "./readingData"
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -48,18 +50,18 @@ export default function MainComponent() {
                 <Grid item xs={6} className={classes.grid}>
                   <Text>Writing Data</Text>
                   <Paper className={classes.paper}>
-                    HTML Tutorial CSS Tutorial JavaScript Tutorial How To
-                    Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial
-                    Bootstrap Tutorial PHP Tutorial Java Tutorial C++ Tutorial
+                    <div className="savingSpeed">Saving Speed</div>
+                    <div className="saveSpeed">345/sec</div>
+                  <MyResponsiveLine/>
                   </Paper>
                 </Grid>
 
                 <Grid item xs={6}>
                   <Text>Reading Data</Text>
                   <Paper className={classes.paper}>
-                    HTML Tutorial CSS Tutorial JavaScript Tutorial How To
-                    Tutorial SQL Tutorial Python Tutorial W3.CSS Tutorial
-                    Bootstrap Tutorial PHP Tutorial Java Tutorial C++ Tutorial
+                  <div className="savingSpeed">Reading Speed</div>
+                  <div className="readSpeed">345/sec</div>
+                  <ReadingData/>
                   </Paper>
                 </Grid>
               </Row>
