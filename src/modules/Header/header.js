@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Row } from "simple-flexbox";
 import "../styles/App.css";
@@ -11,207 +11,231 @@ import Grid from "@material-ui/core/Grid";
 const Container = styled.div`
   width: 100%;
   display: flex;
-  height: 64px;
+  height: 88px;
   background-color: #191d43;
-  display: flex;
   flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+`;
+const SubContainer1 = styled.div`
+  display: flex;
+  background-color: #191d43;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: 50px;
+`;
+const SubContainer2 = styled.div`
+  display: flex;
+  height: 88px;
+  background-color: #191d43;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-right: 50px;
 `;
 
 const Image = styled.img`
-  margin-left: 5%;
-  width: 35px;
+  width: 50px;
 `;
 const Span = styled.span`
-  width: 139px;
-  display: flex;
-  font-size: 17px;
-  margin-top: 23px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.19;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  text-align: left;
+  font-size: 21px;
+  font-weight: 600;
   color: #ffffff;
+  font-family: Raleway;
+  margin-left: 5px;
 `;
 const Search = styled.input`
-  width: 373px;
-  display: flex;
-  height: 30px;
-  margin-top: 17px;
+  // width:360px;
+  @media (max-width: 900px) {
+    width: 150px;
+  }
+  @media (min-width: 901px) and (max-width: 1100) {
+    width: 250px;
+  }
+  @media (min-width: 1100px) {
+    width: 360px;
+  }
+  height: 42px;
+  margin: 0 5px 0 32px;
+  padding: 12px 97px 12px 15px;
+  background-color: #3d4270;
   border-radius: 2px;
-  background: #3d4271;
   border: none;
   font-family: Work Sans;
-  font-size: 12px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  text-align: left;
-  padding-left: 1%;
+  font-size: 15px;
   color: #adb1d6;
 `;
 const Button = styled.button`
   background: #3e49b8;
   display: flex;
-  margin-top: 17px;
-  width: 30px;
-  height: 30px;
+  height: 42px;
+  width: 42px;
   border: none;
   border-radius: 2px;
-  margin-left: 4px;
-  padding-top: 4px;
-  padding-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Advancesearch = styled.button`
-  width: 155px;
-  margin-left:
   font-family: Raleway;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.19;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  text-align: left;
   color: #a7afff;
+  margin-left: 15px;
+  font-weight: 500;
   background: transparent;
-  margin-left: 5px;
   border: none;
 `;
 
 const About = styled.text`
-display: -webkit-box;
-display: -webkit-flex;
-display: -ms-flexbox;
-display: flex;
-font-size: 15px;
-font-weight: 500;
-font-stretch: normal;
-font-style: normal;
-line-height: 1.19;
-text-align: left;
+font-size: 18px;
+
 color: #ffffff;
 background: transparent;
-margin-top: 22px;
-margin-left: 355px;
+
 }
 `;
-
 const Line = styled.div`
   height: 20px;
-  margin: 22px 5px 0px 5px;
   border-left: 2px solid #2c326a;
 `;
 const Archive = styled.button`
   font-family: Raleway;
-  width: 137px;
   font-size: 15px;
   font-weight: 500;
-  display: flex;
-  font-stretch: normal;
-  font-style: normal;
-  text-align: left;
   color: #a7afff;
   background: transparent;
-  margin-top: 19px;
   border: none;
+`;
+const UnorderedList = styled.ul`
+  list-style-type: none;
+  margin-top: 25px;
+  background-color: #222864;
+  position: absolute;
+  padding-left: unset;
+  width: 160px;
+`;
+const List = styled.li`
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+const ListReddit = styled.li`
+  margin-top: 10px;
+  margin-bottom: 30px;
+`;
+const ListImg = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+`;
+const AnchorTag = styled.a`
+  font-size: 16px;
+  color: #ffffff;
+  &:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+`;
+const Border = styled.div`
+    border: solid 1px #353b73;
+  }
+`;
+const ArrowUpIcon = styled.span`
+    margin-left:10px;
+    color:#8992e2;
+  }
 `;
 
 export default function HeaderComponent() {
   return (
     <Container>
-      <Row>
-        <Image src="../../images/TwitterS.svg" alt=" " />
-
+      <SubContainer1>
+        <Image src="../../images/TwitterS.svg" alt="image" />
         <Span>Twitter D-App</Span>
-
         <Search type="text" placeholder="Search by Handle name, Hash tag" />
-
         <Button>
           <img
-            style={{ height: "20px", width: "20px", marginTop: "2px" }}
+            style={{ height: "20px", width: "20px" }}
             src="../../images/Search.svg"
             alt=" "
           />
         </Button>
-
         <Advancesearch>Advance Search</Advancesearch>
-
+      </SubContainer1>
+      <SubContainer2>
         <About>About</About>
         <FFButton />
         <Line> </Line>
         <Archive href="#">Tweet Archive</Archive>
-
         <DarkMode />
-      </Row>
+      </SubContainer2>
     </Container>
   );
 }
-
-class FFButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false,
-    };
-  }
-
-  _handleClick(e) {
-    e.preventDefault();
-    this.setState({
-      isVisible: !this.state.isVisible,
-    });
-  }
-
-  renderDropdown() {
-    return (
-      <ul className="dropdown">
-        <li>
-          <a href="#">Facebook</a>
-        </li>
-        <li>
-          <a href="#">Twitter</a>
-        </li>
-        <li>
-          <a href="#">Telegram</a>
-        </li>
-        <li>
-          <a href="#">Linkedin</a>
-        </li>
-        <li>
-          <a href="#">Reddit</a>
-        </li>
-      </ul>
-    );
-  }
-
-  render() {
-    return (
-      <div class="share">
-        <button
-          class="dpdown"
-          type="button"
-          onClick={(e) => this._handleClick(e)}
-          tabindex="1"
-          onFocus={(e) => this._handleClick(e)}
+function RenderDropdown() {
+  return (
+    <UnorderedList>
+      <List>
+        <ListImg src="../../images/facebook.svg" alt=" " />
+        <AnchorTag
+          href="https://www.facebook.com/XinFinHybridBlockchain/"
+          target="_blank"
         >
-          Share
-          <span class="caret"></span>
-        </button>
-        {this.state.isVisible ? this.renderDropdown() : null}
-      </div>
-    );
-  }
+          Facebook
+        </AnchorTag>
+      </List>
+      <Border></Border>
+      <List>
+        <ListImg src="../../images/twitter.svg" alt=" " />
+        <AnchorTag href="https://twitter.com/XinFin_Official" target="_blank">
+          Twitter
+        </AnchorTag>
+      </List>
+      <Border></Border>
+      <List>
+        <ListImg src="../../images/telegram.svg" alt=" " />
+        <AnchorTag href="https://t.me/xinfintalk" target="_blank">
+          Telegram
+        </AnchorTag>
+      </List>
+      <Border></Border>
+      <List>
+        <ListImg src="../../images/linkedin.svg" alt=" " />
+        <AnchorTag
+          href="https://www.linkedin.com/company/xinfin/"
+          target="_blank"
+        >
+          Linkedin
+        </AnchorTag>
+      </List>
+      <Border></Border>
+      <ListReddit>
+        <ListImg src="../../images/reddit.svg" alt=" " />
+        <AnchorTag href="https://www.reddit.com/r/xinfin/" target="_blank">
+          Reddit
+        </AnchorTag>
+      </ListReddit>
+      <Border></Border>
+    </UnorderedList>
+  );
+}
+function FFButton() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div class="share">
+      <button class="dpdown" type="button" onClick={() => setShow(!show)}>
+        Share
+        {/* <img
+            style={{ height: "20px", width: "20px"}}
+            src="../../images/XDC-Dropdown.svg"
+            alt=" "
+          /> */}
+        <ArrowUpIcon>^</ArrowUpIcon>
+        <span class="caret"></span>
+      </button>
+      {show && <RenderDropdown />}
+    </div>
+  );
 }
