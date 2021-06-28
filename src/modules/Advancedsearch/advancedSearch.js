@@ -1,5 +1,4 @@
 import React from "react";
-
 import styled from "styled-components";
 import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
@@ -33,13 +32,14 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     backgroundColor: "#191d43",
-    marginTop: "180px",
-    width: "250%",
+    // marginTop: "180px",
+    // width: "250%",
+    width: "227%",
     boxShadow: "none",
     border: "none",
     borderRadius: "5px",
-    marginLeft: "-52%",
-    marginRight: "15%",
+    // marginLeft: "-52%",
+    // marginRight: "15%",
   },
 
   advancedpaper: {
@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     boxShadow: "none",
     color: "#ffffff",
-
     fontFamily: "Raleway, sans-serif !important",
     marginTop: "20px",
     boxShadow: "none",
@@ -87,11 +86,24 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     fontFamily: "Raleway, sans-serif !important",
     marginTop: "20px",
-    boxShadow: "none",
-    border: "none",
-
+    // boxShadow: "none",
+    // border: "none",
     marginLeft: "50px",
     width: "115%",
+    borderRadius: "3%",
+    border: "solid 1px #4a508a",
+  },
+  commoninput: {
+    color: "#ffffff",
+    backgroundColor: "#191d43",
+    fontFamily: "Raleway ,sans-serif !important",
+    boxShadow: "none",
+    FontSize: "14px",
+    border: "none",
+    width: "115%",
+    marginLeft: "50px",
+    borderRadius: "3%",
+    border: "solid 1px #4a508a",
   },
   inputwords: {
     color: "#ffffff",
@@ -109,14 +121,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     boxShadow: "none",
   },
-  inputallofthewords: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway sans-serif !important",
-    boxShadow: "none",
-    border: "none",
-    width: "115%",
-  },
+
   button: {
     color: "#ffffff",
     backgroundColor: "#191d43",
@@ -126,38 +131,31 @@ const useStyles = makeStyles((theme) => ({
     border: "solid 1px #4a508a",
     width: "115%",
   },
-  totheseaccounts: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    boxShadow: "none",
-    border: "none",
-    width: "115%",
-
-    FontSize: "14px",
-    marginLeft: "50px",
-  },
-  fromtheseaccounts: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway ,sans-serif !important",
-    boxShadow: "none",
-    FontSize: "14px",
-    border: "none",
-    width: "115%",
-    marginLeft: "50px",
-  },
 
   button: {
-    marginTop: "24px",
+    marginTop: "12%",
     backgroundColor: "#3366ff",
     width: "115%",
     color: "#f8f8fa",
     FontSize: "14px",
     fontFamily: "Raleway ,sans-serif !important",
-    marginLeft: "50px",
-    borderRadius: "5px",
+    marginLeft: "15%",
+    borderRadius: "3px",
     border: "none",
+  },
+  allofthewords: {
+    color: "#ffffff",
+    backgroundColor: "#191d43",
+    fontFamily: "Raleway ,sans-serif !important",
+    boxShadow: "none",
+    FontSize: "14px",
+    border: "none",
+    width: "115%",
+    marginLeft: "50px",
+    borderRadius: "3%",
+    border: "solid 1px #4a508a",
+    marginTop: "3%",
+    marginBottom: "4%",
   },
 }));
 export default function AdvancedSearch() {
@@ -173,26 +171,25 @@ export default function AdvancedSearch() {
                 <img />
               </Row>
               <Paper className={classes.words}>Words</Paper>
-              <Paper className={classes.words}>
-                <input
-                  className={classes.inputallofthewords}
-                  placeholder="All of the words"
-                />
-              </Paper>
 
-              <input placeholder="Hashtags" className={classes.hashtags} />
+              <input
+                className={classes.allofthewords}
+                placeholder="All of the words"
+              />
+
+              <input placeholder="Hashtags" className={classes.commoninput} />
               <Paper />
               <Paper className={classes.account}>Accounts</Paper>
               <Paper className={classes.maincolor}>
                 <input
                   placeholder="From these accounts"
-                  className={classes.fromtheseaccounts}
+                  className={classes.commoninput}
                 />
               </Paper>
               <Paper className={classes.maincolor}>
                 <input
                   placeholder="To these accounts"
-                  className={classes.totheseaccounts}
+                  className={classes.commoninput}
                 />
               </Paper>
 
