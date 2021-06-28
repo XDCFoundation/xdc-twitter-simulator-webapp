@@ -39,26 +39,24 @@ label {
   font-family: "Raleway", sans-serif !important;
 }
 .dropdown {
+  margin-top: 25px;
+  background-color: #000000;
+  position: absolute;
+}
+.dropdown1 {
   margin-top: 40px;
   background-color: #000000;
 }
 .dpdown {
-  margin-top: 20px;
-  margin-left: 33px;
   background: none;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 15px;
-  color: #ffffff;
   border: none;
-  padding: 0;
   cursor: pointer;
   outline: inherit;
+  font-family: Raleway;
+  font-size: 18px;
+  color: #ffffff;
+  background: transparent;
+  margin-left: 20px;
 }
 input:focus {
   border: solid 1px #0099ff;
@@ -289,4 +287,7 @@ input:focus {
   letter-spacing: normal;
   text-align: left;
   color: #10ca93;
+}
+.w-100{
+  width: 100%;
 }
