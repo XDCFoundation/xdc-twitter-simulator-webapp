@@ -44,7 +44,6 @@ const Span = styled.span`
   margin-left: 5px;
 `;
 const Search = styled.input`
-  // width:360px;
   @media (max-width: 900px) {
     width: 150px;
   }
@@ -93,7 +92,7 @@ font-size: 18px;
 color: #ffffff;
 background: transparent;
 
-}
+
 `;
 const Line = styled.div`
   height: 20px;
@@ -139,12 +138,12 @@ const AnchorTag = styled.a`
 `;
 const Border = styled.div`
     border: solid 1px #353b73;
-  }
+  
 `;
 const ArrowUpIcon = styled.span`
     margin-left:10px;
     color:#8992e2;
-  }
+  
 `;
 
 export default function HeaderComponent() {
