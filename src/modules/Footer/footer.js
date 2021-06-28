@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   links: {
     listStyle: "none",
-    margin: "10px 0 0 0",
+    margin: "10px 0 0",
     padding: "0",
   },
   linksitem: {
@@ -86,7 +86,7 @@ export default function FooterComponent() {
               }}
             >
               <Row>
-                <Grid item xs={12} sm={12} md={4}>
+                <Grid item xs={12} sm={6} md={4}>
                   <Paper
                     className={classes.paper}
                     style={{
@@ -102,7 +102,7 @@ export default function FooterComponent() {
                     <li className={classes.linksitem}>Privacy Policy</li>
                   </ul>
                 </Grid>
-                <Grid item xs={12} sm={12} md={4}>
+                <Grid item xs={12} sm={6} md={4}>
                   <Paper
                     className={classes.paper}
                     style={{
@@ -156,7 +156,7 @@ export default function FooterComponent() {
                   </ul>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={4}>
+                <Grid item xs={12} sm={6} md={4}>
                   <Paper className={classes.poweredpaper}>
                     <img
                       style={{ width: "12%" }}
