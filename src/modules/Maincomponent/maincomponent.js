@@ -6,9 +6,10 @@ import { Column, Row } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
 import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
-import MyResponsiveLine from "./writingData"
-import ReadingData from "./readingData"
+import MyResponsiveLine from "./writingData";
+import ReadingData from "./readingData";
 import MapChart from "./map";
+import NodeChart from "./nodeMap";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -32,21 +33,22 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
-  map:{
-   display:"flex",
-   flexDirection:"row",
-   justifyContent:"spaceAround"
+  map: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "spaceAround",
   },
-  node:{
+  node: {
     fontFamily: "Raleway",
     fontSize: "16px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    marginTop:"3%",
-    lineHeight:1.5,
-    color: "#09184b"
-  }, maxTps:{
+    marginTop: "3%",
+    lineHeight: 1.5,
+    color: "#09184b",
+  },
+  maxTps: {
     fontFamily: "Raleway",
     fontSize: "16px",
     fontWeight: 600,
@@ -54,11 +56,11 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     lineHeight: 1.17,
     letterSpacing: "normal",
-    marginLeft:"5%",
-    marginTop:"3%",
-    lineHeight:1.5,
-    color: "#09184b"
-  }
+    marginLeft: "5%",
+    marginTop: "3%",
+    lineHeight: 1.5,
+    color: "#09184b",
+  },
 }));
 
 const Text = styled.div`
@@ -80,16 +82,16 @@ export default function MainComponent() {
                   <Paper className={classes.paper}>
                     <div className="savingSpeed">Saving Speed</div>
                     <div className="saveSpeed">345/sec</div>
-                  <MyResponsiveLine/>
+                    <MyResponsiveLine />
                   </Paper>
                 </Grid>
 
                 <Grid item xs={6}>
                   <Text>Reading Data</Text>
                   <Paper className={classes.paper}>
-                  <div className="savingSpeed">Reading Speed</div>
-                  <div className="readSpeed">345/sec</div>
-                  <ReadingData/>
+                    <div className="savingSpeed">Reading Speed</div>
+                    <div className="readSpeed">345/sec</div>
+                    <ReadingData />
                   </Paper>
                 </Grid>
               </Row>
@@ -99,12 +101,18 @@ export default function MainComponent() {
                 <Grid item xs={12} className={classes.grid2}>
                   <Paper className={classes.paper}>
                     <div className={classes.map}>
-                    <div className={classes.node}>Nodes<br/> 8</div>
-                    <div className={classes.maxTps}>Current Max TPS<br/> 1/1000</div>
-                    <div style={{width:"50%",marginLeft:"5%"}}>
-                  <MapChart/>
-                  </div>
-                  </div>
+                      <div className={classes.node}>
+                        Nodes
+                        <br /> 8
+                      </div>
+                      <div className={classes.maxTps}>
+                        Current Max TPS
+                        <br /> 1/1000
+                      </div>
+                      <div style={{ width: "50%", marginLeft: "5%" }}>
+                        <NodeChart />
+                      </div>
+                    </div>
                   </Paper>
                 </Grid>
               </Row>
@@ -113,8 +121,9 @@ export default function MainComponent() {
           <Grid item xs={6}>
             <Text>Top 20 trending</Text>
             <Paper className={classes.paper}>
-              <div style={{width:"94%",height:"50%"}}><MapChart/></div>
-            
+              <div style={{ width: "94%", height: "50%" }}>
+                <MapChart />
+              </div>
             </Paper>
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
