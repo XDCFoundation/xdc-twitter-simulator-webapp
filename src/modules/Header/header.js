@@ -87,12 +87,10 @@ const Advancesearch = styled.button`
 `;
 
 const About = styled.text`
-font-size: 18px;
+  font-size: 18px;
 
-color: #ffffff;
-background: transparent;
-
-
+  color: #ffffff;
+  background: transparent;
 `;
 const Line = styled.div`
   height: 20px;
@@ -137,13 +135,11 @@ const AnchorTag = styled.a`
   }
 `;
 const Border = styled.div`
-    border: solid 1px #353b73;
-  
+  border: solid 1px #353b73;
 `;
 const ArrowUpIcon = styled.span`
-    margin-left:10px;
-    color:#8992e2;
-  
+  margin-left: 10px;
+  color: #8992e2;
 `;
 
 export default function HeaderComponent() {
@@ -160,7 +156,10 @@ export default function HeaderComponent() {
             alt=" "
           />
         </Button>
-        <Advancesearch>Advance Search</Advancesearch>
+        <Advancesearch>
+          {" "}
+          <a href="/advancedsearch">Advance Search</a>
+        </Advancesearch>
       </SubContainer1>
       <SubContainer2>
         <About>About</About>

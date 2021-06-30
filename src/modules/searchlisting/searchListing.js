@@ -5,8 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+import MyResponsiveLine from "../Maincomponent/writingData";
+import ReadingData from "../Maincomponent/readingData";
+
 import {
   createMuiTheme,
   ThemeProvider,
@@ -33,15 +34,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: "80px 80px",
-    marginLeft: "190px",
+    marginLeft: "130px",
   },
-  grid: {
-    // marginRight: "20px",
-    // padding: "200px200px",
-  },
-  grid2: {
-    // marginTop: "53px",
-  },
+  grid: {},
+  grid2: {},
 
   paper: {
     padding: theme.spacing(2),
@@ -55,19 +51,41 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-67px",
     backgroundColor: "#191d43",
+    color: "#ffffff",
+    fontFamily: "Raleway ,sans-serif !important",
+    fontWeight: "600",
   },
   image: {
-    marginTop: "-31%",
-    marginLeft: "10%",
+    marginTop: "-41%",
+    marginLeft: "6%",
+  },
+  savingSpeed: {
+    fontFamily: "Raleway ,sans-serif !important",
+    fontSize: "18px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.17",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#d6d6d6",
+  },
+  savespeed: {
+    marginTop: "5px",
+    fontSize: "1rem",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "0.82",
+    letterSpacing: " normal",
+    textAlign: "left",
+    color: "#3366ff",
   },
 }));
 const Text = styled.div`
   font-weight: 900;
   margin-bottom: 10px;
-`;
-const Image = styled.img`
-  margin-left: 5%;
-  width: 35px;
+  fontfamily: "Raleway ,sans-serif !important";
 `;
 
 export default function Searchlist() {
@@ -84,7 +102,7 @@ export default function Searchlist() {
           <Paper className={classes.dashboard}> Dashboard</Paper>
         </Grid>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={7}>
             <Paper>
               <Column>
                 <Row>
@@ -113,7 +131,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -169,7 +187,7 @@ export default function Searchlist() {
                       boxShadow: "none",
                       position: "absolute",
 
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -219,7 +237,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -269,7 +287,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -319,7 +337,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -369,7 +387,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -418,7 +436,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -467,7 +485,7 @@ export default function Searchlist() {
                       color: "#8290a4",
                       boxShadow: "none",
                       position: "absolute",
-                      right: "46%",
+                      right: "41%",
                     }}
                   >
                     01:00pm
@@ -508,7 +526,10 @@ export default function Searchlist() {
             <Grid item xs={12} className={classes.grid}>
               <Text>Writing Data</Text>
               <Paper className={classes.paper}>
-                HTML Tutorial CSS Tutorial JavaScript Tutorial How To Tutorial
+                <div className="savingSpeed">Saving Speed</div>
+                <div className="saveSpeed">345/sec</div>
+
+                <MyResponsiveLine />
               </Paper>
             </Grid>
 
@@ -517,7 +538,9 @@ export default function Searchlist() {
                 <Grid item xs={12} className={classes.grid2}>
                   <Text>Reading Data</Text>
                   <Paper className={classes.paper}>
-                    HTML Tutorial CSS Tutorial JavaScript Tutorial How Tosdjifk
+                    <div className="savingSpeed">Reading Tweet</div>
+                    <div className="readSpeed">345/sec</div>
+                    <ReadingData />
                   </Paper>
                 </Grid>
               </Row>
