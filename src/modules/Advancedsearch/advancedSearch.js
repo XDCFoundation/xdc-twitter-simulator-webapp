@@ -4,17 +4,12 @@ import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+
 import {
   createMuiTheme,
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-import { getClassSet } from "react-bootstrap/lib/utils/bootstrapUtils";
-import { black } from "material-ui/styles/colors";
 
 const theme = createMuiTheme({});
 const useStyles = makeStyles((theme) => ({
@@ -32,14 +27,12 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     backgroundColor: "#191d43",
-    // marginTop: "180px",
-    // width: "250%",
     width: "227%",
     boxShadow: "none",
     border: "none",
     borderRadius: "5px",
-    // marginLeft: "-52%",
-    // marginRight: "15%",
+    marginTop: "37%",
+    marginLeft: "-52%",
   },
 
   advancedpaper: {
@@ -86,8 +79,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     fontFamily: "Raleway, sans-serif !important",
     marginTop: "20px",
-    // boxShadow: "none",
-    // border: "none",
+
     marginLeft: "50px",
     width: "115%",
     borderRadius: "3%",
