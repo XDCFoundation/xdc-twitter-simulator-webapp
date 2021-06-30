@@ -5,8 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+import MyResponsiveLine from "../Maincomponent/writingData";
+import ReadingData from "../Maincomponent/readingData";
+
 import {
   createMuiTheme,
   ThemeProvider,
@@ -55,15 +56,30 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-67px",
     backgroundColor: "#191d43",
+    color: "#ffffff",
+    fontFamily: "Raleway ,sans-serif !important",
+    fontWeight: "600",
   },
   image: {
-    marginTop: "-31%",
-    marginLeft: "10%",
+    marginTop: "-41%",
+    marginLeft: "6%",
+  },
+  savingSpeed: {
+    fontFamily: "Raleway ,sans-serif !important",
+    fontSize: "18px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.17",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#d6d6d6",
   },
 }));
 const Text = styled.div`
   font-weight: 900;
   margin-bottom: 10px;
+  fontfamily: "Raleway ,sans-serif !important";
 `;
 const Image = styled.img`
   margin-left: 5%;
@@ -508,7 +524,10 @@ export default function Searchlist() {
             <Grid item xs={12} className={classes.grid}>
               <Text>Writing Data</Text>
               <Paper className={classes.paper}>
-                HTML Tutorial CSS Tutorial JavaScript Tutorial How To Tutorial
+                <div className="savingSpeed">Saving Speed</div>
+                <div className="Speed">345/sec</div>
+
+                <MyResponsiveLine />
               </Paper>
             </Grid>
 
@@ -517,7 +536,9 @@ export default function Searchlist() {
                 <Grid item xs={12} className={classes.grid2}>
                   <Text>Reading Data</Text>
                   <Paper className={classes.paper}>
-                    HTML Tutorial CSS Tutorial JavaScript Tutorial How Tosdjifk
+                    <div className="savingSpeed">Reading Tweet</div>
+                    <div className="Speed">345/sec</div>
+                    <ReadingData />
                   </Paper>
                 </Grid>
               </Row>
