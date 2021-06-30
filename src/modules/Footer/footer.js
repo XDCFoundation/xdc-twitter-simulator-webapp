@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   poweredpaper: {
     backgroundColor: "#191d43",
     color: "#ffffff",
-    fontSize: "26px",
+    fontSize: "18px",
     marginTop: "12px",
     marginLeft: "2%",
     boxShadow: "none",
@@ -58,6 +58,19 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "2%",
     boxShadow: "none",
   },
+  links: {
+    listStyle: "none",
+    margin: "10px 0 0",
+    padding: "0",
+  },
+  linksitem: {
+    display: "inline-block",
+    marginRight: "15px",
+  },
+  followitem: {
+    display: "inline-block",
+    marginRight: "15px",
+  },
 }));
 export default function FooterComponent() {
   const classes = useStyles();
@@ -69,69 +82,89 @@ export default function FooterComponent() {
             <Paper
               className={classes.paper}
               style={{
-                padding: "5%",
+                padding: "3%",
               }}
             >
               <Row>
-                <Grid item xs={4}>
-                  <Paper className={classes.paper}>other Links</Paper>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.paper}
+                    style={{
+                      padding: "0%",
+                    }}
+                  >
+                    Other Links
+                  </Paper>
+                  <ul className={classes.links}>
+                    <li className={classes.linksitem}>Archive Tweets</li>
+                    <li className={classes.linksitem}>Share</li>
+                    <li className={classes.linksitem}>Contact us</li>
+                    <li className={classes.linksitem}>Privacy Policy</li>
+                  </ul>
                 </Grid>
-                <Grid item xs={4}>
-                  <Paper className={classes.paper}>Follow us on </Paper>
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.paper}
+                    style={{
+                      padding: "0",
+                    }}
+                  >
+                    Follow us on{" "}
+                  </Paper>
+                  <ul className={classes.links}>
+                    <li className={classes.followitem}>
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src="../../images/twitter.svg"
+                      />
+                    </li>
+                    <li className={classes.followitem}>
+                      {" "}
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src="../../images/facebook.svg"
+                      />
+                    </li>
+                    <li className={classes.followitem}>
+                      {" "}
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src="../../images/github.svg"
+                      />
+                    </li>
+                    <li className={classes.followitem}>
+                      {" "}
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src="../../images/linkedin.svg"
+                      />
+                    </li>
+                    <li className={classes.followitem}>
+                      {" "}
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src="../../images/telegram.svg"
+                      />
+                    </li>
+                    <li className={classes.followitem}>
+                      {" "}
+                      <img
+                        style={{ height: "20px", width: "20px" }}
+                        src="../../images/reddit.svg"
+                      />
+                    </li>
+                  </ul>
                 </Grid>
-                <img style={{ width: "5%" }} src="/images/xinfintwitter.png" />
-                <Grid item xs={4}>
+
+                <Grid item xs={12} sm={6} md={4}>
                   <Paper className={classes.poweredpaper}>
+                    <img
+                      style={{ width: "12%" }}
+                      src="/images/xinfintwitter.png"
+                    />
                     Powered By XDC{" "}
                   </Paper>
                 </Grid>
-              </Row>
-              <Row>
-                <Grid item xs={4}>
-                  <Row>
-                    <Paper className={classes.papersecondrow}>
-                      Archive Tweets
-                    </Paper>
-
-                    <Paper className={classes.papersecondrow}>Share </Paper>
-
-                    <Paper className={classes.papersecondrow}>
-                      Contact us{" "}
-                    </Paper>
-
-                    <Paper className={classes.papersecondrow}>
-                      Privacy Policy{" "}
-                    </Paper>
-                  </Row>
-                </Grid>
-                <Row className={classes.row}>
-                  <Grid item xs={4}>
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="../../images/twitter.svg"
-                    />
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="../../images/facebook.svg"
-                    />
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="../../images/github.svg"
-                    />
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="../../images/linkedin.svg"
-                    />
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="../../images/telegram.svg"
-                    />
-                    <img
-                      style={{ height: "20px", width: "20px" }}
-                      src="../../images/reddit.svg"
-                    />
-                  </Grid>
-                </Row>
               </Row>
             </Paper>
           </Grid>
