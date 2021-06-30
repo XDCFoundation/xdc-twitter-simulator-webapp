@@ -91,7 +91,7 @@ export default function Searchlist() {
                   <Typography
                     className="content"
                     variant="h5"
-                    style={{ whiteSpace: "nowrap" }}
+                    style={{ whiteSpace: "nowrap", marginLeft: "2%" }}
                   >
                     Search Results
                   </Typography>
@@ -103,6 +103,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Lisa Ray
@@ -126,6 +127,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#8290a4",
                         whiteSpace: "nowrap",
+                        marginLeft: "2%",
                       }}
                     >
                       @lisaray
@@ -139,6 +141,7 @@ export default function Searchlist() {
                           fontSize: "14px",
                           color: "#09184b",
                           boxShadow: "none",
+                          marginLeft: "2%",
                         }}
                       >
                         {" "}
@@ -155,6 +158,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Harry Golding
@@ -179,6 +183,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#8290a4",
                         whiteSpace: "nowrap",
+                        marginLeft: "2%",
                       }}
                     >
                       @henrygolding
@@ -188,6 +193,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#09184b",
                         boxShadow: "none",
+                        marginLeft: "2%",
                       }}
                     >
                       {" "}
@@ -203,6 +209,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Claire Browne
@@ -226,6 +233,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#8290a4",
                         whiteSpace: "nowrap",
+                        marginLeft: "2%",
                       }}
                     >
                       @clairebrowne
@@ -235,6 +243,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#09184b",
                         boxShadow: "none",
+                        marginLeft: "2%",
                       }}
                     >
                       {" "}
@@ -250,6 +259,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Shawn
@@ -273,6 +283,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#8290a4",
                         whiteSpace: "nowrap",
+                        marginLeft: "2%",
                       }}
                     >
                       @shawnmurphy
@@ -281,7 +292,7 @@ export default function Searchlist() {
                       style={{
                         fontSize: "14px",
                         color: "#09184b",
-
+                        marginLeft: "2%",
                         boxShadow: "none",
                       }}
                     >
@@ -298,6 +309,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Jack Ryan
@@ -321,6 +333,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#8290a4",
                         whiteSpace: "nowrap",
+                        marginLeft: "2%",
                       }}
                     >
                       @jackryan
@@ -330,6 +343,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#09184b",
                         boxShadow: "none",
+                        marginLeft: "2%",
                       }}
                     >
                       {" "}
@@ -345,6 +359,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Cersie Lannister
@@ -367,6 +382,7 @@ export default function Searchlist() {
                       style={{
                         fontSize: "14px",
                         color: "#8290a4",
+                        marginLeft: "2%",
                       }}
                     >
                       @cersielannister
@@ -376,6 +392,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#09184b",
                         boxShadow: "none",
+                        marginLeft: "2%",
                       }}
                     >
                       {" "}
@@ -391,6 +408,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     J Cole
@@ -413,6 +431,7 @@ export default function Searchlist() {
                       style={{
                         fontSize: "14px",
                         color: "#8290a4",
+                        marginLeft: "2%",
                       }}
                     >
                       @jcole
@@ -422,6 +441,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#09184b",
                         boxShadow: "none",
+                        marginLeft: "2%",
                       }}
                     >
                       {" "}
@@ -437,6 +457,7 @@ export default function Searchlist() {
                       fontSize: "14px",
                       color: "#09184b",
                       whiteSpace: "nowrap",
+                      marginLeft: "2%",
                     }}
                   >
                     Harry Maguire
@@ -459,6 +480,7 @@ export default function Searchlist() {
                       style={{
                         fontSize: "14px",
                         color: "#8290a4",
+                        marginLeft: "2%",
                       }}
                     >
                       @Harrymag
@@ -468,6 +490,7 @@ export default function Searchlist() {
                         fontSize: "14px",
                         color: "#09184b",
                         boxShadow: "none",
+                        marginLeft: "2%",
                       }}
                     >
                       {" "}
@@ -494,8 +517,7 @@ export default function Searchlist() {
                 <Grid item xs={12} className={classes.grid2}>
                   <Text>Reading Data</Text>
                   <Paper className={classes.paper}>
-                    HTML Tutorial CSS Tutorial JavaScript Tutorial How
-                    Tosdjifkofsklfjskjflkjzkldfjklzjclkzjlcljckckjk
+                    HTML Tutorial CSS Tutorial JavaScript Tutorial How Tosdjifk
                   </Paper>
                 </Grid>
               </Row>
