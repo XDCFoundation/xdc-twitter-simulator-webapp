@@ -1,243 +1,553 @@
 import React from "react";
 import { Row, Column } from "simple-flexbox";
 import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import MyResponsiveLine from "../Maincomponent/writingData";
+import ReadingData from "../Maincomponent/readingData";
 
-const Container = styled.div`
-  display: flex;
-`;
-const SubContainer = styled.div`
-  border-radius: 5px;
-  border: solid 1px #343965;
-  background-color: #191d43;
-  height: 914px;
-`;
-const Mainheading = styled.span`
-  color: #d6d6d6;
-  padding: 18px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-size: 22px;
-`;
+import {
+  createMuiTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from "@material-ui/core/styles";
 
-const Name = styled.span`
-  color: #d6d6d6;
-  font-size: 14px;
-  font-family: Raleway !important;
-  margin-left: 15px;
-`;
-const Image = styled.img``;
-const Email = styled.span`
-  color: #8290a4;
-  font-size: 14px;
-  font-family: Raleway !important;
-  margin-left: 15px;
-`;
-const Content = styled.span`
-  color: #d6d6d6;
-  font-size: 14px;
-  margin-left: 15px;
-  font-family: Raleway !important;
-  font-size: 12px;
-`;
-const Box = styled.div`
-  border: solid 1px #343965;
+const theme = createMuiTheme({
+  typography: {
+    // Tell Material-UI what the font-size on the html element is.
+    htmlFontSize: "22px",
+    whiteSpace: "nowrap",
+    fontFamily: "Raleway sans-serif !important",
+  },
+});
 
-  padding: 6px;
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+  },
+  main: {
+    backgroundColor: "#f5f6f9",
+  },
+  root: {
+    flexGrow: 1,
+    padding: "80px 80px",
+    marginLeft: "130px",
+  },
+  grid: {},
+  grid2: {},
+
+  paper: {
+    padding: theme.spacing(2),
+    // textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+  dashboard: {
+    marginBottom: "19px",
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    marginTop: "-67px",
+    backgroundColor: "#191d43",
+    color: "#ffffff",
+    fontFamily: "Raleway ,sans-serif !important",
+    fontWeight: "600",
+  },
+  image: {
+    marginTop: "-41%",
+    marginLeft: "6%",
+  },
+  savingSpeed: {
+    fontFamily: "Raleway ,sans-serif !important",
+    fontSize: "18px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.17",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#d6d6d6",
+  },
+  savespeed: {
+    marginTop: "5px",
+    fontSize: "1rem",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "0.82",
+    letterSpacing: " normal",
+    textAlign: "left",
+    color: "#3366ff",
+  },
+}));
+const Text = styled.div`
+  font-weight: 900;
+  margin-bottom: 10px;
+  fontfamily: "Raleway ,sans-serif !important";
 `;
-const Time = styled.span`
-  color: #8290a4;
-  font-size: 13px;
-  line-height: 1.15;
-  padding: 5px;
-  font-family: Raleway !important;
-  margin-left: 453px;
-`;
-const HomeImage = styled.img``;
-const Dashboardbutton = styled.button`
-  color: #ffffff;
-  width: 35%;
-  border: none;
-  height: 45px;
-  border-radius: 6px;
-  background-color: #222864;
-`;
-const Buttondiv = styled.div``;
 
 export default function Searchlist() {
+  const classes = useStyles();
   return (
-    <Container>
-      <Column>
-        <Buttondiv>
-          <Dashboardbutton>Dashboard</Dashboardbutton>
-        </Buttondiv>
-
-        <SubContainer>
-          <Row>
-            <Mainheading> Search Results</Mainheading>
-            <Image />
-          </Row>
-          <Box>
-            <Row>
+    <div className={classes.main}>
+      <div className={classes.root}>
+        <Grid xs={2}>
+          <img
+            className={classes.image}
+            style={{ width: "16%" }}
+            src="/images/home.svg"
+          />
+          <Paper className={classes.dashboard}> Dashboard</Paper>
+        </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={7}>
+            <Paper>
               <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Typography
+                    className="content"
+                    variant="h5"
+                    style={{ whiteSpace: "nowrap", marginLeft: "2%" }}
+                  >
+                    Search Results
+                  </Typography>
                 </Row>
-
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Lisa Ray
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @lisaray
+                    </Typography>
+                    <ThemeProvider theme={theme}>
+                      <Paper
+                        noWrap
+                        className="content"
+                        gutterBottom
+                        style={{
+                          fontSize: "14px",
+                          color: "#09184b",
+                          boxShadow: "none",
+                          marginLeft: "2%",
+                        }}
+                      >
+                        {" "}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut
+                      </Paper>
+                    </ThemeProvider>
+                  </Column>
                 </Row>
-
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Harry Golding
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @henrygolding
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
                 </Row>
-
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Claire Browne
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @clairebrowne
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
                 </Row>
-
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Shawn
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @shawnmurphy
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        marginLeft: "2%",
+                        boxShadow: "none",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
                 </Row>
-
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
-              </Column>
-            </Row>
-          </Box>
-          <Box>
-            <Row>
-              <Column>
                 <Row>
-                  <Name>Harry Maguire</Name>
-                  <Time>01:00pm</Time>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Jack Ryan
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
                 </Row>
 
-                <Email>@Harrymag</Email>
-                <Content>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore
-                </Content>
+                <Row>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        whiteSpace: "nowrap",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @jackryan
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
+                </Row>
+                <Row>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Cersie Lannister
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
+                </Row>
+
+                <Row>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @cersielannister
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
+                </Row>
+                <Row>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    J Cole
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
+                </Row>
+
+                <Row>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @jcole
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
+                </Row>
+                <Row>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontSize: "14px",
+                      color: "#09184b",
+                      whiteSpace: "nowrap",
+                      marginLeft: "2%",
+                    }}
+                  >
+                    Harry Maguire
+                  </Typography>
+                  <Paper
+                    style={{
+                      color: "#8290a4",
+                      boxShadow: "none",
+                      position: "absolute",
+                      right: "41%",
+                    }}
+                  >
+                    01:00pm
+                  </Paper>
+                </Row>
+
+                <Row>
+                  <Column>
+                    <Typography
+                      style={{
+                        fontSize: "14px",
+                        color: "#8290a4",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      @Harrymag
+                    </Typography>
+                    <Paper
+                      style={{
+                        fontSize: "14px",
+                        color: "#09184b",
+                        boxShadow: "none",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      {" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut
+                    </Paper>
+                  </Column>
+                </Row>
               </Column>
+            </Paper>
+            {/* </div> */}
+          </Grid>
+
+          <Grid item xs={4}>
+            <Grid item xs={12} className={classes.grid}>
+              <Text>Writing Data</Text>
+              <Paper className={classes.paper}>
+                <div className="savingSpeed">Saving Speed</div>
+                <div className="saveSpeed">345/sec</div>
+
+                <MyResponsiveLine />
+              </Paper>
+            </Grid>
+
+            <Row className="justify-space-between w-100">
+              <Row className="w-100">
+                <Grid item xs={12} className={classes.grid2}>
+                  <Text>Reading Data</Text>
+                  <Paper className={classes.paper}>
+                    <div className="savingSpeed">Reading Tweet</div>
+                    <div className="readSpeed">345/sec</div>
+                    <ReadingData />
+                  </Paper>
+                </Grid>
+              </Row>
             </Row>
-          </Box>
-        </SubContainer>
-      </Column>
-    </Container>
+          </Grid>
+        </Grid>
+      </div>
+    </div>
   );
 }
