@@ -28,7 +28,7 @@ class Routes extends BaseComponent {
             <Route exact path={"/savedtweets"} component={Saved} />
             <Route exact path={"/readtweets"} component={Read} />
             {/* <Route exact path={"/footer"} component={Footer} /> */}
-            <Route exact path={"/searchlist"} component={Search} />
+            <Route exact path={"/list"} component={Search} />
             {/* <Route exact path={"/header"} component={Header} /> */}
 
             <Route exact path={"/advancedsearch"} component={Advanced} />
