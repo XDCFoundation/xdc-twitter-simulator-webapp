@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    marginTop: "-20px",
   },
   map: {
     display: "flex",
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Text = styled.div`
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-bottom: 26px;
 `;
 export default function MainComponent() {
   const classes = useStyles();
