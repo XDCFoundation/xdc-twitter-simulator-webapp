@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 const Container = styled.div`
   width: 100%;
   display: flex;
-  height: 88px;
+  height: 65px;
   background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
@@ -34,14 +34,12 @@ const SubContainer2 = styled.div`
 `;
 
 const Image = styled.img`
-  width: 50px;
+  // width: 50px;
 `;
 const Span = styled.span`
-  font-size: 21px;
+  font-size: 16px;
   font-weight: 600;
   color: #ffffff;
-  font-family: Raleway;
-  margin-left: 5px;
 `;
 const Search = styled.input`
   @media (max-width: 900px) {
@@ -53,8 +51,8 @@ const Search = styled.input`
   @media (min-width: 1100px) {
     width: 360px;
   }
-  height: 42px;
-  margin: 0 5px 0 32px;
+  height: 31px;
+  // margin: 0 5px 0 32px;
   padding: 12px 97px 12px 15px;
   background-color: #3d4270;
   border-radius: 2px;
