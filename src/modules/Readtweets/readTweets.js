@@ -14,6 +14,7 @@ import {
   responsiveFontSizes,
 } from "@material-ui/core/styles";
 
+
 const theme = createMuiTheme({
   typography: {
     // Tell Material-UI what the font-size on the html element is.
@@ -25,7 +26,7 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
   },
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4%",
     fontSize: "42px",
- 
+   marginTop:"10px",
   fontWeight: "600",
   fontStretch: "normal",
   fontStyle: "normal",
@@ -50,17 +51,39 @@ const useStyles = makeStyles((theme) => ({
     marginBottom:"30px",
   },
   name:{
-    fontSize: "14px",
+    fontSize: "13px",
     color: "#09184b",
     whiteSpace: "nowrap",
+    fontFamily: "Raleway",
+    marginLeft:"18px",
+    fontWeight: 500,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.14",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#09184b",
+    marginBottom:"5px",
+    
     
   },
   content:{
-    fontSize: "14px",
+    fontSize: "13px",
     color: "#09184b",
     boxShadow: "none",
     border:"none",
-    border: "solid 1px #e8e8e8",
+    // marginBottom:"5px",
+    // border: "solid 1px #e8e8e8",
+    fontFamily: "Raleway",
+    fontSize: "11px",
+    fontWeight: 500,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.2",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color:"#09184b",
+    marginLeft:"18px",
    
   },
   time:{
@@ -68,16 +91,36 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     position: "absolute",
     right: "4%",
+    // fontFamily: "Raleway",
+    fontSize: "13px",
+    fontWeight: "normal",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.15",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#8290a4",
+    marginBottom:"5px",
+    marginLeft:"18px",
   
   },
   email:{
-    fontSize: "14px",
+    fontSize: "11px",
     color: "#8290a4",
     whiteSpace: "nowrap",
-  
+    fontFamily: "Raleway",
+    marginBottom:"5px",
+  fontWeight: 500,
+  fontStretch: "normal",
+  fontStyle: "normal",
+  lineHeight: "1.2",
+  letterSpacing: "normal",
+  textAlign: "left",
+  color: "#8f8faf",
+  marginLeft:"18px",
   },
   readtweet:{
-  
+    fontFamily: "Raleway",
     fontSize: "22px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -86,16 +129,13 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "#09184b",
-    marginTop:"3%",
+    marginTop:"4%",
+    marginLeft:"18px",
     
   },
-  // gap:{
-  //   border: "solid 1px #e8e8e8",
   
-  // }
 }));
-const Space=styled.div`
-border: "solid 1px #e8e8e8",`;
+
 
 export default function ReadTweets() {
   const classes = useStyles();
@@ -106,7 +146,7 @@ export default function ReadTweets() {
           <Paper className={classes.paper}>
             
               <Column>
-            <Space>
+         
                 <Row className={classes.row}>
                 
                   <Typography
@@ -116,7 +156,7 @@ export default function ReadTweets() {
                   >
                     Read Tweets
                   </Typography>
-                  <Divider />
+                  {/* <Divider /> */}
                   <Paper
                     variant="h5" className={classes.tweetnumber}
                   
@@ -125,7 +165,9 @@ export default function ReadTweets() {
                   </Paper>
                 
                 </Row>
-                </Space>
+           <hr 
+           style={{width:"100%", border: "solid 0.5px #e8e8e8",marginTop: "0rem",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -138,7 +180,7 @@ export default function ReadTweets() {
                   className={classes.time}
                    
                   >
-                    01:00pm
+                    01:00 PM
                   </Paper>
                 </Row>
 
@@ -165,6 +207,9 @@ export default function ReadTweets() {
                     </ThemeProvider>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid .5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -177,7 +222,7 @@ export default function ReadTweets() {
                   className={classes.time}
                     
                   >
-                    01:00pm
+                    01:00 PM
                   </Paper>
                 </Row>
 
@@ -198,6 +243,9 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid 0.5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6" className={classes.name}
@@ -210,7 +258,7 @@ export default function ReadTweets() {
                     
                     className={classes.time}
                   >
-                    01:00pm
+                   01:00 PM
                   </Paper>
                 </Row>
 
@@ -231,6 +279,9 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid .5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -243,7 +294,7 @@ export default function ReadTweets() {
                   className={classes.time}
                    
                   >
-                    01:00pm
+                    01:00 PM
                   </Paper>
                 </Row>
 
@@ -263,6 +314,9 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid 0.5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -275,7 +329,7 @@ export default function ReadTweets() {
                   
                     className={classes.time}
                   >
-                    01:00pm
+                    01:00 PM
                   </Paper>
                 </Row>
 
@@ -296,6 +350,9 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid 0.5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -307,7 +364,7 @@ export default function ReadTweets() {
                   <Paper
                    className={classes.time}
                   >
-                    01:00pm
+                   01:00 PM
                   </Paper>
                 </Row>
 
@@ -328,6 +385,9 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid 0.5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -340,7 +400,7 @@ export default function ReadTweets() {
                   className={classes.time}
                     
                   >
-                    01:00pm
+                   01:00 PM
                   </Paper>
                 </Row>
 
@@ -361,6 +421,9 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+                <hr 
+           style={{width:"100%", border: "solid 0.5px #e8e8e8",
+          }}/>
                 <Row>
                   <Typography
                     variant="h6"
@@ -372,7 +435,7 @@ export default function ReadTweets() {
                   <Paper
                    className={classes.time}
                   >
-                    01:00pm
+                    01:00 PM
                   </Paper>
                 </Row>
 
@@ -386,6 +449,7 @@ export default function ReadTweets() {
                     <Paper
                      
                       className={classes.content}
+                      style={{marginBottom:"14px"}}
                     >
                      
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -393,6 +457,7 @@ export default function ReadTweets() {
                     </Paper>
                   </Column>
                 </Row>
+          
               </Column>
           
           </Paper>
