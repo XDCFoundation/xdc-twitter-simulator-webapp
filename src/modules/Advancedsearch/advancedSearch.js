@@ -4,7 +4,6 @@ import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
 import {
   createMuiTheme,
   ThemeProvider,
@@ -14,9 +13,16 @@ import {
 const theme = createMuiTheme({});
 const useStyles = makeStyles((theme) => ({
   main: {
-    display: "grid",
+   
     justifyContent: "center",
     alignContent: "center",
+    backgroundColor: "#191d43",
+    width: "730px",
+    height: "649px",
+    borderRadius: "5px",
+    border: "solid 1px #515684",
+    backgroundColor: "#191d43",
+    
   },
 
   mainpaper: {
@@ -150,15 +156,72 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "4%",
   },
 }));
+const Advanced=styled.span`
+font-family: Raleway;
+font-size: 22px;
+font-weight: 600;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.18;
+letter-spacing: normal;
+text-align: left;
+ color: #ffffff;
+`;
+const Words=styled.span`
+font-family: Raleway;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  color: #8290a4;`;
+
+const Accounts=styled.span`
+font-family: Raleway;
+font-size: 18px;
+font-weight: 500;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.17;
+letter-spacing: normal;
+text-align: left;
+color: #f8f8fa;`;
+const Inputfromtheseaccounts=styled.input``;
+const Inputtotheseaccounts=styled.input``;
+const Inputallwords=styled.input`
+border-radius: 5px;
+  border: solid 1px #4a508a;`;
+const Inputhashtags=styled.input`
+border-radius: 5px;
+border: solid 1px #4a508a;`;
+const Button=styled.button``;
 export default function AdvancedSearch() {
   const classes = useStyles();
   return (
     <div className={classes.main}>
-      <Grid className={classes.grid} container spacing={4}>
-        <Grid item xs={8} className={classes.griditem}>
-          <Paper className={classes.mainpaper}>
-            <Column>
-              <Row>
+      <Column>
+       <Row><Advanced>Advanced Search</Advanced></Row>
+       <Words>Words</Words>
+        <Inputallwords placeholder="All of the words"/>
+        <Inputhashtags placeholder="Hashtags"/>
+        <Accounts>Accounts</Accounts>
+        <Inputfromtheseaccounts placeholder="From these accounts"/>
+        <Inputtotheseaccounts placeholder="To these accounts"/>
+        <Button>Search</Button>
+</Column>
+    </div>);
+
+    // <div className={classes.main}>
+    //   <Grid className={classes.grid} container spacing={4}>
+    //     <Grid item xs={8} className={classes.griditem}>
+    //       <Paper className={classes.mainpaper}>
+    //         <Column>
+    //         <Row><Advanced>Advanced Search</Advanced></Row>
+
+           
+              /* <Row>
                 <Paper className={classes.advancedpaper}>Advanced Search</Paper>
                 <img />
               </Row>
@@ -170,8 +233,8 @@ export default function AdvancedSearch() {
               />
 
               <input placeholder="Hashtags" className={classes.commoninput} />
-              <Paper />
-              <Paper className={classes.account}>Accounts</Paper>
+              <Paper /> */}
+              {/* <Paper className={classes.account}>Accounts</Paper>
               <Paper className={classes.maincolor}>
                 <input
                   placeholder="From these accounts"
@@ -185,11 +248,11 @@ export default function AdvancedSearch() {
                 />
               </Paper>
 
-              <button className={classes.button}>Search</button>
-            </Column>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
-  );
-}
+              <button className={classes.button}>Search</button> */}
+//             </Column>
+//           </Paper>
+//         </Grid>
+//       </Grid>
+//     </div>
+//   );
+// }
