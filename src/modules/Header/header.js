@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Row } from "simple-flexbox";
 import "../styles/App.css";
 import DarkMode from "../components/DarkMode";
 import "../styles/App.css";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 const Container = styled.div`
   width: 100%;
   display: flex;
-  height: 88px;
+  height: 66px;
   background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
@@ -26,7 +24,7 @@ const SubContainer1 = styled.div`
 `;
 const SubContainer2 = styled.div`
   display: flex;
-  height: 88px;
+  height: 62px;
   background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
@@ -34,14 +32,17 @@ const SubContainer2 = styled.div`
 `;
 
 const Image = styled.img`
-  width: 50px;
+  width: 40px;
+  height: 35px;
+  margin-left: 8px;
 `;
 const Span = styled.span`
-  font-size: 21px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
   font-family: Raleway;
-  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 2px;
 `;
 const Search = styled.input`
   @media (max-width: 900px) {
@@ -51,83 +52,97 @@ const Search = styled.input`
     width: 250px;
   }
   @media (min-width: 1100px) {
-    width: 360px;
+    width: 250px;
   }
-  height: 42px;
-  margin: 0 5px 0 32px;
-  padding: 12px 97px 12px 15px;
+  height: 30px;
+  margin: 2px 5px 0 16px;
+  padding: 12px 70px 12px 12px;
   background-color: #3d4270;
   border-radius: 2px;
   border: none;
-  font-family: Work Sans;
-  font-size: 15px;
-  color: #adb1d6;
+  font-family: WorkSans-Roman;
+  font-size: 10.5px;
+  color: #fff;
+  ::placeholder {
+    color: #adb1d6;
+    opacity: 1;
+  }
 `;
 const Button = styled.button`
   background: #3e49b8;
   display: flex;
-  height: 42px;
-  width: 42px;
+  height: 30px;
+  width: 30px;
   border: none;
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1px;
 `;
 
 const Advancesearch = styled.button`
   font-family: Raleway;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 500;
   color: #a7afff;
-  margin-left: 15px;
+  margin-left: 2px;
+  margin-top: 3px;
   font-weight: 500;
   background: transparent;
   border: none;
+  text-decoration: none;
 `;
 
 const About = styled.text`
-  font-size: 18px;
-
+  font-size: 13px;
+  font-weight: 600;
   color: #ffffff;
   background: transparent;
+  letter-spacing: 0.6px;
 `;
 const Line = styled.div`
   height: 20px;
   border-left: 2px solid #2c326a;
+  margin-right: 4px;
 `;
 const Archive = styled.button`
   font-family: Raleway;
-  font-size: 15px;
-  font-weight: 500;
-  color: #a7afff;
+  font-size: 12px;
+  color: #3366ff;
+  font-weight: bold;
   background: transparent;
   border: none;
+  letter-spacing: 0.5px;
+  margin-right: 10px;
 `;
 const UnorderedList = styled.ul`
   list-style-type: none;
-  margin-top: 25px;
+  margin-top: 10px;
   background-color: #222864;
   position: absolute;
   padding-left: unset;
-  width: 160px;
+  width: 140px;
+  margin-left: 10px;
+  border-radius: 4px;
 `;
 const List = styled.li`
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 `;
-const ListReddit = styled.li`
-  margin-top: 10px;
-  margin-bottom: 30px;
+const ListLast = styled.li`
+  margin-top: -2px;
+  margin-bottom: 0px;
 `;
+
 const ListImg = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   margin-right: 10px;
   margin-left: 10px;
 `;
 const AnchorTag = styled.a`
-  font-size: 16px;
+  font-size: 13px;
   color: #ffffff;
   &:hover {
     text-decoration: none;
@@ -138,8 +153,9 @@ const Border = styled.div`
   border: solid 1px #353b73;
 `;
 const ArrowUpIcon = styled.span`
-  margin-left: 10px;
+  margin-left: 4px;
   color: #8992e2;
+  font-size: 16px;
 `;
 
 export default function HeaderComponent() {
@@ -158,7 +174,9 @@ export default function HeaderComponent() {
         </Button>
         <Advancesearch>
           {" "}
-          <a href="/advancedsearch">Advance Search</a>
+          <a className="advance-search" href="/advancedsearch">
+            Advance Search
+          </a>
         </Advancesearch>
       </SubContainer1>
       <SubContainer2>
@@ -208,13 +226,14 @@ function RenderDropdown() {
         </AnchorTag>
       </List>
       <Border></Border>
-      <ListReddit>
+      <List>
         <ListImg src="../../images/reddit.svg" alt=" " />
         <AnchorTag href="https://www.reddit.com/r/xinfin/" target="_blank">
           Reddit
         </AnchorTag>
-      </ListReddit>
-      <Border></Border>
+        <Border></Border>
+      </List>
+      <ListLast>....</ListLast>
     </UnorderedList>
   );
 }
@@ -224,14 +243,22 @@ function FFButton() {
 
   return (
     <div class="share">
-      <button class="dpdown" type="button" onClick={() => setShow(!show)}>
+      <button
+        class="dpdown"
+        type="button"
+        onClick={() => setShow(!show)}
+        style={{ fontSize: "13px" }}
+      >
         Share
-        {/* <img
-            style={{ height: "20px", width: "20px"}}
-            src="../../images/XDC-Dropdown.svg"
-            alt=" "
-          /> */}
-        <ArrowUpIcon>^</ArrowUpIcon>
+        {show ? (
+          <ArrowUpIcon>
+            <IoIosArrowUp />
+          </ArrowUpIcon>
+        ) : (
+          <ArrowUpIcon>
+            <IoIosArrowDown />
+          </ArrowUpIcon>
+        )}
         <span class="caret"></span>
       </button>
       {show && <RenderDropdown />}
