@@ -35,12 +35,24 @@ const useStyles = makeStyles((theme) => ({
 
     // position: "absolute",
   },
+
+  paperfooter: {
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    whiteSpace: "nowrap",
+    backgroundColor: "#191d43",
+    color: "#ffffff",
+    fontSize: "13px",
+    boxShadow: "none",
+
+    // position: "absolute",
+  },
+
   poweredpaper: {
     backgroundColor: "#191d43",
     color: "#ffffff",
-    fontSize: "18px",
+    fontSize: "20px",
     marginTop: "12px",
-    marginLeft: "2%",
     boxShadow: "none",
   },
   row: {
@@ -49,7 +61,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1,
     // padding: "20px 20px",
+    width: '100%'
   },
+
   papersecondrow: {
     backgroundColor: "#191d43",
     color: "#ffffff",
@@ -58,19 +72,60 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "2%",
     boxShadow: "none",
   },
+
   links: {
     listStyle: "none",
-    margin: "10px 0 0",
+    padding: "0",
+    marginTop: '7px'
+  },
+  followlinks: {
+    listStyle: "none",
+    marginTop: '5%',
     padding: "0",
   },
+
   linksitem: {
+    fontSize: '11px',
+    fontweight: 'normal',
+    fontstretch: 'normal',
+    fontstyle: 'normal',
+    lineheight: 2,
+    letterspacing: 'normal',
+    textalign: 'left',
+    color: '#f8f8f8',
     display: "inline-block",
     marginRight: "15px",
   },
+
   followitem: {
     display: "inline-block",
-    marginRight: "15px",
+    marginRight: "10px",
   },
+
+  followus: {
+    fontweight: 500,
+    marginTop: '5%',
+    fontstretch: 'normal',
+    fontstyle: 'normal',
+    lineheight: 1.75,
+    letterspacing:'normal',
+    textalign:'left',
+    color: '#ffffff',
+  },
+
+  otherlink: {
+    marginLeft: '12.5%',
+    marginTop:'4%',
+    fontweight:'600',
+    fontstretch: 'normal',
+    fontstyle: 'normal',
+    lineheight: 1.19,
+    letterspacing: 'normal',
+    textalign: 'left',
+    color: '#ffffff',
+  }
+
+
 }));
 export default function FooterComponent() {
   const classes = useStyles();
@@ -86,32 +141,30 @@ export default function FooterComponent() {
               }}
             >
               <Row>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Paper
-                    className={classes.paper}
-                    style={{
-                      padding: "0%",
-                    }}
-                  >
-                    Other Links
-                  </Paper>
-                  <ul className={classes.links}>
-                    <li className={classes.linksitem}>Archive Tweets</li>
+                <Grid style={{display: 'flex', justifyContent: 'center'}} item xs={12} sm={6} md={4}>
+                  <Paper style={{backgroundColor: '#191d43',marginLeft: '7%'}} elevation={0}>
+                    <div className={classes.otherlink}>
+                      <span style={{fontSize: '13px'}}>Other Links</span>
+                      </div>
+                    <div className={classes.links}>
+                  <ul>
+                    <li className={classes.linksitem}>Archive Tweet</li>
                     <li className={classes.linksitem}>Share</li>
                     <li className={classes.linksitem}>Contact us</li>
                     <li className={classes.linksitem}>Privacy Policy</li>
                   </ul>
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <Paper
-                    className={classes.paper}
-                    style={{
-                      padding: "0",
-                    }}
-                  >
-                    Follow us on{" "}
+                  </div>
                   </Paper>
-                  <ul className={classes.links}>
+                </Grid>
+
+
+                <Grid style={{display: 'flex', justifyContent: 'center'}} item xs={12} sm={6} md={4}>
+                    <Paper style={{backgroundColor: '#191d43',marginLeft: '13%'}} elevation={0}>
+                    <div className={classes.followus}>
+                      <span style={{fontSize: '13px'}}> Follow us on{" "}</span>
+                      </div>
+                    <div >
+                  <ul className={classes.followlinks}>
                     <li className={classes.followitem}>
                       <img
                         style={{ height: "20px", width: "20px" }}
@@ -154,15 +207,17 @@ export default function FooterComponent() {
                       />
                     </li>
                   </ul>
+                  </div>
+                  </Paper>
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={4}>
-                  <Paper className={classes.poweredpaper}>
+                <Grid style={{display: 'flex', justifyContent: 'center', backgroundColor: '#191d43'}} item xs={12} sm={6} md={4}>
+                  <Paper style={{marginBottom: '10px',paddingRight: '50px'}} className={classes.poweredpaper} elevation={0}>
                     <img
-                      style={{ width: "12%" }}
+                      style={{ width: 62, height: 62}}
                       src="/images/xinfintwitter.png"
                     />
-                    Powered By XDC{" "}
+                    <span style={{marginLeft: '10px',letterSpacing: '0.59px'}}>Powered By XDC{" "}</span>
                   </Paper>
                 </Grid>
               </Row>
