@@ -60,6 +60,7 @@ export default function SavedTweets() {
                       align: "justify",
                       position: "absolute",
                       right: "52%",
+                      fontSize: "42px",
                     }}
                   >
                     800k

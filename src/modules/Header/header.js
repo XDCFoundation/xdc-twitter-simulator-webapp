@@ -26,7 +26,7 @@ const SubContainer1 = styled.div`
 `;
 const SubContainer2 = styled.div`
   display: flex;
-  height: 88px;
+  height: 63px;
   background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
