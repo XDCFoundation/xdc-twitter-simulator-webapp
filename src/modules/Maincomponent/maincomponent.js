@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
+    textAlign:'left',
   },
   maxTps: {
     fontFamily: "Raleway",
@@ -60,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
+    textAlign:'left',
   },
 }));
 
