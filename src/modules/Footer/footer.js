@@ -108,15 +108,15 @@ const useStyles = makeStyles((theme) => ({
     fontstretch: 'normal',
     fontstyle: 'normal',
     lineheight: 1.75,
-    letterspacing:'normal',
-    textalign:'left',
+    letterspacing: 'normal',
+    textalign: 'left',
     color: '#ffffff',
   },
 
   otherlink: {
     marginLeft: '12.5%',
-    marginTop:'4%',
-    fontweight:'600',
+    marginTop: '4%',
+    fontweight: '600',
     fontstretch: 'normal',
     fontstyle: 'normal',
     lineheight: 1.19,
@@ -141,83 +141,83 @@ export default function FooterComponent() {
               }}
             >
               <Row>
-                <Grid style={{display: 'flex', justifyContent: 'center'}} item xs={12} sm={6} md={4}>
-                  <Paper style={{backgroundColor: '#191d43',marginLeft: '7%'}} elevation={0}>
+                <Grid style={{ display: 'flex', justifyContent: 'center' }} item xs={12} sm={6} md={4}>
+                  <Paper style={{ backgroundColor: '#191d43', marginLeft: '7%' }} elevation={0}>
                     <div className={classes.otherlink}>
-                      <span style={{fontSize: '13px'}}>Other Links</span>
-                      </div>
+                      <span style={{ fontSize: '13px' }}>Other Links</span>
+                    </div>
                     <div className={classes.links}>
-                  <ul>
-                    <li className={classes.linksitem}>Archive Tweet</li>
-                    <li className={classes.linksitem}>Share</li>
-                    <li className={classes.linksitem}>Contact us</li>
-                    <li className={classes.linksitem}>Privacy Policy</li>
-                  </ul>
-                  </div>
+                      <ul>
+                        <li className={classes.linksitem}>Archive Tweet</li>
+                        <li className={classes.linksitem}>Share</li>
+                        <li className={classes.linksitem}>Contact us</li>
+                        <li className={classes.linksitem}>Privacy Policy</li>
+                      </ul>
+                    </div>
                   </Paper>
                 </Grid>
 
 
-                <Grid style={{display: 'flex', justifyContent: 'center'}} item xs={12} sm={6} md={4}>
-                    <Paper style={{backgroundColor: '#191d43',marginLeft: '13%'}} elevation={0}>
+                <Grid style={{ display: 'flex', justifyContent: 'center' }} item xs={12} sm={6} md={4}>
+                  <Paper style={{ backgroundColor: '#191d43', marginLeft: '13%' }} elevation={0}>
                     <div className={classes.followus}>
-                      <span style={{fontSize: '13px'}}> Follow us on{" "}</span>
-                      </div>
+                      <span style={{ fontSize: '13px' }}> Follow us on{" "}</span>
+                    </div>
                     <div >
-                  <ul className={classes.followlinks}>
-                    <li className={classes.followitem}>
-                      <img
-                        style={{ height: "20px", width: "20px" }}
-                        src="../../images/twitter.svg"
-                      />
-                    </li>
-                    <li className={classes.followitem}>
-                      {" "}
-                      <img
-                        style={{ height: "20px", width: "20px" }}
-                        src="../../images/facebook.svg"
-                      />
-                    </li>
-                    <li className={classes.followitem}>
-                      {" "}
-                      <img
-                        style={{ height: "20px", width: "20px" }}
-                        src="../../images/github.svg"
-                      />
-                    </li>
-                    <li className={classes.followitem}>
-                      {" "}
-                      <img
-                        style={{ height: "20px", width: "20px" }}
-                        src="../../images/linkedin.svg"
-                      />
-                    </li>
-                    <li className={classes.followitem}>
-                      {" "}
-                      <img
-                        style={{ height: "20px", width: "20px" }}
-                        src="../../images/telegram.svg"
-                      />
-                    </li>
-                    <li className={classes.followitem}>
-                      {" "}
-                      <img
-                        style={{ height: "20px", width: "20px" }}
-                        src="../../images/reddit.svg"
-                      />
-                    </li>
-                  </ul>
-                  </div>
+                      <ul className={classes.followlinks}>
+                        <li className={classes.followitem}>
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src="../../images/twitter.svg"
+                          />
+                        </li>
+                        <li className={classes.followitem}>
+                          {" "}
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src="../../images/facebook.svg"
+                          />
+                        </li>
+                        <li className={classes.followitem}>
+                          {" "}
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src="../../images/github.svg"
+                          />
+                        </li>
+                        <li className={classes.followitem}>
+                          {" "}
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src="../../images/linkedin.svg"
+                          />
+                        </li>
+                        <li className={classes.followitem}>
+                          {" "}
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src="../../images/telegram.svg"
+                          />
+                        </li>
+                        <li className={classes.followitem}>
+                          {" "}
+                          <img
+                            style={{ height: "20px", width: "20px" }}
+                            src="../../images/reddit.svg"
+                          />
+                        </li>
+                      </ul>
+                    </div>
                   </Paper>
                 </Grid>
 
-                <Grid style={{display: 'flex', justifyContent: 'center', backgroundColor: '#191d43'}} item xs={12} sm={6} md={4}>
-                  <Paper style={{marginBottom: '10px',paddingRight: '50px'}} className={classes.poweredpaper} elevation={0}>
+                <Grid style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#191d43' }} item xs={12} sm={6} md={4}>
+                  <Paper style={{ marginBottom: '10px', paddingRight: '50px' }} className={classes.poweredpaper} elevation={0}>
                     <img
-                      style={{ width: 62, height: 62}}
+                      style={{ width: 58, height: 55 }}
                       src="/images/xinfintwitter.png"
                     />
-                    <span style={{marginLeft: '10px',letterSpacing: '0.59px'}}>Powered By XDC{" "}</span>
+                    <span style={{ marginLeft: '10px', letterSpacing: '0.59px' }}>Powered By XDC{" "}</span>
                   </Paper>
                 </Grid>
               </Row>
