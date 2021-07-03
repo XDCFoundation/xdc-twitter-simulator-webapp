@@ -1,16 +1,9 @@
-
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
-
 import DialogContent from '@material-ui/core/DialogContent';
-
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
-
-
-
 const Advanced=styled.span`
 font-family: Raleway;
 font-size: 22px;
@@ -90,7 +83,6 @@ const Button=styled.button`
 border-radius: 5px;
 width: 81%;
 margin-left: 68px;
-  
 background-color: #3366ff;
 font-size: 18px;
 font-weight: 500;
@@ -133,10 +125,6 @@ const useStyles = makeStyles((theme) => ({
   backgroundColor: "#191d43",
   borderRadius: "5px",
     border: "solid 1px #515684",
- 
-
-    
-
 },
 }));
 
@@ -151,15 +139,13 @@ export default function MaxWidthDialog(props) {
     <React.Fragment>
     
       <Dialog classes={{paper:classes.paper}}
-    
         maxWidth={maxWidth}
         open
-    
       >
         <DialogContent>
            <Column>
-       <Row><Advanced>Advanced Search</Advanced>
-        
+            <Row>
+              <Advanced>Advanced Search</Advanced>
               <Img style={{cursor:'pointer'}} src="/images/cut.svg" onClick={props.clicked}></Img>
            </Row>
              <Words>Words</Words>
@@ -171,7 +157,6 @@ export default function MaxWidthDialog(props) {
           <Button>Search</Button>
            </Column>
         </DialogContent>
-      
       </Dialog>
     </React.Fragment>
   );
