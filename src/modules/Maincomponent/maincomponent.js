@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.5,
     color: "#09184b",
     textAlign:'left',
+    marginLeft:'20px',
   },
   maxTps: {
     fontFamily: "Raleway",
@@ -76,11 +77,23 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     textAlign:'left',
   },
+  elevation1:{
+    marginTop:'10px',
+    marginRight:'9px',
+  },
+  paperNode:{
+    marginLeft: '3.7%',
+    marginTop: '-9px',
+  }
+
 }));
 
 const Text = styled.div`
   font-weight: 900;
-  margin-bottom: 10px;
+  font-size:14px;
+  line-height:1.17;
+ 
+  margin-top:-10px;
 `;
 export default function MainComponent() {
   const classes = useStyles();
@@ -116,7 +129,7 @@ export default function MainComponent() {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <Paper className={classes.paper}>
+                  <Paper classes={{elevation1:classes.paperNode}}>
                     <div className={classes.map}>
                       <div className={classes.node}>
                         Nodes
@@ -137,7 +150,7 @@ export default function MainComponent() {
           </Grid>
           <Grid item xs={6}>
             <Text>Top 20 trending</Text>
-            <Paper className={classes.paper}>
+            <Paper classes={{elevation1:classes.elevation1}}>
               <div style={{ width: "94%", height: "50%" }}>
                 <MapChart />
               </div>
