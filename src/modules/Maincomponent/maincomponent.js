@@ -10,7 +10,16 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
-
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import "../styles/App.css";
+const IconImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 2px;
+`;
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "#f5f6f9",
@@ -92,9 +101,30 @@ export default function MainComponent() {
               <Row className="w-100">
                 <Grid item xs={6} className={classes.grid}>
 
-                  <Text className="writing-data">Writing Data</Text>
+                  <Text className="writing-data">Writing Data
+
+                  </Text>
                   <Paper className={classes.writing_paper} elevation={0}>
-                    <div className="savingSpeed">Saving Speed</div>
+                    <div className="savingSpeed">Saving Speed
+                      <Tippy
+                        placement={"right"}
+                        theme={"light"}
+                        maxWidth={180}
+                        content={
+                          <span
+                            style={{
+                              color: "#0d0e2d",
+                              fontSize: "11px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            The saved tweets per second track the rate of record-keeping
+                          </span>
+                        }
+                      >
+                        <IconImg src="../../images/ic.png" />
+                      </Tippy>
+                    </div>
                     <div className="saveSpeed">345/sec</div>
                     <MyResponsiveLine />
                   </Paper>
@@ -104,7 +134,25 @@ export default function MainComponent() {
                 <Grid item xs={6}>
                   <Text className="reading-data" >Reading Data</Text>
                   <Paper className={classes.reading_paper} elevation={0}>
-                    <div className="savingSpeed">Reading Speed</div>
+                    <div className="savingSpeed">Reading Speed
+                      <Tippy
+                        placement={"right"}
+                        theme={"light"}
+                        maxWidth={180}
+                        content={
+                          <span
+                            style={{
+                              color: "#0d0e2d",
+                              fontSize: "11px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            The read tweets per second track the rate of record-keeping
+                          </span>
+                        }
+                      >
+                        <IconImg src="../../images/ic.png" />
+                      </Tippy></div>
                     <div className="readSpeed">345/sec</div>
                     <ReadingData />
                   </Paper>
@@ -118,10 +166,46 @@ export default function MainComponent() {
                     <div className={classes.map}>
                       <div className={classes.node}>
                         Nodes
+                        <Tippy
+                          placement={"right"}
+                          theme={"light"}
+                          maxWidth={180}
+                          content={
+                            <span
+                              style={{
+                                color: "#0d0e2d",
+                                fontSize: "11px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              The saved tweets per second track the rate of record-keeping
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
                         <br /> 8
                       </div>
                       <div className={classes.maxTps}>
                         Current Max TPS
+                        <Tippy
+                          placement={"right"}
+                          theme={"light"}
+                          maxWidth={180}
+                          content={
+                            <span
+                              style={{
+                                color: "#0d0e2d",
+                                fontSize: "11px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              The saved tweets per second track the rate of record-keeping
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
                         <br /> 1/1000
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
@@ -134,7 +218,26 @@ export default function MainComponent() {
             </Row>
           </Grid>
           <Grid item xs={6}>
-            <Text>Top 20 trending</Text>
+            <Text>Top 20 trending
+              <Tippy
+                placement={"right"}
+                theme={"light"}
+                maxWidth={290}
+                content={
+                  <span
+                    style={{
+                      color: "#0d0e2d",
+                      fontSize: "11px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    This twitter decentralized application pertually records the top 20 hashtags on Twitter on to the XDC
+                  </span>
+                }
+              >
+                <IconImg src="../../images/ic.png" />
+              </Tippy>
+            </Text>
             <Paper className={classes.paper}>
               <div style={{ width: "94%", height: "50%" }}>
                 <MapChart />

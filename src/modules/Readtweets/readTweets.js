@@ -5,7 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import "../styles/App.css";
 import Divider from '@material-ui/core/Divider';
 
 import {
@@ -13,7 +16,12 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-
+const IconImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 2px;
+`;
 
 const theme = createMuiTheme({
   typography: {
@@ -122,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
   readtweet: {
     fontFamily: "Raleway",
-    fontSize: "22px",
+    fontSize: "16px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -156,6 +164,24 @@ export default function ReadTweets() {
                   style={{ whiteSpace: "nowrap" }}
                 >
                   Read Tweets
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={"none"}
+                    content={
+                      <span
+                        style={{
+                          color: "#0d0e2d",
+                          fontSize: "11px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        Number of read tweets by d-app platform
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
                 </Typography>
                 {/* <Divider /> */}
                 <Paper
