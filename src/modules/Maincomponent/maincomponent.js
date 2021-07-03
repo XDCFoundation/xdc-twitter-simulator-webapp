@@ -10,7 +10,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
-
+ 
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "#f5f6f9",
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: '6%',
+    marginLeft: '7.5%',
     marginTop: '10px',
     padding: '20px 14px 29.6px 26px',
-   
+ 
   },
   reading_paper: {
     padding: theme.spacing(2),
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginLeft: '5px',
     marginTop: '10px',
-     padding: '20px 14px 29.6px 26px',
+    padding: '20px 14px 29.6px 26px',
   },
  
   map: {
@@ -75,14 +75,14 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
   },
 }));
-
+ 
 const Text = styled.div`
   font-weight: 900;
   margin-bottom: 10px;
 `;
 export default function MainComponent() {
   const classes = useStyles();
-
+ 
   return (
     <div className={classes.main}>
       <div className={classes.root}>
@@ -91,16 +91,16 @@ export default function MainComponent() {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={6} className={classes.grid}>
-             
+ 
                   <Text className="writing-data">Writing Data</Text>
                   <Paper className={classes.writing_paper} elevation={0}>
                     <div className="savingSpeed">Saving Speed</div>
                     <div className="saveSpeed">345/sec</div>
                     <MyResponsiveLine />
                   </Paper>
-                  
+ 
                 </Grid>
-
+ 
                 <Grid item xs={6}>
                   <Text className="reading-data" >Reading Data</Text>
                   <Paper className={classes.reading_paper} elevation={0}>
@@ -120,8 +120,8 @@ export default function MainComponent() {
                         Nodes
                         <br /> 8
                       </div>
-                      <div className={classes.maxTps}>
-                        Current Max TPS
+                      <div className={classes.maxTps}>   
+                      Current Max TPS
                         <br /> 1/1000
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
