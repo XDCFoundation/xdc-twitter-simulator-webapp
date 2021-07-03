@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,15 +5,21 @@ import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import "../styles/App.css";
 import {
   createMuiTheme,
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-
+const IconImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 2px;
+`;
 const theme = createMuiTheme({
   typography: {
     // Tell Material-UI what the font-size on the html element is.
@@ -29,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginLeft: "3.6%"
+    marginLeft: "3.6%",
   },
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -46,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "#09184b",
-
   },
   row: {
     marginBottom: "30px",
@@ -65,8 +69,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginBottom: "5px",
-
-
   },
   content: {
     fontSize: "11px",
@@ -84,7 +86,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
-
   },
   time: {
     color: "#8290a4",
@@ -102,7 +103,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     marginBottom: "5px",
     marginLeft: "18px",
-
   },
   email: {
     fontSize: "11px",
@@ -120,8 +120,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
   },
   readtweet: {
+    display: "flex",
     fontFamily: "Raleway",
-    fontSize: "22px",
+    fontSize: "16px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -131,11 +132,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     marginTop: "4%",
     marginLeft: "18px",
-
   },
-
 }));
-
 
 export default function SavedTweets() {
   const classes = useStyles();
@@ -144,64 +142,59 @@ export default function SavedTweets() {
       <Grid item xs={12}>
         <div>
           <Paper className={classes.paper} elevation={0}>
-
             <Column>
-
               <Row className={classes.row}>
-
                 <Typography
                   className={classes.readtweet}
                   variant="h5"
                   style={{ whiteSpace: "nowrap" }}
                 >
                   Saved Tweets
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={"none"}
+                    content={
+                      <span
+                        style={{
+                          color: "#0d0e2d",
+                          fontSize: "11px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        Number of tweets saved in d-app platform
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
                 </Typography>
-                {/* <Divider /> */}
-                <Paper
-                  variant="h5" className={classes.tweetnumber}
 
-                >
+                {/* <Divider /> */}
+                <Paper variant="h5" className={classes.tweetnumber}>
                   800k
                 </Paper>
-
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Lisa Ray
                 </Typography>
-                <Paper
-                  className={classes.time}
-
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-
-                    className={classes.email}
-                  >
-                    @lisaray
-                  </Typography>
+                  <Typography className={classes.email}>@lisaray</Typography>
                   <ThemeProvider theme={theme}>
-                    <Paper
-                      noWrap
-
-                      className={classes.content}
-                      gutterBottom
-
-                    >
-
+                    <Paper noWrap className={classes.content} gutterBottom>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
                     </Paper>
@@ -210,271 +203,202 @@ export default function SavedTweets() {
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Harry Golding
                 </Typography>
-                <Paper
-                  className={classes.time}
-
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
+                  <Typography className={classes.email}>
                     @henrygolding
                   </Typography>
-                  <Paper
-
-                    className={classes.content}
-                  >
+                  <Paper className={classes.content}>
                     {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6" className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Claire Browne
                 </Typography>
 
-                <Paper
-
-                  className={classes.time}
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
+                  <Typography className={classes.email}>
                     @clairebrowne
                   </Typography>
-                  <Paper
-
-                    className={classes.content}
-                  >
+                  <Paper className={classes.content}>
                     {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Shawn
                 </Typography>
-                <Paper
-                  className={classes.time}
-
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
+                  <Typography className={classes.email}>
                     @shawnmurphy
                   </Typography>
-                  <Paper
-                    className={classes.content}
-                  >
+                  <Paper className={classes.content}>
                     {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Jack Ryan
                 </Typography>
-                <Paper
-
-                  className={classes.time}
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
-                    @jackryan
-                  </Typography>
-                  <Paper
-
-                    className={classes.content}
-                  >
+                  <Typography className={classes.email}>@jackryan</Typography>
+                  <Paper className={classes.content}>
                     {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Cersie Lannister
                 </Typography>
-                <Paper
-                  className={classes.time}
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
+                  <Typography className={classes.email}>
                     @cersielannister
                   </Typography>
-                  <Paper
-
-                    className={classes.content}
-                  >
+                  <Paper className={classes.content}>
                     {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   J Cole
                 </Typography>
-                <Paper
-                  className={classes.time}
-
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
-                    @jcole
-                  </Typography>
-                  <Paper
-
-                    className={classes.content}
-                  >
+                  <Typography className={classes.email}>@jcole</Typography>
+                  <Paper className={classes.content}>
                     {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <Row>
-                <Typography
-                  variant="h6"
-                  className={classes.name}
-
-                >
+                <Typography variant="h6" className={classes.name}>
                   Harry Maguire
                 </Typography>
-                <Paper
-                  className={classes.time}
-                >
-                  01:00 PM
-                </Paper>
+                <Paper className={classes.time}>01:00 PM</Paper>
               </Row>
 
               <Row>
                 <Column>
-                  <Typography
-                    className={classes.email}
-                  >
-                    @Harrymag
-                  </Typography>
+                  <Typography className={classes.email}>@Harrymag</Typography>
                   <Paper
-
                     className={classes.content}
                     style={{ marginBottom: "14px" }}
                   >
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
                   </Paper>
-
                 </Column>
               </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
-                }} />
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <br />
               <br />
               <br />
             </Column>
-
           </Paper>
         </div>
       </Grid>
