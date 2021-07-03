@@ -130,10 +130,10 @@ const List = styled.li`
   margin-top: 4px;
   margin-bottom: 4px;
 `;
-const ListLast = styled.li`
-  margin-top: -2px;
-  margin-bottom: 0px;
-`;
+// const ListLast = styled.li`
+//   margin-top: 0px;
+//   margin-bottom: 0px;
+// `;
 
 const ListImg = styled.img`
   width: 20px;
@@ -231,9 +231,7 @@ function RenderDropdown() {
         <AnchorTag href="https://www.reddit.com/r/xinfin/" target="_blank">
           Reddit
         </AnchorTag>
-        <Border></Border>
       </List>
-      <ListLast>....</ListLast>
     </UnorderedList>
   );
 }

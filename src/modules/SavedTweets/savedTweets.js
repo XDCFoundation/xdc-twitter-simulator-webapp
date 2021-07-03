@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginLeft: "4%"
+    marginLeft: "3.6%"
   },
   tweetnumber: {
     whiteSpace: "nowrap",
