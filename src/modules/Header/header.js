@@ -7,7 +7,7 @@ import "../styles/App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
+import AdvanceSearch  from "../Advancedsearch/advancedSearch"
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -141,6 +141,11 @@ const ArrowUpIcon = styled.span`
 `;
 
 export default function HeaderComponent() {
+  const [open, setOpen] = React.useState(false);
+  const handleClickforadvancedsearch = () => {
+    setOpen(!open);
+    console.log("hello",open)
+  };
   return (
     <Container>
       <SubContainer1>
@@ -154,9 +159,9 @@ export default function HeaderComponent() {
             alt=" "
           />
         </Button>
-        <Advancesearch>
-          {" "}
-          <a href="/advancedsearch">Advance Search</a>
+         {open && <AdvanceSearch clicked={handleClickforadvancedsearch}/>}
+        <Advancesearch onClick={handleClickforadvancedsearch}>
+        Advance Search
         </Advancesearch>
       </SubContainer1>
       <SubContainer2>
