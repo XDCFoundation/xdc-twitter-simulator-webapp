@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "52%",
-    fontSize: "36px",
-    marginTop: "10px",
+    fontSize: "26px",
+    marginTop: "12px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -66,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "52%",
-    fontSize: "36px",
-    marginTop: "10px",
+    fontSize: "26px",
+    marginTop: "12px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -646,6 +646,7 @@ export default function SavedTweets(props) {
                   props.dark ? classes.hr_page_dark_mode : classes.hr_page
                 }
               />
+              <br />
               <br />
               <br />
             </Column>

@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     fontSize: "16px",
     boxShadow: "none",
+    border: "none"
 
     // position: "absolute",
   },
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     fontSize: "13px",
     boxShadow: "none",
+    borderRadius: "0px"
 
     // position: "absolute",
   },
@@ -54,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     marginTop: "12px",
     boxShadow: "none",
+    borderRadius: "0px"
   },
   row: {
     marginTop: "1%",
@@ -71,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "12px",
     marginLeft: "2%",
     boxShadow: "none",
+    border: "none"
   },
 
   links: {
@@ -138,6 +142,7 @@ export default function FooterComponent() {
               className={classes.paper}
               style={{
                 padding: "3%",
+                borderRadius: "0px"
               }}
             >
               <Row>

@@ -6,18 +6,18 @@ import MainComponent from "./maincomponent";
 
 export default function Main() {
 
-  const getMode = () => {
-    return JSON.parse(localStorage.getItem("mode")) || false
-  }
+  // const getMode = () => {
+  //   return JSON.parse(localStorage.getItem("mode")) || false
+  // }
 
-  const [dark, setMode] = useState(getMode())
+  const [dark, setMode] = useState(false)
 
   const CheckMode = (mode) => {
     setMode(mode)
   }
-  useEffect(() => {
-    localStorage.setItem("mode", JSON.stringify(dark))
-  }, [dark])
+  // useEffect(() => {
+  //   localStorage.setItem("mode", JSON.stringify(dark))
+  // }, [dark])
 
 
 

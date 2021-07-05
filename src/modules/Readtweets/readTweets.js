@@ -55,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "5%",
-    fontSize: "36px",
-    marginTop: "10px",
+    fontSize: "26px",
+    marginTop: "12px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "5%",
-    fontSize: "36px",
-    marginTop: "10px",
+    fontSize: "26px",
+    marginTop: "12px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -753,6 +753,7 @@ export default function ReadTweets(props) {
                 style={{
                   width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
                 }} /> */}
+              <br />
               <br />
               <br />
 
