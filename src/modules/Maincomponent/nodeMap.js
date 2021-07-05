@@ -12,7 +12,8 @@ const geoUrl =
 
 const NodeChart = () => {
   return (
-    <ComposableMap
+    <div>
+    <ComposableMap 
       style={{
         fill: "#bdc1e5",
       }}
@@ -25,6 +26,7 @@ const NodeChart = () => {
         }
       </Geographies>
     </ComposableMap>
+    </div>
   );
 };
 
