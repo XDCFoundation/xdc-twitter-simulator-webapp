@@ -159,7 +159,12 @@ const ArrowUpIcon = styled.span`
   font-size: 16px;
 `;
 
-export default function HeaderComponent() {
+export default function HeaderComponent(props) {
+
+  const CheckMode = (mode) => {
+    props.CheckMode(mode)
+  }
+
   const [open, setOpen] = React.useState(false);
   const handleClickforadvancedsearch = () => {
     setOpen(!open);
@@ -187,7 +192,7 @@ export default function HeaderComponent() {
         <FFButton />
         <Line> </Line>
         <Archive href="#">Tweet Archive</Archive>
-        <DarkMode />
+        <DarkMode CheckMode={CheckMode} />
       </SubContainer2>
     </Container >
   );
