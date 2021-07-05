@@ -5,13 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+
+import Divider from '@material-ui/core/Divider';
+
 import {
   createMuiTheme,
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
+
 
 const theme = createMuiTheme({
   typography: {
@@ -24,11 +26,117 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
+    marginRight: "1%"
   },
+  tweetnumber: {
+    whiteSpace: "nowrap",
+    boxShadow: "none",
+    align: "justify",
+    position: "absolute",
+    right: "5%",
+    fontSize: "36px",
+    marginTop: "10px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.17",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#09184b",
+
+  },
+  row: {
+    marginBottom: "30px",
+  },
+  name: {
+    fontSize: "11px",
+    color: "#09184b",
+    whiteSpace: "nowrap",
+    fontFamily: "Raleway",
+    marginLeft: "18px",
+    fontWeight: 600,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.14",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#09184b",
+    marginBottom: "5px",
+
+
+  },
+  content: {
+    fontSize: "11px",
+    color: "#09184b",
+    boxShadow: "none",
+    border: "none",
+    // marginBottom:"5px",
+    // border: "solid 1px rgb(243 242 242)",
+    fontFamily: "Raleway",
+    fontSize: "11px",
+    fontWeight: 600,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.2",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#09184b",
+    marginLeft: "18px",
+
+  },
+  time: {
+    color: "#8290a4",
+    boxShadow: "none",
+    position: "absolute",
+    right: "5%",
+    // fontFamily: "Raleway",
+    fontSize: "13px",
+    fontWeight: "normal",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.15",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#8290a4",
+    marginBottom: "5px",
+    marginLeft: "18px",
+
+  },
+  email: {
+    fontSize: "11px",
+    color: "#8290a4",
+    whiteSpace: "nowrap",
+    fontFamily: "Raleway",
+    marginBottom: "5px",
+    fontWeight: 500,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.2",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#8f8faf",
+    marginLeft: "18px",
+  },
+  readtweet: {
+    fontFamily: "Raleway",
+    fontSize: "22px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.18",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#09184b",
+    marginTop: "4%",
+    marginLeft: "18px",
+
+  },
+
 }));
+
 
 export default function ReadTweets() {
   const classes = useStyles();
@@ -36,411 +144,340 @@ export default function ReadTweets() {
     <Grid Container spacing={3}>
       <Grid item xs={12}>
         <div>
-          <Paper className={classes.paper}>
-            <Box>
-              <Column>
-                <Row>
-                  <Typography
-                    className="content"
-                    variant="h5"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    Read Tweets
-                  </Typography>
-                  <Paper
-                    variant="h5"
-                    style={{
-                      whiteSpace: "nowrap",
-                      boxShadow: "none",
-                      align: "justify",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    740k
-                  </Paper>
-                </Row>
-                <Row>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    Lisa Ray
-                  </Typography>
-                  <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    01:00pm
-                  </Paper>
-                </Row>
+          <Paper className={classes.paper} elevation={0}>
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      @lisaray
-                    </Typography>
-                    <ThemeProvider theme={theme}>
-                      <Paper
-                        noWrap
-                        className="content"
-                        gutterBottom
-                        style={{
-                          fontSize: "14px",
-                          color: "#09184b",
-                          boxShadow: "none",
-                        }}
-                      >
-                        {" "}
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut
-                      </Paper>
-                    </ThemeProvider>
-                  </Column>
-                </Row>
-                <Row>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    Harry Golding
-                  </Typography>
-                  <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    01:00pm
-                  </Paper>
-                </Row>
+            <Column>
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      @henrygolding
-                    </Typography>
+              <Row className={classes.row}>
+
+                <Typography
+                  className={classes.readtweet}
+                  variant="h5"
+                  style={{ whiteSpace: "nowrap" }}
+                >
+                  Read Tweets
+                </Typography>
+                {/* <Divider /> */}
+                <Paper
+                  variant="h5" className={classes.tweetnumber}
+
+                >
+                  740k
+                </Paper>
+
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
+
+                >
+                  Lisa Ray
+                </Typography>
+                <Paper
+                  className={classes.time}
+
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+
+                    className={classes.email}
+                  >
+                    @lisaray
+                  </Typography>
+                  <ThemeProvider theme={theme}>
                     <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
-                        boxShadow: "none",
-                      }}
+                      noWrap
+
+                      className={classes.content}
+                      gutterBottom
+
                     >
-                      {" "}
+
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
                     </Paper>
-                  </Column>
-                </Row>
-                <Row>
+                  </ThemeProvider>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
+
+                >
+                  Harry Golding
+                </Typography>
+                <Paper
+                  className={classes.time}
+
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
                   <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
+                    className={classes.email}
                   >
-                    Claire Browne
+                    @henrygolding
                   </Typography>
                   <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    01:00pm
-                  </Paper>
-                </Row>
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      @clairebrowne
-                    </Typography>
-                    <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
-                        boxShadow: "none",
-                      }}
-                    >
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </Column>
-                </Row>
-                <Row>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
+                    className={classes.content}
                   >
-                    Shawn
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6" className={classes.name}
+
+                >
+                  Claire Browne
+                </Typography>
+
+                <Paper
+
+                  className={classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @clairebrowne
                   </Typography>
                   <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
+
+                    className={classes.content}
                   >
-                    01:00pm
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
                   </Paper>
-                </Row>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      @shawnmurphy
-                    </Typography>
-                    <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
+                >
+                  Shawn
+                </Typography>
+                <Paper
+                  className={classes.time}
 
-                        boxShadow: "none",
-                      }}
-                    >
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </Column>
-                </Row>
-                <Row>
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
                   <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
+                    className={classes.email}
                   >
-                    Jack Ryan
+                    @shawnmurphy
                   </Typography>
                   <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
+                    className={classes.content}
                   >
-                    01:00pm
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
                   </Paper>
-                </Row>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      @jackryan
-                    </Typography>
-                    <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
-                        boxShadow: "none",
-                      }}
-                    >
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </Column>
-                </Row>
-                <Row>
+                >
+                  Jack Ryan
+                </Typography>
+                <Paper
+
+                  className={classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
                   <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
+                    className={classes.email}
                   >
-                    Cersie Lannister
+                    @jackryan
                   </Typography>
                   <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    01:00pm
-                  </Paper>
-                </Row>
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                      }}
-                    >
-                      @cersielannister
-                    </Typography>
-                    <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
-                        boxShadow: "none",
-                      }}
-                    >
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </Column>
-                </Row>
-                <Row>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
+                    className={classes.content}
                   >
-                    J Cole
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
+
+                >
+                  Cersie Lannister
+                </Typography>
+                <Paper
+                  className={classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @cersielannister
                   </Typography>
                   <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    01:00pm
-                  </Paper>
-                </Row>
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                      }}
-                    >
-                      @jcole
-                    </Typography>
-                    <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
-                        boxShadow: "none",
-                      }}
-                    >
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </Column>
-                </Row>
-                <Row>
-                  <Typography
-                    variant="h6"
-                    style={{
-                      fontSize: "14px",
-                      color: "#09184b",
-                      whiteSpace: "nowrap",
-                    }}
+                    className={classes.content}
                   >
-                    Harry Maguire
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
+
+                >
+                  J Cole
+                </Typography>
+                <Paper
+                  className={classes.time}
+
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @jcole
                   </Typography>
                   <Paper
-                    style={{
-                      color: "#8290a4",
-                      boxShadow: "none",
-                      position: "absolute",
-                      right: "8%",
-                    }}
-                  >
-                    01:00pm
-                  </Paper>
-                </Row>
 
-                <Row>
-                  <Column>
-                    <Typography
-                      style={{
-                        fontSize: "14px",
-                        color: "#8290a4",
-                      }}
-                    >
-                      @Harrymag
-                    </Typography>
-                    <Paper
-                      style={{
-                        fontSize: "14px",
-                        color: "#09184b",
-                        boxShadow: "none",
-                      }}
-                    >
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </Column>
-                </Row>
-              </Column>
-            </Box>
+                    className={classes.content}
+                  >
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                }} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={classes.name}
+
+                >
+                  Harry Maguire
+                </Typography>
+                <Paper
+                  className={classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @Harrymag
+                  </Typography>
+                  <Paper
+
+                    className={classes.content}
+                    style={{ marginBottom: "14px" }}
+                  >
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
+                }} />
+              <br />
+              <br />
+              <br />
+
+
+            </Column>
+
           </Paper>
         </div>
       </Grid>

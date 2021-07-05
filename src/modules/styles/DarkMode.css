@@ -1,7 +1,7 @@
 #darkMode {
   background: transparent url("../../images/Darkmode.svg") no-repeat center;
-  width: 70px;
-  height: 45px;
+  width: 50px;
+  height: 22px;
   border: none;
   transition: 0.3s ease-in-out;
 }
@@ -13,6 +13,6 @@
 }
 
 #darkMode.clicked {
-  filter: none ;
+  filter: none;
   background: transparent url("../../images/light mode.svg") no-repeat center;
 }
