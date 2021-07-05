@@ -67,3 +67,22 @@ p {
   margin: 1rem auto;
   line-height: 1.6;
 }
+.advance-search {
+  color: #a7afff;
+  list-style: none;
+  text-decoration: none;
+  font-family: Raleway !important;
+  letter-spacing: 0.6px;
+  font-weight: bold;
+}
+.advance-search:hover {
+  color: #ffffff;
+  list-style: none;
+  text-decoration: none;
+  font-family: Raleway !important;
+  letter-spacing: 0.6px;
+  font-weight: bold;
+}
+.dpdown {
+  font-size: 50px;
+}
