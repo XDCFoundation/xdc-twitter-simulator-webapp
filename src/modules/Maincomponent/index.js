@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import BaseComponent from "../baseComponent";
 import FooterComponent from "../Footer/footer";
 import HeaderComponent from "../Header/header";
 import MainComponent from "./maincomponent";
 
-export default class Main extends BaseComponent {
-  render() {
-    return (
-      <div>
-        <HeaderComponent />
-        <MainComponent />
-        <FooterComponent />
-      </div>
-    );
+export default function Main() {
+
+  const [dark, setMode] = useState(false)
+
+  const CheckMode = (mode) => {
+    setMode(mode)
   }
+
+  return (
+    <div>
+      <HeaderComponent CheckMode={CheckMode} />
+      <MainComponent dark={dark} />
+      <FooterComponent />
+    </div>
+  );
 }
+

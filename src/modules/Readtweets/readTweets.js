@@ -29,8 +29,18 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginRight: "1%"
+    marginRight: "1%",
   },
+
+  paper_dark_mode: {
+    // padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    marginTop: "-7%",
+    marginRight: "1%",
+    backgroundColor: '#191d43',
+    color: 'white'
+  },
+
   tweetnumber: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -48,6 +58,25 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
 
   },
+
+  tweetnumber_dark_mode: {
+    whiteSpace: "nowrap",
+    boxShadow: "none",
+    align: "justify",
+    position: "absolute",
+    right: "5%",
+    fontSize: "36px",
+    marginTop: "10px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.17",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "white",
+    backgroundColor: '#191d43',
+  },
+
   row: {
     marginBottom: "30px",
   },
@@ -65,9 +94,25 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginBottom: "5px",
+},
 
+name_dark_mode: {
+  fontSize: "11px",
+  color: "#09184b",
+  whiteSpace: "nowrap",
+  fontFamily: "Raleway",
+  marginLeft: "18px",
+  fontWeight: 600,
+  fontStretch: "normal",
+  fontStyle: "normal",
+  lineHeight: "1.14",
+  letterSpacing: "normal",
+  textAlign: "left",
+  color: "white",
+  backgroundColor: "#191d43",
+  marginBottom: "5px",
+},
 
-  },
   content: {
     fontSize: "11px",
     color: "#09184b",
@@ -87,6 +132,28 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
 
   },
+
+  content_dark_mode: {
+    fontSize: "11px",
+    color: "#09184b",
+    boxShadow: "none",
+    border: "none",
+    // marginBottom:"5px",
+    // border: "solid 1px rgb(243 242 242)",
+    fontFamily: "Raleway",
+    fontSize: "11px",
+    fontWeight: 600,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.2",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "white",
+    backgroundColor: "#191d43",
+    marginLeft: "18px",
+
+  },
+
   time: {
     color: "#8290a4",
     boxShadow: "none",
@@ -103,8 +170,27 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     marginBottom: "5px",
     marginLeft: "18px",
+},
 
-  },
+time_dark_mode: {
+  color: "#8290a4",
+  boxShadow: "none",
+  position: "absolute",
+  right: "5%",
+  // fontFamily: "Raleway",
+  fontSize: "13px",
+  fontWeight: "normal",
+  fontStretch: "normal",
+  fontStyle: "normal",
+  lineHeight: "1.15",
+  letterSpacing: "normal",
+  textAlign: "left",
+  color: "#8290a4",
+  backgroundColor: '#191d43',
+  marginBottom: "5px",
+  marginLeft: "18px",
+},
+
   email: {
     fontSize: "11px",
     color: "#8290a4",
@@ -135,23 +221,39 @@ const useStyles = makeStyles((theme) => ({
 
   },
 
+  readtweet_dark_mode: {
+    fontFamily: "Raleway",
+    fontSize: "22px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.18",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "white",
+    backgroundColor: '#191d43',
+    marginTop: "4%",
+    marginLeft: "18px",
+
+  },
+
 }));
 
 
-export default function ReadTweets() {
+export default function ReadTweets(props) {
   const classes = useStyles();
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
         <div>
-          <Paper className={classes.paper} elevation={0}>
+          <Paper className={props.dark ? classes.paper_dark_mode : classes.paper} elevation={0}>
 
             <Column>
 
-              <Row className={classes.row}>
+              <Row  className={classes.row}>
 
-                <Typography
-                  className={classes.readtweet}
+                <Typography 
+                  className={props.dark ? classes.readtweet_dark_mode : classes.readtweet}
                   variant="h5"
                   style={{ whiteSpace: "nowrap" }}
                 >
@@ -159,7 +261,7 @@ export default function ReadTweets() {
                 </Typography>
                 {/* <Divider /> */}
                 <Paper
-                  variant="h5" className={classes.tweetnumber}
+                  variant="h5" className={props.dark ? classes.tweetnumber_dark_mode : classes.tweetnumber}
 
                 >
                   740k
@@ -173,13 +275,13 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Lisa Ray
                 </Typography>
                 <Paper
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
 
                 >
                   01:00 PM
@@ -198,7 +300,7 @@ export default function ReadTweets() {
                     <Paper
                       noWrap
 
-                      className={classes.content}
+                      className={props.dark ? classes.content_dark_mode : classes.content}
                       gutterBottom
 
                     >
@@ -216,13 +318,13 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Harry Golding
                 </Typography>
                 <Paper
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
 
                 >
                   01:00 PM
@@ -238,7 +340,7 @@ export default function ReadTweets() {
                   </Typography>
                   <Paper
 
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                   >
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -252,7 +354,7 @@ export default function ReadTweets() {
                 }} />
               <Row>
                 <Typography
-                  variant="h6" className={classes.name}
+                  variant="h6" className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Claire Browne
@@ -260,7 +362,7 @@ export default function ReadTweets() {
 
                 <Paper
 
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
                 >
                   01:00 PM
                 </Paper>
@@ -275,7 +377,7 @@ export default function ReadTweets() {
                   </Typography>
                   <Paper
 
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                   >
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -290,13 +392,13 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Shawn
                 </Typography>
                 <Paper
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
 
                 >
                   01:00 PM
@@ -311,7 +413,7 @@ export default function ReadTweets() {
                     @shawnmurphy
                   </Typography>
                   <Paper
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                   >
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -326,14 +428,14 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Jack Ryan
                 </Typography>
                 <Paper
 
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
                 >
                   01:00 PM
                 </Paper>
@@ -348,7 +450,7 @@ export default function ReadTweets() {
                   </Typography>
                   <Paper
 
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                   >
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -363,13 +465,13 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Cersie Lannister
                 </Typography>
                 <Paper
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
                 >
                   01:00 PM
                 </Paper>
@@ -384,7 +486,7 @@ export default function ReadTweets() {
                   </Typography>
                   <Paper
 
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                   >
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -399,13 +501,13 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   J Cole
                 </Typography>
                 <Paper
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
 
                 >
                   01:00 PM
@@ -421,7 +523,7 @@ export default function ReadTweets() {
                   </Typography>
                   <Paper
 
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                   >
                     {" "}
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -436,13 +538,13 @@ export default function ReadTweets() {
               <Row>
                 <Typography
                   variant="h6"
-                  className={classes.name}
+                  className={props.dark ? classes.name_dark_mode : classes.name}
 
                 >
                   Harry Maguire
                 </Typography>
                 <Paper
-                  className={classes.time}
+                  className={props.dark ? classes.time_dark_mode : classes.time}
                 >
                   01:00 PM
                 </Paper>
@@ -457,7 +559,7 @@ export default function ReadTweets() {
                   </Typography>
                   <Paper
 
-                    className={classes.content}
+                    className={props.dark ? classes.content_dark_mode : classes.content}
                     style={{ marginBottom: "14px" }}
                   >
 
