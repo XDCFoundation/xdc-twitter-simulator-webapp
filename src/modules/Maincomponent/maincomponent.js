@@ -236,26 +236,28 @@ export default function MainComponent(props) {
                 <Grid item xs={6} className={classes.grid}>
 
                   <Text className={dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data
-                    <Tippy
-                      placement={"right"}
-                      theme={"light"}
-                      maxWidth={180}
-                      content={
-                        <span
-                          style={{
-                            color: "#0d0e2d",
-                            fontSize: "11px",
-                            fontWeight: "600",
-                          }}
-                        >
-                          The saved tweets per second track the rate of record-keeping
-                        </span>
-                      }
-                    >
-                      <IconImg src="../../images/ic.png" />
-                    </Tippy></Text>
+                  </Text>
                   <Paper className={dark ? classes.writing_paper_dark_mode : classes.writing_paper} elevation={0}>
-                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed</div>
+                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed
+                      <Tippy
+                        placement={"right"}
+                        theme={"light"}
+                        maxWidth={180}
+                        content={
+                          <span
+                            style={{
+                              color: "#0d0e2d",
+                              fontSize: "11px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            The saved tweets per second track the rate of record-keeping
+                          </span>
+                        }
+                      >
+                        <IconImg src="../../images/ic.png" />
+                      </Tippy>
+                    </div>
                     <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>345/sec</div>
                     <span className="hover-data">  <MyResponsiveLine /> </span>
                   </Paper>
@@ -264,26 +266,28 @@ export default function MainComponent(props) {
 
                 <Grid item xs={6}>
                   <Text className={dark ? "reading-data-dark-mode" : "reading-data"} >Reading Data
-                    <Tippy
-                      placement={"right"}
-                      theme={"light"}
-                      maxWidth={180}
-                      content={
-                        <span
-                          style={{
-                            color: "#0d0e2d",
-                            fontSize: "11px",
-                            fontWeight: "600",
-                          }}
-                        >
-                          The read tweets per second track the rate of record-keeping
-                        </span>
-                      }
-                    >
-                      <IconImg src="../../images/ic.png" />
-                    </Tippy></Text>
+                  </Text>
                   <Paper className={dark ? classes.reading_paper_dark_mode : classes.reading_paper} elevation={0}>
-                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Speed</div>
+                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Speed
+                      <Tippy
+                        placement={"right"}
+                        theme={"light"}
+                        maxWidth={180}
+                        content={
+                          <span
+                            style={{
+                              color: "#0d0e2d",
+                              fontSize: "11px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            The read tweets per second track the rate of record-keeping
+                          </span>
+                        }
+                      >
+                        <IconImg src="../../images/ic.png" />
+                      </Tippy>
+                    </div>
                     <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>345/sec</div>
                     <span className="hover-data">  <ReadingData /> </span>
                   </Paper>
