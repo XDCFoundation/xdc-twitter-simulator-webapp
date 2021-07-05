@@ -10,6 +10,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
+
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -20,6 +21,7 @@ const IconImg = styled.img`
   width: 14px;
   margin-top: 2px;
 `;
+
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "#f5f6f9",
@@ -62,17 +64,20 @@ const useStyles = makeStyles((theme) => ({
   },
   node: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
+    textAlign: 'left',
+    marginLeft: '20px',
+
   },
   maxTps: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -82,12 +87,29 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
+    textAlign: 'left',
   },
+  elevation1: {
+    marginTop: '10px',
+    marginRight: '9px',
+    height: '93%',
+    boxShadow: 'none'
+  },
+  paperNode: {
+    marginLeft: '3.7%',
+    marginTop: '-9px',
+    boxShadow: 'none'
+
+  }
+
 }));
 
 const Text = styled.div`
   font-weight: 900;
-  margin-bottom: 10px;
+  font-size:14px;
+  line-height:1.17;
+ 
+  margin-top:-10px;
 `;
 export default function MainComponent() {
   const classes = useStyles();
@@ -102,29 +124,26 @@ export default function MainComponent() {
                 <Grid item xs={6} className={classes.grid}>
 
                   <Text className="writing-data">Writing Data
-
-                  </Text>
+                    <Tippy
+                      placement={"right"}
+                      theme={"light"}
+                      maxWidth={180}
+                      content={
+                        <span
+                          style={{
+                            color: "#0d0e2d",
+                            fontSize: "11px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          The saved tweets per second track the rate of record-keeping
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy></Text>
                   <Paper className={classes.writing_paper} elevation={0}>
-                    <div className="savingSpeed">Saving Speed
-                      <Tippy
-                        placement={"right"}
-                        theme={"light"}
-                        maxWidth={180}
-                        content={
-                          <span
-                            style={{
-                              color: "#0d0e2d",
-                              fontSize: "11px",
-                              fontWeight: "600",
-                            }}
-                          >
-                            The saved tweets per second track the rate of record-keeping
-                          </span>
-                        }
-                      >
-                        <IconImg src="../../images/ic.png" />
-                      </Tippy>
-                    </div>
+                    <div className="savingSpeed">Saving Speed</div>
                     <div className="saveSpeed">345/sec</div>
                     <MyResponsiveLine />
                   </Paper>
@@ -132,27 +151,27 @@ export default function MainComponent() {
                 </Grid>
 
                 <Grid item xs={6}>
-                  <Text className="reading-data" >Reading Data</Text>
+                  <Text className="reading-data" >Reading Data
+                    <Tippy
+                      placement={"right"}
+                      theme={"light"}
+                      maxWidth={180}
+                      content={
+                        <span
+                          style={{
+                            color: "#0d0e2d",
+                            fontSize: "11px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          The read tweets per second track the rate of record-keeping
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy></Text>
                   <Paper className={classes.reading_paper} elevation={0}>
-                    <div className="savingSpeed">Reading Speed
-                      <Tippy
-                        placement={"right"}
-                        theme={"light"}
-                        maxWidth={180}
-                        content={
-                          <span
-                            style={{
-                              color: "#0d0e2d",
-                              fontSize: "11px",
-                              fontWeight: "600",
-                            }}
-                          >
-                            The read tweets per second track the rate of record-keeping
-                          </span>
-                        }
-                      >
-                        <IconImg src="../../images/ic.png" />
-                      </Tippy></div>
+                    <div className="savingSpeed">Reading Speed</div>
                     <div className="readSpeed">345/sec</div>
                     <ReadingData />
                   </Paper>
@@ -162,7 +181,7 @@ export default function MainComponent() {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <Paper className={classes.paper}>
+                  <Paper classes={{ elevation1: classes.paperNode }}>
                     <div className={classes.map}>
                       <div className={classes.node}>
                         Nodes
@@ -238,8 +257,8 @@ export default function MainComponent() {
                 <IconImg src="../../images/ic.png" />
               </Tippy>
             </Text>
-            <Paper className={classes.paper}>
-              <div style={{ width: "94%", height: "50%" }}>
+            <Paper classes={{ elevation1: classes.elevation1 }}  >
+              <div style={{ width: "94%", height: "48%" }}>
                 <MapChart />
               </div>
             </Paper>
