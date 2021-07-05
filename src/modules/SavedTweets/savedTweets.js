@@ -395,7 +395,60 @@ export default function SavedTweets() {
                   marginBottom: "0.5rem",
                 }}
               />
-              <br />
+              <Row>
+                <Typography variant="h6" className={classes.name}>
+                  Harry Maguire
+                </Typography>
+                <Paper className={classes.time}>01:00 PM</Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography className={classes.email}>@Harrymag</Typography>
+                  <Paper
+                    className={classes.content}
+                    style={{ marginBottom: "14px" }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
+              <Row>
+                <Typography variant="h6" className={classes.name}>
+                  Harry Maguire
+                </Typography>
+                <Paper className={classes.time}>01:00 PM</Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography className={classes.email}>@Harrymag</Typography>
+                  <Paper
+                    className={classes.content}
+                    style={{ marginBottom: "14px" }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%",
+                  border: "solid 0.2px rgb(243 242 242)",
+                  marginTop: "0rem",
+                  marginBottom: "0.5rem",
+                }}
+              />
               <br />
               <br />
             </Column>

@@ -234,6 +234,8 @@ function RenderDropdown() {
         <AnchorTag href="https://www.reddit.com/r/xinfin/" target="_blank">
           Reddit
         </AnchorTag>
+        <Border></Border>
+        <br />
       </List>
     </UnorderedList>
   );
