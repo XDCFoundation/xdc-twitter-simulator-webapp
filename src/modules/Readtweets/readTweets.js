@@ -5,7 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import "../styles/App.css";
 import Divider from '@material-ui/core/Divider';
 
 import {
@@ -13,7 +16,12 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-
+const IconImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 2px;
+`;
 
 const theme = createMuiTheme({
   typography: {
@@ -208,7 +216,7 @@ time_dark_mode: {
   },
   readtweet: {
     fontFamily: "Raleway",
-    fontSize: "22px",
+    fontSize: "16px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -223,7 +231,7 @@ time_dark_mode: {
 
   readtweet_dark_mode: {
     fontFamily: "Raleway",
-    fontSize: "22px",
+    fontSize: "16px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -231,11 +239,23 @@ time_dark_mode: {
     letterSpacing: "normal",
     textAlign: "left",
     color: "white",
-    backgroundColor: '#191d43',
     marginTop: "4%",
     marginLeft: "18px",
 
   },
+  hr_page: {
+    width: "100%",
+    border: "solid 0.2px rgb(243 242 242)",
+    marginTop: "0.5rem",
+    marginBottom: "0.5rem",
+  },
+
+  hr_page_dark_mode: {
+    width: "100%",
+    border: "solid 0.1px #8290a4",
+    marginTop: "0.5rem",
+    marginBottom: "0.5rem",
+  }
 
 }));
 
@@ -258,6 +278,24 @@ export default function ReadTweets(props) {
                   style={{ whiteSpace: "nowrap" }}
                 >
                   Read Tweets
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={"none"}
+                    content={
+                      <span
+                        style={{
+                          color: "#0d0e2d",
+                          fontSize: "11px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        Number of read tweets by d-app platform
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
                 </Typography>
                 {/* <Divider /> */}
                 <Paper
@@ -268,10 +306,8 @@ export default function ReadTweets(props) {
                 </Paper>
 
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page}
+                 />
               <Row>
                 <Typography
                   variant="h6"
@@ -311,10 +347,7 @@ export default function ReadTweets(props) {
                   </ThemeProvider>
                 </Column>
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -348,10 +381,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6" className={props.dark ? classes.name_dark_mode : classes.name}
@@ -385,10 +415,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -421,10 +448,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -458,10 +482,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -494,10 +515,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
-                }} />
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -531,9 +549,132 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={props.dark ? classes.name_dark_mode : classes.name}
+
+                >
+                  Harry Maguire
+                </Typography>
+                <Paper
+                  className={props.dark ? classes.time_dark_mode : classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @jcole
+                  </Typography>
+                  <Paper
+
+                    className={props.dark ? classes.content_dark_mode : classes.content}
+                  >
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={props.dark ? classes.name_dark_mode : classes.name}
+
+                >
+                  Harry Maguire
+                </Typography>
+                <Paper
+                  className={props.dark ? classes.time_dark_mode : classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @jcole
+                  </Typography>
+                  <Paper
+
+                    className={props.dark ? classes.content_dark_mode : classes.content}
+                  >
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={props.dark ? classes.name_dark_mode : classes.name}
+
+                >
+                  Harry Maguire
+                </Typography>
+                <Paper
+                  className={props.dark ? classes.time_dark_mode : classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @jcole
+                  </Typography>
+                  <Paper
+
+                    className={props.dark ? classes.content_dark_mode : classes.content}
+                  >
+                    {" "}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+                  </Paper>
+                </Column>
+              </Row>
+               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+             
+
+              
+
+              {/* <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @Harrymag
+                  </Typography>
+                  <Paper
+
+                    className={props.dark ? classes.content_dark_mode : classes.content}
+                    style={{ marginBottom: "14px" }}
+                  >
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+
+                  </Paper>
+                </Column>
+              </Row>
               <hr
                 style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0.5rem", marginBottom: "0.5rem"
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
                 }} />
               <Row>
                 <Typography
@@ -573,7 +714,44 @@ export default function ReadTweets(props) {
                 style={{
                   width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
                 }} />
-              <br />
+              <Row>
+                <Typography
+                  variant="h6"
+                  className={props.dark ? classes.name_dark_mode : classes.name}
+
+                >
+                  Harry Maguire
+                </Typography>
+                <Paper
+                  className={props.dark ? classes.time_dark_mode : classes.time}
+                >
+                  01:00 PM
+                </Paper>
+              </Row>
+
+              <Row>
+                <Column>
+                  <Typography
+                    className={classes.email}
+                  >
+                    @Harrymag
+                  </Typography>
+                  <Paper
+
+                    className={props.dark ? classes.content_dark_mode : classes.content}
+                    style={{ marginBottom: "14px" }}
+                  >
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut
+
+                  </Paper>
+                </Column>
+              </Row>
+              <hr
+                style={{
+                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
+                }} /> */}
               <br />
               <br />
 

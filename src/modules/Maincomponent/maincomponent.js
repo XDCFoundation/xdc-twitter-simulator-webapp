@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect,useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
@@ -10,6 +10,17 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
+
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
+import "../styles/App.css";
+const IconImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 2px;
+`;
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -31,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   grid3: {
     marginTop: "50px",
   },
-
   writing_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -41,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px 14px 29.6px 26px',
 
   },
-
   writing_paper_dark_mode: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -73,15 +82,12 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px 14px 29.6px 26px',
   },
 
-
-
   map: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "spaceAround",
   },
 
-    
   map_dark_mode: {
     display: "flex",
     flexDirection: "row",
@@ -89,33 +95,38 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     backgroundColor: '#191d43'
   },
-
   node: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
+    textAlign: 'left',
+    marginLeft: '20px',
+
   },
 
   node_dark_mode: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
     marginTop: "3%",
     lineHeight: 1.5,
+    color: "#09184b",
+    textAlign: 'left',
+    marginLeft: '20px',
     color: "white",
     backgroundColor: '#191d43'
   },
 
   maxTps: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -125,11 +136,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
+    textAlign: 'left',
   },
 
   maxTps_dark_mode: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -138,6 +150,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5%",
     marginTop: "3%",
     lineHeight: 1.5,
+    color: "#09184b",
+    textAlign: 'left',
     color: "white",
   },
 
@@ -156,17 +170,50 @@ const useStyles = makeStyles((theme) => ({
   },
   top20_dark_mode: {
     color: 'white'
+  },
+
+  // elevation1: {
+  //   marginTop: '10px',
+  //   marginRight: '9px',
+  //   height: '93%',
+  //   boxShadow: 'none'
+  // },
+  // elevation1_dark_mode: {
+  //   marginTop: '10px',
+  //   marginRight: '9px',
+  //   height: '93%',
+  //   boxShadow: 'none',
+  //   backgroundColor: '#191d43'
+  // },
+  paperNode: {
+    marginLeft: '3.7%',
+    marginTop: '-9px',
+    boxShadow: 'none'
+
+  },
+  top: {
+    marginTop: "10px",
+    marginRight: "9px",
+    boxShadow: 'none'
+  },
+  top_dark_mode: {
+    marginTop: "10px",
+    marginRight: "9px",
+    boxShadow: 'none',
+    backgroundColor: '#191d43'
   }
 
 }));
 
 const Text = styled.div`
   font-weight: 900;
-  margin-bottom: 10px;
+  font-size:14px;
+  line-height:1.17;
+ 
+  margin-top:-10px;
 `;
 export default function MainComponent(props) {
   const classes = useStyles();
-
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false
@@ -178,10 +225,9 @@ export default function MainComponent(props) {
     localStorage.setItem("mode", JSON.stringify(dark))
     setMode(props.dark)
   }, [props.dark])
-   
+
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
-      {/* <button onClick={() => setMode(!dark)}></button> */}
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={6}>
@@ -189,21 +235,57 @@ export default function MainComponent(props) {
               <Row className="w-100">
                 <Grid item xs={6} className={classes.grid}>
 
-                  <Text className={dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data</Text>
+                  <Text className={dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data
+                    <Tippy
+                      placement={"right"}
+                      theme={"light"}
+                      maxWidth={180}
+                      content={
+                        <span
+                          style={{
+                            color: "#0d0e2d",
+                            fontSize: "11px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          The saved tweets per second track the rate of record-keeping
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy></Text>
                   <Paper className={dark ? classes.writing_paper_dark_mode : classes.writing_paper} elevation={0}>
                     <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed</div>
                     <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>345/sec</div>
-                    <span className="hover-data"><MyResponsiveLine /></span>
+                  <span className="hover-data">  <MyResponsiveLine /> </span>
                   </Paper>
 
                 </Grid>
 
                 <Grid item xs={6}>
-                  <Text className={dark ? "reading-data-dark-mode" : "reading-data"} >Reading Data</Text>
+                  <Text className={dark ? "reading-data-dark-mode" : "reading-data"} >Reading Data
+                    <Tippy
+                      placement={"right"}
+                      theme={"light"}
+                      maxWidth={180}
+                      content={
+                        <span
+                          style={{
+                            color: "#0d0e2d",
+                            fontSize: "11px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          The read tweets per second track the rate of record-keeping
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy></Text>
                   <Paper className={dark ? classes.reading_paper_dark_mode : classes.reading_paper} elevation={0}>
                     <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Speed</div>
                     <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>345/sec</div>
-                    <span className="hover-data"><ReadingData /></span>
+                  <span className="hover-data">  <ReadingData /> </span>
                   </Paper>
                 </Grid>
               </Row>
@@ -211,18 +293,54 @@ export default function MainComponent(props) {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <Paper className={classes.paper} >
+                  <Paper classes={{ elevation1: classes.paperNode }}>
                     <div className={props.dark ? classes.map_dark_mode : classes.map}>
                       <div className={props.dark ? classes.node_dark_mode : classes.node}>
                         Nodes
+                        <Tippy
+                          placement={"right"}
+                          theme={"light"}
+                          maxWidth={180}
+                          content={
+                            <span
+                              style={{
+                                color: "#0d0e2d",
+                                fontSize: "11px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              The saved tweets per second track the rate of record-keeping
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
                         <br /> 8
                       </div>
                       <div className={props.dark ? classes.maxTps_dark_mode : classes.maxTps}>
                         Current Max TPS
+                        <Tippy
+                          placement={"right"}
+                          theme={"light"}
+                          maxWidth={180}
+                          content={
+                            <span
+                              style={{
+                                color: "#0d0e2d",
+                                fontSize: "11px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              The saved tweets per second track the rate of record-keeping
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
                         <br /> 1/1000
                       </div>
-                      <div style={{ width: "50%", marginLeft: "5%"}}>
-                        <NodeChart dark={dark} />
+                      <div style={{ width: "50%", marginLeft: "5%" }}>
+                        <NodeChart />
                       </div>
                     </div>
                   </Paper>
@@ -231,11 +349,34 @@ export default function MainComponent(props) {
             </Row>
           </Grid>
           <Grid item xs={6}>
-            <Text className={props.dark ? classes.top20_dark_mode : classes.top20}>Top 20 trending</Text>
-            <Paper className={classes.paper}>
-              <div className= {props.dark ? classes.mapchart_dark_mode : classes.mapchart}>
-                {/* style={{ width: "94%", height: "50%"}} */}
-                <MapChart dark={dark} />
+            <Text className={props.dark ? classes.top20_dark_mode : classes.top20}>Top 20 trending
+              <Tippy
+                placement={"right"}
+                theme={"light"}
+                maxWidth={290}
+                content={
+                  <span
+                    style={{
+                      color: "#0d0e2d",
+                      fontSize: "11px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    This twitter decentralized application pertually records the top 20 hashtags on Twitter on to the XDC
+                  </span>
+                }
+              >
+                <IconImg src="../../images/ic.png" />
+              </Tippy>
+            </Text>
+            {/* <Paper  classes={props.dark ? { elevation1: classes.elevation1_dark_mode } : { elevation1: classes.elevation1 }}  >
+              <div style={{ width: "94%", height: "48%" }}  >
+                <MapChart />
+              </div>
+            </Paper> */}
+            <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
+              <div style={{ width: "91%", height: "50%" }}>
+                <MapChart />
               </div>
             </Paper>
           </Grid>
@@ -243,7 +384,7 @@ export default function MainComponent(props) {
             <SavedTweets dark={dark} />
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
-            <ReadTweets dark={dark} />
+            <ReadTweets dark={dark}/>
           </Grid>
         </Grid>
       </div>

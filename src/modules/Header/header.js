@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "../styles/App.css";
 import DarkMode from "../components/DarkMode";
 import "../styles/App.css";
-
+import AdvanceSearch from "../Advancedsearch/advancedSearch"
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 const Container = styled.div`
@@ -88,10 +88,11 @@ const Advancesearch = styled.button`
   color: #a7afff;
   margin-left: 2px;
   margin-top: 3px;
-  font-weight: 500;
+  font-weight: 600;
   background: transparent;
   border: none;
   text-decoration: none;
+  letter-spacing:0.5px;
 `;
 
 const About = styled.text`
@@ -159,9 +160,15 @@ const ArrowUpIcon = styled.span`
 `;
 
 export default function HeaderComponent(props) {
+
   const CheckMode = (mode) => {
     props.CheckMode(mode)
   }
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickforadvancedsearch = () => {
+    setOpen(!open);
+  };
   return (
     <Container>
       <SubContainer1>
@@ -175,11 +182,9 @@ export default function HeaderComponent(props) {
             alt=" "
           />
         </Button>
-        <Advancesearch>
-          {" "}
-          <a className="advance-search" href="/advancedsearch">
-            Advance Search
-          </a>
+        {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
+        <Advancesearch onClick={handleClickforadvancedsearch}>
+          Advance Search
         </Advancesearch>
       </SubContainer1>
       <SubContainer2>
@@ -189,7 +194,7 @@ export default function HeaderComponent(props) {
         <Archive href="#">Tweet Archive</Archive>
         <DarkMode CheckMode={CheckMode} />
       </SubContainer2>
-    </Container>
+    </Container >
   );
 }
 function RenderDropdown() {
@@ -234,6 +239,8 @@ function RenderDropdown() {
         <AnchorTag href="https://www.reddit.com/r/xinfin/" target="_blank">
           Reddit
         </AnchorTag>
+        <Border></Border>
+        <br />
       </List>
     </UnorderedList>
   );
