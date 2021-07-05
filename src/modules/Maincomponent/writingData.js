@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from '@nivo/line';
 import '../../assets/styles/custom.css';
-
+ 
 // const point={}
-
+ 
 const data = [
   {
     id: "japan",
@@ -88,15 +88,16 @@ const MyResponsiveLine = ({ data /* see data tab */ }) => (
     legends={[]}
   />
 )
-
+ 
 export default function App() {
 
 
-
+ 
   return (
     <div style={{ height: 70 }}>
       <MyResponsiveLine data={data} />
     </div>
   );
 }
+
 
