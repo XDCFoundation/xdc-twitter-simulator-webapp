@@ -11,7 +11,7 @@ export default class About extends BaseComponent{
             <div>
                <HeaderComponent/>
                 <Aboutcomponent />
-                {/* <FooterComponent/> */}
+                <FooterComponent/>
             </div>
         )
     }
