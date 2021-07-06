@@ -6,7 +6,7 @@ export default class Saved extends BaseComponent {
   render() {
     return (
       <div>
-        <SavedTweets />
+        <SavedTweets dark={this.props.dark} />
       </div>
     );
   }
