@@ -1,195 +1,163 @@
-import React from "react";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
 import styled from "styled-components";
-import { Row, Column } from "simple-flexbox";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+import { Column, Row } from "simple-flexbox";
+const Advanced = styled.span`
+font-family: Raleway;
+font-size: 22px;
+font-weight: 600;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.18;
+letter-spacing: normal;
+text-align: left;
+ color: #ffffff;
+ margin-top: 25px;
+ margin-left: 68px;
+`;
+const Accounts = styled.span`
+font-family: Raleway;
+font-size: 18px;
+font-weight: 500;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.17;
+letter-spacing: normal;
+text-align: left;
+color: #f8f8fa;
 
-import {
-  createMuiTheme,
-  ThemeProvider,
-  responsiveFontSizes,
-} from "@material-ui/core/styles";
+margin-left: 68px;
+margin-bottom: 18px;
+    margin-top: 18px;`;
+const Inputfromtheseaccounts = styled.input`
+background-color:#191d43;
+border-radius: 5px;
+border: solid 1px #4a508a;
 
-const theme = createMuiTheme({});
+    width: 81%;
+font-size: 14px;
+    height: 41px;
+color: #ffffff;
+margin-left: 68px;
+padding: 14px;
+margin-bottom: 15px;`;
+const Inputtotheseaccounts = styled.input`
+background-color:#191d43;
+border-radius: 5px;
+border: solid 1px #4a508a;
+    width: 81%;
+    height: 41px;
+color: #ffffff;
+font-size: 14px;
+margin-left: 68px;
+padding: 14px;
+margin-bottom: 15px;`;
+const Inputallwords = styled.input`
+background-color:#191d43;
+border-radius: 5px;
+border: solid 1px #4a508a;
+
+    width: 81%;
+    height: 41px;
+color: #ffffff;
+margin-left: 68px;
+margin-bottom: 15px;
+padding: 14px;
+font-size: 14px;
+ `;
+const Inputhashtags = styled.input`
+background-color:#191d43;
+border-radius: 5px;
+border: solid 1px #4a508a;
+
+    width: 81%;
+padding: 14px;
+margin-left: 68px;
+height: 41px;
+font-size: 14px;
+color: #ffffff;`;
+
+const Button = styled.button`
+border-radius: 5px;
+width: 81%;
+margin-left: 68px;
+background-color: #3366ff;
+font-size: 18px;
+font-weight: 500;
+font-size: 16px;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.17;
+letter-spacing: normal;
+text-align: left;
+color: #f8f8fa;
+margin-top: 37px;
+padding-left: 34%;
+border: none;
+height: 41px;
+margin-bottom:56px;
+`;
+const Words = styled.span`
+ font-family: Raleway; margin-top: 35px;
+margin-left: 68px;
+     margin-bottom: 15px;
+   font-size: 18px;
+   font-weight: 500;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: 1.17;
+   letter-spacing: normal;
+   text-align: left;
+   color: #f8f8fa;
+  `;
+const Img = styled.img`
+  width: 16px;
+  height: 16px;
+  margin-left:auto;
+  margin-top:10px;
+`;
+
 const useStyles = makeStyles((theme) => ({
-  main: {
-    display: "grid",
-    justifyContent: "center",
-    alignContent: "center",
-  },
-
-  mainpaper: {
+  paper: {
+    width: '50%',
     backgroundColor: "#191d43",
-    boxShadow: "none",
-    border: "none",
     borderRadius: "5px",
-  },
-  grid: {
-    backgroundColor: "#191d43",
-    width: "227%",
-    boxShadow: "none",
-    border: "none",
-    borderRadius: "5px",
-    marginTop: "37%",
-    marginLeft: "-52%",
-  },
-
-  advancedpaper: {
-    fontSize: "22px",
-    fontWeight: 600,
-    fontStretch: "normal",
-    fontStyle: "normal",
-    lineHeight: "1.18",
-    letterSpacing: "normal",
-    textAlign: "left",
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    boxShadow: "none",
-    color: "#ffffff",
-    fontFamily: "Raleway, sans-serif !important",
-    marginTop: "20px",
-    boxShadow: "none",
-    marginLeft: "50px",
-  },
-  words: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    marginTop: "24px",
-    boxShadow: "none",
-    marginLeft: "50px",
-  },
-  maincolor: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    marginTop: "20px",
-    boxShadow: "none",
-  },
-  inputallofthewords: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    boxShadow: "none",
-    border: "none",
-  },
-  hashtags: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    marginTop: "20px",
-
-    marginLeft: "50px",
-    width: "115%",
-    borderRadius: "3%",
-    border: "solid 1px #4a508a",
-  },
-  commoninput: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway ,sans-serif !important",
-    boxShadow: "none",
-    FontSize: "14px",
-    border: "none",
-    width: "115%",
-    marginLeft: "50px",
-    borderRadius: "3%",
-    border: "solid 1px #4a508a",
-  },
-  inputwords: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    boxShadow: "none",
-    border: "none",
-    width: "115%",
-  },
-  account: {
-    marginLeft: "50px",
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    marginTop: "20px",
-    boxShadow: "none",
-  },
-
-  button: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway, sans-serif !important",
-    boxShadow: "none",
-    borderRadius: "5px",
-    border: "solid 1px #4a508a",
-    width: "115%",
-  },
-
-  button: {
-    marginTop: "12%",
-    backgroundColor: "#3366ff",
-    width: "115%",
-    color: "#f8f8fa",
-    FontSize: "14px",
-    fontFamily: "Raleway ,sans-serif !important",
-    marginLeft: "15%",
-    borderRadius: "3px",
-    border: "none",
-  },
-  allofthewords: {
-    color: "#ffffff",
-    backgroundColor: "#191d43",
-    fontFamily: "Raleway ,sans-serif !important",
-    boxShadow: "none",
-    FontSize: "14px",
-    border: "none",
-    width: "115%",
-    marginLeft: "50px",
-    borderRadius: "3%",
-    border: "solid 1px #4a508a",
-    marginTop: "3%",
-    marginBottom: "4%",
+    border: "solid 1px #515684",
   },
 }));
-export default function AdvancedSearch() {
+
+export default function MaxWidthDialog(props) {
+
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const [maxWidth, setMaxWidth] = React.useState('md');
+
   return (
-    <div className={classes.main}>
-      <Grid className={classes.grid} container spacing={4}>
-        <Grid item xs={8} className={classes.griditem}>
-          <Paper className={classes.mainpaper}>
-            <Column>
-              <Row>
-                <Paper className={classes.advancedpaper}>Advanced Search</Paper>
-                <img />
-              </Row>
-              <Paper className={classes.words}>Words</Paper>
+    <React.Fragment>
 
-              <input
-                className={classes.allofthewords}
-                placeholder="All of the words"
-              />
-
-              <input placeholder="Hashtags" className={classes.commoninput} />
-              <Paper />
-              <Paper className={classes.account}>Accounts</Paper>
-              <Paper className={classes.maincolor}>
-                <input
-                  placeholder="From these accounts"
-                  className={classes.commoninput}
-                />
-              </Paper>
-              <Paper className={classes.maincolor}>
-                <input
-                  placeholder="To these accounts"
-                  className={classes.commoninput}
-                />
-              </Paper>
-
-              <button className={classes.button}>Search</button>
-            </Column>
-          </Paper>
-        </Grid>
-      </Grid>
-    </div>
+      <Dialog classes={{ paper: classes.paper }}
+        maxWidth={maxWidth}
+        open
+      >
+        <DialogContent>
+          <Column>
+            <Row>
+              <Advanced>Advanced Search</Advanced>
+              <Img style={{ cursor: 'pointer' }} src="/images/cut.svg" onClick={props.clicked}></Img>
+            </Row>
+            <Words>Words</Words>
+            <Inputallwords placeholder="All of the words" />
+            <Inputhashtags placeholder="Hashtags" />
+            <Accounts>Accounts</Accounts>
+            <Inputfromtheseaccounts placeholder="From these accounts" />
+            <Inputtotheseaccounts placeholder="To these accounts" />
+            <Button>Search</Button>
+          </Column>
+        </DialogContent>
+      </Dialog>
+    </React.Fragment>
   );
 }
