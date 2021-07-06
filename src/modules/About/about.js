@@ -130,10 +130,10 @@ export default function Aboutcomponent() {
         <Grid item spacing={6} xs={12} className={classes.colorcontainer}>
           <Paper className={classes.twitterDapp}>TwitterD-App features</Paper>
 
-          <Grid container spacing={6} className={classes.imagegrid}>
+          <Grid container spacing={4} className={classes.imagegrid}>
             <Column>
               <Row>
-                <Grid item xs={3} className={classes.oneimage}>
+                <Grid item xs={2} className={classes.oneimage}>
                   <Column>
                     <Img src="/images/savingspeed.svg"></Img>
 
@@ -145,18 +145,17 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
 
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     <Img src="/images/readingspeed.svg"></Img>
 
                     <Heading>Reading Speed</Heading>
                     <Subheading>
-                      The read tweets per second track the rate of
-                      record-keeping
+                      The read tweets per second track the rate of record-keeping
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     <Img src="/images/savedtweets.svg" />
 
@@ -166,7 +165,7 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     <Img src="/images/searchabc.svg" />
 
@@ -178,30 +177,27 @@ export default function Aboutcomponent() {
                 </Grid>
               </Row>
               <Row className={classes.secondrow}>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     {" "}
                     <Img src="/images/toptrending.svg" />
                     <Heading>Top trending</Heading>
                     <Subheading>
-                      This twitter decentralized application pertually records
-                      the top 20 hashtags on Twitter on to the XDC Network
-                      blockchain.
+                      This twitter decentralized application pertually records the top 20 hashtags on Twitter on to the XDC Network blockchain.
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     {" "}
                     <Img src="/images/currentmax.svg" />
                     <Heading>Current Max TPS</Heading>
                     <Subheading>
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,{" "}
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,{" "}
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     {" "}
                     <Img src="/images/searchabc.svg" />
@@ -211,14 +207,13 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <Column>
                     {" "}
                     <Img src="/images/tweetarchiveimg.webp"></Img>
                     <Heading>Tweet Archive</Heading>
                     <Subheading>
-                      Tweets are archived on the network and therefore are
-                      retrievable
+                      Tweets are archived on the network and therefore are retrievable
                     </Subheading>
                   </Column>
                 </Grid>
