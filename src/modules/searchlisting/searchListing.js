@@ -95,7 +95,10 @@ export default function Searchlist() {
         <Grid xs={2}>
           <img
             className={classes.image}
-            style={{ width: "16%" }}
+            style={{
+    top: "18%",
+    left: "15%",width:"15%"
+}}
             src="/images/home.svg"
           />
           <Paper className={classes.dashboard}> Dashboard</Paper>

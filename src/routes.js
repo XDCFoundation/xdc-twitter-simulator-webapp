@@ -33,7 +33,7 @@ class Routes extends BaseComponent {
             <Route exact path={"/list"} component={Search} />
             {/* <Route exact path={"/header"} component={Header} /> */}
 
-            {/* <Route exact path={"/advancedsearch"} component={Advanced} /> */}
+            {/* <Route exact path={"/adncvaedsearch"} component={Advanced} /> */}
             <Route exact path={"/about"} component={About}/>
             <Route exact path={"/"} component={Main} />
             <Redirect exact from="*" to="/" />

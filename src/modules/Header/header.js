@@ -188,7 +188,7 @@ export default function HeaderComponent(props) {
         </Advancesearch>
       </SubContainer1>
       <SubContainer2>
-        <About>About</About>
+        <About><a href="/about">About</a></About>
         <FFButton />
         <Line> </Line>
         <Archive href="#">Tweet Archive</Archive>

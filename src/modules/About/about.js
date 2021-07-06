@@ -42,7 +42,12 @@ const useStyles = makeStyles((theme) => ({
   imagegrid: {
     //  marginLeft: "20px",
   },
+  firstrow: {
+    justifyContent: "center",
+  },
   secondrow: {
+    justifyContent: "center",
+
     paddingTop: "5%",
     paddingBottom: "8%",
   },
@@ -94,7 +99,7 @@ const Heading = styled.span`
 `;
 const Subheading = styled.span`
   font-family: Raleway;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -130,10 +135,10 @@ export default function Aboutcomponent() {
         <Grid item spacing={6} xs={12} className={classes.colorcontainer}>
           <Paper className={classes.twitterDapp}>TwitterD-App features</Paper>
 
-          <Grid container spacing={4} className={classes.imagegrid}>
+          <Grid container spacing={6} className={classes.imagegrid}>
             <Column>
-              <Row>
-                <Grid item xs={2} className={classes.oneimage}>
+              <Row className={classes.firstrow}>
+                <Grid item xs={2} className={classes.oneimage} style={{marginRight:"7%"}}>
                   <Column>
                     <Img src="/images/savingspeed.svg"></Img>
 
@@ -145,7 +150,7 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{paddingRight:"7%"}} >
                   <Column>
                     <Img src="/images/readingspeed.svg"></Img>
 
@@ -155,7 +160,7 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{paddingRight:"3%"}}>
                   <Column>
                     <Img src="/images/savedtweets.svg" />
 
@@ -167,7 +172,7 @@ export default function Aboutcomponent() {
                 </Grid>
                 <Grid item xs={2}>
                   <Column>
-                    <Img src="/images/searchabc.svg" />
+                    <Img src="/images/newimage.svg" />
 
                     <Heading>Read Tweets</Heading>
                     <Subheading>
@@ -177,7 +182,7 @@ export default function Aboutcomponent() {
                 </Grid>
               </Row>
               <Row className={classes.secondrow}>
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{marginRight:"7%"}}>
                   <Column>
                     {" "}
                     <Img src="/images/toptrending.svg" />
@@ -187,7 +192,7 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{paddingRight:"7%"}}>
                   <Column>
                     {" "}
                     <Img src="/images/currentmax.svg" />
@@ -197,7 +202,7 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{paddingRight:"3%"}}>
                   <Column>
                     {" "}
                     <Img src="/images/searchabc.svg" />
