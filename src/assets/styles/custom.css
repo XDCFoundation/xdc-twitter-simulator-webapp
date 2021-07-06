@@ -267,6 +267,20 @@ input:focus {
   padding-bottom: 10px;
   margin-top: -8px;
 }
+
+.savingSpeed-dark-mode {
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+  padding-bottom: 10px;
+  margin-top: -8px;
+}
+
 .saveSpeed {
   font-size: 16px;
   font-weight: 600;
@@ -277,6 +291,18 @@ input:focus {
   text-align: left;
   color: #3366ff;
 }
+
+.saveSpeed-dark-mode {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
+
 .readSpeed {
   font-size: 16px;
   font-weight: 600;
@@ -287,6 +313,18 @@ input:focus {
   text-align: left;
   color: #10ca93;
 }
+
+.readSpeed-dark-mode {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
+
 .w-100 {
   width: 100%;
 }
@@ -297,6 +335,13 @@ input:focus {
   padding: 26px 14px 29.6px 26px;
   border-radius: 5px;
   background-color: #ffffff;
+}
+
+.reading-paper {
+  text-align: "center";
+  margin-left: "5px";
+  margin-top: "10px";
+  padding: "20px 14px 29.6px 26px";
 }
 
 .writing-data {
@@ -312,6 +357,19 @@ input:focus {
   color: #09184b;
 }
 
+.writing-data-dark-mode {
+  margin-left: 8%;
+  margin-top: -10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
+
 .reading-data {
   margin-left: 3%;
   margin-top: -10px;
@@ -324,3 +382,30 @@ input:focus {
   text-align: left;
   color: #09184b;
 }
+
+.reading-data-dark-mode {
+  margin-left: 3%;
+  margin-top: -10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
+
+.hover-data {
+  color: #0d0e2d;
+}
+
+/* .dark-mode{
+  background: red;
+  color: white;
+}
+
+.light-mode{
+  background: green;
+  color: black;
+} */

@@ -7,7 +7,7 @@ export default class Read extends BaseComponent {
   render() {
     return (
       <div>
-        <ReadTweets />
+        <ReadTweets dark={this.props.dark} />
       </div>
     );
   }
