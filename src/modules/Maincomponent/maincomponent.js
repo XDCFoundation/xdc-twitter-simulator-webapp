@@ -188,18 +188,21 @@ const useStyles = makeStyles((theme) => ({
   paperNode: {
     marginLeft: '3.7%',
     marginTop: '-9px',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    borderRadius: '4px'
 
   },
   top: {
     marginTop: "10px",
     marginRight: "9px",
-    boxShadow: 'none'
+    boxShadow: 'none',
+    height: '95.5%'
   },
   top_dark_mode: {
     marginTop: "10px",
     marginRight: "9px",
     boxShadow: 'none',
+    height: '95.5%',
     backgroundColor: '#191d43'
   }
 
@@ -379,8 +382,10 @@ export default function MainComponent(props) {
               </div>
             </Paper> */}
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
-              <div style={{ width: "91%", height: "50%" }}>
-                <MapChart />
+              <div style={{
+                width: "84% ", height: "48% "
+              }}>
+                < MapChart />
               </div>
             </Paper>
           </Grid>
