@@ -7,12 +7,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const Bannerimage = styled.img`
   width: 100%;
-  height: 335px;
+  height:auto;
+
 `;
 const useStyles = makeStyles((theme) => ({
   main: {},
   uppercomponent: {
-    position: "relative",
+  position: "relative",
   },
 
   twitterDapp: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "center",
     color: "#d6d6d6",
-    marginTop: "65px",
+    marginTop: "90px",
     backgroundColor: "#0d0e2d",
     boxShadow: "none",
     paddingBottom: "6%",
@@ -36,11 +37,9 @@ const useStyles = makeStyles((theme) => ({
     height: "193px",
   },
   colorcontainer: {
-     backgroundColor: "#0d0e2d",
+    backgroundColor: "#0d0e2d",
   },
-  imagegrid: {
-   
-  },
+  imagegrid: {width:"100%"},
   firstrow: {
     justifyContent: "center",
   },
@@ -66,15 +65,12 @@ const Span = styled.span`
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
-  position:absolute;
-  top:20%;
-  left:16%;
-
-  
-
+  position: absolute;
+  top: 20%;
+  left: 11%;
 `;
 const Content = styled.span`
-  font-family: Raleway,sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -83,15 +79,12 @@ const Content = styled.span`
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
-  position:absolute;
-  top:38%;
-  left:16%;
-  
-  
-  
+  position: absolute;
+  top: 38%;
+  left: 11%;
 `;
 const Heading = styled.span`
-  font-family: Raleway,sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
@@ -102,7 +95,7 @@ const Heading = styled.span`
   color: #d6d6d6;
 `;
 const Subheading = styled.span`
-  font-family: Raleway,sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 13px;
   font-weight: 500;
   font-stretch: normal;
@@ -122,13 +115,10 @@ export default function Aboutcomponent() {
             <Span>About Twitter-D App</Span>
             <Content>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              <br />
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              <br />
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              <br />
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor{" "}
-              <br />
+              eiusmod tempor <br /> incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud <br />
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure <br /> dolor
               reprehenderit in voluptate velit esse cillum dolore eu <br />
             </Content>
             <Bannerimage src="/images/banner.png" />
@@ -138,10 +128,16 @@ export default function Aboutcomponent() {
         <Grid item spacing={6} xs={12} className={classes.colorcontainer}>
           <Paper className={classes.twitterDapp}>Twitter-D App features</Paper>
 
-          <Grid container spacing={6} className={classes.imagegrid}>
+      
+           <Grid container spacing={6} className={classes.imagegrid}>
             <Column>
               <Row className={classes.firstrow}>
-                <Grid item xs={2} className={classes.oneimage} style={{marginRight:"7%"}}>
+                <Grid
+                  item
+                  xs={2}
+                  className={classes.oneimage}
+                  style={{ marginRight: "7%" }}
+                >
                   <Column>
                     <Img src="/images/savingspeed.svg"></Img>
 
@@ -153,17 +149,20 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
 
-                <Grid item xs={2} style={{paddingRight:"7%"}} >
+                <Grid item xs={2}
+                  style={{ paddingRight: "7%" }}
+                >
                   <Column>
                     <Img src="/images/readingspeed.svg"></Img>
 
                     <Heading>Reading Speed</Heading>
                     <Subheading>
-                      The read tweets per second track the rate of record-keeping
+                      The read tweets per second track the rate of
+                      record-keeping
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2} style={{paddingRight:"3%"}}>
+                <Grid item xs={2} style={{ paddingRight: "3%" }}>
                   <Column>
                     <Img src="/images/savedtweets.svg" />
 
@@ -184,28 +183,31 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
               </Row>
-              <Row className={classes.secondrow}>
-                <Grid item xs={2} style={{marginRight:"7%"}}>
+               <Row className={classes.secondrow}>
+                <Grid item xs={2} style={{ marginRight: "7%" }}>
                   <Column>
                     {" "}
                     <Img src="/images/toptrending.svg" />
                     <Heading>Top trending</Heading>
                     <Subheading>
-                      This twitter decentralized application pertually records the top 20 hashtags on Twitter on to the XDC Network blockchain.
+                      This twitter decentralized application pertually records
+                      the top 20 hashtags on Twitter on to the XDC Network
+                      blockchain.
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2} style={{paddingRight:"7%"}}>
+                <Grid item xs={2} style={{ paddingRight: "7%" }}>
                   <Column>
                     {" "}
                     <Img src="/images/currentmax.svg" />
                     <Heading>Current Max TPS</Heading>
                     <Subheading>
-                   The speed of the current and maximum transactions completed on the platform
+                      The speed of the current and maximum transactions
+                      completed on the platform
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2} style={{paddingRight:"3%"}}>
+                <Grid item xs={2} style={{ paddingRight: "3%" }}>
                   <Column>
                     {" "}
                     <Img src="/images/searchabc.svg" />
@@ -221,13 +223,14 @@ export default function Aboutcomponent() {
                     <Img src="/images/tweetarchiveimg.webp"></Img>
                     <Heading>Tweet Archive</Heading>
                     <Subheading>
-                      Tweets are archived on the network and therefore are retrievable
+                      Tweets are archived on the network and therefore are
+                      retrievable
                     </Subheading>
                   </Column>
                 </Grid>
               </Row>
-            </Column>
-          </Grid>
+          </Column> 
+        </Grid> 
         </Grid>
       </Grid>
     </div>
