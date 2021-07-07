@@ -9,10 +9,9 @@ import {
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
-  
 
 const MapChart = () => {
-  const [hashtag, setHashtag] = useState([]);
+  const [ hashtag, setHashtag] = useState([]);
   useEffect(() => {
     fetchHashtag();
   }, []);
@@ -44,18 +43,35 @@ const MapChart = () => {
       </Geographies>
       {hashtag.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates}>
-          {/* <div> */}
-           <rect x="-5" y="-8" width="20%" height="35" rx="6"
-        fill="#4c4f6c"  stroke-width="10" border="5" opacity="0.4" />
-          <text 
-            textAnchor="absolute"
-            y={markerOffset}
-            x={markerOffset}
-            style={{ fill: "#ffffff" }}
-          >
-            {name}
-          </text>
-          {/* </div> */}
+          <svg width="100%" height="100%" opacity="0.5" >
+            <defs>
+              <filter
+                id="rounded-corners"
+                x="-0.09"
+                y="-0.09"
+                width="1.4"
+                height="1.5"
+              >
+                <feFlood flood-color="#4c4f6c" />
+                <feGaussianBlur stdDeviation="3" />
+                <feComponentTransfer>
+                  <feFuncA type="table" tableValues="0 0 0 2" />
+                </feComponentTransfer>
+                <feComposite operator="over" in="SourceGraphic" />
+              </filter>
+            </defs>
+            <text filter="url(#rounded-corners)"
+              font-size="16"
+              fontWeight="500"
+              alignment-baseline="middle"
+              // y="100"
+              y="30"
+              x="20"
+              style={{ fill: "#ffffff" }}
+            >
+              {name}
+            </text>
+          </svg>
         </Marker>
       ))}
     </ComposableMap>

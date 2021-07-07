@@ -10,6 +10,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
+import NewChart from "./test";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -80,11 +81,13 @@ const useStyles = makeStyles((theme) => ({
   elevation1:{
     marginTop:'10px',
     marginRight:'9px',
+    boxShadow:'none',
   },
   paperNode:{
     marginLeft: '3.7%',
     marginTop: '-9px',
-  }
+    boxShadow:'none',
+    }
 
 }));
 
@@ -141,6 +144,7 @@ export default function MainComponent() {
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
                         <NodeChart />
+                       
                       </div>
                     </div>
                   </Paper>
@@ -153,6 +157,7 @@ export default function MainComponent() {
             <Paper classes={{elevation1:classes.elevation1}}>
               <div style={{ width: "94%", height: "50%" }}>
                 <MapChart />
+                {/* <NewChart/> */}
               </div>
             </Paper>
           </Grid>
