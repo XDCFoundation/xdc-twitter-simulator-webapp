@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Row, Column } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 const Bannerimage = styled.img`
@@ -13,11 +12,11 @@ const Bannerimage = styled.img`
 const useStyles = makeStyles((theme) => ({
   main: {},
   uppercomponent: {
-    backgroundColor: "#0d0e2d",
+    position: "relative",
   },
 
   twitterDapp: {
-    fontFamily: "Raleway",
+    fontFamily: "Raleway,sans-serif",
     fontSize: "28px",
     fontWeight: "500",
     fontStretch: "normal",
@@ -27,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: "#d6d6d6",
     marginTop: "65px",
-    backgroundColor: "#191d43",
+    backgroundColor: "#0d0e2d",
     boxShadow: "none",
-    paddingBottom: "8%",
+    paddingBottom: "6%",
   },
 
   paper: {
@@ -37,17 +36,16 @@ const useStyles = makeStyles((theme) => ({
     height: "193px",
   },
   colorcontainer: {
-    backgroundColor: "#191d43",
+     backgroundColor: "#0d0e2d",
   },
   imagegrid: {
-    //  marginLeft: "20px",
+   
   },
   firstrow: {
     justifyContent: "center",
   },
   secondrow: {
     justifyContent: "center",
-
     paddingTop: "5%",
     paddingBottom: "8%",
   },
@@ -59,7 +57,7 @@ const Img = styled.img`
   margin-right: auto;
 `;
 const Span = styled.span`
-  font-family: Raleway;
+  font-family: "Raleway,sans-serif";
   font-size: 28px;
   font-weight: 500;
   font-stretch: normal;
@@ -68,26 +66,32 @@ const Span = styled.span`
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
-  position: absolute;
-  top: 20%;
-  left: 17%;
+  position:absolute;
+  top:20%;
+  left:16%;
+
+  
+
 `;
 const Content = styled.span`
-  font-family: Raleway;
+  font-family: Raleway,sans-serif;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.18;
+  line-height: 1.78;
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
-  position: absolute;
-  top: 27%;
-  left: 17%;
+  position:absolute;
+  top:38%;
+  left:16%;
+  
+  
+  
 `;
 const Heading = styled.span`
-  font-family: Raleway;
+  font-family: Raleway,sans-serif;
   font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
@@ -98,19 +102,18 @@ const Heading = styled.span`
   color: #d6d6d6;
 `;
 const Subheading = styled.span`
-  font-family: Raleway;
+  font-family: Raleway,sans-serif;
   font-size: 13px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 2.28;
+  line-height: 1.6;
   letter-spacing: normal;
   text-align: center;
   color: #d6d6d6;
 `;
 export default function Aboutcomponent() {
   const classes = useStyles();
-  const [spacing, setSpacing] = React.useState(2);
   return (
     <div className={classes.main}>
       <Grid container spacing={0}>
@@ -133,7 +136,7 @@ export default function Aboutcomponent() {
         </Grid>
 
         <Grid item spacing={6} xs={12} className={classes.colorcontainer}>
-          <Paper className={classes.twitterDapp}>TwitterD-App features</Paper>
+          <Paper className={classes.twitterDapp}>Twitter-D App features</Paper>
 
           <Grid container spacing={6} className={classes.imagegrid}>
             <Column>
@@ -198,7 +201,7 @@ export default function Aboutcomponent() {
                     <Img src="/images/currentmax.svg" />
                     <Heading>Current Max TPS</Heading>
                     <Subheading>
-                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,{" "}
+                   The speed of the current and maximum transactions completed on the platform
                     </Subheading>
                   </Column>
                 </Grid>
