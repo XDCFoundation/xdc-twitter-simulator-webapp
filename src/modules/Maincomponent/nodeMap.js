@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import {
   ComposableMap,
   Geographies,
@@ -9,7 +9,6 @@ import {
 const markers = [
   {
     markerOffset: -30,
-
     coordinates: [-5.3816, -34.6037]
   },
   { markerOffset: 15, coordinates: [78.9629, 20.5937] },

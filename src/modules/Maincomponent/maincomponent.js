@@ -225,7 +225,7 @@ const Trending = styled.div`
   height: 48%;
   }
    @media (min-width:1003px) and (max-width: 2400px) {
-   width: 76%;
+   width: 79%;
   height: 48%;
   }
 `;
@@ -390,11 +390,7 @@ export default function MainComponent(props) {
                 <IconImg src="../../images/ic.png" />
               </Tippy>
             </Text>
-            {/* <Paper  classes={props.dark ? { elevation1: classes.elevation1_dark_mode } : { elevation1: classes.elevation1 }}  >
-              <div style={{ width: "94%", height: "48%" }}  >
-                <MapChart />
-              </div>
-            </Paper> */}
+
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
               <Trending> < MapChart dark={dark} />
               </Trending>
