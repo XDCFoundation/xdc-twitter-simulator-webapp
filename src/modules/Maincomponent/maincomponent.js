@@ -157,7 +157,7 @@ export default function MainComponent() {
             <Paper classes={{elevation1:classes.elevation1}}>
               <div style={{ width: "94%", height: "50%" }}>
                 <MapChart />
-                {/* <NewChart/> */}
+                {/* <NewChart/> */} 
               </div>
             </Paper>
           </Grid>
