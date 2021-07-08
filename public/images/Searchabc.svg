@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="127" height="127" viewBox="0 0 127 127">
+    <defs>
+        <style>
+            .cls-2{fill:none;stroke:#36f;stroke-linecap:round;stroke-linejoin:round;stroke-width:6px}.cls-3{fill:#10ca93}
+        </style>
+    </defs>
+    <g id="Search" transform="translate(-1053 -998)">
+        <g id="Ellipse_54" fill="#191d43" stroke="#404277" transform="translate(1053 998)">
+            <circle cx="63.5" cy="63.5" r="63.5" stroke="none"/>
+            <circle cx="63.5" cy="63.5" r="63" fill="none"/>
+        </g>
+        <g id="Icon_feather-search" transform="translate(1085.126 1030.626)">
+            <path id="Path_367" d="M51.386 27.943A23.443 23.443 0 1 1 27.943 4.5a23.443 23.443 0 0 1 23.443 23.443z" class="cls-2" transform="translate(0 0)"/>
+            <path id="Path_368" d="M37.722 37.722L24.975 24.975" class="cls-2" transform="translate(19.525 19.525)"/>
+        </g>
+        <path id="Rectangle_752" d="M0 0H23V3H0z" class="cls-3" transform="translate(1097 1053)"/>
+        <path id="Rectangle_753" d="M0 0H13V3H0z" class="cls-3" transform="translate(1097 1059)"/>
+    </g>
+</svg>

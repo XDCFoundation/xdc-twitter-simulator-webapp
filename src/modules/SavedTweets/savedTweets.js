@@ -31,13 +31,13 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    // padding: theme.spacing(2),
+   
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
   },
   paper_dark_mode: {
-    // padding: theme.spacing(2),
+   
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
