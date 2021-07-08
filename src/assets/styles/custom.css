@@ -262,17 +262,26 @@ input:focus {
   box-shadow: 0px 3px 21px 0 rgba(0, 0, 0, 0.07);
 }
 .savingSpeed {
+  /* letter-spacing: normal;
+  text-align: left;
+  color: #09184b; */
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
   letter-spacing: normal;
   text-align: left;
-  color: #09184b;
+  padding-bottom: 10px;
+  margin-top: -8px;
 }
-.saveSpeed {
+/* .saveSpeed {
   font-family: Raleway;
   margin-top: 5px;
   font-size: 1rem;
   padding-bottom: 10px;
   margin-top: -8px;
-}
+} */
 
 .savingSpeed-dark-mode {
   font-size: 14px;
