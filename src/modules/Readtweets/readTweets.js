@@ -20,7 +20,7 @@ const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
   width: 14px;
-  margin-top: 2px;
+  margin-top: 1px;
 `;
 
 
@@ -38,14 +38,14 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginRight: "1%",
+    marginRight: "1.5%",
   },
 
   paper_dark_mode: {
     // padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginRight: "1%",
+    marginRight: "1.5%",
     backgroundColor: '#191d43',
     color: 'white'
   },
@@ -55,9 +55,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     align: "justify",
     position: "absolute",
-    right: "5%",
+    right: "4.5%",
     fontSize: "26px",
     marginTop: "12px",
+    marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -73,10 +74,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     align: "justify",
     position: "absolute",
-    right: "5%",
+    right: "4.5%",
     fontSize: "26px",
     marginTop: "12px",
     fontWeight: "600",
+    marginRight: "17px",
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.17",
@@ -135,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "normal",
+    letterSpacing: "0.5px",
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
@@ -155,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "normal",
+    letterSpacing: "0.5px",
     textAlign: "left",
     color: "white",
     backgroundColor: "#191d43",
@@ -167,13 +169,14 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "5%",
+    right: "4.5%",
     // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.15",
+    marginRight: "17px",
     letterSpacing: "normal",
     textAlign: "left",
     color: "#8290a4",
@@ -185,7 +188,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "5%",
+    right: "4.5%",
     // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
@@ -194,6 +197,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.15",
     letterSpacing: "normal",
     textAlign: "left",
+    marginRight: "17px",
     color: "#8290a4",
     backgroundColor: '#191d43',
     marginBottom: "5px",
@@ -653,109 +657,6 @@ export default function ReadTweets(props) {
                 </Column>
               </Row>
               <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
-
-
-
-
-              {/* <Row>
-                <Column>
-                  <Typography
-                    className={classes.email}
-                  >
-                    @Harrymag
-                  </Typography>
-                  <Paper
-
-                    className={props.dark ? classes.content_dark_mode : classes.content}
-                    style={{ marginBottom: "14px" }}
-                  >
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
-
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
-                }} />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-
-                >
-                  Harry Maguire
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography
-                    className={classes.email}
-                  >
-                    @Harrymag
-                  </Typography>
-                  <Paper
-
-                    className={props.dark ? classes.content_dark_mode : classes.content}
-                    style={{ marginBottom: "14px" }}
-                  >
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
-
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
-                }} />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-
-                >
-                  Harry Maguire
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography
-                    className={classes.email}
-                  >
-                    @Harrymag
-                  </Typography>
-                  <Paper
-
-                    className={props.dark ? classes.content_dark_mode : classes.content}
-                    style={{ marginBottom: "14px" }}
-                  >
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
-
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                style={{
-                  width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
-                }} /> */}
               <br />
               <br />
               <br />

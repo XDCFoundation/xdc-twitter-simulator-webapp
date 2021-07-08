@@ -187,18 +187,21 @@ const useStyles = makeStyles((theme) => ({
   paperNode: {
     marginLeft: '3.7%',
     marginTop: '-9px',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    borderRadius: '4px'
 
   },
   top: {
     marginTop: "10px",
     marginRight: "9px",
-    boxShadow: 'none'
+    boxShadow: 'none',
+    height: '95.5%'
   },
   top_dark_mode: {
     marginTop: "10px",
     marginRight: "9px",
     boxShadow: 'none',
+    height: '95.5%',
     backgroundColor: '#191d43'
   }
 
@@ -210,6 +213,20 @@ const Text = styled.div`
   line-height:1.17;
  
   margin-top:-10px;
+`;
+const Trending = styled.div`
+@media (max-width:767px){
+  width: 84%;
+  height: 48%;
+}
+  @media (min-width:768px) and (max-width: 1002px) {
+   width: 84%;
+  height: 48%;
+  }
+   @media (min-width:1003px) and (max-width: 2400px) {
+   width: 79%;
+  height: 48%;
+  }
 `;
 export default function MainComponent(props) {
   const classes = useStyles();
@@ -241,7 +258,7 @@ export default function MainComponent(props) {
                       <Tippy
                         placement={"right"}
                         theme={"light"}
-                        maxWidth={180}
+                        maxWidth={200}
                         content={
                           <span
                             style={{
@@ -271,7 +288,7 @@ export default function MainComponent(props) {
                       <Tippy
                         placement={"right"}
                         theme={"light"}
-                        maxWidth={180}
+                        maxWidth={190}
                         content={
                           <span
                             style={{
@@ -325,7 +342,7 @@ export default function MainComponent(props) {
                         <Tippy
                           placement={"right"}
                           theme={"light"}
-                          maxWidth={180}
+                          maxWidth={220}
                           content={
                             <span
                               style={{
@@ -334,7 +351,7 @@ export default function MainComponent(props) {
                                 fontWeight: "600",
                               }}
                             >
-                              The saved tweets per second track the rate of record-keeping
+                              The speed of the current and maximum transactions completed on the platform
                             </span>
                           }
                         >
@@ -343,7 +360,7 @@ export default function MainComponent(props) {
                         <br /> 1/1000
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
-                        <NodeChart />
+                        <NodeChart dark={dark} />
                       </div>
                     </div>
                   </Paper>
@@ -356,7 +373,7 @@ export default function MainComponent(props) {
               <Tippy
                 placement={"right"}
                 theme={"light"}
-                maxWidth={290}
+                maxWidth={300}
                 content={
                   <span
                     style={{
@@ -372,15 +389,10 @@ export default function MainComponent(props) {
                 <IconImg src="../../images/ic.png" />
               </Tippy>
             </Text>
-            {/* <Paper  classes={props.dark ? { elevation1: classes.elevation1_dark_mode } : { elevation1: classes.elevation1 }}  >
-              <div style={{ width: "94%", height: "48%" }}  >
-                <MapChart />
-              </div>
-            </Paper> */}
+
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
-              <div style={{ width: "91%", height: "50%" }}>
-                <MapChart />
-              </div>
+              <Trending> < MapChart dark={dark} />
+              </Trending>
             </Paper>
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
