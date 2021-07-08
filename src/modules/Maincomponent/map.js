@@ -49,13 +49,13 @@ const MapChart = () => {
                 id="rounded-corners"
                 x="-0.09"
                 y="-0.09"
-                width="1.4"
-                height="1.5"
+                width="1.2"
+                height="1.4"
               >
                 <feFlood flood-color="#4c4f6c" />
-                <feGaussianBlur stdDeviation="3" />
+                <feGaussianBlur stdDeviation="1" />
                 <feComponentTransfer>
-                  <feFuncA type="table" tableValues="0 0 0 2" />
+                  <feFuncA type="table" tableValues="0 0 0 20" />
                 </feComponentTransfer>
                 <feComposite operator="over" in="SourceGraphic" />
               </filter>

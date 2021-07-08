@@ -10,7 +10,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
-import NewChart from "./test";
+// import NewChart from "./test";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -33,18 +33,17 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: '7.5%',
-    marginTop: '10px',
-    padding: '20px 14px 29.6px 26px',
-
+    marginLeft: "7.5%",
+    marginTop: "10px",
+    padding: "20px 14px 29.6px 26px",
   },
   reading_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: '5px',
-    marginTop: '10px',
-    padding: '20px 14px 29.6px 26px',
+    marginLeft: "5px",
+    marginTop: "10px",
+    padding: "20px 14px 29.6px 26px",
   },
 
   map: {
@@ -61,8 +60,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
-    textAlign:'left',
-    marginLeft:'20px',
+    textAlign: "left",
+    marginLeft: "20px",
   },
   maxTps: {
     fontFamily: "Raleway",
@@ -76,27 +75,26 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     lineHeight: 1.5,
     color: "#09184b",
-    textAlign:'left',
+    textAlign: "left",
   },
-  elevation1:{
-    marginTop:'10px',
-    marginRight:'9px',
-    boxShadow:'none',
+  elevation1: {
+    marginTop: "10px",
+    marginRight: "9px",
+    boxShadow: "none",
   },
-  paperNode:{
-    marginLeft: '3.7%',
-    marginTop: '-9px',
-    boxShadow:'none',
-    }
-
+  paperNode: {
+    marginLeft: "3.7%",
+    marginTop: "-9px",
+    boxShadow: "none",
+  },
 }));
 
 const Text = styled.div`
   font-weight: 900;
-  font-size:14px;
-  line-height:1.17;
- 
-  margin-top:-10px;
+  font-size: 14px;
+  line-height: 1.17;
+
+  margin-top: -10px;
 `;
 export default function MainComponent() {
   const classes = useStyles();
@@ -109,18 +107,16 @@ export default function MainComponent() {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={6} className={classes.grid}>
-
                   <Text className="writing-data">Writing Data</Text>
                   <Paper className={classes.writing_paper} elevation={0}>
                     <div className="savingSpeed">Saving Speed</div>
                     <div className="saveSpeed">345/sec</div>
                     <MyResponsiveLine />
                   </Paper>
-
                 </Grid>
 
                 <Grid item xs={6}>
-                  <Text className="reading-data" >Reading Data</Text>
+                  <Text className="reading-data">Reading Data</Text>
                   <Paper className={classes.reading_paper} elevation={0}>
                     <div className="savingSpeed">Reading Speed</div>
                     <div className="readSpeed">345/sec</div>
@@ -132,7 +128,7 @@ export default function MainComponent() {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <Paper classes={{elevation1:classes.paperNode}}>
+                  <Paper classes={{ elevation1: classes.paperNode }}>
                     <div className={classes.map}>
                       <div className={classes.node}>
                         Nodes
@@ -144,7 +140,6 @@ export default function MainComponent() {
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
                         <NodeChart />
-                       
                       </div>
                     </div>
                   </Paper>
@@ -154,10 +149,10 @@ export default function MainComponent() {
           </Grid>
           <Grid item xs={6}>
             <Text>Top 20 trending</Text>
-            <Paper classes={{elevation1:classes.elevation1}}>
+            <Paper classes={{ elevation1: classes.elevation1 }}>
               <div style={{ width: "94%", height: "50%" }}>
                 <MapChart />
-                {/* <NewChart/> */} 
+                {/* <NewChart/>  */}
               </div>
             </Paper>
           </Grid>
