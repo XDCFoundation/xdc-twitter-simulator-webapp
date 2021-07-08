@@ -7,7 +7,6 @@ import '../../assets/styles/custom.css';
 const data = [
     {
         id: "japan",
-        color: "hsl(262, 70%, 50%)",
         data: [
             {
                 "x": "plane",
