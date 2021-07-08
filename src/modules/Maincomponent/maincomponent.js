@@ -10,6 +10,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
+
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -80,6 +81,31 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px',
     padding: '20px 14px 29.6px 26px',
   },
+
+  // savingSpeed: {
+  //   fontsize: '14px',
+  //   fontweight: 600,
+  //   fontstretch: 'normal',
+  //   fontstyle: 'normal',
+  //   lineheight: 1.2,
+  //   letterspacing: 'normal',
+  //   textalign: 'left',
+  //   paddingbottom: '10px',
+  //   margintop: '-8px',
+  // },
+
+  // savingSpeed_dark_mode: {
+  //   fontsize: '14px',
+  //   fontweight: 600,
+  //   fontstretch: 'normal',
+  //   fontstyle: 'normal',
+  //   lineheight: 1.2,
+  //   letterspacing: 'normal',
+  //   textalign: 'left',
+  //   color: 'white',
+  //   paddingbottom: '10px',
+  //   margintop: '-8px',
+  // },
 
   map: {
     display: "flex",
@@ -171,6 +197,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white'
   },
 
+
   // elevation1: {
   //   marginTop: '10px',
   //   marginRight: '9px',
@@ -211,7 +238,6 @@ const Text = styled.div`
   font-weight: 900;
   font-size:14px;
   line-height:1.17;
- 
   margin-top:-10px;
 `;
 const Trending = styled.div`
@@ -254,7 +280,7 @@ export default function MainComponent(props) {
                   <Text className={dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data
                   </Text>
                   <Paper className={dark ? classes.writing_paper_dark_mode : classes.writing_paper} elevation={0}>
-                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed
+                    <div  className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed
                       <Tippy
                         placement={"right"}
                         theme={"light"}
