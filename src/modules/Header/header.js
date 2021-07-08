@@ -147,6 +147,7 @@ const UnorderedList = styled.ul`
   width: 140px;
   margin-left: 10px;
   border-radius: 4px;
+  z-index:1;
 `;
 const List = styled.li`
   margin-top: 4px;
@@ -209,7 +210,7 @@ export default function HeaderComponent(props) {
         </Advancesearch>
       </SubContainer1>
       <SubContainer2>
-        <About>About</About>
+        <About><a href="/about">About</a></About>
         <FFButton />
         <Line> </Line>
         <Archive href="#">Tweet Archive</Archive>

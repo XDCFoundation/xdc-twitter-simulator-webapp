@@ -23,6 +23,7 @@ const IconImg = styled.img`
   margin-top: 1px;
 `;
 
+
 const theme = createMuiTheme({
   typography: {
     // Tell Material-UI what the font-size on the html element is.
@@ -376,6 +377,7 @@ export default function ReadTweets(props) {
                   >
                     @henrygolding
                   </Typography>
+                  {/* <Divider /> */}
                   <Paper
 
                     className={props.dark ? classes.content_dark_mode : classes.content}
@@ -477,6 +479,7 @@ export default function ReadTweets(props) {
                   >
                     @jackryan
                   </Typography>
+                 
                   <Paper
 
                     className={props.dark ? classes.content_dark_mode : classes.content}
