@@ -72,6 +72,8 @@ const Span = styled.span`
 const Content = styled.span`
   
 
+
+
   @media (max-width:767px){
   
      font-family: Raleway, sans-serif;
