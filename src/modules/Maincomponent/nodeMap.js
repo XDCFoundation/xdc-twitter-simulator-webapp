@@ -32,9 +32,9 @@ const NodeChart = (props) => {
   return (
     <div>
     <ComposableMap
-      style={{
-        fill: "#bdc1e5",
-      }}
+        style={props.dark ? {
+          fill: "#293178"
+        }: {fill: "#bdc1e5"}}
     >
       <Geographies geography={geoUrl}>
         {({ geographies }) =>

@@ -337,11 +337,11 @@ input:focus {
   background-color: #ffffff;
 }
 
-.reading-paper{
+.reading-paper {
   text-align: "center";
-  margin-left: '5px';
-  margin-top: '10px';
-  padding: '20px 14px 29.6px 26px',
+  margin-left: "5px";
+  margin-top: "10px";
+  padding: "20px 14px 29.6px 26px";
 }
 
 .writing-data {
@@ -396,13 +396,11 @@ input:focus {
   color: white;
 }
 
-.hover-data{
+.hover-data {
   color: #0d0e2d;
 }
 
-
-
-.dark-mode{
+/* .dark-mode{
   background: red;
   color: white;
 }
@@ -410,4 +408,4 @@ input:focus {
 .light-mode{
   background: green;
   color: black;
-}
+} */

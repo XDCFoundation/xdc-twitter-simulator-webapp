@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
@@ -236,56 +236,60 @@ export default function MainComponent(props) {
                 <Grid item xs={6} className={classes.grid}>
 
                   <Text className={dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data
-                    <Tippy
-                      placement={"right"}
-                      theme={"light"}
-                      maxWidth={180}
-                      content={
-                        <span
-                          style={{
-                            color: "#0d0e2d",
-                            fontSize: "11px",
-                            fontWeight: "600",
-                          }}
-                        >
-                          The saved tweets per second track the rate of record-keeping
-                        </span>
-                      }
-                    >
-                      <IconImg src="../../images/ic.png" />
-                    </Tippy></Text>
+                  </Text>
                   <Paper className={dark ? classes.writing_paper_dark_mode : classes.writing_paper} elevation={0}>
-                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed</div>
+                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed
+                      <Tippy
+                        placement={"right"}
+                        theme={"light"}
+                        maxWidth={180}
+                        content={
+                          <span
+                            style={{
+                              color: "#0d0e2d",
+                              fontSize: "11px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            The saved tweets per second track the rate of record-keeping
+                          </span>
+                        }
+                      >
+                        <IconImg src="../../images/ic.png" />
+                      </Tippy>
+                    </div>
                     <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>345/sec</div>
-                  <span className="hover-data">  <MyResponsiveLine /> </span>
+                    <span className="hover-data">  <MyResponsiveLine /> </span>
                   </Paper>
 
                 </Grid>
 
                 <Grid item xs={6}>
                   <Text className={dark ? "reading-data-dark-mode" : "reading-data"} >Reading Data
-                    <Tippy
-                      placement={"right"}
-                      theme={"light"}
-                      maxWidth={180}
-                      content={
-                        <span
-                          style={{
-                            color: "#0d0e2d",
-                            fontSize: "11px",
-                            fontWeight: "600",
-                          }}
-                        >
-                          The read tweets per second track the rate of record-keeping
-                        </span>
-                      }
-                    >
-                      <IconImg src="../../images/ic.png" />
-                    </Tippy></Text>
+                  </Text>
                   <Paper className={dark ? classes.reading_paper_dark_mode : classes.reading_paper} elevation={0}>
-                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Speed</div>
+                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Speed
+                      <Tippy
+                        placement={"right"}
+                        theme={"light"}
+                        maxWidth={180}
+                        content={
+                          <span
+                            style={{
+                              color: "#0d0e2d",
+                              fontSize: "11px",
+                              fontWeight: "600",
+                            }}
+                          >
+                            The read tweets per second track the rate of record-keeping
+                          </span>
+                        }
+                      >
+                        <IconImg src="../../images/ic.png" />
+                      </Tippy>
+                    </div>
                     <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>345/sec</div>
-                  <span className="hover-data">  <ReadingData /> </span>
+                    <span className="hover-data">  <ReadingData /> </span>
                   </Paper>
                 </Grid>
               </Row>
@@ -340,7 +344,7 @@ export default function MainComponent(props) {
                         <br /> 1/1000
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
-                        <NodeChart />
+                        <NodeChart dark={dark} />
                       </div>
                     </div>
                   </Paper>
@@ -376,7 +380,7 @@ export default function MainComponent(props) {
             </Paper> */}
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
               <div style={{ width: "91%", height: "50%" }}>
-                <MapChart />
+                <MapChart dark={dark} />
               </div>
             </Paper>
           </Grid>
@@ -384,7 +388,7 @@ export default function MainComponent(props) {
             <SavedTweets dark={dark} />
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
-            <ReadTweets dark={dark}/>
+            <ReadTweets dark={dark} />
           </Grid>
         </Grid>
       </div>
