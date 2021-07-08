@@ -25,10 +25,10 @@ const markers = [
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-
 const NodeChart = (props) => {
 
   return (
+    <div>
     <ComposableMap
       style={props.dark ? {
         fill: "#293178"
@@ -60,6 +60,7 @@ const NodeChart = (props) => {
       }
 
     </ComposableMap>
+    </div>
   );
 };
 

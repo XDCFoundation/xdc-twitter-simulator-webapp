@@ -1,18 +1,29 @@
 import BaseComponent from "../baseComponent";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Searchlist from "./searchListing";
 import HeaderComponent from "../Header/header";
 import FooterComponent from "../Footer/footer";
 
-export default class Search extends BaseComponent {
-  render() {
+export default function Main() {
+
+  const getMode = () => {
+    return JSON.parse(localStorage.getItem("mode")) || false
+  }
+
+  const [dark, setMode] = useState(getMode())
+
+  const CheckMode = (mode) => {
+    setMode(mode)
+  }
+  useEffect(() => {
+    localStorage.setItem("mode", JSON.stringify(dark))
+  }, [dark])
     return (
       <>
-        <HeaderComponent />
-        <Searchlist />
-
+        <HeaderComponent CheckMode={CheckMode} />
+        <Searchlist dark={dark} />
         <FooterComponent />
       </>
     );
   }
-}
+

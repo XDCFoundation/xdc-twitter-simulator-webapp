@@ -10,6 +10,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
+
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -80,6 +81,31 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px',
     padding: '20px 14px 29.6px 26px',
   },
+
+  // savingSpeed: {
+  //   fontsize: '14px',
+  //   fontweight: 600,
+  //   fontstretch: 'normal',
+  //   fontstyle: 'normal',
+  //   lineheight: 1.2,
+  //   letterspacing: 'normal',
+  //   textalign: 'left',
+  //   paddingbottom: '10px',
+  //   margintop: '-8px',
+  // },
+
+  // savingSpeed_dark_mode: {
+  //   fontsize: '14px',
+  //   fontweight: 600,
+  //   fontstretch: 'normal',
+  //   fontstyle: 'normal',
+  //   lineheight: 1.2,
+  //   letterspacing: 'normal',
+  //   textalign: 'left',
+  //   color: 'white',
+  //   paddingbottom: '10px',
+  //   margintop: '-8px',
+  // },
 
   map: {
     display: "flex",
@@ -171,6 +197,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'white'
   },
 
+
   // elevation1: {
   //   marginTop: '10px',
   //   marginRight: '9px',
@@ -211,7 +238,6 @@ const Text = styled.div`
   font-weight: 900;
   font-size:14px;
   line-height:1.17;
- 
   margin-top:-10px;
 `;
 const Trending = styled.div`
@@ -220,11 +246,11 @@ const Trending = styled.div`
   height: 48%;
 }
   @media (min-width:768px) and (max-width: 1002px) {
-   width: 84%;
+   width: 87%;
   height: 48%;
   }
    @media (min-width:1003px) and (max-width: 2400px) {
-   width: 79%;
+   width: 87%;
   height: 48%;
   }
 `;
@@ -391,7 +417,11 @@ export default function MainComponent(props) {
             </Text>
 
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
-              <Trending> < MapChart dark={dark} />
+              <Trending>
+                {/* < MapChart  dark={dark} /> */}
+                <div style={{ width: "100%", height: "50%" }}>
+                  < MapChart dark={dark} />
+                </div>
               </Trending>
             </Paper>
           </Grid>

@@ -31,9 +31,9 @@ import {
 //     padding: theme.spacing(2),
 //     color: theme.palette.text.secondary,
 //   },
-//   main: {
-//     backgroundColor: "#f5f6f9",
-//   },
+  // main: {
+  //   backgroundColor: "#f5f6f9",
+  // },
 //   root: {
 //     flexGrow: 1,
 //     padding: "80px 80px",
@@ -116,6 +116,9 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+  main_dark_mode: {
+    backgroundColor: '#0d0e2d'
+  },
   paper: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
@@ -349,12 +352,51 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#d6d6d6",
   },
+  writing_paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    marginLeft: '7.5%',
+    marginTop: '-30px',
+    padding: '20px 14px 29.6px 26px',
+
+  },
+  writing_paper_dark_mode: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    backgroundColor: "#191d43",
+    color: 'white',
+    marginTop: '-30px',
+    marginLeft: '7.5%',
+    padding: '20px 14px 29.6px 26px',
+
+  },
+  reading_paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    marginLeft: '7.5%',
+    marginTop: '-30px',
+    padding: '20px 14px 29.6px 26px',
+  },
+
+  reading_paper_dark_mode: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    backgroundColor: "#191d43",
+    color: 'white',
+    marginTop: '-30px',
+    marginLeft: '7.5%',
+    padding: '20px 14px 29.6px 26px',
+  },
 }));
 
 export default function Searchlist(props) {
   const classes = useStyles();
   return (
-    <div className={classes.main}>
+    <div  className={props.dark ? classes.main_dark_mode : classes.dark}>
       <div className={classes.root}>
         <Grid xs={2}>
           <img
@@ -781,14 +823,14 @@ export default function Searchlist(props) {
                 <br />
                 <br />
               </Column>
-            </Paper>
+            </Paper> 
           </Grid>
 
           <Grid item xs={4}>
             <Grid item xs={12} className={classes.grid}>
-              <Text>Writing Data</Text>
-              <Paper className={classes.paper}>
-                <div className="savingSpeed">Saving Speed</div>
+              <Text className={props.dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data</Text>
+              <Paper className={props.dark ? classes.writing_paper_dark_mode : classes.writing_paper}>
+                <div className={props.dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed</div>
                 <div className="saveSpeed">345/sec</div>
 
                 <MyResponsiveLine />
@@ -798,9 +840,10 @@ export default function Searchlist(props) {
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <Text>Reading Data</Text>
-                  <Paper className={classes.paper}>
-                    <div className="savingSpeed">Reading Tweet</div>
+                  <br/>  <br/>
+                  <Text className={props.dark ? "reading-data-dark-mode" : "reading-data"}>Reading Data</Text>
+                  <Paper className={props.dark ? classes.reading_paper_dark_mode : classes.reading_paper}>
+                    <div className={props.dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Tweet</div>
                     <div className="readSpeed">345/sec</div>
                     <ReadingData />
                   </Paper>
