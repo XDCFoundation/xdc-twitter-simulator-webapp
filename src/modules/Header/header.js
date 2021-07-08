@@ -32,9 +32,27 @@ const SubContainer2 = styled.div`
 `;
 
 const Image = styled.img`
-  width: 40px;
+@media (max-width:766px){
+   width: 30px;
+  height: 25px;
+  margin-left: 0px;
+}
+  @media (min-width:767px) and (max-width: 900px) {
+    width: 35px;
+  height: 30px;
+  margin-left: 0px;
+  }
+  @media (min-width: 901px) and (max-width: 1100) {
+     width: 40px;
   height: 35px;
   margin-left: 8px;
+  }
+  @media (min-width: 1100px) {
+   width: 40px;
+  height: 35px;
+  margin-left: 8px;
+  }
+ 
 `;
 const Span = styled.span`
   font-size: 15px;
@@ -45,7 +63,10 @@ const Span = styled.span`
   margin-top: 2px;
 `;
 const Search = styled.input`
-  @media (max-width: 900px) {
+@media (max-width:766px){
+  width:100px
+}
+  @media (min-width:767px) and (max-width: 900px) {
     width: 150px;
   }
   @media (min-width: 901px) and (max-width: 1100) {
