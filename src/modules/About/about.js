@@ -70,43 +70,6 @@ const Span = styled.span`
   left: 11%;
 `;
 const Content = styled.span`
-  
-
-
-
-  @media (max-width:767px){
-  
-     font-family: Raleway, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.78;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 38%;
-  left: 11%;
-}
-  @media (min-width:768px) and (max-width: 1002px) {
-   
-  }
-   @media (min-width:1003px) and (max-width: 1599px) {
-  font-family: Raleway, sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.78;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 38%;
-  left: 11%;
-  }
-    @media (min-width:1600px) and (max-width: 2400px) {
   font-family: Raleway, sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -119,7 +82,56 @@ const Content = styled.span`
   position: absolute;
   top: 38%;
   left: 11%;
+
+
+
+//   @media (max-width:767px){
+  
+//      font-family: Raleway, sans-serif;
+//   font-size: 12px;
+//   font-weight: 500;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.78;
+//   letter-spacing: normal;
+//   text-align: left;
+//   color: #ffffff;
+//   position: absolute;
+//   top: 38%;
+//   left: 11%;
+// }
+  @media (min-width:768px) and (max-width: 1002px) {
+  
+   
   }
+  //  @media (min-width:1003px) and (max-width: 1599px) {
+  // font-family: Raleway, sans-serif;
+  // font-size: 13px;
+  // font-weight: 500;
+  // font-stretch: normal;
+  // font-style: normal;
+  // line-height: 1.78;
+  // letter-spacing: normal;
+  // text-align: left;
+  // color: #ffffff;
+  // position: absolute;
+  // top: 38%;
+  // left: 11%;
+  // }
+  //   @media (min-width:1600px) and (max-width: 2400px) {
+  // font-family: Raleway, sans-serif;
+  // font-size: 16px;
+  // font-weight: 500;
+  // font-stretch: normal;
+  // font-style: normal;
+  // line-height: 1.78;
+  // letter-spacing: normal;
+  // text-align: left;
+  // color: #ffffff;
+  // position: absolute;
+  // top: 38%;
+  // left: 11%;
+  // }
 `;
 const Heading = styled.span`
   font-family: Raleway, sans-serif;
