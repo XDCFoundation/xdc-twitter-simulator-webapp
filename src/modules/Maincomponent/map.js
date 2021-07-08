@@ -11,7 +11,7 @@ const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
   
 
-const MapChart = () => {
+const MapChart = (props) => {
   const [hashtag, setHashtag] = useState([]);
   useEffect(() => {
     fetchHashtag();
@@ -31,9 +31,9 @@ const MapChart = () => {
   };
   return (
     <ComposableMap
-      style={{
-        fill: "#bdc1e5",
-      }}
+      style={props.dark ? {
+        fill: "#293178"
+      }: {fill: "#bdc1e5"}}
     >
       <Geographies geography={geoUrl}>
         {({ geographies }) =>

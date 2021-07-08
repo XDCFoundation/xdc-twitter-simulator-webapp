@@ -121,7 +121,7 @@ const Img = styled.img`
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    width: '43%',
+    width: '50%',
     backgroundColor: "#191d43",
     borderRadius: "5px",
     border: "solid 1px #515684",

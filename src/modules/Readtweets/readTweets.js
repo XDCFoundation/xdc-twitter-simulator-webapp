@@ -55,8 +55,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "5%",
-    fontSize: "36px",
-    marginTop: "10px",
+    fontSize: "26px",
+    marginTop: "12px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -73,8 +73,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "5%",
-    fontSize: "36px",
-    marginTop: "10px",
+    fontSize: "26px",
+    marginTop: "12px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -102,24 +102,24 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginBottom: "5px",
-},
+  },
 
-name_dark_mode: {
-  fontSize: "11px",
-  color: "#09184b",
-  whiteSpace: "nowrap",
-  fontFamily: "Raleway",
-  marginLeft: "18px",
-  fontWeight: 600,
-  fontStretch: "normal",
-  fontStyle: "normal",
-  lineHeight: "1.14",
-  letterSpacing: "normal",
-  textAlign: "left",
-  color: "white",
-  backgroundColor: "#191d43",
-  marginBottom: "5px",
-},
+  name_dark_mode: {
+    fontSize: "11px",
+    color: "#09184b",
+    whiteSpace: "nowrap",
+    fontFamily: "Raleway",
+    marginLeft: "18px",
+    fontWeight: 600,
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.14",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "white",
+    backgroundColor: "#191d43",
+    marginBottom: "5px",
+  },
 
   content: {
     fontSize: "11px",
@@ -178,26 +178,26 @@ name_dark_mode: {
     color: "#8290a4",
     marginBottom: "5px",
     marginLeft: "18px",
-},
+  },
 
-time_dark_mode: {
-  color: "#8290a4",
-  boxShadow: "none",
-  position: "absolute",
-  right: "5%",
-  // fontFamily: "Raleway",
-  fontSize: "13px",
-  fontWeight: "normal",
-  fontStretch: "normal",
-  fontStyle: "normal",
-  lineHeight: "1.15",
-  letterSpacing: "normal",
-  textAlign: "left",
-  color: "#8290a4",
-  backgroundColor: '#191d43',
-  marginBottom: "5px",
-  marginLeft: "18px",
-},
+  time_dark_mode: {
+    color: "#8290a4",
+    boxShadow: "none",
+    position: "absolute",
+    right: "5%",
+    // fontFamily: "Raleway",
+    fontSize: "13px",
+    fontWeight: "normal",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.15",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#8290a4",
+    backgroundColor: '#191d43',
+    marginBottom: "5px",
+    marginLeft: "18px",
+  },
 
   email: {
     fontSize: "11px",
@@ -245,17 +245,18 @@ time_dark_mode: {
   },
   hr_page: {
     width: "100%",
-    border: "solid 0.2px rgb(243 242 242)",
+    height: "0px",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
 
   hr_page_dark_mode: {
     width: "100%",
-    border: "solid 0.1px #8290a4",
+    height: "0px",
+    backgroundColor: "#8290a4",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
-  }
+  },
 
 }));
 
@@ -272,7 +273,7 @@ export default function ReadTweets(props) {
 
               <Row  className={classes.row}>
 
-                <Typography 
+                <Typography
                   className={props.dark ? classes.readtweet_dark_mode : classes.readtweet}
                   variant="h5"
                   style={{ whiteSpace: "nowrap" }}
@@ -306,8 +307,8 @@ export default function ReadTweets(props) {
                 </Paper>
 
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page}
-                 />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page}
+              />
               <Row>
                 <Typography
                   variant="h6"
@@ -347,7 +348,7 @@ export default function ReadTweets(props) {
                   </ThemeProvider>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -381,7 +382,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6" className={props.dark ? classes.name_dark_mode : classes.name}
@@ -415,7 +416,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -448,7 +449,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -482,7 +483,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -515,7 +516,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -549,7 +550,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -582,7 +583,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -615,7 +616,7 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
               <Row>
                 <Typography
                   variant="h6"
@@ -648,10 +649,10 @@ export default function ReadTweets(props) {
                   </Paper>
                 </Column>
               </Row>
-               <hr className ={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
-             
+              <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
 
-              
+
+
 
               {/* <Row>
                 <Column>
@@ -752,6 +753,7 @@ export default function ReadTweets(props) {
                 style={{
                   width: "100%", border: "solid 0.2px rgb(243 242 242)", marginTop: "0rem", marginBottom: "0.5rem"
                 }} /> */}
+              <br />
               <br />
               <br />
 

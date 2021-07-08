@@ -6,9 +6,9 @@ import MainComponent from "./maincomponent";
 
 export default function Main() {
 
-    const getMode = () => {
-      return JSON.parse(localStorage.getItem("mode")) || false
-    }
+  const getMode = () => {
+    return JSON.parse(localStorage.getItem("mode")) || false
+  }
 
   const [dark, setMode] = useState(getMode())
 
@@ -17,10 +17,10 @@ export default function Main() {
   }
   useEffect(() => {
     localStorage.setItem("mode", JSON.stringify(dark))
-  },[dark])
+  }, [dark])
 
- 
-  
+
+
   return (
     <div>
       <HeaderComponent CheckMode={CheckMode} />
