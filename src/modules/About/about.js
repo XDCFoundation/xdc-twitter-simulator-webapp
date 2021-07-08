@@ -42,11 +42,19 @@ const useStyles = makeStyles((theme) => ({
   imagegrid: {width:"100%"},
   firstrow: {
     justifyContent: "center",
+    // width:"90%",
   },
   secondrow: {
     justifyContent: "center",
     paddingTop: "5%",
     paddingBottom: "8%",
+    // width:"90%",
+  },
+  columnone: {
+    width:"90%",
+  },
+  columntwo: {
+    width:"90%",
   },
 }));
 const Img = styled.img`
@@ -68,46 +76,24 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 11%;
+  @media (max-width:767px) and (max-width:980px){
+  
+ font-family: Raleway, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.10;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+}
 `;
 const Content = styled.span`
-  
-
-
-
-  @media (max-width:767px){
-  
-     font-family: Raleway, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.78;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 38%;
-  left: 11%;
-}
-  @media (min-width:768px) and (max-width: 1002px) {
-   
-  }
-   @media (min-width:1003px) and (max-width: 1599px) {
-  font-family: Raleway, sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.78;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 38%;
-  left: 11%;
-  }
-    @media (min-width:1600px) and (max-width: 2400px) {
-  font-family: Raleway, sans-serif;
+font-family: Raleway, sans-serif;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -119,8 +105,53 @@ const Content = styled.span`
   position: absolute;
   top: 38%;
   left: 11%;
-  }
-`;
+  @media (max-width:767px) and (max-width:980px){
+  
+ font-family: Raleway, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  position: absolute;
+  top: 38%;
+  left: 5%;
+}
+//   @media (min-width:768px) and (max-width: 1002px) {
+   
+//   }
+//    @media (min-width:1003px) and (max-width: 1599px) {
+//   font-family: Raleway, sans-serif;
+//   font-size: 13px;
+//   font-weight: 500;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.78;
+//   letter-spacing: normal;
+//   text-align: left;
+//   color: #ffffff;
+//   position: absolute;
+//   top: 38%;
+//   left: 11%;
+//   }
+//     @media (min-width:1600px) and (max-width: 2400px) {
+//   font-family: Raleway, sans-serif;
+//   font-size: 16px;
+//   font-weight: 500;
+//   font-stretch: normal;
+//   font-style: normal;
+//   line-height: 1.78;
+//   letter-spacing: normal;
+//   text-align: left;
+//   color: #ffffff;
+//   position: absolute;
+//   top: 38%;
+//   left: 11%;
+//   }
+// `;
 const Heading = styled.span`
   font-family: Raleway, sans-serif;
   font-size: 18px;
@@ -163,20 +194,20 @@ export default function Aboutcomponent() {
           </div>
         </Grid>
 
-        <Grid item spacing={0} xs={12} className={classes.colorcontainer}>
+        <Grid item spacing={8} xs={12} className={classes.colorcontainer}>
           <Paper className={classes.twitterDapp}>Twitter-D App features</Paper>
 
       
-           <Grid container spacing={0} className={classes.imagegrid}>
+           <Grid container spacing={6} className={classes.imagegrid}>
             <Column>
               <Row className={classes.firstrow}>
                 <Grid
                   item
-                  xs={2}
+                  xs={6} sm={3} md={2}
                   className={classes.oneimage}
-                  style={{ marginRight: "7%" }}
+                  // style={{ marginRight: "7%" }}
                 >
-                  <Column>
+                  <Column className={classes.columnone}>
                     <Img src="/images/savingspeed.svg"></Img>
 
                     <Heading>Saving Speed</Heading>
@@ -187,10 +218,10 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
 
-                <Grid item xs={2}
-                  style={{ paddingRight: "7%" }}
+                <Grid item xs={6}  sm={3} md={2}
+                  // style={{ paddingRight: "7%" }}
                 >
-                  <Column>
+                  <Column  className={classes.columnone}>
                     <Img src="/images/readingspeed.svg"></Img>
 
                     <Heading>Reading Speed</Heading>
@@ -200,10 +231,10 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}
-                style={{ paddingRight: "3%" }}
+                <Grid item xs={6}  sm={3} md={2}
+                // style={{ paddingRight: "3%" }}
                 >
-                  <Column>
+                  <Column  className={classes.columnone}>
                     <Img src="/images/savedtweets.svg" />
 
                     <Heading>Saved Tweets</Heading>
@@ -212,8 +243,8 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}>
-                  <Column>
+                <Grid item xs={6}  sm={3} md={2}> 
+                  <Column  className={classes.columnone}>
                     <Img src="/images/newimage.svg" />
 
                     <Heading>Read Tweets</Heading>
@@ -224,10 +255,10 @@ export default function Aboutcomponent() {
                 </Grid>
               </Row>
                <Row className={classes.secondrow}>
-                <Grid item xs={2}
-                style={{ marginRight: "7%" }}
+                <Grid item   xs={6} sm={3} md={2}
+                // style={{ marginRight: "7%" }}
                 >
-                  <Column>
+                  <Column  className={classes.columntwo}>
                     {" "}
                     <Img src="/images/toptrending.svg" />
                     <Heading>Top trending</Heading>
@@ -238,10 +269,10 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-            <Grid item xs={2}
-            style={{ paddingRight: "7%" }}
+            <Grid item xs={6} sm={3} md={2}
+            // style={{ paddingRight: "7%" }}
             >
-                  <Column>
+                  <Column  className={classes.columntwo}>
                     {" "}
                     <Img src="/images/currentmax.svg" />
                     <Heading>Current Max TPS</Heading>
@@ -251,10 +282,10 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}
-                style={{ paddingRight: "3%" }}
+                <Grid item xs={6} sm={3} md={2}
+                // style={{ paddingRight: "3%" }}
                 >
-                  <Column>
+                  <Column  className={classes.columntwo}>
                     {" "}
                     <Img src="/images/searchabc.svg" />
                     <Heading>Search</Heading>
@@ -263,8 +294,8 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={2}>
-                  <Column>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column  className={classes.columntwo}>
                     {" "}
                     <Img src="/images/tweetarchiveimg.webp"></Img>
                     <Heading>Tweet Archive</Heading>
