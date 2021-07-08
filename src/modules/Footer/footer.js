@@ -184,8 +184,8 @@ export default function FooterComponent() {
                 </Grid>
 
 
-                <Grid style={{ display: 'flex', justifyContent: 'center' }} item xs={12} sm={4} md={3}>
-                  <Paper style={{ backgroundColor: '#191d43', marginLeft: '13%' }} elevation={0}>
+                <Grid style={{ display: 'flex', justifyContent: 'center', marginLeft: '5%'  }} item xs={12} sm={4} md={3}>
+                  <Paper style={{ backgroundColor: '#191d43'}} elevation={0}>
                     <div className={classes.followus}>
                       <span style={{ fontSize: '13px' }}> Follow us on{" "}</span>
                     </div>
@@ -237,8 +237,8 @@ export default function FooterComponent() {
                   </Paper>
                 </Grid>
 
-                <Grid style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#191d43' }} item xs={12} sm={4} md={3}>
-                  <Paper style={{ marginBottom: '10px', paddingRight: '50px' }} className={classes.poweredpaper} elevation={0}>
+                <Grid style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#191d43', marginLeft: '5%' }} item xs={12} sm={4} md={3}>
+                  <Paper style={{ marginBottom: '10%', paddingRight: '50px' }} className={classes.poweredpaper} elevation={0}>
                     <ImgLogo
 
                       src="/images/xinfintwitter.png"

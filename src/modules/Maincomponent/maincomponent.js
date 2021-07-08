@@ -246,11 +246,11 @@ const Trending = styled.div`
   height: 48%;
 }
   @media (min-width:768px) and (max-width: 1002px) {
-   width: 84%;
+   width: 87%;
   height: 48%;
   }
    @media (min-width:1003px) and (max-width: 2400px) {
-   width: 79%;
+   width: 87%;
   height: 48%;
   }
 `;
@@ -280,7 +280,7 @@ export default function MainComponent(props) {
                   <Text className={dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data
                   </Text>
                   <Paper className={dark ? classes.writing_paper_dark_mode : classes.writing_paper} elevation={0}>
-                    <div  className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed
+                    <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed
                       <Tippy
                         placement={"right"}
                         theme={"light"}
@@ -417,7 +417,11 @@ export default function MainComponent(props) {
             </Text>
 
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
-              <Trending> < MapChart dark={dark} />
+              <Trending>
+                {/* < MapChart  dark={dark} /> */}
+                <div style={{ width: "100%", height: "50%" }}>
+                  < MapChart dark={dark} />
+                </div>
               </Trending>
             </Paper>
           </Grid>
