@@ -18,7 +18,7 @@ const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
   width: 14px;
-  margin-top: 2px;
+  margin-top: 3px;
 `;
 const theme = createMuiTheme({
   typography: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     align: "justify",
     position: "absolute",
-    right: "52%",
+    right: "52.5%",
     fontSize: "26px",
     marginTop: "12px",
     fontWeight: "600",
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     align: "justify",
     position: "absolute",
-    right: "52%",
+    right: "52.5%",
     fontSize: "26px",
     marginTop: "12px",
     fontWeight: "600",
@@ -149,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "52%",
+    right: "52.5%",
     // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
     // color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "52%",
+    right: "52.5%",
     // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
@@ -296,13 +296,6 @@ export default function SavedTweets(props) {
                 className={
                   props.dark ? classes.hr_page_dark_mode : classes.hr_page
                 }
-                // style={{
-                //   width: "100%",
-                //   border: "solid 0.2px rgb(243 242 242)",
-                //   marginTop: "0.5rem",
-                //   marginBottom: "0.5rem",
-
-                // }}
               />
               <Row>
                 <Typography

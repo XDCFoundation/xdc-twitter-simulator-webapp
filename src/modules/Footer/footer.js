@@ -23,6 +23,7 @@ const theme = createMuiTheme({
   },
 });
 
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
@@ -131,6 +132,26 @@ const useStyles = makeStyles((theme) => ({
 
 
 }));
+const ImgLogo = styled.img`
+
+@media (max-width:766px){
+  width: 42px;
+height: 39px;
+}
+  @media (min-width:767px) and (max-width: 900px) {
+    width: 50px;
+height: 47px;
+  }
+  @media (min-width: 901px) and (max-width: 1100) {
+    width: 58px;
+height: 55px;
+  }
+  @media (min-width: 1100px) {
+   width: 58px;
+height: 55px;
+  }
+`;
+
 export default function FooterComponent() {
   const classes = useStyles();
   return (
@@ -163,7 +184,7 @@ export default function FooterComponent() {
                 </Grid>
 
 
-                <Grid style={{ display: 'flex', justifyContent: 'center' }} item xs={12} sm={6} md={4}>
+                <Grid style={{ display: 'flex', justifyContent: 'center' }} item xs={12} sm={4} md={3}>
                   <Paper style={{ backgroundColor: '#191d43', marginLeft: '13%' }} elevation={0}>
                     <div className={classes.followus}>
                       <span style={{ fontSize: '13px' }}> Follow us on{" "}</span>
@@ -216,13 +237,13 @@ export default function FooterComponent() {
                   </Paper>
                 </Grid>
 
-                <Grid style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#191d43' }} item xs={12} sm={6} md={4}>
+                <Grid style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#191d43' }} item xs={12} sm={4} md={3}>
                   <Paper style={{ marginBottom: '10px', paddingRight: '50px' }} className={classes.poweredpaper} elevation={0}>
-                    <img
-                      style={{ width: 58, height: 55 }}
+                    <ImgLogo
+
                       src="/images/xinfintwitter.png"
                     />
-                    <span style={{ marginLeft: '10px', letterSpacing: '0.59px' }}>Powered By XDC{" "}</span>
+                    <span style={{ marginLeft: '10px', letterSpacing: '0.59px' }}>Powered By XDC</span>
                   </Paper>
                 </Grid>
               </Row>
