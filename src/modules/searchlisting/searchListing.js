@@ -407,6 +407,7 @@ export default function Searchlist(props) {
               width: "5%",
             }}
             src="/images/home.svg"
+            
           />
           <div className={classes.dashboard}> Dashboard</div>
         </Grid>
