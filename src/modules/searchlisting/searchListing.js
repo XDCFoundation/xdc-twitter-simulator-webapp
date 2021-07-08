@@ -93,7 +93,8 @@ import {
 
 const Text = styled.div`
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-bottom: 55px;
+  margin-left: 3%;
   fontfamily: "Raleway ,sans-serif !important";
 
   /////////////////////new code
@@ -229,7 +230,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "52%",
+    right: "47%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -315,7 +316,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
-  dashboard: { marginLeft: "180px" },
+  dashboard: {
+    marginLeft: "151px",
+    marginTop: "6%",
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+
+    backgroundColor: "#191d43",
+    color: "#ffffff",
+    fontFamily: "Raleway ,sans-serif !important",
+    fontWeight: "600",
+  },
   savespeed: {
     marginTop: "5px",
     fontSize: "1rem",
@@ -357,11 +368,7 @@ export default function Searchlist(props) {
           />
           <div className={classes.dashboard}> Dashboard</div>
         </Grid>
-        <Grid
-          container
-          spacing={3}
-          //style={{ padding: "8%" }}
-        >
+        <Grid container spacing={3} style={{ padding: "6%", width: "100%" }}>
           <Grid item xs={7}>
             <Paper
               className={props.dark ? classes.paper_dark_mode : classes.paper}
