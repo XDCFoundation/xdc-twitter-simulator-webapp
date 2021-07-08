@@ -9,7 +9,6 @@ import {
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
-  
 
 const MapChart = (props) => {
   const [hashtag, setHashtag] = useState([]);
@@ -33,7 +32,7 @@ const MapChart = (props) => {
     <ComposableMap
       style={props.dark ? {
         fill: "#293178"
-      }: {fill: "#bdc1e5"}}
+      } : { fill: "#bdc1e5" }}
     >
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
@@ -45,9 +44,9 @@ const MapChart = (props) => {
       {hashtag.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates}>
           {/* <div> */}
-           <rect x="-5" y="-8" width="20%" height="35" rx="6"
-        fill="#4c4f6c"  stroke-width="10" border="5" opacity="0.4" />
-          <text 
+          <rect x="-5" y="-8" width="20%" height="35" rx="6"
+            fill="#4c4f6c" stroke-width="10" border="5" opacity="0.4" />
+          <text
             textAnchor="absolute"
             y={markerOffset}
             x={markerOffset}
