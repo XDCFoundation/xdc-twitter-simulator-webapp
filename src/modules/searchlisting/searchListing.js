@@ -17,38 +17,7 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     padding: theme.spacing(2),
-//     color: theme.palette.text.secondary,
-//   },
-// main: {
-//   backgroundColor: "#f5f6f9",
-// },
-//   root: {
-//     flexGrow: 1,
-//     padding: "80px 80px",
-//     marginLeft: "130px",
-//   },
-
-//   dashboard: {
-//     marginBottom: "19px",
-//     padding: theme.spacing(2),
-//     textAlign: "center",
-//     color: theme.palette.text.secondary,
-//     marginTop: "-67px",
-//     backgroundColor: "#191d43",
-//     color: "#ffffff",
-//     fontFamily: "Raleway ,sans-serif !important",
-//     fontWeight: "600",
-//   },
-//   image: {
-//     width: "10%",
-//     marginTop: "6%",
-//  },
-
-// }));
+   
 
 const Text = styled.div`
   font-weight: 900;
@@ -867,7 +836,7 @@ export default function Searchlist(props) {
                     >
                       Reading Tweet
                     </div>
-                    <div className={props.dark ? "readSpeed-one-dark-mode":"readSpeed-one"}>345/sec</div>
+                    <div className={props.dark?"readSpeed-one-dark-mode":"readSpeed-one"}>345/sec</div>
                     <ReadingData />
                   </Paper>
                 </Grid>

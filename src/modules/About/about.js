@@ -245,7 +245,7 @@ export default function Aboutcomponent() {
                 </Grid>
                 <Grid item xs={6}  sm={3} md={2}> 
                   <Column  className={classes.columnone}>
-                    <Img src="/images/newimage.svg" />
+                    <Img src="/images/Read.svg" />
 
                     <Heading>Read Tweets</Heading>
                     <Subheading>
