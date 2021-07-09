@@ -20,7 +20,6 @@ export default class WebSocketCountNode extends Component {
                 if (msg.data.id in test) {
                     return
                 } else {
-                    // console.log('Updated test data===', Object.keys(test).length)
                     test[msg.data.id] = msg.data.stats.active
                     await this.setState({ value: Object.keys(test).length })
                 }
