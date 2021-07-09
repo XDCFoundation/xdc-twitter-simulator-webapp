@@ -275,6 +275,20 @@ input:focus {
   padding-bottom: 10px;
   margin-top: -8px;
 }
+.savingSpeed-one {
+  /* letter-spacing: normal;
+  text-align: left;
+  color: #09184b; */
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: left;
+  padding-bottom: 10px;
+  margin-top: -8px;
+}
 /* .saveSpeed {
   font-family: Raleway;
   margin-top: 5px;
@@ -284,6 +298,18 @@ input:focus {
 } */
 
 .savingSpeed-dark-mode {
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+  padding-bottom: 10px;
+  margin-top: -8px;
+}
+.savingSpeed-one-dark-mode {
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -318,6 +344,27 @@ input:focus {
   color: white;
 }
 
+.saveSpeed-one {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.saveSpeed-one-dark-mode {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
+
 .readSpeed {
   font-size: 16px;
   font-weight: 600;
@@ -330,6 +377,27 @@ input:focus {
 }
 
 .readSpeed-dark-mode {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
+
+.readSpeed-one {
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.readSpeed-one-dark-mode {
   font-size: 16px;
   font-weight: 600;
   font-stretch: normal;
@@ -386,7 +454,8 @@ input:focus {
 }
 .writing-data-one {
   margin-left: 8%;
-  margin-top: -59px;
+  /* margin-top: -23%; */
+  margin-top: -11%;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -399,7 +468,7 @@ input:focus {
 
 .writing-data-one-dark-mode {
   margin-left: 8%;
-  margin-top: -59px;
+  margin-top: -89px;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -435,11 +504,68 @@ input:focus {
   text-align: left;
   color: white;
 }
+.reading-data-one {
+  margin-left: 9%;
+  margin-top: -10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: #09184b;
+}
+
+.reading-data-one-dark-mode {
+  margin-left: 9%;
+  margin-top: -10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
 
 .hover-data {
   color: #0d0e2d;
 }
 
+.empty-div {
+  display: flex;
+  flex-direction: row;
+  width: 10%;
+  /* height: 44px; */
+  margin-left: 8%;
+  margin-top: 9px;
+  padding: 14px 25.1px 14px 25px;
+  border-radius: 6px;
+  background-color: #222864;
+}
+
+.dashboard-name {
+  margin: 2px 0 0 7.1px;
+  font-family: Raleway;
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+}
+.img-parent {
+  margin-top: -5px;
+  margin-left: -10px;
+}
+.home-image {
+  height: 24px;
+  width: 24px;
+}
 /* .dark-mode{
   background: red;
   color: white;

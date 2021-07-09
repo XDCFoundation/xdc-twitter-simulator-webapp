@@ -196,7 +196,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "47%",
+    right: "42%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -377,25 +377,22 @@ export default function Searchlist(props) {
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.dark}>
       <div className={classes.root}>
-        <Grid xs={2} style={{marginTop:"40px"}}>
-   
-            <div
-              style={{ backgroundColor: "#222864" }}
-              className={classes.dashboard}
-            >
-       <div style={{ display: "flex", flexDirection: "row" }}>
-           
-              <img className={classes.image} src="/images/home.svg" />
-        
-              Dashboard
-            </div>
-            
-          </div>
+        <Grid xs={2}>
+          <img
+            style={{
+              width: "5%",
+            }}
+          />
         </Grid>
+        <div className="empty-div">
+          <div className="img-parent">
+            <img className="home-image" src="/images/home.svg" />
+          </div>
+          <div className="dashboard-name"> Dashboard </div>
+        </div>
 
         <Grid container spacing={3} style={{ padding: "6%", width: "100%" }}>
           <Grid item xs={7}>
-           
             <Paper
               className={props.dark ? classes.paper_dark_mode : classes.paper}
               elevation={0}
@@ -828,14 +825,18 @@ export default function Searchlist(props) {
               >
                 <div
                   className={
-                    props.dark ? "savingSpeed-dark-mode" : "savingSpeed"
+                    props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
                   }
                 >
                   Saving Speed
                 </div>
-                <div className="saveSpeed">345/sec</div>
-
-                <MyResponsiveLine />
+                <div className="saveSpeed-one">345/sec</div>
+                <div
+                // style={{ marginTop: "-20px" }}
+                >
+                  {" "}
+                  <MyResponsiveLine />
+                </div>
               </Paper>
             </Grid>
 
@@ -845,7 +846,9 @@ export default function Searchlist(props) {
                   <br /> <br />
                   <Text
                     className={
-                      props.dark ? "reading-data-dark-mode" : "reading-data"
+                      props.dark
+                        ? "reading-data-one-dark-mode"
+                        : "reading-data-one"
                     }
                   >
                     Reading Data
@@ -864,7 +867,7 @@ export default function Searchlist(props) {
                     >
                       Reading Tweet
                     </div>
-                    <div className="readSpeed">345/sec</div>
+                    <div className={props.dark ? "readSpeed-one-dark-mode":"readSpeed-one"}>345/sec</div>
                     <ReadingData />
                   </Paper>
                 </Grid>
