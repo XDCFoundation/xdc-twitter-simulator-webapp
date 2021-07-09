@@ -384,6 +384,31 @@ input:focus {
   text-align: left;
   color: white;
 }
+.writing-data-one {
+  margin-left: 8%;
+  margin-top: -59px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: #09184b;
+}
+
+.writing-data-one-dark-mode {
+  margin-left: 8%;
+  margin-top: -59px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: white;
+}
 
 .reading-data {
   margin-left: 3%;

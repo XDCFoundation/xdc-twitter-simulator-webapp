@@ -42,13 +42,13 @@ const useStyles = makeStyles((theme) => ({
   imagegrid: {width:"100%"},
   firstrow: {
     justifyContent: "center",
-    // width:"90%",
+   
   },
   secondrow: {
     justifyContent: "center",
     paddingTop: "5%",
     paddingBottom: "8%",
-    // width:"90%",
+  
   },
   columnone: {
     width:"90%",
@@ -76,7 +76,7 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 11%;
-  @media (max-width:767px) and (max-width:980px){
+  @media (min-width:767px) and (max-width:1080px){
   
  font-family: Raleway, sans-serif;
   font-size: 11px;
@@ -105,7 +105,7 @@ font-family: Raleway, sans-serif;
   position: absolute;
   top: 38%;
   left: 11%;
-  @media (max-width:767px) and (max-width:980px){
+  @media (min-width:767px) and (max-width:1080px){
   
  font-family: Raleway, sans-serif;
   font-size: 11px;
@@ -198,7 +198,7 @@ export default function Aboutcomponent() {
           <Paper className={classes.twitterDapp}>Twitter-D App features</Paper>
 
       
-           <Grid container spacing={6} className={classes.imagegrid}>
+           <Grid container spacing={0} className={classes.imagegrid}>
             <Column>
               <Row className={classes.firstrow}>
                 <Grid
