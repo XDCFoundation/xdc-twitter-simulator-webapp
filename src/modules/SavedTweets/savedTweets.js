@@ -587,7 +587,7 @@ export default function SavedTweets(props) {
                 </Paper>
               </Row>
 
-              <Row>
+               <Row>
                 <Column>
                   <Typography className={classes.email}>@jcole</Typography>
                   <Paper
@@ -620,7 +620,7 @@ export default function SavedTweets(props) {
                 </Paper>
               </Row>
 
-              <Row>
+               <Row>
                 <Column>
                   <Typography className={classes.email}>@jcole</Typography>
                   <Paper

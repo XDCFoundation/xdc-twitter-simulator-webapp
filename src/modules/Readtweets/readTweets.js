@@ -10,6 +10,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import Divider from '@material-ui/core/Divider';
+import axios from "axios";
 
 import {
   createMuiTheme,
@@ -268,6 +269,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
+
+  // const [readtweets, setReadTweets] = useState([]);
+  // useEffect(() => {
+  //   fetchTweets();
+  // }, []);
+  // const fetchTweets = () => {
+  //   axios
+  //     .get(
+  //       " "
+  //     )
+  //     .then((res) => {
+  //       // alert(JSON.stringify(res));
+  //       setReadTweets(res.data.responseData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
@@ -276,7 +295,7 @@ export default function ReadTweets(props) {
 
             <Column>
 
-              <Row className={classes.row}>
+              <Row  className={classes.row}>
 
                 <Typography
                   className={props.dark ? classes.readtweet_dark_mode : classes.readtweet}
