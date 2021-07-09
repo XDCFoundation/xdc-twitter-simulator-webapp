@@ -15,6 +15,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
+import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
@@ -361,7 +362,7 @@ export default function MainComponent(props) {
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br /> 8
+                        <br /> <WebSocketCountNode/>
                       </div>
                       <div className={props.dark ? classes.maxTps_dark_mode : classes.maxTps}>
                         Current Max TPS
