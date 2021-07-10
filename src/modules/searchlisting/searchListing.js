@@ -44,9 +44,13 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
-  main_dark_mode: {
-    backgroundColor: "#0d0e2d",
+   main: {
+    backgroundColor: "#f5f6f9",
   },
+  main_dark_mode: {
+    backgroundColor: '#0d0e2d'
+  },
+  
   paper: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
@@ -125,10 +129,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     marginBottom: "5px",
   },
-  root: {
-    flexGrow: 1,
-    marginLeft: "130px",
-  },
+  // root: {
+  //   flexGrow: 1,
+  //   // marginLeft: "130px",
+  //    backgroundColor: "#f5f6f9",
+  // },
 
   content: {
     fontSize: "11px",
@@ -165,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "42%",
+    right: "47%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -180,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
   time_dark_mode: {
     boxShadow: "none",
     position: "absolute",
-    right: "42%",
+    right: "47%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -339,12 +344,19 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#ffffff",
   },
+  gridcontainer: {
+    width: "100 %",
+    paddingLeft: "10%",
+    paddingTop: "6%",
+    paddingRight: "5%",
+    paddingBottom:"6%",
+  },
 }));
 
 export default function Searchlist(props) {
   const classes = useStyles();
   return (
-    <div className={props.dark ? classes.main_dark_mode : classes.dark}>
+    <div  className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
         <Grid xs={2}>
           <img
@@ -360,7 +372,7 @@ export default function Searchlist(props) {
           <div className="dashboard-name"> Dashboard </div>
         </div>
 
-        <Grid container spacing={3} style={{ padding: "6%", width: "100%" }}>
+        <Grid container spacing={3} className={ classes.gridcontainer}>
           <Grid item xs={7}>
             <Paper
               className={props.dark ? classes.paper_dark_mode : classes.paper}
@@ -785,7 +797,7 @@ export default function Searchlist(props) {
               >
                 Writing Data
               </Text>
-              <Paper
+              <Paper elevation={0}
                 className={
                   props.dark
                     ? classes.writing_paper_dark_mode
@@ -801,10 +813,11 @@ export default function Searchlist(props) {
                 </div>
                 <div className="saveSpeed-one">345/sec</div>
                 <div
-                // style={{ marginTop: "-20px" }}
+             
                 >
                   {" "}
-                  <MyResponsiveLine />
+                    <span className="hover-data">  <MyResponsiveLine /> </span>
+               
                 </div>
               </Paper>
             </Grid>
@@ -822,7 +835,7 @@ export default function Searchlist(props) {
                   >
                     Reading Data
                   </Text>
-                  <Paper
+                  <Paper elevation={0}
                     className={
                       props.dark
                         ? classes.reading_paper_dark_mode
@@ -837,7 +850,8 @@ export default function Searchlist(props) {
                       Reading Tweet
                     </div>
                     <div className={props.dark?"readSpeed-one-dark-mode":"readSpeed-one"}>345/sec</div>
-                    <ReadingData />
+                    <span className="hover-data">  <ReadingData /> </span>
+                 
                   </Paper>
                 </Grid>
               </Row>

@@ -454,8 +454,8 @@ input:focus {
 }
 .writing-data-one {
   margin-left: 8%;
-  /* margin-top: -23%; */
-  margin-top: -11%;
+  margin-top: -22%;
+
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -468,7 +468,7 @@ input:focus {
 
 .writing-data-one-dark-mode {
   margin-left: 8%;
-  margin-top: -89px;
+  margin-top: -93px;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -538,8 +538,7 @@ input:focus {
   display: flex;
   flex-direction: row;
   width: 10%;
-  /* height: 44px; */
-  margin-left: 8%;
+  margin-left: 12%;
   margin-top: 9px;
   padding: 14px 25.1px 14px 25px;
   border-radius: 6px;
@@ -566,12 +565,3 @@ input:focus {
   height: 24px;
   width: 24px;
 }
-/* .dark-mode{
-  background: red;
-  color: white;
-}
-
-.light-mode{
-  background: green;
-  color: black;
-} */
