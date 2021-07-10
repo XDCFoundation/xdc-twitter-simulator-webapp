@@ -65,7 +65,6 @@ const MapChart = (props) => {
            font-size="16"
            fontWeight="500"
            alignment-baseline="middle"
-           // y="100"
            y="30"
            x="20"
            style={{ fill: "#ffffff" }}

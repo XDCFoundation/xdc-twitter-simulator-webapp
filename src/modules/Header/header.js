@@ -153,10 +153,6 @@ const List = styled.li`
   margin-top: 4px;
   margin-bottom: 4px;
 `;
-// const ListLast = styled.li`
-//   margin-top: 0px;
-//   margin-bottom: 0px;
-// `;
 
 const ListImg = styled.img`
   width: 20px;
