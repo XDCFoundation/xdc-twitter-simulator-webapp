@@ -220,11 +220,11 @@ const Trending = styled.div`
   height: 48%;
 }
   @media (min-width:768px) and (max-width: 1002px) {
-   width: 84%;
+   width: 100%;
   height: 48%;
   }
    @media (min-width:1003px) and (max-width: 2400px) {
-   width: 79%;
+   width: 100%;
   height: 48%;
   }
 `;
@@ -391,7 +391,10 @@ export default function MainComponent(props) {
             </Text>
 
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
-              <Trending> < MapChart dark={dark} />
+              <Trending> 
+              <div style={{ width: "94%", height: "50%" }}>
+                < MapChart dark={dark} />
+                </div>
               </Trending>
             </Paper>
           </Grid>
