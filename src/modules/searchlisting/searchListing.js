@@ -29,18 +29,9 @@ const Text = styled.div`
 
   // const IconImg = styled.img
 `;
-//   margin-left: 10px;
-//   height: 14px;
-//   width: 14px;
-//   margin-top: 2px;
-// `;
+
 const theme = createMuiTheme({
-  // typography: {
-  //   // Tell Material-UI what the font-size on the html element is.
-  //   htmlFontSize: "22px",
-  //   whiteSpace: "nowrap",
-  //   fontFamily: "Raleway sans-serif !important",
-  // },
+  
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -129,12 +120,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     marginBottom: "5px",
   },
-  // root: {
-  //   flexGrow: 1,
-  //   // marginLeft: "130px",
-  //    backgroundColor: "#f5f6f9",
-  // },
-
   content: {
     fontSize: "11px",
     color: "#09184b",
@@ -170,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "47%",
+    right: "44%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -185,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
   time_dark_mode: {
     boxShadow: "none",
     position: "absolute",
-    right: "47%",
+    right: "44%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -325,14 +310,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     borderRadius: "6px",
     backgroundColor: "#222864",
-
     width: "177px",
     height: "49px",
-    // margin: "40px 798px 35px 269px",
     padding: "14px 25.1px 14px 25px",
-
-    // marginLeft: "8%",
-    //  width: "177px",
   },
   dashboard: {
     fontSize: "15px",
@@ -345,7 +325,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
   gridcontainer: {
-    width: "100 %",
+    width: "100%",
     paddingLeft: "10%",
     paddingTop: "6%",
     paddingRight: "5%",

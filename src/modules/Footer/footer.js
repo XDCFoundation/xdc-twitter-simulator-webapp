@@ -16,7 +16,6 @@ import {
 
 const theme = createMuiTheme({
   typography: {
-    // Tell Material-UI what the font-size on the html element is.
     htmlFontSize: "22px",
     whiteSpace: "nowrap",
     fontFamily: "Raleway sans-serif !important",
@@ -34,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     boxShadow: "none",
     border: "none"
-
-    // position: "absolute",
   },
 
   paperfooter: {
@@ -46,9 +43,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     fontSize: "13px",
     boxShadow: "none",
-    borderRadius: "0px"
-
-    // position: "absolute",
+    borderRadius: "0px",
   },
 
   poweredpaper: {
