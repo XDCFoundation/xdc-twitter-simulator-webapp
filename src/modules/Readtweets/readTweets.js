@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { Row, Column } from "simple-flexbox";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
@@ -277,7 +277,7 @@ export default function ReadTweets(props) {
   // const fetchTweets = () => {
   //   axios
   //     .get(
-  //       " "
+  //       "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-tweet"
   //     )
   //     .then((res) => {
   //       // alert(JSON.stringify(res));
@@ -286,6 +286,10 @@ export default function ReadTweets(props) {
   //     .catch((err) => {
   //       console.log(err);
   //     });
+  //   }
+  //   let result=" RT @ChalecosAmarill: 🎥🛑En #Haiti 🇭🇹 En un supuesto audio del comando que ases  inó al Presidente de Haití se puede oir \"Operación de la DEA.…t"
+  //   let response=result.split('')
+  //   alert(JSON.stringify(result))
 
   return (
     <Grid Container spacing={3}>
@@ -345,7 +349,8 @@ export default function ReadTweets(props) {
                   className={props.dark ? classes.time_dark_mode : classes.time}
 
                 >
-                  01:00 PM
+                  {/* 01:00 PM */}
+                
                 </Paper>
               </Row>
 
@@ -365,7 +370,7 @@ export default function ReadTweets(props) {
                       gutterBottom
 
                     >
-
+                        
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut
                     </Paper>
