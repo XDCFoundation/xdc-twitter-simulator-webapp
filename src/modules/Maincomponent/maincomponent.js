@@ -15,7 +15,6 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
-import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
@@ -243,23 +242,61 @@ const Text = styled.div`
 `;
 const Trending = styled.div`
 @media (max-width:767px){
-  width: 84%;
+  width: 87%;
   height: 48%;
-}
+  }
   @media (min-width:768px) and (max-width: 1002px) {
    width: 87%;
   height: 48%;
   }
-   @media (min-width:1003px) and (max-width: 2400px) {
+   @media (min-width:1003px) and (max-width: 1400px) {
    width: 87%;
-   width: 100%;
   height: 48%;
   }
-   @media (min-width:1003px) and (max-width: 2400px) {
-   width: 100%;
-  height: 48%;
-  }
+  @media (min-width:1403px) and (max-width: 1600px) {
+    width: 85%;
+   height: 48%;
+   }
+   @media (min-width:1601px) and (max-width: 1800px) {
+    width: 82%;
+   height: 48%;
+   }
+   @media (min-width:1801px) and (max-width: 2000px) {
+    width: 78%;
+    height: 48%;
+   }
+   @media (min-width:2001px) and (max-width: 2200px) {
+    width: 74%;
+   height: 48%;
+   }
+   @media (min-width:2201px) and (max-width: 2400px) {
+    width: 73%;
+   height: 48%;
+   }
+   @media (min-width:2401px) and (max-width: 2600px) {
+    width: 72%;
+   height: 48%;
+   }
 `;
+
+const SaveGraphTrend = styled.div`
+@media (min-width:2001px) and (max-width: 2400px) {
+   margin-top: 10px;
+ }
+ @media (min-width:2401px) and (max-width: 2600px) {
+  margin-top: 10px;
+}
+`;
+
+const ReadGraphTrend = styled.div`
+@media (min-width:2001px) and (max-width: 2400px) {
+   margin-top: 10px;
+ }
+ @media (min-width:2401px) and (max-width: 2600px) {
+  margin-top: 10px;
+}
+`;
+
 export default function MainComponent(props) {
   const classes = useStyles();
 
@@ -367,7 +404,7 @@ export default function MainComponent(props) {
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br /> <WebSocketCountNode/>
+                        <br /> 8
                       </div>
                       <div className={props.dark ? classes.maxTps_dark_mode : classes.maxTps}>
                         Current Max TPS
@@ -423,18 +460,31 @@ export default function MainComponent(props) {
             </Text>
 
             <Paper className={props.dark ? classes.top_dark_mode : classes.top} >
-              <Trending> 
-              <div style={{ width: "94%", height: "50%" }}>
-                < MapChart dark={dark} />
+              <Trending>
+                <div style={{ width: "100%", height: "50%" }}>
+                  < MapChart dark={dark} />
                 </div>
               </Trending>
             </Paper>
+            {/* <div className= "map-chart" elevation={0}>
+          
+       
+                <div  >
+                  < MapChart dark={dark} />
+                </div>
+           
+          
+            </div> */}
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
-            <SavedTweets dark={dark} />
+            <SaveGraphTrend>
+              <SavedTweets dark={dark} />
+            </SaveGraphTrend>
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
+            <ReadGraphTrend>
             <ReadTweets dark={dark} />
+            </ReadGraphTrend>
           </Grid>
         </Grid>
       </div>

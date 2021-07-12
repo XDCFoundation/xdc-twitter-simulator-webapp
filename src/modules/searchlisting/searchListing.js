@@ -116,6 +116,9 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+  main: {
+    backgroundColor: "yellow",
+  },
   main_dark_mode: {
     backgroundColor: '#0d0e2d'
   },
@@ -396,7 +399,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Searchlist(props) {
   const classes = useStyles();
   return (
-    <div  className={props.dark ? classes.main_dark_mode : classes.dark}>
+    <div  className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
         <Grid xs={2}>
           <img
