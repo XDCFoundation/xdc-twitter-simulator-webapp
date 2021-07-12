@@ -256,16 +256,28 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
   const [readtweets, setReadTweets] = useState([]);
+
   useEffect(() => {
     fetchTweets();
+    setInterval(() => {
+      fetchTweets();
+    }, 10000);
   }, []);
   const fetchTweets = () => {
     axios
       .get("https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-tweet")
 
       .then((res) => {
-        // alert(JSON.stringify(res));
-        setReadTweets(res.data.responseData);
+        let tweetResponse;
+        if (
+          !res ||
+          !res.data ||
+          !res.data.responseData ||
+          res.data.responseData.length <= 0
+        )
+          tweetResponse = [];
+        else tweetResponse = res.data.responseData[0];
+        setReadTweets(tweetResponse);
       })
       .catch((err) => {
         console.log(err);
@@ -320,71 +332,78 @@ export default function ReadTweets(props) {
                   740k
                 </Paper>
               </Row>
-              {readtweets.map((response) => {
-                let value = response.text;
-                console.log("value",value);
-                console.log("response",response);
-                const colonIndex = value.indexOf(":");
-                console.log("colonIndex",colonIndex)
-                const atIndex = value.indexOf("@");
-                let trending = value.slice(atIndex, colonIndex);
-                let tweetText = value.split(":")[1];
-                let str = response.created_at;
-                let timeFormat = moment(str); 
-                let time = timeFormat.format("LT");
 
-                return (
-                  <>
-                    <hr
-                      className={
-                        props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                      }
-                    />
-                    <Row>
-                      <Typography
-                        variant="h6"
-                        className={
-                          props.dark ? classes.name_dark_mode : classes.name
-                        }
-                      ></Typography>
-                      <Paper
-                        className={
-                          props.dark ? classes.time_dark_mode : classes.time
-                        }
-                      >
-                        {time}
-                      </Paper>
-                    </Row>
+              {/* {console.log("let check",readtweets)} */}
+              {readtweets &&
+                readtweets.length >= 1 &&
+                readtweets.map((response) => {
+                  let value = response.text;
+                  const colonIndex = value.indexOf(":");
+                  console.log("colonIndex", colonIndex);
+                  const atIndex = value.indexOf("@");
+                  let trending = value.slice(atIndex, colonIndex);
+                  let tweetText = value.split(":")[1];
+                  let str = response.created_at;
+                  let timeFormat = moment(str);
+                  let time = timeFormat.format("LT");
 
-                    <Row>
-                      <Column>
-                        <Typography className={classes.email}>
-                          {trending}
-                        </Typography>
-                        <ThemeProvider theme={theme}>
-                          <Paper
-                            noWrap
-                            className={
-                              props.dark
-                                ? classes.content_dark_mode
-                                : classes.content
-                            }
-                            gutterBottom
-                          >
-                            {tweetText}
-                          </Paper>
-                        </ThemeProvider>
-                      </Column>
-                    </Row>
-                  </>
-                );
-              })}
+                  return (
+                    <>
+                      <hr
+                        className={
+                          props.dark
+                            ? classes.hr_page_dark_mode
+                            : classes.hr_page
+                        }
+                      />
+                      <Row>
+                        <Typography
+                          variant="h6"
+                          className={
+                            props.dark ? classes.name_dark_mode : classes.name
+                          }
+                        ></Typography>
+                        <Paper
+                          className={
+                            props.dark ? classes.time_dark_mode : classes.time
+                          }
+                        >
+                          {time}
+                        </Paper>
+                      </Row>
+
+                      <Row>
+                        <Column>
+                          <Typography className={classes.email}>
+                            {trending}
+                          </Typography>
+                          <ThemeProvider theme={theme}>
+                            <Paper
+                              noWrap
+                              className={
+                                props.dark
+                                  ? classes.content_dark_mode
+                                  : classes.content
+                              }
+                              gutterBottom
+                            >
+                              {tweetText}
+                            </Paper>
+                          </ThemeProvider>
+                        </Column>
+                      </Row>
+                    </>
+                  );
+                })}
             </Column>
-            <hr className={props.dark ? classes.hr_page_dark_mode : classes.hr_page} />
-            <br/>
-            <br/>
-            <br/>
-           
+            <hr
+              className={
+                props.dark ? classes.hr_page_dark_mode : classes.hr_page
+              }
+            />
+            <br />
+            <br />
+            <br />
           </Paper>
         </div>
       </Grid>
