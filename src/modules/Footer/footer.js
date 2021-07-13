@@ -46,14 +46,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0px",
   },
 
-  poweredpaper: {
-    backgroundColor: "#191d43",
-    color: "#ffffff",
-    fontSize: "20px",
-    marginTop: "12px",
-    boxShadow: "none",
-    borderRadius: "0px"
-  },
+  // poweredpaper: {
+  //   backgroundColor: "#191d43",
+  //   color: "#ffffff",
+  //   fontSize: "20px",
+  //   marginTop: "12px",
+  //   boxShadow: "none",
+  //   borderRadius: "0px",
+  //  marginRight: '50px',
+  // },
   row: {
     marginTop: "1%",
   },
@@ -74,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   links: {
+    marginLeft: '-40px',
     listStyle: "none",
     padding: "0",
     marginTop: '7px'
@@ -99,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 
   followitem: {
     display: "inline-block",
-    marginRight: "10px",
+    marginRight: "8px",
   },
 
   followus: {
@@ -114,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   otherlink: {
-    marginLeft: '12.5%',
+    // marginLeft: '12.5%',
     marginTop: '4%',
     fontweight: '600',
     fontstretch: 'normal',
@@ -127,25 +129,25 @@ const useStyles = makeStyles((theme) => ({
 
 
 }));
-const ImgLogo = styled.img`
+// const ImgLogo = styled.img`
 
-@media (max-width:766px){
-  width: 42px;
-height: 39px;
-}
-  @media (min-width:767px) and (max-width: 900px) {
-    width: 50px;
-height: 47px;
-  }
-  @media (min-width: 901px) and (max-width: 1100) {
-    width: 58px;
-height: 55px;
-  }
-  @media (min-width: 1100px) {
-   width: 58px;
-height: 55px;
-  }
-`;
+// @media (max-width:766px){
+//   width: 42px;
+// height: 39px;
+// }
+//   @media (min-width:767px) and (max-width: 900px) {
+//     width: 50px;
+// height: 47px;
+//   }
+//   @media (min-width: 901px) and (max-width: 1100) {
+//     width: 20px;
+// height: 27px;
+//   }
+//   @media (min-width: 1100px) {
+//    width: 58px;
+// height: 55px;
+//   }
+// `;
 
 export default function FooterComponent() {
   const classes = useStyles();
@@ -157,90 +159,102 @@ export default function FooterComponent() {
             <Paper
               className={classes.paper}
               style={{
-                padding: "3%",
-                borderRadius: "0px"
+                // padding: "3%",
+                paddingBottom: '3%',
+                paddingTop: '3%',
+
               }}
             >
               <Row>
-                <Grid style={{ display: 'flex', justifyContent: 'center' }} item xs={12} sm={6} md={4}>
-                  <Paper style={{ backgroundColor: '#191d43', marginLeft: '7%' }} elevation={0}>
-                    <div className={classes.otherlink}>
-                      <span style={{ fontSize: '13px' }}>Other Links</span>
-                    </div>
-                    <div className={classes.links}>
-                      <ul>
-                        <li className={classes.linksitem}>Archive Tweet</li>
-                        <li className={classes.linksitem}>Share</li>
-                        <li className={classes.linksitem}>Contact us</li>
-                        <li className={classes.linksitem}>Privacy Policy</li>
-                      </ul>
-                    </div>
-                  </Paper>
-                </Grid>
+                <div class="cards">
+                  <Grid className="link-grid" item xs={12} sm={6} md={4}>
+                    <Paper className="link-grid-paper" style={{ backgroundColor: '#191d43', marginLeft: '1px' }} elevation={0}>
+                      <div className="link-text">
+                        <div className={classes.otherlink}>
+                          <div style={{ fontSize: '13px' }}>Other Links</div>
+                        </div>
+                        <div className={classes.links}>
+                          <ul>
+                            <li className={classes.linksitem}>Archive Tweet</li>
+                            <li className={classes.linksitem}>Share</li>
+                            <li className={classes.linksitem}>Contact us</li>
+                            <li className={classes.linksitem}>Privacy Policy</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </Paper>
+                  </Grid>
 
 
-                <Grid style={{ display: 'flex', justifyContent: 'center', marginLeft: '5%'  }} item xs={12} sm={4} md={3}>
-                  <Paper style={{ backgroundColor: '#191d43'}} elevation={0}>
-                    <div className={classes.followus}>
-                      <span style={{ fontSize: '13px' }}> Follow us on{" "}</span>
-                    </div>
-                    <div >
-                      <ul className={classes.followlinks}>
-                        <li className={classes.followitem}>
-                          <img
-                            style={{ height: "20px", width: "20px" }}
-                            src="../../images/twitter.svg"
-                          />
-                        </li>
-                        <li className={classes.followitem}>
-                          {" "}
-                          <img
-                            style={{ height: "20px", width: "20px" }}
-                            src="../../images/facebook.svg"
-                          />
-                        </li>
-                        <li className={classes.followitem}>
-                          {" "}
-                          <img
-                            style={{ height: "20px", width: "20px" }}
-                            src="../../images/github.svg"
-                          />
-                        </li>
-                        <li className={classes.followitem}>
-                          {" "}
-                          <img
-                            style={{ height: "20px", width: "20px" }}
-                            src="../../images/linkedin.svg"
-                          />
-                        </li>
-                        <li className={classes.followitem}>
-                          {" "}
-                          <img
-                            style={{ height: "20px", width: "20px" }}
-                            src="../../images/telegram.svg"
-                          />
-                        </li>
-                        <li className={classes.followitem}>
-                          {" "}
-                          <img
-                            style={{ height: "20px", width: "20px" }}
-                            src="../../images/reddit.svg"
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </Paper>
-                </Grid>
+                  <Grid className="link-grid-2" item xs={12} sm={4} md={3}>
+                    <Paper className="link-grid-paper-2" style={{ backgroundColor: '#191d43' }} elevation={0}>
+                      <div className="follow-text">
+                        <div className={classes.followus}>
+                          <span style={{ fontSize: '13px' }}> Follow us on{" "}</span>
+                        </div>
+                        <div >
+                          <ul className={classes.followlinks}>
+                            <li className={classes.followitem}>
+                              <img
+                                style={{ height: "20px", width: "20px" }}
+                                src="../../images/twitter.svg"
+                              />
+                            </li>
+                            <li className={classes.followitem}>
+                              {" "}
+                              <img
+                                style={{ height: "20px", width: "20px" }}
+                                src="../../images/facebook.svg"
+                              />
+                            </li>
+                            <li className={classes.followitem}>
+                              {" "}
+                              <img
+                                style={{ height: "20px", width: "20px" }}
+                                src="../../images/github.svg"
+                              />
+                            </li>
+                            <li className={classes.followitem}>
+                              {" "}
+                              <img
+                                style={{ height: "20px", width: "20px" }}
+                                src="../../images/linkedin.svg"
+                              />
+                            </li>
+                            <li className={classes.followitem}>
+                              {" "}
+                              <img
+                                style={{ height: "20px", width: "20px" }}
+                                src="../../images/telegram.svg"
+                              />
+                            </li>
+                            <li className={classes.followitem}>
+                              {" "}
+                              <img
+                                style={{ height: "20px", width: "20px" }}
+                                src="../../images/reddit.svg"
+                              />
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </Paper>
+                  </Grid>
 
-                <Grid style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#191d43', marginLeft: '5%' }} item xs={12} sm={4} md={3}>
-                  <Paper style={{ marginBottom: '10%', paddingRight: '50px' }} className={classes.poweredpaper} elevation={0}>
-                    <ImgLogo
+                  <Grid className="link-grid-3" item xs={12} sm={4} md={3}>
+                    <Paper style={{ backgroundColor: '#191d43', marginLeft: '20px' }} elevation={0}>
+                      <div className="powered-paper">
+                        <img style={{ width: '60px', height: '59px' }}
 
-                      src="/images/xinfintwitter.png"
-                    />
-                    <span style={{ marginLeft: '10px', letterSpacing: '0.59px' }}>Powered By XDC</span>
-                  </Paper>
-                </Grid>
+                          src="/images/xinfintwitter.png"
+                        />
+                        <div className="powered-text">Powered By XDC</div>
+                        {/* style={{ marginLeft: '10px', letterSpacing: '0.59px' }} */}
+                      </div>
+                    </Paper>
+                  </Grid>
+
+                </div>
               </Row>
             </Paper>
           </Grid>
