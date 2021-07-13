@@ -10,7 +10,6 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
-
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -81,31 +80,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px',
     padding: '20px 14px 29.6px 26px',
   },
-
-  // savingSpeed: {
-  //   fontsize: '14px',
-  //   fontweight: 600,
-  //   fontstretch: 'normal',
-  //   fontstyle: 'normal',
-  //   lineheight: 1.2,
-  //   letterspacing: 'normal',
-  //   textalign: 'left',
-  //   paddingbottom: '10px',
-  //   margintop: '-8px',
-  // },
-
-  // savingSpeed_dark_mode: {
-  //   fontsize: '14px',
-  //   fontweight: 600,
-  //   fontstretch: 'normal',
-  //   fontstyle: 'normal',
-  //   lineheight: 1.2,
-  //   letterspacing: 'normal',
-  //   textalign: 'left',
-  //   color: 'white',
-  //   paddingbottom: '10px',
-  //   margintop: '-8px',
-  // },
 
   map: {
     display: "flex",
@@ -198,19 +172,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
 
-  // elevation1: {
-  //   marginTop: '10px',
-  //   marginRight: '9px',
-  //   height: '93%',
-  //   boxShadow: 'none'
-  // },
-  // elevation1_dark_mode: {
-  //   marginTop: '10px',
-  //   marginRight: '9px',
-  //   height: '93%',
-  //   boxShadow: 'none',
-  //   backgroundColor: '#191d43'
-  // },
+ 
   paperNode: {
     marginLeft: '3.7%',
     marginTop: '-9px',
