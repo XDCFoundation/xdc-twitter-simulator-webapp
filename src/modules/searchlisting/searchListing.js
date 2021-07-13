@@ -139,7 +139,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "11px",
     boxShadow: "none",
     border: "none",
-
     fontFamily: "Raleway",
     fontWeight: 600,
     fontStretch: "normal",
