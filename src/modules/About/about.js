@@ -7,12 +7,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const Bannerimage = styled.img`
   width: 100%;
-  height:auto;
+  height: auto;
 `;
 const useStyles = makeStyles((theme) => ({
   main: {},
   uppercomponent: {
-  position: "relative",
+    position: "relative",
   },
 
   twitterDapp: {
@@ -38,22 +38,20 @@ const useStyles = makeStyles((theme) => ({
   colorcontainer: {
     backgroundColor: "#0d0e2d",
   },
-  imagegrid: {width:"100%"},
+  imagegrid: { width: "100%" },
   firstrow: {
     justifyContent: "center",
-   
   },
   secondrow: {
     justifyContent: "center",
     paddingTop: "5%",
     paddingBottom: "8%",
-  
   },
   columnone: {
-    width:"90%",
+    width: "90%",
   },
   columntwo: {
-    width:"90%",
+    width: "90%",
   },
 }));
 const Img = styled.img`
@@ -75,24 +73,23 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 11%;
-  @media (min-width:767px) and (max-width:1080px){
-  
- font-family: Raleway, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.10;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 20%;
-  left: 5%;
-}
+  @media (min-width: 767px) and (max-width: 1080px) {
+    font-family: Raleway, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+  }
 `;
 const Content = styled.span`
-font-family: Raleway, sans-serif;
+  font-family: Raleway, sans-serif;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -104,53 +101,53 @@ font-family: Raleway, sans-serif;
   position: absolute;
   top: 38%;
   left: 11%;
-  @media (min-width:767px) and (max-width:1080px){
-  
- font-family: Raleway, sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.78;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 38%;
-  left: 5%;
-}
-//   @media (min-width:768px) and (max-width: 1002px) {
-   
-//   }
-//    @media (min-width:1003px) and (max-width: 1599px) {
-//   font-family: Raleway, sans-serif;
-//   font-size: 13px;
-//   font-weight: 500;
-//   font-stretch: normal;
-//   font-style: normal;
-//   line-height: 1.78;
-//   letter-spacing: normal;
-//   text-align: left;
-//   color: #ffffff;
-//   position: absolute;
-//   top: 38%;
-//   left: 11%;
-//   }
-//     @media (min-width:1600px) and (max-width: 2400px) {
-//   font-family: Raleway, sans-serif;
-//   font-size: 16px;
-//   font-weight: 500;
-//   font-stretch: normal;
-//   font-style: normal;
-//   line-height: 1.78;
-//   letter-spacing: normal;
-//   text-align: left;
-//   color: #ffffff;
-//   position: absolute;
-//   top: 38%;
-//   left: 11%;
-//   }
-// `;
+  @media (min-width: 767px) and (max-width: 1080px) {
+    font-family: Raleway, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.78;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 38%;
+    left: 5%;
+  }
+  //   @media (min-width:768px) and (max-width: 1002px) {
+
+  //   }
+  //    @media (min-width:1003px) and (max-width: 1599px) {
+  //   font-family: Raleway, sans-serif;
+  //   font-size: 13px;
+  //   font-weight: 500;
+  //   font-stretch: normal;
+  //   font-style: normal;
+  //   line-height: 1.78;
+  //   letter-spacing: normal;
+  //   text-align: left;
+  //   color: #ffffff;
+  //   position: absolute;
+  //   top: 38%;
+  //   left: 11%;
+  //   }
+  //     @media (min-width:1600px) and (max-width: 2400px) {
+  //   font-family: Raleway, sans-serif;
+  //   font-size: 16px;
+  //   font-weight: 500;
+  //   font-stretch: normal;
+  //   font-style: normal;
+  //   line-height: 1.78;
+  //   letter-spacing: normal;
+  //   text-align: left;
+  //   color: #ffffff;
+  //   position: absolute;
+  //   top: 38%;
+  //   left: 11%;
+  //   }
+  //
+`;
 const Heading = styled.span`
   font-family: Raleway, sans-serif;
   font-size: 18px;
@@ -186,8 +183,8 @@ export default function Aboutcomponent() {
               eiusmod tempor <br /> incididunt ut labore et dolore magna aliqua.
               Ut enim ad minim veniam, quis nostrud <br />
               exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure <br /> dolor
-              reprehenderit in voluptate velit esse cillum dolore eu <br />
+              consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
+              velit esse cillum dolore eu <br />
             </Content>
             <Bannerimage src="/images/banner.png" />
           </div>
@@ -196,16 +193,10 @@ export default function Aboutcomponent() {
         <Grid item spacing={8} xs={12} className={classes.colorcontainer}>
           <Paper className={classes.twitterDapp}>Twitter-D App features</Paper>
 
-      
-           <Grid container spacing={0} className={classes.imagegrid}>
+          <Grid container spacing={0} className={classes.imagegrid}>
             <Column>
               <Row className={classes.firstrow}>
-                <Grid
-                  item
-                  xs={6} sm={3} md={2}
-                  className={classes.oneimage}
-                  // style={{ marginRight: "7%" }}
-                >
+                <Grid item xs={6} sm={3} md={2} className={classes.oneimage}>
                   <Column className={classes.columnone}>
                     <Img src="/images/savingspeed.svg"></Img>
 
@@ -217,10 +208,8 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
 
-                <Grid item xs={6}  sm={3} md={2}
-                  // style={{ paddingRight: "7%" }}
-                >
-                  <Column  className={classes.columnone}>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columnone}>
                     <Img src="/images/readingspeed.svg"></Img>
 
                     <Heading>Reading Speed</Heading>
@@ -230,10 +219,8 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6}  sm={3} md={2}
-                // style={{ paddingRight: "3%" }}
-                >
-                  <Column  className={classes.columnone}>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columnone}>
                     <Img src="/images/savedtweets.svg" />
 
                     <Heading>Saved Tweets</Heading>
@@ -242,8 +229,8 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6}  sm={3} md={2}> 
-                  <Column  className={classes.columnone}>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columnone}>
                     <Img src="/images/Read.svg" />
 
                     <Heading>Read Tweets</Heading>
@@ -253,11 +240,9 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
               </Row>
-               <Row className={classes.secondrow}>
-                <Grid item   xs={6} sm={3} md={2}
-                // style={{ marginRight: "7%" }}
-                >
-                  <Column  className={classes.columntwo}>
+              <Row className={classes.secondrow}>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/toptrending.svg" />
                     <Heading>Top trending</Heading>
@@ -268,10 +253,14 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-            <Grid item xs={6} sm={3} md={2}
-            // style={{ paddingRight: "7%" }}
-            >
-                  <Column  className={classes.columntwo}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={3}
+                  md={2}
+                  // style={{ paddingRight: "7%" }}
+                >
+                  <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/currentmax.svg" />
                     <Heading>Current Max TPS</Heading>
@@ -281,10 +270,14 @@ export default function Aboutcomponent() {
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6} sm={3} md={2}
-                // style={{ paddingRight: "3%" }}
+                <Grid
+                  item
+                  xs={6}
+                  sm={3}
+                  md={2}
+                  // style={{ paddingRight: "3%" }}
                 >
-                  <Column  className={classes.columntwo}>
+                  <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/searchabc.svg" />
                     <Heading>Search</Heading>
@@ -294,7 +287,7 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
                 <Grid item xs={6} sm={3} md={2}>
-                  <Column  className={classes.columntwo}>
+                  <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/tweetarchiveimg.webp"></Img>
                     <Heading>Tweet Archive</Heading>
@@ -305,8 +298,8 @@ export default function Aboutcomponent() {
                   </Column>
                 </Grid>
               </Row>
-          </Column> 
-        </Grid> 
+            </Column>
+          </Grid>
         </Grid>
       </Grid>
     </div>
