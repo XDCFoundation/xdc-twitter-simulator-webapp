@@ -177,6 +177,15 @@ const ArrowUpIcon = styled.span`
   font-size: 16px;
 `;
 
+const Display = styled.div`
+@media (min-width:0px) and (max-width: 767px) {
+   display: none;
+ }
+
+`;
+
+
+
 export default function HeaderComponent(props) {
 
   const CheckMode = (mode) => {
@@ -189,6 +198,7 @@ export default function HeaderComponent(props) {
   };
   return (
     <Container>
+  
       <SubContainer1>
         <Image src="../../images/TwitterS.svg" alt="image" />
         <Span>Twitter D-App</Span>
@@ -201,10 +211,15 @@ export default function HeaderComponent(props) {
           />
         </Button>
         {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
+    
         <Advancesearch onClick={handleClickforadvancedsearch}>
           Advance Search
         </Advancesearch>
+     
       </SubContainer1>
+    
+
+      <Display>
       <SubContainer2>
         <About><a href="/about">About</a></About>
         <FFButton />
@@ -212,6 +227,8 @@ export default function HeaderComponent(props) {
         <Archive href="#">Tweet Archive</Archive>
         <DarkMode CheckMode={CheckMode} />
       </SubContainer2>
+      </Display>
+
     </Container >
   );
 }

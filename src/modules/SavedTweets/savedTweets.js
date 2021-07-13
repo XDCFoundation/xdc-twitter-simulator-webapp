@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -31,13 +32,11 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-   
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
   },
   paper_dark_mode: {
-   
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
@@ -242,6 +241,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SavedTweets(props) {
   const classes = useStyles();
+  const [savedTweets, setSavedTweets] = useState([]);
+  useEffect(() => {
+    fetchSavedTweets();
+    setInterval(() => {
+      fetchSavedTweets();
+    }, 10000);
+  }, []);
+  const fetchSavedTweets = () => {
+    axios
+      .get(
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//saved-tweets"
+      )
+
+      .then((res) => {
+        setSavedTweets(res.data.responseData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
@@ -279,8 +298,6 @@ export default function SavedTweets(props) {
                     <IconImg src="../../images/ic.png" />
                   </Tippy>
                 </Typography>
-
-                {/* <Divider /> */}
                 <Paper
                   variant="h5"
                   className={
@@ -292,357 +309,69 @@ export default function SavedTweets(props) {
                   800k
                 </Paper>
               </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Lisa Ray
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>@lisaray</Typography>
-                  <ThemeProvider theme={theme}>
-                    <Paper
-                      noWrap
+              {savedTweets.map((response) => {
+                let value = response.tweetMessage;
+                const colonIndex = value.indexOf(":");
+                const atIndex = value.indexOf("@");
+                let handler = value.slice(atIndex, colonIndex);
+                let tweetTextMessage = value.split(":")[1];
+                return (
+                  <>
+                    <hr
                       className={
-                        props.dark ? classes.content_dark_mode : classes.content
+                        props.dark ? classes.hr_page_dark_mode : classes.hr_page
                       }
-                      gutterBottom
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut
-                    </Paper>
-                  </ThemeProvider>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Harry Golding
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
+                    />
+                    <Row>
+                      <Typography
+                        variant="h6"
+                        className={
+                          props.dark ? classes.name_dark_mode : classes.name
+                        }
+                      >
+                        {/* {response.blockNumber} */}
+                      </Typography>
+                      <Paper
+                        className={
+                          props.dark ? classes.time_dark_mode : classes.time
+                        }
+                      >
+                        3:00 PM
+                      </Paper>
+                    </Row>
 
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>
-                    @henrygolding
-                  </Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Claire Browne
-                </Typography>
-
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>
-                    @clairebrowne
-                  </Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Shawn
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>
-                    @shawnmurphy
-                  </Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Jack Ryan
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>@jackryan</Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Cersie Lannister
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>
-                    @cersielannister
-                  </Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  J Cole
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>@jcole</Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Harry Maguire
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-              <Row>
-                <Column>
-                  <Typography className={classes.email}>@jcole</Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Harry Maguire
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-               <Row>
-                <Column>
-                  <Typography className={classes.email}>@jcole</Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <Row>
-                <Typography
-                  variant="h6"
-                  className={props.dark ? classes.name_dark_mode : classes.name}
-                >
-                  Harry Maguire
-                </Typography>
-                <Paper
-                  className={props.dark ? classes.time_dark_mode : classes.time}
-                >
-                  01:00 PM
-                </Paper>
-              </Row>
-
-               <Row>
-                <Column>
-                  <Typography className={classes.email}>@jcole</Typography>
-                  <Paper
-                    className={
-                      props.dark ? classes.content_dark_mode : classes.content
-                    }
-                  >
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut
-                  </Paper>
-                </Column>
-              </Row>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <br />
-              <br />
-              <br />
+                    <Row>
+                      <Column>
+                        <Typography className={classes.email}>
+                          {handler}
+                        </Typography>
+                        <ThemeProvider theme={theme}>
+                          <Paper
+                            noWrap
+                            className={
+                              props.dark
+                                ? classes.content_dark_mode
+                                : classes.content
+                            }
+                            gutterBottom
+                          >
+                            {tweetTextMessage}
+                          </Paper>
+                        </ThemeProvider>
+                      </Column>
+                    </Row>
+                  </>
+                );
+              })}
             </Column>
+            <hr
+              className={
+                props.dark ? classes.hr_page_dark_mode : classes.hr_page
+              }
+            />
+            <br />
+            <br />
+            <br />
           </Paper>
         </div>
       </Grid>
