@@ -24,6 +24,22 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "center",
+   
+     color: "#09184b",
+    marginTop: "90px",
+    backgroundColor: "#f5f6f9",
+    boxShadow: "none",
+    paddingBottom: "6%",
+  },
+  twitterDapp_dark_mode: {
+    fontFamily: "Raleway,sans-serif",
+    fontSize: "28px",
+    fontWeight: "500",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.18",
+    letterSpacing: "normal",
+    textAlign: "center",
     color: "#d6d6d6",
     marginTop: "90px",
     backgroundColor: "#0d0e2d",
@@ -36,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     height: "193px",
   },
   colorcontainer: {
+    backgroundColor: "#f5f6f9;",
+  },
+  colorcontainer_dark_mode: {
     backgroundColor: "#0d0e2d",
   },
   imagegrid: { width: "100%" },
@@ -52,6 +71,12 @@ const useStyles = makeStyles((theme) => ({
   },
   columntwo: {
     width: "90%",
+  },
+  alltext: {
+    color: "#09184b",
+  },
+  alltext_dark_mode: {
+    color: "#d6d6d6",
   },
 }));
 const Img = styled.img`
@@ -73,7 +98,7 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 11%;
-  @media (min-width: 767px) and (max-width: 1080px) {
+  @media (min-width: 400px) and (max-width: 1080px) {
     font-family: Raleway, sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -101,7 +126,7 @@ const Content = styled.span`
   position: absolute;
   top: 38%;
   left: 11%;
-  @media (min-width: 767px) and (max-width: 1080px) {
+  @media (min-width: 400px) and (max-width: 1080px) {
     font-family: Raleway, sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -170,7 +195,12 @@ const Subheading = styled.span`
   text-align: center;
   color: #d6d6d6;
 `;
-export default function Aboutcomponent() {
+const MediaContainer = styled.div`
+  @media (min-width: 400px) and (max-width: 980px) {
+    flex-flow: row wrap;
+  }
+`;
+export default function Aboutcomponent(props) {
   const classes = useStyles();
   return (
     <div className={classes.main}>
@@ -190,99 +220,232 @@ export default function Aboutcomponent() {
           </div>
         </Grid>
 
-        <Grid item spacing={8} xs={12} className={classes.colorcontainer}>
-          <Paper className={classes.twitterDapp}>Twitter-D App features</Paper>
+        <Grid
+          item
+          spacing={8}
+          xs={12}
+          className={
+            props.dark
+              ? classes.colorcontainer_dark_mode
+              : classes.colorcontainer
+          }
+        >
+          <Paper
+            className={
+              props.dark ? classes.twitterDapp_dark_mode : classes.twitterDapp
+            }
+          >
+            Twitter-D App features
+          </Paper>
 
           <Grid container spacing={0} className={classes.imagegrid}>
             <Column>
-              <Row className={classes.firstrow}>
-                <Grid item xs={6} sm={3} md={2} className={classes.oneimage}>
-                  <Column className={classes.columnone}>
-                    <Img src="/images/savingspeed.svg"></Img>
+              <MediaContainer>
+                <Row className={classes.firstrow}>
+                  <Grid item xs={6} sm={3} md={2} className={classes.oneimage}>
+                    <Column className={classes.columnone}>
+                      <Img src="/images/savingspeed.svg"></Img>
 
-                    <Heading>Saving Speed</Heading>
-                    <Subheading>
-                      The saved tweets per second track the rate of
-                      record-keeping
-                    </Subheading>
-                  </Column>
-                </Grid>
+                      <Heading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          {" "}
+                          Saving Speed
+                        </span>
+                      </Heading>
+                      <Subheading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          {" "}
+                          The saved tweets per second track the rate of
+                          record-keeping
+                        </span>
+                      </Subheading>
+                    </Column>
+                  </Grid>
 
-                <Grid item xs={6} sm={3} md={2}>
-                  <Column className={classes.columnone}>
-                    <Img src="/images/readingspeed.svg"></Img>
+                  <Grid item xs={6} sm={3} md={2}>
+                    <Column className={classes.columnone}>
+                      <Img src="/images/readingspeed.svg"></Img>
 
-                    <Heading>Reading Speed</Heading>
-                    <Subheading>
-                      The read tweets per second track the rate of
-                      record-keeping
-                    </Subheading>
-                  </Column>
-                </Grid>
-                <Grid item xs={6} sm={3} md={2}>
-                  <Column className={classes.columnone}>
-                    <Img src="/images/savedtweets.svg" />
+                      <Heading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          Reading Speed
+                        </span>
+                      </Heading>
+                      <Subheading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          The read tweets per second track the rate of
+                          record-keeping
+                        </span>
+                      </Subheading>
+                    </Column>
+                  </Grid>
+                  <Grid item xs={6} sm={3} md={2}>
+                    <Column className={classes.columnone}>
+                      <Img src="/images/savedtweets.svg" />
 
-                    <Heading>Saved Tweets</Heading>
-                    <Subheading>
-                      Number of tweets saved in d-app platform
-                    </Subheading>
-                  </Column>
-                </Grid>
-                <Grid item xs={6} sm={3} md={2}>
-                  <Column className={classes.columnone}>
-                    <Img src="/images/Read.svg" />
+                      <Heading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          Saved Tweets
+                        </span>
+                      </Heading>
+                      <Subheading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          Number of tweets saved in d-app platform
+                        </span>
+                      </Subheading>
+                    </Column>
+                  </Grid>
+                  <Grid item xs={6} sm={3} md={2}>
+                    <Column className={classes.columnone}>
+                      <Img src="/images/Read.svg" />
 
-                    <Heading>Read Tweets</Heading>
-                    <Subheading>
-                      Number of read tweets by d-app platform
-                    </Subheading>
-                  </Column>
-                </Grid>
-              </Row>
+                      <Heading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          Read Tweets
+                        </span>
+                      </Heading>
+                      <Subheading>
+                        <span
+                          className={
+                            props.dark
+                              ? classes.alltext_dark_mode
+                              : classes.alltext
+                          }
+                        >
+                          Number of read tweets by d-app platform
+                        </span>
+                      </Subheading>
+                    </Column>
+                  </Grid>
+                </Row>
+              </MediaContainer>
               <Row className={classes.secondrow}>
                 <Grid item xs={6} sm={3} md={2}>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/toptrending.svg" />
-                    <Heading>Top trending</Heading>
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Top trending
+                      </span>
+                    </Heading>
                     <Subheading>
-                      This twitter decentralized application pertually records
-                      the top 20 hashtags on Twitter on to the XDC Network
-                      blockchain.
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        This twitter decentralized application pertually records
+                        the top 20 hashtags on Twitter on to the XDC Network
+                        blockchain.
+                      </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sm={3}
-                  md={2}
-                  // style={{ paddingRight: "7%" }}
-                >
+                <Grid item xs={6} sm={3} md={2}>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/currentmax.svg" />
-                    <Heading>Current Max TPS</Heading>
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Current Max TPS
+                      </span>
+                    </Heading>
                     <Subheading>
-                      The speed of the current and maximum transactions
-                      completed on the platform
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        The speed of the current and maximum transactions
+                        completed on the platform
+                      </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sm={3}
-                  md={2}
-                  // style={{ paddingRight: "3%" }}
-                >
+                <Grid item xs={6} sm={3} md={2}>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/searchabc.svg" />
-                    <Heading>Search</Heading>
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Search
+                      </span>
+                    </Heading>
                     <Subheading>
-                      Search your saved tweets even if they are deleted
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Search your saved tweets even if they are deleted
+                      </span>
                     </Subheading>
                   </Column>
                 </Grid>
@@ -290,10 +453,28 @@ export default function Aboutcomponent() {
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/tweetarchiveimg.webp"></Img>
-                    <Heading>Tweet Archive</Heading>
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Tweet Archive
+                      </span>
+                    </Heading>
                     <Subheading>
-                      Tweets are archived on the network and therefore are
-                      retrievable
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Tweets are archived on the network and therefore are
+                        retrievable
+                      </span>
                     </Subheading>
                   </Column>
                 </Grid>
