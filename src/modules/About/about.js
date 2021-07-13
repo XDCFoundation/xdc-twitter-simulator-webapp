@@ -8,7 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const Bannerimage = styled.img`
   width: 100%;
   height:auto;
-
 `;
 const useStyles = makeStyles((theme) => ({
   main: {},
