@@ -4,6 +4,8 @@ import { Row, Column } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const Bannerimage = styled.img`
   width: 100%;
@@ -24,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "center",
-   
-     color: "#09184b",
+
+    color: "#09184b",
     marginTop: "90px",
     backgroundColor: "#f5f6f9",
     boxShadow: "none",
@@ -61,10 +63,29 @@ const useStyles = makeStyles((theme) => ({
   firstrow: {
     justifyContent: "center",
   },
+
+  "@media (min-width: 400px) and (max-width: 1080px)": {
+    firstrow: {
+      display: "flex !important",
+      flexFlow: "row nowrap",
+      flexDirection: "column !important",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
   secondrow: {
     justifyContent: "center",
     paddingTop: "5%",
     paddingBottom: "8%",
+  },
+  "@media (min-width: 400px) and (max-width: 1081px)": {
+    secondrow: {
+      display: "flex",
+      flexFlow: "row nowrap",
+      flexDirection: "column !important",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   columnone: {
     width: "90%",
@@ -139,40 +160,8 @@ const Content = styled.span`
     position: absolute;
     top: 38%;
     left: 5%;
-  }
-  //   @media (min-width:768px) and (max-width: 1002px) {
-
-  //   }
-  //    @media (min-width:1003px) and (max-width: 1599px) {
-  //   font-family: Raleway, sans-serif;
-  //   font-size: 13px;
-  //   font-weight: 500;
-  //   font-stretch: normal;
-  //   font-style: normal;
-  //   line-height: 1.78;
-  //   letter-spacing: normal;
-  //   text-align: left;
-  //   color: #ffffff;
-  //   position: absolute;
-  //   top: 38%;
-  //   left: 11%;
-  //   }
-  //     @media (min-width:1600px) and (max-width: 2400px) {
-  //   font-family: Raleway, sans-serif;
-  //   font-size: 16px;
-  //   font-weight: 500;
-  //   font-stretch: normal;
-  //   font-style: normal;
-  //   line-height: 1.78;
-  //   letter-spacing: normal;
-  //   text-align: left;
-  //   color: #ffffff;
-  //   position: absolute;
-  //   top: 38%;
-  //   left: 11%;
-  //   }
-  //
-`;
+  }`;
+  
 const Heading = styled.span`
   font-family: Raleway, sans-serif;
   font-size: 18px;
@@ -195,11 +184,7 @@ const Subheading = styled.span`
   text-align: center;
   color: #d6d6d6;
 `;
-const MediaContainer = styled.div`
-  @media (min-width: 400px) and (max-width: 980px) {
-    flex-flow: row wrap;
-  }
-`;
+
 export default function Aboutcomponent(props) {
   const classes = useStyles();
   return (
@@ -240,127 +225,126 @@ export default function Aboutcomponent(props) {
 
           <Grid container spacing={0} className={classes.imagegrid}>
             <Column>
-              <MediaContainer>
-                <Row className={classes.firstrow}>
-                  <Grid item xs={6} sm={3} md={2} className={classes.oneimage}>
-                    <Column className={classes.columnone}>
-                      <Img src="/images/savingspeed.svg"></Img>
+              <Row className={classes.firstrow}>
+                <Grid item xs={6} sm={3} md={2} className={classes.imagesGrid}>
+                  <Column className={classes.columnone}>
+                    <Img src="/images/savingspeed.svg"></Img>
 
-                      <Heading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          {" "}
-                          Saving Speed
-                        </span>
-                      </Heading>
-                      <Subheading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          {" "}
-                          The saved tweets per second track the rate of
-                          record-keeping
-                        </span>
-                      </Subheading>
-                    </Column>
-                  </Grid>
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        {" "}
+                        Saving Speed
+                      </span>
+                    </Heading>
+                    <Subheading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        {" "}
+                        The saved tweets per second track the rate of
+                        record-keeping
+                      </span>
+                    </Subheading>
+                  </Column>
+                </Grid>
 
-                  <Grid item xs={6} sm={3} md={2}>
-                    <Column className={classes.columnone}>
-                      <Img src="/images/readingspeed.svg"></Img>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columnone}>
+                    <Img src="/images/readingspeed.svg"></Img>
 
-                      <Heading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          Reading Speed
-                        </span>
-                      </Heading>
-                      <Subheading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          The read tweets per second track the rate of
-                          record-keeping
-                        </span>
-                      </Subheading>
-                    </Column>
-                  </Grid>
-                  <Grid item xs={6} sm={3} md={2}>
-                    <Column className={classes.columnone}>
-                      <Img src="/images/savedtweets.svg" />
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Reading Speed
+                      </span>
+                    </Heading>
+                    <Subheading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        The read tweets per second track the rate of
+                        record-keeping
+                      </span>
+                    </Subheading>
+                  </Column>
+                </Grid>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columnone}>
+                    <Img src="/images/savedtweets.svg" />
 
-                      <Heading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          Saved Tweets
-                        </span>
-                      </Heading>
-                      <Subheading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          Number of tweets saved in d-app platform
-                        </span>
-                      </Subheading>
-                    </Column>
-                  </Grid>
-                  <Grid item xs={6} sm={3} md={2}>
-                    <Column className={classes.columnone}>
-                      <Img src="/images/Read.svg" />
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Saved Tweets
+                      </span>
+                    </Heading>
+                    <Subheading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Number of tweets saved in d-app platform
+                      </span>
+                    </Subheading>
+                  </Column>
+                </Grid>
+                <Grid item xs={6} sm={3} md={2}>
+                  <Column className={classes.columnone}>
+                    <Img src="/images/Read.svg" />
 
-                      <Heading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          Read Tweets
-                        </span>
-                      </Heading>
-                      <Subheading>
-                        <span
-                          className={
-                            props.dark
-                              ? classes.alltext_dark_mode
-                              : classes.alltext
-                          }
-                        >
-                          Number of read tweets by d-app platform
-                        </span>
-                      </Subheading>
-                    </Column>
-                  </Grid>
-                </Row>
-              </MediaContainer>
+                    <Heading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Read Tweets
+                      </span>
+                    </Heading>
+                    <Subheading>
+                      <span
+                        className={
+                          props.dark
+                            ? classes.alltext_dark_mode
+                            : classes.alltext
+                        }
+                      >
+                        Number of read tweets by d-app platform
+                      </span>
+                    </Subheading>
+                  </Column>
+                </Grid>
+              </Row>
+
               <Row className={classes.secondrow}>
                 <Grid item xs={6} sm={3} md={2}>
                   <Column className={classes.columntwo}>
