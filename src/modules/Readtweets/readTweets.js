@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginRight: "1.5%",
+    // height: 'auto'
+    height: '784px',
+  
   },
 
   paper_dark_mode: {
@@ -45,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "1.5%",
     backgroundColor: "#191d43",
     color: "white",
+    // height: 'auto'
+    height: '784px',
+
   },
 
   tweetnumber: {
@@ -135,6 +141,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
+    marginRight: '18px'
   },
 
   content_dark_mode: {
@@ -153,6 +160,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     backgroundColor: "#191d43",
     marginLeft: "18px",
+    marginRight: '18px'
   },
 
   time: {
@@ -196,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
   email: {
     fontSize: "11px",
     color: "#8290a4",
-    whiteSpace: "nowrap",
+    // whiteSpace: "nowrap",
     fontFamily: "Raleway",
     marginBottom: "5px",
     fontWeight: 500,
@@ -249,7 +257,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
+
 }));
+
 
 export default function ReadTweets(props) {
   const classes = useStyles();
@@ -290,6 +300,7 @@ export default function ReadTweets(props) {
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
           >
+          
             <Column>
               <Row className={classes.row}>
                 <Typography
@@ -342,6 +353,18 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT");
 
+                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      // b.length - 3,
+                      b.length
+                    )}`;
+                  }
+                  function shortenValue(b, amountL = 100, amountR = 3, stars = 3) {
+                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      // b.length - 3,
+                      b.length
+                    )}`;
+                  }
                   return (
                     <>
                       <hr
@@ -370,7 +393,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {trending}
+                            {shortenTrend(trending)}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -382,7 +405,7 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {tweetText}
+                              {shortenValue(value)}
                             </Paper>
                           </ThemeProvider>
                         </Column>
@@ -399,6 +422,7 @@ export default function ReadTweets(props) {
             <br />
             <br />
             <br />
+            
           </Paper>
         </div>
       </Grid>
