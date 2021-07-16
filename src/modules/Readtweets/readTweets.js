@@ -26,7 +26,6 @@ const IconImg = styled.img`
 
 const theme = createMuiTheme({
   typography: {
-    // Tell Material-UI what the font-size on the html element is.
     htmlFontSize: "22px",
     whiteSpace: "nowrap",
     fontFamily: "Raleway sans-serif !important",
@@ -180,7 +179,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     position: "absolute",
     right: "4.5%",
-    // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -332,14 +330,11 @@ export default function ReadTweets(props) {
                   740k
                 </Paper>
               </Row>
-
-              {/* {console.log("let check",readtweets)} */}
               {readtweets &&
                 readtweets.length >= 1 &&
                 readtweets.map((response) => {
                   let value = response.text;
                   const colonIndex = value.indexOf(":");
-                  console.log("colonIndex", colonIndex);
                   const atIndex = value.indexOf("@");
                   let trending = value.slice(atIndex, colonIndex);
                   let tweetText = value.split(":")[1];

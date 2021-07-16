@@ -10,6 +10,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
+import moment from "moment";
 import {
   createMuiTheme,
   ThemeProvider,
@@ -253,6 +254,7 @@ export default function SavedTweets(props) {
       .get(
         "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//saved-tweets"
       )
+      
 
       .then((res) => {
         setSavedTweets(res.data.responseData);
@@ -315,6 +317,9 @@ export default function SavedTweets(props) {
                 const atIndex = value.indexOf("@");
                 let handler = value.slice(atIndex, colonIndex);
                 let tweetTextMessage = value.split(":")[1];
+                let str = response.addedOn;
+                let timeFormat = moment(str);
+                let time = timeFormat.format("LT");
                 return (
                   <>
                     <hr
@@ -336,7 +341,7 @@ export default function SavedTweets(props) {
                           props.dark ? classes.time_dark_mode : classes.time
                         }
                       >
-                        3:00 PM
+                        {time}
                       </Paper>
                     </Row>
 
