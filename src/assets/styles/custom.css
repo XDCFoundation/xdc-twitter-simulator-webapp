@@ -751,3 +751,36 @@ input:focus {
   background: transparent;
   color: black;
 } */
+
+.empty-div {
+  display: flex;
+  flex-direction: row;
+  width: 10%;
+  /* height: 44px; */
+  margin-left: 12%;
+  margin-top: 9px;
+  padding: 14px 25.1px 14px 25px;
+  border-radius: 6px;
+  background-color: #222864;
+}
+
+.dashboard-name {
+  margin: 2px 0 0 7.1px;
+  font-family: Raleway;
+  font-size: 15px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+}
+.img-parent {
+  margin-top: -5px;
+  margin-left: -10px;
+}
+.home-image {
+  height: 24px;
+  width: 24px;
+}
