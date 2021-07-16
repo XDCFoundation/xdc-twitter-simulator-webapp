@@ -33,6 +33,7 @@ const NodeChart = (props) => {
   };
 
   return (
+    <div>
     <ComposableMap
       style={
         props.dark
@@ -71,6 +72,7 @@ const NodeChart = (props) => {
         );
       })}
     </ComposableMap>
+    </div>
   );
 };
 

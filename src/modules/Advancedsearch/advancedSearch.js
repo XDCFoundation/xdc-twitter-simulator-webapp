@@ -71,8 +71,7 @@ const Inputhashtags = styled.input`
 background-color:#191d43;
 border-radius: 5px;
 border: solid 1px #4a508a;
-
-    width: 81%;
+ width: 81%;
 padding: 14px;
 margin-left: 68px;
 height: 41px;
