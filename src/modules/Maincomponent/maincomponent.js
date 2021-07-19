@@ -413,7 +413,7 @@ export default function MainComponent(props) {
                           props.dark ? classes.node_dark_mode : classes.node
                         }
                       >
-                        Nodes
+                        Nodes  
                         <Tippy
                           placement={"right"}
                           theme={"light"}
