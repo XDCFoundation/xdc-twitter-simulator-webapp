@@ -11,10 +11,12 @@ import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
 import Tippy from "@tippyjs/react";
+import axios from "axios";
+
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
-import axios from 'axios';
+
 import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
   margin-left: 10px;
@@ -197,43 +199,42 @@ const Text = styled.div`
   margin-top: -10px;
 `;
 const Trending = styled.div`
-
-@media (max-width:767px){
-  width: 87%;
-  height: 48%;
-  margin-left: 1px;
-  }
-  @media (min-width:768px) and (max-width: 1002px) {
-   width: 87%;
-  height: 48%;
-  margin-left: 1px;
-  }
-   @media (min-width:1003px) and (max-width: 1400px) {
-   width: 87%;
-  height: 48%;
+  @media (max-width: 767px) {
+    width: 87%;
+    height: 48%;
     margin-left: 1px;
   }
-  @media (min-width:1401px) and (max-width: 1600px) {
+  @media (min-width: 768px) and (max-width: 1002px) {
+    width: 87%;
+    height: 48%;
+    margin-left: 1px;
+  }
+  @media (min-width: 1003px) and (max-width: 1400px) {
+    width: 87%;
+    height: 48%;
+    margin-left: 1px;
+  }
+  @media (min-width: 1401px) and (max-width: 1600px) {
     width: 85%;
-   height: 48%;
-   margin-left: 10px;
-   }
-   @media (min-width:1601px) and (max-width: 1800px) {
+    height: 48%;
+    margin-left: 10px;
+  }
+  @media (min-width: 1601px) and (max-width: 1800px) {
     width: 82%;
-   height: 48%;
-   margin-left: 15px;
-   }
-   @media (min-width:1801px) and (max-width: 2000px) {
+    height: 48%;
+    margin-left: 15px;
+  }
+  @media (min-width: 1801px) and (max-width: 2000px) {
     width: 78%;
     height: 48%;
     margin-left: 25px;
-   }
-   @media (min-width:2001px) and (max-width: 2200px) {
+  }
+  @media (min-width: 2001px) and (max-width: 2200px) {
     width: 74%;
-   height: 48%;
+    height: 48%;
     margin-left: 30px;
-   }
-   @media (min-width:2201px) and (max-width: 2400px) {
+  }
+  @media (min-width: 2201px) and (max-width: 2400px) {
     width: 73%;
     height: 48%;
   }
@@ -253,13 +254,12 @@ const SaveGraphTrend = styled.div`
 `;
 
 const ReadGraphTrend = styled.div`
-
-@media (min-width:2001px) and (max-width: 2400px) {
-   margin-top: 10px;
- }
- @media (min-width:2401px) and (max-width: 2600px) {
-  margin-top: 10px;
-}
+  @media (min-width: 2001px) and (max-width: 2400px) {
+    margin-top: 10px;
+  }
+  @media (min-width: 2401px) and (max-width: 2600px) {
+    margin-top: 10px;
+  }
 `;
 
 export default function MainComponent(props) {
@@ -507,7 +507,7 @@ export default function MainComponent(props) {
             <Paper className={props.dark ? classes.top_dark_mode : classes.top}>
               <Trending>
                 <div>
-                  < MapChart dark={dark} />
+                  <MapChart dark={dark} />
                 </div>
               </Trending>
             </Paper>
