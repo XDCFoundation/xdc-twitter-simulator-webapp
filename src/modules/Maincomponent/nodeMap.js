@@ -6,6 +6,7 @@ import {
   Geographies,
   Geography,
   Marker,
+  ZoomableGroup,
 } from "react-simple-maps";
 
 const geoUrl =
@@ -42,7 +43,7 @@ const NodeChart = (props) => {
             }
           : { fill: "#bdc1e5" }
       }
-    >
+    > <ZoomableGroup zoom={1}>
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map((geo) => (
@@ -71,6 +72,7 @@ const NodeChart = (props) => {
           </Marker>
         );
       })}
+      </ZoomableGroup>
     </ComposableMap>
     </div>
   );
