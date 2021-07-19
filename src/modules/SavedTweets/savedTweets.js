@@ -265,7 +265,22 @@ export default function SavedTweets(props) {
       
 
       .then((res) => {
-        setSavedTweets(res.data.responseData);
+        let tweetResponse;
+        let tweetCount;
+        if (
+          !res ||
+          !res.data ||
+          !res.data.responseData ||
+          res.data.responseData.length <= 0
+        )
+          tweetResponse = [];
+           
+        else tweetResponse = res.data.responseData[0] || res.data.responseData[1];
+        // else tweetResponse = res.data.responseData[1] || res.data.responseData[0];
+        setSavedTweets(tweetResponse);
+        // setSavedTweets(res.data.responseData[1]);
+        let value=res.data.responseData[1];
+        console.log("letsssssssssssssss chek",tweetResponse);
       })
       .catch((err) => {
         console.log(err);
@@ -317,20 +332,21 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  800k
+                {/* {value} */}
                 </Paper>
               </Row>
-              {savedTweets.map((response) => {
+                {savedTweets &&
+                savedTweets.length >= 1 &&
+                savedTweets.map((response) => {
                 let value = response.tweetMessage;
                 const colonIndex = value.indexOf(":");
                 const atIndex = value.indexOf("@");
                 let handler = value.slice(atIndex, colonIndex);
                 let tweetTextMessage = value.split(":")[1];
                 let str = response.addedOn;
-
                 let timeFormat = moment(str);
-
                 let time = timeFormat.format("LT");
+                // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
                 function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
                   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
