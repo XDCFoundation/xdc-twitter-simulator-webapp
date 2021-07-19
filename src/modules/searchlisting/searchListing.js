@@ -18,79 +18,6 @@ import {
   responsiveFontSizes,
 } from "@material-ui/core/styles";
 
-// const theme = createMuiTheme({
-//   typography: {
-//     htmlFontSize: "22px",
-//     whiteSpace: "nowrap",
-//     fontFamily: "Raleway sans-serif !important",
-//   },
-// });
-
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     padding: theme.spacing(2),
-//     color: theme.palette.text.secondary,
-//   },
-  // main: {
-  //   backgroundColor: "#f5f6f9",
-  // },
-//   root: {
-//     flexGrow: 1,
-//     padding: "80px 80px",
-//     marginLeft: "130px",
-//   },
-//   grid: {},
-//   grid2: {},
-
-//   paper: {
-//     padding: theme.spacing(2),
-//     // textAlign: "center",
-//     color: theme.palette.text.secondary,
-//   },
-//   dashboard: {
-//     marginBottom: "19px",
-//     padding: theme.spacing(2),
-//     textAlign: "center",
-//     color: theme.palette.text.secondary,
-//     marginTop: "-67px",
-//     backgroundColor: "#191d43",
-//     color: "#ffffff",
-//     fontFamily: "Raleway ,sans-serif !important",
-//     fontWeight: "600",
-//   },
-//   image: {
-//     marginTop: "-41%",
-//     marginLeft: "6%",
-//   },
-//   savingSpeed: {
-//     fontFamily: "Raleway ,sans-serif !important",
-//     fontSize: "18px",
-//     fontWeight: "600",
-//     fontStretch: "normal",
-//     fontStyle: "normal",
-//     lineHeight: "1.17",
-//     letterSpacing: "normal",
-//     textAlign: "left",
-//     color: "#d6d6d6",
-//   },
-//   savespeed: {
-//     marginTop: "5px",
-//     fontSize: "1rem",
-//     fontWeight: "600",
-//     fontStretch: "normal",
-//     fontStyle: "normal",
-//     lineHeight: "0.82",
-//     letterSpacing: " normal",
-//     textAlign: "left",
-//     color: "#3366ff",
-//   },
-// }));
-// const Text = styled.div`
-//   font-weight: 900;
-//   margin-bottom: 10px;
-//   fontfamily: "Raleway ,sans-serif !important";
-// `;
-
 const Text = styled.div`
   font-weight: 900;
   margin-bottom: 55px;
@@ -101,24 +28,17 @@ const Text = styled.div`
 
   // const IconImg = styled.img
 `;
-//   margin-left: 10px;
-//   height: 14px;
-//   width: 14px;
-//   margin-top: 2px;
-// `;
-const theme = createMuiTheme({
-  // typography: {
-  //   // Tell Material-UI what the font-size on the html element is.
-  //   htmlFontSize: "22px",
-  //   whiteSpace: "nowrap",
-  //   fontFamily: "Raleway sans-serif !important",
-  // },
-});
+
+const theme = createMuiTheme({});
 
 const useStyles = makeStyles((theme) => ({
-  main_dark_mode: {
-    backgroundColor: '#0d0e2d'
+  main: {
+    backgroundColor: "#f5f6f9",
   },
+  main_dark_mode: {
+    backgroundColor: "#0d0e2d",
+  },
+
   paper: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
@@ -197,7 +117,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     marginBottom: "5px",
   },
-
   content: {
     fontSize: "11px",
     color: "#09184b",
@@ -217,7 +136,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "11px",
     boxShadow: "none",
     border: "none",
-
     fontFamily: "Raleway",
     fontWeight: 600,
     fontStretch: "normal",
@@ -233,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
-    right: "47%",
+    right: "44%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -248,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
   time_dark_mode: {
     boxShadow: "none",
     position: "absolute",
-    right: "52%",
+    right: "44%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -319,17 +237,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
-  dashboard: {
-    marginLeft: "151px",
-    marginTop: "6%",
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-
-    backgroundColor: "#191d43",
-    color: "#ffffff",
-    fontFamily: "Raleway ,sans-serif !important",
-    fontWeight: "600",
-  },
+  dashboard: {},
   savespeed: {
     marginTop: "5px",
     fontSize: "1rem",
@@ -356,62 +264,91 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: '7.5%',
-    marginTop: '-30px',
-    padding: '20px 14px 29.6px 26px',
-
+    marginLeft: "7.5%",
+    marginTop: "-30px",
+    padding: "20px 14px 29.6px 26px",
   },
   writing_paper_dark_mode: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
-    color: 'white',
-    marginTop: '-30px',
-    marginLeft: '7.5%',
-    padding: '20px 14px 29.6px 26px',
-
+    color: "white",
+    marginTop: "-30px",
+    marginLeft: "7.5%",
+    padding: "20px 14px 29.6px 26px",
   },
   reading_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: '7.5%',
-    marginTop: '-30px',
-    padding: '20px 14px 29.6px 26px',
+    marginLeft: "7.5%",
+    marginTop: "-30px",
+    padding: "20px 14px 29.6px 26px",
   },
-
+  image: {
+    width: "25px",
+    marginTop: "6%",
+    marginLeft: "54%",
+  },
   reading_paper_dark_mode: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
-    color: 'white',
-    marginTop: '-30px',
-    marginLeft: '7.5%',
-    padding: '20px 14px 29.6px 26px',
+    color: "white",
+    marginTop: "-30px",
+    marginLeft: "7.5%",
+    padding: "20px 14px 29.6px 26px",
+  },
+  dashboardDiv: {
+    display: "flex",
+    flexDirection: "row",
+    borderRadius: "6px",
+    backgroundColor: "#222864",
+    width: "177px",
+    height: "49px",
+    padding: "14px 25.1px 14px 25px",
+  },
+  dashboard: {
+    fontSize: "15px",
+    fontWeight: "600",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: 1.17,
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#ffffff",
+  },
+  gridcontainer: {
+    width: "100%",
+    paddingLeft: "10%",
+    paddingTop: "6%",
+    paddingRight: "5%",
+    paddingBottom: "6%",
   },
 }));
 
 export default function Searchlist(props) {
   const classes = useStyles();
   return (
-    <div  className={props.dark ? classes.main_dark_mode : classes.dark}>
+    <div className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
         <Grid xs={2}>
           <img
-            className={classes.image}
             style={{
-              // top: "18%",
-              // left: "15%",
               width: "5%",
             }}
-            src="/images/home.svg"
-            
           />
-          <div className={classes.dashboard}> Dashboard</div>
         </Grid>
-        <Grid container spacing={3} style={{ padding: "6%", width: "100%" }}>
+        <div className="empty-div">
+          <div className="img-parent">
+            <img className="home-image" src="/images/home.svg" />
+          </div>
+          <div className="dashboard-name"> Dashboard </div>
+        </div>
+
+        <Grid container spacing={3} className={classes.gridcontainer}>
           <Grid item xs={7}>
             <Paper
               className={props.dark ? classes.paper_dark_mode : classes.paper}
@@ -824,29 +761,83 @@ export default function Searchlist(props) {
                 <br />
                 <br />
               </Column>
-            </Paper> 
+            </Paper>
           </Grid>
 
           <Grid item xs={4}>
             <Grid item xs={12} className={classes.grid}>
-              <Text className={props.dark ? "writing-data-dark-mode" : "writing-data"}>Writing Data</Text>
-              <Paper className={props.dark ? classes.writing_paper_dark_mode : classes.writing_paper}>
-                <div className={props.dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Saving Speed</div>
-                <div className="saveSpeed">345/sec</div>
-
-                <MyResponsiveLine />
+              <Text
+                className={
+                  props.dark ? "writing-data-one-dark-mode" : "writing-data-one"
+                }
+              >
+                Writing Data
+              </Text>
+              <Paper
+                elevation={0}
+                className={
+                  props.dark
+                    ? classes.writing_paper_dark_mode
+                    : classes.writing_paper
+                }
+              >
+                <div
+                  className={
+                    props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
+                  }
+                >
+                  Saving Speed
+                </div>
+                <div className="saveSpeed-one">345/sec</div>
+                <div>
+                  {" "}
+                  <span className="hover-data">
+                    {" "}
+                    <MyResponsiveLine />{" "}
+                  </span>
+                </div>
               </Paper>
             </Grid>
 
             <Row className="justify-space-between w-100">
               <Row className="w-100">
                 <Grid item xs={12} className={classes.grid2}>
-                  <br/>  <br/>
-                  <Text className={props.dark ? "reading-data-dark-mode" : "reading-data"}>Reading Data</Text>
-                  <Paper className={props.dark ? classes.reading_paper_dark_mode : classes.reading_paper}>
-                    <div className={props.dark ? "savingSpeed-dark-mode" : "savingSpeed"}>Reading Tweet</div>
-                    <div className="readSpeed">345/sec</div>
-                    <ReadingData />
+                  <br /> <br />
+                  <Text
+                    className={
+                      props.dark
+                        ? "reading-data-one-dark-mode"
+                        : "reading-data-one"
+                    }
+                  >
+                    Reading Data
+                  </Text>
+                  <Paper
+                    elevation={0}
+                    className={
+                      props.dark
+                        ? classes.reading_paper_dark_mode
+                        : classes.reading_paper
+                    }
+                  >
+                    <div
+                      className={
+                        props.dark ? "savingSpeed-dark-mode" : "savingSpeed"
+                      }
+                    >
+                      Reading Tweet
+                    </div>
+                    <div
+                      className={
+                        props.dark ? "readSpeed-one-dark-mode" : "readSpeed-one"
+                      }
+                    >
+                      345/sec
+                    </div>
+                    <span className="hover-data">
+                      {" "}
+                      <ReadingData />{" "}
+                    </span>
                   </Paper>
                 </Grid>
               </Row>
