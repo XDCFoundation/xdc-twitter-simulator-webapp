@@ -14,6 +14,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
+import axios from 'axios';
 import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
   margin-left: 10px;
@@ -264,6 +265,30 @@ const ReadGraphTrend = styled.div`
 export default function MainComponent(props) {
   const classes = useStyles();
 
+  const [count, setCount] = useState({});
+  useEffect(() => {
+    fetchCount();
+    setInterval(() => {
+      fetchCount();
+    }, 15000);
+  }, []);
+  const fetchCount = () => {
+    axios
+      .get(
+        "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/tps-counter"
+      )
+      .then((res) => {
+        // console.log(res.data.responseData)
+        setCount(res.data.responseData);
+        let result = (res.data.responseData.totalTransactions)/60
+        console.log("total trans", result)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
   };
@@ -413,7 +438,7 @@ export default function MainComponent(props) {
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br /> <WebSocketCountNode/>
+                        <br /> <WebSocketCountNode />
                       </div>
                       <div
                         className={
@@ -440,7 +465,8 @@ export default function MainComponent(props) {
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br /> 1/1000
+                        <br />
+                     {count.totalTransactions}/1000
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
                         <NodeChart dark={dark} />
@@ -451,7 +477,7 @@ export default function MainComponent(props) {
               </Row>
             </Row>
           </Grid>
-        
+
           <Grid item xs={6}>
             <Text
               className={props.dark ? classes.top20_dark_mode : classes.top20}
@@ -495,7 +521,7 @@ export default function MainComponent(props) {
           
             </div> */}
           </Grid>
-         
+
           <Grid item xs={6} className={classes.grid3}>
             <SaveGraphTrend>
               <SavedTweets dark={dark} />
@@ -503,13 +529,13 @@ export default function MainComponent(props) {
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
             <ReadGraphTrend>
-            <ReadTweets  dark={dark} />
+              <ReadTweets dark={dark} />
             </ReadGraphTrend>
           </Grid>
-     
+
         </Grid>
-        
+
       </div>
-</div>
+    </div>
   );
 }
