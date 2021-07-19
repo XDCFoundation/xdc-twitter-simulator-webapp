@@ -9,16 +9,16 @@ import {
 const markers = [
   {
     markerOffset: -30,
-    coordinates: [-5.3816, -34.6037]
+    coordinates: [-0.1224,51.4964]//[long,lat]
   },
-  { markerOffset: 15, coordinates: [78.9629, 20.5937] },
-  { markerOffset: 15, coordinates: [133.7751, -25.2744] },
-  { markerOffset: 15, coordinates: [-102.5528, 23.6345] },
-  { markerOffset: 15, coordinates: [-3.7492, 40.4637] },
-  { markerOffset: 15, coordinates: [3.406448, 6.465422] },
-  { markerOffset: -30, coordinates: [45.0792, 23.8859] },
-  { markerOffset: -30, coordinates: [-57.5759, -25.2637] },
-  { markerOffset: 15, coordinates: [-55.2038, 5.852] },
+  { markerOffset: 15, coordinates: [2.3869, 48.9163] },
+  { markerOffset: 15, coordinates: [72.8856, 19.0748] },
+  { markerOffset: 15, coordinates: [103.8554, 1.3036] },
+  { markerOffset: 15, coordinates: [151.1866, -33.9166] },
+  // { markerOffset: 15, coordinates: [3.406448, 6.465422] },
+  // { markerOffset: -30, coordinates: [45.0792, 23.8859] },
+  // { markerOffset: -30, coordinates: [-57.5759, -25.2637] },
+  // { markerOffset: 15, coordinates: [-55.2038, 5.852] },
 ];
 
 
