@@ -263,7 +263,7 @@ export default function SavedTweets(props) {
 
       .then((res) => {
         let tweetResponse;
-        console.log("aaaaaaaaaaaaaa", res);
+        let tweetCount;
         if (
           !res ||
           !res.data ||
@@ -271,8 +271,13 @@ export default function SavedTweets(props) {
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
+        else
+          tweetResponse = res.data.responseData[0] || res.data.responseData[1];
+        // else tweetResponse = res.data.responseData[1] || res.data.responseData[0];
         setSavedTweets(tweetResponse);
+        // setSavedTweets(res.data.responseData[1]);
+        let value = res.data.responseData[1];
+        console.log("letsssssssssssssss chek", tweetResponse);
       })
       .catch((err) => {
         console.log(err);
@@ -323,24 +328,21 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  800k
+                  {/* {value} */}
                 </Paper>
               </Row>
               {savedTweets &&
                 savedTweets.length >= 1 &&
                 savedTweets.map((response) => {
-                  console.log("responseisuyhfsdjifhsdjfh", response);
                   let value = response.tweetMessage;
-                  console.log("response tweet msg ===>", response.tweetMessage);
                   const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
                   let handler = value.slice(atIndex, colonIndex);
                   let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
-
                   let timeFormat = moment(str);
-
                   let time = timeFormat.format("LT");
+                  // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
                   function shortenTrend(
                     b,
