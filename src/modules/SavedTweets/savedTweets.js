@@ -37,8 +37,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-7%",
     marginLeft: "3.6%",
     // height: 'auto'
-    height: '784px',
-
+    height: "784px",
   },
   paper_dark_mode: {
     color: theme.palette.text.secondary,
@@ -47,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     // height: 'auto'
-    height: '784px',
+    height: "784px",
   },
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -132,7 +131,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
-    marginRight: '18px'
+    marginRight: "18px",
   },
   content_dark_mode: {
     fontSize: "11px",
@@ -150,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     backgroundColor: "#191d43",
     marginLeft: "18px",
-    marginRight: '18px'
+    marginRight: "18px",
   },
   time: {
     color: "#8290a4",
@@ -247,7 +246,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function SavedTweets(props) {
   const classes = useStyles();
   const [savedTweets, setSavedTweets] = useState([]);
@@ -264,7 +262,17 @@ export default function SavedTweets(props) {
       )
 
       .then((res) => {
-        setSavedTweets(res.data.responseData);
+        let tweetResponse;
+        console.log("aaaaaaaaaaaaaa", res);
+        if (
+          !res ||
+          !res.data ||
+          !res.data.responseData ||
+          res.data.responseData.length <= 0
+        )
+          tweetResponse = [];
+        else tweetResponse = res.data.responseData[0];
+        setSavedTweets(tweetResponse);
       })
       .catch((err) => {
         console.log(err);
@@ -278,7 +286,6 @@ export default function SavedTweets(props) {
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
           >
-
             <Column>
               <Row className={classes.row}>
                 <Typography
@@ -319,78 +326,89 @@ export default function SavedTweets(props) {
                   800k
                 </Paper>
               </Row>
-              {savedTweets.map((response) => {
-                let value = response.tweetMessage;
-                const colonIndex = value.indexOf(":");
-                const atIndex = value.indexOf("@");
-                let handler = value.slice(atIndex, colonIndex);
-                let tweetTextMessage = value.split(":")[1];
-                let str = response.addedOn;
+              {savedTweets &&
+                savedTweets.length >= 1 &&
+                savedTweets.map((response) => {
+                  console.log("responseisuyhfsdjifhsdjfh", response);
+                  let value = response.tweetMessage;
+                  console.log("response tweet msg ===>", response.tweetMessage);
+                  const colonIndex = value.indexOf(":");
+                  const atIndex = value.indexOf("@");
+                  let handler = value.slice(atIndex, colonIndex);
+                  let tweetTextMessage = value.split(":")[1];
+                  let str = response.addedOn;
 
-                let timeFormat = moment(str);
+                  let timeFormat = moment(str);
 
-                let time = timeFormat.format("LT");
+                  let time = timeFormat.format("LT");
 
-                function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
-                  return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                    // b.length - 3,
-                    b.length
-                  )}`;
-                }
-                function shortenValue(b, amountL = 100, stars = 3) {
-                  return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                    // b.length - 3,
-                    b.length
-                  )}`;
-                }
-                return (
-                  <>
-                    <hr
-                      className={
-                        props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                      }
-                    />
-                    <Row>
-                      <Typography
-                        variant="h6"
+                  function shortenTrend(
+                    b,
+                    amountL = 10,
+                    amountR = 3,
+                    stars = 3
+                  ) {
+                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      // b.length - 3,
+                      b.length
+                    )}`;
+                  }
+                  function shortenValue(b, amountL = 100, stars = 3) {
+                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      // b.length - 3,
+                      b.length
+                    )}`;
+                  }
+                  return (
+                    <>
+                      <hr
                         className={
-                          props.dark ? classes.name_dark_mode : classes.name
+                          props.dark
+                            ? classes.hr_page_dark_mode
+                            : classes.hr_page
                         }
-                      >
-                        {/* {response.blockNumber} */}
-                      </Typography>
-                      <Paper
-                        className={
-                          props.dark ? classes.time_dark_mode : classes.time
-                        }
-                      >
-                      {time}
-                      </Paper>
-                    </Row>
-
-                    <Row>
-                      <Column>
-                        <Typography className={classes.email}>
-                          {shortenTrend(handler)}
+                      />
+                      <Row>
+                        <Typography
+                          variant="h6"
+                          className={
+                            props.dark ? classes.name_dark_mode : classes.name
+                          }
+                        >
+                          {/* {response.blockNumber} */}
                         </Typography>
-                        <ThemeProvider theme={theme}>
-                          <Paper
-                            noWrap
-                            className={
-                              props.dark
-                                ? classes.content_dark_mode
-                                : classes.content
-                            }
-                            gutterBottom
-                          >
-                            {shortenValue(value)}
-                          </Paper>
-                        </ThemeProvider>
-                      </Column>
-                    </Row>
-                  </>
-                );
-              })}
+                        <Paper
+                          className={
+                            props.dark ? classes.time_dark_mode : classes.time
+                          }
+                        >
+                          {time}
+                        </Paper>
+                      </Row>
+
+                      <Row>
+                        <Column>
+                          <Typography className={classes.email}>
+                            {shortenTrend(handler)}
+                          </Typography>
+                          <ThemeProvider theme={theme}>
+                            <Paper
+                              noWrap
+                              className={
+                                props.dark
+                                  ? classes.content_dark_mode
+                                  : classes.content
+                              }
+                              gutterBottom
+                            >
+                              {shortenValue(value)}
+                            </Paper>
+                          </ThemeProvider>
+                        </Column>
+                      </Row>
+                    </>
+                  );
+                })}
             </Column>
             <hr
               className={
@@ -400,7 +418,6 @@ export default function SavedTweets(props) {
             <br />
             <br />
             <br />
-
           </Paper>
         </div>
       </Grid>
