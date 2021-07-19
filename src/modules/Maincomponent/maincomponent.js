@@ -198,43 +198,42 @@ const Text = styled.div`
   margin-top: -10px;
 `;
 const Trending = styled.div`
-
-@media (max-width:767px){
-  width: 87%;
-  height: 48%;
-  margin-left: 1px;
-  }
-  @media (min-width:768px) and (max-width: 1002px) {
-   width: 87%;
-  height: 48%;
-  margin-left: 1px;
-  }
-   @media (min-width:1003px) and (max-width: 1400px) {
-   width: 87%;
-  height: 48%;
+  @media (max-width: 767px) {
+    width: 87%;
+    height: 48%;
     margin-left: 1px;
   }
-  @media (min-width:1401px) and (max-width: 1600px) {
+  @media (min-width: 768px) and (max-width: 1002px) {
+    width: 87%;
+    height: 48%;
+    margin-left: 1px;
+  }
+  @media (min-width: 1003px) and (max-width: 1400px) {
+    width: 87%;
+    height: 48%;
+    margin-left: 1px;
+  }
+  @media (min-width: 1401px) and (max-width: 1600px) {
     width: 85%;
-   height: 48%;
-   margin-left: 10px;
-   }
-   @media (min-width:1601px) and (max-width: 1800px) {
+    height: 48%;
+    margin-left: 10px;
+  }
+  @media (min-width: 1601px) and (max-width: 1800px) {
     width: 82%;
-   height: 48%;
-   margin-left: 15px;
-   }
-   @media (min-width:1801px) and (max-width: 2000px) {
+    height: 48%;
+    margin-left: 15px;
+  }
+  @media (min-width: 1801px) and (max-width: 2000px) {
     width: 78%;
     height: 48%;
     margin-left: 25px;
-   }
-   @media (min-width:2001px) and (max-width: 2200px) {
+  }
+  @media (min-width: 2001px) and (max-width: 2200px) {
     width: 74%;
-   height: 48%;
+    height: 48%;
     margin-left: 30px;
-   }
-   @media (min-width:2201px) and (max-width: 2400px) {
+  }
+  @media (min-width: 2201px) and (max-width: 2400px) {
     width: 73%;
     height: 48%;
   }
@@ -254,35 +253,16 @@ const SaveGraphTrend = styled.div`
 `;
 
 const ReadGraphTrend = styled.div`
-
-@media (min-width:2001px) and (max-width: 2400px) {
-   margin-top: 10px;
- }
- @media (min-width:2401px) and (max-width: 2600px) {
-  margin-top: 10px;
-}
+  @media (min-width: 2001px) and (max-width: 2400px) {
+    margin-top: 10px;
+  }
+  @media (min-width: 2401px) and (max-width: 2600px) {
+    margin-top: 10px;
+  }
 `;
 
 export default function MainComponent(props) {
   const classes = useStyles();
-  const [node, setNode] = useState([]);
-  useEffect(() => {
-    noOfNodes();
-    setInterval(() => {
-      noOfNodes();
-    }, 10000);
-  }, []);
-  const noOfNodes = () => {
-    axios
-      .get("https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/nodeNumber")
-      .then((res) => {
-        setNode(res.data);
-        console.log("responseDataChekk", res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
@@ -413,7 +393,7 @@ export default function MainComponent(props) {
                           props.dark ? classes.node_dark_mode : classes.node
                         }
                       >
-                        Nodes  
+                        Nodes
                         <Tippy
                           placement={"right"}
                           theme={"light"}
@@ -433,7 +413,7 @@ export default function MainComponent(props) {
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br /> <WebSocketCountNode/>
+                        <br /> <WebSocketCountNode />
                       </div>
                       <div
                         className={
@@ -471,7 +451,7 @@ export default function MainComponent(props) {
               </Row>
             </Row>
           </Grid>
-        
+
           <Grid item xs={6}>
             <Text
               className={props.dark ? classes.top20_dark_mode : classes.top20}
@@ -501,7 +481,7 @@ export default function MainComponent(props) {
             <Paper className={props.dark ? classes.top_dark_mode : classes.top}>
               <Trending>
                 <div>
-                  < MapChart dark={dark} />
+                  <MapChart dark={dark} />
                 </div>
               </Trending>
             </Paper>
@@ -515,7 +495,7 @@ export default function MainComponent(props) {
           
             </div> */}
           </Grid>
-         
+
           <Grid item xs={6} className={classes.grid3}>
             <SaveGraphTrend>
               <SavedTweets dark={dark} />
@@ -523,13 +503,11 @@ export default function MainComponent(props) {
           </Grid>
           <Grid item xs={6} className={classes.grid3}>
             <ReadGraphTrend>
-            <ReadTweets  dark={dark} />
+              <ReadTweets dark={dark} />
             </ReadGraphTrend>
           </Grid>
-     
         </Grid>
-        
       </div>
-</div>
+    </div>
   );
 }
