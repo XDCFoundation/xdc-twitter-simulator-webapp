@@ -160,8 +160,9 @@ const Content = styled.span`
     position: absolute;
     top: 38%;
     left: 5%;
-  }`;
-  
+  }
+`;
+
 const Heading = styled.span`
   font-family: Raleway, sans-serif;
   font-size: 18px;
