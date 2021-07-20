@@ -28,7 +28,7 @@ const SubContainer2 = styled.div`
   background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
-  margin-right: 95px;
+  margin-right: 60px;
 `;
 
 const Image = styled.img`
@@ -126,7 +126,7 @@ const About = styled.text`
   line-height: 1.17;
   letter-spacing: normal;
   text-align: left;
-  margin-right: 26px;
+  margin-right: 6px;
 `;
 const Line = styled.div`
   height: 20px;
