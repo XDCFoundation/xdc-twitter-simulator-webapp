@@ -409,7 +409,7 @@ export default function Aboutcomponent(props) {
                 <Grid item xs={6} sm={3} md={2}>
                   <Column className={classes.columntwo}>
                     {" "}
-                    <Img src="/images/searchabc.svg" />
+                    <Img src="/images/Searchabc.svg" />
                     <Heading>
                       <span
                         className={
