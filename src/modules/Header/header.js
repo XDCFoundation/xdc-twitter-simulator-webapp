@@ -3,7 +3,7 @@ import styled from "styled-components";
 import "../styles/App.css";
 import DarkMode from "../components/DarkMode";
 import "../styles/App.css";
-import AdvanceSearch from "../Advancedsearch/advancedSearch"
+import AdvanceSearch from "../Advancedsearch/advancedSearch";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 const Container = styled.div`
@@ -28,31 +28,30 @@ const SubContainer2 = styled.div`
   background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
-  margin-right: 50px;
+  margin-right: 95px;
 `;
 
 const Image = styled.img`
-@media (max-width:766px){
-   width: 30px;
-  height: 25px;
-  margin-left: 0px;
-}
-  @media (min-width:767px) and (max-width: 900px) {
+  @media (max-width: 766px) {
+    width: 30px;
+    height: 25px;
+    margin-left: 0px;
+  }
+  @media (min-width: 767px) and (max-width: 900px) {
     width: 35px;
-  height: 30px;
-  margin-left: 0px;
+    height: 30px;
+    margin-left: 0px;
   }
   @media (min-width: 901px) and (max-width: 1100) {
-     width: 40px;
-  height: 35px;
-  margin-left: 8px;
+    width: 40px;
+    height: 35px;
+    margin-left: 8px;
   }
   @media (min-width: 1100px) {
-   width: 40px;
-  height: 35px;
-  margin-left: 8px;
+    width: 40px;
+    height: 35px;
+    margin-left: 12px;
   }
- 
 `;
 const Span = styled.span`
   font-size: 15px;
@@ -63,10 +62,10 @@ const Span = styled.span`
   margin-top: 2px;
 `;
 const Search = styled.input`
-@media (max-width:766px){
-  width:100px
-}
-  @media (min-width:767px) and (max-width: 900px) {
+  @media (max-width: 766px) {
+    width: 100px;
+  }
+  @media (min-width: 767px) and (max-width: 900px) {
     width: 150px;
   }
   @media (min-width: 901px) and (max-width: 1100) {
@@ -104,24 +103,30 @@ const Button = styled.button`
 
 const Advancesearch = styled.button`
   font-family: Raleway;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   color: #a7afff;
-  margin-left: 2px;
+  margin-left: 4px;
   margin-top: 3px;
   font-weight: 600;
   background: transparent;
   border: none;
   text-decoration: none;
-  letter-spacing:0.5px;
+  letter-spacing: 0.5px;
 `;
 
 const About = styled.text`
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
   background: transparent;
-  letter-spacing: 0.6px;
+  font-family: Raleway;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  margin-right: 26px;
 `;
 const Line = styled.div`
   height: 20px;
@@ -130,7 +135,7 @@ const Line = styled.div`
 `;
 const Archive = styled.button`
   font-family: Raleway;
-  font-size: 12px;
+  font-size: 14px;
   color: #3366ff;
   font-weight: bold;
   background: transparent;
@@ -147,7 +152,7 @@ const UnorderedList = styled.ul`
   width: 140px;
   margin-left: 10px;
   border-radius: 4px;
-  z-index:1;
+  z-index: 1;
 `;
 const List = styled.li`
   margin-top: 4px;
@@ -178,19 +183,15 @@ const ArrowUpIcon = styled.span`
 `;
 
 const Display = styled.div`
-@media (min-width:0px) and (max-width: 767px) {
-   display: none;
- }
-
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: none;
+  }
 `;
 
-
-
 export default function HeaderComponent(props) {
-
   const CheckMode = (mode) => {
-    props.CheckMode(mode)
-  }
+    props.CheckMode(mode);
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleClickforadvancedsearch = () => {
@@ -198,7 +199,6 @@ export default function HeaderComponent(props) {
   };
   return (
     <Container>
-  
       <SubContainer1>
         <Image src="../../images/TwitterS.svg" alt="image" />
         <Span>Twitter D-App</Span>
@@ -211,25 +211,24 @@ export default function HeaderComponent(props) {
           />
         </Button>
         {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
-    
+
         <Advancesearch onClick={handleClickforadvancedsearch}>
           Advance Search
         </Advancesearch>
-     
       </SubContainer1>
-    
 
       <Display>
-      <SubContainer2>
-        <About><a href="/about">About</a></About>
-        <FFButton />
-        <Line> </Line>
-        <Archive href="#">Tweet Archive</Archive>
-        <DarkMode CheckMode={CheckMode} />
-      </SubContainer2>
+        <SubContainer2>
+          <About>
+            <a href="/about">About</a>
+          </About>
+          <FFButton />
+          <Line> </Line>
+          <Archive href="#">Tweet Archive</Archive>
+          <DarkMode CheckMode={CheckMode} />
+        </SubContainer2>
       </Display>
-
-    </Container >
+    </Container>
   );
 }
 function RenderDropdown() {
@@ -290,7 +289,7 @@ function FFButton() {
         class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "13px" }}
+        style={{ fontSize: "15px" }}
       >
         Share
         {show ? (
