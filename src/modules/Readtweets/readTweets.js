@@ -38,8 +38,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-7%",
     marginRight: "1.5%",
     // height: 'auto'
-    height: '784px',
-  
+    height: "784px",
   },
 
   paper_dark_mode: {
@@ -49,8 +48,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     // height: 'auto'
-    height: '784px',
-
+    height: "784px",
   },
 
   tweetnumber: {
@@ -78,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "18px",
     fontWeight: "600",
     marginRight: "17px",
     fontStretch: "normal",
@@ -141,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
-    marginRight: '18px'
+    marginRight: "18px",
   },
 
   content_dark_mode: {
@@ -160,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     backgroundColor: "#191d43",
     marginLeft: "18px",
-    marginRight: '18px'
+    marginRight: "18px",
   },
 
   time: {
@@ -248,6 +246,7 @@ const useStyles = makeStyles((theme) => ({
     height: "0px",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
+    border: "solid 0.5px #343965",
   },
 
   hr_page_dark_mode: {
@@ -256,10 +255,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#8290a4",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
+    border: "solid 0.5px #343965",
   },
-
 }));
-
 
 export default function ReadTweets(props) {
   const classes = useStyles();
@@ -300,7 +298,6 @@ export default function ReadTweets(props) {
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
           >
-          
             <Column>
               <Row className={classes.row}>
                 <Typography
@@ -353,13 +350,23 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT");
 
-                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                  function shortenTrend(
+                    b,
+                    amountL = 10,
+                    amountR = 3,
+                    stars = 3
+                  ) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 100, amountR = 3, stars = 3) {
+                  function shortenValue(
+                    b,
+                    amountL = 100,
+                    amountR = 3,
+                    stars = 3
+                  ) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
@@ -422,7 +429,6 @@ export default function ReadTweets(props) {
             <br />
             <br />
             <br />
-            
           </Paper>
         </div>
       </Grid>

@@ -130,7 +130,7 @@ const About = styled.text`
 `;
 const Line = styled.div`
   height: 20px;
-  border-left: 2px solid #2c326a;
+  border-left: 0.5px solid #2c326a;
   margin-right: 4px;
 `;
 const Archive = styled.button`
@@ -174,7 +174,7 @@ const AnchorTag = styled.a`
   }
 `;
 const Border = styled.div`
-  border: solid 1px #353b73;
+  border: solid 0.5px #353b73;
 `;
 const ArrowUpIcon = styled.span`
   margin-left: 4px;

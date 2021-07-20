@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "52.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "18px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -71,7 +71,8 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "52.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "18px",
+
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -235,6 +236,7 @@ const useStyles = makeStyles((theme) => ({
     height: "0px",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
+    border: "solid 0.5px #343965",
   },
 
   hr_page_dark_mode: {
@@ -243,6 +245,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#8290a4",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
+    border: "solid 0.5px #343965",
   },
 }));
 
@@ -329,6 +332,7 @@ export default function SavedTweets(props) {
                   }
                 >
                   {/* {value} */}
+                  800k
                 </Paper>
               </Row>
               {savedTweets &&

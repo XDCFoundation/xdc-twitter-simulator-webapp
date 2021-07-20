@@ -69,10 +69,11 @@ const MapChart = (props) => {
               <text
                 filter="url(#rounded-corners)"
                 font-size="16"
-                fontWeight="500"
+                fontWeight="600"
                 alignment-baseline="middle"
                 y="30"
                 x="20"
+                wordSpacing="9px"
                 style={{ fill: "#ffffff" }}
               >
                 {name}

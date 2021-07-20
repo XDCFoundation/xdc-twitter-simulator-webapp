@@ -453,6 +453,7 @@ export default function MainComponent(props) {
                             <span
                               style={{
                                 color: "#0d0e2d",
+
                                 fontSize: "11px",
                                 fontWeight: "600",
                                 fontFamily: "Raleway",
@@ -500,7 +501,7 @@ export default function MainComponent(props) {
                       fontFamily: "Raleway",
                       fontStretch: "normal",
                       fontStyle: "normal",
-                      lineHeight: "1.17",
+                      lineHeight: 1.17,
                       letterSpacing: "normal",
                     }}
                   >
