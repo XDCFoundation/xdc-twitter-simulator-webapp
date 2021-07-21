@@ -9,6 +9,7 @@ import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
+import leafletMap from "./leaflet";
 import NodeChart from "./nodeMap";
 import Tippy from "@tippyjs/react";
 import axios from "axios";
@@ -481,7 +482,7 @@ export default function MainComponent(props) {
             <Paper className={props.dark ? classes.top_dark_mode : classes.top}>
               <Trending>
                 <div>
-                  <MapChart dark={dark} />
+                  <leafletMap dark={dark} />
                 </div>
               </Trending>
             </Paper>

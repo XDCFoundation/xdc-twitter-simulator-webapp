@@ -83,6 +83,12 @@ input:focus {
 .cursor-pointer {
   cursor: pointer;
 }
+.leaflet-container{
+  width: 500px;
+  height: 500px;
+  
+
+}
 
 .cursor-default {
   cursor: default;

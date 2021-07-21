@@ -43,13 +43,17 @@ const MapChart = (props) => {
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => (
-              <Geography key={geo.rsmKey} geography={geo} />
+              <Geography key={geo.rsmKey} geography={geo}  style={{
+                default: { outline: "none" },
+                hover: { outline: "none" },
+                pressed: { outline: "none" },
+              }} />
             ))
           }
         </Geographies>
-        {hashtag.map(({ name, coordinates, markerOffset }) => (
-          <Marker key={name} coordinates={coordinates}>
-            <svg width="100%" height="100%" opacity="0.5">
+        {hashtag.map(({ name, coordinates }) => (
+          <Marker key={name} coordinates={coordinates}  style={{zIndex:9999}}>
+            <svg width="100%" height="100%" opacity="0.5" >
               <defs>
                 <filter
                   id="rounded-corners"
@@ -73,7 +77,7 @@ const MapChart = (props) => {
                 alignment-baseline="middle"
                 y="30"
                 x="20"
-                style={{ fill: "#ffffff" }}
+                style={{ fill: "#ffffff"}}
               >
                 {name}
               </text>
