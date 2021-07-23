@@ -25,7 +25,7 @@ const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
   width: 14px;
-  margin-top: 2px;
+  // margin-top: 2px;
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -524,6 +524,11 @@ export default function MainComponent(props) {
                                 color: "#0d0e2d",
                                 fontSize: "11px",
                                 fontWeight: "600",
+                                fontFamily: "Raleway",
+                                fontStretch: "normal",
+                                fontStyle: "normal",
+                                lineHeight: "1.17",
+                                letterSpacing: "normal",
                               }}
                             >
                               The speed of the current and maximum transactions
@@ -552,19 +557,24 @@ export default function MainComponent(props) {
             >
               Top 20 trending
               <Tippy
-                placement={"right"}
+                placement={"top-start"}
                 theme={"light"}
-                maxWidth={300}
+                maxWidth={340}
                 content={
                   <span
                     style={{
                       color: "#0d0e2d",
                       fontSize: "11px",
                       fontWeight: "600",
+                      fontFamily: "Raleway",
+                      fontStretch: "normal",
+                      fontStyle: "normal",
+                      lineHeight: "1.17",
+                      letterSpacing: "normal",
                     }}
                   >
                     This twitter decentralized application pertually records the
-                    top 20 hashtags on Twitter on to the XDC
+                    top 20 hashtags on Twitter on to the XDC Network blockchain.
                   </span>
                 }
               >
@@ -600,9 +610,7 @@ export default function MainComponent(props) {
               <ReadTweets dark={dark} />
             </ReadGraphTrend>
           </Grid>
-
         </Grid>
-
       </div>
     </div>
   );
