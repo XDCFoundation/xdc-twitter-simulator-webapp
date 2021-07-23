@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
-    // height: 'auto'
-    height: '784px',
+    height: 'auto'
+    // height: '784px',
 
   },
   paper_dark_mode: {
@@ -46,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "3.6%",
     backgroundColor: "#191d43",
     color: "white",
-    // height: 'auto'
-    height: '784px',
+    height: 'auto'
+    // height: '784px',
   },
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "52.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "17px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "52.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "17px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -251,6 +251,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SavedTweets(props) {
   const classes = useStyles();
   const [savedTweets, setSavedTweets] = useState([]);
+  const [totalSave, setTotalSave] = useState([]);
   useEffect(() => {
     fetchSavedTweets();
     setInterval(() => {
@@ -275,17 +276,27 @@ export default function SavedTweets(props) {
         )
           tweetResponse = [];
            
-        else tweetResponse = res.data.responseData[0] || res.data.responseData[1];
+        else tweetResponse = res.data.responseData[0];
+        tweetCount =  res.data.responseData[1];
         // else tweetResponse = res.data.responseData[1] || res.data.responseData[0];
         setSavedTweets(tweetResponse);
-        // setSavedTweets(res.data.responseData[1]);
-        let value=res.data.responseData[1];
-        console.log("letsssssssssssssss chek",tweetResponse);
+        setTotalSave(tweetCount)
+        console.log("saveTweets------",tweetResponse);
+         console.log('totalSavetweets------',tweetCount)
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
+  // if((totalSave.tweetsInDb)>1000)
+  // {
+    let savemethod= parseInt(totalSave.tweetsInDb/1000)
+    let save= totalSave.tweetsInDb
+  //   console.log(savemethod)
+  // }
+  // console.log('savemethod------',savemethod)
+
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
@@ -324,6 +335,7 @@ export default function SavedTweets(props) {
                     <IconImg src="../../images/ic.png" />
                   </Tippy>
                 </Typography>
+
                 <Paper
                   variant="h5"
                   className={
@@ -332,8 +344,9 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                {/* {value} */}
+     { totalSave.tweetsInDb>1000  ? parseInt(totalSave.tweetsInDb/1000)+'k': (totalSave.tweetsInDb) }
                 </Paper>
+
               </Row>
                 {savedTweets &&
                 savedTweets.length >= 1 &&
@@ -354,7 +367,7 @@ export default function SavedTweets(props) {
                     b.length
                   )}`;
                 }
-                function shortenValue(b, amountL = 100, stars = 3) {
+                function shortenValue(b, amountL = 80, stars = 3) {
                   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                     // b.length - 3,
                     b.length
@@ -400,7 +413,7 @@ export default function SavedTweets(props) {
                             }
                             gutterBottom
                           >
-                            {shortenValue(value)}
+                            {shortenValue(tweetTextMessage)}
                           </Paper>
                         </ThemeProvider>
                       </Column>

@@ -37,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginRight: "1.5%",
-    // height: 'auto'
-    height: '784px',
-  
+    height: 'auto'
+    // height: '784px',
+
   },
 
   paper_dark_mode: {
@@ -48,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "1.5%",
     backgroundColor: "#191d43",
     color: "white",
-    // height: 'auto'
-    height: '784px',
+    height: 'auto'
+    // height: '784px',
 
   },
 
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "17px",
     marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "17px",
     fontWeight: "600",
     marginRight: "17px",
     fontStretch: "normal",
@@ -264,6 +264,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
   const [readtweets, setReadTweets] = useState([]);
+  const [totaltweets, setTotalTweets] = useState([]);
 
   useEffect(() => {
     fetchTweets();
@@ -277,6 +278,7 @@ export default function ReadTweets(props) {
 
       .then((res) => {
         let tweetResponse;
+        let alltweets;
         if (
           !res ||
           !res.data ||
@@ -285,12 +287,20 @@ export default function ReadTweets(props) {
         )
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
+        alltweets = res.data.responseData[1]
         setReadTweets(tweetResponse);
+        setTotalTweets(alltweets);
+        console.log('readtweets-----------', tweetResponse)
+        console.log('totalReadtweets-----------', alltweets)
+      
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  // let method= parseInt(totaltweets.tweetsInDb/1000)
+  // console.log('method------',method)
 
   return (
     <Grid Container spacing={3}>
@@ -300,7 +310,7 @@ export default function ReadTweets(props) {
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
           >
-          
+
             <Column>
               <Row className={classes.row}>
                 <Typography
@@ -330,7 +340,8 @@ export default function ReadTweets(props) {
                     <IconImg src="../../images/ic.png" />
                   </Tippy>
                 </Typography>
-                <Paper
+
+                    <Paper
                   variant="h5"
                   className={
                     props.dark
@@ -338,8 +349,10 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  740k
+                  {/* {method}k */}
+                  { totaltweets.tweetsInDb>1000  ? parseInt(totaltweets.tweetsInDb/1000)+'k': (totaltweets.tweetsInDb) }
                 </Paper>
+
               </Row>
               {readtweets &&
                 readtweets.length >= 1 &&
@@ -349,7 +362,7 @@ export default function ReadTweets(props) {
                   const atIndex = value.indexOf("@");
                   let trending = value.slice(atIndex, colonIndex);
                   let tweetText = value.split(":")[1];
-                  let str = response.created_at;
+                  let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT");
 
@@ -359,7 +372,7 @@ export default function ReadTweets(props) {
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 100, amountR = 3, stars = 3) {
+                  function shortenValue(b, amountL = 80, amountR = 3, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
@@ -422,7 +435,7 @@ export default function ReadTweets(props) {
             <br />
             <br />
             <br />
-            
+
           </Paper>
         </div>
       </Grid>

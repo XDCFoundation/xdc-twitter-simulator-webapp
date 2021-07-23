@@ -123,6 +123,15 @@ const About = styled.text`
   background: transparent;
   letter-spacing: 0.6px;
 `;
+
+const Contact = styled.text`
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: transparent;
+  letter-spacing: 0.6px;
+`;
+
 const Line = styled.div`
   height: 20px;
   border-left: 2px solid #2c326a;
@@ -222,6 +231,8 @@ export default function HeaderComponent(props) {
       <Display>
       <SubContainer2>
         <About><a href="/about">About</a></About>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Contact><a href="https://xinfin.org/contactus">Contact</a></Contact>
         <FFButton />
         <Line> </Line>
         <Archive href="#">Tweet Archive</Archive>
