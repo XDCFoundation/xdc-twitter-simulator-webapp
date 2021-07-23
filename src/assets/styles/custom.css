@@ -587,6 +587,20 @@ input:focus {
   letter-spacing: 0.59px;
 }
 
+.cross-parent{
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  flex-grow: 0.94;
+}
+
+.cross-image{
+  cursor: pointer;
+  width: 24;
+  height: 24;
+  color: white;
+}
+
 .cards {
   /* width : 100%; */
   margin: 0 auto;
@@ -784,3 +798,4 @@ input:focus {
   height: 24px;
   width: 24px;
 }
+

@@ -9,31 +9,7 @@ export default class WebSocketCountNode extends Component {
     componentDidMount() {
         this.getValue()
     }
-    getValue = () => {
-        let test = {}
-        client.onopen = () => {
-            console.log("connect")
-        }
-        client.onmessage = async (event)=> {
-            var msg = JSON.parse(event.data)
-            if (msg.action === 'stats') {
-                if (msg.data.id in test) {
-                    return
-                } else {
-                    test[msg.data.id] = msg.data.stats.active
-                    await this.setState({ value: Object.keys(test).length })
-                }
-            }
-        }
-        client.onclose = async (event) => {
-            if (event.wasClean) {
-                console.log(`Number of Active Nodes = ${Object.keys(test).length}`)
-                // await this.setState({ value: Object.keys(test).length })
-            } else {
-                console.log('[close] Connection died')
-            }
-        }
-    }
+   
 
     render() {
         return (

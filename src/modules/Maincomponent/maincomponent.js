@@ -16,8 +16,11 @@ import axios from "axios";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
+// import React, { Component } from "react";
+import { w3cwebsocket as W3CWebSocket } from "websocket"
+const client = new W3CWebSocket("wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0")
 
-import WebSocketCountNode from "./webSocket";
+// import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
@@ -264,14 +267,19 @@ const ReadGraphTrend = styled.div`
 
 export default function MainComponent(props) {
   const classes = useStyles();
-
+  const [value, setValue] = useState([]);
+  const [nodes, setNodes] = useState([]);
   const [count, setCount] = useState({});
+
+
   useEffect(() => {
     fetchCount();
+    getValue();
     setInterval(() => {
       fetchCount();
     }, 15000);
   }, []);
+
   const fetchCount = () => {
     axios
       .get(
@@ -280,15 +288,74 @@ export default function MainComponent(props) {
       .then((res) => {
         // console.log(res.data.responseData)
         setCount(res.data.responseData);
-        let result = (res.data.responseData.totalTransactions)/60
-        console.log("total trans", result)
+        // let result = (res.data.responseData.totalTransactions) / 60
+        // console.log("total trans", result)
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
+//socket-Function ---->
+  const getValue = () => {
+    let test = {}
+    client.onopen = () => {
+      console.log("connect")
+    }
+    client.onmessage = async (event) => {
 
+      var msg = JSON.parse(event.data)
+      if (msg.action === 'stats') {
+        if (msg.data.id in test) {
+          return
+        } else {
+          test[msg.data.id] = msg.data.stats.active
 
+          //for socket ip counts---->
+          let data= Object.keys(test)
+          var arr = []
+          if (data) {
+            data.map(item => {
+
+              if (item[item.length - 1] == ")") {
+                var start = item.lastIndexOf("(") + 1
+                var end = item.length - 1
+                var result = item.substring(start, end)
+                arr.push(result)
+              } else {
+                var start = item.lastIndexOf("-") + 1
+                var end = item.length - 1
+                var result = item.substr(start, end)
+                arr.push(result)
+
+              }
+
+            })
+          }
+          console.log('obj------', data)
+
+          let newarray = arr.filter(element => element !== 'Click');
+          console.log("ip result---", newarray);
+          setValue(newarray)
+
+           //for socket total nodes ---->
+          let nodecount = Object.keys(test).length
+          console.log('nodecount-----', nodecount)
+          setNodes(nodecount)
+        }
+      }
+    }
+    client.onclose = async (event) => {
+      if (event.wasClean) {
+        console.log(`Number of Active Nodes = ${Object.keys(test).length}`)
+        setNodes(Object.keys(test).length)
+      } else {
+        console.log('[close] Connection died')
+      }
+    }
+  }
+
+//for Night mode-->
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
   };
@@ -438,7 +505,8 @@ export default function MainComponent(props) {
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br /> <WebSocketCountNode />
+                        <br />
+                        {nodes}
                       </div>
                       <div
                         className={
@@ -466,10 +534,10 @@ export default function MainComponent(props) {
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
                         <br />
-                     {count.totalTransactions}/1000
+                        {count.totalTransactions}/1000
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
-                        <NodeChart dark={dark} />
+                        <NodeChart dark={dark} ipcount={value} />
                       </div>
                     </div>
                   </Paper>
