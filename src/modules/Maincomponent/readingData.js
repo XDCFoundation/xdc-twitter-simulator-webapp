@@ -1,64 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from '@nivo/line';
 import '../../assets/styles/custom.css';
- 
+import axios from 'axios';
+import moment from 'moment';
+
 // const point={}
- 
-const data = [
-    {
-        id: "japan",
-        data: [
-            {
-                "x": "plane",
-                "y": 266
-            },
-            {
-                "x": "helicopter",
-                "y": 34
-            },
-            {
-                "x": "boat",
-                "y": 67
-            },
-            {
-                "x": "train",
-                "y": 27
-            },
-            {
-                "x": "subway",
-                "y": 238
-            },
-            {
-                "x": "bus",
-                "y": 252
-            },
-            {
-                "x": "car",
-                "y": 83
-            },
-            {
-                "x": "moto",
-                "y": 68
-            },
-            {
-                "x": "bicycle",
-                "y": 131
-            },
-            {
-                "x": "horse",
-                "y": 11
-            },
-            {
-                "x": "skateboard",
-                "y": 240
-            },
-            {
-                "x": "others",
-                "y": 273
-            }
-        ]
-    },
-]
+
 const ReadingData = ({ data }) => (
     <ResponsiveLine
         data={data}
@@ -87,11 +34,46 @@ const ReadingData = ({ data }) => (
         legends={[]}
     />
 )
- 
+
 export default function App() {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        setInterval(() => {
+            axios
+                .get(
+                    "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/writing-speed"
+                )
+                .then((result) => {
+                    console.log('result-----', result.data.responseData)
+                    // setData(res.data.responseData);
+                    var arr = [{
+                        id: "Write-graph",
+                        // color: "hsl(248, 70%, 50%)",
+                        data: []
+                    }]
+                    var resultData = []
+
+                    result.data.responseData.map(items => {
+                        let transaction = items.totalTransactions / items.duration
+                        resultData.push({
+                            x: moment(items.startTime * 1000).format('LT'),
+                            y: transaction
+                        })
+
+                    })
+                    let graphdata = resultData
+                    console.log('graph----', graphdata.reverse())
+                    arr[0].data = resultData
+                    setData(arr)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+        }, 5000);
+    }, []);
 
 
- 
     return (
         <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
             <ReadingData data={data} />
