@@ -116,7 +116,7 @@ const Advancesearch = styled.button`
 `;
 
 const About = styled.text`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
   background: transparent;
@@ -130,7 +130,7 @@ const About = styled.text`
 `;
 
 const Contact = styled.text`
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
   background: transparent;
@@ -209,7 +209,9 @@ export default function HeaderComponent(props) {
   return (
     <Container>
       <SubContainer1>
+        <a href="/">
         <Image src="../../images/TwitterS.svg" alt="image" />
+        </a>
         <Span>Twitter D-App</Span>
         <Search type="text" placeholder="Search by Handle name, Hash tag" />
         <Button>
@@ -228,9 +230,9 @@ export default function HeaderComponent(props) {
 
       <Display>
       <SubContainer2>
-        <About><a href="/about">About</a></About>
+        <About><a style={{color: 'white'}} href="/about">About</a></About>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Contact><a href="https://xinfin.org/contactus">Contact</a></Contact>
+        <Contact><a style={{color: 'white'}} href="https://xinfin.org/contactus">Contact</a></Contact>
         <FFButton />
         <Line> </Line>
         <Archive href="#">Tweet Archive</Archive>

@@ -93,7 +93,7 @@ export default function App() {
 
  
     return (
-        <div style={{ height: 70 }}>
+        <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
             <ReadingData data={data} />
         </div>
     );
