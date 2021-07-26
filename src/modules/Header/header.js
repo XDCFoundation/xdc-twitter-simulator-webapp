@@ -116,7 +116,7 @@ const Advancesearch = styled.button`
 `;
 
 const About = styled.text`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
   background: transparent;
@@ -128,6 +128,15 @@ const About = styled.text`
   text-align: left;
   margin-right: 6px;
 `;
+
+const Contact = styled.text`
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: transparent;
+  letter-spacing: 0.6px;
+`;
+
 const Line = styled.div`
   height: 20px;
   border-left: 2px solid #2c326a;
@@ -200,7 +209,9 @@ export default function HeaderComponent(props) {
   return (
     <Container>
       <SubContainer1>
+        <a href="/">
         <Image src="../../images/TwitterS.svg" alt="image" />
+        </a>
         <Span>Twitter D-App</Span>
         <Search type="text" placeholder="Search by Handle name, Hash tag" />
         <Button>
@@ -218,15 +229,15 @@ export default function HeaderComponent(props) {
       </SubContainer1>
 
       <Display>
-        <SubContainer2>
-          <About>
-            <a href="/about">About</a>
-          </About>
-          <FFButton />
-          <Line> </Line>
-          <Archive href="#">Tweet Archive</Archive>
-          <DarkMode CheckMode={CheckMode} />
-        </SubContainer2>
+      <SubContainer2>
+        <About><a style={{color: 'white'}} href="/about">About</a></About>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Contact><a style={{color: 'white'}} href="https://xinfin.org/contactus">Contact</a></Contact>
+        <FFButton />
+        <Line> </Line>
+        <Archive href="#">Tweet Archive</Archive>
+        <DarkMode CheckMode={CheckMode} />
+      </SubContainer2>
       </Display>
     </Container>
   );

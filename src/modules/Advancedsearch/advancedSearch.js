@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
+import CloseIcon from '@material-ui/icons/Close';
 const Advanced = styled.span`
   font-family: Raleway;
   font-size: 22px;
@@ -103,25 +104,25 @@ const Button = styled.button`
   margin-bottom: 56px;
 `;
 const Words = styled.span`
-  font-family: Raleway;
-  margin-top: 35px;
-  margin-left: 68px;
-  margin-bottom: 15px;
-  font-size: 18px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.17;
-  letter-spacing: normal;
-  text-align: left;
-  color: #f8f8fa;
-`;
-const Img = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-left: auto;
-  margin-top: 10px;
-`;
+ font-family: Raleway; margin-top: 35px;
+margin-left: 68px;
+     margin-bottom: 15px;
+   font-size: 18px;
+   font-weight: 500;
+   font-stretch: normal;
+   font-style: normal;
+   line-height: 1.17;
+   letter-spacing: normal;
+   text-align: left;
+   color: #f8f8fa;
+  `;
+// const Img = styled.img`
+//   width: 16px;
+//   height: 16px;
+//   margin-left:auto;
+//   margin-top:10px;
+// `;
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -151,12 +152,11 @@ export default function MaxWidthDialog(props) {
           <Column>
             <Row>
               <Advanced>Advanced Search</Advanced>
-              <Img
-                style={{ cursor: "pointer" }}
-                src="/images/cut.svg"
-                onClick={props.clicked}
-              ></Img>
-            </Row>
+              {/* <Img style={{ cursor: 'pointer', width: 30, height: 30, }} src="/images/cut.svg" onClick={props.clicked}>   </Img> */}
+              <div className="cross-parent">
+               <div className="cross-image" onClick={props.clicked}> <CloseIcon/> </div>
+               </div>
+           </Row>
             <Words>Words</Words>
             <Inputallwords placeholder="All of the words" />
             <Inputhashtags placeholder="Hashtags" />

@@ -36,8 +36,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
-    // height: 'auto'
-    height: "784px",
+    height: 'auto'
+    // height: '784px',
+
   },
   paper_dark_mode: {
     color: theme.palette.text.secondary,
@@ -45,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "3.6%",
     backgroundColor: "#191d43",
     color: "white",
-    // height: 'auto'
-    height: "784px",
+    height: 'auto'
+    // height: '784px',
   },
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "52.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "17px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "52.5%",
     fontSize: "26px",
-    marginTop: "12px",
+    marginTop: "17px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -249,6 +250,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SavedTweets(props) {
   const classes = useStyles();
   const [savedTweets, setSavedTweets] = useState([]);
+  const [totalSave, setTotalSave] = useState([]);
   useEffect(() => {
     fetchSavedTweets();
     setInterval(() => {
@@ -271,158 +273,165 @@ export default function SavedTweets(props) {
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-        else
-          tweetResponse = res.data.responseData[0] || res.data.responseData[1];
+           
+        else tweetResponse = res.data.responseData[0];
+        tweetCount =  res.data.responseData[1];
         // else tweetResponse = res.data.responseData[1] || res.data.responseData[0];
         setSavedTweets(tweetResponse);
-        // setSavedTweets(res.data.responseData[1]);
-        let value = res.data.responseData[1];
-        console.log("letsssssssssssssss chek", tweetResponse);
+        setTotalSave(tweetCount)
+        console.log("saveTweets------",tweetResponse);
+         console.log('totalSavetweets------',tweetCount)
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
+  // if((totalSave.tweetsInDb)>1000)
+  // {
+    let savemethod= parseInt(totalSave.tweetsInDb/1000)
+    let save= totalSave.tweetsInDb
+  //   console.log(savemethod)
+  // }
+  // console.log('savemethod------',savemethod)
+
   return (
     <Grid Container spacing={3}>
-      <Grid item xs={12}>
-        <div>
-          <Paper
-            className={props.dark ? classes.paper_dark_mode : classes.paper}
-            elevation={0}
-          >
-            <Column>
-              <Row className={classes.row}>
-                <Typography
-                  className={
-                    props.dark ? classes.readtweet_dark_mode : classes.readtweet
-                  }
-                  variant="h5"
-                  style={{ whiteSpace: "nowrap" }}
-                >
-                  Saved Tweets
-                  <Tippy
-                    placement={"right"}
-                    theme={"light"}
-                    maxWidth={"none"}
-                    content={
-                      <span
-                        style={{
-                          color: "#0d0e2d",
-                          fontSize: "11px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Number of tweets saved in d-app platform
-                      </span>
-                    }
-                  >
-                    <IconImg src="../../images/ic.png" />
-                  </Tippy>
-                </Typography>
-                <Paper
-                  variant="h5"
-                  className={
-                    props.dark
-                      ? classes.tweetnumber_dark_mode
-                      : classes.tweetnumber
+    <Grid item xs={12}>
+      <div>
+        <Paper
+          className={props.dark ? classes.paper_dark_mode : classes.paper}
+          elevation={0}
+        >
+
+          <Column>
+            <Row className={classes.row}>
+              <Typography
+                className={
+                  props.dark ? classes.readtweet_dark_mode : classes.readtweet
+                }
+                variant="h5"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                Saved Tweets
+                <Tippy
+                  placement={"right"}
+                  theme={"light"}
+                  maxWidth={"none"}
+                  content={
+                    <span
+                      style={{
+                        color: "#0d0e2d",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                      }}
+                    >
+                      Number of tweets saved in d-app platform
+                    </span>
                   }
                 >
-                  {/* {value} */}
-                </Paper>
-              </Row>
+                  <IconImg src="../../images/ic.png" />
+                </Tippy>
+              </Typography>
+
+              <Paper
+                variant="h5"
+                className={
+                  props.dark
+                    ? classes.tweetnumber_dark_mode
+                    : classes.tweetnumber
+                }
+              >
+   { totalSave.tweetsInDb>1000  ? parseInt(totalSave.tweetsInDb/1000)+'k': (totalSave.tweetsInDb) }
+              </Paper>
+
+            </Row>
               {savedTweets &&
-                savedTweets.length >= 1 &&
-                savedTweets.map((response) => {
-                  let value = response.tweetMessage;
-                  const colonIndex = value.indexOf(":");
-                  const atIndex = value.indexOf("@");
-                  let handler = value.slice(atIndex, colonIndex);
-                  let tweetTextMessage = value.split(":")[1];
-                  let str = response.addedOn;
-                  let timeFormat = moment(str);
-                  let time = timeFormat.format("LT");
-                  // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
+              savedTweets.length >= 1 &&
+              savedTweets.map((response) => {
+              let value = response.tweetMessage;
+              const colonIndex = value.indexOf(":");
+              const atIndex = value.indexOf("@");
+              let handler = value.slice(atIndex, colonIndex);
+              let tweetTextMessage = value.split(":")[1];
+              let str = response.addedOn;
+              let timeFormat = moment(str);
+              let time = timeFormat.format("LT");
+              // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
-                  function shortenTrend(
-                    b,
-                    amountL = 10,
-                    amountR = 3,
-                    stars = 3
-                  ) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
-                  function shortenValue(b, amountL = 100, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
-                  return (
-                    <>
-                      <hr
-                        className={
-                          props.dark
-                            ? classes.hr_page_dark_mode
-                            : classes.hr_page
-                        }
-                      />
-                      <Row>
-                        <Typography
-                          variant="h6"
-                          className={
-                            props.dark ? classes.name_dark_mode : classes.name
-                          }
-                        >
-                          {/* {response.blockNumber} */}
-                        </Typography>
-                        <Paper
-                          className={
-                            props.dark ? classes.time_dark_mode : classes.time
-                          }
-                        >
-                          {time}
-                        </Paper>
-                      </Row>
-
-                      <Row>
-                        <Column>
-                          <Typography className={classes.email}>
-                            {shortenTrend(handler)}
-                          </Typography>
-                          <ThemeProvider theme={theme}>
-                            <Paper
-                              noWrap
-                              className={
-                                props.dark
-                                  ? classes.content_dark_mode
-                                  : classes.content
-                              }
-                              gutterBottom
-                            >
-                              {shortenValue(value)}
-                            </Paper>
-                          </ThemeProvider>
-                        </Column>
-                      </Row>
-                    </>
-                  );
-                })}
-            </Column>
-            <hr
-              className={
-                props.dark ? classes.hr_page_dark_mode : classes.hr_page
+              function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                  // b.length - 3,
+                  b.length
+                )}`;
               }
-            />
-            <br />
-            <br />
-            <br />
-          </Paper>
-        </div>
-      </Grid>
+              function shortenValue(b, amountL = 80, stars = 3) {
+                return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                  // b.length - 3,
+                  b.length
+                )}`;
+              }
+              return (
+                <>
+                  <hr
+                    className={
+                      props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                    }
+                  />
+                  <Row>
+                    <Typography
+                      variant="h6"
+                      className={
+                        props.dark ? classes.name_dark_mode : classes.name
+                      }
+                    >
+                      {/* {response.blockNumber} */}
+                    </Typography>
+                    <Paper
+                      className={
+                        props.dark ? classes.time_dark_mode : classes.time
+                      }
+                    >
+                    {time}
+                    </Paper>
+                  </Row>
+
+                  <Row>
+                    <Column>
+                      <Typography className={classes.email}>
+                        {shortenTrend(handler)}
+                      </Typography>
+                      <ThemeProvider theme={theme}>
+                        <Paper
+                          noWrap
+                          className={
+                            props.dark
+                              ? classes.content_dark_mode
+                              : classes.content
+                          }
+                          gutterBottom
+                        >
+                          {shortenValue(tweetTextMessage)}
+                        </Paper>
+                      </ThemeProvider>
+                    </Column>
+                  </Row>
+                </>
+              );
+            })}
+          </Column>
+          <hr
+            className={
+              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+            }
+          />
+          <br />
+          <br />
+          <br />
+
+        </Paper>
+      </div>
     </Grid>
+  </Grid>
   );
 }

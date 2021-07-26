@@ -175,10 +175,15 @@ export default function FooterComponent() {
                         </div>
                         <div className={classes.links}>
                           <ul>
-                            <li className={classes.linksitem}>Archive Tweet</li>
-                            <li className={classes.linksitem}>Share</li>
-                            <li className={classes.linksitem}>Contact us</li>
-                            <li className={classes.linksitem}>Privacy Policy</li>
+                            <li className={classes.linksitem}>
+                             <a style={{color: 'white', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"> Archive Tweet</a>
+                            </li>
+                            <li className={classes.linksitem}>
+                             <a style={{color: 'white', textDecoration: 'none'}} href="https://xinfin.org/contactus">Contact us</a>
+                            </li>
+                            <li className={classes.linksitem}>
+                             <a style={{color: 'white', textDecoration: 'none'}} href="https://xinfin.org/privacy">Privacy Policy</a>
+                            </li>
                           </ul>
                         </div>
                       </div>
@@ -195,45 +200,57 @@ export default function FooterComponent() {
                         <div >
                           <ul className={classes.followlinks}>
                             <li className={classes.followitem}>
+                              <a href="https://twitter.com/XinFin_Official">
                               <img
                                 style={{ height: "20px", width: "20px" }}
                                 src="../../images/twitter.svg"
                               />
+                              </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
+                              <a href="https://www.facebook.com/XinFinHybridBlockchain/">
                               <img
                                 style={{ height: "20px", width: "20px" }}
                                 src="../../images/facebook.svg"
                               />
+                              </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
+                              <a href="https://github.com/XinFinorg">
                               <img
                                 style={{ height: "20px", width: "20px" }}
                                 src="../../images/github.svg"
                               />
+                              </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
+                              <a href="https://www.linkedin.com/company/xinfin/">
                               <img
                                 style={{ height: "20px", width: "20px" }}
                                 src="../../images/linkedin.svg"
                               />
+                               </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
+                              <a href="https://t.me/xinfintalk">
                               <img
                                 style={{ height: "20px", width: "20px" }}
                                 src="../../images/telegram.svg"
                               />
+                               </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
+                              <a href="https://www.reddit.com/r/xinfin/">
                               <img
                                 style={{ height: "20px", width: "20px" }}
                                 src="../../images/reddit.svg"
                               />
+                               </a>
                             </li>
                           </ul>
                         </div>
@@ -244,10 +261,12 @@ export default function FooterComponent() {
                   <Grid className="link-grid-3" item xs={12} sm={4} md={3}>
                     <Paper style={{ backgroundColor: '#191d43', marginLeft: '20px' }} elevation={0}>
                       <div className="powered-paper">
+                        <a href="/">
                         <img style={{ width: '60px', height: '59px' }}
 
                           src="/images/xinfintwitter.png"
                         />
+                        </a>
                         <div className="powered-text">Powered By XDC</div>
                         {/* style={{ marginLeft: '10px', letterSpacing: '0.59px' }} */}
                       </div>
