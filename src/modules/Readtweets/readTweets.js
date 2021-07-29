@@ -265,6 +265,7 @@ export default function ReadTweets(props) {
   const classes = useStyles();
   const [readtweets, setReadTweets] = useState([]);
   const [totaltweets, setTotalTweets] = useState([]);
+  const [authors, setAuthors] = useState({});
 
   useEffect(() => {
     fetchTweets();
@@ -289,17 +290,18 @@ export default function ReadTweets(props) {
         else tweetResponse = res.data.responseData[0];
         alltweets = res.data.responseData[1]
         setReadTweets(tweetResponse);
+
         setTotalTweets(alltweets);
         console.log('readtweets-----------', tweetResponse)
         console.log('totalReadtweets-----------', alltweets)
-      
+
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // let method= parseInt(totaltweets.tweetsInDb/1000)
+  let method = '@user'
   // console.log('method------',method)
 
   return (
@@ -341,7 +343,7 @@ export default function ReadTweets(props) {
                   </Tippy>
                 </Typography>
 
-                    <Paper
+                <Paper
                   variant="h5"
                   className={
                     props.dark
@@ -350,7 +352,7 @@ export default function ReadTweets(props) {
                   }
                 >
                   {/* {method}k */}
-                  { totaltweets.tweetsInDb>1000  ? parseInt(totaltweets.tweetsInDb/1000)+'k': (totaltweets.tweetsInDb) }
+                  {totaltweets.tweetsInDb > 1000 ? parseInt(totaltweets.tweetsInDb / 1000) + 'k' : (totaltweets.tweetsInDb)}
                 </Paper>
 
               </Row>
@@ -358,6 +360,8 @@ export default function ReadTweets(props) {
                 readtweets.length >= 1 &&
                 readtweets.map((response) => {
                   let value = response.text;
+                  // let author = response.authorId;
+                  // console.log('auuthorId----',author)
                   const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
                   let trending = value.slice(atIndex, colonIndex);
@@ -378,6 +382,25 @@ export default function ReadTweets(props) {
                       b.length
                     )}`;
                   }
+
+
+
+                  // axios
+                  //   .get(
+                  //     "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/username?id="+author
+                  //   )
+                  //   .then((res) => {
+                  //     console.log('Authors--------',res.data.responseData)
+                  //     setAuthors(res.data.responseData);
+                  //     let name = res.data.responseData
+                  //     let naming = name.data
+                  //     console.log('myname-------',naming)
+                  //   })
+                  //   .catch((err) => {
+                  //     console.log(err);
+                  //   });
+                  
+
                   return (
                     <>
                       <hr
@@ -406,7 +429,8 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {shortenTrend(trending)}
+
+                            {trending ? shortenTrend(trending) : shortenTrend(method)}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
