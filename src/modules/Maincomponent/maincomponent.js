@@ -269,21 +269,27 @@ export default function MainComponent(props) {
   const classes = useStyles();
   const [value, setValue] = useState([]);
   const [nodes, setNodes] = useState([]);
+
   const [count, setCount] = useState({});
+  const [maxtpsvalue, setMaxtpsValue] = useState({});
 
 
   useEffect(() => {
     fetchCount();
+    fetchTps();
     getValue();
     setInterval(() => {
-      fetchCount();
-    }, 15000);
+     fetchCount();
+    //  fetchTps();
+   }, 30000);
   }, []);
+
+  //for count of tps: 
 
   const fetchCount = () => {
     axios
       .get(
-        "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/tps-counter"
+        "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/tps-calculate"
       )
       .then((res) => {
         // console.log(res.data.responseData)
@@ -295,6 +301,24 @@ export default function MainComponent(props) {
         console.log(err);
       });
   };
+
+  //for Max-Tps count: 
+
+  const fetchTps = () => {
+    axios
+      .get(
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/max-tps-count"
+      )
+      .then((res) => {
+        console.log('maxtpscount-------', res.data)
+        setMaxtpsValue(res.data);
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   
 //socket-Function ---->
   const getValue = () => {
@@ -366,6 +390,7 @@ export default function MainComponent(props) {
     localStorage.setItem("mode", JSON.stringify(dark));
     setMode(props.dark);
   }, [props.dark]);
+
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -539,7 +564,7 @@ export default function MainComponent(props) {
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
                         <br />
-                        {count.totalTransactions}/1000
+                        {count.totalTransactions}/ {maxtpsvalue.responseData}
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
                         <NodeChart dark={dark} ipcount={value} />
