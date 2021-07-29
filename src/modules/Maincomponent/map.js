@@ -30,14 +30,14 @@ const MapChart = (props) => {
   };
   return (
     <ComposableMap
-      style={
-        props.dark
-          ? {
-              fill: "#293178",
-            }
-          : { fill: "#bdc1e5" }
-      }
-    >
+    style={
+      props.dark
+        ? {
+            fill: "#293178", width: '108%',height: 402, marginTop: '4%',marginLeft: '-1%'
+          }
+        : { fill: "#bdc1e5",width: '108%',height: 402, marginTop: '4%' }
+    }
+  >
       {" "}
       <ZoomableGroup zoom={1}>
         <Geographies geography={geoUrl}>

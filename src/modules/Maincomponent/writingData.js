@@ -42,7 +42,7 @@ export default function App() {
     setInterval(() => {
       axios
         .get(
-          "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/writing-speed"
+          "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/saving-speed"
         )
         .then((result) => {
           console.log('result-----', result.data.responseData)
@@ -55,15 +55,15 @@ export default function App() {
           var resultData = []
 
           result.data.responseData.map(items => {
-            let transaction = items.totalTransactions / items.duration
+            // let transaction = items.totalTransactions / 1800
             resultData.push({
               x: moment(items.startTime * 1000).format('LT'),
-              y: transaction
+              y: items.totalTransactions/1800
             })
 
           })
           let graphdata = resultData
-          console.log('graph----', graphdata.reverse())
+          console.log('graph----', graphdata)
           arr[0].data = resultData
           setData(arr)
         })
@@ -71,7 +71,7 @@ export default function App() {
           console.log(err);
         });
 
-    }, 5000);
+    }, 45000);
   }, []);
 
 
