@@ -63,6 +63,15 @@ const useStyles = makeStyles((theme) => ({
   firstrow: {
     justifyContent: "center",
   },
+  "@media (min-width: 0px) and (max-width: 399px)": {
+    firstrow: {
+      display: "flex !important",
+      flexFlow: "row nowrap",
+      flexDirection: "column !important",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
 
   "@media (min-width: 400px) and (max-width: 1080px)": {
     firstrow: {
@@ -73,10 +82,28 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
     },
   },
+  "@media (min-width: 1081px)" : {
+    firstrow: {
+      display: "flex !important",
+      flexFlow: "row nowrap",
+      gridGap: '45px',
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
   secondrow: {
     justifyContent: "center",
     paddingTop: "5%",
     paddingBottom: "8%",
+  },
+  "@media (min-width: 1px) and (max-width: 399px)": {
+    secondrow: {
+      display: "flex !important",
+      flexFlow: "row nowrap",
+      flexDirection: "column !important",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   "@media (min-width: 400px) and (max-width: 1081px)": {
     secondrow: {
@@ -87,18 +114,46 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
     },
   },
+  "@media (min-width: 1082px)": {
+    secondrow: {
+      display: "flex",
+      flexFlow: "row nowrap",
+      gridGap: '45px',
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
   columnone: {
     width: "90%",
+    marginTop: '40px'
   },
   columntwo: {
     width: "90%",
+    marginTop: '40px'
+  },
+  all_head_text: {
+    color: "#09184b",
+    fontSize: '15px',
+    fontWeight: 500
+  },
+  all_head_text_dark_mode: {
+    color: "#d6d6d6",
+    fontSize: '15px',
+    fontWeight: 500
+
   },
   alltext: {
     color: "#09184b",
+    fontSize: '12px',
+    fontWeight: 700
   },
   alltext_dark_mode: {
     color: "#d6d6d6",
+    fontSize: '12px',
+    fontWeight: 700
+
   },
+
 }));
 const Img = styled.img`
   width: 100px;
@@ -119,6 +174,20 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 11%;
+  @media (min-width: 1px) and (max-width: 399px) {
+    font-family: Raleway, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+  }
   @media (min-width: 400px) and (max-width: 1080px) {
     font-family: Raleway, sans-serif;
     font-size: 11px;
@@ -147,19 +216,23 @@ const Content = styled.span`
   position: absolute;
   top: 38%;
   left: 11%;
+  @media (min-width: 0px) and (max-width: 399px) {
+    display: none;
+  }
   @media (min-width: 400px) and (max-width: 1080px) {
-    font-family: Raleway, sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.78;
-    letter-spacing: normal;
-    text-align: left;
-    color: #ffffff;
-    position: absolute;
-    top: 38%;
-    left: 5%;
+    display: none;
+    // font-family: Raleway, sans-serif;
+    // font-size: 11px;
+    // font-weight: 500;
+    // font-stretch: normal;
+    // font-style: normal;
+    // line-height: 1.78;
+    // letter-spacing: normal;
+    // text-align: left;
+    // color: #ffffff;
+    // position: absolute;
+    // top: 38%;
+    // left: 5%;
   }
 `;
 
@@ -235,8 +308,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         {" "}
@@ -267,8 +340,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Reading Speed
@@ -296,8 +369,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Saved Tweets
@@ -324,8 +397,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Read Tweets
@@ -355,8 +428,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Top trending
@@ -385,8 +458,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Current Max TPS
@@ -414,8 +487,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Search
@@ -442,8 +515,8 @@ export default function Aboutcomponent(props) {
                       <span
                         className={
                           props.dark
-                            ? classes.alltext_dark_mode
-                            : classes.alltext
+                            ? classes.all_head_text_dark_mode
+                            : classes.all_head_text
                         }
                       >
                         Tweet Archive
