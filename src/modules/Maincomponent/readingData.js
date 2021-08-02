@@ -38,7 +38,13 @@ const ReadingData = ({ data }) => (
 export default function App() {
     const [data, setData] = useState([])
     useEffect(() => {
-        // setInterval(() => {
+        reading()
+        setInterval(() => {
+            reading()
+        }, 45000);
+        }, []);
+
+        function reading(){
             axios
                 .get(
                     "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/saving-speed"
@@ -70,8 +76,9 @@ export default function App() {
                     console.log(err);
                 });
 
+        }    
         // }, 5000);
-    }, []);
+   
 
 
     return (

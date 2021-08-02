@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Popup, Polyline, Marker, SVGOverlay, CircleMar
 import '../../assets/styles/custom.css';
 import axios from 'axios';
 
-export default function App() {
+export default function DarkMap() {
   const [hashtag, setHashtag] = useState([])
 
   axios
@@ -23,11 +23,11 @@ export default function App() {
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
-          // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
-          // url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
-
-          // url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        //   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          // url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
+        //   url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
+          
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 
           //for night mode:
           // url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.png"
