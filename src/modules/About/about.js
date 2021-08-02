@@ -4,12 +4,36 @@ import { Row, Column } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 
 const Bannerimage = styled.img`
   width: 100%;
+  display:flex;
+  justify-content:center;
   height: auto;
+  object-fit: cover;
+ 
+   "@media (min-width: 0px) and (max-width: 399px)": {
+     max-width:100%;
+    height:335px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    transform: scale(-1.5,2.2);
+  },
+   "@media (min-width: 400px) and (max-width: 1080px)": {
+    max-width:100%;
+    height:335px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    transform: scale(-1.5,2.2);
+   },
+   "@media (min-width: 1081px)" : {
+    max-width:100%;
+    height:335px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    transform: scale(-1.5,2.2);
+   },
 `;
 const useStyles = makeStyles((theme) => ({
   main: {},
@@ -26,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "center",
-
     color: "#09184b",
     marginTop: "90px",
     backgroundColor: "#f5f6f9",
@@ -175,18 +198,19 @@ const Span = styled.span`
   top: 20%;
   left: 11%;
   @media (min-width: 1px) and (max-width: 399px) {
-    font-family: Raleway, sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.1;
-    letter-spacing: normal;
-    text-align: left;
-    color: #ffffff;
-    position: absolute;
-    top: 20%;
-    left: 5%;
+    display:none;
+    // font-family: Raleway, sans-serif;
+    // font-size: 11px;
+    // font-weight: 500;
+    // font-stretch: normal;
+    // font-style: normal;
+    // line-height: 1.1;
+    // letter-spacing: normal;
+    // text-align: left;
+    // color: #ffffff;
+    // position: absolute;
+    // top: 20%;
+    // left: 5%;
   }
   @media (min-width: 400px) and (max-width: 1080px) {
     font-family: Raleway, sans-serif;
@@ -218,9 +242,18 @@ const Content = styled.span`
   left: 11%;
   @media (min-width: 0px) and (max-width: 399px) {
     display: none;
+  //   font-family: Raleway, sans-serif;
+  // font-size: 11px;
+  // font-weight: 500;
+  // font-stretch: normal;
+  // font-style: normal;
+  // line-height: 1.78;
+  // letter-spacing: normal;
+  // text-align: left;
+  // color: #ffffff;
   }
   @media (min-width: 400px) and (max-width: 1080px) {
-    display: none;
+     display: none;
     // font-family: Raleway, sans-serif;
     // font-size: 11px;
     // font-weight: 500;
@@ -275,7 +308,9 @@ export default function Aboutcomponent(props) {
               consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
               velit esse cillum dolore eu <br />
             </Content>
-            <Bannerimage src="/images/banner.png" />
+            <Bannerimage
+              src="/images/banner.png"
+            />
           </div>
         </Grid>
 

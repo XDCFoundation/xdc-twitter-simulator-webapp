@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="137" height="28" viewBox="0 0 137 28">
+    <defs>
+        <style>
+            .cls-3{fill:#fff}
+        </style>
+    </defs>
+    <g id="Twitter_D-App_logo" transform="translate(-78 -26.8)">
+        <text id="Twitter_D-App" fill="#fff" font-family="Raleway" font-size="16px" font-weight="600" transform="translate(109 45.8)">
+            <tspan x="0" y="0">Twitter D-App</tspan>
+        </text>
+        <g id="Group_95" transform="translate(78 27)">
+            <g id="Group_93" opacity="0.9" transform="translate(1.545 1.231)">
+                <path id="Path_276" d="M31.5 10.87L21.394 5.035a.259.259 0 0 0-.26 0L11.028 10.87a.259.259 0 0 0-.13.225v11.67a.258.258 0 0 0 .13.225l10.107 5.836a.26.26 0 0 0 .13.034.257.257 0 0 0 .13-.035L31.5 22.989a.259.259 0 0 0 .13-.225v-11.67a.258.258 0 0 0-.13-.224zM21.264 5.559l9.588 5.536-9.588 5.535-9.588-5.536zm-9.847 5.985L21 17.079v11.072l-9.588-5.536zm10.107 16.607V17.079l9.588-5.535v11.071z" class="cls-3" transform="translate(-10.898 -5)"/>
+            </g>
+            <g id="Group_94" transform="translate(0 0)">
+                <circle id="Ellipse_20" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(0 4.8)"/>
+                <circle id="Ellipse_21" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(10 -0.2)"/>
+                <circle id="Ellipse_22" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(10 9.8)"/>
+                <circle id="Ellipse_26" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(19 4.8)"/>
+                <circle id="Ellipse_23" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(10 22.8)"/>
+                <circle id="Ellipse_24" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(0 17.8)"/>
+                <circle id="Ellipse_25" cx="2.5" cy="2.5" r="2.5" class="cls-3" transform="translate(19 17.8)"/>
+            </g>
+        </g>
+    </g>
+</svg>

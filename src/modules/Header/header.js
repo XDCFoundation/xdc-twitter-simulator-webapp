@@ -6,6 +6,7 @@ import "../styles/App.css";
 import AdvanceSearch from "../Advancedsearch/advancedSearch";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { Row,Column } from "simple-flexbox";
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -14,6 +15,11 @@ const Container = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+   @media (min-width: 400px) and (max-width: 767px) {
+   width:100%;
+   height:100px;
+  }
+
 `;
 const SubContainer1 = styled.div`
   display: flex;
@@ -33,9 +39,11 @@ const SubContainer2 = styled.div`
 
 const Image = styled.img`
   @media (max-width: 766px) {
+    
     width: 30px;
     height: 25px;
     margin-left: 0px;
+    
   }
   @media (min-width: 767px) and (max-width: 900px) {
     width: 35px;
@@ -113,6 +121,9 @@ const Advancesearch = styled.button`
   border: none;
   text-decoration: none;
   letter-spacing: 0.5px;
+    @media (max-width: 766px) {
+    display:none;
+  }
 `;
 
 const About = styled.text`
@@ -190,10 +201,71 @@ const ArrowUpIcon = styled.span`
   color: #8992e2;
   font-size: 16px;
 `;
-
+const MobileAdvancedsearch = styled.button`
+font-family: Raleway;
+  font-size: 13px;
+  font-weight: 400;
+  color: #a7afff;
+  margin-left: 4px;
+  margin-top: 3px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+`;
 const Display = styled.div`
   @media (min-width: 0px) and (max-width: 767px) {
     display: none;
+  }
+`;
+const Header = styled.div`
+@media (min-width: 0px) and (max-width: 767px) {
+    display: none;
+  }
+  @media (min-width: 768px)  {
+    display: visible;
+  }
+`;
+const Subheader = styled.div`
+@media (min-width: 0px) and (max-width: 767px) {
+    display: visible;
+   
+  }
+  @media (min-width: 768px)  {
+    display: none;
+  }`;
+const Mobileicon = styled.img`
+  
+    width: 40%;
+    height: 48px;
+    margin-left: 15px;
+    margin-top: 63px;
+    `;
+const Menu = styled.img`
+position: absolute;
+    right: 12px;
+    top:3%;`;
+const Twitterdappmobile = styled.span`
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Raleway;
+  margin-left: 6px;
+    `;
+const InputSearchmobile = styled.input`
+height: 30px;
+width:80%;
+  
+  background-color: #3d4270;
+  border-radius: 2px;
+  border: none;
+  font-family: WorkSans-Roman;
+  font-size: 10.5px;
+  color: #fff;
+  ::placeholder {
+    color: #adb1d6;
+    opacity: 1;
   }
 `;
 
@@ -208,7 +280,8 @@ export default function HeaderComponent(props) {
   };
   return (
     <Container>
-      <SubContainer1>
+      <Header>
+      <SubContainer1>                                                                                                                           
         <a href="/">
         <Image src="../../images/TwitterS.svg" alt="image" />
         </a>
@@ -226,7 +299,33 @@ export default function HeaderComponent(props) {
         <Advancesearch onClick={handleClickforadvancedsearch}>
           Advance Search
         </Advancesearch>
+       
       </SubContainer1>
+      </Header>
+      <Subheader>
+        <div>
+          <div>
+            <Column>
+            <Row>
+              <Mobileicon src="../../images/responsivelogo.svg" alt="image" />
+                 
+                    <Menu src="../../images/Menu.svg" />
+                   
+                {/* <Twitterdappmobile >Twitter D-App</Twitterdappmobile> */}
+            </Row>
+              <Row>
+                <InputSearchmobile placeholder="Search by Handle name,Hash tag"/>
+              </Row>
+              <Row>
+                <MobileAdvancedsearch>Advance Search</MobileAdvancedsearch>
+              </Row>
+            </Column>
+       
+       </div>
+        <div>hello2</div>
+          <div>hello3</div>
+        </div>
+        </Subheader>
 
       <Display>
       <SubContainer2>
