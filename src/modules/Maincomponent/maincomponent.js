@@ -427,6 +427,11 @@ export default function MainComponent(props) {
                               color: "#0d0e2d",
                               fontSize: "11px",
                               fontWeight: "600",
+                              
+                              
+                            
+                            
+                            
                             }}
                           >
                             The saved tweets per second track the rate of

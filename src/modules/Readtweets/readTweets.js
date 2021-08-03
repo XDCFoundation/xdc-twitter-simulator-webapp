@@ -37,9 +37,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginRight: "1.5%",
-    height: 'auto'
+    height: "auto",
     // height: '784px',
-
   },
 
   paper_dark_mode: {
@@ -48,9 +47,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "1.5%",
     backgroundColor: "#191d43",
     color: "white",
-    height: 'auto'
+    height: "auto",
     // height: '784px',
-
   },
 
   tweetnumber: {
@@ -141,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
-    marginRight: '18px'
+    marginRight: "18px",
   },
 
   content_dark_mode: {
@@ -160,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     backgroundColor: "#191d43",
     marginLeft: "18px",
-    marginRight: '18px'
+    marginRight: "18px",
   },
 
   time: {
@@ -257,9 +255,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
-
 }));
-
 
 export default function ReadTweets(props) {
   const classes = useStyles();
@@ -288,20 +284,19 @@ export default function ReadTweets(props) {
         )
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1]
+        alltweets = res.data.responseData[1];
         setReadTweets(tweetResponse);
 
         setTotalTweets(alltweets);
-        console.log('readtweets-----------', tweetResponse)
-        console.log('totalReadtweets-----------', alltweets)
-
+        console.log("readtweets-----------", tweetResponse);
+        console.log("totalReadtweets-----------", alltweets);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  let method = '@user'
+  let method = "@user";
   // console.log('method------',method)
 
   return (
@@ -312,7 +307,6 @@ export default function ReadTweets(props) {
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
           >
-
             <Column>
               <Row className={classes.row}>
                 <Typography
@@ -352,9 +346,10 @@ export default function ReadTweets(props) {
                   }
                 >
                   {/* {method}k */}
-                  {totaltweets.tweetsInDb > 1000 ? parseInt(totaltweets.tweetsInDb / 1000) + 'k' : (totaltweets.tweetsInDb)}
+                  {totaltweets.tweetsInDb > 1000
+                    ? parseInt(totaltweets.tweetsInDb / 1000) + "k"
+                    : totaltweets.tweetsInDb}
                 </Paper>
-
               </Row>
               {readtweets &&
                 readtweets.length >= 1 &&
@@ -370,36 +365,28 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT");
 
-                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                  function shortenTrend(
+                    b,
+                    amountL = 10,
+                    amountR = 3,
+                    stars = 3
+                  ) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 80, amountR = 3, stars = 3) {
+                  function shortenValue(
+                    b,
+                    amountL = 80,
+                    amountR = 3,
+                    stars = 3
+                  ) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
                     )}`;
                   }
-
-
-
-                  // axios
-                  //   .get(
-                  //     "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/username?id="+author
-                  //   )
-                  //   .then((res) => {
-                  //     console.log('Authors--------',res.data.responseData)
-                  //     setAuthors(res.data.responseData);
-                  //     let name = res.data.responseData
-                  //     let naming = name.data
-                  //     console.log('myname-------',naming)
-                  //   })
-                  //   .catch((err) => {
-                  //     console.log(err);
-                  //   });
-                  
 
                   return (
                     <>
@@ -429,8 +416,9 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-
-                            {trending ? shortenTrend(trending) : shortenTrend(method)}
+                            {trending
+                              ? shortenTrend(trending)
+                              : shortenTrend(method)}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -459,7 +447,6 @@ export default function ReadTweets(props) {
             <br />
             <br />
             <br />
-
           </Paper>
         </div>
       </Grid>
