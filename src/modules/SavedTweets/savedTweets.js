@@ -280,7 +280,7 @@ export default function SavedTweets(props) {
         setSavedTweets(tweetResponse);
         // setSavedTweets(res.data.responseData[1]);
         let value=res.data.responseData[1];
-        console.log("letsssssssssssssss chek",tweetResponse);
+        // console.log("letsssssssssssssss chek",tweetResponse);
       })
       .catch((err) => {
         console.log(err);

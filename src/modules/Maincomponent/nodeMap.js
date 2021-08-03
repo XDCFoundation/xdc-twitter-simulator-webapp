@@ -26,7 +26,7 @@ const NodeChart = (props) => {
       .then((res) => {
         // alert(JSON.stringify(res));
         setNode(res.data);
-        console.log("responseDataChekk", res.data);
+        // console.log("responseDataChekk", res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +47,13 @@ const NodeChart = (props) => {
       <Geographies geography={geoUrl}>
         {({ geographies }) =>
           geographies.map((geo) => (
-            <Geography key={geo.rsmKey} geography={geo}></Geography>
+            <Geography key={geo.rsmKey} geography={geo} style={{
+              default: { outline: "none" },
+              hover: { outline: "none" },
+              pressed: { outline: "none" },
+            }}>
+             
+            </Geography>
           ))
         }
       </Geographies>

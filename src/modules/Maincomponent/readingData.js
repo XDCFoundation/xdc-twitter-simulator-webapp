@@ -3,59 +3,29 @@ import { ResponsiveLine } from '@nivo/line';
 import '../../assets/styles/custom.css';
  
 // const point={}
+
  
 const data = [
     {
         id: "japan",
         data: [
             {
-                "x": "plane",
-                "y": 266
+                "x": "",
+                "y": 0.666
             },
             {
                 "x": "helicopter",
-                "y": 34
+                "y": 0.6333
             },
             {
                 "x": "boat",
-                "y": 67
+                "y": 0.7
             },
             {
                 "x": "train",
-                "y": 27
+                "y": 0.533
             },
-            {
-                "x": "subway",
-                "y": 238
-            },
-            {
-                "x": "bus",
-                "y": 252
-            },
-            {
-                "x": "car",
-                "y": 83
-            },
-            {
-                "x": "moto",
-                "y": 68
-            },
-            {
-                "x": "bicycle",
-                "y": 131
-            },
-            {
-                "x": "horse",
-                "y": 11
-            },
-            {
-                "x": "skateboard",
-                "y": 240
-            },
-            {
-                "x": "others",
-                "y": 273
-            }
+            
         ]
     },
 ]
