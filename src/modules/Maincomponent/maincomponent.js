@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
+import DarkMap from "./darkMap";
 import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData";
@@ -279,9 +280,9 @@ export default function MainComponent(props) {
     fetchTps();
     getValue();
     setInterval(() => {
-     fetchCount();
-    //  fetchTps();
-   }, 30000);
+      fetchCount();
+      //  fetchTps();
+    }, 30000);
   }, []);
 
   //for count of tps: 
@@ -319,8 +320,8 @@ export default function MainComponent(props) {
       });
   };
 
-  
-//socket-Function ---->
+
+  //socket-Function ---->
   const getValue = () => {
     let test = {}
     client.onopen = () => {
@@ -336,7 +337,7 @@ export default function MainComponent(props) {
           test[msg.data.id] = msg.data.stats.active
 
           //for socket ip counts---->
-          let data= Object.keys(test)
+          let data = Object.keys(test)
           var arr = []
           if (data) {
             data.map(item => {
@@ -362,7 +363,7 @@ export default function MainComponent(props) {
           console.log("ip result---", newarray);
           setValue(newarray)
 
-           //for socket total nodes ---->
+          //for socket total nodes ---->
           let nodecount = Object.keys(test).length
           console.log('nodecount-----', nodecount)
           setNodes(nodecount)
@@ -379,7 +380,7 @@ export default function MainComponent(props) {
     }
   }
 
-//for Night mode-->
+  //for Night mode-->
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
   };
@@ -391,6 +392,9 @@ export default function MainComponent(props) {
     setMode(props.dark);
   }, [props.dark]);
 
+
+  let tpsCount = (count.totalTransactions / 60).toFixed(2)
+  let maxtpsCount = parseFloat(maxtpsvalue.responseData)
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -443,7 +447,7 @@ export default function MainComponent(props) {
                       </Tippy>
                     </div>
                     <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                      345/sec
+                      {tpsCount}/sec
                     </div>
                     <span className="hover-data">
                       {" "}
@@ -491,7 +495,7 @@ export default function MainComponent(props) {
                       </Tippy>
                     </div>
                     <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>
-                      345/sec
+                      {tpsCount}/sec
                     </div>
                     <span className="hover-data">
                       {" "}
@@ -569,7 +573,7 @@ export default function MainComponent(props) {
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
                         <br />
-                        {count.totalTransactions}/ {maxtpsvalue.responseData}
+                        {tpsCount}/ {maxtpsCount}
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
                         <NodeChart dark={dark} ipcount={value} />
@@ -615,7 +619,7 @@ export default function MainComponent(props) {
             <Paper className={props.dark ? classes.top_dark_mode : classes.top}>
               <Trending>
                 <div>
-                  <MapChart dark={dark} />
+                  {props.dark ? <DarkMap/> : <MapChart/>}
                 </div>
               </Trending>
             </Paper>

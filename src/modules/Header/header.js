@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import styled from "styled-components";
 import "../styles/App.css";
 import DarkMode from "../components/DarkMode";
@@ -6,6 +6,9 @@ import "../styles/App.css";
 import AdvanceSearch from "../Advancedsearch/advancedSearch";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import axios from 'axios';
+import { useHistory, useLocation } from "react-router-dom";
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -198,6 +201,14 @@ const Display = styled.div`
 `;
 
 export default function HeaderComponent(props) {
+  const history = useHistory();
+  const[keyword, setKeyword]=useState("")
+  
+  // console.log('mine---',keyword)
+  const redirect = () => {
+    history.push('/list/'+keyword);
+  };
+
   const CheckMode = (mode) => {
     props.CheckMode(mode);
   };
@@ -213,8 +224,8 @@ export default function HeaderComponent(props) {
         <Image src="../../images/TwitterS.svg" alt="image" />
         </a>
         <Span>Twitter D-App</Span>
-        <Search type="text" placeholder="Search by Handle name, Hash tag" />
-        <Button>
+        <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)}/>
+        <Button onClick={redirect}>
           <img
             style={{ height: "20px", width: "20px" }}
             src="../../images/Search.svg"

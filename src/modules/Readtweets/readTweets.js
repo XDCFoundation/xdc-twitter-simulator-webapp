@@ -267,7 +267,7 @@ export default function ReadTweets(props) {
     fetchTweets();
     setInterval(() => {
       fetchTweets();
-    }, 10000);
+    }, 30000);
   }, []);
   const fetchTweets = () => {
     axios

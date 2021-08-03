@@ -47,6 +47,10 @@ label {
   margin-top: 40px;
   background-color: #000000;
 }
+.leaflet-container{
+  width: 100vw;
+  height: 100vh;
+}
 .dpdown {
   background: none;
   border: none;
