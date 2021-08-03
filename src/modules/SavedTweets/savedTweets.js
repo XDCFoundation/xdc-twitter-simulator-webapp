@@ -260,7 +260,7 @@ export default function SavedTweets(props) {
     setInterval(() => {
       fetchSavedTweets();
       fetchTotalTweets();
-    }, 10000);
+    }, 30000);
   }, []);
 
   //For save-tweets
