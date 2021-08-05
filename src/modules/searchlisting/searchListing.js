@@ -340,11 +340,14 @@ export default function Searchlist(props) {
 
 
   const [basic, setBasic] = useState({})
+  const [advance, setAdvance] = useState({})
  
+// console.log('prop..',props?.locations)
+
   useEffect(() => {
     Basicsearch();
+    Advancesearch();
   }, []);
-
   const Basicsearch = () => {
   
     axios
@@ -360,7 +363,26 @@ export default function Searchlist(props) {
         console.log(err);
       });
   };
+
+
+  const Advancesearch = () => {
   
+    axios
+      .get(
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name="+props?.hashname+"&keyword="+props?.locations
+      )
+      .then((res) => {
+        setAdvance(res.data.responseData.responseData);
+        console.log('myAdvancesearch-------', res.data.responseData.responseData)
+        // console.log('my url===',url)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  
+  let method = '@user'
 
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
@@ -446,14 +468,14 @@ export default function Searchlist(props) {
                             props.dark ? classes.time_dark_mode : classes.time
                           }
                         >
-                          {time}
+                          {/* {time} */}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {shortenTrend(handler)}
+                            {/* {shortenTrend(handler)} */}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -465,7 +487,87 @@ export default function Searchlist(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(tweetTextMessage)}
+                              {/* {shortenValue(tweetTextMessage)} */}
+                            </Paper>
+                          </ThemeProvider>
+                        </Column>
+                      </Row>
+                    </>
+                  );
+                })}
+
+                {advance &&
+                advance.length >= 1 &&
+                advance.map((response) => {
+                  let value = response.text;
+                  console.log('valuuuu',value)
+                  const colonIndex = value.indexOf(":");
+                  const atIndex = value.indexOf("@");
+                  let handler = value.slice(atIndex,colonIndex);
+                  let tweetTextMessage = value.split(":")[1];
+                  console.log('tt',tweetTextMessage)
+                  let str = response.addedOn;
+                  let timeFormat = moment(str);
+                  let time = timeFormat.format("LT");
+                  // let hashtags = value.split('#')
+                  // console.log('hash---',hashtags)
+                  // let tweetTextMessage=value.text; 
+                  let user = response.name;
+                 
+                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      // b.length - 3,
+                      b.length
+                    )}`;
+                  }
+                  function shortenValue(b, amountL = 80, stars = 3) {
+                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      // b.length - 3,
+                      b.length
+                    )}`;
+                  }
+                  return (
+                    <>
+                      <hr
+                        className={
+                          props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                        }
+                      />
+                      <Row>
+                        <Typography
+                          variant="h6"
+                          className={
+                            props.dark ? classes.name_dark_mode : classes.name
+                          }
+                        >
+                      
+                        {user}
+                        </Typography>
+                        <Paper
+                          className={
+                            props.dark ? classes.time_dark_mode : classes.time
+                          }
+                        >
+                          {time}
+                        </Paper>
+                      </Row>
+
+                      <Row>
+                        <Column>
+                          <Typography className={classes.email}>
+                          {handler ? shortenTrend(handler) : shortenTrend(method)}
+                          </Typography>
+                          <ThemeProvider theme={theme}>
+                            <Paper
+                              noWrap
+                              className={
+                                props.dark
+                                  ? classes.content_dark_mode
+                                  : classes.content
+                              }
+                              gutterBottom
+                            >
+                              {shortenValue(value)}
                             </Paper>
                           </ThemeProvider>
                         </Column>

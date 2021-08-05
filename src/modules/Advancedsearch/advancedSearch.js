@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
 import CloseIcon from '@material-ui/icons/Close';
+import { useHistory, useLocation } from "react-router-dom";
+
 const Advanced = styled.span`
   font-family: Raleway;
   font-size: 22px;
@@ -136,7 +138,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MaxWidthDialog(props) {
   const classes = useStyles();
+  const history = useHistory();
   const [open, setOpen] = React.useState(false);
+
+  const [keys, setkeys] = useState("")
+  const [name, setName] = useState("")
+
+  // console.log('mine...',keys)
+  // console.log('mine...',name)
+
+  const redirect = () => {
+    history.push('/list/' + keys + "&" + name);
+  };
 
   const [maxWidth, setMaxWidth] = React.useState("md");
 
@@ -154,16 +167,16 @@ export default function MaxWidthDialog(props) {
               <Advanced>Advanced Search</Advanced>
               {/* <Img style={{ cursor: 'pointer', width: 30, height: 30, }} src="/images/cut.svg" onClick={props.clicked}>   </Img> */}
               <div className="cross-parent">
-               <div className="cross-image" onClick={props.clicked}> <CloseIcon/> </div>
-               </div>
-           </Row>
+                <div className="cross-image" onClick={props.clicked}> <CloseIcon /> </div>
+              </div>
+            </Row>
             <Words>Words</Words>
-            <Inputallwords placeholder="All of the words" />
-            <Inputhashtags placeholder="Hashtags" />
+            <Inputallwords placeholder="All of the words" onChange={e => setkeys(e.target.value)} />
+            <Inputhashtags placeholder="Hashtags" onChange={e => setName(e.target.value)} />
             <Accounts>Accounts</Accounts>
             <Inputfromtheseaccounts placeholder="From these accounts" />
             <Inputtotheseaccounts placeholder="To these accounts" />
-            <Button>Search</Button>
+            <Button onClick={redirect}>Search</Button>
           </Column>
         </DialogContent>
       </Dialog>

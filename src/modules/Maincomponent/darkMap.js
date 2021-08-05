@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Polyline, Marker, SVGOverlay, CircleMarker, Tooltip } from 'react-leaflet'
 import '../../assets/styles/custom.css';
 import axios from 'axios';
+import { red } from '@material-ui/core/colors';
 
 export default function DarkMap() {
   const [hashtag, setHashtag] = useState([])
@@ -19,7 +20,7 @@ export default function DarkMap() {
     });
   return (
     <>
-      <MapContainer style={{width: '115%', height: 440}} center={[30, 10]}  zoom={1} scrollWheelZoom={true} zoomControl={false} maxZoom={13} minZoom={1.5}>
+      <MapContainer style={{width: '100%', height: 395}} center={[30, 10]}  zoom={1} scrollWheelZoom={true} zoomControl={false} maxZoom={13} minZoom={1.5}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
@@ -37,20 +38,22 @@ export default function DarkMap() {
           // let name = items.name
           return (
             <CircleMarker
-              key={k}
-              center={
-                [
-                  items.coordinates[1],
-                  items.coordinates[0]
-                ]
-              }
+            key={k}
+            center={
+              [
+                items.coordinates[1],
+                items.coordinates[0]
+              ]
+            }
+            radius={1}
+            fillOpacity={0.5}
+            stroke={false}
+          >
+            <Tooltip  opacity={0.5} permanent>
+           <span style={{padding: '8px 8px',color: '#09184b', fontWeight: 600}}> {items.name} </span>
+              </Tooltip>
 
-              fillOpacity={0.5}
-              stroke={false}
-            >
-              <Tooltip><span>{items.name}</span></Tooltip>
-
-            </CircleMarker>)
+          </CircleMarker>)
         })
         }
       </MapContainer>

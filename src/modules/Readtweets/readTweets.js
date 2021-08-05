@@ -271,7 +271,7 @@ export default function ReadTweets(props) {
     fetchTweets();
     setInterval(() => {
       fetchTweets();
-    }, 30000);
+    }, 45000);
   }, []);
   const fetchTweets = () => {
     axios
@@ -376,7 +376,7 @@ export default function ReadTweets(props) {
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 80, amountR = 3, stars = 3) {
+                  function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length

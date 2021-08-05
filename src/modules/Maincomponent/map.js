@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Popup, Polyline, Marker, SVGOverlay, CircleMar
 import '../../assets/styles/custom.css';
 import axios from 'axios';
 
-export default function App() {
+export default function App(props) {
   const [hashtag, setHashtag] = useState([])
 
   axios
@@ -19,7 +19,7 @@ export default function App() {
     });
   return (
     <>
-      <MapContainer style={{width: '115%', height: 440}} center={[30, 10]}  zoom={1} scrollWheelZoom={true} zoomControl={false} maxZoom={13} minZoom={1.5}>
+      <MapContainer style={{width: '100%',height: 385}} center={[30, 10]}  zoom={1.2} scrollWheelZoom={true} zoomControl={false} maxZoom={13} minZoom={1.5}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
@@ -44,11 +44,13 @@ export default function App() {
                   items.coordinates[0]
                 ]
               }
-
+              radius={1}
               fillOpacity={0.5}
               stroke={false}
             >
-              <Tooltip><span>{items.name}</span></Tooltip>
+              <Tooltip  opacity={0.5} permanent>
+             <span style={{padding: '8px 8px',color: '#000000', fontWeight: 600}}> {items.name} </span>
+                </Tooltip>
 
             </CircleMarker>)
         })
