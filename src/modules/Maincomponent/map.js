@@ -19,7 +19,7 @@ export default function App(props) {
     });
   return (
     <>
-      <MapContainer style={{width: '100%',height: 385}} center={[30, 10]}  zoom={1.2} scrollWheelZoom={true} zoomControl={false} maxZoom={13} minZoom={1.5}>
+      <MapContainer style={{width: '105%',height: 385}} center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 

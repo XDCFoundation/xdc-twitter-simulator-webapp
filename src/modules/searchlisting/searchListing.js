@@ -468,14 +468,14 @@ export default function Searchlist(props) {
                             props.dark ? classes.time_dark_mode : classes.time
                           }
                         >
-                          {/* {time} */}
+                          {time}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {/* {shortenTrend(handler)} */}
+                            {shortenTrend(handler)}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -487,7 +487,7 @@ export default function Searchlist(props) {
                               }
                               gutterBottom
                             >
-                              {/* {shortenValue(tweetTextMessage)} */}
+                              {shortenValue(tweetTextMessage)}
                             </Paper>
                           </ThemeProvider>
                         </Column>

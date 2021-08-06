@@ -20,7 +20,7 @@ export default function DarkMap() {
     });
   return (
     <>
-      <MapContainer style={{width: '100%', height: 395}} center={[30, 10]}  zoom={1} scrollWheelZoom={true} zoomControl={false} maxZoom={13} minZoom={1.5}>
+      <MapContainer style={{width: '100%', height: 385}} center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
@@ -49,8 +49,8 @@ export default function DarkMap() {
             fillOpacity={0.5}
             stroke={false}
           >
-            <Tooltip  opacity={0.5} permanent>
-           <span style={{padding: '8px 8px',color: '#09184b', fontWeight: 600}}> {items.name} </span>
+            <Tooltip  opacity={0.7} permanent>
+           <span style={{padding: '8px 8px',color: 'black', fontWeight: 600}}> {items.name} </span>
               </Tooltip>
 
           </CircleMarker>)

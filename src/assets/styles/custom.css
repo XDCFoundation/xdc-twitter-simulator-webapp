@@ -599,7 +599,7 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 100%;
+  width: 105%;
   height: 22px;
  margin-top: 20px;
 }
@@ -608,7 +608,8 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 92.5%;
+  width: 100%;
+  /* width: 94.8%; */
   height: 22px;
  margin-top: 20px;
  margin-left: 15px;

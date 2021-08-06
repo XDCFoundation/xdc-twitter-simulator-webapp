@@ -47,8 +47,8 @@ function MapTabs(props) {
 
             <div className="content-tabs">
                 <div className={props.dark ? toggleState === 1 ? "dark-content  active-content" : "dark-content" : toggleState === 1 ? "content  active-content" : "content"}>
-                 {/* {props.dark ? <DarkMap dark={dark} /> : <MapChart dark={dark}/>}    */}
-                 <MapChart/>
+                 {props.dark ? <DarkMap dark={dark} /> : <MapChart dark={dark}/>}   
+                 {/* <MapChart/> */}
                 </div>
 
                 <div className={props.dark ? toggleState === 2 ? "dark-content  active-content" : "dark-content" : toggleState === 2 ? "content  active-content" : "content"}>

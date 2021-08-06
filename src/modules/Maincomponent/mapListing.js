@@ -10,8 +10,26 @@ import { white } from 'material-ui/styles/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        width: '105%',
+        // maxWidth: 600,
+        position: 'relative',
+        overflow: 'auto',
+        msOverflowStyle: 'none',
+        maxHeight: 400,
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+        '&::-webkit-scrollbar-track': {
+            display: 'none'
+        },
+        '&::-webkit-scrollbar-thumb': {
+            display: 'none'
+        }
+    },
+
+    dark_root: {
         width: '100%',
-        maxWidth: 600,
+        // maxWidth: 600,
         position: 'relative',
         overflow: 'auto',
         msOverflowStyle: 'none',
@@ -72,7 +90,7 @@ export default function PinnedSubheaderList(props) {
 
     return (
         <List
-            className={classes.root}>
+            className={props.dark ? classes.dark_root : classes.root}>
 
             <div className={props.dark ? "root-list-dark-mode" : "root-list"}>
                 {/* <hr
@@ -86,7 +104,7 @@ export default function PinnedSubheaderList(props) {
 
 
                             <div style={{ fontSize: 12, fontWeight: 600 }}>
-                                {items.name}
+                             Trending hashtag in {items.countryName} is {items.name}.
                             </div>
 
                             <hr
