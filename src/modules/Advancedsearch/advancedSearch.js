@@ -143,12 +143,14 @@ export default function MaxWidthDialog(props) {
 
   const [keys, setkeys] = useState("")
   const [name, setName] = useState("")
+  const [hash, setHash] = useState("")
 
   // console.log('mine...',keys)
+  // console.log('mine',hash)
   // console.log('mine...',name)
 
   const redirect = () => {
-    history.push('/list/' + keys + "&" + name);
+    history.push('/list/' + keys + "&" + hash + "&" + name);
   };
 
   const [maxWidth, setMaxWidth] = React.useState("md");
@@ -172,9 +174,9 @@ export default function MaxWidthDialog(props) {
             </Row>
             <Words>Words</Words>
             <Inputallwords placeholder="All of the words" onChange={e => setkeys(e.target.value)} />
-            <Inputhashtags placeholder="Hashtags" onChange={e => setName(e.target.value)} />
+            <Inputhashtags placeholder="Hashtags" onChange={e => setHash(e.target.value)} />
             <Accounts>Accounts</Accounts>
-            <Inputfromtheseaccounts placeholder="From these accounts" />
+            <Inputfromtheseaccounts placeholder="From these accounts" onChange={e => setName(e.target.value)}/>
             {/* <Inputtotheseaccounts placeholder="To these accounts" /> */}
             <Button onClick={redirect}>Search</Button>
           </Column>

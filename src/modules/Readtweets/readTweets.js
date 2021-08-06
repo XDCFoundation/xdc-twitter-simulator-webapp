@@ -292,8 +292,8 @@ export default function ReadTweets(props) {
         setReadTweets(tweetResponse);
 
         setTotalTweets(alltweets);
-        console.log('readtweets-----------', tweetResponse)
-        console.log('totalReadtweets-----------', alltweets)
+        // console.log('readtweets-----------', tweetResponse)
+        // console.log('totalReadtweets-----------', alltweets)
 
       })
       .catch((err) => {

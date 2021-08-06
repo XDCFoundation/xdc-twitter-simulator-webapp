@@ -12,12 +12,16 @@ export default function Main(props) {
 
   let keywords = props?.match?.params?.keyword
   var key = keywords.split("&")[0]
-  var name = keywords.split("&")[1]
+  var hash = keywords.split("&")[1]
+  var name = keywords.split("&")[2]
+
 
   const [dark, setMode] = useState(getMode())
   // const [keyword, searchKeyword] = useState(keywords)
   const [keyword, searchKeyword] = useState(key)
+  const [advhash, searchHash] = useState(hash)
   const [advname, searchname] = useState(name)
+
 
 
   const CheckMode = (mode) => {
@@ -28,13 +32,14 @@ export default function Main(props) {
   }, [dark])
 
   // console.log('key--', key)
+  //   console.log('hash--', hash)
   // console.log('name--',name)
-  console.log('keyword',keywords)
+  // console.log('keyword',keywords)
 
   return (
     <>
       <HeaderComponent CheckMode={CheckMode} />
-      <Searchlist dark={dark} locations={keyword} hashname={advname} />
+      <Searchlist dark={dark} locations={keyword} username={advname} hashname={advhash} />
       <FooterComponent />
     </>
   );

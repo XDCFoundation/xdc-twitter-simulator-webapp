@@ -298,7 +298,7 @@ export default function SavedTweets(props) {
         "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/saved-tweets-count"
       )
       .then((res) => {
-        console.log('total-Saved-Tweet-Count-------', res.data)
+        // console.log('total-Saved-Tweet-Count-------', res.data)
         setTotalSave(res.data);
 
       })

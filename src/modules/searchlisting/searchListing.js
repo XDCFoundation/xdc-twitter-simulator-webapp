@@ -369,7 +369,7 @@ export default function Searchlist(props) {
   
     axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name="+props?.hashname+"&keyword="+props?.locations
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name="+props?.username+"&keyword="+props?.locations+"&hash="+props?.hashname
       )
       .then((res) => {
         setAdvance(res.data.responseData.responseData);
