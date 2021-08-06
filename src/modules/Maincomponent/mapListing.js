@@ -104,7 +104,7 @@ export default function PinnedSubheaderList(props) {
 
 
                             <div style={{ fontSize: 12, fontWeight: 600 }}>
-                             Trending hashtag in {items.countryName} is {items.name}.
+                             {items.name}
                             </div>
 
                             <hr
