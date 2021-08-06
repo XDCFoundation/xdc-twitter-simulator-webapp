@@ -65,7 +65,7 @@ const NodeChart = (props) => {
 
 
   let ip = props.ipcount
-  console.log('ip-------', ip)
+  // console.log('ip-------', ip)
 
   ip.map(item => {
     axios
