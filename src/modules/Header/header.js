@@ -164,7 +164,7 @@ const UnorderedList = styled.ul`
   width: 140px;
   margin-left: 10px;
   border-radius: 4px;
-  z-index: 1;
+  z-index: 1000;
 `;
 const List = styled.li`
   margin-top: 4px;
