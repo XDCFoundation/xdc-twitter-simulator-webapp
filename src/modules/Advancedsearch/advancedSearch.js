@@ -173,9 +173,9 @@ export default function MaxWidthDialog(props) {
             <Words>Words</Words>
             <Inputallwords placeholder="All of the words" onChange={e => setkeys(e.target.value)} />
             <Inputhashtags placeholder="Name" onChange={e => setName(e.target.value)} />
-            {/* <Accounts>Accounts</Accounts>
+            <Accounts>Accounts</Accounts>
             <Inputfromtheseaccounts placeholder="From these accounts" />
-            <Inputtotheseaccounts placeholder="To these accounts" /> */}
+            <Inputtotheseaccounts placeholder="To these accounts" />
             <Button onClick={redirect}>Search</Button>
           </Column>
         </DialogContent>
