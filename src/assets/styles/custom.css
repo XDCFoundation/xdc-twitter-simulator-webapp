@@ -614,7 +614,7 @@ input:focus {
   justify-content: space-between;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 767px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -646,30 +646,117 @@ input:focus {
 @media (min-width: 300px) and (max-width: 599px) {
   .link-text {
     background-color: transparent;
-    margin-left: -20px;
+    margin-left: -67px;
   }
   .follow-text {
     background-color: transparent;
     margin-left: -120px;
   }
   .powered-paper {
-    margin-left: -25px;
+    margin-left: -63px;
+    flex-direction: column-reverse;
+  }
+  .powered-text {
+    margin-top: 0px;
+    margin-left: 5px;
+    letter-spacing: 0.59px;
+    margin-bottom: 14px;
   }
 }
 
 @media (min-width: 600px) and (max-width: 999px) {
   .link-text {
     background-color: transparent;
-    margin-left: 0px;
+    margin-left: -45px;
   }
   .powered-paper {
-    margin-left: 50px;
+    margin-left: 0px;
+    flex-direction: column-reverse;
   }
 
   .follow-text {
     background-color: transparent;
-    margin-left: -40px;
+    margin-left: -56px;
   }
+  .powered-text {
+    margin-top: 0px;
+    margin-left: 5px;
+    letter-spacing: 0.59px;
+    margin-bottom: 14px;
+  }
+}
+@media (min-width: 300px) and (max-width: 599px) {
+  .cards {
+    /* width : 100%; */
+    margin: 0 auto;
+    display: grid;
+    margin-left: 4%;
+    /* grid-gap: 5rem; */
+    justify-content: space-between;
+  }
+}
+@media (min-width: 599px) and (max-width: 766px) {
+  .cards {
+    /* width : 100%; */
+    margin: 0 auto;
+    display: grid;
+    margin-left: 10%;
+    /* grid-gap: 5rem; */
+    justify-content: space-between;
+  }
+}
+@media (max-width: 766px) {
+  .writing-data {
+    margin-left: 0px;
+    margin-top: -10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+    color: #09184b;
+  }
+  
+  .writing-data-dark-mode {
+    margin-left: 0px;
+    margin-top: -10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+    color: white;
+  }
+  .reading-data {
+    margin-left: 0%;
+    margin-top: -10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+    color: #09184b;
+  }
+  
+  .reading-data-dark-mode {
+    margin-left: 0%;
+    margin-top: -10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+    color: white;
+  }
+  
 }
 
 /* @media (min-width: 1000px) and (max-width: 1100px){

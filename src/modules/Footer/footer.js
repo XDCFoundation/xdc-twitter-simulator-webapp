@@ -22,7 +22,6 @@ const theme = createMuiTheme({
   },
 });
 
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     fontSize: "16px",
     boxShadow: "none",
-    border: "none"
+    border: "none",
   },
 
   paperfooter: {
@@ -61,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // flexGrow: 1,
     // padding: "20px 20px",
-    width: '100%'
+    width: "100%",
   },
 
   papersecondrow: {
@@ -71,30 +70,30 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "12px",
     marginLeft: "2%",
     boxShadow: "none",
-    border: "none"
+    border: "none",
   },
 
   links: {
-    marginLeft: '-40px',
+    marginLeft: "-40px",
     listStyle: "none",
     padding: "0",
-    marginTop: '7px'
+    marginTop: "7px",
   },
   followlinks: {
     listStyle: "none",
-    marginTop: '5%',
+    marginTop: "5%",
     padding: "0",
   },
 
   linksitem: {
-    fontSize: '11px',
-    fontweight: 'normal',
-    fontstretch: 'normal',
-    fontstyle: 'normal',
+    fontSize: "11px",
+    fontweight: "normal",
+    fontstretch: "normal",
+    fontstyle: "normal",
     lineheight: 2,
-    letterspacing: 'normal',
-    textalign: 'left',
-    color: '#f8f8f8',
+    letterspacing: "normal",
+    textalign: "left",
+    color: "#f8f8f8",
     display: "inline-block",
     marginRight: "15px",
   },
@@ -106,28 +105,26 @@ const useStyles = makeStyles((theme) => ({
 
   followus: {
     fontweight: 500,
-    marginTop: '5%',
-    fontstretch: 'normal',
-    fontstyle: 'normal',
+    marginTop: "5%",
+    fontstretch: "normal",
+    fontstyle: "normal",
     lineheight: 1.75,
-    letterspacing: 'normal',
-    textalign: 'left',
-    color: '#ffffff',
+    letterspacing: "normal",
+    textalign: "left",
+    color: "#ffffff",
   },
 
   otherlink: {
     // marginLeft: '12.5%',
-    marginTop: '4%',
-    fontweight: '600',
-    fontstretch: 'normal',
-    fontstyle: 'normal',
+    marginTop: "4%",
+    fontweight: "600",
+    fontstretch: "normal",
+    fontstyle: "normal",
     lineheight: 1.19,
-    letterspacing: 'normal',
-    textalign: 'left',
-    color: '#ffffff',
-  }
-
-
+    letterspacing: "normal",
+    textalign: "left",
+    color: "#ffffff",
+  },
 }));
 // const ImgLogo = styled.img`
 
@@ -160,29 +157,57 @@ export default function FooterComponent() {
               className={classes.paper}
               style={{
                 // padding: "3%",
-                paddingBottom: '3%',
-                paddingTop: '3%',
-
+                paddingBottom: "3%",
+                paddingTop: "3%",
               }}
             >
               <Row>
                 <div class="cards">
                   <Grid className="link-grid" item xs={12} sm={6} md={4}>
-                    <Paper className="link-grid-paper" style={{ backgroundColor: '#191d43', marginLeft: '1px' }} elevation={0}>
+                    <Paper
+                      className="link-grid-paper"
+                      style={{ backgroundColor: "#191d43", marginLeft: "1px" }}
+                      elevation={0}
+                    >
                       <div className="link-text">
                         <div className={classes.otherlink}>
-                          <div style={{ fontSize: '13px' }}>Other Links</div>
+                          <div style={{ fontSize: "13px" }}>Other Links</div>
                         </div>
                         <div className={classes.links}>
                           <ul>
                             <li className={classes.linksitem}>
-                             <a style={{color: 'white', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"> Archive Tweet</a>
+                              <a
+                                style={{
+                                  color: "white",
+                                  textDecoration: "none",
+                                }}
+                                href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
+                              >
+                                {" "}
+                                Archive Tweet
+                              </a>
                             </li>
                             <li className={classes.linksitem}>
-                             <a style={{color: 'white', textDecoration: 'none'}} href="https://xinfin.org/contactus">Contact us</a>
+                              <a
+                                style={{
+                                  color: "white",
+                                  textDecoration: "none",
+                                }}
+                                href="https://xinfin.org/contactus"
+                              >
+                                Contact us
+                              </a>
                             </li>
                             <li className={classes.linksitem}>
-                             <a style={{color: 'white', textDecoration: 'none'}} href="https://xinfin.org/privacy">Privacy Policy</a>
+                              <a
+                                style={{
+                                  color: "white",
+                                  textDecoration: "none",
+                                }}
+                                href="https://xinfin.org/privacy"
+                              >
+                                Privacy Policy
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -190,67 +215,73 @@ export default function FooterComponent() {
                     </Paper>
                   </Grid>
 
-
                   <Grid className="link-grid-2" item xs={12} sm={4} md={3}>
-                    <Paper className="link-grid-paper-2" style={{ backgroundColor: '#191d43' }} elevation={0}>
+                    <Paper
+                      className="link-grid-paper-2"
+                      style={{ backgroundColor: "#191d43" }}
+                      elevation={0}
+                    >
                       <div className="follow-text">
                         <div className={classes.followus}>
-                          <span style={{ fontSize: '13px' }}> Follow us on{" "}</span>
+                          <span style={{ fontSize: "13px" }}>
+                            {" "}
+                            Follow us on{" "}
+                          </span>
                         </div>
-                        <div >
+                        <div>
                           <ul className={classes.followlinks}>
                             <li className={classes.followitem}>
                               <a href="https://twitter.com/XinFin_Official">
-                              <img
-                                style={{ height: "20px", width: "20px" }}
-                                src="../../images/twitter.svg"
-                              />
+                                <img
+                                  style={{ height: "20px", width: "20px" }}
+                                  src="../../images/twitter.svg"
+                                />
                               </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
                               <a href="https://www.facebook.com/XinFinHybridBlockchain/">
-                              <img
-                                style={{ height: "20px", width: "20px" }}
-                                src="../../images/facebook.svg"
-                              />
+                                <img
+                                  style={{ height: "20px", width: "20px" }}
+                                  src="../../images/facebook.svg"
+                                />
                               </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
                               <a href="https://github.com/XinFinorg">
-                              <img
-                                style={{ height: "20px", width: "20px" }}
-                                src="../../images/github.svg"
-                              />
+                                <img
+                                  style={{ height: "20px", width: "20px" }}
+                                  src="../../images/github.svg"
+                                />
                               </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
                               <a href="https://www.linkedin.com/company/xinfin/">
-                              <img
-                                style={{ height: "20px", width: "20px" }}
-                                src="../../images/linkedin.svg"
-                              />
-                               </a>
+                                <img
+                                  style={{ height: "20px", width: "20px" }}
+                                  src="../../images/linkedin.svg"
+                                />
+                              </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
                               <a href="https://t.me/xinfintalk">
-                              <img
-                                style={{ height: "20px", width: "20px" }}
-                                src="../../images/telegram.svg"
-                              />
-                               </a>
+                                <img
+                                  style={{ height: "20px", width: "20px" }}
+                                  src="../../images/telegram.svg"
+                                />
+                              </a>
                             </li>
                             <li className={classes.followitem}>
                               {" "}
                               <a href="https://www.reddit.com/r/xinfin/">
-                              <img
-                                style={{ height: "20px", width: "20px" }}
-                                src="../../images/reddit.svg"
-                              />
-                               </a>
+                                <img
+                                  style={{ height: "20px", width: "20px" }}
+                                  src="../../images/reddit.svg"
+                                />
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -259,20 +290,24 @@ export default function FooterComponent() {
                   </Grid>
 
                   <Grid className="link-grid-3" item xs={12} sm={4} md={3}>
-                    <Paper style={{ backgroundColor: '#191d43', marginLeft: '20px' }} elevation={0}>
+                    <Paper
+                      style={{ backgroundColor: "#191d43", marginLeft: "20px" }}
+                      elevation={0}
+                    >
                       <div className="powered-paper">
                         <a href="/">
-                        <img style={{ width: '60px', height: '59px' }}
-
-                          src="/images/xinfintwitter.png"
-                        />
+                          <div>
+                          <img
+                            style={{ width: "60px", height: "59px" }}
+                            src="/images/xinfintwitter.png"
+                          />
+                          </div>
                         </a>
                         <div className="powered-text">Powered By XDC</div>
                         {/* style={{ marginLeft: '10px', letterSpacing: '0.59px' }} */}
                       </div>
                     </Paper>
                   </Grid>
-
                 </div>
               </Row>
             </Paper>
