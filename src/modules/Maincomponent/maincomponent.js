@@ -11,6 +11,7 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
+import MapTabs  from "./mapTabs";
 import Tippy from "@tippyjs/react";
 import axios from "axios";
 import moment from "moment";
@@ -484,14 +485,14 @@ export default function MainComponent(props) {
           }
           console.log("obj------", data);
 
-          let newarray = arr.filter((element) => element !== "Click");
-          console.log("ip result---", newarray);
-          setValue(newarray);
+          let newarray = arr.filter(element => element !== 'Click');
+          // console.log("ip result---", newarray);
+          setValue(newarray)
 
           //for socket total nodes ---->
-          let nodecount = Object.keys(test).length;
-          console.log("nodecount-----", nodecount);
-          setNodes(nodecount);
+          let nodecount = Object.keys(test).length
+          // console.log('nodecount-----', nodecount)
+          setNodes(nodecount)
         }
       }
     };
@@ -513,7 +514,7 @@ export default function MainComponent(props) {
   const [dark, setMode] = useState(getMode());
 
   useEffect(() => {
-    localStorage.setItem("mode", JSON.stringify(dark));
+    // localStorage.setItem("mode", JSON.stringify(dark));
     setMode(props.dark);
   }, [props.dark]);
 
@@ -653,8 +654,7 @@ export default function MainComponent(props) {
                                 fontWeight: "600",
                               }}
                             >
-                              The saved tweets per second track the rate of
-                              record-keeping
+                             Current Active Nodes
                             </span>
                           }
                         >
@@ -737,10 +737,16 @@ export default function MainComponent(props) {
                 <IconImg src="../../images/ic.png" />
               </Tippy>
             </Text>
-
+                
             <Paper className={props.dark ? classes.top_dark_mode : classes.top}>
               <Trending>
-                <div>{props.dark ? <DarkMap /> : <MapChart />}</div>
+              <MapTabs dark={dark}/>
+                <div>
+                  {/* {props.dark ? <DarkMap/> : <MapChart/>} */}
+                 
+                  {/* < MapChart dark={dark} /> */}
+           
+                </div>
               </Trending>
             </Paper>
             {/* <div className= "map-chart" elevation={0}>
