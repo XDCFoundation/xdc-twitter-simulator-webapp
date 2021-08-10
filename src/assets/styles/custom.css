@@ -597,14 +597,14 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 105%;
+  width: 103%;
   height: 22px;
   margin-top: 20px;
 }
 .blocks {
   justify-content: space-between;
   display: flex;
-  width: 100%;
+  width: 102%;
   height: 27px;
   margin-top: 0px;
   margin-left: 14px;
@@ -615,9 +615,9 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 100%;
-  height: 65px;
-  margin-top: 0px;
+  width: 98%;
+  /* height: 65px; */
+  margin-top: 15px;
   margin-left: 15px;
 }
 .dark-blocks {
