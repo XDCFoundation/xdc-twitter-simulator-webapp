@@ -6,7 +6,8 @@ import MainComponent from "./maincomponent";
 import axios from 'axios';
 import moment from 'moment';
 
-export default function Main() {
+export default function Main(props) {
+
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false

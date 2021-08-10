@@ -1,39 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { ResponsiveLine } from '@nivo/line';
-import '../../assets/styles/custom.css';
-import axios from 'axios';
-import moment from 'moment';
+import { ResponsiveLine } from "@nivo/line";
+import "../../assets/styles/custom.css";
+import axios from "axios";
+import moment from "moment";
 
 // const point={}
 
 const ReadingData = ({ data }) => (
-    <ResponsiveLine
-        data={data}
-        margin={{ top: 10, right: 10 }}
-        colors={{ scheme: "accent" }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=" >-.2f"
-        curve="basis"
-        axisTop={null}
-        axisRight={null}
-        axisBottom={null}
-        axisLeft={null}
-        enableGridX={false}
-        enableGridY={false}
-        // colors={{ scheme: 'purple_blue' }}
-        enablePoints={false}
-        pointSize={10}
-        pointColor={{ theme: 'background' }}
-        pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
-        pointLabelYOffset={-12}
-        enableCrosshair={false}
-        enableArea={true}
-        useMesh={true}
-        legends={[]}
-    />
-)
+  <ResponsiveLine
+    data={data}
+    margin={{ top: 10, right: 10 }}
+    colors={{ scheme: "accent" }}
+    xScale={{ type: "point" }}
+    yScale={{
+      type: "linear",
+      min: "auto",
+      max: "auto",
+      stacked: true,
+      reverse: false,
+    }}
+    yFormat=" >-.2f"
+    curve="basis"
+    axisTop={null}
+    axisRight={null}
+    axisBottom={null}
+    axisLeft={null}
+    enableGridX={false}
+    enableGridY={false}
+    enablePoints={false}
+    pointSize={10}
+    pointColor={{ theme: "background" }}
+    pointBorderWidth={2}
+    pointBorderColor={{ from: "serieColor" }}
+    pointLabelYOffset={-12}
+    enableCrosshair={false}
+    enableArea={true}
+    useMesh={true}
+    legends={[]}
+  />
+);
 
 export default function App() {
     const [data, setData] = useState([])
