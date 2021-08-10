@@ -386,12 +386,16 @@ export default function MainComponent(props) {
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
+// console.log('props---',props)
+
   useEffect(() => {
     fetchCount();
     fetchTps();
     getValue();
-
-    setInterval(() => {}, 30000);
+    setInterval(() => {
+      fetchCount();
+      //  fetchTps();
+    }, 60000);
   }, []);
 
   //for count of tps:
@@ -417,7 +421,7 @@ export default function MainComponent(props) {
         "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/max-tps-count"
       )
       .then((res) => {
-        console.log("maxtpscount-------", res.data);
+        // console.log('maxtpscount-------', res.data)
         setMaxtpsValue(res.data);
       })
       .catch((err) => {
@@ -457,7 +461,7 @@ export default function MainComponent(props) {
               }
             });
           }
-          console.log("obj------", data);
+          // console.log('obj------', data)
 
           let newarray = arr.filter((element) => element !== "Click");
           // console.log("ip result---", newarray);
@@ -489,11 +493,18 @@ export default function MainComponent(props) {
 
   useEffect(() => {
     // localStorage.setItem("mode", JSON.stringify(dark));
+   
     setMode(props.dark);
   }, [props.dark]);
 
   let tpsCount = (count.totalTransactions / 60).toFixed(2);
   let maxtpsCount = parseFloat(maxtpsvalue.responseData);
+
+    let id =props?.read
+  // console.log('iii---',id)
+  // let identity = props?.data
+  // console.log('jjj--',identity)
+
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -601,7 +612,9 @@ export default function MainComponent(props) {
                       </div>
                       <div
                         className={dark ? "readSpeed-dark-mode" : "readSpeed"}
-                      ></div>
+                      >
+                          {id?.length > 0 ? id : ' - '}/sec
+                      </div>
                       <span className="hover-data">
                         {" "}
                         <ReadingData />{" "}

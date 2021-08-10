@@ -19,8 +19,8 @@ export default function App(props) {
     });
   return (
     <>
-      <MapContainer style={{width: '105%',height: 385}} center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
-        <TileLayer
+      <MapContainer style={{width: '108%',height: 385}} center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
+        <TileLayer noWrap={true}
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
           // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -44,7 +44,7 @@ export default function App(props) {
                   items.coordinates[0]
                 ]
               }
-              radius={1}
+              radius={2}
               fillOpacity={0.5}
               stroke={false}
             >
