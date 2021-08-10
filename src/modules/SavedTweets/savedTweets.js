@@ -260,7 +260,7 @@ export default function SavedTweets(props) {
     setInterval(() => {
       fetchSavedTweets();
       fetchTotalTweets();
-    }, 30000);
+    }, 45000);
   }, []);
 
   //For save-tweets
@@ -283,7 +283,7 @@ export default function SavedTweets(props) {
 
         else tweetResponse = res.data.responseData[0];
         setSavedTweets(tweetResponse);
-        console.log("saveTweets------", tweetResponse);
+        // console.log("saveTweets------", tweetResponse);
       })
       .catch((err) => {
         console.log(err);

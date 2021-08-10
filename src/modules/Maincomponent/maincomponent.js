@@ -275,6 +275,7 @@ export default function MainComponent(props) {
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
+// console.log('props---',props)
 
   useEffect(() => {
     fetchCount();
@@ -283,7 +284,7 @@ export default function MainComponent(props) {
     setInterval(() => {
       fetchCount();
       //  fetchTps();
-    }, 30000);
+    }, 60000);
   }, []);
 
   //for count of tps: 
@@ -312,7 +313,7 @@ export default function MainComponent(props) {
         "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/max-tps-count"
       )
       .then((res) => {
-        console.log('maxtpscount-------', res.data)
+        // console.log('maxtpscount-------', res.data)
         setMaxtpsValue(res.data);
 
       })
@@ -358,7 +359,7 @@ export default function MainComponent(props) {
 
             })
           }
-          console.log('obj------', data)
+          // console.log('obj------', data)
 
           let newarray = arr.filter(element => element !== 'Click');
           // console.log("ip result---", newarray);
@@ -390,13 +391,19 @@ export default function MainComponent(props) {
 
   useEffect(() => {
     // localStorage.setItem("mode", JSON.stringify(dark));
+   
     setMode(props.dark);
   }, [props.dark]);
 
-
   let tpsCount = (count.totalTransactions / 60).toFixed(2)
   let maxtpsCount = parseFloat(maxtpsvalue.responseData)
-
+  let id =props?.read
+  // console.log('iii---',id)
+  // let iden = props?.data
+  // console.log('jjj--',iden)
+  // let iden = props?.data
+  // console.log('bbb---',identity)
+  
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
@@ -443,7 +450,7 @@ export default function MainComponent(props) {
                       </Tippy>
                     </div>
                     <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                      {tpsCount}/sec
+                    {tpsCount} / sec
                     </div>
                     <span className="hover-data">
                       {" "}
@@ -491,7 +498,8 @@ export default function MainComponent(props) {
                       </Tippy>
                     </div>
                     <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>
-                      {tpsCount}/sec
+                      {id?.length > 0 ? id : ' - '}/sec
+                      {/* {id && id.length>=1 ? id : ' - '}/sec */}
                     </div>
                     <span className="hover-data">
                       {" "}
@@ -568,7 +576,7 @@ export default function MainComponent(props) {
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
                         <br />
-                        {tpsCount}/ {maxtpsCount}
+                        {tpsCount}/{maxtpsCount}
                       </div>
                       <div style={{ width: "50%", marginLeft: "5%" }}>
                         <NodeChart dark={dark} ipcount={value} />

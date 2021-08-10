@@ -37,53 +37,85 @@ const ReadingData = ({ data }) => (
 
 export default function App() {
     const [data, setData] = useState([])
+    // const [read, setRead] = useState({})
     useEffect(() => {
         reading()
         setInterval(() => {
             reading()
-        }, 45000);
+        }, 60000);
         }, []);
 
         function reading(){
             axios
                 .get(
-                    "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/saving-speed"
+                    "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
                 )
                 .then((result) => {
-                    console.log('result-----', result.data.responseData)
+                    // console.log('result-----', result.data.responseData)
                     // setData(res.data.responseData);
                     var arr = [{
-                        id: "Write-graph",
-                        // color: "hsl(248, 70%, 50%)",
-                        data: []
-                    }]
-                    var resultData = []
-
-                    result.data.responseData.map(items => {
-                   
-                        resultData.push({
-                            x: moment(items.startTime * 1000).format('LT'),
-                            y: items.totalTransactions/1800
-                        })
-
-                    })
-                    let graphdata = resultData
-                    console.log('graph----', graphdata)
-                    arr[0].data = resultData
-                    setData(arr)
+                      id: "Write-graph",
+                      // color: "hsl(248, 70%, 50%)",
+                      data: []
+                  }]
+                  var resultData = []
+        
+                  result.data.responseData.map(items => {
+                 
+                      resultData.push({
+                          x: moment(items.addedOn).format('LT'),
+                          y: items.responseTime/items.requestCount
+                      })
+        
+                  })
+                  // let graphdata = resultData
+                  function getUnique(resultData, index) {
+        
+                    const unique = resultData
+                         .map(e => e[index])
+                  
+                         // store the keys of the unique objects
+                         .map((e, i, final) => final.indexOf(e) === i && i)
+                  
+                         // eliminate the dead keys & store unique objects
+                        .filter(e => resultData[e]).map(e => resultData[e]);      
+                  
+                     return unique;
+                  }
+                  
+                //   console.log(getUnique(resultData,'x'))
+                let graphdata = getUnique(resultData,'x').reverse()
+                // console.log('graph----', graphdata)
+        
+                // To print the value of last object of y.
+                // let newData = graphdata.slice(-1)
+                // console.log('graph---',newData)
+                // let firstData= Object.values(newData[0])
+                // console.log('first---',firstData)
+                // let secondData = parseFloat(1000/firstData[1])
+                // console.log('second---',secondData)
+                // setRead(secondData)
+               
+        
+                // console.log('graph--',graphdata)
+                arr[0].data = graphdata
+                // arr[0].data = resultData
+                setData(arr)
+        
                 })
                 .catch((err) => {
                     console.log(err);
                 });
-
-        }    
+        
+        } 
         // }, 5000);
    
-
+        // let ex = read
+        // console.log('graph---',ex)
 
     return (
-        <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
-            <ReadingData data={data} />
+        <div style={{height: 80, margin: '-5px', marginTop: '5px' }}>
+            <ReadingData data={data}  />
         </div>
     );
 }

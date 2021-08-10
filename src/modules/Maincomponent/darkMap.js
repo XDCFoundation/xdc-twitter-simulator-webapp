@@ -20,40 +20,40 @@ export default function DarkMap() {
     });
   return (
     <>
-      <MapContainer style={{width: '100%', height: 385}} center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
-        <TileLayer
+      <MapContainer style={{ width: '100%', height: 385 }} center={[30, 10]} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
+        <TileLayer noWrap={true}
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
-        //   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          //   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           // url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
-        //   url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
-          
+          //   url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
+
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 
-          //for night mode:
-          // url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.png"
+        //for night mode:
+        // url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.png"
 
         />
         {hashtag.map((items, k) => {
           // let name = items.name
           return (
             <CircleMarker
-            key={k}
-            center={
-              [
-                items.coordinates[1],
-                items.coordinates[0]
-              ]
-            }
-            radius={1}
-            fillOpacity={0.5}
-            stroke={false}
-          >
-            <Tooltip  opacity={0.7} permanent>
-           <span style={{padding: '8px 8px',color: 'black', fontWeight: 600}}> {items.name} </span>
+              key={k}
+              center={
+                [
+                  items.coordinates[1],
+                  items.coordinates[0]
+                ]
+              }
+              radius={2}
+              fillOpacity={0.5}
+              stroke={false}
+            >
+              <Tooltip opacity={0.7} permanent>
+                <span style={{ padding: '8px 8px', color: 'black', fontWeight: 600 }}> {items.name} </span>
               </Tooltip>
 
-          </CircleMarker>)
+            </CircleMarker>)
         })
         }
       </MapContainer>

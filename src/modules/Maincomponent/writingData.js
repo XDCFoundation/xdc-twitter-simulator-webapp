@@ -42,7 +42,7 @@ export default function App() {
     writing()
     setInterval(() => {
         writing()
-    }, 45000);
+    }, 60000);
     }, []);
 
     function writing(){

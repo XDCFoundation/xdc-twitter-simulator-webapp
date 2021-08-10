@@ -427,6 +427,8 @@ export default function Searchlist(props) {
                 basic.length >= 1 &&
                 basic.map((response) => {
                   let value = response.tweetMessage;
+                  let userId = response.tweetId
+                  // console.log('resp--',userId)
                   const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
                   let handler = value.slice(atIndex, colonIndex);
@@ -454,7 +456,9 @@ export default function Searchlist(props) {
                           props.dark ? classes.hr_page_dark_mode : classes.hr_page
                         }
                       />
+                    <a style={{textDecoration: 'none'}} href='http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/archive?url=https://twitter.com/MichalStein2/status/1404839937908875264'>
                       <Row>
+                        
                         <Typography
                           variant="h6"
                           className={
@@ -491,7 +495,9 @@ export default function Searchlist(props) {
                             </Paper>
                           </ThemeProvider>
                         </Column>
+                      
                       </Row>
+                      </a>
                     </>
                   );
                 })}
@@ -500,7 +506,9 @@ export default function Searchlist(props) {
                 advance.length >= 1 &&
                 advance.map((response) => {
                   let value = response.text;
-                  console.log('valuuuu',value)
+                  let useId = response._id
+                  // console.log('resp2--',useId)
+                  // console.log('valuuuu',value)
                   const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
                   let handler = value.slice(atIndex,colonIndex);
@@ -533,6 +541,7 @@ export default function Searchlist(props) {
                           props.dark ? classes.hr_page_dark_mode : classes.hr_page
                         }
                       />
+                      <a style={{textDecoration: 'none'}} href='http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/archive?url=https://twitter.com/MichalStein2/status/1404839937908875264'>
                       <Row>
                         <Typography
                           variant="h6"
@@ -572,6 +581,7 @@ export default function Searchlist(props) {
                           </ThemeProvider>
                         </Column>
                       </Row>
+                      </a>
                     </>
                   );
                 })}

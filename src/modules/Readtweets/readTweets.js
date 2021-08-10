@@ -411,12 +411,14 @@ export default function ReadTweets(props) {
                         }
                       />
                       <Row>
-                        <Typography
+                      <Typography
                           variant="h6"
                           className={
                             props.dark ? classes.name_dark_mode : classes.name
                           }
-                        ></Typography>
+                        >
+                          {/* {response.name} */}
+                        </Typography>
                         <Paper
                           className={
                             props.dark ? classes.time_dark_mode : classes.time
