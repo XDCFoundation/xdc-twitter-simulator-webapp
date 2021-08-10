@@ -4,7 +4,8 @@ import FooterComponent from "../Footer/footer";
 import HeaderComponent from "../Header/header";
 import MainComponent from "./maincomponent";
 
-export default function Main() {
+export default function Main(props) {
+
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false
@@ -19,7 +20,7 @@ export default function Main() {
     localStorage.setItem("mode", JSON.stringify(dark))
   }, [dark])
 
-
+console.log("propsss",props.res);
 
   return (
     <div>

@@ -11,16 +11,20 @@ import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
 import MapChart from "./map";
 import NodeChart from "./nodeMap";
-import MapTabs  from "./mapTabs";
+import MapTabs from "./mapTabs";
 import Tippy from "@tippyjs/react";
 import axios from "axios";
+import moment from "moment";
+import SavedRead from "./readSavedTweet";
 
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
 // import React, { Component } from "react";
-import { w3cwebsocket as W3CWebSocket } from "websocket"
-const client = new W3CWebSocket("wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0")
+import { w3cwebsocket as W3CWebSocket } from "websocket";
+const client = new W3CWebSocket(
+  "wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0"
+);
 
 // import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
@@ -44,17 +48,37 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     marginRight: "20px",
   },
+  "@media (min-width: 0px) and (max-width: 766px)": {
+    grid: {
+      marginTop: "30px",
+      marginRight: "20px",
+      marginLeft: "20px",
+    },
+  },
   grid2: {
     marginTop: "50px",
   },
   grid3: {
     marginTop: "50px",
   },
+  "@media (max-width: 766px)": {
+    grid3: {
+      marginTop: "1px",
+    },
+  },
   writing_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
     marginLeft: "7.5%",
+    marginTop: "10px",
+    padding: "20px 14px 29.6px 26px",
+  },
+  writingPaper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    marginLeft: "0px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
   },
@@ -68,6 +92,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
   },
+  writingPaperDarkMode: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    backgroundColor: "#191d43",
+    color: "white",
+    marginLeft: "0px",
+    marginTop: "10px",
+    padding: "20px 14px 29.6px 26px",
+  },
   reading_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -76,7 +110,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
   },
-
+  readingPaper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    marginLeft: "0px",
+    marginTop: "10px",
+    padding: "20px 14px 29.6px 26px",
+  },
   reading_paper_dark_mode: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -87,13 +128,21 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
   },
-
+  readingPaperDarkMode: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    backgroundColor: "#191d43",
+    color: "white",
+    marginLeft: "0px",
+    marginTop: "10px",
+    padding: "20px 14px 29.6px 26px",
+  },
   map: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "spaceAround",
   },
-
   map_dark_mode: {
     display: "flex",
     flexDirection: "row",
@@ -113,7 +162,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     marginLeft: "20px",
   },
-
   node_dark_mode: {
     fontFamily: "Raleway",
     fontSize: "14px",
@@ -128,7 +176,6 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     backgroundColor: "#191d43",
   },
-
   maxTps: {
     fontFamily: "Raleway",
     fontSize: "14px",
@@ -143,7 +190,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     textAlign: "left",
   },
-
   maxTps_dark_mode: {
     fontFamily: "Raleway",
     fontSize: "14px",
@@ -159,7 +205,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "white",
   },
-
   mapchart: {
     width: "100%",
     height: "50%",
@@ -169,7 +214,6 @@ const useStyles = makeStyles((theme) => ({
     height: "50%",
     backgroundColor: "#191d43",
   },
-
   top20: {
     color: "#09184b",
   },
@@ -182,17 +226,59 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     borderRadius: "4px",
   },
+  paper_node: {
+    marginLeft: "20px",
+    marginTop: "-9px",
+    boxShadow: "none",
+    borderRadius: "4px",
+    marginRight: "20px",
+  },
   top: {
     marginTop: "10px",
     marginRight: "9px",
     boxShadow: "none",
     height: "95.5%",
   },
+  topMode: {
+    marginTop: "10px",
+    marginRight: "9px",
+    boxShadow: "none",
+    height: "95.5%",
+    marginBottom: "40px",
+  },
+
   top_dark_mode: {
     marginTop: "10px",
     marginRight: "9px",
     boxShadow: "none",
     height: "95.5%",
+    backgroundColor: "#191d43",
+  },
+  topDarkMode: {
+    marginTop: "10px",
+    marginRight: "9px",
+    boxShadow: "none",
+    height: "95.5%",
+    backgroundColor: "#191d43",
+    marginBottom: "40px",
+  },
+  readingData: {
+    marginTop: "30px",
+    marginRight: "20px",
+    marginLeft: "20px",
+  },
+  topTrend: {
+    marginTop: "40px",
+    marginRight: "10px",
+    marginLeft: "20px",
+  },
+  savedReadTweetConatiner: {
+    marginRight: "18px",
+    marginLeft: "21px",
+  },
+  savedReadTweetConatinerDark: {
+    marginRight: "18px",
+    marginLeft: "21px",
     backgroundColor: "#191d43",
   },
 }));
@@ -257,6 +343,14 @@ const SaveGraphTrend = styled.div`
     margin-top: 10px;
   }
 `;
+const SavedGraphTrend = styled.div`
+  @media (min-width: 2001px) and (max-width: 2400px) {
+    margin-top: 10px;
+  }
+  @media (min-width: 2401px) and (max-width: 2600px) {
+    margin-top: 10px;
+  }
+`;
 
 const ReadGraphTrend = styled.div`
   @media (min-width: 2001px) and (max-width: 2400px) {
@@ -266,27 +360,41 @@ const ReadGraphTrend = styled.div`
     margin-top: 10px;
   }
 `;
+const Desktop = styled.div`
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    display: visible;
+  }
+`;
+const MobileResponsive = styled.div`
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: visible;
+  }
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
 
 export default function MainComponent(props) {
   const classes = useStyles();
   const [value, setValue] = useState([]);
   const [nodes, setNodes] = useState([]);
+  const [data, setData] = useState([{}]);
 
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
-
 
   useEffect(() => {
     fetchCount();
     fetchTps();
     getValue();
-    setInterval(() => {
-      fetchCount();
-      //  fetchTps();
-    }, 30000);
+
+    setInterval(() => {}, 30000);
   }, []);
 
-  //for count of tps: 
+  //for count of tps:
 
   const fetchCount = () => {
     axios
@@ -294,17 +402,14 @@ export default function MainComponent(props) {
         "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/tps-calculate"
       )
       .then((res) => {
-        // console.log(res.data.responseData)
         setCount(res.data.responseData);
-        // let result = (res.data.responseData.totalTransactions) / 60
-        // console.log("total trans", result)
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  //for Max-Tps count: 
+  //for Max-Tps count:
 
   const fetchTps = () => {
     axios
@@ -312,74 +417,68 @@ export default function MainComponent(props) {
         "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/max-tps-count"
       )
       .then((res) => {
-        console.log('maxtpscount-------', res.data)
+        console.log("maxtpscount-------", res.data);
         setMaxtpsValue(res.data);
-
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-
   //socket-Function ---->
   const getValue = () => {
-    let test = {}
+    let test = {};
     client.onopen = () => {
-      console.log("connect")
-    }
+      console.log("connect");
+    };
     client.onmessage = async (event) => {
-
-      var msg = JSON.parse(event.data)
-      if (msg.action === 'stats') {
+      var msg = JSON.parse(event.data);
+      if (msg.action === "stats") {
         if (msg.data.id in test) {
-          return
+          return;
         } else {
-          test[msg.data.id] = msg.data.stats.active
+          test[msg.data.id] = msg.data.stats.active;
 
           //for socket ip counts---->
-          let data = Object.keys(test)
-          var arr = []
+          let data = Object.keys(test);
+          var arr = [];
           if (data) {
-            data.map(item => {
-
+            data.map((item) => {
               if (item[item.length - 1] == ")") {
-                var start = item.lastIndexOf("(") + 1
-                var end = item.length - 1
-                var result = item.substring(start, end)
-                arr.push(result)
+                var start = item.lastIndexOf("(") + 1;
+                var end = item.length - 1;
+                var result = item.substring(start, end);
+                arr.push(result);
               } else {
-                var start = item.lastIndexOf("-") + 1
-                var end = item.length - 1
-                var result = item.substr(start, end)
-                arr.push(result)
-
+                var start = item.lastIndexOf("-") + 1;
+                var end = item.length - 1;
+                var result = item.substr(start, end);
+                arr.push(result);
               }
-
-            })
+            });
           }
-          console.log('obj------', data)
+          console.log("obj------", data);
 
-          let newarray = arr.filter(element => element !== 'Click');
+          let newarray = arr.filter((element) => element !== "Click");
           // console.log("ip result---", newarray);
-          setValue(newarray)
+          setValue(newarray);
 
           //for socket total nodes ---->
-          let nodecount = Object.keys(test).length
+          let nodecount = Object.keys(test).length;
           // console.log('nodecount-----', nodecount)
-          setNodes(nodecount)
+          setNodes(nodecount);
         }
       }
-    }
+    };
     client.onclose = async (event) => {
       if (event.wasClean) {
-        console.log(`Number of Active Nodes = ${Object.keys(test).length}`)
-        setNodes(Object.keys(test).length)
+        console.log(`Number of Active Nodes = ${Object.keys(test).length}`);
+        setNodes(Object.keys(test).length);
       } else {
-        console.log('[close] Connection died')
+        console.log("[close] Connection died");
       }
-    }
-  }
+    };
+  };
 
   //for Night mode-->
   const getMode = () => {
@@ -393,133 +492,43 @@ export default function MainComponent(props) {
     setMode(props.dark);
   }, [props.dark]);
 
-
-  let tpsCount = (count.totalTransactions / 60).toFixed(2)
-  let maxtpsCount = parseFloat(maxtpsvalue.responseData)
+  let tpsCount = (count.totalTransactions / 60).toFixed(2);
+  let maxtpsCount = parseFloat(maxtpsvalue.responseData);
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
-      <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Row className="justify-space-between w-100">
-              <Row className="w-100">
-                <Grid item xs={6} className={classes.grid}>
-                  <Text
-                    className={dark ? "writing-data-dark-mode" : "writing-data"}
-                  >
-                    Writing Data
-                  </Text>
-                  <Paper
-                    className={
-                      dark
-                        ? classes.writing_paper_dark_mode
-                        : classes.writing_paper
-                    }
-                    elevation={0}
-                  >
-                    <div
-                      className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}
-                    >
-                      Saving Speed
-                      <Tippy
-                        placement={"right"}
-                        theme={"light"}
-                        maxWidth={200}
-                        content={
-                          <span
-                            style={{
-                              color: "#0d0e2d",
-                              fontSize: "11px",
-                              fontWeight: "600",
-                            }}
-                          >
-                            The saved tweets per second track the rate of
-                            record-keeping
-                          </span>
-                        }
-                      >
-                        <IconImg src="../../images/ic.png" />
-                      </Tippy>
-                    </div>
-                    <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                      {tpsCount}/sec
-                    </div>
-                    <span className="hover-data">
-                      {" "}
-                      <MyResponsiveLine />{" "}
-                    </span>
-                  </Paper>
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Text
-                    className={dark ? "reading-data-dark-mode" : "reading-data"}
-                  >
-                    Reading Data
-                  </Text>
-                  <Paper
-                    className={
-                      dark
-                        ? classes.reading_paper_dark_mode
-                        : classes.reading_paper
-                    }
-                    elevation={0}
-                  >
-                    <div
-                      className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}
-                    >
-                      Reading Speed
-                      <Tippy
-                        placement={"right"}
-                        theme={"light"}
-                        maxWidth={190}
-                        content={
-                          <span
-                            style={{
-                              color: "#0d0e2d",
-                              fontSize: "11px",
-                              fontWeight: "600",
-                            }}
-                          >
-                            The read tweets per second track the rate of
-                            record-keeping
-                          </span>
-                        }
-                      >
-                        <IconImg src="../../images/ic.png" />
-                      </Tippy>
-                    </div>
-                    <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>
-                      {tpsCount}/sec
-                    </div>
-                    <span className="hover-data">
-                      {" "}
-                      <ReadingData />{" "}
-                    </span>
-                  </Paper>
-                </Grid>
-              </Row>
-            </Row>
-            <Row className="justify-space-between w-100">
-              <Row className="w-100">
-                <Grid item xs={12} className={classes.grid2}>
-                  <Paper classes={{ elevation1: classes.paperNode }}>
-                    <div
+      <Desktop>
+        <div className={classes.root}>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Row className="justify-space-between w-100">
+                <Row className="w-100">
+                  <Grid item xs={6} className={classes.grid}>
+                    <Text
                       className={
-                        props.dark ? classes.map_dark_mode : classes.map
+                        dark ? "writing-data-dark-mode" : "writing-data"
                       }
                     >
+                      Writing Data
+                    </Text>
+                    <Paper
+                      className={
+                        dark
+                          ? classes.writing_paper_dark_mode
+                          : classes.writing_paper
+                      }
+                      elevation={0}
+                    >
                       <div
                         className={
-                          props.dark ? classes.node_dark_mode : classes.node
+                          dark ? "savingSpeed-dark-mode" : "savingSpeed"
                         }
                       >
-                        Nodes
+                        Saving Speed
                         <Tippy
                           placement={"right"}
                           theme={"light"}
-                          maxWidth={180}
+                          maxWidth={200}
                           content={
                             <span
                               style={{
@@ -528,101 +537,206 @@ export default function MainComponent(props) {
                                 fontWeight: "600",
                               }}
                             >
-                             Current Active Nodes
+                              The saved tweets per second track the rate of
+                              record-keeping
                             </span>
                           }
                         >
                           <IconImg src="../../images/ic.png" />
                         </Tippy>
-                        <br />
-                        {nodes}
                       </div>
                       <div
-                        className={
-                          props.dark ? classes.maxTps_dark_mode : classes.maxTps
-                        }
+                        className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                       >
-                        Current Max TPS
-                        <Tippy
-                          placement={"right"}
-                          theme={"light"}
-                          maxWidth={220}
-                          content={
-                            <span
-                              style={{
-                                color: "#0d0e2d",
-                                fontSize: "11px",
-                                fontWeight: "600",
-                                fontFamily: "Raleway",
-                                fontStretch: "normal",
-                                fontStyle: "normal",
-                                lineHeight: "1.17",
-                                letterSpacing: "normal",
-                              }}
-                            >
-                              The speed of the current and maximum transactions
-                              completed on the platform
-                            </span>
-                          }
-                        >
-                          <IconImg src="../../images/ic.png" />
-                        </Tippy>
-                        <br />
-                        {tpsCount}/ {maxtpsCount}
+                        {isNaN(tpsCount) ? "-" : tpsCount} / sec
                       </div>
-                      <div style={{ width: "50%", marginLeft: "5%" }}>
-                        <NodeChart dark={dark} ipcount={value} />
-                      </div>
-                    </div>
-                  </Paper>
-                </Grid>
-              </Row>
-            </Row>
-          </Grid>
+                      <span className="hover-data">
+                        {" "}
+                        <MyResponsiveLine />{" "}
+                      </span>
+                    </Paper>
+                  </Grid>
 
-          <Grid item xs={6}>
-            <Text
-              className={props.dark ? classes.top20_dark_mode : classes.top20}
-            >
-              Top 20 trending
-              <Tippy
-                placement={"top-start"}
-                theme={"light"}
-                maxWidth={340}
-                content={
-                  <span
-                    style={{
-                      color: "#0d0e2d",
-                      fontSize: "11px",
-                      fontWeight: "600",
-                      fontFamily: "Raleway",
-                      fontStretch: "normal",
-                      fontStyle: "normal",
-                      lineHeight: "1.17",
-                      letterSpacing: "normal",
-                    }}
-                  >
-                    This twitter decentralized application pertually records the
-                    top 20 hashtags on Twitter on to the XDC Network blockchain.
-                  </span>
-                }
+                  <Grid item xs={6} className>
+                    <Text
+                      className={
+                        dark ? "reading-data-dark-mode" : "reading-data"
+                      }
+                    >
+                      Reading Data
+                    </Text>
+                    <Paper
+                      className={
+                        dark
+                          ? classes.reading_paper_dark_mode
+                          : classes.reading_paper
+                      }
+                      elevation={0}
+                    >
+                      <div
+                        className={
+                          dark ? "savingSpeed-dark-mode" : "savingSpeed"
+                        }
+                      >
+                        Reading Speed
+                        <Tippy
+                          placement={"right"}
+                          theme={"light"}
+                          maxWidth={190}
+                          content={
+                            <span
+                              style={{
+                                color: "#0d0e2d",
+                                fontSize: "11px",
+                                fontWeight: "600",
+                              }}
+                            >
+                              The read tweets per second track the rate of
+                              record-keeping
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
+                      </div>
+                      <div
+                        className={dark ? "readSpeed-dark-mode" : "readSpeed"}
+                      ></div>
+                      <span className="hover-data">
+                        {" "}
+                        <ReadingData />{" "}
+                      </span>
+                    </Paper>
+                  </Grid>
+                </Row>
+              </Row>
+              <Row className="justify-space-between w-100">
+                <Row className="w-100">
+                  <Grid item xs={12} className={classes.grid2}>
+                    <Paper classes={{ elevation1: classes.paperNode }}>
+                      <div
+                        className={
+                          props.dark ? classes.map_dark_mode : classes.map
+                        }
+                      >
+                        <div
+                          className={
+                            props.dark ? classes.node_dark_mode : classes.node
+                          }
+                        >
+                          Nodes
+                          <Tippy
+                            placement={"right"}
+                            theme={"light"}
+                            maxWidth={180}
+                            content={
+                              <span
+                                style={{
+                                  color: "#0d0e2d",
+                                  fontSize: "11px",
+                                  fontWeight: "600",
+                                }}
+                              >
+                                Current Active Nodes
+                              </span>
+                            }
+                          >
+                            <IconImg src="../../images/ic.png" />
+                          </Tippy>
+                          <br />
+                          {nodes}
+                        </div>
+                        <div
+                          className={
+                            props.dark
+                              ? classes.maxTps_dark_mode
+                              : classes.maxTps
+                          }
+                        >
+                          Current Max TPS
+                          <Tippy
+                            placement={"right"}
+                            theme={"light"}
+                            maxWidth={220}
+                            content={
+                              <span
+                                style={{
+                                  color: "#0d0e2d",
+                                  fontSize: "11px",
+                                  fontWeight: "600",
+                                  fontFamily: "Raleway",
+                                  fontStretch: "normal",
+                                  fontStyle: "normal",
+                                  lineHeight: "1.17",
+                                  letterSpacing: "normal",
+                                }}
+                              >
+                                The speed of the current and maximum
+                                transactions completed on the platform
+                              </span>
+                            }
+                          >
+                            <IconImg src="../../images/ic.png" />
+                          </Tippy>
+                          <br />
+                          {isNaN(tpsCount) ? "-" : tpsCount} /{" "}
+                          {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                        </div>
+                        <div style={{ width: "50%", marginLeft: "5%" }}>
+                          <NodeChart dark={dark} ipcount={value} />
+                        </div>
+                      </div>
+                    </Paper>
+                  </Grid>
+                </Row>
+              </Row>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Text
+                className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
-                <IconImg src="../../images/ic.png" />
-              </Tippy>
-            </Text>
-                
-            <Paper className={props.dark ? classes.top_dark_mode : classes.top}>
-              <Trending>
-              <MapTabs dark={dark}/>
-                <div>
-                  {/* {props.dark ? <DarkMap/> : <MapChart/>} */}
-                 
-                  {/* < MapChart dark={dark} /> */}
-           
-                </div>
-              </Trending>
-            </Paper>
-            {/* <div className= "map-chart" elevation={0}>
+                Top 20 trending
+                <Tippy
+                  placement={"top-start"}
+                  theme={"light"}
+                  maxWidth={340}
+                  content={
+                    <span
+                      style={{
+                        color: "#0d0e2d",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                        fontFamily: "Raleway",
+                        fontStretch: "normal",
+                        fontStyle: "normal",
+                        lineHeight: "1.17",
+                        letterSpacing: "normal",
+                      }}
+                    >
+                      This twitter decentralized application pertually records
+                      the top 20 hashtags on Twitter on to the XDC Network
+                      blockchain.
+                    </span>
+                  }
+                >
+                  <IconImg src="../../images/ic.png" />
+                </Tippy>
+              </Text>
+
+              <Paper
+                className={props.dark ? classes.top_dark_mode : classes.top}
+              >
+                <Trending>
+                  <MapTabs dark={dark} />
+                  <div>
+                    {/* {props.dark ? <DarkMap/> : <MapChart/>} */}
+
+                    {/* < MapChart dark={dark} /> */}
+                  </div>
+                </Trending>
+              </Paper>
+              {/* <div className= "map-chart" elevation={0}>
           
        
                 <div  >
@@ -631,20 +745,246 @@ export default function MainComponent(props) {
            
           
             </div> */}
-          </Grid>
+            </Grid>
 
-          <Grid item xs={6} className={classes.grid3}>
-            <SaveGraphTrend>
-              <SavedTweets dark={dark} />
-            </SaveGraphTrend>
+            <Grid item xs={6} className={classes.grid3}>
+              <SaveGraphTrend>
+                <SavedTweets dark={dark} />
+              </SaveGraphTrend>
+            </Grid>
+            <Grid item xs={6} className={classes.grid3}>
+              <ReadGraphTrend>
+                <ReadTweets dark={dark} />
+              </ReadGraphTrend>
+            </Grid>
           </Grid>
-          <Grid item xs={6} className={classes.grid3}>
-            <ReadGraphTrend>
-              <ReadTweets dark={dark} />
-            </ReadGraphTrend>
-          </Grid>
+        </div>
+      </Desktop>
+      <MobileResponsive>
+        <Grid item xs={12}>
+          <Column>
+            <Grid item xs={12} className={classes.grid}>
+              <Text
+                className={dark ? "writing-data-dark-mode" : "writing-data"}
+              >
+                Writing Data
+              </Text>
+              <Paper
+                className={
+                  dark ? classes.writingPaperDarkMode : classes.writingPaper
+                }
+                elevation={0}
+              >
+                <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>
+                  Saving Speed
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={200}
+                    content={
+                      <span
+                        style={{
+                          color: "#0d0e2d",
+                          fontSize: "11px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        The saved tweets per second track the rate of
+                        record-keeping
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
+                </div>
+                <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
+                  {isNaN(tpsCount) ? "-" : tpsCount} / sec
+                </div>
+                <span className="hover-data">
+                  {" "}
+                  <MyResponsiveLine />{" "}
+                </span>
+              </Paper>
+            </Grid>
+          </Column>
+          <Column>
+            <Grid item xs={12} className={classes.readingData}>
+              <Text
+                className={dark ? "reading-data-dark-mode" : "reading-data"}
+              >
+                Reading Data
+              </Text>
+              <Paper
+                className={
+                  dark ? classes.readingPaperDarkMode : classes.readingPaper
+                }
+                elevation={0}
+              >
+                <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>
+                  Reading Speed
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={190}
+                    content={
+                      <span
+                        style={{
+                          color: "#0d0e2d",
+                          fontSize: "11px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        The read tweets per second track the rate of
+                        record-keeping
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
+                </div>
+                <div
+                  className={dark ? "readSpeed-dark-mode" : "readSpeed"}
+                ></div>
+                <span className="hover-data">
+                  {" "}
+                  <ReadingData />{" "}
+                </span>
+              </Paper>
+            </Grid>
+          </Column>
+          <Column>
+            <Grid item xs={12} className={classes.grid2}>
+              <Paper classes={{ elevation1: classes.paper_node }}>
+                <div
+                  className={props.dark ? classes.map_dark_mode : classes.map}
+                >
+                  <div
+                    className={
+                      props.dark ? classes.node_dark_mode : classes.node
+                    }
+                  >
+                    Nodes
+                    <Tippy
+                      placement={"right"}
+                      theme={"light"}
+                      maxWidth={180}
+                      content={
+                        <span
+                          style={{
+                            color: "#0d0e2d",
+                            fontSize: "11px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          The saved tweets per second track the rate of
+                          record-keeping
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy>
+                    <br />
+                    {nodes}
+                  </div>
+                  <div
+                    className={
+                      props.dark ? classes.maxTps_dark_mode : classes.maxTps
+                    }
+                  >
+                    Current Max TPS
+                    <Tippy
+                      placement={"right"}
+                      theme={"light"}
+                      maxWidth={220}
+                      content={
+                        <span
+                          style={{
+                            color: "#0d0e2d",
+                            fontSize: "11px",
+                            fontWeight: "600",
+                            fontFamily: "Raleway",
+                            fontStretch: "normal",
+                            fontStyle: "normal",
+                            lineHeight: "1.17",
+                            letterSpacing: "normal",
+                          }}
+                        >
+                          The speed of the current and maximum transactions
+                          completed on the platform
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy>
+                    <br />
+                    {isNaN(tpsCount) ? "-" : tpsCount} /{" "}
+                    {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                  </div>
+                  <div style={{ width: "50%", marginLeft: "5%" }}>
+                    <NodeChart dark={dark} ipcount={value} />
+                  </div>
+                </div>
+              </Paper>
+            </Grid>
+          </Column>
+          <Column>
+            <Grid item xs={12} className={classes.topTrend}>
+              <Text
+                className={props.dark ? classes.top20_dark_mode : classes.top20}
+              >
+                Top 20 trending
+                <Tippy
+                  placement={"top-start"}
+                  theme={"light"}
+                  maxWidth={340}
+                  content={
+                    <span
+                      style={{
+                        color: "#0d0e2d",
+                        fontSize: "11px",
+                        fontWeight: "600",
+                        fontFamily: "Raleway",
+                        fontStretch: "normal",
+                        fontStyle: "normal",
+                        lineHeight: "1.17",
+                        letterSpacing: "normal",
+                      }}
+                    >
+                      This twitter decentralized application pertually records
+                      the top 20 hashtags on Twitter on to the XDC Network
+                      blockchain.
+                    </span>
+                  }
+                >
+                  <IconImg src="../../images/ic.png" />
+                </Tippy>
+              </Text>
+
+              <Paper
+                className={props.dark ? classes.topDarkMode : classes.topMode}
+              >
+                <Trending>
+                  {/* <div>{props.dark ? <DarkMap /> : <MapChart />}</div> */}
+                  <MapTabs dark={dark} />
+                </Trending>
+              </Paper>
+            </Grid>
+          </Column>
+          <Column>
+            <Grid item xs={12} className={classes.grid3}>
+              <Paper
+                className={
+                  props.dark
+                    ? classes.savedReadTweetConatinerDark
+                    : classes.savedReadTweetConatiner
+                }
+              >
+                <SavedRead dark={dark} />
+              </Paper>
+            </Grid>
+          </Column>
         </Grid>
-      </div>
+      </MobileResponsive>
     </div>
   );
 }

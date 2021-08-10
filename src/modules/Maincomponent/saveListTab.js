@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-7%",
     marginRight: "1.5%",
     height: "auto",
+    marginBottom: "45px",
     // height: '784px',
   },
-  
 
   paper_dark_mode: {
     color: theme.palette.text.secondary,
@@ -49,10 +49,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
+    marginBottom: "45px",
     // height: '784px',
   },
-  
-
   tweetnumber: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -60,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "17px",
+    marginTop: "-14px",
     marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -70,7 +69,25 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
   },
-
+  "@media (min-width: 600px) and (max-width: 766px)": {
+    tweetnumber: {
+      whiteSpace: "nowrap",
+      boxShadow: "none",
+      align: "justify",
+      position: "absolute",
+      right: "4.5%",
+      fontSize: "26px",
+      marginTop: "-9px",
+      marginRight: "17px",
+      fontWeight: "600",
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: "1.17",
+      letterSpacing: "normal",
+      textAlign: "left",
+      color: "#09184b",
+    },
+  },
   tweetnumber_dark_mode: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -78,16 +95,34 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "17px",
-    fontWeight: "600",
+    marginTop: "-24px",
     marginRight: "17px",
+    fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.17",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "white",
-    backgroundColor: "#191d43",
+    color: "#ffffff",
+  },
+  "@media (min-width: 600px) and (max-width: 767px)": {
+    tweetnumber_dark_mode: {
+      whiteSpace: "nowrap",
+      boxShadow: "none",
+      align: "justify",
+      position: "absolute",
+      right: "4.5%",
+      fontSize: "26px",
+      marginTop: "-10px",
+      marginRight: "17px",
+      fontWeight: "600",
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: "1.17",
+      letterSpacing: "normal",
+      textAlign: "left",
+      color: "#ffffff",
+    },
   },
 
   row: {
@@ -257,36 +292,41 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
-  readTweetContainer:{
-    marginTop:"0px",
+  readTweetContainer: {
+    marginTop: "0px",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {
       marginTop: "30px",
-
     },
   },
 }));
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  const [readtweets, setReadTweets] = useState([]);
-  const [totaltweets, setTotalTweets] = useState([]);
-  const [authors, setAuthors] = useState({});
+  const [savedTweets, setSavedTweets] = useState([]);
+
+  const [totalSave, setTotalSave] = useState([]);
 
   useEffect(() => {
-    fetchTweets();
+    fetchSavedTweets();
+    fetchTotalTweets();
     setInterval(() => {
-      fetchTweets();
-    }, 45000);
+      fetchSavedTweets();
+      fetchTotalTweets();
+    }, 30000);
   }, []);
-  const fetchTweets = () => {
+
+  //For save-tweets
+
+  const fetchSavedTweets = () => {
     axios
-      .get("https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-tweet")
+      .get(
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//saved-tweets"
+      )
 
       .then((res) => {
         let tweetResponse;
-        let alltweets;
         if (
           !res ||
           !res.data ||
@@ -295,19 +335,29 @@ export default function ReadTweets(props) {
         )
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1];
-        setReadTweets(tweetResponse);
-
-        setTotalTweets(alltweets);
-        // console.log('readtweets-----------', tweetResponse)
-        // console.log('totalReadtweets-----------', alltweets)
-
+        setSavedTweets(tweetResponse);
+        console.log("saveTweets------", tweetResponse);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  //For total Count--->
+
+  const fetchTotalTweets = () => {
+    axios
+      .get(
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/saved-tweets-count"
+      )
+      .then((res) => {
+        // console.log('total-Saved-Tweet-Count-------', res.data)
+        setTotalSave(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   let method = "@user";
   // console.log('method------',method)
 
@@ -321,7 +371,7 @@ export default function ReadTweets(props) {
           >
             <Column>
               <Row className={classes.row}>
-                <Typography
+                {/* <Typography
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
@@ -347,9 +397,9 @@ export default function ReadTweets(props) {
                   >
                     <IconImg src="../../images/ic.png" />
                   </Tippy>
-                </Typography>
+                </Typography> */}
 
-                <Paper
+                <div
                   variant="h5"
                   className={
                     props.dark
@@ -358,24 +408,23 @@ export default function ReadTweets(props) {
                   }
                 >
                   {/* {method}k */}
-                  {totaltweets.tweetsInDb > 1000
-                    ? parseInt(totaltweets.tweetsInDb / 1000) + "k"
-                    : totaltweets.tweetsInDb}
-                </Paper>
+                  {totalSave.responseData > 1000
+                    ? parseInt(totalSave.responseData / 1000) + "k"
+                    : totalSave.responseData}
+                </div>
               </Row>
-              {readtweets &&
-                readtweets.length >= 1 &&
-                readtweets.map((response) => {
-                  let value = response.text;
-                  // let author = response.authorId;
-                  // console.log('auuthorId----',author)
+              {savedTweets &&
+                savedTweets.length >= 1 &&
+                savedTweets.map((response) => {
+                  let value = response.tweetMessage;
                   const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
-                  let trending = value.slice(atIndex, colonIndex);
-                  let tweetText = value.split(":")[1];
+                  let handler = value.slice(atIndex, colonIndex);
+                  let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT");
+                  // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
                   function shortenTrend(
                     b,
@@ -388,7 +437,7 @@ export default function ReadTweets(props) {
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
+                  function shortenValue(b, amountL = 80, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
@@ -423,8 +472,8 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {trending
-                              ? shortenTrend(trending)
+                            {handler
+                              ? shortenTrend(handler)
                               : shortenTrend(method)}
                           </Typography>
                           <ThemeProvider theme={theme}>

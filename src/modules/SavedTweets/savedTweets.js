@@ -36,19 +36,20 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
-    height: 'auto'
+    height: "auto",
     // height: '784px',
-
   },
+
   paper_dark_mode: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
     backgroundColor: "#191d43",
     color: "white",
-    height: 'auto'
+    height: "auto",
     // height: '784px',
   },
+
   tweetnumber: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -169,6 +170,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
     marginLeft: "18px",
   },
+
   time_dark_mode: {
     // color: "#8290a4",
     boxShadow: "none",
@@ -245,6 +247,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
+  savedTweetConatiner: {
+    marginTop: "0px",
+  },
+  "@media (min-width: 0px) and (max-width: 766px)": {
+    savedTweetConatiner: {
+      marginTop: "30px",
+      marginLeft: "-24px",
+    },
+  },
 }));
 
 export default function SavedTweets(props) {
@@ -280,7 +291,6 @@ export default function SavedTweets(props) {
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-
         else tweetResponse = res.data.responseData[0];
         setSavedTweets(tweetResponse);
         console.log("saveTweets------", tweetResponse);
@@ -300,27 +310,23 @@ export default function SavedTweets(props) {
       .then((res) => {
         // console.log('total-Saved-Tweet-Count-------', res.data)
         setTotalSave(res.data);
-
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-
   //   let save = totalSave.responseData
   // console.log('mysave---',save)
-
 
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
-        <div>
+        <div className={classes.savedTweetConatiner}>
           <Paper
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
           >
-
             <Column>
               <Row className={classes.row}>
                 <Typography
@@ -359,9 +365,10 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {totalSave.responseData > 1000 ? parseInt(totalSave.responseData / 1000) + 'k' : (totalSave.responseData)}
+                  {totalSave.responseData > 1000
+                    ? parseInt(totalSave.responseData / 1000) + "k"
+                    : totalSave.responseData}
                 </Paper>
-
               </Row>
               {savedTweets &&
                 savedTweets.length >= 1 &&
@@ -376,7 +383,12 @@ export default function SavedTweets(props) {
                   let time = timeFormat.format("LT");
                   // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
-                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                  function shortenTrend(
+                    b,
+                    amountL = 10,
+                    amountR = 3,
+                    stars = 3
+                  ) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
@@ -392,7 +404,9 @@ export default function SavedTweets(props) {
                     <>
                       <hr
                         className={
-                          props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                          props.dark
+                            ? classes.hr_page_dark_mode
+                            : classes.hr_page
                         }
                       />
                       <Row>
@@ -445,7 +459,6 @@ export default function SavedTweets(props) {
             <br />
             <br />
             <br />
-
           </Paper>
         </div>
       </Grid>

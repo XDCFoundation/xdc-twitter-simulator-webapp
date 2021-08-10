@@ -38,10 +38,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-7%",
     marginRight: "1.5%",
     height: "auto",
+    marginBottom: "45px",
     // height: '784px',
   },
-  
-
   paper_dark_mode: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
@@ -49,10 +48,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
+    marginBottom: "45px",
     // height: '784px',
   },
-  
-
   tweetnumber: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -60,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "17px",
+    marginTop: "-13px",
     marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -70,7 +68,24 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
   },
-
+  "@media (min-width: 601px) and (max-width: 766px)": {
+    tweetnumber: {
+      whiteSpace: "nowrap",
+      boxShadow: "none",
+      align: "justify",
+      position: "absolute",
+      right: "4.5%",
+      fontSize: "26px",
+      marginTop: "-10px",
+      marginRight: "17px",
+      fontWeight: "600",
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: "1.17",
+      letterSpacing: "normal",
+      textAlign: "left",
+    },
+  },
   tweetnumber_dark_mode: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -78,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "17px",
+    marginTop: "-27px",
     fontWeight: "600",
     marginRight: "17px",
     fontStretch: "normal",
@@ -87,9 +102,45 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "white",
-    backgroundColor: "#191d43",
   },
-
+  "@media (min-width: 500px) and (max-width: 599px)": {
+    tweetnumber_dark_mode: {
+      whiteSpace: "nowrap",
+      boxShadow: "none",
+      align: "justify",
+      position: "absolute",
+      right: "4.5%",
+      fontSize: "26px",
+      marginTop: "-17px",
+      fontWeight: "600",
+      marginRight: "17px",
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: "1.17",
+      letterSpacing: "normal",
+      textAlign: "left",
+      color: "white",
+    },
+  },
+  "@media (min-width: 600px) and (max-width: 766px)": {
+    tweetnumber_dark_mode: {
+      whiteSpace: "nowrap",
+      boxShadow: "none",
+      align: "justify",
+      position: "absolute",
+      right: "4.5%",
+      fontSize: "26px",
+      marginTop: "-12px",
+      fontWeight: "600",
+      marginRight: "17px",
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: "1.17",
+      letterSpacing: "normal",
+      textAlign: "left",
+      color: "white",
+    },
+  },
   row: {
     marginBottom: "30px",
   },
@@ -108,7 +159,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     marginBottom: "5px",
   },
-
   name_dark_mode: {
     fontSize: "11px",
     color: "#09184b",
@@ -125,7 +175,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     marginBottom: "5px",
   },
-
   content: {
     fontSize: "11px",
     color: "#09184b",
@@ -143,7 +192,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
     marginRight: "18px",
   },
-
   content_dark_mode: {
     fontSize: "11px",
     color: "#09184b",
@@ -162,7 +210,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
     marginRight: "18px",
   },
-
   time: {
     color: "#8290a4",
     boxShadow: "none",
@@ -181,7 +228,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
     marginLeft: "18px",
   },
-
   time_dark_mode: {
     color: "#8290a4",
     boxShadow: "none",
@@ -200,7 +246,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
     marginLeft: "18px",
   },
-
   email: {
     fontSize: "11px",
     color: "#8290a4",
@@ -229,7 +274,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "4%",
     marginLeft: "18px",
   },
-
   readtweet_dark_mode: {
     fontFamily: "Raleway",
     fontSize: "16px",
@@ -249,7 +293,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
-
   hr_page_dark_mode: {
     width: "100%",
     height: "0px",
@@ -257,13 +300,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
-  readTweetContainer:{
-    marginTop:"0px",
+  readTweetContainer: {
+    marginTop: "0px",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {
       marginTop: "30px",
-
     },
   },
 }));
@@ -299,9 +341,6 @@ export default function ReadTweets(props) {
         setReadTweets(tweetResponse);
 
         setTotalTweets(alltweets);
-        // console.log('readtweets-----------', tweetResponse)
-        // console.log('totalReadtweets-----------', alltweets)
-
       })
       .catch((err) => {
         console.log(err);
@@ -309,7 +348,6 @@ export default function ReadTweets(props) {
   };
 
   let method = "@user";
-  // console.log('method------',method)
 
   return (
     <Grid Container spacing={3}>
@@ -321,35 +359,7 @@ export default function ReadTweets(props) {
           >
             <Column>
               <Row className={classes.row}>
-                <Typography
-                  className={
-                    props.dark ? classes.readtweet_dark_mode : classes.readtweet
-                  }
-                  variant="h5"
-                  style={{ whiteSpace: "nowrap" }}
-                >
-                  Read Tweets
-                  <Tippy
-                    placement={"right"}
-                    theme={"light"}
-                    maxWidth={"none"}
-                    content={
-                      <span
-                        style={{
-                          color: "#0d0e2d",
-                          fontSize: "11px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Number of read tweets by d-app platform
-                      </span>
-                    }
-                  >
-                    <IconImg src="../../images/ic.png" />
-                  </Tippy>
-                </Typography>
-
-                <Paper
+                <div
                   variant="h5"
                   className={
                     props.dark
@@ -361,7 +371,7 @@ export default function ReadTweets(props) {
                   {totaltweets.tweetsInDb > 1000
                     ? parseInt(totaltweets.tweetsInDb / 1000) + "k"
                     : totaltweets.tweetsInDb}
-                </Paper>
+                </div>
               </Row>
               {readtweets &&
                 readtweets.length >= 1 &&
@@ -388,7 +398,12 @@ export default function ReadTweets(props) {
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
+                  function shortenValue(
+                    b,
+                    amountL = 50,
+                    amountR = 3,
+                    stars = 3
+                  ) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
