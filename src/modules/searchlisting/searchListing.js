@@ -341,7 +341,6 @@ export default function Searchlist(props) {
 
   const [basic, setBasic] = useState({})
   const [advance, setAdvance] = useState({})
- 
 // console.log('prop..',props?.locations)
 
   useEffect(() => {
@@ -426,8 +425,7 @@ export default function Searchlist(props) {
                 {basic &&
                 basic.length >= 1 &&
                 basic.map((response) => {
-                  let value = response.tweetMessage;
-                  let userId = response.tweetId
+                  let value = response.text
                   // console.log('resp--',userId)
                   const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
@@ -443,12 +441,16 @@ export default function Searchlist(props) {
                       b.length
                     )}`;
                   }
-                  function shortenValue(b, amountL = 80, stars = 3) {
+                  function shortenValue(b, amountL = 100, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
                       b.length
                     )}`;
                   }
+                  
+                  let userId = response.tweetId
+                  // console.log('myuser--',userId)
+
                   return (
                     <>
                       <hr
@@ -456,7 +458,7 @@ export default function Searchlist(props) {
                           props.dark ? classes.hr_page_dark_mode : classes.hr_page
                         }
                       />
-                    <a style={{textDecoration: 'none'}} href='http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/archive?url=https://twitter.com/MichalStein2/status/1404839937908875264'>
+                    <a style={{textDecoration: 'none'}} href={'/archive/'+userId}>
                       <Row>
                         
                         <Typography
@@ -491,7 +493,7 @@ export default function Searchlist(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(tweetTextMessage)}
+                              {shortenValue(value)}
                             </Paper>
                           </ThemeProvider>
                         </Column>

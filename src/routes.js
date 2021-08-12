@@ -12,7 +12,7 @@ import Read from "./modules/Readtweets";
 import Footer from "./modules/Footer";
 import Header from "./modules/Header";
 import Main from "./modules/Maincomponent";
-
+import TweetArchive from "./modules/searchlisting/tweetArchive";
 import Search from "./modules/searchlisting";
 import Advanced from "./modules/Advancedsearch";
 
@@ -31,6 +31,7 @@ class Routes extends BaseComponent {
             <Route exact path={"/readtweets"} component={Read} />
             {/* <Route exact path={"/footer"} component={Footer} /> */}
             <Route exact path={"/list/:keyword"} component={Search} />
+            <Route exact path={"/archive/:tweet"} component={TweetArchive} />
             {/* <Route exact path={"/header"} component={Header} /> */}
 
             {/* <Route exact path={"/adncvaedsearch"} component={Advanced} /> */}

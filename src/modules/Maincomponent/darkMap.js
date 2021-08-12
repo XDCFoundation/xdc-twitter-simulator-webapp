@@ -20,7 +20,7 @@ export default function DarkMap() {
     });
   return (
     <>
-      <MapContainer style={{ width: '100%', height: 380 }} center={[30, 10]} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
+      <MapContainer style={{ width: '100%', height: 380, zIndex: 0 }} center={[30, 10]} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
         <TileLayer noWrap={true}
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 

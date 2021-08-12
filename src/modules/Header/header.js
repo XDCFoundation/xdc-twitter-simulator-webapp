@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   list: {
     width: 250,
     backgroundColor: '#191d43',
-    color:'white'
+    color: 'white'
   },
   fullList: {
     width: 'auto',
@@ -353,32 +353,34 @@ export default function HeaderComponent(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-           <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
-              <div style={{ flexGrow: 1 }}  >
-                <a href="/">
-                  <MobImage src="../../images/TwitterS.svg" alt="image" />
-                </a>
-                <Span >Twitter D-App</Span>
-              </div>
-              <div >
-                <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpencontracts(false)}>
-                  <CloseIcon />
-                </button>
-              </div>
-            </div>
+        <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
+          <div style={{ flexGrow: 1 }}  >
+            <a href="/">
+              <MobImage src="../../images/TwitterS.svg" alt="image" />
+            </a>
+            <Span >Twitter D-App</Span>
+          </div>
+          <div >
+            <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpencontracts(false)}>
+              <CloseIcon />
+            </button>
+          </div>
+        </div>
 
-            <SubContainer3>
-            &nbsp;&nbsp;&nbsp;
-            <About><a style={{ color: 'white' }} href="/about">About</a></About>
-            &nbsp;&nbsp;
-            <Contact><a style={{ color: 'white' }} href="https://xinfin.org/contactus">Contact</a></Contact>
-            {/* <FFButton />
+        <SubContainer3>
+          &nbsp;&nbsp;&nbsp;
+          <About><a style={{ color: 'white' , textDecoration: 'none' }} href="/about">About</a></About>
+          &nbsp;&nbsp;
+          <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
+          {/* <FFButton />
             <Line> </Line> */}
-             &nbsp;&nbsp;
-            <DrawerArchive href="#">Tweet Archive</DrawerArchive>
-            &nbsp;&nbsp;
-            <DarkMode CheckMode={CheckMode} />
-          </SubContainer3>
+          &nbsp;&nbsp;
+          <DrawerArchive>
+            <a style={{cursor: 'pointer', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
+          </DrawerArchive>
+          &nbsp;&nbsp;
+          <DarkMode CheckMode={CheckMode} />
+        </SubContainer3>
       </List>
       {/* <Divider /> */}
       {/* <List>
@@ -421,12 +423,14 @@ export default function HeaderComponent(props) {
 
 
           <SubContainer2>
-            <About><a style={{ color: 'white' }} href="/about">About</a></About>
+            <About><a style={{ color: 'white',textDecoration: 'none' }} href="/about">About</a></About>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Contact><a style={{ color: 'white' }} href="https://xinfin.org/contactus">Contact</a></Contact>
+            <Contact><a style={{ color: 'white',textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
             <FFButton />
             <Line> </Line>
-            <Archive href="#">Tweet Archive</Archive>
+            <Archive >
+              <a style={{cursor: 'pointer', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
+            </Archive>
             <DarkMode CheckMode={CheckMode} />
           </SubContainer2>
 
@@ -434,9 +438,9 @@ export default function HeaderComponent(props) {
       </Display>
 
       <MobileResponsive>
-        
+
         <div>
-           <SwipeableDrawer
+          <SwipeableDrawer
             anchor={'top'}
             open={opencontracts}
             onClose={toggleDrawer('top', false)}

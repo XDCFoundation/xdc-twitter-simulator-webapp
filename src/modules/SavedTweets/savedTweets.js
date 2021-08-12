@@ -316,6 +316,7 @@ export default function SavedTweets(props) {
       });
   };
 
+  let method = "@user";
   //   let save = totalSave.responseData
   // console.log('mysave---',save)
 
@@ -373,10 +374,11 @@ export default function SavedTweets(props) {
               {savedTweets &&
                 savedTweets.length >= 1 &&
                 savedTweets.map((response) => {
-                  let value = response.tweetMessage;
-                  const colonIndex = value.indexOf(":");
+                  let value = response.text;
+                  // console.log('res--',value)
+                  // const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
-                  let handler = value.slice(atIndex, colonIndex);
+                  let handler = value.slice(atIndex, 10);
                   let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
@@ -430,7 +432,9 @@ export default function SavedTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {shortenTrend(handler)}
+                          {handler.length>0
+                              ? shortenTrend(handler)
+                              : shortenTrend(method)}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -442,7 +446,8 @@ export default function SavedTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(tweetTextMessage)}
+                                 {shortenValue(value)}
+                              {/* {shortenValue(tweetTextMessage)} */}
                             </Paper>
                           </ThemeProvider>
                         </Column>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -76,18 +76,26 @@ export default function PinnedSubheaderList(props) {
     const classes = useStyles();
     const [hashtag, setHashtag] = useState([])
 
-    axios
-        .get(
-            "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//trendingHashtags-from-db"
-        )
-        .then((res) => {
-            setHashtag(res.data.responseData);
-            // console.log('locations---', res.data.responseData)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    useEffect(() => {
+        hashtags();
+        setInterval(() => {
+            hashtags();
+        }, 60000);
+    }, []);
 
+    function hashtags() {
+        axios
+            .get(
+                "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//trendingHashtags-from-db"
+            )
+            .then((res) => {
+                setHashtag(res.data.responseData);
+                // console.log('locations---', res.data.responseData)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
     return (
         <List
             className={props.dark ? classes.dark_root : classes.root}>

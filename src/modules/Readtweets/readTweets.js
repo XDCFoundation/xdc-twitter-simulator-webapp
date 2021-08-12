@@ -369,9 +369,9 @@ export default function ReadTweets(props) {
                   let value = response.text;
                   // let author = response.authorId;
                   // console.log('auuthorId----',author)
-                  const colonIndex = value.indexOf(":");
+                  // const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
-                  let trending = value.slice(atIndex, colonIndex);
+                  let trending = value.slice(atIndex, 10);
                   let tweetText = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);

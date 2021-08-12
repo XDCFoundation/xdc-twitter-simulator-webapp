@@ -51,7 +51,7 @@ export default function App() {
         "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/saving-speed"
       )
       .then((result) => {
-        console.log('result-----', result.data.responseData)
+        // console.log('result-----', result.data.responseData)
         // setData(res.data.responseData);
         var arr = [{
           id: "Write-graph",
@@ -69,7 +69,7 @@ export default function App() {
 
         })
         let graphdata = resultData
-        console.log('graph----', graphdata)
+        // console.log('graph----', graphdata)
         arr[0].data = resultData
         setData(arr)
       })
