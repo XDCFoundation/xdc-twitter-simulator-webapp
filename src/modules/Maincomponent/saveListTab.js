@@ -336,7 +336,7 @@ export default function ReadTweets(props) {
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
         setSavedTweets(tweetResponse);
-        console.log("saveTweets------", tweetResponse);
+        // console.log("saveTweets------", tweetResponse);
       })
       .catch((err) => {
         console.log(err);
@@ -416,10 +416,11 @@ export default function ReadTweets(props) {
               {savedTweets &&
                 savedTweets.length >= 1 &&
                 savedTweets.map((response) => {
-                  let value = response.tweetMessage;
-                  const colonIndex = value.indexOf(":");
+                  let value = response.text;
+                  // console.log('res--',value)
+                  // const colonIndex = value.indexOf(":");
                   const atIndex = value.indexOf("@");
-                  let handler = value.slice(atIndex, colonIndex);
+                  let handler = value.slice(atIndex, 10);
                   let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
@@ -443,7 +444,6 @@ export default function ReadTweets(props) {
                       b.length
                     )}`;
                   }
-
                   return (
                     <>
                       <hr
@@ -459,7 +459,9 @@ export default function ReadTweets(props) {
                           className={
                             props.dark ? classes.name_dark_mode : classes.name
                           }
-                        ></Typography>
+                        >
+                          {/* {response.blockNumber} */}
+                        </Typography>
                         <Paper
                           className={
                             props.dark ? classes.time_dark_mode : classes.time
@@ -472,7 +474,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {handler
+                          {handler.length>0
                               ? shortenTrend(handler)
                               : shortenTrend(method)}
                           </Typography>
@@ -486,7 +488,8 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(value)}
+                                 {shortenValue(value)}
+                              {/* {shortenValue(tweetTextMessage)} */}
                             </Paper>
                           </ThemeProvider>
                         </Column>

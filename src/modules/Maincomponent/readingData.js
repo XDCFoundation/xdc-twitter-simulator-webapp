@@ -10,7 +10,7 @@ const ReadingData = ({ data }) => (
   <ResponsiveLine
     data={data}
     margin={{ top: 10, right: 10 }}
-    colors={{ scheme: "accent" }}
+    colors={{ scheme: "dark2" }}
     xScale={{ type: "point" }}
     yScale={{
       type: "linear",
@@ -44,13 +44,13 @@ export default function App() {
     const [data, setData] = useState([])
     // const [read, setRead] = useState({})
     useEffect(() => {
-        reading()
+        readingGraph()
         setInterval(() => {
-            reading()
+            readingGraph()
         }, 60000);
         }, []);
 
-        function reading(){
+        function readingGraph(){
             axios
                 .get(
                     "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
@@ -66,10 +66,10 @@ export default function App() {
                   var resultData = []
         
                   result.data.responseData.map(items => {
-                 
+                    let graphs = items.responseTime/items.requestCount
                       resultData.push({
                           x: moment(items.addedOn).format('LT'),
-                          y: items.responseTime/items.requestCount
+                          y: 1000/graphs
                       })
         
                   })

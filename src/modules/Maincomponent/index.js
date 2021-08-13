@@ -21,11 +21,14 @@ export default function Main(props) {
     setMode(mode)
   }
   useEffect(() => {
-    reading()
+    readingData()
     localStorage.setItem("mode", JSON.stringify(dark))
+    setInterval(() => {
+      readingData();
+    }, 60000)
   }, [dark])
 
-  function reading(){
+  function readingData(){
     axios
         .get(
             "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
@@ -87,7 +90,7 @@ export default function Main(props) {
 
 
 // let ex = read
-// console.log('graph---',ex)
+// console.log('read---',ex)
 
   return (
     <div>
