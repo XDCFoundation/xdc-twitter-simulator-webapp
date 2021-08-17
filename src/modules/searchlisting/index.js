@@ -54,7 +54,7 @@ export default function Main(props) {
   async function listreadingData() {
     await axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
         // console.log('result-----', result.data.responseData)
@@ -115,7 +115,7 @@ export default function Main(props) {
   async function fetchCount() {
     await axios
       .get(
-        "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/tps-calculate"
+        process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_TPS_CALCULATE
       )
       .then((res) => {
         setCount(res.data.responseData);

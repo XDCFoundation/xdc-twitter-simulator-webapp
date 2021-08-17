@@ -9,67 +9,18 @@ import {
   Marker,
   ZoomableGroup,
 } from "react-simple-maps";
-// const markers = [
-//   {
-//     markerOffset: -30,
-//     coordinates: [-0.1224, 51.4964],//[long,lat]
-//   },
-//   { markerOffset: 15, coordinates: [2.3869, 48.9163] },
-//   { markerOffset: 15, coordinates: [72.8856, 19.0748] },
-//   { markerOffset: 15, coordinates: [103.8554, 1.3036] },
-//   { markerOffset: 15, coordinates: [151.1866, -33.9166] },
-//   { markerOffset: 15, coordinates: [3.406448, 6.465422] },
-//   { markerOffset: -30, coordinates: [45.0792, 23.8859] },
-//   { markerOffset: -30, coordinates: [-57.5759, -25.2637] },
-//   { markerOffset: 15, coordinates: [-55.2038, 5.852] },
-// ];
 
-
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+const geoUrl = process.env.REACT_APP_NODES_MAP_URL
 
 const NodeChart = (props) => {
   const [node, setNode] = useState([]);
-
-  // useEffect(() => {
-  //   noOfNodes();
-  // }, []);
-  // let data = global.obj
-  // var arr = []
-  // alert(typeof (data))
-  // if (data) {
-  //   data.map(item => {
-
-  //     if (item[item.length - 1] == ")") {
-  //       var start = item.lastIndexOf("(") + 1
-  //       var end = item.length - 1
-  //       var result = item.substring(start, end)
-  //       arr.push(result)
-  //     } else {
-  //       var start = item.lastIndexOf("-") + 1
-  //       var end = item.length - 1
-  //       var result = item.substr(start, end)
-  //       arr.push(result)
-
-  //     }
-
-  //   })
-
-
-
-  // }
-
-  // let newarray = arr.filter(element => element !== 'Click');
-  // console.log("ip result---",newarray);
-
-
 
   let ip = props.ipcount
   // console.log('ip-------', ip)
 
   ip.map(item => {
     axios
-      .get("http://ip-api.com/json/" + item)
+      .get(process.env.REACT_APP_NODE_LOCATIONS+item)
       .then((res) => {
         var nodes = node
         nodes.push({ coords: [res.data.lon, res.data.lat] })

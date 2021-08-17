@@ -27,26 +27,26 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     "@media (min-width: 767px) and (max-width: 1024px)": {
-       root: {
-        maxHeight: 250,
+        root: {
+            maxHeight: 250,
         },
     },
     "@media (min-width: 1024px) and (max-width: 1200px)": {
         root: {
-         maxHeight: 300,
-         },
-     },
-     "@media (min-width: 1201px) and (max-width: 1400px)": {
+            maxHeight: 300,
+        },
+    },
+    "@media (min-width: 1201px) and (max-width: 1400px)": {
         root: {
-         maxHeight: 350,
-         },
-     },
-     "@media (min-width: 1401px) and (max-width: 1500px)": {
+            maxHeight: 350,
+        },
+    },
+    "@media (min-width: 1401px) and (max-width: 1500px)": {
         root: {
-         maxHeight: 370,
-         },
-     },
-   
+            maxHeight: 370,
+        },
+    },
+
 
     dark_root: {
         width: '100%',
@@ -67,24 +67,24 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 767px) and (max-width: 1000px)": {
         dark_root: {
-         maxHeight: 270,
-         },
-     },
-     "@media (min-width: 1001px) and (max-width: 1200px)": {
+            maxHeight: 270,
+        },
+    },
+    "@media (min-width: 1001px) and (max-width: 1200px)": {
         dark_root: {
             maxHeight: 300,
-         },
-     },
-     "@media (min-width: 1201px) and (max-width: 1400px)": {
+        },
+    },
+    "@media (min-width: 1201px) and (max-width: 1400px)": {
         dark_root: {
             maxHeight: 340,
-         },
-     },
-     "@media (min-width: 1401px) and (max-width: 1500px)": {
+        },
+    },
+    "@media (min-width: 1401px) and (max-width: 1500px)": {
         dark_root: {
             maxHeight: 370,
-         },
-     },
+        },
+    },
     scrollbars: {
         display: 'none',
     },
@@ -117,16 +117,13 @@ export default function PinnedSubheaderList(props) {
     const [hashtag, setHashtag] = useState([])
 
     useEffect(() => {
-        hashtags();
-        setInterval(() => {
-            hashtags();
-        }, 60000);
+        hashtagsList();
     }, []);
 
-    function hashtags() {
+    function hashtagsList() {
         axios
             .get(
-                "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//trendingHashtags-from-db"
+                process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_TRENDING_HASHTAG
             )
             .then((res) => {
                 setHashtag(res.data.responseData);
@@ -152,7 +149,7 @@ export default function PinnedSubheaderList(props) {
 
 
                             <div style={{ fontSize: 12, fontWeight: 600 }}>
-                             {items.name}
+                                {items.name}
                             </div>
 
                             <hr

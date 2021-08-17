@@ -7,32 +7,30 @@ import { red } from '@material-ui/core/colors';
 export default function DarkMap() {
   const [hashtag, setHashtag] = useState([])
 
-  axios
-    .get(
-      "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//trendingHashtags-from-db"
-    )
-    .then((res) => {
-      setHashtag(res.data.responseData);
-      // console.log('locations---', res.data.responseData)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const tileUrl = process.env.REACT_APP_TILEURL_DARK_MODE
+
+  useEffect(() => {
+    topHashtags();
+  })
+
+  function topHashtags() {
+    axios
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_TRENDING_HASHTAG
+      )
+      .then((res) => {
+        setHashtag(res.data.responseData);
+        // console.log('locations---', res.data.responseData)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <>
       <MapContainer className='darkmap-style' center={[30, 10]} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
         <TileLayer noWrap={true}
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-
-          //   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          // url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
-          //   url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
-
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-
-        //for night mode:
-        // url="https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.png"
-
+          url={tileUrl}
         />
         {hashtag.map((items, k) => {
           // let name = items.name

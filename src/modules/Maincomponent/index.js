@@ -34,7 +34,7 @@ export default function Main(props) {
   async function readingData(){
     await axios
         .get(
-            "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
+          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
         )
         .then((result) => {
             // console.log('result-----', result.data.responseData)

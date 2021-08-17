@@ -471,12 +471,12 @@ export default function MainComponent(props) {
 
   useEffect(() => {
     fetchCount();
+  }, []);
+  useEffect(() => {
     fetchTps();
+  }, []);
+  useEffect(() => {
     getValue();
-    setInterval(() => {
-      fetchCount();
-      //  fetchTps();
-    }, 60000);
   }, []);
 
   //for count of tps:
@@ -484,7 +484,7 @@ export default function MainComponent(props) {
   const fetchCount = () => {
     axios
       .get(
-        "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/tps-calculate"
+        process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_TPS_CALCULATE
       )
       .then((res) => {
         setCount(res.data.responseData);
@@ -499,7 +499,7 @@ export default function MainComponent(props) {
   const fetchTps = () => {
     axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/max-tps-count"
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_MAX_TPS_COUNT
       )
       .then((res) => {
         // console.log('maxtpscount-------', res.data)
@@ -545,7 +545,7 @@ export default function MainComponent(props) {
           // console.log('obj------', data)
 
           let newarray = arr.filter((element) => element !== "Click");
-          // console.log("ip result---", newarray);
+          console.log("ip result---", newarray);
           setValue(newarray);
 
           //for socket total nodes ---->
@@ -557,7 +557,7 @@ export default function MainComponent(props) {
     };
     client.onclose = async (event) => {
       if (event.wasClean) {
-        console.log(`Number of Active Nodes = ${Object.keys(test).length}`);
+        // console.log(`Number of Active Nodes = ${Object.keys(test).length}`);
         setNodes(Object.keys(test).length);
       } else {
         console.log("[close] Connection died");
@@ -573,8 +573,6 @@ export default function MainComponent(props) {
   const [dark, setMode] = useState(getMode());
 
   useEffect(() => {
-    // localStorage.setItem("mode", JSON.stringify(dark));
-
     setMode(props.dark);
   }, [props.dark]);
 
@@ -582,9 +580,7 @@ export default function MainComponent(props) {
   let maxtpsCount = parseFloat(maxtpsvalue.responseData);
 
   let id = props?.read;
-  // console.log('iii---',id)
   // let identity = props?.data
-  // console.log('jjj--',identity)
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -940,7 +936,7 @@ export default function MainComponent(props) {
                 <div
                   className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                 >
-                     {id?.length > 0 ? id : ' - '}/sec
+                  {id?.length > 0 ? id : ' - '}/sec
                 </div>
                 <span className="hover-data">
                   {" "}
