@@ -276,14 +276,12 @@ export default function ReadTweets(props) {
 
   useEffect(() => {
     fetchTweets();
-    setInterval(() => {
-      fetchTweets();
-    }, 45000);
   }, []);
   const fetchTweets = () => {
+   
     axios
-      .get("https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-tweet")
-
+      .get(process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_READ_TWEET)
+     
       .then((res) => {
         let tweetResponse;
         let alltweets;

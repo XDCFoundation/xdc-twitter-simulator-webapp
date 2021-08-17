@@ -41,15 +41,13 @@ export default function App() {
   useEffect(() => {
     writing()
     setInterval(() => {
-        writing()
+      writing()
     }, 60000);
-    }, []);
+  }, []);
 
-    async function writing(){
-      await axios
-      .get(
-        "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/saving-speed"
-      )
+  async function writing() {
+    await axios
+      .get(process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_SAVING_SPEED_DATA)
       .then((result) => {
         // console.log('result-----', result.data.responseData)
         // setData(res.data.responseData);
@@ -64,7 +62,7 @@ export default function App() {
           // let transaction = items.totalTransactions / 1800
           resultData.push({
             x: moment(items.startTime * 1000).format('LT'),
-            y: items.totalTransactions/1800
+            y: items.totalTransactions / 1800
           })
 
         })
@@ -78,11 +76,11 @@ export default function App() {
       });
 
 
-    }    
+  }
 
 
   return (
-    <div style={{ height: 80, margin: '-5px',marginTop: '5px' }}>
+    <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
       <MyResponsiveLine data={data} />
     </div>
   );

@@ -188,17 +188,18 @@ export default function TweetArchive() {
 
   useEffect(() => {
     fetchbyBasicSearch();
+  }, []);
+  useEffect(() => {
     fetchbyAdvanceSearch();
   }, []);
   const fetchbyBasicSearch = () => {
     axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/archived-tweet-from-testnet?id=" + userId?.tweet
+      process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET+userId?.tweet
       )
       .then((res) => {
         setSearch(res.data.responseData.responseData);
         // console.log("tweets----", res.data.responseData.responseData)
-        // console.log('link---',url)
       })
       .catch((err) => {
         console.log("error-----", err);
@@ -208,12 +209,11 @@ export default function TweetArchive() {
   const fetchbyAdvanceSearch = () => {
     axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/archived-tweet-from-testnet-advancesearch?id=" + textId?.tweet
+        process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET_FOR_ADVANCE_SEARCH+textId?.tweet
       )
       .then((res) => {
         setAdvancesearch(res.data.responseData.responseData);
         // console.log("tweets----", res.data.responseData.responseData)
-        // console.log('link---',url)
       })
       .catch((err) => {
         console.log("error-----", err);
@@ -251,25 +251,6 @@ export default function TweetArchive() {
   // let advanceName = advanceHandler?.split("@")[1];
   // let advanceIcon = advanceName?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase()
   // let advanceDummyHandle = advanceName?.slice(0, value?.length).replace(/\s/g, "").toLowerCase()
-
-  // function shortenTrend(
-  //   b,
-  //   amountL = 10,
-  //   amountR = 3,
-  //   stars = 3
-  // ) {
-  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-  //     // b.length - 3,
-  //     b.length
-  //   )}`;
-  // }
-  // function shortenValue(b, amountL = 80, stars = 3) {
-  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-  //     // b.length - 3,
-  //     b.length
-  //   )}`;
-  // }
-
 
   return (
     <>

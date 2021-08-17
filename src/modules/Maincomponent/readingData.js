@@ -41,86 +41,86 @@ const ReadingData = ({ data }) => (
 );
 
 export default function App() {
-    const [data, setData] = useState([])
-    // const [read, setRead] = useState({})
-    useEffect(() => {
-        readingGraph()
-        setInterval(() => {
-            readingGraph()
-        }, 60000);
-        }, []);
+  const [data, setData] = useState([])
+  // const [read, setRead] = useState({})
+  useEffect(() => {
+    readingGraph()
+    setInterval(() => {
+      readingGraph()
+    }, 60000);
+  }, []);
 
-      async function readingGraph(){
-            await axios
-                .get(
-                    "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
-                )
-                .then((result) => {
-                    // console.log('result-----', result.data.responseData)
-                    // setData(res.data.responseData);
-                    var arr = [{
-                      id: "Write-graph",
-                      // color: "hsl(248, 70%, 50%)",
-                      data: []
-                  }]
-                  var resultData = []
-        
-                  result.data.responseData.map(items => {
-                    let graphs = items.responseTime/items.requestCount
-                      resultData.push({
-                          x: moment(items.addedOn).format('LT'),
-                          y: 1000/graphs
-                      })
-        
-                  })
-                  // let graphdata = resultData
-                  function getUnique(resultData, index) {
-        
-                    const unique = resultData
-                         .map(e => e[index])
-                  
-                         // store the keys of the unique objects
-                         .map((e, i, final) => final.indexOf(e) === i && i)
-                  
-                         // eliminate the dead keys & store unique objects
-                        .filter(e => resultData[e]).map(e => resultData[e]);      
-                  
-                     return unique;
-                  }
-                  
-                //   console.log(getUnique(resultData,'x'))
-                let graphdata = getUnique(resultData,'x').reverse()
-                // console.log('graph----', graphdata)
-        
-                // To print the value of last object of y.
-                // let newData = graphdata.slice(-1)
-                // console.log('graph---',newData)
-                // let firstData= Object.values(newData[0])
-                // console.log('first---',firstData)
-                // let secondData = parseFloat(1000/firstData[1])
-                // console.log('second---',secondData)
-                // setRead(secondData)
-               
-        
-                // console.log('graph--',graphdata)
-                arr[0].data = graphdata
-                // arr[0].data = resultData
-                setData(arr)
-        
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        
-        } 
-        // }, 5000);
-   
-        // let ex = read
-        // console.log('graph---',ex)
+  async function readingGraph() {
+    await axios
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
+      )
+      .then((result) => {
+        // console.log('result-----', result.data.responseData)
+        // setData(res.data.responseData);
+        var arr = [{
+          id: "Write-graph",
+          // color: "hsl(248, 70%, 50%)",
+          data: []
+        }]
+        var resultData = []
 
-    return (
-        <div style={{height: 80, margin: '-5px', marginTop: '5px' }}>
-            <ReadingData data={data}  />
-        </div>
-    );
+        result.data.responseData.map(items => {
+          let graphs = items.responseTime / items.requestCount
+          resultData.push({
+            x: moment(items.addedOn).format('LT'),
+            y: 1000 / graphs
+          })
+
+        })
+        // let graphdata = resultData
+        function getUnique(resultData, index) {
+
+          const unique = resultData
+            .map(e => e[index])
+
+            // store the keys of the unique objects
+            .map((e, i, final) => final.indexOf(e) === i && i)
+
+            // eliminate the dead keys & store unique objects
+            .filter(e => resultData[e]).map(e => resultData[e]);
+
+          return unique;
+        }
+
+        //   console.log(getUnique(resultData,'x'))
+        let graphdata = getUnique(resultData, 'x').reverse()
+        // console.log('graph----', graphdata)
+
+        // To print the value of last object of y.
+        // let newData = graphdata.slice(-1)
+        // console.log('graph---',newData)
+        // let firstData= Object.values(newData[0])
+        // console.log('first---',firstData)
+        // let secondData = parseFloat(1000/firstData[1])
+        // console.log('second---',secondData)
+        // setRead(secondData)
+
+
+        // console.log('graph--',graphdata)
+        arr[0].data = graphdata
+        // arr[0].data = resultData
+        setData(arr)
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+  // }, 5000);
+
+  // let ex = read
+  // console.log('graph---',ex)
+
+  return (
+    <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
+      <ReadingData data={data} />
+    </div>
+  );
 }

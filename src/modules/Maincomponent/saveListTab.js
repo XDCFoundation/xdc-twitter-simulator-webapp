@@ -310,20 +310,17 @@ export default function ReadTweets(props) {
 
   useEffect(() => {
     fetchSavedTweets();
-    fetchTotalTweets();
-    setInterval(() => {
-      fetchSavedTweets();
-      fetchTotalTweets();
-    }, 30000);
   }, []);
+
+  useEffect(()=>{
+    fetchTotalTweets();
+  },[])
 
   //For save-tweets
 
   const fetchSavedTweets = () => {
     axios
-      .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com//saved-tweets"
-      )
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET)
 
       .then((res) => {
         let tweetResponse;
@@ -347,9 +344,7 @@ export default function ReadTweets(props) {
 
   const fetchTotalTweets = () => {
     axios
-      .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/saved-tweets-count"
-      )
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
       .then((res) => {
         // console.log('total-Saved-Tweet-Count-------', res.data)
         setTotalSave(res.data);
@@ -474,7 +469,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                          {handler.length>0
+                            {handler.length > 0
                               ? shortenTrend(handler)
                               : shortenTrend(method)}
                           </Typography>
@@ -488,7 +483,7 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                                 {shortenValue(value)}
+                              {shortenValue(value)}
                               {/* {shortenValue(tweetTextMessage)} */}
                             </Paper>
                           </ThemeProvider>

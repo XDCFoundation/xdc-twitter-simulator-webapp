@@ -352,9 +352,7 @@ export default function Searchlist(props) {
   const Basicsearch = () => {
 
     axios
-      .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/basic-search?keyword=" + props?.locations
-      )
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_BASIC_SEARCH + props?.locations)
       .then((res) => {
         setBasic(res.data.responseData.responseData);
         // console.log('mysearch-------', res.data.responseData.responseData)
@@ -369,9 +367,8 @@ export default function Searchlist(props) {
   const Advancesearch = () => {
 
     axios
-      .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name=" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname
-      )
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ADVANCE_SEARCH + "name" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname)
+      // "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name=" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname
       .then((res) => {
         setAdvance(res.data.responseData.responseData);
         // console.log('myAdvancesearch-------', res.data.responseData.responseData)
@@ -540,7 +537,7 @@ export default function Searchlist(props) {
                       )}`;
                     }
 
-                    let textId = response.id 
+                    let textId = response.id
                     // console.log('texttt--',textId)
                     return (
                       <>
@@ -603,7 +600,7 @@ export default function Searchlist(props) {
               <br />
               <br />
 
-            
+
             </Paper>
           </Grid>
 
