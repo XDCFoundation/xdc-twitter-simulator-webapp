@@ -46,7 +46,7 @@ const WorldMap = () => {
     fetch("/world-110m.json")
       .then(response => {
         if (response.status !== 200) {
-          console.log(`There was a problem: ${response.status}`)
+          // console.log(`There was a problem: ${response.status}`)
           return
         }
         response.json().then(worlddata => {
@@ -56,11 +56,11 @@ const WorldMap = () => {
   }, [])
 
   const handleCountryClick = countryIndex => {
-    console.log("Clicked on country: ", geographies[countryIndex])
+    // console.log("Clicked on country: ", geographies[countryIndex])
   }
 
   const handleMarkerClick = i => {
-    console.log("Marker: ", cities[i])
+    // console.log("Marker: ", cities[i])
   }
 
   return (

@@ -212,7 +212,7 @@ export default function TweetArchive() {
       )
       .then((res) => {
         setAdvancesearch(res.data.responseData.responseData);
-        console.log("tweets----", res.data.responseData.responseData)
+        // console.log("tweets----", res.data.responseData.responseData)
         // console.log('link---',url)
       })
       .catch((err) => {
