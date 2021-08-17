@@ -338,24 +338,26 @@ const useStyles = makeStyles((theme) => ({
 export default function Searchlist(props) {
   const classes = useStyles();
 
+  // console.log('props---', props?.list)
+  // console.log('props---', props?.tps)
 
   const [basic, setBasic] = useState({})
   const [advance, setAdvance] = useState({})
-// console.log('prop..',props?.locations)
+  // console.log('prop..',props?.locations)
 
   useEffect(() => {
     Basicsearch();
     Advancesearch();
   }, []);
   const Basicsearch = () => {
-  
+
     axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/basic-search?keyword="+ props?.locations
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/basic-search?keyword=" + props?.locations
       )
       .then((res) => {
         setBasic(res.data.responseData.responseData);
-        console.log('mysearch-------', res.data.responseData.responseData)
+        // console.log('mysearch-------', res.data.responseData.responseData)
         // console.log('my url===',url)
       })
       .catch((err) => {
@@ -365,14 +367,14 @@ export default function Searchlist(props) {
 
 
   const Advancesearch = () => {
-  
+
     axios
       .get(
-        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name="+props?.username+"&keyword="+props?.locations+"&hash="+props?.hashname
+        "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name=" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname
       )
       .then((res) => {
         setAdvance(res.data.responseData.responseData);
-        console.log('myAdvancesearch-------', res.data.responseData.responseData)
+        // console.log('myAdvancesearch-------', res.data.responseData.responseData)
         // console.log('my url===',url)
       })
       .catch((err) => {
@@ -380,8 +382,8 @@ export default function Searchlist(props) {
       });
   };
 
-  
-  let method = '@user'
+
+  // let method = '@user'
 
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
@@ -397,9 +399,9 @@ export default function Searchlist(props) {
           <div className="img-parent">
             <img className="home-image" src="/images/home.svg" />
           </div>
-          <div className="dashboard-name"> 
-          <a style={{color: 'white', cursor: 'pointer', textDecoration: 'none'}} href='/'>Dashboard</a>
-           </div>
+          <div className="dashboard-name">
+            <a style={{ color: 'white', cursor: 'pointer', textDecoration: 'none' }} href='/'>Dashboard</a>
+          </div>
         </div>
 
         <Grid container spacing={3} className={classes.gridcontainer}>
@@ -423,179 +425,183 @@ export default function Searchlist(props) {
                   </Typography>
                 </Row>
                 {basic &&
-                basic.length >= 1 &&
-                basic.map((response) => {
-                  let value = response.text
-                  // console.log('resp--',userId)
-                  const colonIndex = value.indexOf(":");
-                  const atIndex = value.indexOf("@");
-                  let handler = value.slice(atIndex, colonIndex);
-                  let tweetTextMessage = value.split(":")[1];
-                  let str = response.addedOn;
-                  let timeFormat = moment(str);
-                  let time = timeFormat.format("LT");
-                 
-                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
-                  function shortenValue(b, amountL = 100, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
-                  
-                  let userId = response.tweetId
-                  // console.log('myuser--',userId)
+                  basic.length >= 1 &&
+                  basic.map((response) => {
+                    let value = response.text
+                    // console.log('resp--',userId)
+                    const colonIndex = value.indexOf(":");
+                    const atIndex = value.indexOf("@");
+                    let handler = value.slice(atIndex, colonIndex);
+                    let tweetTextMessage = value.split(":")[1];
+                    let str = response.addedOn;
+                    let timeFormat = moment(str);
+                    let time = timeFormat.format("LT");
 
-                  return (
-                    <>
-                      <hr
-                        className={
-                          props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                        }
-                      />
-                    <a style={{textDecoration: 'none'}} href={'/archive/'+userId}>
-                      <Row>
-                        
-                        <Typography
-                          variant="h6"
-                          className={
-                            props.dark ? classes.name_dark_mode : classes.name
-                          }
-                        >
-                        {/* Lisa ray */}
-                        </Typography>
-                        <Paper
-                          className={
-                            props.dark ? classes.time_dark_mode : classes.time
-                          }
-                        >
-                          {time}
-                        </Paper>
-                      </Row>
+                    function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                        // b.length - 3,
+                        b.length
+                      )}`;
+                    }
+                    function shortenValue(b, amountL = 100, stars = 3) {
+                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                        // b.length - 3,
+                        b.length
+                      )}`;
+                    }
 
-                      <Row>
-                        <Column>
-                          <Typography className={classes.email}>
-                            {shortenTrend(handler)}
-                          </Typography>
-                          <ThemeProvider theme={theme}>
-                            <Paper
-                              noWrap
+                    let userId = response.tweetId
+                    // console.log('myuser--',userId)
+
+                    return (
+                      <>
+                        <hr
+                          className={
+                            props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                          }
+                        />
+                        <a style={{ textDecoration: 'none' }} href={'/archive/' + userId}>
+                          <Row>
+
+                            <Typography
+                              variant="h6"
                               className={
-                                props.dark
-                                  ? classes.content_dark_mode
-                                  : classes.content
+                                props.dark ? classes.name_dark_mode : classes.name
                               }
-                              gutterBottom
                             >
-                              {shortenValue(value)}
+                              {/* Lisa ray */}
+                            </Typography>
+                            <Paper
+                              className={
+                                props.dark ? classes.time_dark_mode : classes.time
+                              }
+                            >
+                              {time}
                             </Paper>
-                          </ThemeProvider>
-                        </Column>
-                      
-                      </Row>
-                      </a>
-                    </>
-                  );
-                })}
+                          </Row>
+
+                          <Row>
+                            <Column>
+                              <Typography className={classes.email}>
+                                {shortenTrend(handler)}
+                              </Typography>
+                              <ThemeProvider theme={theme}>
+                                <Paper
+                                  noWrap
+                                  className={
+                                    props.dark
+                                      ? classes.content_dark_mode
+                                      : classes.content
+                                  }
+                                  gutterBottom
+                                >
+                                  {shortenValue(value)}
+                                </Paper>
+                              </ThemeProvider>
+                            </Column>
+
+                          </Row>
+                        </a>
+                      </>
+                    );
+                  })}
 
                 {advance &&
-                advance.length >= 1 &&
-                advance.map((response) => {
-                  let value = response.text;
-                  let useId = response._id
-                  // console.log('resp2--',useId)
-                  // console.log('valuuuu',value)
-                  const colonIndex = value.indexOf(":");
-                  const atIndex = value.indexOf("@");
-                  let handler = value.slice(atIndex,colonIndex);
-                  let tweetTextMessage = value.split(":")[1];
-                  console.log('tt',tweetTextMessage)
-                  let str = response.addedOn;
-                  let timeFormat = moment(str);
-                  let time = timeFormat.format("LT");
-                  // let hashtags = value.split('#')
-                  // console.log('hash---',hashtags)
-                  // let tweetTextMessage=value.text; 
-                  let user = response.name;
-                 
-                  function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
-                  function shortenValue(b, amountL = 80, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
-                  return (
-                    <>
-                      <hr
-                        className={
-                          props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                        }
-                      />
-                      <a style={{textDecoration: 'none'}} href='http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/archive?url=https://twitter.com/MichalStein2/status/1404839937908875264'>
-                      <Row>
-                        <Typography
-                          variant="h6"
-                          className={
-                            props.dark ? classes.name_dark_mode : classes.name
-                          }
-                        >
-                      
-                        {user}
-                        </Typography>
-                        <Paper
-                          className={
-                            props.dark ? classes.time_dark_mode : classes.time
-                          }
-                        >
-                          {time}
-                        </Paper>
-                      </Row>
+                  advance.length >= 1 &&
+                  advance.map((response) => {
+                    let value = response.text;
+                    let author = response.name;
+                    let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase()
+                    // console.log('resp2--', author)
+                    // console.log('valuuuu', handle)
+                    // const colonIndex = value.indexOf(":");
+                    // const atIndex = value.indexOf("@");
+                    // let handler = value.slice(atIndex, colonIndex);
+                    let tweetTextMessage = value.split(":")[1];
+                    // console.log('tt', tweetTextMessage)
+                    let str = response.addedOn;
+                    let timeFormat = moment(str);
+                    let time = timeFormat.format("LT");
+                    // let hashtags = value.split('#')
+                    // console.log('hash---',hashtags)
+                    // let tweetTextMessage=value.text; 
 
-                      <Row>
-                        <Column>
-                          <Typography className={classes.email}>
-                          {handler ? shortenTrend(handler) : shortenTrend(method)}
-                          </Typography>
-                          <ThemeProvider theme={theme}>
-                            <Paper
-                              noWrap
+
+                    // function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    //     // b.length - 3,
+                    //     b.length
+                    //   )}`;
+                    // }
+                    function shortenValue(b, amountL = 80, stars = 3) {
+                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                        // b.length - 3,
+                        b.length
+                      )}`;
+                    }
+
+                    let textId = response.id 
+                    // console.log('texttt--',textId)
+                    return (
+                      <>
+                        <hr
+                          className={
+                            props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                          }
+                        />
+                        <a style={{ textDecoration: 'none' }} href={'/archive/' + textId}>
+                          <Row>
+                            <Typography
+                              variant="h6"
                               className={
-                                props.dark
-                                  ? classes.content_dark_mode
-                                  : classes.content
+                                props.dark ? classes.name_dark_mode : classes.name
                               }
-                              gutterBottom
                             >
-                              {shortenValue(value)}
+
+                              {author.length > 0 ? author : 'undefined'}
+                            </Typography>
+                            <Paper
+                              className={
+                                props.dark ? classes.time_dark_mode : classes.time
+                              }
+                            >
+                              {time}
                             </Paper>
-                          </ThemeProvider>
-                        </Column>
-                      </Row>
-                      </a>
-                    </>
-                  );
-                })}
-            </Column>
-            <hr
-              className={
-                props.dark ? classes.hr_page_dark_mode : classes.hr_page
-              }
-            />
-            <br />
-            <br />
-            <br />
+                          </Row>
+
+                          <Row>
+                            <Column>
+                              <Typography className={classes.email}>
+                                {handle.length > 0 ? '@' + handle : 'undefined'}
+                              </Typography>
+                              <ThemeProvider theme={theme}>
+                                <Paper
+                                  noWrap
+                                  className={
+                                    props.dark
+                                      ? classes.content_dark_mode
+                                      : classes.content
+                                  }
+                                  gutterBottom
+                                >
+                                  {shortenValue(value)?.length > 0 ? shortenValue(value) : 'undefined'}
+                                </Paper>
+                              </ThemeProvider>
+                            </Column>
+                          </Row>
+                        </a>
+                      </>
+                    );
+                  })}
+              </Column>
+              <hr
+                className={
+                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                }
+              />
+              <br />
+              <br />
+              <br />
 
             
             </Paper>
@@ -624,7 +630,11 @@ export default function Searchlist(props) {
                 >
                   Saving Speed
                 </div>
-                <div className="saveSpeed-one">345/sec</div>
+                <div
+                  className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
+                >
+                  {isNaN(props?.tps) ? "-" : props?.tps} / sec
+                </div>
                 <div
 
                 >
@@ -662,7 +672,11 @@ export default function Searchlist(props) {
                     >
                       Reading Tweet
                     </div>
-                    <div className={props.dark ? "readSpeed-one-dark-mode" : "readSpeed-one"}>345/sec</div>
+                    <div
+                      className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
+                    >
+                      {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
+                    </div>
                     <span className="hover-data">  <ReadingData /> </span>
 
                   </Paper>

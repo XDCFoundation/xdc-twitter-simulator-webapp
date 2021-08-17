@@ -316,7 +316,7 @@ export default function SavedTweets(props) {
       });
   };
 
-  let method = "@user";
+  let method = "...";
   //   let save = totalSave.responseData
   // console.log('mysave---',save)
 
@@ -434,7 +434,7 @@ export default function SavedTweets(props) {
                           <Typography className={classes.email}>
                           {handler.length>0
                               ? shortenTrend(handler)
-                              : shortenTrend(method)}
+                              : method}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper

@@ -21,15 +21,18 @@ export default function Main(props) {
     setMode(mode)
   }
   useEffect(() => {
+      localStorage.setItem("mode", JSON.stringify(dark))
+  }, [dark])
+
+  useEffect(() => {
     readingData()
-    localStorage.setItem("mode", JSON.stringify(dark))
     setInterval(() => {
       readingData();
     }, 60000)
-  }, [dark])
+  }, [])
 
-  function readingData(){
-    axios
+  async function readingData(){
+    await axios
         .get(
             "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
         )

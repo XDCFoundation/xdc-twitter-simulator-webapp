@@ -76,7 +76,6 @@ const SubContainer3 = styled.div`
   padding-bottom: 20px;
   flex-direction: column;
   align-items: flex-start;
-
 `;
 
 const Image = styled.img`
@@ -333,7 +332,7 @@ export default function HeaderComponent(props) {
     bottom: false,
     right: false,
   });
-  const [opencontracts, setOpencontracts] = useState(false)
+  const [openheader, setOpenHeader] = useState(false)
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -361,7 +360,7 @@ export default function HeaderComponent(props) {
             <Span >Twitter D-App</Span>
           </div>
           <div >
-            <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpencontracts(false)}>
+            <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(false)}>
               <CloseIcon />
             </button>
           </div>
@@ -372,9 +371,11 @@ export default function HeaderComponent(props) {
           <About><a style={{ color: 'white' , textDecoration: 'none' }} href="/about">About</a></About>
           &nbsp;&nbsp;
           <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
-          {/* <FFButton />
-            <Line> </Line> */}
           &nbsp;&nbsp;
+          <div style={{marginLeft: '-25px'}}>
+          <FFButton />
+          </div>
+          &nbsp;
           <DrawerArchive>
             <a style={{cursor: 'pointer', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
           </DrawerArchive>
@@ -442,7 +443,7 @@ export default function HeaderComponent(props) {
         <div>
           <SwipeableDrawer
             anchor={'top'}
-            open={opencontracts}
+            open={openheader}
             onClose={toggleDrawer('top', false)}
             onOpen={toggleDrawer('top', true)}
           >
@@ -461,7 +462,7 @@ export default function HeaderComponent(props) {
                 <Span >Twitter D-App</Span>
               </div>
               <div >
-                <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpencontracts(true)}>
+                <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(true)}>
                   <MenuIcon />
                 </button>
               </div>
