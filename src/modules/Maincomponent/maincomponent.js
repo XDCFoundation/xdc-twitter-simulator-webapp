@@ -639,7 +639,7 @@ export default function MainComponent(props) {
                         >
                           Nodes
                           <Tippy
-                            placement={"right"}
+                            placement={"top"}
                             theme={"light"}
                             maxWidth={180}
                             content={
@@ -668,7 +668,7 @@ export default function MainComponent(props) {
                         >
                           Current Max TPS
                           <Tippy
-                            placement={"right"}
+                            placement={"top"}
                             theme={"light"}
                             maxWidth={220}
                             content={
@@ -773,6 +773,8 @@ export default function MainComponent(props) {
           </Grid>
         </div>
       </Desktop>
+
+
       <MobileResponsive>
         <Grid item xs={12}>
           <Column>
@@ -857,7 +859,9 @@ export default function MainComponent(props) {
                 </div>
                 <div
                   className={dark ? "readSpeed-dark-mode" : "readSpeed"}
-                ></div>
+                >
+                     {id?.length > 0 ? id : ' - '}/sec
+                </div>
                 <span className="hover-data">
                   {" "}
                   <ReadingData />{" "}

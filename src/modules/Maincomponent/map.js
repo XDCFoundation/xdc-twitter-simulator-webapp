@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Popup, Polyline, Marker, SVGOverlay, CircleMarker, Tooltip } from 'react-leaflet'
 import '../../assets/styles/custom.css';
 import axios from 'axios';
+import styled from "styled-components";
 
 export default function App(props) {
   const [hashtag, setHashtag] = useState([])
@@ -19,7 +20,7 @@ export default function App(props) {
     });
   return (
     <>
-      <MapContainer style={{width: '108%',height: 385, zIndex: 0}} center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
+      <MapContainer className='lightmap-style' center={[30, 10]}  zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
         <TileLayer noWrap={true}
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 

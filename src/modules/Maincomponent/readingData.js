@@ -50,8 +50,8 @@ export default function App() {
         }, 60000);
         }, []);
 
-        function readingGraph(){
-            axios
+      async function readingGraph(){
+            await axios
                 .get(
                     "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/read-speed-data"
                 )

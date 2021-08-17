@@ -45,8 +45,8 @@ export default function App() {
     }, 60000);
     }, []);
 
-    function writing(){
-      axios
+    async function writing(){
+      await axios
       .get(
         "https://lmeqebp7fj.execute-api.us-east-1.amazonaws.com/testnet/saving-speed"
       )

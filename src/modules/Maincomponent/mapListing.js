@@ -26,6 +26,27 @@ const useStyles = makeStyles((theme) => ({
             display: 'none'
         }
     },
+    "@media (min-width: 767px) and (max-width: 1024px)": {
+       root: {
+        maxHeight: 250,
+        },
+    },
+    "@media (min-width: 1024px) and (max-width: 1200px)": {
+        root: {
+         maxHeight: 300,
+         },
+     },
+     "@media (min-width: 1201px) and (max-width: 1400px)": {
+        root: {
+         maxHeight: 350,
+         },
+     },
+     "@media (min-width: 1401px) and (max-width: 1500px)": {
+        root: {
+         maxHeight: 370,
+         },
+     },
+   
 
     dark_root: {
         width: '100%',
@@ -44,7 +65,26 @@ const useStyles = makeStyles((theme) => ({
             display: 'none'
         }
     },
-
+    "@media (min-width: 767px) and (max-width: 1000px)": {
+        dark_root: {
+         maxHeight: 270,
+         },
+     },
+     "@media (min-width: 1001px) and (max-width: 1200px)": {
+        dark_root: {
+            maxHeight: 300,
+         },
+     },
+     "@media (min-width: 1201px) and (max-width: 1400px)": {
+        dark_root: {
+            maxHeight: 340,
+         },
+     },
+     "@media (min-width: 1401px) and (max-width: 1500px)": {
+        dark_root: {
+            maxHeight: 370,
+         },
+     },
     scrollbars: {
         display: 'none',
     },
