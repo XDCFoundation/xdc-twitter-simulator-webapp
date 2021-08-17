@@ -143,12 +143,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "spaceAround",
   },
+  "@media (min-width: 305px) and (max-width: 766px)": {
+    map: {
+      display: "block",
+    },
+  },
   map_dark_mode: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "spaceAround",
     color: "white",
     backgroundColor: "#191d43",
+  },
+  "@media (min-width: 304px) and (max-width: 766px)": {
+    map_dark_mode: {
+      display: "block",
+    },
   },
   node: {
     fontFamily: "Raleway",
@@ -161,6 +171,21 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     textAlign: "left",
     marginLeft: "20px",
+  },
+  "@media (min-width: 301px) and (max-width: 766px)": {
+    node: {
+      fontFamily: "Raleway",
+      fontSize: "14px",
+      fontWeight: 600,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      marginTop: "3%",
+      lineHeight: 1.5,
+      paddingTop: "14px",
+      color: "#09184b",
+      textAlign: "left",
+      marginLeft: "20px",
+    },
   },
   node_dark_mode: {
     fontFamily: "Raleway",
@@ -176,6 +201,23 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     backgroundColor: "#191d43",
   },
+  "@media (min-width: 299px) and (max-width: 766px)": {
+    node_dark_mode: {
+      fontFamily: "Raleway",
+      fontSize: "14px",
+      fontWeight: 600,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      marginTop: "3%",
+      lineHeight: 1.5,
+      paddingTop: "14px",
+      color: "#09184b",
+      textAlign: "left",
+      marginLeft: "20px",
+      color: "white",
+      backgroundColor: "#191d43",
+    },
+  },
   maxTps: {
     fontFamily: "Raleway",
     fontSize: "14px",
@@ -189,6 +231,25 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
+  },
+  "@media (min-width: 302px) and (max-width: 766px)": {
+    maxTps: {
+      fontFamily: "Raleway",
+      fontSize: "14px",
+      fontWeight: 600,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: 1.17,
+      letterSpacing: "normal",
+      marginLeft: "5%",
+      marginTop: "3%",
+      lineHeight: 1.5,
+      color: "#09184b",
+      textAlign: "left",
+      float: "right",
+      marginTop: "-39px",
+      marginRight: "10px",
+    },
   },
   maxTps_dark_mode: {
     fontFamily: "Raleway",
@@ -204,6 +265,26 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     textAlign: "left",
     color: "white",
+  },
+
+  "@media (min-width: 303px) and (max-width: 766px)": {
+    maxTps_dark_mode: {
+      fontFamily: "Raleway",
+      fontSize: "14px",
+      fontWeight: 600,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      lineHeight: 1.17,
+      letterSpacing: "normal",
+      marginLeft: "5%",
+      marginTop: "3%",
+      lineHeight: 1.5,
+      textAlign: "left",
+      color: "white",
+      float: "right",
+      marginTop: "-39px",
+      marginRight: "10px",
+    },
   },
   mapchart: {
     width: "100%",
@@ -386,7 +467,7 @@ export default function MainComponent(props) {
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
-// console.log('props---',props)
+  // console.log('props---',props)
 
   useEffect(() => {
     fetchCount();
@@ -493,18 +574,17 @@ export default function MainComponent(props) {
 
   useEffect(() => {
     // localStorage.setItem("mode", JSON.stringify(dark));
-   
+
     setMode(props.dark);
   }, [props.dark]);
 
   let tpsCount = (count.totalTransactions / 60).toFixed(2);
   let maxtpsCount = parseFloat(maxtpsvalue.responseData);
 
-    let id =props?.read
+  let id = props?.read;
   // console.log('iii---',id)
   // let identity = props?.data
   // console.log('jjj--',identity)
-
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -613,7 +693,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                       >
-                          {id?.length > 0 ? id : ' - '}/sec
+                        {id?.length > 0 ? id : " - "}/sec
                       </div>
                       <span className="hover-data">
                         {" "}
@@ -937,7 +1017,7 @@ export default function MainComponent(props) {
                     {isNaN(tpsCount) ? "-" : tpsCount} /{" "}
                     {isNaN(maxtpsCount) ? "-" : maxtpsCount}
                   </div>
-                  <div style={{ width: "50%", marginLeft: "5%" }}>
+                  <div style={{ width: "92%", marginLeft: "0%" }}>
                     <NodeChart dark={dark} ipcount={value} />
                   </div>
                 </div>
