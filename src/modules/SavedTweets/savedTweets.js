@@ -264,21 +264,20 @@ export default function SavedTweets(props) {
   const [savedTweets, setSavedTweets] = useState([]);
 
   const [totalSave, setTotalSave] = useState([]);
-  
+
   useEffect(() => {
     fetchSavedTweets();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchTotalTweets();
-  },[])
+  }, [])
 
   //For save-tweets
 
   const fetchSavedTweets = () => {
     axios
       .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET)
-      // "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/saved-tweets"
 
       .then((res) => {
         let tweetResponse;
