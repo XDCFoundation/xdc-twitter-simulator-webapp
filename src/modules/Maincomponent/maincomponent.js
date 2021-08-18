@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     marginRight: "20px",
+    // marginLeft:"3%",
+    // boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // // border: "solid 1px #e3e7eb",
+    // backgroundColor: "#E3E7EB",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     grid: {
@@ -57,9 +61,16 @@ const useStyles = makeStyles((theme) => ({
   },
   grid2: {
     marginTop: "50px",
+    marginLeft:"3%",
+    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // border: "solid 1px #e3e7eb",
+    backgroundColor: "#E3E7EB",
+   
   },
   grid3: {
     marginTop: "50px",
+    
+    
   },
   "@media (max-width: 766px)": {
     grid3: {
@@ -73,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7.5%",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+    height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   writingPaper: {
     padding: theme.spacing(2),
@@ -81,6 +96,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "0px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+
   },
   writing_paper_dark_mode: {
     padding: theme.spacing(2),
@@ -109,6 +125,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+    height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   readingPaper: {
     padding: theme.spacing(2),
@@ -142,6 +162,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "spaceAround",
+    height: "95.5%",
+    borderRadius: '10px',
+    
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
@@ -302,8 +325,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   paperNode: {
-    marginLeft: "3.7%",
-    marginTop: "-9px",
+    // marginLeft: "3.7%",
+    // marginTop: "-9px",
     boxShadow: "none",
     borderRadius: "4px",
   },
@@ -319,6 +342,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "9px",
     boxShadow: "none",
     height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   topMode: {
     marginTop: "10px",
@@ -326,6 +352,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     height: "95.5%",
     marginBottom: "40px",
+
   },
 
   top_dark_mode: {
@@ -417,6 +444,9 @@ const Trending = styled.div`
 `;
 
 const SaveGraphTrend = styled.div`
+
+
+
   @media (min-width: 2001px) and (max-width: 2400px) {
     margin-top: 10px;
   }
@@ -635,7 +665,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                       >
-                        {isNaN(tpsCount) ? "-" : tpsCount} / sec
+                        {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">sec</span>
                       </div>
                       <span className="hover-data">
                         {" "}
@@ -689,7 +719,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                       >
-                        {id?.length > 0 ? id : " - "}/sec
+                        {id?.length > 0 ? id : " - "} /<span className="fs-16">sec</span>
                       </div>
                       <span className="hover-data">
                         {" "}
@@ -889,7 +919,7 @@ export default function MainComponent(props) {
                   </Tippy>
                 </div>
                 <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                  {isNaN(tpsCount) ? "-" : tpsCount} / sec
+                  {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">sec</span>
                 </div>
                 <span className="hover-data">
                   {" "}
@@ -936,7 +966,8 @@ export default function MainComponent(props) {
                 <div
                   className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                 >
-                  {id?.length > 0 ? id : ' - '}/sec
+                  {id?.length > 0 ? id : ' - '} /
+                  <span className="fs-16">sec</span>
                 </div>
                 <span className="hover-data">
                   {" "}
@@ -945,8 +976,8 @@ export default function MainComponent(props) {
               </Paper>
             </Grid>
           </Column>
-          <Column>
-            <Grid item xs={12} className={classes.grid2}>
+          <Column >
+            <Grid item xs={12} className={classes.grid2} >
               <Paper classes={{ elevation1: classes.paper_node }}>
                 <div
                   className={props.dark ? classes.map_dark_mode : classes.map}

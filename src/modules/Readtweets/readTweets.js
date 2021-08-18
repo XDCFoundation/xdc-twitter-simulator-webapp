@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   row: {
-    marginBottom: "30px",
+    marginBottom: "15px",
   },
   name: {
     fontSize: "11px",
@@ -128,16 +128,14 @@ const useStyles = makeStyles((theme) => ({
 
   content: {
     fontSize: "11px",
-    color: "#09184b",
     boxShadow: "none",
     border: "none",
     fontFamily: "Raleway",
-    fontSize: "11px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "0.5px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
@@ -150,12 +148,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     border: "none",
     fontFamily: "Raleway",
-    fontSize: "11px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "0.5px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "white",
     backgroundColor: "#191d43",
@@ -177,7 +174,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "17px",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "#8290a4",
     marginBottom: "5px",
     marginLeft: "18px",
   },
@@ -195,7 +191,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     marginRight: "17px",
-    color: "#8290a4",
     backgroundColor: "#191d43",
     marginBottom: "5px",
     marginLeft: "18px",
@@ -259,6 +254,9 @@ const useStyles = makeStyles((theme) => ({
   },
   readTweetContainer: {
     marginTop: "0px",
+    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // border: "solid 1px #e3e7eb",
+    backgroundColor: "#ffffff",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {

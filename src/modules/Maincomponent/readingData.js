@@ -5,12 +5,27 @@ import axios from "axios";
 import moment from "moment";
 
 // const point={}
+const toolTipElement = (props) => {
+  // console.log(props.point?.data?.x, "<<prop")
+  // console.log(props, "<<")
+  let stats = parseFloat(props.point?.data?.y)
+  return (
+      <div>
+          <div className="Tooltip-graph">
+              <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
+              <p className="Tooltip-graph-tx">{stats.toFixed(2)}/sec</p>
+          </div>
+          {/* <TriangleArrowDown /> */}
+      </div>
+  )
+}
 
 const ReadingData = ({ data }) => (
   <ResponsiveLine
     data={data}
+    tooltip={toolTipElement}
     margin={{ top: 10, right: 10 }}
-    colors={{ scheme: "dark2" }}
+    colors={{ scheme: "paired" }}
     xScale={{ type: "point" }}
     yScale={{
       type: "linear",

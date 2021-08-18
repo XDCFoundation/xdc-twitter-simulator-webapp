@@ -13,6 +13,7 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 const theme = createMuiTheme({
   typography: {
@@ -27,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     color: theme.palette.text.secondary,
     whiteSpace: "nowrap",
-    backgroundColor: "#191d43",
+    // backgroundColor: "#191d43",
     color: "#ffffff",
     fontSize: "16px",
     boxShadow: "none",
     border: "none",
+    backgroundImage:'url("../../images/footer.svg")'
   },
 
   paperfooter: {
@@ -150,23 +152,30 @@ export default function FooterComponent() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
+       
+      
       <Grid Container spacing={1}>
+     
         <Row>
+       
           <Grid item xs={12}>
+       
             <Paper
               className={classes.paper}
               style={{
                 // padding: "3%",
                 paddingBottom: "3%",
                 paddingTop: "3%",
+                backgroundColor:"#3E71FF"
               }}
             >
+                 {/* <img  src="../../images/footer.svg"></img> */}
               <Row>
                 <div class="cards">
                   <Grid className="link-grid" item xs={12} sm={6} md={4}>
                     <Paper
                       className="link-grid-paper"
-                      style={{ backgroundColor: "#191d43", marginLeft: "1px" }}
+                      style={{ background: "#3E71FF", marginLeft: "1px", background:"transparent" }}
                       elevation={0}
                     >
                       <div className="link-text">
@@ -185,6 +194,17 @@ export default function FooterComponent() {
                               >
                                 {" "}
                                 Archive Tweet
+                              </a>
+                            </li>
+                            <li className={classes.linksitem}>
+                              <a
+                                style={{
+                                  color: "white",
+                                  textDecoration: "none",
+                                }}
+                                href="https://xinfin.org/share"
+                              >
+                                Share
                               </a>
                             </li>
                             <li className={classes.linksitem}>
@@ -218,7 +238,7 @@ export default function FooterComponent() {
                   <Grid className="link-grid-2" item xs={12} sm={4} md={3}>
                     <Paper
                       className="link-grid-paper-2"
-                      style={{ backgroundColor: "#191d43" }}
+                      style={{ backgroundColor: "#3E71FF",background:"transparent" }}
                       elevation={0}
                     >
                       <div className="follow-text">
@@ -291,15 +311,15 @@ export default function FooterComponent() {
 
                   <Grid className="link-grid-3" item xs={12} sm={4} md={3}>
                     <Paper
-                      style={{ backgroundColor: "#191d43", marginLeft: "20px" }}
+                      style={{ backgroundColor: "#3E71FF", marginLeft: "20px",background:"transparent" }}
                       elevation={0}
                     >
                       <div className="powered-paper">
                         <a href="/">
                           <div>
                           <img
-                            style={{ width: "60px", height: "59px" }}
-                            src="/images/xinfintwitter.png"
+                            style={{ width: "55px", height: "55px" }}
+                            src="/images/XDC-Icon.svg"
                           />
                           </div>
                         </a>

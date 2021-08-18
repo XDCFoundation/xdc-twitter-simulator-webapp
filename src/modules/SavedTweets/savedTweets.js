@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginLeft: "3.6%",
+    // marginLeft: "3.6%",
     height: "auto",
     // height: '784px',
   },
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   paper_dark_mode: {
     color: theme.palette.text.secondary,
     marginTop: "-7%",
-    marginLeft: "3.6%",
+    // marginLeft: "3.6%",
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
   },
   row: {
-    marginBottom: "30px",
+    marginBottom: "15px",
   },
   name: {
     fontSize: "11px",
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.14",
-    letterSpacing: "0.6px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "#09184b",
     marginBottom: "5px",
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.14",
-    letterSpacing: "0.6px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "white",
     backgroundColor: "#191d43",
@@ -129,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "0.4px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
@@ -146,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "0.4px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "white",
     backgroundColor: "#191d43",
@@ -249,6 +249,11 @@ const useStyles = makeStyles((theme) => ({
   },
   savedTweetConatiner: {
     marginTop: "0px",
+    marginLeft:"3%",
+    // bordeRradius: "12px",
+    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // border: "solid 1px #e3e7eb",
+    backgroundColor: "#ffffff",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     savedTweetConatiner: {
@@ -262,16 +267,16 @@ export default function SavedTweets(props) {
   const classes = useStyles();
 
   const [savedTweets, setSavedTweets] = useState([]);
-
-  const [totalSave, setTotalSave] = useState([]);
+  const [totalSaveTweet, setTotalSaveTweet] = useState([]);
+  // const [totalSave, setTotalSave] = useState([]);
 
   useEffect(() => {
     fetchSavedTweets();
   }, []);
 
-  useEffect(() => {
-    fetchTotalTweets();
-  }, [])
+  // useEffect(() => {
+  //   fetchTotalTweets();
+  // }, [])
 
   //For save-tweets
 
@@ -281,6 +286,7 @@ export default function SavedTweets(props) {
 
       .then((res) => {
         let tweetResponse;
+        let allSaveTweets;
         if (
           !res ||
           !res.data ||
@@ -289,8 +295,12 @@ export default function SavedTweets(props) {
         )
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
+        allSaveTweets = res.data.responseData[1];
         setSavedTweets(tweetResponse);
+
+        setTotalSaveTweet(allSaveTweets)
         // console.log("saveTweets------", tweetResponse);
+        // console.log("saveTweets------", allSaveTweets);
       })
       .catch((err) => {
         console.log(err);
@@ -299,17 +309,17 @@ export default function SavedTweets(props) {
 
   //For total Count--->
 
-  const fetchTotalTweets = () => {
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
-      .then((res) => {
-        // console.log('total-Saved-Tweet-Count-------', res.data)
-        setTotalSave(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const fetchTotalTweets = () => {
+  //   axios
+  //     .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
+  //     .then((res) => {
+  //       // console.log('total-Saved-Tweet-Count-------', res.data)
+  //       setTotalSave(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   let method = "...";
   //   let save = totalSave.responseData
@@ -361,9 +371,9 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {totalSave.responseData > 1000
-                    ? parseInt(totalSave.responseData / 1000) + "k"
-                    : totalSave.responseData}
+                  {totalSaveTweet.tweetsInDb > 1000
+                    ? parseInt(totalSaveTweet.tweetsInDb / 1000) + "k"
+                    : totalSaveTweet.tweetsInDb}
                 </Paper>
               </Row>
               {savedTweets &&
