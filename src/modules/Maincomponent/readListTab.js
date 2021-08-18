@@ -374,8 +374,8 @@ export default function ReadTweets(props) {
                 readtweets.length >= 1 &&
                 readtweets.map((response) => {
                   let value = response.text;
-                  let author = response.name;
-                  let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
+                  // let author = response.name;
+                  // let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
                   // const atIndex = value?.indexOf("@");
                   // let handler = value?.slice(atIndex, 10);
                   // console.log('auuthorId----', author)
@@ -427,7 +427,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                        {handle.length >0 ? '@'+handle : 'undefined'}
+                        {/* {handle.length >0 ? '@'+handle : 'undefined'} */}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
