@@ -45,15 +45,19 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 1401px) and (max-width: 1699px)": {
         root: {
-            maxHeight: 350,
+            maxHeight: 370,
         },
     },
-    "@media (min-width: 1701px)": {
+    "@media (min-width: 1701px) and (max-width: 1999px)": {
         root: {
             maxHeight: 420,
         },
     },
-
+    "@media (min-width: 2001px) and (max-width: 2300px)": {
+        root: {
+            maxHeight: 440,
+        },
+    },
 
 
     dark_root: {

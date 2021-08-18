@@ -6,8 +6,8 @@ import moment from 'moment';
 
 // const point={}
 const toolTipElement = (props) => {
-  console.log(props.point?.data?.x, "<<prop")
-  console.log(props, "<<")
+  // console.log(props.point?.data?.x, "<<prop")
+  // console.log(props, "<<")
   let stats = parseFloat(props.point?.data?.y)
   return (
       <div>

@@ -146,6 +146,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "spaceAround",
     height: "95.5%",
+    borderRadius: '10px',
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
@@ -321,11 +322,11 @@ const useStyles = makeStyles((theme) => ({
   top: {
     marginTop: "10px",
     marginRight: "9px",
-    // boxShadow: "none",
+    boxShadow: "none",
     height: "95.5%",
     borderRadius: '10px',
-    border: '1px solid #E3E7EB',
-    boxShadow: '0px 2px 30px #0000001A',
+    // border: '1px solid #E3E7EB',
+    // boxShadow: '0px 2px 30px #0000001A',
   },
   topMode: {
     marginTop: "10px",
