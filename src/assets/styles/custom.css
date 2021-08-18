@@ -710,7 +710,7 @@ input:focus {
   top: 100%;
   left: 0%;
   width: 35.5px;
-  margin-left: 11px;
+  margin-left: 2px;
   height: 1px;
   border: 1px solid #3366FF;
   opacity: 1;
@@ -729,7 +729,7 @@ input:focus {
 @media (min-width: 1700px) {
   .active-tabs::before {
     width: 35.5px;
-    margin-left: 18px;
+    margin-left: 2px;
     height: 1px;
     border: 1px solid #3366FF;
     opacity: 1;
