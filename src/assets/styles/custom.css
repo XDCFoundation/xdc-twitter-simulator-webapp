@@ -646,7 +646,7 @@ input:focus {
 }
 
 .tabs {
-  padding-bottom: 7px;
+  /*padding-bottom: 7px;*/
   color: #b5bac7;
   text-align: center;
   width: 80%;
@@ -655,7 +655,9 @@ input:focus {
   font-size: 11px;
   background: #fff;
   cursor: pointer;
-  padding-left: 0px;
+  /*padding-left: 0px;*/
+  display: flex;
+  justify-content: center;
   font-weight: 600;
   letter-spacing: 0.65px;
 }
@@ -678,7 +680,8 @@ input:focus {
 
 .active-tabs {
   color: #09184B;
-  border-bottom: 1px solid #3366FF !important;
+  border-bottom: 3px solid #3366FF !important;
+  max-width: 36px !important;
 }
 
 .active-tabs::before {
