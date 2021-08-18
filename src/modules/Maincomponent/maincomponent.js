@@ -646,7 +646,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                       >
-                        {isNaN(tpsCount) ? "-" : tpsCount} / sec
+                        {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">sec</span>
                       </div>
                       <span className="hover-data">
                         {" "}
@@ -700,7 +700,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                       >
-                        {id?.length > 0 ? id : " - "}/sec
+                        {id?.length > 0 ? id : " - "} /<span className="fs-16">sec</span>
                       </div>
                       <span className="hover-data">
                         {" "}
@@ -900,7 +900,7 @@ export default function MainComponent(props) {
                   </Tippy>
                 </div>
                 <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                  {isNaN(tpsCount) ? "-" : tpsCount} / sec
+                  {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">sec</span>
                 </div>
                 <span className="hover-data">
                   {" "}
@@ -947,7 +947,8 @@ export default function MainComponent(props) {
                 <div
                   className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                 >
-                  {id?.length > 0 ? id : ' - '}/sec
+                  {id?.length > 0 ? id : ' - '} /
+                  <span className="fs-16">sec</span>
                 </div>
                 <span className="hover-data">
                   {" "}
