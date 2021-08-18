@@ -732,7 +732,10 @@ input:focus {
   background-color: "#191d43";
   color: "#fffff";
 }
-
+.main-css{
+  box-shadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)";
+  background-color: "#ffffff",
+}
 .powered-paper {
   display: flex;
   flex-direction: row;

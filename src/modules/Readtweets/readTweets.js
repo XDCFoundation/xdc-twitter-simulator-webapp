@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "0.5px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "#09184b",
     marginLeft: "18px",
@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     fontStretch: "normal",
     fontStyle: "normal",
     lineHeight: "1.2",
-    letterSpacing: "0.5px",
+    letterSpacing: "0px",
     textAlign: "left",
     color: "white",
     backgroundColor: "#191d43",
@@ -254,6 +254,9 @@ const useStyles = makeStyles((theme) => ({
   },
   readTweetContainer: {
     marginTop: "0px",
+    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // border: "solid 1px #e3e7eb",
+    backgroundColor: "#ffffff",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {
