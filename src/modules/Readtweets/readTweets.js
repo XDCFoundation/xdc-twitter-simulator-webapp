@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   row: {
-    marginBottom: "30px",
+    marginBottom: "15px",
   },
   name: {
     fontSize: "11px",
@@ -128,11 +128,9 @@ const useStyles = makeStyles((theme) => ({
 
   content: {
     fontSize: "11px",
-    color: "#09184b",
     boxShadow: "none",
     border: "none",
     fontFamily: "Raleway",
-    fontSize: "11px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -150,7 +148,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     border: "none",
     fontFamily: "Raleway",
-    fontSize: "11px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -177,7 +174,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "17px",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "#8290a4",
     marginBottom: "5px",
     marginLeft: "18px",
   },
@@ -195,7 +191,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     marginRight: "17px",
-    color: "#8290a4",
     backgroundColor: "#191d43",
     marginBottom: "5px",
     marginLeft: "18px",
