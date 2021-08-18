@@ -51,6 +51,22 @@ label {
   width: 100vw;
   height: 100vh;
 }
+.leaflet-tooltip{
+  background: #3F3F40;
+  border-radius: 5px;
+  border-color: transparent;
+}
+
+.map-tip{
+  font: normal normal medium 17px/20px Raleway !important;
+  color: #FFFFFF;
+  font-weight: 500;
+  background : #3F3F40;
+  border-radius: 5px;
+  border-color: #3F3F40;
+  letter-spacing: 1px;
+}
+
 .dpdown {
   background: none;
   border: none;
@@ -602,9 +618,10 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 103%;
+  width: 111%;
   height: 22px;
   margin-top: 20px;
+  margin-left: -20px;
 }
 .blocks {
   justify-content: space-between;
@@ -620,10 +637,11 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 98%;
+  width: 105%;
+  /* margin-left: -20px; */
   /* height: 65px; */
   margin-top: 15px;
-  margin-left: 15px;
+  margin-left: 0px;
 }
 .dark-blocks {
   justify-content: space-between;
@@ -638,7 +656,7 @@ input:focus {
 .bloc-tabs {
   /*width: 20%;*/
   display: flex;
-  background-color: #2149b9;
+  /* background-color: #2149b9; */
 }
 .switch {
   width: 37%;
@@ -679,9 +697,10 @@ input:focus {
 }
 
 .active-tabs {
+  letter-spacing: 1px;
   color: #09184B;
-  border-bottom: 3px solid #3366FF !important;
-  max-width: 36px !important;
+  opacity: 1;
+  font-weight: 600;
 }
 
 .active-tabs::before {
@@ -690,10 +709,32 @@ input:focus {
   position: absolute;
   top: 100%;
   left: 0%;
-  width: 73.5px;
+  width: 35.5px;
+  margin-left: 11px;
   height: 1px;
-  /* border: solid 1px #2149b9;
-  background: #2149b9;  */
+  border: 1px solid #3366FF;
+  opacity: 1;
+  background: #3366FF; 
+}
+@media (min-width: 767px) and (max-width: 1200px) {
+  .active-tabs::before {
+    width: 35.5px;
+    margin-left: 0px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+}
+@media (min-width: 1700px) {
+  .active-tabs::before {
+    width: 35.5px;
+    margin-left: 18px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
 }
 
 .content {
@@ -1022,8 +1063,9 @@ input:focus {
 
 .lightmap-style{
   width: 108%;
-  height: 385px;
+  height: 375px;
   z-index: 0;
+margin-top: 8px;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .lightmap-style {
@@ -1046,10 +1088,24 @@ input:focus {
     z-index: 0;
   }
 }
-@media (min-width: 1800px)  {
+@media (min-width: 1600px) and (max-width: 1799px) {
+  .lightmap-style {
+    width: 108%;
+    height: 400px;
+    z-index: 0;
+  }
+}
+@media (min-width: 1800px)  and (max-width: 2100px) {
   .lightmap-style {
     width: 114%;
     height: 440px;
+    z-index: 0;
+  }
+}
+@media (min-width: 2101px) and (max-width: 2300px)  {
+  .lightmap-style {
+    width: 120%;
+    height: 470px;
     z-index: 0;
   }
 }
@@ -1145,4 +1201,37 @@ input:focus {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.Tooltip-graph {
+  width: 80%;
+  padding: 4px 8px 7px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #e3e7eb;
+  background-color: #fff;
+}
+.Tooltip-graph-date {
+  width: 100%;
+  text-align: left;
+  margin: 0 53px 1px 0;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.46px;
+  color: #9fa9ba;
+}
+.Tooltip-graph-tx {
+  margin: 1px 0 0;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.8px;
+  color: #2a2a2a;
 }

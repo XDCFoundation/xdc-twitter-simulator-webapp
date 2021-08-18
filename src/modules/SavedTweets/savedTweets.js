@@ -262,16 +262,16 @@ export default function SavedTweets(props) {
   const classes = useStyles();
 
   const [savedTweets, setSavedTweets] = useState([]);
-
-  const [totalSave, setTotalSave] = useState([]);
+  const [totalSaveTweet, setTotalSaveTweet] = useState([]);
+  // const [totalSave, setTotalSave] = useState([]);
 
   useEffect(() => {
     fetchSavedTweets();
   }, []);
 
-  useEffect(() => {
-    fetchTotalTweets();
-  }, [])
+  // useEffect(() => {
+  //   fetchTotalTweets();
+  // }, [])
 
   //For save-tweets
 
@@ -281,6 +281,7 @@ export default function SavedTweets(props) {
 
       .then((res) => {
         let tweetResponse;
+        let allSaveTweets;
         if (
           !res ||
           !res.data ||
@@ -289,8 +290,12 @@ export default function SavedTweets(props) {
         )
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
+        allSaveTweets = res.data.responseData[1];
         setSavedTweets(tweetResponse);
+
+        setTotalSaveTweet(allSaveTweets)
         // console.log("saveTweets------", tweetResponse);
+        // console.log("saveTweets------", allSaveTweets);
       })
       .catch((err) => {
         console.log(err);
@@ -299,17 +304,17 @@ export default function SavedTweets(props) {
 
   //For total Count--->
 
-  const fetchTotalTweets = () => {
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
-      .then((res) => {
-        // console.log('total-Saved-Tweet-Count-------', res.data)
-        setTotalSave(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const fetchTotalTweets = () => {
+  //   axios
+  //     .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
+  //     .then((res) => {
+  //       // console.log('total-Saved-Tweet-Count-------', res.data)
+  //       setTotalSave(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   let method = "...";
   //   let save = totalSave.responseData
@@ -361,9 +366,9 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {totalSave.responseData > 1000
-                    ? parseInt(totalSave.responseData / 1000) + "k"
-                    : totalSave.responseData}
+                  {totalSaveTweet.tweetsInDb > 1000
+                    ? parseInt(totalSaveTweet.tweetsInDb / 1000) + "k"
+                    : totalSaveTweet.tweetsInDb}
                 </Paper>
               </Row>
               {savedTweets &&
