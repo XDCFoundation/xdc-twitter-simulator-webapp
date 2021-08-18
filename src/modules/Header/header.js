@@ -26,7 +26,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles({
   list: {
     width: 250,
-    backgroundColor: '#191d43',
+    backgroundColor: '#2149B9',
     color: 'white'
   },
   fullList: {
@@ -37,8 +37,8 @@ const useStyles = makeStyles({
 const Container = styled.div`
   width: 100%;
   display: flex;
-  height: 66px;
-  background-color: #191d43;
+  height: 80px;
+  background-color: #2149B9;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
@@ -47,14 +47,14 @@ const MobileContainer = styled.div`
   width: 100%;
   display: flex;
   height: 100%;
-  background-color: #191d43;
+  background-color: #2149B9;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
 `;
 const SubContainer1 = styled.div`
   display: flex;
-  background-color: #191d43;
+  background-color: #2149B9;
   flex-flow: row nowrap;
   align-items: center;
   margin-left: 50px;
@@ -62,7 +62,7 @@ const SubContainer1 = styled.div`
 const SubContainer2 = styled.div`
   display: flex;
   height: 62px;
-  background-color: #191d43;
+  background-color: #2149B9;
   flex-flow: row nowrap;
   align-items: center;
   margin-right: 60px;
@@ -71,7 +71,7 @@ const SubContainer2 = styled.div`
 const SubContainer3 = styled.div`
   display: flex;
   height: 100%;
-  background-color: #191d43;
+  background-color: #2149B9;
   padding-left: 30px;
   padding-bottom: 20px;
   flex-direction: column;
@@ -79,8 +79,7 @@ const SubContainer3 = styled.div`
 `;
 
 const Image = styled.img`
-width: 30px;
-height: 25px;
+  width: 160px;
   // @media (max-width: 766px) {
   //   width: 30px;
   //   height: 25px;
@@ -131,13 +130,13 @@ const Search = styled.input`
   //   width: 250px;
   // }
   height: 30px;
-  margin: 2px 5px 0 16px;
+  margin: 0px 5px 0 16px;
   padding: 12px 70px 12px 12px;
-  background-color: #3d4270;
+  background-color: #fff;
   border-radius: 2px;
   border: none;
   font-family: WorkSans-Roman;
-  font-size: 10.5px;
+  font-size: 14px;
   color: #fff;
   ::placeholder {
     color: #adb1d6;
@@ -149,7 +148,7 @@ const MobSearch = styled.input`
   height: 30px;
   margin: 2px 5px 0 2px;
   padding: 12px 70px 12px 12px;
-  background-color: #3d4270;
+  background-color: #fff;
   border-radius: 2px;
   border: none;
   font-family: WorkSans-Roman;
@@ -161,7 +160,7 @@ const MobSearch = styled.input`
   }
 `;
 const Button = styled.button`
-  background: #3e49b8;
+  background: #5582FF;
   display: flex;
   height: 30px;
   width: 30px;
@@ -174,7 +173,7 @@ const Button = styled.button`
 `;
 
 const MobButton = styled.button`
-  background: #3e49b8;
+  background: #5582FF;
   display: flex;
   height: 30px;
   width: 20%;
@@ -188,11 +187,11 @@ const MobButton = styled.button`
 
 const Advancesearch = styled.button`
   font-family: Raleway;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   color: #a7afff;
   margin-left: 4px;
-  margin-top: 3px;
+  //margin-top: 3px;
   font-weight: 600;
   background: transparent;
   border: none;
@@ -201,8 +200,8 @@ const Advancesearch = styled.button`
 `;
 
 const About = styled.text`
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 300;
   color: #ffffff;
   background: transparent;
   font-family: Raleway;
@@ -215,8 +214,8 @@ const About = styled.text`
 `;
 
 const Contact = styled.text`
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 300;
   color: #ffffff;
   background: transparent;
   letter-spacing: 0.6px;
@@ -229,18 +228,21 @@ const Line = styled.div`
 `;
 const Archive = styled.button`
   font-family: Raleway;
-  font-size: 14px;
-  color: #3366ff;
+  font-size: 18px;
+  color: #fff;
   font-weight: bold;
   background: transparent;
   border: none;
   letter-spacing: 0.5px;
   margin-right: 10px;
+  a{
+  color: #fff;
+  }
 `;
 const DrawerArchive = styled.button`
   font-family: Raleway;
   font-size: 12px;
-  color: #3366ff;
+  color: #fff;
   font-weight: bold;
   background: transparent;
   border: none;
@@ -355,9 +357,8 @@ export default function HeaderComponent(props) {
         <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
           <div style={{ flexGrow: 1 }}  >
             <a href="/">
-              <MobImage src="../../images/TwitterS.svg" alt="image" />
+              <MobImage src="../../images/logo.svg" alt="image" />
             </a>
-            <Span >Twitter D-App</Span>
           </div>
           <div >
             <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(false)}>
@@ -404,9 +405,8 @@ export default function HeaderComponent(props) {
         <Container>
           <SubContainer1>
             <a href="/">
-              <Image src="../../images/TwitterS.svg" alt="image" />
+              <Image src="../../images/logo.svg" alt="image" />
             </a>
-            <Span>Twitter D-App</Span>
             <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
             <Button onClick={redirect}>
               <img
@@ -552,7 +552,7 @@ function FFButton() {
         class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "15px" }}
+        style={{ fontSize: "18px" , fontWeight: 300}}
       >
         Share
         {show ? (
