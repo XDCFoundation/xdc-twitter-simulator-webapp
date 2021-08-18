@@ -130,6 +130,7 @@ const Search = styled.input`
   //   width: 250px;
   // }
   height: 30px;
+  width: 280px;
   margin: 0px 5px 0 16px;
   padding: 12px 18px 12px 12px;
   background-color: #fff;
@@ -272,6 +273,7 @@ const ListImg = styled.img`
   margin-left: 10px;
 `;
 const AnchorTag = styled.a`
+
   font-size: 13px;
   color: #ffffff;
   &:hover {

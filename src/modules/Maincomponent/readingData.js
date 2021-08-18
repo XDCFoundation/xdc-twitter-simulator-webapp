@@ -25,7 +25,7 @@ const ReadingData = ({ data }) => (
     data={data}
     tooltip={toolTipElement}
     margin={{ top: 10, right: 10 }}
-    colors={{ scheme: "dark2" }}
+    colors={{ scheme: "paired" }}
     xScale={{ type: "point" }}
     yScale={{
       type: "linear",

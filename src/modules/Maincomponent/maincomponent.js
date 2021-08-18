@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     marginRight: "20px",
+    // marginLeft:"3%",
+    // boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // // border: "solid 1px #e3e7eb",
+    // backgroundColor: "#E3E7EB",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     grid: {
@@ -57,9 +61,16 @@ const useStyles = makeStyles((theme) => ({
   },
   grid2: {
     marginTop: "50px",
+    marginLeft:"3%",
+    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    // border: "solid 1px #e3e7eb",
+    backgroundColor: "#E3E7EB",
+   
   },
   grid3: {
     marginTop: "50px",
+    
+    
   },
   "@media (max-width: 766px)": {
     grid3: {
@@ -74,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
     height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   writingPaper: {
     padding: theme.spacing(2),
@@ -112,6 +126,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
     height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   readingPaper: {
     padding: theme.spacing(2),
@@ -147,6 +164,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaceAround",
     height: "95.5%",
     borderRadius: '10px',
+    
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
@@ -307,8 +325,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   paperNode: {
-    marginLeft: "3.7%",
-    marginTop: "-9px",
+    // marginLeft: "3.7%",
+    // marginTop: "-9px",
     boxShadow: "none",
     borderRadius: "4px",
   },
@@ -325,8 +343,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     height: "95.5%",
     borderRadius: '10px',
-    // border: '1px solid #E3E7EB',
-    // boxShadow: '0px 2px 30px #0000001A',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   topMode: {
     marginTop: "10px",
@@ -958,8 +976,8 @@ export default function MainComponent(props) {
               </Paper>
             </Grid>
           </Column>
-          <Column>
-            <Grid item xs={12} className={classes.grid2}>
+          <Column >
+            <Grid item xs={12} className={classes.grid2} >
               <Paper classes={{ elevation1: classes.paper_node }}>
                 <div
                   className={props.dark ? classes.map_dark_mode : classes.map}
