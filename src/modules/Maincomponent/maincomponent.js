@@ -85,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
     height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   writingPaper: {
     padding: theme.spacing(2),
@@ -123,6 +126,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
     height: "95.5%",
+    borderRadius: '10px',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   readingPaper: {
     padding: theme.spacing(2),
@@ -158,6 +164,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "spaceAround",
     height: "95.5%",
     borderRadius: '10px',
+    
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
@@ -336,8 +343,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     height: "95.5%",
     borderRadius: '10px',
-    // border: '1px solid #E3E7EB',
-    // boxShadow: '0px 2px 30px #0000001A',
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   topMode: {
     marginTop: "10px",
