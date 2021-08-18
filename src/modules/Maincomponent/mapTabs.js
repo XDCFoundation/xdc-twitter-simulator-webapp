@@ -40,7 +40,7 @@ function MapTabs(props) {
                         className={props.dark ? toggleState === 2 ? "dark-tabs active-tabs" : "dark-tabs" : toggleState === 2 ? "tabs active-tabs" : "tabs"}
                         onClick={() => toggleTab(2)}
                     >
-                     <span style={{fontSize: 12}}> List </span>
+                     <span style={{fontSize: 12, color: "#969696"}}> List </span>
                     </button>
                 </div>
             </div>
