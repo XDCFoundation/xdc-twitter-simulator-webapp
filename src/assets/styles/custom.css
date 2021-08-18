@@ -677,7 +677,8 @@ input:focus {
 }
 
 .active-tabs {
-  color: #2149b9;
+  color: #09184B;
+  border-bottom: 1px solid #3366FF !important;
 }
 
 .active-tabs::before {
