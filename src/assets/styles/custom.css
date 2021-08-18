@@ -66,6 +66,10 @@ input:focus {
   border: solid 1px #0099ff;
 }
 
+.mt-1{
+  margin-top: 1px;
+}
+
 .display-none {
   display: none !important;
 }
@@ -267,9 +271,9 @@ input:focus {
 }
 .savingSpeed {
   /* letter-spacing: normal;
-  text-align: left;
-  color: #09184b; */
-  font-size: 14px;
+  text-align: left;*/
+  color: #09184B;
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -327,7 +331,7 @@ input:focus {
 }
 
 .saveSpeed {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -338,7 +342,7 @@ input:focus {
 }
 
 .saveSpeed-dark-mode {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -370,7 +374,7 @@ input:focus {
 }
 
 .readSpeed {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -381,7 +385,7 @@ input:focus {
 }
 
 .readSpeed-dark-mode {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -433,8 +437,8 @@ input:focus {
 
 .writing-data {
   margin-left: 8%;
-  margin-top: -10px;
-  font-size: 14px;
+  /*margin-top: -10px;*/
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -446,8 +450,8 @@ input:focus {
 
 .writing-data-dark-mode {
   margin-left: 8%;
-  margin-top: -10px;
-  font-size: 14px;
+  /*margin-top: -10px;*/
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -485,21 +489,21 @@ input:focus {
 
 .reading-data {
   margin-left: 3%;
-  margin-top: -10px;
-  font-size: 14px;
+  /*margin-top: -10px;*/
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.17;
   letter-spacing: normal;
   text-align: left;
-  color: #09184b;
+  color: #09184B;
 }
 
 .reading-data-dark-mode {
   margin-left: 3%;
-  margin-top: -10px;
-  font-size: 14px;
+  /*margin-top: -10px;*/
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
