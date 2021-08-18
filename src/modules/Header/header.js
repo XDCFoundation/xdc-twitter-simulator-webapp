@@ -270,6 +270,7 @@ const ListImg = styled.img`
   margin-left: 10px;
 `;
 const AnchorTag = styled.a`
+
   font-size: 13px;
   color: #ffffff;
   &:hover {

@@ -740,7 +740,9 @@ input:focus {
 .powered-text {
   margin-top: 17px;
   margin-left: 10px;
-  letter-spacing: 0.59px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  font-family: 'Raleway';
 }
 
 .cross-parent {
