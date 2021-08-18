@@ -282,6 +282,7 @@ input:focus {
   text-align: left;
   padding-bottom: 10px;
   margin-top: -8px;
+  color:#09184B;
 }
 .savingSpeed-one {
   /* letter-spacing: normal;
@@ -676,7 +677,8 @@ input:focus {
 }
 
 .active-tabs {
-  color: #2149b9;
+  color: #09184B;
+  border-bottom: 1px solid #3366FF !important;
 }
 
 .active-tabs::before {

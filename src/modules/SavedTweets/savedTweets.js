@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
   },
   row: {
-    marginBottom: "30px",
+    marginBottom: "15px",
   },
   name: {
     fontSize: "11px",
