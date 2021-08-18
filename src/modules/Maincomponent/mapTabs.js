@@ -36,7 +36,7 @@ function MapTabs(props) {
                     >
                        <span style={{fontSize: 12}}> Map </span>
                     </button>
-                    <button style={props.dark ? { border: 'transparent', backgroundColor: '#191d43'} :  { border: 'transparent', backgroundColor: 'white' } }
+                    <button style={props.dark ? { border: 'transparent', backgroundColor: '#191d43'} :  { border: 'transparent', backgroundColor: 'white',color: '#969696' } }
                         className={props.dark ? toggleState === 2 ? "dark-tabs active-tabs" : "dark-tabs" : toggleState === 2 ? "tabs active-tabs" : "tabs"}
                         onClick={() => toggleTab(2)}
                     >
