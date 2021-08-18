@@ -137,7 +137,7 @@ const Search = styled.input`
   border: none;
   font-family: WorkSans-Roman;
   font-size: 14px;
-  color: #fff;
+  color: black;
   ::placeholder {
     color: #adb1d6;
     opacity: 1;

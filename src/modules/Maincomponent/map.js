@@ -47,12 +47,12 @@ export default function App(props) {
                   items.coordinates[0]
                 ]
               }
-              radius={2}
+              radius={0}
               fillOpacity={0.5}
               stroke={false}
             >
               <Tooltip  opacity={0.5} permanent>
-             <span style={{padding: '8px 8px',color: '#000000', fontWeight: 600}}> {items.name} </span>
+             <span className="map-tip"> {items.name} </span>
                 </Tooltip>
 
             </CircleMarker>)

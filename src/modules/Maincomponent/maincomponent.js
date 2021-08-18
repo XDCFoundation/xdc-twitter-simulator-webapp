@@ -84,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7.5%",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+    height: "95.5%",
   },
   writingPaper: {
     padding: theme.spacing(2),
@@ -92,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "0px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+
   },
   writing_paper_dark_mode: {
     padding: theme.spacing(2),
@@ -120,6 +122,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+    height: "95.5%",
   },
   readingPaper: {
     padding: theme.spacing(2),
@@ -153,6 +156,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "spaceAround",
+    height: "95.5%",
+    borderRadius: '10px',
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
@@ -330,6 +335,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "9px",
     boxShadow: "none",
     height: "95.5%",
+    borderRadius: '10px',
+    // border: '1px solid #E3E7EB',
+    // boxShadow: '0px 2px 30px #0000001A',
   },
   topMode: {
     marginTop: "10px",
@@ -337,6 +345,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     height: "95.5%",
     marginBottom: "40px",
+
   },
 
   top_dark_mode: {
@@ -428,6 +437,9 @@ const Trending = styled.div`
 `;
 
 const SaveGraphTrend = styled.div`
+
+
+
   @media (min-width: 2001px) and (max-width: 2400px) {
     margin-top: 10px;
   }

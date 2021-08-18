@@ -305,16 +305,16 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
   const [savedTweets, setSavedTweets] = useState([]);
-
-  const [totalSave, setTotalSave] = useState([]);
+  const [totalSaveTweet, setTotalSaveTweet] = useState([]);
+  // const [totalSave, setTotalSave] = useState([]);
 
   useEffect(() => {
     fetchSavedTweets();
   }, []);
 
-  useEffect(()=>{
-    fetchTotalTweets();
-  },[])
+  // useEffect(() => {
+  //   fetchTotalTweets();
+  // }, [])
 
   //For save-tweets
 
@@ -324,6 +324,7 @@ export default function ReadTweets(props) {
 
       .then((res) => {
         let tweetResponse;
+        let allSaveTweets;
         if (
           !res ||
           !res.data ||
@@ -332,8 +333,12 @@ export default function ReadTweets(props) {
         )
           tweetResponse = [];
         else tweetResponse = res.data.responseData[0];
+        allSaveTweets = res.data.responseData[1];
         setSavedTweets(tweetResponse);
+
+        setTotalSaveTweet(allSaveTweets)
         // console.log("saveTweets------", tweetResponse);
+        // console.log("saveTweets------", allSaveTweets);
       })
       .catch((err) => {
         console.log(err);
@@ -342,19 +347,21 @@ export default function ReadTweets(props) {
 
   //For total Count--->
 
-  const fetchTotalTweets = () => {
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
-      .then((res) => {
-        // console.log('total-Saved-Tweet-Count-------', res.data)
-        setTotalSave(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  let method = "@user";
-  // console.log('method------',method)
+  // const fetchTotalTweets = () => {
+  //   axios
+  //     .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
+  //     .then((res) => {
+  //       // console.log('total-Saved-Tweet-Count-------', res.data)
+  //       setTotalSave(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  let method = "...";
+  //   let save = totalSave.responseData
+  // console.log('mysave---',save)
 
   return (
     <Grid Container spacing={3}>
@@ -403,9 +410,9 @@ export default function ReadTweets(props) {
                   }
                 >
                   {/* {method}k */}
-                  {totalSave.responseData > 1000
-                    ? parseInt(totalSave.responseData / 1000) + "k"
-                    : totalSave.responseData}
+                  {totalSaveTweet.tweetsInDb > 1000
+                    ? parseInt(totalSaveTweet.tweetsInDb / 1000) + "k"
+                    : totalSaveTweet.tweetsInDb}
                 </div>
               </Row>
               {savedTweets &&
