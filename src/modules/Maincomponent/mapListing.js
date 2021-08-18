@@ -10,12 +10,14 @@ import { white } from 'material-ui/styles/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '105%',
+        width: '114%',
         // maxWidth: 600,
+        marginLeft:'-20px',
         position: 'relative',
         overflow: 'auto',
         msOverflowStyle: 'none',
-        maxHeight: 400,
+        maxHeight: 370,
+        // backgroundColor: 'red',
         '&::-webkit-scrollbar': {
             display: 'none',
         },
@@ -38,23 +40,30 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 1201px) and (max-width: 1400px)": {
         root: {
+            maxHeight: 320,
+        },
+    },
+    "@media (min-width: 1401px) and (max-width: 1699px)": {
+        root: {
             maxHeight: 350,
         },
     },
-    "@media (min-width: 1401px) and (max-width: 1500px)": {
+    "@media (min-width: 1701px)": {
         root: {
-            maxHeight: 370,
+            maxHeight: 420,
         },
     },
 
 
+
     dark_root: {
-        width: '100%',
+        width: '108%',
+        marginLeft:'-20px',
         // maxWidth: 600,
         position: 'relative',
         overflow: 'auto',
         msOverflowStyle: 'none',
-        maxHeight: 400,
+        maxHeight: 370,
         '&::-webkit-scrollbar': {
             display: 'none',
         },
@@ -148,7 +157,7 @@ export default function PinnedSubheaderList(props) {
                         <div style={props.dark ? { color: 'white' } : { color: 'black' }}>
 
 
-                            <div style={{ fontSize: 12, fontWeight: 600 }}>
+                            <div style={{ fontSize: 12, fontWeight: 600,paddingLeft:'20px',paddingTop:'2px' }}>
                                 {items.name}
                             </div>
 
