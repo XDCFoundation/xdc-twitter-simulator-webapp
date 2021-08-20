@@ -174,17 +174,13 @@ const useStyles = makeStyles((theme) => ({
 export default function TweetArchive() {
   const classes = useStyles();
   const [search, setSearch] = useState({});
-  const [advanceSearch ,setAdvancesearch] = useState({});
+  const [advanceSearch, setAdvancesearch] = useState({});
 
 
   const userId = useParams();
   const textId = useParams();
   // console.log('id---',userId?.tweet)
-
-
   // let id = '1415545036037492700'
-
-
 
   useEffect(() => {
     fetchbyBasicSearch();
@@ -195,11 +191,19 @@ export default function TweetArchive() {
   const fetchbyBasicSearch = () => {
     axios
       .get(
-      process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET+userId?.tweet
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET + userId?.tweet
       )
       .then((res) => {
-        setSearch(res.data.responseData.responseData);
-        // console.log("tweets----", res.data.responseData.responseData)
+        let basicarchiveTweet = []
+        if (
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
+          res.data.responseData.length <= 0
+        )
+          basicarchiveTweet = [];
+        else basicarchiveTweet = res.data.responseData.responseData || 0;
+        setSearch(basicarchiveTweet);
       })
       .catch((err) => {
         console.log("error-----", err);
@@ -209,41 +213,48 @@ export default function TweetArchive() {
   const fetchbyAdvanceSearch = () => {
     axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET_FOR_ADVANCE_SEARCH+textId?.tweet
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET_FOR_ADVANCE_SEARCH + textId?.tweet
       )
       .then((res) => {
-        setAdvancesearch(res.data.responseData.responseData);
-        // console.log("tweets----", res.data.responseData.responseData)
+        let advancearchiveTweet = []
+        if (
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
+          res.data.responseData[0].length <= 0
+        )
+          advancearchiveTweet = [];
+        else advancearchiveTweet = res.data.responseData.responseData || 0;
+        setAdvancesearch(advancearchiveTweet);
       })
       .catch((err) => {
         console.log("error-----", err);
       });
   };
 
-  // let adv = advanceSearch[0]
-  // console.log('adv--',adv)
 
-  let value = search[0]?.text
-  let time = moment(search[0]?.createdAt).format('LT')
-  let date = moment(search[0]?.createdAt).format('LL');
+  let value = search[0]?.text || 0
+  console.log('val--', value)
+  let time = moment(search[0]?.createdAt).format('LL') || 0
+  let date = moment(search[0]?.createdAt).format('LT') || 0
+  // console.log('t---',time)
+  // console.log('t---',date)
   // const colonIndex = value?.indexOf(":");
-  const atIndex = value?.indexOf("@");
-  let handler = value?.slice(atIndex, 10);
-  let name = handler?.split("@")[1];
-  let icon = name?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase()
-  let link = value?.split("https://")[1];
-  let tweetTextMessage = value?.split(":")[1];
-  let dummyHandle = name?.slice(0, value?.length).replace(/\s/g, "").toLowerCase()
+  // const atIndex = value?.indexOf("@") || 0;
+  // let handler = value?.slice(atIndex, 10) || 0;
+  // let name = handler?.split("@")[1] || 0;
+  // let icon = name?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
+  // let link = value?.split("https://")[1];
+  // let tweetTextMessage = value?.split(":")[1];
+  // let dummyHandle = name?.slice(0, value?.length).replace(/\s/g, "").toLowerCase() || 0
   // console.log('icon--', icon)
   // console.log('naame--', name)
   // console.log('hand---', handler)
   // console.log('tm--', tweetTextMessage)
 
-  let advanceValue = advanceSearch[0]?.text
-  // console.log('ad--',advanceValue)
-  let advanceDate = moment(advanceSearch[0]?.createdAt).format('LL')
-  // console.log('adv--',advanceTime)
-  let advanceTime = moment(advanceSearch[0]?.createdAt).format('LT')
+  let advanceValue = advanceSearch[0]?.text || 0
+  let advanceDate = moment(advanceSearch[0]?.createdAt).format('LL') || 0
+  let advanceTime = moment(advanceSearch[0]?.createdAt).format('LT') || 0
   // console.log('adv--',advanceDate)
   // console.log('advD--',advanceDate)
   // const advanceAtIndex = advanceValue?.indexOf("@");
@@ -273,14 +284,16 @@ export default function TweetArchive() {
                 </Row>
                 <hr className={classes.hr_page} />
                 <Row>
-                  <Avatar className={classes.avatar}>{icon ? icon : '-'}</Avatar>
+                  <Avatar className={classes.avatar}>
+                    {/* {icon || 0} */}
+                  </Avatar>
                   <Name >
                     <Row className={classes.span_tweet}>
-                      {name ? name + '...' : 'Undefined'}
+                      {/* {name || 0} */}
                     </Row>
                     <Row>
                       <Email>
-                        {handler ? handler + '...' : '@' + dummyHandle}
+                        {/* {handler || 0} */}
                       </Email>
                     </Row>
                   </Name>
@@ -289,8 +302,8 @@ export default function TweetArchive() {
                 <Row>
                   <Tweetdata  >
                     <span className={classes.span_tweet}>
-                     {search[0] ? (value ? value : 'Loading...') : (advanceValue ? advanceValue : 'Loading...')} 
-                    
+                      {search[0] ? (value ? value : 'Loading...') : (advanceValue ? advanceValue : 'Loading...')}
+
                     </span>
                   </Tweetdata>
                 </Row>
@@ -308,29 +321,12 @@ export default function TweetArchive() {
                   </Details>
                 </Row>
                 <br />
-                {/* <hr className={classes.hr_page} /> */}
-                {/* <Row className={classes.third_row}>
-                  <Details>
-                    <Time> &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span className={classes.span_tweet}>13</span> ReadTweets
-                      &emsp;.
-                    </Time>
-                    <Date>&nbsp;
-                      <span className={classes.span_tweet}>3</span> QuoteTweets
-                      &emsp;.
-                    </Date>
-                    <Twitterwebapp>&nbsp;
-                      <span className={classes.span_tweet}>139</span> Likes
-                      &nbsp;.
-                    </Twitterwebapp>
-                  </Details>
-                </Row> */}
               </Column>
             </Container>
           </Row>
         </Mainbox>
       </Grid>
-     <br /><br />
+      <br /><br />
       {/* <FooterComponent /> */}
     </>
   );

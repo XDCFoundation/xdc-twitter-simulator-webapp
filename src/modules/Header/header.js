@@ -103,8 +103,8 @@ const Image = styled.img`
 `;
 const MobImage = styled.img`
  
-    width: 30px;
-    height: 25px;
+    // width: 30px;
+    // height: 25px;
     margin-left: 0px;
   
 `;

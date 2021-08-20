@@ -34,7 +34,7 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   paper: {
     color: theme.palette.text.secondary,
-    marginTop: "-7%",
+    marginTop: "-5%",
     // marginLeft: "3.6%",
     height: "auto",
     // height: '784px',
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
   paper_dark_mode: {
     color: theme.palette.text.secondary,
-    marginTop: "-7%",
+    marginTop: "-5%",
     // marginLeft: "3.6%",
     backgroundColor: "#191d43",
     color: "white",
@@ -244,6 +244,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "0px",
     backgroundColor: "#8290a4",
+    opacity: 0.4,
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
@@ -253,7 +254,7 @@ const useStyles = makeStyles((theme) => ({
     // bordeRradius: "12px",
     boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
     // border: "solid 1px #e3e7eb",
-    backgroundColor: "#ffffff",
+    // backgroundColor: "#ffffff",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     savedTweetConatiner: {
@@ -272,6 +273,9 @@ export default function SavedTweets(props) {
 
   useEffect(() => {
     fetchSavedTweets();
+    setInterval(() => {
+      fetchSavedTweets();
+    },30000)
   }, []);
 
   // useEffect(() => {
@@ -288,14 +292,14 @@ export default function SavedTweets(props) {
         let tweetResponse;
         let allSaveTweets;
         if (
-          !res ||
-          !res.data ||
-          !res.data.responseData ||
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        allSaveTweets = res.data.responseData[1];
+        else tweetResponse = res.data.responseData[0] || 0;
+        allSaveTweets = res.data.responseData[1] || 0;
         setSavedTweets(tweetResponse);
 
         setTotalSaveTweet(allSaveTweets)
@@ -379,32 +383,33 @@ export default function SavedTweets(props) {
               {savedTweets &&
                 savedTweets.length >= 1 &&
                 savedTweets.map((response) => {
-                  let value = response.text;
+                  let value = response.text || 0;
+                  let author = response.authorID || 0;
                   // console.log('res--',value)
                   // const colonIndex = value.indexOf(":");
-                  const atIndex = value.indexOf("@");
-                  let handler = value.slice(atIndex, 10);
-                  let tweetTextMessage = value.split(":")[1];
+                  // const atIndex = value.indexOf("@");
+                  // let handler = value.slice(atIndex, 10) || 0;
+                  // let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
-                  let time = timeFormat.format("LT");
+                  let time = timeFormat.format("LT") || 0;
                   // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
-                  function shortenTrend(
-                    b,
-                    amountL = 10,
-                    amountR = 3,
-                    stars = 3
-                  ) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                      // b.length - 3,
-                      b.length
-                    )}`;
-                  }
+                  // function shortenTrend(
+                  //   b,
+                  //   amountL = 10,
+                  //   amountR = 3,
+                  //   stars = 3
+                  // ) {
+                  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                  //     // b.length - 3,
+                  //     b.length || 0
+                  //   )}`;
+                  // }
                   function shortenValue(b, amountL = 80, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
-                      b.length
+                      b.length || 0
                     )}`;
                   }
                   return (
@@ -437,9 +442,7 @@ export default function SavedTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {handler.length > 0
-                              ? shortenTrend(handler)
-                              : method}
+                          {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -451,7 +454,7 @@ export default function SavedTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(value)}
+                              {shortenValue(value) || 0}
                               {/* {shortenValue(tweetTextMessage)} */}
                             </Paper>
                           </ThemeProvider>
