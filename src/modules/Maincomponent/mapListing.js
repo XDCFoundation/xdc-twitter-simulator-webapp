@@ -11,13 +11,11 @@ import { white } from 'material-ui/styles/colors';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '114%',
-        // maxWidth: 600,
-        marginLeft:'-20px',
+        marginLeft: '-20px',
         position: 'relative',
         overflow: 'auto',
         msOverflowStyle: 'none',
-        maxHeight: 370,
-        // backgroundColor: 'red',
+        maxHeight: 355,
         '&::-webkit-scrollbar': {
             display: 'none',
         },
@@ -30,44 +28,30 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 767px) and (max-width: 1024px)": {
         root: {
-            maxHeight: 250,
+            maxHeight: 355,
         },
     },
     "@media (min-width: 1024px) and (max-width: 1200px)": {
         root: {
-            maxHeight: 300,
+            maxHeight: 355,
         },
     },
     "@media (min-width: 1201px) and (max-width: 1400px)": {
         root: {
-            maxHeight: 320,
-        },
-    },
-    "@media (min-width: 1401px) and (max-width: 1699px)": {
-        root: {
-            maxHeight: 370,
-        },
-    },
-    "@media (min-width: 1701px) and (max-width: 1999px)": {
-        root: {
-            maxHeight: 420,
-        },
-    },
-    "@media (min-width: 2001px) and (max-width: 2300px)": {
-        root: {
-            maxHeight: 440,
+            maxHeight: 355,
+            backgroundColor: 'red'
         },
     },
 
 
     dark_root: {
         width: '108%',
-        marginLeft:'-20px',
+        marginLeft: '-20px',
         // maxWidth: 600,
         position: 'relative',
         overflow: 'auto',
         msOverflowStyle: 'none',
-        maxHeight: 370,
+        maxHeight: 355,
         '&::-webkit-scrollbar': {
             display: 'none',
         },
@@ -80,24 +64,21 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 767px) and (max-width: 1000px)": {
         dark_root: {
-            maxHeight: 270,
+            maxHeight: 355,
         },
     },
     "@media (min-width: 1001px) and (max-width: 1200px)": {
         dark_root: {
-            maxHeight: 300,
+            maxHeight: 355,
         },
     },
     "@media (min-width: 1201px) and (max-width: 1400px)": {
         dark_root: {
-            maxHeight: 340,
+            maxHeight: 355,
         },
     },
-    "@media (min-width: 1401px) and (max-width: 1500px)": {
-        dark_root: {
-            maxHeight: 370,
-        },
-    },
+
+
     scrollbars: {
         display: 'none',
     },
@@ -119,9 +100,10 @@ const useStyles = makeStyles((theme) => ({
     hr_page_dark_mode: {
         width: "105%",
         height: "0px",
-        backgroundColor: "#8290a4",
+        backgroundColor: "#C0C0C0",
         marginTop: "0.8rem",
         marginBottom: "0.8rem",
+        opacity: 0.2,
     },
 }));
 
@@ -139,13 +121,26 @@ export default function PinnedSubheaderList(props) {
                 process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_TRENDING_HASHTAG
             )
             .then((res) => {
-                setHashtag(res.data.responseData);
+                let listCoordinates = []
+                if (
+                    !res &&
+                    !res.data &&
+                    !res.data.responseData &&
+                    res.data.responseData.length <= 0
+                )
+                    listCoordinates = [];
+
+                else listCoordinates = res.data.responseData
+                setHashtag(listCoordinates);
+
+                // setHashtag(res.data.responseData);
                 // console.log('locations---', res.data.responseData)
             })
             .catch((err) => {
                 console.log(err);
             });
     }
+
     return (
         <List
             className={props.dark ? classes.dark_root : classes.root}>
@@ -156,25 +151,26 @@ export default function PinnedSubheaderList(props) {
                         classes.hr_page_dark_mode : classes.hr_page
                     }
                 /> */}
-                {hashtag.map((items, k) => {
-                    return (
-                        <div style={props.dark ? { color: 'white' } : { color: 'black' }}>
+                {hashtag &&
+                    hashtag.length >= 1 && hashtag.map((items, k) => {
+                        return (
+                            <div style={props.dark ? { color: 'white' } : { color: 'black' }}>
 
 
-                            <div style={{ fontSize: 12, fontWeight: 600,paddingLeft:'20px',paddingTop:'2px' }}>
-                                {items.name}
+                                <div style={{ fontSize: 12, fontWeight: 600, paddingLeft: '20px', paddingTop: '2px' }}>
+                                {items.name || 0}
+                                </div>
+
+                                <hr
+                                    className={props.dark ?
+                                        classes.hr_page_dark_mode : classes.hr_page
+                                    }
+                                />
+
                             </div>
+                        )
 
-                            <hr
-                                className={props.dark ?
-                                    classes.hr_page_dark_mode : classes.hr_page
-                                }
-                            />
-
-                        </div>
-                    )
-
-                })}
+                    })}
 
             </div>
         </List>

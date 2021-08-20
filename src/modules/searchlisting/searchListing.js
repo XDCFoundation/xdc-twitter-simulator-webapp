@@ -340,6 +340,12 @@ export default function Searchlist(props) {
 
   // console.log('props---', props?.list)
   // console.log('props---', props?.tps)
+  // useEffect(() => {
+  //   (async () => {
+  //     const result = await axios("https://api.tvmaze.com/search/shows?q=snow");
+  //     setData(result.data);
+  //   })();
+  // }, []);
 
   const [basic, setBasic] = useState({})
   const [advance, setAdvance] = useState({})
@@ -354,7 +360,16 @@ export default function Searchlist(props) {
     axios
       .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_BASIC_SEARCH + props?.locations)
       .then((res) => {
-        setBasic(res.data.responseData.responseData);
+        let basicSearch = []
+        if (
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
+          res.data.responseData.length <= 0
+        )
+          basicSearch = [];
+        else basicSearch = res.data.responseData.responseData || 0;
+        setBasic(basicSearch);
         // console.log('mysearch-------', res.data.responseData.responseData)
         // console.log('my url===',url)
       })
@@ -368,9 +383,17 @@ export default function Searchlist(props) {
 
     axios
       .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ADVANCE_SEARCH + "name" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname)
-      // "https://ki3l56sayb.execute-api.us-east-2.amazonaws.com/advance-search?name=" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname
       .then((res) => {
-        setAdvance(res.data.responseData.responseData);
+        let advanceSearch = []
+        if (
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
+          res.data.responseData[0].length <= 0
+        )
+          advanceSearch = [];
+        else advanceSearch = res.data.responseData.responseData || 0;
+        setAdvance(advanceSearch);
         // console.log('myAdvancesearch-------', res.data.responseData.responseData)
         // console.log('my url===',url)
       })
@@ -424,30 +447,30 @@ export default function Searchlist(props) {
                 {basic &&
                   basic.length >= 1 &&
                   basic.map((response) => {
-                    let value = response.text
+                    let value = response.text || 0
                     // console.log('resp--',userId)
-                    const colonIndex = value.indexOf(":");
-                    const atIndex = value.indexOf("@");
-                    let handler = value.slice(atIndex, colonIndex);
-                    let tweetTextMessage = value.split(":")[1];
-                    let str = response.addedOn;
-                    let timeFormat = moment(str);
-                    let time = timeFormat.format("LT");
+                    const colonIndex = value.indexOf(":") || 0;
+                    const atIndex = value.indexOf("@") || 0;
+                    let handler = value.slice(atIndex, colonIndex) || 0;
+                    // let tweetTextMessage = value.split(":")[1];
+                    let str = response.addedOn || 0;
+                    let timeFormat = moment(str) || 0;
+                    let time = timeFormat.format("LT") || 0;
 
-                    function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
-                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                        // b.length - 3,
-                        b.length
-                      )}`;
-                    }
-                    function shortenValue(b, amountL = 100, stars = 3) {
-                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                        // b.length - 3,
-                        b.length
-                      )}`;
-                    }
+                    // function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
+                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    //     // b.length - 3,
+                    //     b.length || 0
+                    //   )}`;
+                    // }
+                    // function shortenValue(b, amountL = 100, stars = 3) {
+                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    //     // b.length - 3,
+                    //     b.length || 0
+                    //   )}`;
+                    // }
 
-                    let userId = response.tweetId
+                    let userId = response.tweetId || 0
                     // console.log('myuser--',userId)
 
                     return (
@@ -480,7 +503,7 @@ export default function Searchlist(props) {
                           <Row>
                             <Column>
                               <Typography className={classes.email}>
-                                {shortenTrend(handler)}
+                                {handler}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -492,7 +515,7 @@ export default function Searchlist(props) {
                                   }
                                   gutterBottom
                                 >
-                                  {shortenValue(value)}
+                                  {value}
                                 </Paper>
                               </ThemeProvider>
                             </Column>
@@ -506,19 +529,19 @@ export default function Searchlist(props) {
                 {advance &&
                   advance.length >= 1 &&
                   advance.map((response) => {
-                    let value = response.text;
-                    let author = response.name;
-                    let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase()
+                    let value = response.text || 0;
+                    let author = response.name || 0;
+                    let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase() || 0
                     // console.log('resp2--', author)
                     // console.log('valuuuu', handle)
                     // const colonIndex = value.indexOf(":");
                     // const atIndex = value.indexOf("@");
                     // let handler = value.slice(atIndex, colonIndex);
-                    let tweetTextMessage = value.split(":")[1];
+                    // let tweetTextMessage = value.split(":")[1];
                     // console.log('tt', tweetTextMessage)
-                    let str = response.addedOn;
-                    let timeFormat = moment(str);
-                    let time = timeFormat.format("LT");
+                    let str = response.addedOn || 0;
+                    let timeFormat = moment(str) || 0;
+                    let time = timeFormat.format("LT") || 0;
                     // let hashtags = value.split('#')
                     // console.log('hash---',hashtags)
                     // let tweetTextMessage=value.text; 
@@ -530,14 +553,14 @@ export default function Searchlist(props) {
                     //     b.length
                     //   )}`;
                     // }
-                    function shortenValue(b, amountL = 80, stars = 3) {
-                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                        // b.length - 3,
-                        b.length
-                      )}`;
-                    }
+                    // function shortenValue(b, amountL = 80, stars = 3) {
+                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    //     // b.length - 3,
+                    //     b.length || 0
+                    //   )}`;
+                    // }
 
-                    let textId = response.id
+                    let textId = response.id || 0
                     // console.log('texttt--',textId)
                     return (
                       <>
@@ -569,7 +592,7 @@ export default function Searchlist(props) {
                           <Row>
                             <Column>
                               <Typography className={classes.email}>
-                                {handle.length > 0 ? '@' + handle : 'undefined'}
+                                {handle.length > 0 ? '@' + handle || 0 : 'undefined'}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -581,7 +604,7 @@ export default function Searchlist(props) {
                                   }
                                   gutterBottom
                                 >
-                                  {shortenValue(value)?.length > 0 ? shortenValue(value) : 'undefined'}
+                                  {value}
                                 </Paper>
                               </ThemeProvider>
                             </Column>
