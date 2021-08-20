@@ -7,7 +7,7 @@ import { red } from '@material-ui/core/colors';
 export default function DarkMap() {
   const [hashtag, setHashtag] = useState([])
 
-const tileUrl = process.env.REACT_APP_TILEURL_DARK_MODE
+  const tileUrl = process.env.REACT_APP_TILEURL_DARK_MODE
 
   useEffect(() => {
     topHashtags();
@@ -19,7 +19,18 @@ const tileUrl = process.env.REACT_APP_TILEURL_DARK_MODE
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_TRENDING_HASHTAG
       )
       .then((res) => {
-        setHashtag(res.data.responseData);
+        let mappingCoordinates = []
+        if (
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
+          res.data.responseData.length <= 0
+        )
+          mappingCoordinates = [];
+
+        else mappingCoordinates = res.data.responseData
+        setHashtag(mappingCoordinates);
+
         // console.log('locations---', res.data.responseData)
       })
       .catch((err) => {
@@ -32,27 +43,29 @@ const tileUrl = process.env.REACT_APP_TILEURL_DARK_MODE
         <TileLayer noWrap={true}
           url={tileUrl}
         />
-        {hashtag.map((items, k) => {
-          // let name = items.name
-          return (
-            <CircleMarker
-              key={k}
-              center={
-                [
-                  items.coordinates[1],
-                  items.coordinates[0]
-                ]
-              }
-              radius={2}
-              fillOpacity={0.5}
-              stroke={false}
-            >
-              <Tooltip opacity={0.7} permanent>
-                <span style={{ padding: '8px 8px', color: 'black', fontWeight: 600 }}> {items.name} </span>
-              </Tooltip>
+        {hashtag &&
+          hashtag.length >= 1 &&
+          hashtag.map((items, k) => {
+            // let name = items.name
+            return (
+              <CircleMarker
+                key={k}
+                center={
+                  [
+                    items.latitude || 0,
+                    items.longitude || 0,
+                  ]
+                }
+                radius={0}
+                fillOpacity={0.5}
+                stroke={false}
+              >
+                <Tooltip opacity={0.5} permanent>
+                  <span className="map-tip"> {items.name || 0} </span>
+                </Tooltip>
 
-            </CircleMarker>)
-        })
+              </CircleMarker>)
+          })
         }
       </MapContainer>
     </>

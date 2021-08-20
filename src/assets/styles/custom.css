@@ -298,7 +298,6 @@ input:focus {
   text-align: left;
   padding-bottom: 10px;
   margin-top: -8px;
-  color:#09184B;
 }
 .savingSpeed-one {
   /* letter-spacing: normal;
@@ -323,7 +322,7 @@ input:focus {
 } */
 
 .savingSpeed-dark-mode {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -480,7 +479,6 @@ input:focus {
 .writing-data-one {
   margin-left: 8%;
   margin-top: -23%;
-
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -636,12 +634,12 @@ input:focus {
 .dark-block {
   justify-content: space-between;
   display: flex;
-  border-bottom: solid 1px #e3e7eb;
-  width: 105%;
-  /* margin-left: -20px; */
-  /* height: 65px; */
-  margin-top: 15px;
-  margin-left: 0px;
+  border-bottom: solid 1px #FFFFFF;
+  opacity: 0.5;
+  width: 106%;
+  height: 22px;
+  margin-top: 20px;
+  margin-left: -5px;
 }
 .dark-blocks {
   justify-content: space-between;
@@ -1068,22 +1066,25 @@ input:focus {
 
 .lightmap-style{
   width: 108%;
-  height: 375px;
+  height: 355px;
   z-index: 0;
-margin-top: 8px;
+ margin-top: 8px;
+ background-color: transparent;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .lightmap-style {
     width: 108%;
-    height: 270px;
+    height: 350px;
     z-index: 0;
+    background-color: transparent;
   }
 }
 @media (min-width: 1025px) and (max-width: 1200px) {
   .lightmap-style {
     width: 108%;
-    height: 300px;
+    height: 350px;
     z-index: 0;
+    background-color: transparent;
   }
 }
 @media (min-width: 1201px) and (max-width: 1400px) {
@@ -1091,60 +1092,72 @@ margin-top: 8px;
     width: 108%;
     height: 350px;
     z-index: 0;
+    background-color: transparent;
   }
 }
 @media (min-width: 1600px) and (max-width: 1799px) {
   .lightmap-style {
     width: 108%;
-    height: 400px;
+    height: 345px;
     z-index: 0;
+    background-color: transparent;
   }
 }
 @media (min-width: 1800px)  and (max-width: 2100px) {
   .lightmap-style {
-    width: 114%;
-    height: 440px;
+    width: 116%;
+    height: 350px;
     z-index: 0;
+    background-color: transparent;
   }
 }
 @media (min-width: 2101px) and (max-width: 2300px)  {
   .lightmap-style {
     width: 120%;
-    height: 470px;
+    height: 350px;
     z-index: 0;
+    background-color: transparent;
   }
 }
 
 .darkmap-style{
-  width: 100%;
-  height: 380px;
+  width: 102%;
+  margin-top: 10px;
+  height: 345px;
   z-index: 0;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .darkmap-style {
     width: 100%;
-    height: 270px;
+    height: 345px;
     z-index: 0;
   }
 }
 @media (min-width: 1025px) and (max-width: 1200px) {
   .darkmap-style {
     width: 100%;
-    height: 300px;
+    height: 345px;
     z-index: 0;
   }
 }
 @media (min-width: 1201px) and (max-width: 1400px) {
   .darkmap-style {
     width: 102%;
-    height: 350px;
+    height: 345px;
     z-index: 0;
   }
 }
-@media (min-width: 1800px)  {
+@media (min-width: 1800px)  and (max-width: 2100px) {
   .darkmap-style {
-    width: 114%;
-    height: 440px;
+    width: 110%;
+    height: 345px;
+    z-index: 0;
+  }
+}
+@media (min-width: 2101px) and (max-width: 2300px)  {
+  .darkmap-style {
+    width: 120%;
+    height: 345px;
     z-index: 0;
   }
 }

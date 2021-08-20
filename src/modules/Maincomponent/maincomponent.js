@@ -61,17 +61,16 @@ const useStyles = makeStyles((theme) => ({
   },
   grid2: {
     marginTop: "50px",
-    marginLeft:"3%",
+    marginLeft: "3%",
     boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
     // border: "solid 1px #e3e7eb",
     backgroundColor: "#E3E7EB",
-   
+
   },
   grid3: {
     marginTop: "50px",
-    
-    
   },
+
   "@media (max-width: 766px)": {
     grid3: {
       marginTop: "1px",
@@ -84,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7.5%",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
-    height: "95.5%",
+    // height: "95.5%",
     borderRadius: '10px',
     border: '1px solid #E3E7EB',
     boxShadow: '0px 2px 30px #0000001A',
@@ -107,6 +106,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7.5%",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+    borderRadius: '10px',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   writingPaperDarkMode: {
     padding: theme.spacing(2),
@@ -125,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
-    height: "95.5%",
+    // height: "95.5%",
     borderRadius: '10px',
     border: '1px solid #E3E7EB',
     boxShadow: '0px 2px 30px #0000001A',
@@ -147,6 +148,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
+    borderRadius: '10px',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   readingPaperDarkMode: {
     padding: theme.spacing(2),
@@ -163,8 +166,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "spaceAround",
     height: "95.5%",
+    marginTop: '-18px',
     borderRadius: '10px',
-    
+    border: '1px solid #E3E7EB',
+    boxShadow: '0px 2px 30px #ffffff',
+
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
@@ -176,7 +182,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "spaceAround",
     color: "white",
+    marginTop: '-18px',
     backgroundColor: "#191d43",
+    boxShadow: '0px 2px 30px #0000001A',
   },
   "@media (min-width: 304px) and (max-width: 766px)": {
     map_dark_mode: {
@@ -338,7 +346,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "20px",
   },
   top: {
-    marginTop: "10px",
+    marginTop: "15px",
     marginRight: "9px",
     boxShadow: "none",
     height: "95.5%",
@@ -356,11 +364,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top_dark_mode: {
-    marginTop: "10px",
+    marginTop: "15px",
     marginRight: "9px",
-    boxShadow: "none",
     height: "95.5%",
     backgroundColor: "#191d43",
+    borderRadius: '10px',
+    boxShadow: '0px 2px 30px #0000001A',
+
   },
   topDarkMode: {
     marginTop: "10px",
@@ -575,9 +585,13 @@ export default function MainComponent(props) {
           // console.log('obj------', data)
 
           let newarray = arr.filter((element) => element !== "Click");
-          console.log("ip result---", newarray);
-          setValue(newarray);
+          // let ab = newarray.filter(elem => elem !== 'Apothem.XinFinScan.com_X')
+          // let cd = ab.filter(elemen => elemen !== 'ether.XinFinScan.co')
+          setTimeout(() => {
+            setValue(newarray);
+          }, 10000);
 
+          // console.log("ip result---", newarray);
           //for socket total nodes ---->
           let nodecount = Object.keys(test).length;
           // console.log('nodecount-----', nodecount)
@@ -611,6 +625,7 @@ export default function MainComponent(props) {
 
   let id = props?.read;
   // let identity = props?.data
+
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>

@@ -321,7 +321,7 @@ export default function ReadTweets(props) {
   }, []);
   const fetchTweets = () => {
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_READ_TWEET)
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
 
       .then((res) => {
         let tweetResponse;
@@ -373,8 +373,8 @@ export default function ReadTweets(props) {
               {readtweets &&
                 readtweets.length >= 1 &&
                 readtweets.map((response) => {
-                  let value = response.text;
-                  // let author = response.name;
+                  let value = response.text || 0;
+                  let author = response.authorId || 0;
                   // let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
                   // const atIndex = value?.indexOf("@");
                   // let handler = value?.slice(atIndex, 10);
@@ -384,16 +384,26 @@ export default function ReadTweets(props) {
                   // let trending = author.slice(atIndex, 10);
 
                   // console.log('handle----',handle)
-                  let tweetText = value.split(":")[1];
+                  // let tweetText = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
-                  let time = timeFormat.format("LT");
+                  let time = timeFormat.format("LT") || 0;
 
-  
+                  // function shortenTrend(
+                  //   b,
+                  //   amountL = 10,
+                  //   amountR = 3,
+                  //   stars = 3
+                  // ) {
+                  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                  //     // b.length - 3,
+                  //     b.length
+                  //   )}`;
+                  // }
                   function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
-                      b.length
+                      b.length || 0
                     )}`;
                   }
 
@@ -427,7 +437,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                        {/* {handle.length >0 ? '@'+handle : 'undefined'} */}
+                            {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -439,7 +449,7 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(value).length > 0 ? shortenValue(value) : 'undefined'}
+                              {shortenValue(value) || 0}
                             </Paper>
                           </ThemeProvider>
                         </Column>

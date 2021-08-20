@@ -35,7 +35,7 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   paper: {
     color: theme.palette.text.secondary,
-    marginTop: "-7%",
+    marginTop: "-5%",
     marginRight: "1.5%",
     height: "auto",
     // height: '784px',
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
   paper_dark_mode: {
     color: theme.palette.text.secondary,
-    marginTop: "-7%",
+    marginTop: "-5%",
     marginRight: "1.5%",
     backgroundColor: "#191d43",
     color: "white",
@@ -248,6 +248,7 @@ const useStyles = makeStyles((theme) => ({
   hr_page_dark_mode: {
     width: "100%",
     height: "0px",
+    opacity: 0.4,
     backgroundColor: "#8290a4",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
@@ -258,6 +259,10 @@ const useStyles = makeStyles((theme) => ({
     // border: "solid 1px #e3e7eb",
     backgroundColor: "#ffffff",
   },
+  readTweetContainer_dark_mode: {
+    marginTop: "0px",
+    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+ },
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {
       marginTop: "30px",
@@ -274,6 +279,9 @@ export default function ReadTweets(props) {
 
   useEffect(() => {
     fetchTweets();
+    setInterval(() => {
+      fetchTweets()
+    },30000)
   }, []);
   const fetchTweets = () => {
    
@@ -284,9 +292,9 @@ export default function ReadTweets(props) {
         let tweetResponse;
         let alltweets;
         if (
-          !res ||
-          !res.data ||
-          !res.data.responseData ||
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
@@ -310,7 +318,7 @@ export default function ReadTweets(props) {
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
-        <div className={classes.readTweetContainer}>
+        <div className={props.dark ? classes.readTweetContainer_dark_mode : classes.readTweetContainer}>
           <Paper
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
@@ -362,8 +370,8 @@ export default function ReadTweets(props) {
               {readtweets &&
                 readtweets.length >= 1 &&
                 readtweets.map((response) => {
-                  let value = response.text;
-                  let author = response.authorId;
+                  let value = response.text || 0;
+                  let author = response.authorId || 0;
                   // let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
                   // const atIndex = value?.indexOf("@");
                   // let handler = value?.slice(atIndex, 10);
@@ -373,10 +381,10 @@ export default function ReadTweets(props) {
                   // let trending = author.slice(atIndex, 10);
 
                   // console.log('handle----',handle)
-                  let tweetText = value.split(":")[1];
+                  // let tweetText = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
-                  let time = timeFormat.format("LT");
+                  let time = timeFormat.format("LT") || 0;
 
                   // function shortenTrend(
                   //   b,
@@ -392,7 +400,7 @@ export default function ReadTweets(props) {
                   function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
-                      b.length
+                      b.length || 0
                     )}`;
                   }
 
@@ -427,8 +435,6 @@ export default function ReadTweets(props) {
                         <Column>
                           <Typography className={classes.email}>
                             {author}
-                            {/* {handle} */}
-                        {/* {handle.length >0 ? '@'+handle : 'undefined'} */}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -440,7 +446,7 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(value).length > 0 ? shortenValue(value) : 'undefined'}
+                              {shortenValue(value) || 0}
                             </Paper>
                           </ThemeProvider>
                         </Column>
