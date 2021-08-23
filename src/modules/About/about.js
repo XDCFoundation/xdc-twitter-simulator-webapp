@@ -444,8 +444,7 @@ export default function Aboutcomponent(props) {
                         }
                       >
                         This twitter decentralized application pertually records
-                        the top 20 hashtags on Twitter on to the XDC Network
-                        blockchain.
+                        the top 20 hashtags on twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>

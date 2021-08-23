@@ -35,9 +35,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     color: theme.palette.text.secondary,
     marginTop: "-5%",
-    // marginLeft: "3.6%",
+    border: '1px solid #E3E7EB',
+    borderRadius: '5px',
+    opacity: 1,
     height: "auto",
-    // height: '784px',
+    boxShadow: '0px 2px 30px #0000001A',
   },
 
   paper_dark_mode: {
@@ -47,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
+    borderRadius: '5px',
+    border: 'solid 1px #343965',
     // height: '784px',
   },
 
@@ -201,7 +205,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.2",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "#8f8faf",
     marginLeft: "18px",
   },
   readtweet: {
@@ -250,9 +253,8 @@ const useStyles = makeStyles((theme) => ({
   },
   savedTweetConatiner: {
     marginTop: "0px",
-    marginLeft:"3%",
-    // bordeRradius: "12px",
-    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
+    marginLeft: "3%",
+  
     // border: "solid 1px #e3e7eb",
     // backgroundColor: "#ffffff",
   },
@@ -275,7 +277,7 @@ export default function SavedTweets(props) {
     fetchSavedTweets();
     setInterval(() => {
       fetchSavedTweets();
-    },30000)
+    }, 30000)
   }, []);
 
   // useEffect(() => {
@@ -442,7 +444,7 @@ export default function SavedTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                          {author}
+                            {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
