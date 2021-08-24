@@ -515,7 +515,7 @@ export default function MainComponent(props) {
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
-  // console.log('props---',props)
+  // console.log('Main---',props.Savesocket)
 
   useEffect(() => {
     fetchCount();
@@ -891,7 +891,7 @@ export default function MainComponent(props) {
 
             <Grid item xs={6} className={classes.grid3}>
               <SaveGraphTrend>
-                <SavedTweets dark={dark} />
+                <SavedTweets dark={dark} saved={props.Savesocket}/>
               </SaveGraphTrend>
             </Grid>
             <Grid item xs={6} className={classes.grid3}>

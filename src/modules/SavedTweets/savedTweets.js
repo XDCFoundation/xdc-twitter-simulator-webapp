@@ -11,11 +11,16 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import moment from "moment";
+import { Socket } from "socket.io-client";
 import {
   createMuiTheme,
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
+
+
+// console.log('saved---',this.props.Socket)
+
 const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
@@ -126,8 +131,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     boxShadow: "none",
     border: "none",
-    // marginBottom:"5px",
-    // border: "solid 1px #e8e8e8",
     fontFamily: "Raleway",
     fontWeight: 600,
     fontStretch: "normal",
@@ -143,8 +146,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "11px",
     boxShadow: "none",
     border: "none",
-    // marginBottom:"5px",
-    // border: "solid 1px #e8e8e8",
     fontFamily: "Raleway",
     fontWeight: 600,
     fontStretch: "normal",
@@ -162,7 +163,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     position: "absolute",
     right: "52.5%",
-    // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -176,11 +176,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   time_dark_mode: {
-    // color: "#8290a4",
     boxShadow: "none",
     position: "absolute",
     right: "52.5%",
-    // fontFamily: "Raleway",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -254,9 +252,6 @@ const useStyles = makeStyles((theme) => ({
   savedTweetConatiner: {
     marginTop: "0px",
     marginLeft: "3%",
-  
-    // border: "solid 1px #e3e7eb",
-    // backgroundColor: "#ffffff",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     savedTweetConatiner: {
@@ -269,67 +264,16 @@ const useStyles = makeStyles((theme) => ({
 export default function SavedTweets(props) {
   const classes = useStyles();
 
-  const [savedTweets, setSavedTweets] = useState([]);
-  const [totalSaveTweet, setTotalSaveTweet] = useState([]);
-  // const [totalSave, setTotalSave] = useState([]);
+  // console.log('saveprop2--', props.tweetData)
+  // console.log('saveprop2--', props.tweetCount)
 
-  useEffect(() => {
-    fetchSavedTweets();
-    setInterval(() => {
-      fetchSavedTweets();
-    }, 30000)
-  }, []);
-
-  // useEffect(() => {
-  //   fetchTotalTweets();
-  // }, [])
-
-  //For save-tweets
-
-  const fetchSavedTweets = () => {
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET)
-
-      .then((res) => {
-        let tweetResponse;
-        let allSaveTweets;
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0] || 0;
-        allSaveTweets = res.data.responseData[1] || 0;
-        setSavedTweets(tweetResponse);
-
-        setTotalSaveTweet(allSaveTweets)
-        // console.log("saveTweets------", tweetResponse);
-        // console.log("saveTweets------", allSaveTweets);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  //For total Count--->
-
-  // const fetchTotalTweets = () => {
-  //   axios
-  //     .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
-  //     .then((res) => {
-  //       // console.log('total-Saved-Tweet-Count-------', res.data)
-  //       setTotalSave(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  let method = "...";
-  //   let save = totalSave.responseData
-  // console.log('mysave---',save)
+  let text = props.tweetData[0]?.text
+  let animationclass = props.animationTime?.[text]
+  let textanimationClass = props.textclass?.[text]
+  let handleanimationclass = props.handleclass?.[text]
+  let blockDarkanimationclass= props.blockDarkclass?.[text]
+  let textdarkanimationClass = props.textDarkclass?.[text]
+  // console.log('texx--',textdarkanimationClass)
 
   return (
     <Grid Container spacing={3}>
@@ -377,37 +321,20 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {totalSaveTweet.tweetsInDb > 1000
-                    ? parseInt(totalSaveTweet.tweetsInDb / 1000) + "k"
-                    : totalSaveTweet.tweetsInDb}
+                  {props.tweetCount.tweetsInDb > 1000
+                    ? parseInt(props.tweetCount.tweetsInDb / 1000) + "k"
+                    : props.tweetCount.tweetsInDb}
                 </Paper>
               </Row>
-              {savedTweets &&
-                savedTweets.length >= 1 &&
-                savedTweets.map((response) => {
+              {props.tweetData &&
+                props.tweetData.length >= 1 &&
+                props.tweetData.map((response) => {
                   let value = response.text || 0;
                   let author = response.authorID || 0;
-                  // console.log('res--',value)
-                  // const colonIndex = value.indexOf(":");
-                  // const atIndex = value.indexOf("@");
-                  // let handler = value.slice(atIndex, 10) || 0;
-                  // let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT") || 0;
-                  // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
-
-                  // function shortenTrend(
-                  //   b,
-                  //   amountL = 10,
-                  //   amountR = 3,
-                  //   stars = 3
-                  // ) {
-                  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                  //     // b.length - 3,
-                  //     b.length || 0
-                  //   )}`;
-                  // }
+          
                   function shortenValue(b, amountL = 80, stars = 3) {
                     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
                       // b.length - 3,
@@ -432,10 +359,10 @@ export default function SavedTweets(props) {
                         >
                           {/* {response.blockNumber} */}
                         </Typography>
-                        <Paper
-                          className={
-                            props.dark ? classes.time_dark_mode : classes.time
-                          }
+                        <Paper className= {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) : (animationclass ? animationclass : classes.time)}
+                          // className={
+                          //   props.dark ? classes.time_dark_mode : classes.time
+                          // }
                         >
                           {time}
                         </Paper>
@@ -443,17 +370,17 @@ export default function SavedTweets(props) {
 
                       <Row>
                         <Column>
-                          <Typography className={classes.email}>
+                          <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
                             {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
                               noWrap
-                              className={
-                                props.dark
-                                  ? classes.content_dark_mode
-                                  : classes.content
-                              }
+                              className={props.dark ? (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) : (textanimationClass ? textanimationClass : classes.content)}
+                                // props.dark
+                                //   ? classes.content_dark_mode
+                                //   : classes.content
+                              
                               gutterBottom
                             >
                               {shortenValue(value) || 0}
