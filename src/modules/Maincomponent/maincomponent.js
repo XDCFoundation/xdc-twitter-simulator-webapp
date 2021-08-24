@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: "7.5%",
+    marginLeft: "6%",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
     // height: "95.5%",
@@ -103,11 +103,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
     color: "white",
-    marginLeft: "7.5%",
+    marginLeft: "6%",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
-    borderRadius: '10px',
+    borderRadius: '5px',
     boxShadow: '0px 2px 30px #0000001A',
+    border: 'solid 1px #343965',
   },
   writingPaperDarkMode: {
     padding: theme.spacing(2),
@@ -148,8 +149,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5px",
     marginTop: "10px",
     padding: "20px 14px 29.6px 26px",
-    borderRadius: '10px',
+    borderRadius: '5px',
     boxShadow: '0px 2px 30px #0000001A',
+    border: 'solid 1px #343965',
   },
   readingPaperDarkMode: {
     padding: theme.spacing(2),
@@ -166,10 +168,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "spaceAround",
     height: "95.5%",
+    width: '100%',
     marginTop: '-18px',
-    borderRadius: '10px',
+    boxShadow: '0px 2px 30px #0000001A',
     border: '1px solid #E3E7EB',
-    boxShadow: '0px 2px 30px #ffffff',
+    borderRadius: '5px',
+    opacity: 1,
 
   },
   "@media (min-width: 305px) and (max-width: 766px)": {
@@ -185,6 +189,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '-18px',
     backgroundColor: "#191d43",
     boxShadow: '0px 2px 30px #0000001A',
+    border: 'solid 1px #343965',
   },
   "@media (min-width: 304px) and (max-width: 766px)": {
     map_dark_mode: {
@@ -346,13 +351,14 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "20px",
   },
   top: {
-    marginTop: "15px",
+    marginTop: "14px",
     marginRight: "9px",
     boxShadow: "none",
+    width: '100%',
     height: "95.5%",
-    borderRadius: '10px',
-    border: '1px solid #E3E7EB',
     boxShadow: '0px 2px 30px #0000001A',
+    border: '1px solid #E3E7EB',
+    borderRadius: '5px',
   },
   topMode: {
     marginTop: "10px",
@@ -364,13 +370,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top_dark_mode: {
-    marginTop: "15px",
+    marginTop: "14px",
     marginRight: "9px",
     height: "95.5%",
+    width: '98.5%',
     backgroundColor: "#191d43",
-    borderRadius: '10px',
     boxShadow: '0px 2px 30px #0000001A',
-
+    borderRadius: '5px',
+    border: 'solid 1px #343965',
   },
   topDarkMode: {
     marginTop: "10px",
@@ -474,6 +481,7 @@ const SavedGraphTrend = styled.div`
 `;
 
 const ReadGraphTrend = styled.div`
+
   @media (min-width: 2001px) and (max-width: 2400px) {
     margin-top: 10px;
   }

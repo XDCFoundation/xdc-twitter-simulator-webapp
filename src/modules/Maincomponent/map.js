@@ -56,8 +56,8 @@ export default function App(props) {
                 key={k}
                 center={
                   [
-                    items.latitude || 0,
-                    items.longitude || 0,
+                    items?.latitude || 0,
+                    items?.longitude || 0,
                   ]
                 }
                 radius={0}

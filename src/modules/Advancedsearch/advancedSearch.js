@@ -16,7 +16,7 @@ const Advanced = styled.span`
   line-height: 1.18;
   letter-spacing: normal;
   text-align: left;
-  color: #ffffff;
+  color:  #09184B;
   margin-top: 25px;
   margin-left: 68px;
 `;
@@ -29,21 +29,21 @@ const Accounts = styled.span`
   line-height: 1.17;
   letter-spacing: normal;
   text-align: left;
-  color: #f8f8fa;
+  color:  #09184B;
 
   margin-left: 68px;
   margin-bottom: 18px;
   margin-top: 18px;
 `;
 const Inputfromtheseaccounts = styled.input`
-  background-color: #191d43;
+  background-color: white;
   border-radius: 5px;
   border: solid 1px #4a508a;
 
   width: 81%;
   font-size: 14px;
   height: 41px;
-  color: #ffffff;
+  color:  #09184B;
   margin-left: 68px;
   padding: 14px;
   margin-bottom: 15px;
@@ -61,20 +61,20 @@ const Inputtotheseaccounts = styled.input`
   margin-bottom: 15px;
 `;
 const Inputallwords = styled.input`
-  background-color: #191d43;
+  background-color: white;
   border-radius: 5px;
   border: solid 1px #4a508a;
 
   width: 81%;
   height: 41px;
-  color: #ffffff;
+  color:  #09184B;
   margin-left: 68px;
   margin-bottom: 15px;
   padding: 14px;
   font-size: 14px;
 `;
 const Inputhashtags = styled.input`
-  background-color: #191d43;
+  background-color: white;
   border-radius: 5px;
   border: solid 1px #4a508a;
   width: 81%;
@@ -82,7 +82,7 @@ const Inputhashtags = styled.input`
   margin-left: 68px;
   height: 41px;
   font-size: 14px;
-  color: #ffffff;
+  color:  #09184B;
 `;
 
 const Button = styled.button`
@@ -116,7 +116,7 @@ margin-left: 68px;
    line-height: 1.17;
    letter-spacing: normal;
    text-align: left;
-   color: #f8f8fa;
+   color:  #09184B;
   `;
 // const Img = styled.img`
 //   width: 16px;
@@ -129,7 +129,7 @@ margin-left: 68px;
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: "50%",
-    backgroundColor: "#191d43",
+    backgroundColor: "white",
     borderRadius: "5px",
     border: "solid 1px #515684",
     backdropFilter: "blur(6px)",
@@ -150,7 +150,7 @@ export default function MaxWidthDialog(props) {
   // console.log('mine...',name)
 
   const redirect = () => {
-    history.push('/list/' + keys + "&" + hash + "&" + name);
+    history.push('/list/' + encodeURIComponent(keys) + "&" + encodeURIComponent(hash) + "&" + encodeURIComponent(name));
   };
 
   const [maxWidth, setMaxWidth] = React.useState("md");

@@ -111,8 +111,12 @@ const MobImage = styled.img`
 const Span = styled.span`
   font-size: 15px;
   font-weight: 600;
-  color: #ffffff;
   font-family: Raleway;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  color: #fff;
   margin-right: 10px;
   margin-top: 2px;
 `;
@@ -190,7 +194,7 @@ const Advancesearch = styled.button`
   font-family: Raleway;
   font-size: 16px;
   font-weight: 400;
-  color: #a7afff;
+  color: #7499FF;
   margin-left: 4px;
   //margin-top: 3px;
   font-weight: 600;
@@ -224,7 +228,7 @@ const Contact = styled.text`
 
 const Line = styled.div`
   height: 20px;
-  border-left: 2px solid #2c326a;
+  border: 1px solid #4971E3;
   margin-right: 4px;
 `;
 const Archive = styled.button`
@@ -314,11 +318,14 @@ export default function HeaderComponent(props) {
   const history = useHistory();
   const [keyword, setKeyword] = useState("")
 
-  // console.log('mine---',keyword)
-  const redirect = () => {
-    history.push('/list/' + keyword);
-  };
+  // var uri = keyword || 0
+  // var res = encodeURIComponent(uri);
+  // console.log('mine---',res)
 
+  const redirect = () => {
+    history.push('/list/' + encodeURIComponent(keyword));
+  };
+  
   const CheckMode = (mode) => {
     props.CheckMode(mode);
   };
@@ -419,7 +426,7 @@ export default function HeaderComponent(props) {
             </Button>
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
-            <Advancesearch onClick={handleClickforadvancedsearch}>
+            <Advancesearch  onClick={handleClickforadvancedsearch}>
               Advance Search
             </Advancesearch>
           </SubContainer1>

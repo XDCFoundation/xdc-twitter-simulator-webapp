@@ -26,20 +26,25 @@ const useStyles = makeStyles((theme) => ({
             display: 'none'
         }
     },
-    "@media (min-width: 767px) and (max-width: 1024px)": {
+    "@media (min-width: 767px) and (max-width: 900px)": {
         root: {
+            width: '114%',
             maxHeight: 355,
+            marginLeft: '-15px',
         },
     },
-    "@media (min-width: 1024px) and (max-width: 1200px)": {
+    "@media (min-width: 901px) and (max-width: 1000px)": {
         root: {
+            width: '114%',
             maxHeight: 355,
+            marginLeft: '-15px',
         },
     },
-    "@media (min-width: 1201px) and (max-width: 1400px)": {
+    "@media (min-width: 1001px) and (max-width: 1500px)": {
         root: {
+            width: '114%',
             maxHeight: 355,
-            backgroundColor: 'red'
+            marginLeft: '-15px',
         },
     },
 
@@ -64,17 +69,23 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 767px) and (max-width: 1000px)": {
         dark_root: {
+            width: '108%',
             maxHeight: 355,
+            marginLeft: '-15px',
         },
     },
     "@media (min-width: 1001px) and (max-width: 1200px)": {
         dark_root: {
+            width: '108%',
             maxHeight: 355,
+            marginLeft: '-15px',
         },
     },
     "@media (min-width: 1201px) and (max-width: 1400px)": {
         dark_root: {
+            width: '108%',
             maxHeight: 355,
+            marginLeft: '-15px',
         },
     },
 
@@ -152,13 +163,14 @@ export default function PinnedSubheaderList(props) {
                     }
                 /> */}
                 {hashtag &&
-                    hashtag.length >= 1 && hashtag.map((items, k) => {
+                    hashtag.length >= 1 && hashtag.map((items, index) => {
+                        // console.log('index--',index)
                         return (
                             <div style={props.dark ? { color: 'white' } : { color: 'black' }}>
 
 
                                 <div style={{ fontSize: 12, fontWeight: 600, paddingLeft: '20px', paddingTop: '2px' }}>
-                                {items.name || 0}
+                              {index+1 ? index+1 : 'null'}. {items?.name || 0}
                                 </div>
 
                                 <hr

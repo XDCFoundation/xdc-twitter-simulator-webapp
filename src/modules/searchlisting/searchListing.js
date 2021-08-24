@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     marginTop: "-7%",
     marginLeft: "3.6%",
+    borderRadius: '5px',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   paper_dark_mode: {
     color: theme.palette.text.secondary,
@@ -56,6 +58,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "3.6%",
     backgroundColor: "#191d43",
     color: "white",
+    borderRadius: '5px',
+    border: 'solid 1px #343965',
   },
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -91,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
   },
   row: {
-    marginBottom: "30px",
+    marginBottom: "10px",
   },
   name: {
     fontSize: "11px",
@@ -211,7 +215,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "#09184b",
-    marginTop: "4%",
+    marginTop: "3%",
     marginLeft: "18px",
   },
   readtweet_dark_mode: {
@@ -225,7 +229,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "white",
-    marginTop: "4%",
+    marginTop: "3%",
     marginLeft: "18px",
   },
 
@@ -240,6 +244,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "0px",
     backgroundColor: "#8290a4",
+    opacity: '0.3',
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
@@ -273,6 +278,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7.5%",
     marginTop: "-30px",
     padding: "20px 14px 29.6px 26px",
+    borderRadius: '5px',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   writing_paper_dark_mode: {
     padding: theme.spacing(2),
@@ -283,6 +290,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-30px",
     marginLeft: "7.5%",
     padding: "20px 14px 29.6px 26px",
+    borderRadius: '5px',
+    border: 'solid 1px #343965',
   },
   reading_paper: {
     padding: theme.spacing(2),
@@ -291,6 +300,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "7.5%",
     marginTop: "-30px",
     padding: "20px 14px 29.6px 26px",
+    borderRadius: '5px',
+    boxShadow: '0px 2px 30px #0000001A',
   },
   image: {
     width: "25px",
@@ -306,6 +317,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-30px",
     marginLeft: "7.5%",
     padding: "20px 14px 29.6px 26px",
+    borderRadius: '5px',
+    border: 'solid 1px #343965',
   },
   dashboardDiv: {
     display: "flex",
@@ -342,7 +355,7 @@ export default function Searchlist(props) {
   // console.log('props---', props?.tps)
   // useEffect(() => {
   //   (async () => {
-  //     const result = await axios("https://api.tvmaze.com/search/shows?q=snow");
+  //     const result = await axios();
   //     setData(result.data);
   //   })();
   // }, []);
@@ -447,13 +460,14 @@ export default function Searchlist(props) {
                 {basic &&
                   basic.length >= 1 &&
                   basic.map((response) => {
-                    let value = response.text || 0
+                    let value = response?.text || 0
+                    let author = response?.authorID || 0
                     // console.log('resp--',userId)
-                    const colonIndex = value.indexOf(":") || 0;
-                    const atIndex = value.indexOf("@") || 0;
-                    let handler = value.slice(atIndex, colonIndex) || 0;
+                    // const colonIndex = value.indexOf(":") || 0;
+                    // const atIndex = value.indexOf("@") || 0;
+                    // let handler = value.slice(atIndex, colonIndex) || 0;
                     // let tweetTextMessage = value.split(":")[1];
-                    let str = response.addedOn || 0;
+                    let str = response?.addedOn || 0;
                     let timeFormat = moment(str) || 0;
                     let time = timeFormat.format("LT") || 0;
 
@@ -503,7 +517,7 @@ export default function Searchlist(props) {
                           <Row>
                             <Column>
                               <Typography className={classes.email}>
-                                {handler}
+                               {author}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -529,9 +543,9 @@ export default function Searchlist(props) {
                 {advance &&
                   advance.length >= 1 &&
                   advance.map((response) => {
-                    let value = response.text || 0;
-                    let author = response.name || 0;
-                    let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase() || 0
+                    let value = response?.text || 0;
+                    let author = response?.id || 0;
+                    // let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase() || 0
                     // console.log('resp2--', author)
                     // console.log('valuuuu', handle)
                     // const colonIndex = value.indexOf(":");
@@ -539,7 +553,7 @@ export default function Searchlist(props) {
                     // let handler = value.slice(atIndex, colonIndex);
                     // let tweetTextMessage = value.split(":")[1];
                     // console.log('tt', tweetTextMessage)
-                    let str = response.addedOn || 0;
+                    let str = response?.addedOn || 0;
                     let timeFormat = moment(str) || 0;
                     let time = timeFormat.format("LT") || 0;
                     // let hashtags = value.split('#')
@@ -553,12 +567,12 @@ export default function Searchlist(props) {
                     //     b.length
                     //   )}`;
                     // }
-                    // function shortenValue(b, amountL = 80, stars = 3) {
-                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                    //     // b.length - 3,
-                    //     b.length || 0
-                    //   )}`;
-                    // }
+                    function shortenValue(b, amountL = 80, stars = 3) {
+                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                        // b.length - 3,
+                        b.length || 0
+                      )}`;
+                    }
 
                     let textId = response.id || 0
                     // console.log('texttt--',textId)
@@ -578,7 +592,7 @@ export default function Searchlist(props) {
                               }
                             >
 
-                              {author.length > 0 ? author : 'undefined'}
+                             {/* {author} */}
                             </Typography>
                             <Paper
                               className={
@@ -592,7 +606,8 @@ export default function Searchlist(props) {
                           <Row>
                             <Column>
                               <Typography className={classes.email}>
-                                {handle.length > 0 ? '@' + handle || 0 : 'undefined'}
+                                {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
+                                {author}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -604,7 +619,7 @@ export default function Searchlist(props) {
                                   }
                                   gutterBottom
                                 >
-                                  {value}
+                                  {value ? shortenValue(value) : '-'}
                                 </Paper>
                               </ThemeProvider>
                             </Column>

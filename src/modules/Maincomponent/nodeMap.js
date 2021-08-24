@@ -43,9 +43,15 @@ const NodeChart = (props) => {
         style={
           props.dark
             ? {
-              fill: "#293178", width: '100%', height: '222px'
+              fill: "#293178",
+              width: '100%',
+              height: '218px'
             }
-            : { fill: "#bdc1e5", width: '100%', height: '222px' }
+            : {
+              fill: "#bdc1e5",
+              width: '100%',
+              height: '218px'
+            }
         }
       >
         {/* <ZoomableGroup zoom={1}> */}

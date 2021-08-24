@@ -11,6 +11,7 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import moment from "moment";
+import BigNumber from "bignumber.js";
 
 import {
   createMuiTheme,
@@ -34,10 +35,15 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    width: '100%',
     color: theme.palette.text.secondary,
-    marginTop: "-5%",
+    marginTop: "-5.1%",
     marginRight: "1.5%",
     height: "auto",
+    boxShadow: '0px 2px 30px #0000001A',
+    border: '1px solid #E3E7EB',
+    borderRadius: '5px',
+    opacity: 1,
     // height: '784px',
   },
 
@@ -49,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
+    borderRadius: '5px',
+    border: 'solid 1px #343965',
     // height: '784px',
   },
 
@@ -208,7 +216,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.2",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "#8f8faf",
     marginLeft: "18px",
   },
   readtweet: {
@@ -255,14 +262,12 @@ const useStyles = makeStyles((theme) => ({
   },
   readTweetContainer: {
     marginTop: "0px",
-    boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
-    // border: "solid 1px #e3e7eb",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#E3E7EB",
   },
   readTweetContainer_dark_mode: {
     marginTop: "0px",
     boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
- },
+  },
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {
       marginTop: "30px",
@@ -281,13 +286,14 @@ export default function ReadTweets(props) {
     fetchTweets();
     setInterval(() => {
       fetchTweets()
-    },30000)
+    }, 30000)
   }, []);
+  
   const fetchTweets = () => {
-   
+
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER+process.env.REACT_APP_READ_TWEET)
-     
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+
       .then((res) => {
         let tweetResponse;
         let alltweets;
@@ -303,7 +309,7 @@ export default function ReadTweets(props) {
         setReadTweets(tweetResponse);
 
         setTotalTweets(alltweets);
-        // console.log('readtweets-----------', tweetResponse)
+        // console.log('readtweets-----------', tweetResponse[0]?.authorId)
         // console.log('totalReadtweets-----------', alltweets)
 
       })
@@ -311,9 +317,6 @@ export default function ReadTweets(props) {
         console.log(err);
       });
   };
-
-  let method = "@user";
-  // console.log('method------',method)
 
   return (
     <Grid Container spacing={3}>
@@ -372,6 +375,8 @@ export default function ReadTweets(props) {
                 readtweets.map((response) => {
                   let value = response.text || 0;
                   let author = response.authorId || 0;
+                  // let x = BigNumber(author)
+                  // console.log('x---',x)
                   // let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
                   // const atIndex = value?.indexOf("@");
                   // let handler = value?.slice(atIndex, 10);

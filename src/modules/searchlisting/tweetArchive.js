@@ -234,9 +234,9 @@ export default function TweetArchive() {
 
 
   let value = search[0]?.text || 0
-  console.log('val--', value)
-  let time = moment(search[0]?.createdAt).format('LL') || 0
-  let date = moment(search[0]?.createdAt).format('LT') || 0
+  // console.log('val--', value)
+  let time = moment(search[0]?.addedOn).format('LL') || 0
+  let date = moment(search[0]?.addedOn).format('LT') || 0
   // console.log('t---',time)
   // console.log('t---',date)
   // const colonIndex = value?.indexOf(":");
@@ -253,8 +253,8 @@ export default function TweetArchive() {
   // console.log('tm--', tweetTextMessage)
 
   let advanceValue = advanceSearch[0]?.text || 0
-  let advanceDate = moment(advanceSearch[0]?.createdAt).format('LL') || 0
-  let advanceTime = moment(advanceSearch[0]?.createdAt).format('LT') || 0
+  let advanceDate = moment(advanceSearch[0]?.addedOn).format('LL') || 0
+  let advanceTime = moment(advanceSearch[0]?.addedOn).format('LT') || 0
   // console.log('adv--',advanceDate)
   // console.log('advD--',advanceDate)
   // const advanceAtIndex = advanceValue?.indexOf("@");
