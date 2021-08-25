@@ -515,7 +515,7 @@ export default function MainComponent(props) {
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
-  // console.log('Main---',props.Savesocket)
+  console.log('Main---',props.readSocket)
 
   useEffect(() => {
     fetchCount();
@@ -628,12 +628,12 @@ export default function MainComponent(props) {
     setMode(props.dark);
   }, [props.dark]);
 
-  let tpsCount = (count.totalTransactions / 60).toFixed(2);
+  let tpsCount = (count.totalTransactions / 60).toFixed(1);
   let maxtpsCount = parseFloat(maxtpsvalue.responseData);
 
-  let id = props?.read;
-  // let identity = props?.data
-
+  let id = props?.read || 0
+  let identity = props.readSocket
+ 
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -746,7 +746,7 @@ export default function MainComponent(props) {
                       </div>
                       <span className="hover-data">
                         {" "}
-                        <ReadingData />{" "}
+                        <ReadingData readData={props?.data} readMe={identity}/>{" "}
                       </span>
                     </Paper>
                   </Grid>
@@ -891,12 +891,12 @@ export default function MainComponent(props) {
 
             <Grid item xs={6} className={classes.grid3}>
               <SaveGraphTrend>
-                <SavedTweets dark={dark} saved={props.Savesocket}/>
+                <SavedTweets dark={dark} saved={props.Savesocket} savingCount={props.readSocket}/>
               </SaveGraphTrend>
             </Grid>
             <Grid item xs={6} className={classes.grid3}>
               <ReadGraphTrend>
-                <ReadTweets dark={dark} />
+                <ReadTweets dark={dark} readed={props.readSocket}/>
               </ReadGraphTrend>
             </Grid>
           </Grid>

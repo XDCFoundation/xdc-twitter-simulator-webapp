@@ -20,6 +20,7 @@ import socketClient from "socket.io-client";
 import About from "./modules/About";
 
 let socket = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3000/',{transports: ['websocket']})
+let readtweetSocket = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3003/',{transports: ['websocket']})
 
 class Routes extends BaseComponent {
   componentDidMount() {}
@@ -31,8 +32,8 @@ class Routes extends BaseComponent {
         <Router history={history}>
           <Switch>
             {/*<Route exact path={"/sign-up"} component={SignUp} />*/}
-            <Route exact path={"/savedtweets"} component={Saved}/>
-            <Route exact path={"/readtweets"} component={Read} />
+            {/* <Route exact path={"/savedtweets"} component={Saved}/>
+            <Route exact path={"/readtweets"} component={Read} /> */}
             {/* <Route exact path={"/footer"} component={Footer} /> */}
             <Route exact path={"/list/:keyword"} component={Search} />
             <Route exact path={"/archive/:tweet"} component={TweetArchive} />
@@ -40,7 +41,7 @@ class Routes extends BaseComponent {
 
             {/* <Route exact path={"/adncvaedsearch"} component={Advanced} /> */}
             <Route exact path={"/about"} component={About}/>
-            <Route exact path={"/"}  component={() => <Main savingSocket={socket} />} />
+            <Route exact path={"/"}  component={() => <Main savingSocket={socket} readingSocket={readtweetSocket} />} />
             <Redirect exact from="*" to="/" />
           </Switch>
         </Router>

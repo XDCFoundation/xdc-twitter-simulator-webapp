@@ -264,8 +264,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SavedTweets(props) {
   const classes = useStyles();
 
-  // console.log('saveprop2--', props.tweetData)
-  // console.log('saveprop2--', props.tweetCount)
+  // console.log('saveprop2--', props.savedCount[0])
+  // console.log('saveprop2--', props.tweetCount.totalTweetCount)
 
   let text = props.tweetData[0]?.text
   let animationclass = props.animationTime?.[text]
@@ -321,24 +321,27 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {props.tweetCount.tweetsInDb > 1000
-                    ? parseInt(props.tweetCount.tweetsInDb / 1000) + "k"
-                    : props.tweetCount.tweetsInDb}
+                  {props.savedCount[0] ? (props.savedCount[0] > 1000
+                    ? parseInt(props.savedCount[0] / 1000) + "k"
+                    : props.savedCount[0]) :
+                     (props.tweetCount.totalTweetCount) > 1000 
+                     ? parseInt(props.tweetCount.totalTweetCount / 1000) + "k"
+                     : props.tweetCount.totalTweetCount}
                 </Paper>
               </Row>
               {props.tweetData &&
                 props.tweetData.length >= 1 &&
                 props.tweetData.map((response) => {
-                  let value = response.text || 0;
-                  let author = response.authorID || 0;
+                  let value = response?.text || 0;
+                  let author = response?.authorID || 0;
                   let str = response.addedOn;
                   let timeFormat = moment(str);
-                  let time = timeFormat.format("LT") || 0;
+                  let time = timeFormat?.format("LT") || 0;
           
                   function shortenValue(b, amountL = 80, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
-                      b.length || 0
+                      b?.length || 0
                     )}`;
                   }
                   return (

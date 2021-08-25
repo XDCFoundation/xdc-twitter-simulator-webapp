@@ -10,8 +10,7 @@ export default function Main(props) {
 
 // console.log('props--',props.savingSocket)
 
-
-  const getMode = () => {
+const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false
   }
 
@@ -100,7 +99,7 @@ export default function Main(props) {
   return (
     <div>
       <HeaderComponent CheckMode={CheckMode} />
-      <MainComponent dark={dark} data={data} read={read} Savesocket={props.savingSocket} />
+      <MainComponent dark={dark} data={data} read={read} Savesocket={props.savingSocket} readSocket={props.readingSocket} />
       <FooterComponent />
     </div>
   );

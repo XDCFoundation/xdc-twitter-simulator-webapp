@@ -9,6 +9,7 @@ export default class Saved extends BaseComponent {
     this.state = {
       savedTweets: [],
       totalSaveTweet: [],
+      savingtweetsCount: [],
       blockAnimation: {},
       textAnimation: {},
       handleAnimation: {},
@@ -21,12 +22,13 @@ export default class Saved extends BaseComponent {
   async componentDidMount() {
 
     await this.fetchSavedTweets()
-    this.socketData(this.props.saved)
+    this.socketData(this.props?.saved)
+    this.socketCount(this.props?.savingCount)
   }
   socketData(socket) {
     let savingtweets = this.state.savedTweets;
     socket.on("blockchain-socket", (blockData, error) => {
-      console.log('>>>>>', blockData)
+      console.log('>>>>>savetweet', blockData)
       this.setState({ blockSocketConnected: true })
       // let blockDataExist = blocks.findIndex((item) => {
       //   return item.number == blockData.number;
@@ -35,7 +37,7 @@ export default class Saved extends BaseComponent {
       // if (blockDataExist == -1) {
       if (savingtweets.length >= 10)
         savingtweets.pop();
-      savingtweets.unshift(blockData);
+        savingtweets.unshift(blockData);
 
 
       let blockAnimationClass = { [blockData.text]: "block-height-animation" };
@@ -66,6 +68,34 @@ export default class Saved extends BaseComponent {
     });
   }
 
+  socketCount(socket) {
+    let tweetsCount = this.state.savingtweetsCount;
+    socket.on("tweet-count-socket", (blockData, error) => {
+      console.log('>>>>>savecount', blockData)
+      this.setState({ blockSocketConnected: true })
+      // let blockDataExist = blocks.findIndex((item) => {
+      //   return item.number == blockData.number;
+      // });
+      // blockData["class"] = "first-block-age last-block-transaction height2";
+      // if (blockDataExist == -1) {
+      if (tweetsCount.length >= 10)
+        tweetsCount.pop();
+        tweetsCount.unshift(blockData);
+
+      // setTimeout(() => {
+      //   this.setState({
+      //      blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation:{}, blockDarkAnimation:{} 
+      //     })
+      // }, 500)
+
+      this.setState({ savingtweetsCount: tweetsCount });
+
+      if (error) {
+        console.log("hello error");
+      }
+      // }
+    });
+  }
 
 
   async fetchSavedTweets() {
@@ -127,12 +157,14 @@ export default class Saved extends BaseComponent {
   render() {
     // console.log("saveindexTweets------", this.state.savedTweets);
     // console.log("saveCountTweets------", this.state.totalSaveTweet);
-    // console.log('saveprop---',this.props.saved)
+    // console.log('saveprop---',this.props.savingCount)
+    // console.log('mycount--',this.state.savingtweetsCount)
     return (
       <div>
         <SavedTweets dark={this.props.dark}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}
+          savedCount={this.state.savingtweetsCount}
           animationTime={this.state.blockAnimation}
           textclass={this.state.textAnimation}
           handleclass={this.state.handleAnimation} 

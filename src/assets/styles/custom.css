@@ -1373,3 +1373,49 @@ input:focus {
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
+
+.block-read-animation{
+  color: #8290a4 !important;
+  box-shadow: none !important;
+  position: absolute !important;
+  right: 4.5% !important;
+  font-size: 13px !important;
+  font-weight: normal !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.15 !important;
+  margin-right: 17px !important;
+  letter-spacing: normal !important;
+  text-align: left !important;
+  margin-bottom: 5px !important;
+  margin-left: 18px !important;
+}
+
+.read-text-animation{
+  font-size: 11px !important;
+  box-shadow: none !important;
+  border: none !important;
+  font-family: Raleway !important;
+  font-weight: 600 !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0px !important;
+  text-align: left !important;
+  color: #09184b !important;
+  margin-left: 18px !important;
+  margin-right: 18px !important;
+}
+.read-handle-animation{
+  font-size: 11px !important;
+  color: #8290a4 !important;
+  font-family: Raleway !important;
+  margin-bottom: 5px !important;
+  font-weight: 500 !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+  text-align: left !important;
+  margin-left: 18px !important;
+}
