@@ -510,12 +510,11 @@ export default function MainComponent(props) {
   const classes = useStyles();
   const [value, setValue] = useState([]);
   const [nodes, setNodes] = useState([]);
-  const [data, setData] = useState([{}]);
+  // const [data, setData] = useState([{}]);
 
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
-  // console.log('props---',props)
 
   useEffect(() => {
     fetchCount();
@@ -600,6 +599,7 @@ export default function MainComponent(props) {
           }, 10000);
 
           // console.log("ip result---", newarray);
+          
           //for socket total nodes ---->
           let nodecount = Object.keys(test).length;
           // console.log('nodecount-----', nodecount)
@@ -628,12 +628,13 @@ export default function MainComponent(props) {
     setMode(props.dark);
   }, [props.dark]);
 
-  let tpsCount = (count.totalTransactions / 60).toFixed(2);
+  // let tpsCount = (count.totalTransactions / 60).toFixed(1);
+  let tpsCount = props?.savingSpeed
   let maxtpsCount = parseFloat(maxtpsvalue.responseData);
 
-  let id = props?.read;
-  // let identity = props?.data
-
+  let id = props?.read || 0
+  let identity = props.readSocket
+ 
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -746,7 +747,7 @@ export default function MainComponent(props) {
                       </div>
                       <span className="hover-data">
                         {" "}
-                        <ReadingData />{" "}
+                        <ReadingData readData={props?.data} readMe={identity}/>{" "}
                       </span>
                     </Paper>
                   </Grid>
@@ -795,7 +796,7 @@ export default function MainComponent(props) {
                               : classes.maxTps
                           }
                         >
-                          Current Max TPS
+                          Current/Max tps
                           <Tippy
                             placement={"top"}
                             theme={"light"}
@@ -891,12 +892,12 @@ export default function MainComponent(props) {
 
             <Grid item xs={6} className={classes.grid3}>
               <SaveGraphTrend>
-                <SavedTweets dark={dark} />
+                <SavedTweets dark={dark} saved={props.Savesocket} savingCount={props.readSocket}/>
               </SaveGraphTrend>
             </Grid>
             <Grid item xs={6} className={classes.grid3}>
               <ReadGraphTrend>
-                <ReadTweets dark={dark} />
+                <ReadTweets dark={dark} readed={props.readSocket}/>
               </ReadGraphTrend>
             </Grid>
           </Grid>

@@ -3,6 +3,7 @@ import { ResponsiveLine } from "@nivo/line";
 import "../../assets/styles/custom.css";
 import axios from "axios";
 import moment from "moment";
+import { Component } from "react";
 
 // const point={}
 const toolTipElement = (props) => {
@@ -10,13 +11,13 @@ const toolTipElement = (props) => {
   // console.log(props, "<<")
   let stats = parseFloat(props.point?.data?.y)
   return (
-      <div>
-          <div className="Tooltip-graph">
-              <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
-              <p className="Tooltip-graph-tx">{stats.toFixed(2)}/sec</p>
-          </div>
-          {/* <TriangleArrowDown /> */}
+    <div>
+      <div className="Tooltip-graph">
+        <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
+        <p className="Tooltip-graph-tx">{stats.toFixed(2)}/sec</p>
       </div>
+      {/* <TriangleArrowDown /> */}
+    </div>
   )
 }
 
@@ -55,27 +56,63 @@ const ReadingData = ({ data }) => (
   />
 );
 
-export default function App() {
-  const [data, setData] = useState([])
-  // const [read, setRead] = useState({})
-  useEffect(() => {
-    readingGraph()
-    setInterval(() => {
-      readingGraph()
-    }, 60000);
-  }, []);
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      blockSocketConnected: false
+    }
+  }
 
-  async function readingGraph() {
+  async componentDidMount() {
+    await this.readingGraph()
+    // console.log('newone---',this?.props?.readMe)
+    // this.socketData(this?.props?.readMe)
+  }
+
+  // socketData(socket) {
+  //   let readingGraph = this.state.data;
+  //   socket.on("read-speed-socket", (blockData, error) => {
+  //     console.log('>>>>>', blockData)
+  //     this.setState({ blockSocketConnected: true })
+
+      // let blockDataExist = blocks.findIndex((item) => {
+      //   return item.number == blockData.number;
+      // });
+      // blockData["class"] = "first-block-age last-block-transaction height2";
+      // if (blockDataExist == -1) {
+
+      // if (readingGraph.length >= 10)
+      //   readingGraph.pop();
+      // readingGraph.unshift(blockData);
+
+      // setTimeout(() => {
+      //   this.setState({
+      //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
+      //   })
+      // }, 500)
+
+      // this.setState({ data: readingGraph });
+
+      // if (error) {
+      //   console.log("hello error");
+      // }
+
+      // } (left comment)
+
+  //   });
+  // }
+
+  async readingGraph() {
     await axios
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
         // console.log('result-----', result.data.responseData)
-        // setData(res.data.responseData);
         var arr = [{
           id: "Write-graph",
-          // color: "hsl(248, 70%, 50%)",
           data: []
         }]
         var resultData = []
@@ -102,40 +139,72 @@ export default function App() {
 
           return unique;
         }
-
-        //   console.log(getUnique(resultData,'x'))
         let graphdata = getUnique(resultData, 'x').reverse()
-        // console.log('graph----', graphdata)
 
-        // To print the value of last object of y.
-        // let newData = graphdata.slice(-1)
-        // console.log('graph---',newData)
-        // let firstData= Object.values(newData[0])
-        // console.log('first---',firstData)
-        // let secondData = parseFloat(1000/firstData[1])
-        // console.log('second---',secondData)
-        // setRead(secondData)
-
-
-        // console.log('graph--',graphdata)
         arr[0].data = graphdata
-        // arr[0].data = resultData
-        setData(arr)
+        this.setState({ data: arr })
 
       })
       .catch((err) => {
         console.log(err);
       });
 
+      setInterval(async () => {
+        // if (!this.state.blockSocketConnected) {
+          await axios
+          .get(
+            process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
+          )
+          .then((result) => {
+            // console.log('result-----', result.data.responseData)
+            var arr = [{
+              id: "Write-graph",
+              data: []
+            }]
+            var resultData = []
+    
+            result.data.responseData.map(items => {
+              let graphs = items.responseTime / items.requestCount
+              resultData.push({
+                x: moment(items.addedOn).format('LT'),
+                y: 1000 / graphs
+              })
+    
+            })
+            // let graphdata = resultData
+            function getUnique(resultData, index) {
+    
+              const unique = resultData
+                .map(e => e[index])
+    
+                // store the keys of the unique objects
+                .map((e, i, final) => final.indexOf(e) === i && i)
+    
+                // eliminate the dead keys & store unique objects
+                .filter(e => resultData[e]).map(e => resultData[e]);
+    
+              return unique;
+            }
+            let graphdata = getUnique(resultData, 'x').reverse()
+    
+            arr[0].data = graphdata
+            this.setState({ data: arr })
+    
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        // }
+  
+      }, 60000)
+    };
+
+  render() {
+    // console.log('newthis---',this.props.readMe)
+    return (
+      <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
+        <ReadingData data={this.state.data} />
+      </div>
+    );
   }
-
-
-  // let ex = read
-  // console.log('graph---',ex)
-
-  return (
-    <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
-      <ReadingData data={data} />
-    </div>
-  );
 }

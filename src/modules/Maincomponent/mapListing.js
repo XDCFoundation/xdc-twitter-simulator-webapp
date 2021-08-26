@@ -144,8 +144,6 @@ export default function PinnedSubheaderList(props) {
                 else listCoordinates = res.data.responseData
                 setHashtag(listCoordinates);
 
-                // setHashtag(res.data.responseData);
-                // console.log('locations---', res.data.responseData)
             })
             .catch((err) => {
                 console.log(err);
@@ -157,11 +155,7 @@ export default function PinnedSubheaderList(props) {
             className={props.dark ? classes.dark_root : classes.root}>
 
             <div className={props.dark ? "root-list-dark-mode" : "root-list"}>
-                {/* <hr
-                    className={props.dark ?
-                        classes.hr_page_dark_mode : classes.hr_page
-                    }
-                /> */}
+
                 {hashtag &&
                     hashtag.length >= 1 && hashtag.map((items, index) => {
                         // console.log('index--',index)
@@ -170,7 +164,7 @@ export default function PinnedSubheaderList(props) {
 
 
                                 <div style={{ fontSize: 12, fontWeight: 600, paddingLeft: '20px', paddingTop: '2px' }}>
-                              {index+1 ? index+1 : 'null'}. {items?.name || 0}
+                                    {index + 1 ? index + 1 : 'null'}. {items?.name || 0}
                                 </div>
 
                                 <hr

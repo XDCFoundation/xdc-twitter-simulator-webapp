@@ -3,20 +3,18 @@ import { ResponsiveLine } from '@nivo/line';
 import '../../assets/styles/custom.css';
 import axios from 'axios';
 import moment from 'moment';
+import { Component } from "react";
 
-// const point={}
 const toolTipElement = (props) => {
-  // console.log(props.point?.data?.x, "<<prop")
-  // console.log(props, "<<")
   let stats = parseFloat(props.point?.data?.y)
   return (
-      <div>
-          <div className="Tooltip-graph">
-              <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
-              <p className="Tooltip-graph-tx">{stats.toFixed(4)}/sec</p>
-          </div>
-          {/* <TriangleArrowDown /> */}
+    <div>
+      <div className="Tooltip-graph">
+        <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
+        <p className="Tooltip-graph-tx">{stats.toFixed(2)}/sec.</p>
       </div>
+      {/* <TriangleArrowDown /> */}
+    </div>
   )
 }
 
@@ -50,55 +48,85 @@ const MyResponsiveLine = ({ data }) => (
   />
 )
 
-export default function App() {
-  const [data, setData] = useState([])
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      blockSocketConnected: false
+    }
+  }
 
-  useEffect(() => {
-    writing()
-    setInterval(() => {
-      writing()
-    }, 60000);
-  }, []);
+  async componentDidMount() {
+    await this.writing()
+  }
 
-  async function writing() {
+  async writing() {
     await axios
-      .get(process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_SAVING_SPEED_DATA)
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
       .then((result) => {
-        // console.log('result-----', result.data.responseData)
-        // setData(res.data.responseData);
+        // console.log('val---',result.data.responseData[0])
         var arr = [{
           id: "Write-graph",
-          // color: "hsl(248, 70%, 50%)",
           data: []
         }]
         var resultData = []
 
-        result.data.responseData.map(items => {
-          // let transaction = items.totalTransactions / 1800
+        result.data.responseData[0].map(items => {
+          let firstAxis = items.responseTime / 1000 || 0
+          let secondAxis = (items?.savedTweets == 0 ? 0 : firstAxis / items?.savedTweets) || 0
           resultData.push({
-            x: moment(items.startTime * 1000).format('LT'),
-            y: items.totalTransactions / 1800
+            x: moment(items.saveStartTime * 1000).format('LT'),
+            y: secondAxis
           })
 
         })
         let graphdata = resultData
-        // console.log('graph----', graphdata)
-        arr[0].data = resultData
-        setData(arr)
+        arr[0].data = graphdata
+        this.setState({ data: arr })
+     
       })
       .catch((err) => {
         console.log(err);
       });
 
+    setInterval(async () => {
+      // if (!this.state.blockSocketConnected) {
+      await axios
+        .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
+        .then((result) => {
+          var arr = [{
+            id: "Write-graph",
+            data: []
+          }]
+          var resultData = []
 
+          result.data.responseData[0].map(items => {
+            let firstAxis = items.responseTime / 1000 || 0
+            let secondAxis = (items?.savedTweets == 0 ? 0 : firstAxis / items?.savedTweets) || 0
+            resultData.push({
+              x: moment(items.saveStartTime * 1000).format('LT'),
+              y: secondAxis
+            })
+
+          })
+          let graphdata = resultData
+          arr[0].data = graphdata
+          this.setState({ data: arr })
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // }
+
+    }, 60000)
+  };
+  render() {
+    return (
+      <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
+        <MyResponsiveLine data={this.state.data} />
+      </div>
+    );
   }
-
-
-  return (
-    <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
-      <MyResponsiveLine data={data} />
-    </div>
-  );
 }
-
 

@@ -278,45 +278,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  const [readtweets, setReadTweets] = useState([]);
-  const [totaltweets, setTotalTweets] = useState([]);
-  const [authors, setAuthors] = useState({});
 
-  useEffect(() => {
-    fetchTweets();
-    setInterval(() => {
-      fetchTweets()
-    }, 30000)
-  }, []);
-  
-  const fetchTweets = () => {
-
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
-
-      .then((res) => {
-        let tweetResponse;
-        let alltweets;
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1];
-        setReadTweets(tweetResponse);
-
-        setTotalTweets(alltweets);
-        // console.log('readtweets-----------', tweetResponse[0]?.authorId)
-        // console.log('totalReadtweets-----------', alltweets)
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const [authors, setAuthors] = useState({});
+  let text = props.tweetreadData[0]?.text
+  let animationclass = props.animationTime?.[text]
+  let textanimationClass = props.textclass?.[text]
+  let handleanimationclass = props.handleclass?.[text]
+  // console.log('texxx--',animationclass)
+  // let blockDarkanimationclass= props.blockDarkclass?.[text]
+  // let textdarkanimationClass = props.textDarkclass?.[text]
 
   return (
     <Grid Container spacing={3}>
@@ -364,48 +334,26 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {/* {method}k */}
-                  {totaltweets.tweetsInDb > 1000
-                    ? parseInt(totaltweets.tweetsInDb / 1000) + "k"
-                    : totaltweets.tweetsInDb}
+                  {/* {props.tweetreadCount.tweetsInDb > 1000
+                    ? parseInt(props.tweetreadCount.tweetsInDb / 1000) + "k"
+                    : props.tweetreadCount.tweetsInDb} */}
                 </Paper>
               </Row>
-              {readtweets &&
-                readtweets.length >= 1 &&
-                readtweets.map((response) => {
-                  let value = response.text || 0;
-                  let author = response.authorId || 0;
-                  // let x = BigNumber(author)
-                  // console.log('x---',x)
-                  // let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
-                  // const atIndex = value?.indexOf("@");
-                  // let handler = value?.slice(atIndex, 10);
-                  // console.log('auuthorId----', author)
-                  // const colonIndex = value.indexOf(":");
-                  // const atIndex = value.indexOf("@");
-                  // let trending = author.slice(atIndex, 10);
-
-                  // console.log('handle----',handle)
-                  // let tweetText = value.split(":")[1];
+              {props.tweetreadData &&
+                props.tweetreadData.length >= 1 &&
+                props.tweetreadData.map((response) => {
+                  let value = response?.text || 0;
+                  let author = response?.authorId || 0;
+              
                   let str = response.addedOn;
                   let timeFormat = moment(str);
-                  let time = timeFormat.format("LT") || 0;
+                  let time = timeFormat?.format("LT") || 0;
 
-                  // function shortenTrend(
-                  //   b,
-                  //   amountL = 10,
-                  //   amountR = 3,
-                  //   stars = 3
-                  // ) {
-                  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                  //     // b.length - 3,
-                  //     b.length
-                  //   )}`;
-                  // }
-                  function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+      
+                  function shortenValue(b, amountL = 80, amountR = 3, stars = 3) {
+                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
-                      b.length || 0
+                      b?.length || 0
                     )}`;
                   }
 
@@ -427,10 +375,10 @@ export default function ReadTweets(props) {
                         >
                           {/* {author.length>0 ? author : 'undefined'} */}
                         </Typography>
-                        <Paper
-                          className={
-                            props.dark ? classes.time_dark_mode : classes.time
-                          }
+                        <Paper className= {props.dark ? classes.time_dark_mode : (animationclass ? animationclass : classes.time)}
+                          // className={
+                          //   props.dark ? classes.time_dark_mode : classes.time
+                          // }
                         >
                           {time}
                         </Paper>
@@ -438,17 +386,17 @@ export default function ReadTweets(props) {
 
                       <Row>
                         <Column>
-                          <Typography className={classes.email}>
+                          <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
                             {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
-                            <Paper
+                            <Paper className={props.dark ? classes.content_dark_mode : (textanimationClass ? textanimationClass : classes.content)}
                               noWrap
-                              className={
-                                props.dark
-                                  ? classes.content_dark_mode
-                                  : classes.content
-                              }
+                              // className={
+                              //   props.dark
+                              //     ? classes.content_dark_mode
+                              //     : classes.content
+                              // }
                               gutterBottom
                             >
                               {shortenValue(value) || 0}

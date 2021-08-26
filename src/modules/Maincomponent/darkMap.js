@@ -11,7 +11,10 @@ export default function DarkMap() {
 
   useEffect(() => {
     topHashtags();
-  })
+    setInterval(() => {
+      topHashtags();
+    }, 60000)
+  }, [])
 
   function topHashtags() {
     axios

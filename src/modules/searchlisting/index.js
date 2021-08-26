@@ -27,8 +27,7 @@ export default function Main(props) {
   const [data, setData] = useState([])
   const [read, setRead] = useState([])
 
-  const [count, setCount] = useState({});
-
+  const [save, setSave] = useState([])
 
   const CheckMode = (mode) => {
     setMode(mode)
@@ -45,11 +44,13 @@ export default function Main(props) {
   }, [dark])
 
   useEffect(() => {
-    fetchCount();
+    writingSpeed()
     setInterval(() => {
-      fetchCount();
+      writingSpeed()
     }, 60000);
   }, []);
+
+  // For reading Speed in listing page: 
 
   async function listreadingData() {
     await axios
@@ -57,10 +58,8 @@ export default function Main(props) {
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
-        // console.log('result-----', result.data.responseData)
         var arr = [{
           id: "Write-graph",
-          // color: "hsl(248, 70%, 50%)",
           data: []
         }]
         var resultData = []
@@ -86,22 +85,13 @@ export default function Main(props) {
 
           return unique;
         }
-
-
         let graphdata = getUnique(resultData, 'x').reverse()
-
         let newData = graphdata.slice(-1)
-
         let firstData = Object.values(newData[0])
-
         let secondData = parseFloat(1000 / firstData[1]).toFixed(2)
-
         setRead(secondData)
-
         arr[0].data = getUnique(resultData, 'x').reverse()
-
         setData(arr)
-
       })
       .catch((err) => {
         console.log(err);
@@ -109,34 +99,63 @@ export default function Main(props) {
 
   }
 
+  // For saving speed in listing page: 
 
-  //for count of tps:
-
-  async function fetchCount() {
+  async function writingSpeed() {
     await axios
-      .get(
-        process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_TPS_CALCULATE
-      )
-      .then((res) => {
-        setCount(res.data.responseData);
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
+      .then((result) => {
+        var arr = [{
+          id: "Write-graph",
+          data: []
+        }]
+        var resultData = []
+
+        result.data.responseData[0].map(items => {
+          let firstAxis = items.responseTime / 1000 || 0
+          let secondAxis = (items?.savedTweets == 0 ? 0 : firstAxis / items?.savedTweets) || 0
+          resultData.push({
+            x: moment(items.saveStartTime * 1000).format('LT'),
+            y: secondAxis
+          })
+
+        })
+        function getSaveUnique(resultData, index) {
+
+          const saveunique = resultData
+            .map(e => e[index])
+
+            // store the keys of the saveunique objects
+            .map((e, i, final) => final.indexOf(e) === i && i)
+
+            // eliminate the dead keys & store saveunique objects
+            .filter(e => resultData[e]).map(e => resultData[e]);
+
+          return saveunique;
+        }
+        let savingGraphdata = getSaveUnique(resultData, 'x')
+        let savingnewData = savingGraphdata.slice(-1)
+        let savingfirstData = Object.values(savingnewData[0])
+        let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
+        console.log('savinggraph----', savingfirstData[1])
+        setSave(savingSecondData)
+
+        // arr[0].data = getSaveUnique(resultData, 'x')
+        // setsaveData(arr)
+        // console.log('arr--',arr)
       })
       .catch((err) => {
         console.log(err);
       });
-  };
 
-  let tpsCount = (count.totalTransactions / 60).toFixed(2);
-
-
+  }
   // console.log('key--', key)
   //   console.log('hash--', hash)
-  // console.log('name--',name)
-  // console.log('keyword',keywords)
 
   return (
     <>
       <HeaderComponent CheckMode={CheckMode} />
-      <Searchlist dark={dark} locations={keyword} username={advname} hashname={advhash} list={read} tps={tpsCount} />
+      <Searchlist dark={dark} locations={keyword} username={advname} hashname={advhash} list={read} saveSpeed={save} />
       <FooterComponent />
     </>
   );
