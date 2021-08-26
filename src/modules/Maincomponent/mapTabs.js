@@ -13,8 +13,8 @@ function MapTabs(props) {
     const toggleTab = (index) => {
         setToggleState(index);
     };
-    
-    
+
+
     const getMode = () => {
         return JSON.parse(localStorage.getItem("mode")) || false;
     };
@@ -28,33 +28,63 @@ function MapTabs(props) {
 
     return (
         <div className={props.dark ? "dark-container" : "container"}>
-            <div  className={props.dark ? "dark-block" : "block"}>
-                <div  className="bloc-tabs">
-                    <button style= {props.dark ? {border: 'transparent', backgroundColor: '#191d43',marginLeft: '15px' } : {border: 'transparent', backgroundColor: 'white',marginLeft: '10px' }}
+            <div className={props.dark ? "dark-block" : "block"}>
+                <div className="bloc-tabs">
+                    <button style={props.dark ?
+                        {
+                            border: 'transparent',
+                            backgroundColor: '#191d43',
+                            marginLeft: '15px'
+                        } :
+                        {
+                            border: 'transparent',
+                            backgroundColor: 'white',
+                            marginLeft: '10px'
+                        }}
                         className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
                         onClick={() => toggleTab(1)}
                     >
-                       <span style={props.dark ? {fontSize: 12,color: 'white'} : {fontSize: 12}}> Map </span>
+                        <span style={props.dark ?
+                            {
+                                fontSize: 12,
+                                color: 'white'
+                            } :
+                            { fontSize: 12 }}> Map </span>
                     </button>
-                    <button style={props.dark ? {border: 'transparent', backgroundColor: '#191d43',marginLeft: '15px' } : {border: 'transparent', backgroundColor: 'white',marginLeft: '10px' }}
+                    <button style={props.dark ?
+                        {
+                            border: 'transparent',
+                            backgroundColor: '#191d43',
+                            marginLeft: '15px'
+                        } :
+                        {
+                            border: 'transparent',
+                            backgroundColor: 'white',
+                            marginLeft: '10px'
+                        }}
                         className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
                         onClick={() => toggleTab(2)}
                     >
-                     <span style={props.dark ? {fontSize: 12,color: "white"} : {fontSize: 12}}> List </span>
+                        <span style={props.dark ?
+                            {
+                                fontSize: 12,
+                                color: "white"
+                            } :
+                            { fontSize: 12 }}> List </span>
                     </button>
                 </div>
             </div>
 
             <div className="content-tabs">
                 <div className={props.dark ? toggleState === 1 ? "dark-content  active-content" : "dark-content" : toggleState === 1 ? "content  active-content" : "content"}>
-                 {props.dark ? <DarkMap dark={dark} /> : <MapChart dark={dark}/>}   
-                 {/* <MapChart/> */}
+                    {props.dark ? <DarkMap dark={dark} /> : <MapChart dark={dark} />}
+                    {/* <MapChart/> */}
                 </div>
 
                 <div className={props.dark ? toggleState === 2 ? "dark-content  active-content" : "dark-content" : toggleState === 2 ? "content  active-content" : "content"}>
                     {/* <List/> */}
                     <div>
-                    <List dark={dark}/>
+                        <List dark={dark} />
                     </div>
                 </div>
 

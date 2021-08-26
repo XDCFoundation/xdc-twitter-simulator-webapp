@@ -345,23 +345,6 @@ export default function ReadTweets(props) {
       });
   };
 
-  //For total Count--->
-
-  // const fetchTotalTweets = () => {
-  //   axios
-  //     .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET_COUNT)
-  //     .then((res) => {
-  //       // console.log('total-Saved-Tweet-Count-------', res.data)
-  //       setTotalSave(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  let method = "...";
-  //   let save = totalSave.responseData
-  // console.log('mysave---',save)
 
   return (
     <Grid Container spacing={3}>
@@ -373,34 +356,6 @@ export default function ReadTweets(props) {
           >
             <Column>
               <Row className={classes.row}>
-                {/* <Typography
-                  className={
-                    props.dark ? classes.readtweet_dark_mode : classes.readtweet
-                  }
-                  variant="h5"
-                  style={{ whiteSpace: "nowrap" }}
-                >
-                  Read Tweets
-                  <Tippy
-                    placement={"right"}
-                    theme={"light"}
-                    maxWidth={"none"}
-                    content={
-                      <span
-                        style={{
-                          color: "#0d0e2d",
-                          fontSize: "11px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Number of read tweets by d-app platform
-                      </span>
-                    }
-                  >
-                    <IconImg src="../../images/ic.png" />
-                  </Tippy>
-                </Typography> */}
-
                 <div
                   variant="h5"
                   className={
@@ -409,7 +364,6 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {/* {method}k */}
                   {totalSaveTweet.tweetsInDb > 1000
                     ? parseInt(totalSaveTweet.tweetsInDb / 1000) + "k"
                     : totalSaveTweet.tweetsInDb}
@@ -420,31 +374,14 @@ export default function ReadTweets(props) {
                 savedTweets.map((response) => {
                   let value = response.text || 0;
                   let author = response.authorID || 0;
-                  // console.log('res--',value)
-                  // const colonIndex = value.indexOf(":");
-                  // const atIndex = value.indexOf("@");
-                  // let handler = value.slice(atIndex, 10) || 0;
-                  // let tweetTextMessage = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT") || 0;
-                  // console.log("numberrrrrrrrrrrrrrrr",tweetsInDb);
 
-                  // function shortenTrend(
-                  //   b,
-                  //   amountL = 10,
-                  //   amountR = 3,
-                  //   stars = 3
-                  // ) {
-                  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                  //     // b.length - 3,
-                  //     b.length || 0
-                  //   )}`;
-                  // }
                   function shortenValue(b, amountL = 80, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
-                      b.length || 0
+                      b?.length || 0
                     )}`;
                   }
                   return (
@@ -477,7 +414,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                          {author}
+                            {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper

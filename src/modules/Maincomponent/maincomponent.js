@@ -510,12 +510,11 @@ export default function MainComponent(props) {
   const classes = useStyles();
   const [value, setValue] = useState([]);
   const [nodes, setNodes] = useState([]);
-  const [data, setData] = useState([{}]);
+  // const [data, setData] = useState([{}]);
 
   const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
-  console.log('Main---',props.readSocket)
 
   useEffect(() => {
     fetchCount();
@@ -600,6 +599,7 @@ export default function MainComponent(props) {
           }, 10000);
 
           // console.log("ip result---", newarray);
+          
           //for socket total nodes ---->
           let nodecount = Object.keys(test).length;
           // console.log('nodecount-----', nodecount)
@@ -628,7 +628,8 @@ export default function MainComponent(props) {
     setMode(props.dark);
   }, [props.dark]);
 
-  let tpsCount = (count.totalTransactions / 60).toFixed(1);
+  // let tpsCount = (count.totalTransactions / 60).toFixed(1);
+  let tpsCount = props?.savingSpeed
   let maxtpsCount = parseFloat(maxtpsvalue.responseData);
 
   let id = props?.read || 0
@@ -795,7 +796,7 @@ export default function MainComponent(props) {
                               : classes.maxTps
                           }
                         >
-                          Current Max TPS
+                          Current/Max tps
                           <Tippy
                             placement={"top"}
                             theme={"light"}

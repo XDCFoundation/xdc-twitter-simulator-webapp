@@ -334,7 +334,6 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {/* {method}k */}
                   {/* {props.tweetreadCount.tweetsInDb > 1000
                     ? parseInt(props.tweetreadCount.tweetsInDb / 1000) + "k"
                     : props.tweetreadCount.tweetsInDb} */}
@@ -376,7 +375,7 @@ export default function ReadTweets(props) {
                         >
                           {/* {author.length>0 ? author : 'undefined'} */}
                         </Typography>
-                        <Paper className={animationclass ? animationclass : classes.time}
+                        <Paper className= {props.dark ? classes.time_dark_mode : (animationclass ? animationclass : classes.time)}
                           // className={
                           //   props.dark ? classes.time_dark_mode : classes.time
                           // }
@@ -391,7 +390,7 @@ export default function ReadTweets(props) {
                             {author}
                           </Typography>
                           <ThemeProvider theme={theme}>
-                            <Paper className={textanimationClass ? textanimationClass : classes.content}
+                            <Paper className={props.dark ? classes.content_dark_mode : (textanimationClass ? textanimationClass : classes.content)}
                               noWrap
                               // className={
                               //   props.dark

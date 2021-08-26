@@ -668,7 +668,7 @@ export default function Searchlist(props) {
                 <div
                   className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                 >
-                  {isNaN(props?.tps) ? "-" : props?.tps} / sec
+                  {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / sec
                 </div>
                 <div
 

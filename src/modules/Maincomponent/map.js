@@ -11,6 +11,9 @@ export default function App(props) {
 
   useEffect(() => {
     trendingHash();
+    setInterval(() => {
+      trendingHash();
+    }, 60000)
   }, [])
 
   function trendingHash() {

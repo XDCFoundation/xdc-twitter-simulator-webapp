@@ -375,35 +375,14 @@ export default function ReadTweets(props) {
                 readtweets.map((response) => {
                   let value = response.text || 0;
                   let author = response.authorId || 0;
-                  // let handle = author?.slice(0,author?.length).replace(/\s/g, "").toLowerCase()
-                  // const atIndex = value?.indexOf("@");
-                  // let handler = value?.slice(atIndex, 10);
-                  // console.log('auuthorId----', author)
-                  // const colonIndex = value.indexOf(":");
-                  // const atIndex = value.indexOf("@");
-                  // let trending = author.slice(atIndex, 10);
-
-                  // console.log('handle----',handle)
-                  // let tweetText = value.split(":")[1];
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT") || 0;
 
-                  // function shortenTrend(
-                  //   b,
-                  //   amountL = 10,
-                  //   amountR = 3,
-                  //   stars = 3
-                  // ) {
-                  //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                  //     // b.length - 3,
-                  //     b.length
-                  //   )}`;
-                  // }
                   function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
-                    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
-                      b.length || 0
+                      b?.length || 0
                     )}`;
                   }
 
