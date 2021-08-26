@@ -8,8 +8,8 @@ import moment from 'moment';
 
 export default function Main(props) {
 
-  console.log('props--', props.savingSocket)
-  console.log('props2--', props?.readingSocket)
+  // console.log('props--', props.savingSocket)
+  // console.log('props2--', props?.readingSocket)
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false
