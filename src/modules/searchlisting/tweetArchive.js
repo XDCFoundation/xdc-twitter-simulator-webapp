@@ -315,8 +315,12 @@ export default function TweetArchive() {
                 <hr className={classes.hr_page} />
                 <Row className={classes.second_row}>
                   <Details>
-                    <Time> &nbsp;&nbsp;&nbsp;&nbsp;{search[0] ? (time ? time : 'Loading..') : (advanceTime ? advanceTime : 'Loading..')}&emsp;</Time>
-                    <Date>&nbsp;{search[0] ? (date ? date : 'Loading..') : (advanceDate ? advanceDate : 'Loading..')}&emsp;</Date>
+                    <Time> &nbsp;&nbsp;&nbsp;&nbsp;
+                      {/* {search[0] ? (time ? time : 'Loading..') : (advanceTime ? advanceTime : 'Loading..')} */}
+                      &emsp;</Time>
+                    <Date>&nbsp;
+                      {/* {search[0] ? (date ? date : 'Loading..') : (advanceDate ? advanceDate : 'Loading..')} */}
+                      &emsp;</Date>
                     {/* <Twitterwebapp>&nbsp;Twitter Web App&nbsp;.</Twitterwebapp> */}
                   </Details>
                 </Row>

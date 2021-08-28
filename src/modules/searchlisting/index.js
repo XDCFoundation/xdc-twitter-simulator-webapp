@@ -112,8 +112,8 @@ export default function Main(props) {
         var resultData = []
 
         result.data.responseData[0].map(items => {
-          let firstAxis = items.responseTime / 1000 || 0
-          let secondAxis = (items?.savedTweets == 0 ? 0 : firstAxis / items?.savedTweets) || 0
+            let firstAxis = items?.savedTweets/items?.responseTime
+            let secondAxis =  (firstAxis == 0 ? 0 : firstAxis*1000) || 0
           resultData.push({
             x: moment(items.saveStartTime * 1000).format('LT'),
             y: secondAxis
@@ -133,11 +133,11 @@ export default function Main(props) {
 
           return saveunique;
         }
-        let savingGraphdata = getSaveUnique(resultData, 'x')
+        let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
         let savingnewData = savingGraphdata.slice(-1)
         let savingfirstData = Object.values(savingnewData[0])
         let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
-        console.log('savinggraph----', savingfirstData[1])
+        // console.log('savinggraph----', savingfirstData[1])
         setSave(savingSecondData)
 
         // arr[0].data = getSaveUnique(resultData, 'x')

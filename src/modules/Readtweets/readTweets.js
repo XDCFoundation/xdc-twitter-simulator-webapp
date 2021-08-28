@@ -110,11 +110,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    lineHeight: "1.14",
+    lineHeight: "1.2",
     letterSpacing: "normal",
     textAlign: "left",
     color: "#09184b",
     marginBottom: "5px",
+
   },
 
   name_dark_mode: {
@@ -126,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    lineHeight: "1.14",
+    lineHeight: "1.2",
     letterSpacing: "normal",
     textAlign: "left",
     color: "white",
@@ -169,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   time: {
-    color: "#8290a4",
+    color: "#8F8FAF",
     boxShadow: "none",
     position: "absolute",
     right: "4.5%",
@@ -187,7 +188,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   time_dark_mode: {
-    color: "#8290a4",
+    color: "#8F8FAF",
     boxShadow: "none",
     position: "absolute",
     right: "4.5%",
@@ -206,7 +207,7 @@ const useStyles = makeStyles((theme) => ({
 
   email: {
     fontSize: "11px",
-    color: "#8290a4",
+    color: "#8F8FAF",
     // whiteSpace: "nowrap",
     fontFamily: "Raleway",
     marginBottom: "5px",
@@ -262,7 +263,7 @@ const useStyles = makeStyles((theme) => ({
   },
   readTweetContainer: {
     marginTop: "0px",
-    backgroundColor: "#E3E7EB",
+    // backgroundColor: "#E3E7EB",
   },
   readTweetContainer_dark_mode: {
     marginTop: "0px",
@@ -279,7 +280,30 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
 
-  // const [authors, setAuthors] = useState({});
+  const [authors, setAuthors] = useState({});
+
+  // console.log('pr--', props?.author)
+  let authorDetails = props?.author
+
+  authorDetails.map(item => {
+
+    // setTimeout(() => {
+    //   axios
+    //     .get(
+    //       process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + item?.authorId
+    //     )
+    //     .then((res) => {
+    //       setAuthors(res.data.responseData?.data[0]);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // }, 1000);
+  })
+  // let method = authors?.username
+  // console.log('method------', method)
+
+
   let text = props.tweetreadData[0]?.text
   let animationclass = props.animationTime?.[text]
   let textanimationClass = props.textclass?.[text]
@@ -287,6 +311,7 @@ export default function ReadTweets(props) {
   // console.log('texxx--',animationclass)
   // let blockDarkanimationclass= props.blockDarkclass?.[text]
   // let textdarkanimationClass = props.textDarkclass?.[text]
+
 
   return (
     <Grid Container spacing={3}>
@@ -344,18 +369,21 @@ export default function ReadTweets(props) {
                 props.tweetreadData.map((response) => {
                   let value = response?.text || 0;
                   let author = response?.authorId || 0;
-              
+                  let authorName = response?.name.slice(0,10) || 0;
+                  
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
 
-      
+
                   function shortenValue(b, amountL = 80, amountR = 3, stars = 3) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
                   }
+
+
 
                   return (
                     <>
@@ -373,12 +401,12 @@ export default function ReadTweets(props) {
                             props.dark ? classes.name_dark_mode : classes.name
                           }
                         >
-                          {/* {author.length>0 ? author : 'undefined'} */}
+                          {/* {authorName.length > 0 ? authorName : 'undefined'} */}
                         </Typography>
-                        <Paper className= {props.dark ? classes.time_dark_mode : (animationclass ? animationclass : classes.time)}
-                          // className={
-                          //   props.dark ? classes.time_dark_mode : classes.time
-                          // }
+                        <Paper className={props.dark ? classes.time_dark_mode : (animationclass ? animationclass : classes.time)}
+                        // className={
+                        //   props.dark ? classes.time_dark_mode : classes.time
+                        // }
                         >
                           {time}
                         </Paper>
@@ -387,7 +415,8 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
-                            {author}
+                            {/* {author} */}
+                            {authorName.length > 0 ? authorName+'..' : 'undefined'}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper className={props.dark ? classes.content_dark_mode : (textanimationClass ? textanimationClass : classes.content)}

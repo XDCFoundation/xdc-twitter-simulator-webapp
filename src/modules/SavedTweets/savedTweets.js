@@ -170,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.15",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "#8290a4",
+    color: "#8F8FAF",
     marginBottom: "5px",
     marginLeft: "18px",
   },
@@ -186,14 +186,14 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.15",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "#8290a4",
+    color: "#8F8FAF",
     backgroundColor: "#191d43",
     marginBottom: "5px",
     marginLeft: "18px",
   },
   email: {
     fontSize: "11px",
-    color: "#8290a4",
+    color: "#8F8FAF",
     whiteSpace: "nowrap",
     fontFamily: "Raleway",
     marginBottom: "5px",
@@ -271,7 +271,7 @@ export default function SavedTweets(props) {
   let animationclass = props.animationTime?.[text]
   let textanimationClass = props.textclass?.[text]
   let handleanimationclass = props.handleclass?.[text]
-  let blockDarkanimationclass= props.blockDarkclass?.[text]
+  let blockDarkanimationclass = props.blockDarkclass?.[text]
   let textdarkanimationClass = props.textDarkclass?.[text]
   // console.log('texx--',textdarkanimationClass)
 
@@ -324,9 +324,9 @@ export default function SavedTweets(props) {
                   {props.savedCount[0] ? (props.savedCount[0] > 1000
                     ? parseInt(props.savedCount[0] / 1000) + "k"
                     : props.savedCount[0]) :
-                     (props.tweetCount.totalTweetCount) > 1000 
-                     ? parseInt(props.tweetCount.totalTweetCount / 1000) + "k"
-                     : props.tweetCount.totalTweetCount}
+                    (props.tweetCount.totalTweetCount) > 1000
+                      ? parseInt(props.tweetCount.totalTweetCount / 1000) + "k"
+                      : props.tweetCount.totalTweetCount}
                 </Paper>
               </Row>
               {props.tweetData &&
@@ -337,7 +337,7 @@ export default function SavedTweets(props) {
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
-          
+
                   function shortenValue(b, amountL = 80, stars = 3) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
@@ -362,10 +362,9 @@ export default function SavedTweets(props) {
                         >
                           {/* {response.blockNumber} */}
                         </Typography>
-                        <Paper className= {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) : (animationclass ? animationclass : classes.time)}
-                          // className={
-                          //   props.dark ? classes.time_dark_mode : classes.time
-                          // }
+                        <Paper className=
+                          {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
+                            (animationclass ? animationclass : classes.time)}
                         >
                           {time}
                         </Paper>
@@ -379,15 +378,13 @@ export default function SavedTweets(props) {
                           <ThemeProvider theme={theme}>
                             <Paper
                               noWrap
-                              className={props.dark ? (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) : (textanimationClass ? textanimationClass : classes.content)}
-                                // props.dark
-                                //   ? classes.content_dark_mode
-                                //   : classes.content
-                              
+                              className={props.dark ?
+                                (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
+                                (textanimationClass ? textanimationClass : classes.content)}
+
                               gutterBottom
                             >
                               {shortenValue(value) || 0}
-                              {/* {shortenValue(tweetTextMessage)} */}
                             </Paper>
                           </ThemeProvider>
                         </Column>

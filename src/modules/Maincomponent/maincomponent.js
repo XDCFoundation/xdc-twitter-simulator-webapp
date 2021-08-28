@@ -351,11 +351,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "20px",
   },
   top: {
-    marginTop: "14px",
+    marginTop: "15px",
     marginRight: "9px",
     boxShadow: "none",
     width: '100%',
-    height: "95.5%",
+    height: "95.2%",
     boxShadow: '0px 2px 30px #0000001A',
     border: '1px solid #E3E7EB',
     borderRadius: '5px',
@@ -370,9 +370,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top_dark_mode: {
-    marginTop: "14px",
+    marginTop: "15px",
     marginRight: "9px",
-    height: "95.5%",
+    height: "95.2%",
     width: '98.5%',
     backgroundColor: "#191d43",
     boxShadow: '0px 2px 30px #0000001A',
@@ -510,36 +510,37 @@ export default function MainComponent(props) {
   const classes = useStyles();
   const [value, setValue] = useState([]);
   const [nodes, setNodes] = useState([]);
-  // const [data, setData] = useState([{}]);
-
-  const [count, setCount] = useState({});
   const [maxtpsvalue, setMaxtpsValue] = useState({});
+  // const [count, setCount] = useState({});
 
-
-  useEffect(() => {
-    fetchCount();
-  }, []);
   useEffect(() => {
     fetchTps();
+    setInterval(() => {
+      fetchTps();
+    }, 60000);
   }, []);
   useEffect(() => {
     getValue();
   }, []);
 
+  // useEffect(() => {
+  //   fetchCount();
+  // }, []);
+
   //for count of tps:
 
-  const fetchCount = () => {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_TPS_CALCULATE
-      )
-      .then((res) => {
-        setCount(res.data.responseData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const fetchCount = () => {
+  //   axios
+  //     .get(
+  //       process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_TPS_CALCULATE
+  //     )
+  //     .then((res) => {
+  //       setCount(res.data.responseData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   //for Max-Tps count:
 
@@ -549,7 +550,6 @@ export default function MainComponent(props) {
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_MAX_TPS_COUNT
       )
       .then((res) => {
-        // console.log('maxtpscount-------', res.data)
         setMaxtpsValue(res.data);
       })
       .catch((err) => {
@@ -599,7 +599,7 @@ export default function MainComponent(props) {
           }, 10000);
 
           // console.log("ip result---", newarray);
-          
+
           //for socket total nodes ---->
           let nodecount = Object.keys(test).length;
           // console.log('nodecount-----', nodecount)
@@ -629,12 +629,14 @@ export default function MainComponent(props) {
   }, [props.dark]);
 
   // let tpsCount = (count.totalTransactions / 60).toFixed(1);
-  let tpsCount = props?.savingSpeed
-  let maxtpsCount = parseFloat(maxtpsvalue.responseData);
-
+  let tpsCount = props?.save
+  let maxtpsCount = parseFloat(maxtpsvalue?.responseData).toFixed(2);
   let id = props?.read || 0
-  let identity = props.readSocket
- 
+  let savingData = props?.saveGraphdata
+  let identity = props?.readSocket
+  let writeIdentity = props?.Savesocket
+  let smallSavetweet= props?.tweetData
+  let smallSaveCount = props?.tweetCount
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -693,7 +695,7 @@ export default function MainComponent(props) {
                       </div>
                       <span className="hover-data">
                         {" "}
-                        <MyResponsiveLine />{" "}
+                        <MyResponsiveLine writeMe={writeIdentity} writeGraph={savingData} />{" "}
                       </span>
                     </Paper>
                   </Grid>
@@ -747,7 +749,7 @@ export default function MainComponent(props) {
                       </div>
                       <span className="hover-data">
                         {" "}
-                        <ReadingData readData={props?.data} readMe={identity}/>{" "}
+                        <ReadingData readData={props?.data} readMe={identity} />{" "}
                       </span>
                     </Paper>
                   </Grid>
@@ -892,12 +894,12 @@ export default function MainComponent(props) {
 
             <Grid item xs={6} className={classes.grid3}>
               <SaveGraphTrend>
-                <SavedTweets dark={dark} saved={props.Savesocket} savingCount={props.readSocket}/>
+                <SavedTweets dark={dark} saved={props.Savesocket} savingCount={props.readSocket} />
               </SaveGraphTrend>
             </Grid>
             <Grid item xs={6} className={classes.grid3}>
               <ReadGraphTrend>
-                <ReadTweets dark={dark} readed={props.readSocket}/>
+                <ReadTweets dark={dark} readed={props.readSocket} />
               </ReadGraphTrend>
             </Grid>
           </Grid>
@@ -1127,7 +1129,7 @@ export default function MainComponent(props) {
                     : classes.savedReadTweetConatiner
                 }
               >
-                <SavedRead dark={dark} />
+                <SavedRead dark={dark} saveTweet={writeIdentity} smallSave={smallSavetweet} smallcount={smallSaveCount}/>
               </Paper>
             </Grid>
           </Column>
