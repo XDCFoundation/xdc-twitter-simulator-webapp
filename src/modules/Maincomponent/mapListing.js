@@ -10,8 +10,8 @@ import { white } from 'material-ui/styles/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '114%',
-        marginLeft: '-20px',
+        width: '115%',
+        marginLeft: '-23px',
         position: 'relative',
         overflow: 'auto',
         msOverflowStyle: 'none',
@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) => ({
 
 
     dark_root: {
-        width: '108%',
-        marginLeft: '-20px',
+        width: '109.5%',
+        marginLeft: '-23px',
         // maxWidth: 600,
         position: 'relative',
         overflow: 'auto',
@@ -163,7 +163,7 @@ export default function PinnedSubheaderList(props) {
                             <div style={props.dark ? { color: 'white' } : { color: 'black' }}>
 
 
-                                <div style={{ fontSize: 12, fontWeight: 600, paddingLeft: '20px', paddingTop: '2px' }}>
+                                <div style={{ fontSize: 12, fontWeight: 600, paddingLeft: '20px', paddingTop: '2px',marginLeft: '5px' }}>
                                     {index + 1 ? index + 1 : 'null'}. {items?.name || 0}
                                 </div>
 

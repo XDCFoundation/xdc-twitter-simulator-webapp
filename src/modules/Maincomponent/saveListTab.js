@@ -304,47 +304,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  const [savedTweets, setSavedTweets] = useState([]);
-  const [totalSaveTweet, setTotalSaveTweet] = useState([]);
-  // const [totalSave, setTotalSave] = useState([]);
 
-  useEffect(() => {
-    fetchSavedTweets();
-  }, []);
-
-  // useEffect(() => {
-  //   fetchTotalTweets();
-  // }, [])
-
-  //For save-tweets
-
-  const fetchSavedTweets = () => {
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET)
-
-      .then((res) => {
-        let tweetResponse;
-        let allSaveTweets;
-        if (
-          !res ||
-          !res.data ||
-          !res.data.responseData ||
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        allSaveTweets = res.data.responseData[1];
-        setSavedTweets(tweetResponse);
-
-        setTotalSaveTweet(allSaveTweets)
-        // console.log("saveTweets------", tweetResponse);
-        // console.log("saveTweets------", allSaveTweets);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  // console.log('propsave---',props?.savetweetData)
 
   return (
     <Grid Container spacing={3}>
@@ -364,14 +325,14 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {totalSaveTweet.tweetsInDb > 1000
-                    ? parseInt(totalSaveTweet.tweetsInDb / 1000) + "k"
-                    : totalSaveTweet.tweetsInDb}
+                  {props?.saveTweetCount.totalTweetCount > 1000
+                    ? parseInt(props?.saveTweetCount.totalTweetCount / 1000) + "k"
+                    : props?.saveTweetCount.totalTweetCount}
                 </div>
               </Row>
-              {savedTweets &&
-                savedTweets.length >= 1 &&
-                savedTweets.map((response) => {
+              {props?.savetweetData &&
+                props?.savetweetData.length >= 1 &&
+                props?.savetweetData.map((response) => {
                   let value = response.text || 0;
                   let author = response.authorID || 0;
                   let str = response.addedOn;

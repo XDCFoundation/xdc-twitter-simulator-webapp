@@ -5,6 +5,7 @@ import SaveListTab from "./saveListTab";
 import ReadListTab from "./readListTab";
 
 function MapTabs(props) {
+
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
@@ -34,11 +35,11 @@ function MapTabs(props) {
             className={
               props.dark
                 ? toggleState === 1
-                  ? "dark-tabs active-tabs"
-                  : "dark-tabs"
+                  ? "dark-tabSavelist active-tabSavelist"
+                  : "dark-tabSavelist"
                 : toggleState === 1
-                ? "tabs active-tabs"
-                : "tabs"
+                ? "tabSavelist active-tabSavelist"
+                : "tabSavelist"
             }
             onClick={() => toggleTab(1)}
           >
@@ -53,11 +54,11 @@ function MapTabs(props) {
             className={
               props.dark
                 ? toggleState === 2
-                  ? "dark-tabs active-tabs"
-                  : "dark-tabs"
+                  ? "dark-tabSavelist active-tabSavelist"
+                  : "dark-tabSavelist"
                 : toggleState === 2
-                ? "tabs active-tabs"
-                : "tabs"
+                ? "tabSavelist active-tabSavelist"
+                : "tabSavelist"
             }
             onClick={() => toggleTab(2)}
           >
@@ -78,7 +79,7 @@ function MapTabs(props) {
               : "content"
           }
         >
-          <SaveListTab dark={dark} />
+          <SaveListTab dark={dark} savetweetTable={props?.saveTweet} savetweetData={props?.smallSave} saveTweetCount={props?.smallcount}/>
         </div>
 
         <div

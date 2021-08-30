@@ -477,8 +477,7 @@ input:focus {
   color: white;
 }
 .writing-data-one {
-  margin-left: 8%;
-  margin-top: -23%;
+  margin-left: 10px;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -490,8 +489,7 @@ input:focus {
 }
 
 .writing-data-one-dark-mode {
-  margin-left: 8%;
-  margin-top: -93px;
+  margin-left: 10px;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -528,8 +526,8 @@ input:focus {
   color: white;
 }
 .reading-data-one {
-  margin-left: 9%;
-  margin-top: -10px;
+  margin-top: 30px;
+  margin-left: 10px;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -541,8 +539,9 @@ input:focus {
 }
 
 .reading-data-one-dark-mode {
-  margin-left: 9%;
-  margin-top: -10px;
+  margin-top: 30px;
+  margin-left: 10px;
+  font-size: 14px;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
@@ -616,10 +615,10 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #e3e7eb;
-  width: 111%;
+  width: 112.5%;
   height: 22px;
   margin-top: 20px;
-  margin-left: -17px;
+  margin-left: -24px;
 }
 @media (min-width: 1800px) and (max-width: 2100px){
   .block {
@@ -642,11 +641,12 @@ input:focus {
   justify-content: space-between;
   display: flex;
   border-bottom: solid 1px #FFFFFF;
+  color: #FFFFFF;
   opacity: 0.5;
-  width: 106%;
+  width: 106.5%;
   height: 22px;
   margin-top: 20px;
-  margin-left: -5px;
+  margin-left: -8px;
   opacity: 0.4;
 }
 @media (min-width: 767px) and (max-width: 1000px){
@@ -683,7 +683,7 @@ input:focus {
 
 .tabs {
   /*padding-bottob5bac7m: 7px;*/
-  color: #8290A4;
+  color: #969696;
   text-align: center;
   width: 80%;
   cursor: pointer;
@@ -700,7 +700,7 @@ input:focus {
 
 .dark-tabs {
   padding-bottom: 7px;
-  color: #8290A4;
+  color: #969696;
   background-color: #191d43;
   text-align: center;
   width: 80%;
@@ -735,6 +735,8 @@ input:focus {
   opacity: 1;
   background: #3366FF; 
 }
+
+
 @media (min-width: 767px) and (max-width: 1200px) {
   .active-tabs::before {
     width: 35.5px;
@@ -754,6 +756,72 @@ input:focus {
     border: 1px solid #3366FF;
     opacity: 1;
     background: #3366FF; 
+  }
+}
+
+.tabSavelist {
+  /*padding-bottob5bac7m: 7px;*/
+  color: #969696;
+  text-align: center;
+  width: 80%;
+  cursor: pointer;
+  position: relative;
+  font-size: 11px;
+  background: #fff;
+  cursor: pointer;
+  /*padding-left: 0px;*/
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 0.65px;
+}
+
+.dark-tabSavelist {
+  padding-bottom: 7px;
+  color: #969696;
+  background-color: #191d43;
+  text-align: center;
+  width: 80%;
+  cursor: pointer;
+  position: relative;
+  font-size: 11px;
+  background: #fff;
+  cursor: pointer;
+  padding-left: 0px;
+  font-weight: 600;
+  letter-spacing: 0.65px;
+}
+
+.active-tabSavelist {
+  letter-spacing: 1px;
+  color: #09184B;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.active-tabSavelist::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 100px;
+  height: 1px;
+  border: 1px solid #3366FF;
+  border-radius: 20px;
+  opacity: 1;
+  background: #3366FF; 
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .active-tabSavelist::before {
+    top: 60px;
+    width: 70px;
+  }
+}
+@media (min-width: 500px) and (max-width: 600px) {
+  .active-tabSavelist::before {
+    top: 55px;
+    width: 70px;
   }
 }
 
@@ -1088,9 +1156,10 @@ input:focus {
 
 .lightmap-style{
   width: 108%;
-  height: 345px;
+  height: 342px;
   z-index: 0;
  margin-top: 8px;
+ margin-left: -2px;
  background-color: transparent;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -1114,7 +1183,7 @@ input:focus {
   .lightmap-style {
     width: 108%;
     height: 350px;
-    margin : '4px 4px 4px 4px';
+    margin : 4px 4px 4px 4px;
     z-index: 0;
     background-color: transparent;
   }
@@ -1292,7 +1361,6 @@ input:focus {
     line-height: 1.15 !important;
     letter-spacing: normal !important;
     text-align: left !important;
-    color: #8290a4 !important;
     text-decoration: none !important;
     margin-bottom: 5px !important;
     margin-left: 18px !important;
@@ -1301,8 +1369,10 @@ input:focus {
     animation-fill-mode: forwards !important;
 }
 .block-height-animation-dark-mode{
+  color: #8290a4 !important;
+  background-color: #09184b !important;
   box-shadow: none !important;
-  position: "absolute" !important;
+  position: absolute !important;
   right: 52.5% !important;
   font-size: 13px !important;
   font-weight: normal !important;
@@ -1311,8 +1381,7 @@ input:focus {
   line-height: 1.15 !important;
   letter-spacing: normal !important;
   text-align: left !important;
-  color: #8290a4 !important;
-  background-color: #191d43 !important;
+  text-decoration: none !important;
   margin-bottom: 5px !important;
   margin-left: 18px !important;
   animation: fadeInAnimation ease 2s !important;
@@ -1362,6 +1431,9 @@ input:focus {
   background-color: #191d43 !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
+  animation: fadeInAnimation ease 2s !important;
+  animation-iteration-count: inherit !important;
+  animation-fill-mode: forwards !important;
 }
 
 .handle-animation{

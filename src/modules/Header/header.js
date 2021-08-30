@@ -230,6 +230,7 @@ const Line = styled.div`
   height: 20px;
   border: 1px solid #4971E3;
   margin-right: 4px;
+  opacity: 1;
 `;
 const Archive = styled.button`
   font-family: Raleway;
@@ -240,6 +241,7 @@ const Archive = styled.button`
   border: none;
   letter-spacing: 0.5px;
   margin-right: 10px;
+  margin-left: 5px;
   a{
   color: #fff;
   }

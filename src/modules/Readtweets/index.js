@@ -25,7 +25,7 @@ export default class Read extends BaseComponent {
   socketData(socket) {
     let readingtweets = this.state.readtweets;
     socket.on("read-tweets-socket", (blockData, error) => {
-      console.log('>>>>>readtweet', blockData)
+      // console.log('>>>>>readtweet', blockData)
       this.setState({ blockSocketConnected: true })
 
       // let blockDataExist = blocks.findIndex((item) => {
@@ -61,7 +61,7 @@ export default class Read extends BaseComponent {
         })
       }, 500)
 
-      this.setState({  readtweets: readingtweets });
+      this.setState({ readtweets: readingtweets });
 
       if (error) {
         console.log("hello error");
@@ -102,35 +102,35 @@ export default class Read extends BaseComponent {
 
 
 
-  setInterval(async () => {
-    if (!this.state.blockSocketConnected) {
-      await axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+    setInterval(async () => {
+      if (!this.state.blockSocketConnected) {
+        await axios
+          .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
 
-      .then((res) => {
-        let tweetResponse;
-        let alltweets;
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1];
+          .then((res) => {
+            let tweetResponse;
+            let alltweets;
+            if (
+              !res &&
+              !res.data &&
+              !res.data.responseData &&
+              res.data.responseData.length <= 0
+            )
+              tweetResponse = [];
+            else tweetResponse = res.data.responseData[0];
+            alltweets = res.data.responseData[1];
 
-        this.setState({ readtweets: tweetResponse })
-        this.setState({ totaltweets: alltweets })
+            this.setState({ readtweets: tweetResponse })
+            this.setState({ totaltweets: alltweets })
 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
 
-  }, 10000)
-};
+    }, 10000)
+  };
 
   render() {
     // console.log('this--',this.props?.readed)
@@ -143,7 +143,8 @@ export default class Read extends BaseComponent {
           tweetreadCount={this.state.totaltweets}
           animationTime={this.state.blockAnimation}
           textclass={this.state.textAnimation}
-          handleclass={this.state.handleAnimation} 
+          handleclass={this.state.handleAnimation}
+          author={this.state.readtweets}
         />
       </div>
     );

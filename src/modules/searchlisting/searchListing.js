@@ -13,6 +13,7 @@ import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import axios from 'axios';
 import moment from 'moment';
+import HomeIcon from '@material-ui/icons/Home';
 
 import {
   createMuiTheme,
@@ -47,15 +48,15 @@ const useStyles = makeStyles((theme) => ({
 
   paper: {
     color: theme.palette.text.secondary,
-    marginTop: "-7%",
-    marginLeft: "3.6%",
+    width: '100%',
+    marginLeft: '25px',
     borderRadius: '5px',
     boxShadow: '0px 2px 30px #0000001A',
   },
   paper_dark_mode: {
     color: theme.palette.text.secondary,
-    marginTop: "-7%",
-    marginLeft: "3.6%",
+    width: '100%',
+    marginLeft: '25px',
     backgroundColor: "#191d43",
     color: "white",
     borderRadius: '5px',
@@ -274,10 +275,9 @@ const useStyles = makeStyles((theme) => ({
   writing_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
+    padding: '20px 14px 29.6px 26px',
     color: theme.palette.text.secondary,
-    marginLeft: "7.5%",
-    marginTop: "-30px",
-    padding: "20px 14px 29.6px 26px",
+    marginTop: "15px",
     borderRadius: '5px',
     boxShadow: '0px 2px 30px #0000001A',
   },
@@ -287,9 +287,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
     color: "white",
-    marginTop: "-30px",
-    marginLeft: "7.5%",
-    padding: "20px 14px 29.6px 26px",
+    padding: '20px 14px 29.6px 26px',
+    marginTop: "15px",
     borderRadius: '5px',
     border: 'solid 1px #343965',
   },
@@ -297,9 +296,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    marginLeft: "7.5%",
-    marginTop: "-30px",
-    padding: "20px 14px 29.6px 26px",
+    padding: '20px 14px 29.6px 26px',
+    marginTop: "15px",
     borderRadius: '5px',
     boxShadow: '0px 2px 30px #0000001A',
   },
@@ -313,10 +311,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
+    padding: '20px 14px 29.6px 26px',
     color: "white",
-    marginTop: "-30px",
-    marginLeft: "7.5%",
-    padding: "20px 14px 29.6px 26px",
+    marginTop: "15px",
     borderRadius: '5px',
     border: 'solid 1px #343965',
   },
@@ -342,7 +339,7 @@ const useStyles = makeStyles((theme) => ({
   gridcontainer: {
     width: "100%",
     paddingLeft: "10%",
-    paddingTop: "6%",
+    // paddingTop: "6%",
     paddingRight: "5%",
     paddingBottom: "6%",
   },
@@ -351,8 +348,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Searchlist(props) {
   const classes = useStyles();
 
-  // console.log('props---', props?.list)
-  // console.log('props---', props?.tps)
   // useEffect(() => {
   //   (async () => {
   //     const result = await axios();
@@ -430,15 +425,21 @@ export default function Searchlist(props) {
         </Grid>
         <div className="empty-div">
           <div className="img-parent">
-            <img className="home-image" src="/images/home.svg" />
+            <span style=
+              {{
+                color: 'white',
+                fontSize: 20
+              }}>
+              <HomeIcon />
+            </span>
           </div>
           <div className="dashboard-name">
             <a style={{ color: 'white', cursor: 'pointer', textDecoration: 'none' }} href='/'>Dashboard</a>
           </div>
         </div>
 
-        <Grid container spacing={3} className={classes.gridcontainer}>
-          <Grid item xs={7}>
+        <Grid container spacing={6} className={classes.gridcontainer}>
+          <Grid style={{marginTop: '27px',marginLeft:'4px'}} item xs={7}>
             <Paper
               className={props.dark ? classes.paper_dark_mode : classes.paper}
               elevation={0}
@@ -471,16 +472,10 @@ export default function Searchlist(props) {
                     let timeFormat = moment(str) || 0;
                     let time = timeFormat.format("LT") || 0;
 
-                    // function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
-                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                    //     // b.length - 3,
-                    //     b.length || 0
-                    //   )}`;
-                    // }
                     // function shortenValue(b, amountL = 100, stars = 3) {
-                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                    //     // b.length - 3,
-                    //     b.length || 0
+                    //   return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                    //     // b?.length - 3,
+                    //     b?.length || 0
                     //   )}`;
                     // }
 
@@ -517,7 +512,7 @@ export default function Searchlist(props) {
                           <Row>
                             <Column>
                               <Typography className={classes.email}>
-                               {author}
+                                {author}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -560,17 +555,10 @@ export default function Searchlist(props) {
                     // console.log('hash---',hashtags)
                     // let tweetTextMessage=value.text; 
 
-
-                    // function shortenTrend(b, amountL = 10, amountR = 3, stars = 3) {
-                    //   return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-                    //     // b.length - 3,
-                    //     b.length
-                    //   )}`;
-                    // }
                     function shortenValue(b, amountL = 80, stars = 3) {
-                      return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+                      return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                         // b.length - 3,
-                        b.length || 0
+                        b?.length || 0
                       )}`;
                     }
 
@@ -592,7 +580,7 @@ export default function Searchlist(props) {
                               }
                             >
 
-                             {/* {author} */}
+                              {/* {author} */}
                             </Typography>
                             <Paper
                               className={
@@ -642,82 +630,70 @@ export default function Searchlist(props) {
             </Paper>
           </Grid>
 
-          <Grid item xs={4}>
-            <Grid item xs={12} className={classes.grid}>
-              <Text
-                className={
-                  props.dark ? "writing-data-one-dark-mode" : "writing-data-one"
-                }
-              >
-                Writing Data
-              </Text>
-              <Paper elevation={0}
-                className={
-                  props.dark
-                    ? classes.writing_paper_dark_mode
-                    : classes.writing_paper
-                }
-              >
-                <div
+          <Grid style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '20px', marginLeft: '25px' }} item xs={4}>
+            <div >
+              <div className={props.dark ? "writing-data-one-dark-mode" : "writing-data-one"}>Writing Data</div>
+              <div>
+                <Paper elevation={0}
                   className={
-                    props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
+                    props.dark
+                      ? classes.writing_paper_dark_mode
+                      : classes.writing_paper
                   }
                 >
-                  Saving Speed
-                </div>
-                <div
-                  className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
-                >
-                  {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / sec
-                </div>
-                <div
-
-                >
-                  {" "}
-                  <span className="hover-data">  <MyResponsiveLine /> </span>
-
-                </div>
-              </Paper>
-            </Grid>
-
-            <Row className="justify-space-between w-100">
-              <Row className="w-100">
-                <Grid item xs={12} className={classes.grid2}>
-                  <br /> <br />
-                  <Text
+                  <div
                     className={
-                      props.dark
-                        ? "reading-data-one-dark-mode"
-                        : "reading-data-one"
+                      props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
                     }
                   >
-                    Reading Data
-                  </Text>
-                  <Paper elevation={0}
+                    Saving Speed
+                  </div>
+                  <div
+                    className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
+                  >
+                    {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / sec
+                  </div>
+                  <div
+
+                  >
+                    {" "}
+                    <span className="hover-data">  <MyResponsiveLine /> </span>
+
+                  </div>
+                </Paper>
+              </div>
+            </div>
+
+            <div>
+              <div className={props.dark ? "reading-data-one-dark-mode" : "reading-data-one"}>Reading Data</div>
+              <div>
+                <Paper elevation={0}
+                  className={
+                    props.dark
+                      ? classes.reading_paper_dark_mode
+                      : classes.reading_paper
+                  }
+                >
+                  <div
                     className={
-                      props.dark
-                        ? classes.reading_paper_dark_mode
-                        : classes.reading_paper
+                      props.dark ? "savingSpeed-dark-mode" : "savingSpeed"
                     }
                   >
-                    <div
-                      className={
-                        props.dark ? "savingSpeed-dark-mode" : "savingSpeed"
-                      }
-                    >
-                      Reading Tweet
-                    </div>
-                    <div
-                      className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
-                    >
-                      {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
-                    </div>
-                    <span className="hover-data">  <ReadingData /> </span>
+                    Reading Tweet
+                  </div>
+                  <div
+                    className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
+                  >
+                    {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
+                  </div>
+                  <span className="hover-data">  <ReadingData /> </span>
 
-                  </Paper>
-                </Grid>
-              </Row>
-            </Row>
+                </Paper>
+              </div>
+            </div>
+
+
+
           </Grid>
         </Grid>
       </div>

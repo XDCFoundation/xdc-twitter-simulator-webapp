@@ -20,22 +20,21 @@ const NodeChart = (props) => {
 
   ip.map(item => {
     // console.log('item---',item)
-    axios
-      .get(process.env.REACT_APP_NODE_LOCATIONS + item)
-      .then((res) => {
-        var nodes = node
-        nodes.push({ coords: [res.data.lon, res.data.lat] })
-        // console.log('locations....', nodes)
-        setNode(nodes);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setTimeout(() => {
+      axios
+        .get(process.env.REACT_APP_NODE_LOCATIONS + item)
+        .then((res) => {
+          var nodes = node
+          nodes.push({ coords: [res.data.lon, res.data.lat] })
+          // console.log('locations....', nodes)
+          setNode(nodes);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
+
   })
-
-
-
-
   return (
     <div>
 

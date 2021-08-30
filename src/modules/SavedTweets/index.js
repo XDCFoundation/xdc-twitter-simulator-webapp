@@ -27,8 +27,8 @@ export default class Saved extends BaseComponent {
   }
   socketData(socket) {
     let savingtweets = this.state.savedTweets;
-    socket.on("blockchain-socket", (blockData, error) => {
-      console.log('>>>>>savetweet', blockData)
+    socket.on("BlockChain-socket", (blockData, error) => {
+      // console.log('>>>>>savetweet', blockData)
       this.setState({ blockSocketConnected: true })
       // let blockDataExist = blocks.findIndex((item) => {
       //   return item.number == blockData.number;
@@ -71,7 +71,7 @@ export default class Saved extends BaseComponent {
   socketCount(socket) {
     let tweetsCount = this.state.savingtweetsCount;
     socket.on("tweet-count-socket", (blockData, error) => {
-      console.log('>>>>>savecount', blockData)
+      // console.log('>>>>>savecount', blockData)
       this.setState({ blockSocketConnected: true })
       // let blockDataExist = blocks.findIndex((item) => {
       //   return item.number == blockData.number;

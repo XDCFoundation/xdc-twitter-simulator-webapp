@@ -5,10 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import { Component } from "react";
 
-// const point={}
 const toolTipElement = (props) => {
-  // console.log(props.point?.data?.x, "<<prop")
-  // console.log(props, "<<")
   let stats = parseFloat(props.point?.data?.y)
   return (
     <div>
@@ -16,7 +13,6 @@ const toolTipElement = (props) => {
         <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
         <p className="Tooltip-graph-tx">{stats.toFixed(2)}/sec</p>
       </div>
-      {/* <TriangleArrowDown /> */}
     </div>
   )
 }
@@ -77,29 +73,29 @@ export default class App extends Component {
   //     console.log('>>>>>', blockData)
   //     this.setState({ blockSocketConnected: true })
 
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
+  // let blockDataExist = blocks.findIndex((item) => {
+  //   return item.number == blockData.number;
+  // });
+  // blockData["class"] = "first-block-age last-block-transaction height2";
+  // if (blockDataExist == -1) {
 
-      // if (readingGraph.length >= 10)
-      //   readingGraph.pop();
-      // readingGraph.unshift(blockData);
+  // if (readingGraph.length >= 10)
+  //   readingGraph.pop();
+  // readingGraph.unshift(blockData);
 
-      // setTimeout(() => {
-      //   this.setState({
-      //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
-      //   })
-      // }, 500)
+  // setTimeout(() => {
+  //   this.setState({
+  //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
+  //   })
+  // }, 500)
 
-      // this.setState({ data: readingGraph });
+  // this.setState({ data: readingGraph });
 
-      // if (error) {
-      //   console.log("hello error");
-      // }
+  // if (error) {
+  //   console.log("hello error");
+  // }
 
-      // } (left comment)
+  // } (left comment)
 
   //   });
   // }
@@ -110,7 +106,6 @@ export default class App extends Component {
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
-        // console.log('result-----', result.data.responseData)
         var arr = [{
           id: "Write-graph",
           data: []
@@ -149,58 +144,56 @@ export default class App extends Component {
         console.log(err);
       });
 
-      setInterval(async () => {
-        // if (!this.state.blockSocketConnected) {
-          await axios
-          .get(
-            process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
-          )
-          .then((result) => {
-            // console.log('result-----', result.data.responseData)
-            var arr = [{
-              id: "Write-graph",
-              data: []
-            }]
-            var resultData = []
-    
-            result.data.responseData.map(items => {
-              let graphs = items.responseTime / items.requestCount
-              resultData.push({
-                x: moment(items.addedOn).format('LT'),
-                y: 1000 / graphs
-              })
-    
+    setInterval(async () => {
+      // if (!this.state.blockSocketConnected) {
+      await axios
+        .get(
+          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
+        )
+        .then((result) => {
+          var arr = [{
+            id: "Write-graph",
+            data: []
+          }]
+          var resultData = []
+
+          result.data.responseData.map(items => {
+            let graphs = items.responseTime / items.requestCount
+            resultData.push({
+              x: moment(items.addedOn).format('LT'),
+              y: 1000 / graphs
             })
-            // let graphdata = resultData
-            function getUnique(resultData, index) {
-    
-              const unique = resultData
-                .map(e => e[index])
-    
-                // store the keys of the unique objects
-                .map((e, i, final) => final.indexOf(e) === i && i)
-    
-                // eliminate the dead keys & store unique objects
-                .filter(e => resultData[e]).map(e => resultData[e]);
-    
-              return unique;
-            }
-            let graphdata = getUnique(resultData, 'x').reverse()
-    
-            arr[0].data = graphdata
-            this.setState({ data: arr })
-    
+
           })
-          .catch((err) => {
-            console.log(err);
-          });
-        // }
-  
-      }, 60000)
-    };
+          // let graphdata = resultData
+          function getUnique(resultData, index) {
+
+            const unique = resultData
+              .map(e => e[index])
+
+              // store the keys of the unique objects
+              .map((e, i, final) => final.indexOf(e) === i && i)
+
+              // eliminate the dead keys & store unique objects
+              .filter(e => resultData[e]).map(e => resultData[e]);
+
+            return unique;
+          }
+          let graphdata = getUnique(resultData, 'x').reverse()
+
+          arr[0].data = graphdata
+          this.setState({ data: arr })
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // }
+
+    }, 60000)
+  };
 
   render() {
-    // console.log('newthis---',this.props.readMe)
     return (
       <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
         <ReadingData data={this.state.data} />

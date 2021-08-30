@@ -375,6 +375,7 @@ export default function ReadTweets(props) {
                 readtweets.map((response) => {
                   let value = response.text || 0;
                   let author = response.authorId || 0;
+                  let authorName = response?.name.slice(0,10) || 0;
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT") || 0;
@@ -416,7 +417,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {author}
+                            {authorName}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
