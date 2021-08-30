@@ -285,7 +285,7 @@ export default function ReadTweets(props) {
   // console.log('pr--', props?.author)
   let authorDetails = props?.author
 
-  authorDetails.map(item => {
+  // authorDetails.map(item => {
 
     // setTimeout(() => {
     //   axios
@@ -299,7 +299,7 @@ export default function ReadTweets(props) {
     //       console.log(err);
     //     });
     // }, 1000);
-  })
+  // })
   // let method = authors?.username
   // console.log('method------', method)
 
