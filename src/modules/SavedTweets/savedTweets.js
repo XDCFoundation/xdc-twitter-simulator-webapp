@@ -321,12 +321,12 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {props.savedCount[0] ? (props.savedCount[0] > 1000
-                    ? parseInt(props.savedCount[0] / 1000) + "k"
+                  {props?.savedCount[0] ? (props?.savedCount[0] > 1000
+                    ? parseInt(props?.savedCount[0] / 1000) + "k"
                     : props.savedCount[0]) :
-                    (props.tweetCount.totalTweetCount) > 1000
-                      ? parseInt(props.tweetCount.totalTweetCount / 1000) + "k"
-                      : props.tweetCount.totalTweetCount}
+                    (props?.tweetCount?.totalTweetCount) > 1000
+                      ? parseInt(props?.tweetCount?.totalTweetCount / 1000) + "k"
+                      : props?.tweetCount?.totalTweetCount}
                 </Paper>
               </Row>
               {props.tweetData &&
@@ -334,8 +334,9 @@ export default function SavedTweets(props) {
                 props.tweetData.map((response) => {
                   let value = response?.text || 0;
                   let author = response?.authorID || 0;
+                  let createTime = Number(response?.createdAt || 0)
                   let str = response.addedOn;
-                  let timeFormat = moment(str);
+                  let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 80, stars = 3) {
@@ -345,7 +346,7 @@ export default function SavedTweets(props) {
                     )}`;
                   }
                   return (
-                    <>
+                    <React.Fragment key={author}>
                       <hr
                         className={
                           props.dark
@@ -366,14 +367,14 @@ export default function SavedTweets(props) {
                           {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
                             (animationclass ? animationclass : classes.time)}
                         >
-                          {time}
+                          {time ? time : '-'}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
-                            {author}
+                            {author ? author : '-'}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -384,12 +385,12 @@ export default function SavedTweets(props) {
 
                               gutterBottom
                             >
-                              {shortenValue(value) || 0}
+                              {value ? shortenValue(value) || 0 : '-'}
                             </Paper>
                           </ThemeProvider>
                         </Column>
                       </Row>
-                    </>
+                    </React.Fragment>
                   );
                 })}
             </Column>

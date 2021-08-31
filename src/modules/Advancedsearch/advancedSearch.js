@@ -151,6 +151,7 @@ export default function MaxWidthDialog(props) {
 
   const redirect = () => {
     history.push('/list/' + encodeURIComponent(keys) + "&" + encodeURIComponent(hash) + "&" + encodeURIComponent(name));
+    window.location.reload();
   };
 
   const [maxWidth, setMaxWidth] = React.useState("md");

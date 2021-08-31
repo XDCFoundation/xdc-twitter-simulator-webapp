@@ -326,8 +326,10 @@ export default function HeaderComponent(props) {
 
   const redirect = () => {
     history.push('/list/' + encodeURIComponent(keyword));
+    window.location.reload();
   };
-  
+
+
   const CheckMode = (mode) => {
     props.CheckMode(mode);
   };
@@ -380,16 +382,16 @@ export default function HeaderComponent(props) {
 
         <SubContainer3>
           &nbsp;&nbsp;&nbsp;
-          <About><a style={{ color: 'white' , textDecoration: 'none' }} href="/about">About</a></About>
+          <About><a style={{ color: 'white', textDecoration: 'none' }} href="/about">About</a></About>
           &nbsp;&nbsp;
           <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
           &nbsp;&nbsp;
-          <div style={{marginLeft: '-25px'}}>
-          <FFButton />
+          <div style={{ marginLeft: '-25px' }}>
+            <FFButton />
           </div>
           &nbsp;
           <DrawerArchive>
-            <a style={{cursor: 'pointer', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
+            <a style={{ cursor: 'pointer', textDecoration: 'none' }} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
           </DrawerArchive>
           &nbsp;&nbsp;
           <DarkMode CheckMode={CheckMode} />
@@ -418,7 +420,7 @@ export default function HeaderComponent(props) {
             <a href="/">
               <Image src="../../images/logo.svg" alt="image" />
             </a>
-            <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
+            <Search type="text" placeholder="Search by Handle name, Hash tag"  onChange={e => setKeyword(e.target.value)} />
             <Button onClick={redirect}>
               <img
                 style={{ height: "20px", width: "20px" }}
@@ -428,20 +430,20 @@ export default function HeaderComponent(props) {
             </Button>
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
-            <Advancesearch  onClick={handleClickforadvancedsearch}>
+            <Advancesearch onClick={handleClickforadvancedsearch}>
               Advance Search
             </Advancesearch>
           </SubContainer1>
 
 
           <SubContainer2>
-            <About><a style={{ color: 'white',textDecoration: 'none' }} href="/about">About</a></About>
+            <About><a style={{ color: 'white', textDecoration: 'none' }} href="/about">About</a></About>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Contact><a style={{ color: 'white',textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
+            <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
             <FFButton />
             <Line> </Line>
             <Archive >
-              <a style={{cursor: 'pointer', textDecoration: 'none'}} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
+              <a style={{ cursor: 'pointer', textDecoration: 'none' }} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
             </Archive>
             <DarkMode CheckMode={CheckMode} />
           </SubContainer2>
@@ -563,7 +565,7 @@ function FFButton() {
         class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "18px" , fontWeight: 300}}
+        style={{ fontSize: "18px", fontWeight: 300 }}
       >
         Share
         {show ? (

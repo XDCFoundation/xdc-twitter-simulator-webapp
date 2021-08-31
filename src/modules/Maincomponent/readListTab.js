@@ -373,9 +373,9 @@ export default function ReadTweets(props) {
               {readtweets &&
                 readtweets.length >= 1 &&
                 readtweets.map((response) => {
-                  let value = response.text || 0;
-                  let author = response.authorId || 0;
-                  let authorName = response?.name.slice(0,10) || 0;
+                  let value = response?.text || 0;
+                  let author = response?.authorId || 0;
+                  let authorName = response?.name?.slice(0,10) || 0;
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat.format("LT") || 0;
@@ -410,14 +410,14 @@ export default function ReadTweets(props) {
                             props.dark ? classes.time_dark_mode : classes.time
                           }
                         >
-                          {time}
+                          {time ? time : '-'}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authorName}
+                            {authorName ? authorName : '-'}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -429,7 +429,7 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(value) || 0}
+                              {value ? shortenValue(value) || 0 : '-'}
                             </Paper>
                           </ThemeProvider>
                         </Column>

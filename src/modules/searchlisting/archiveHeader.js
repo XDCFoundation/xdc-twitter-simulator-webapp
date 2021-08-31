@@ -1,65 +1,62 @@
 import styled, { css } from "styled-components";
 import { Row, Column } from "simple-flexbox";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { makeStyles } from "@material-ui/core/styles";
+
 import React, { useState } from "react";
+import { Grid } from "react-bootstrap";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #191d43;
-`;
-const Image = styled.img`
-  padding: 10px;
-  margin-left: 45px;
-  width: 57px;
-  margin-top: 3px;
-`;
-const MobileImage = styled.img`
-  padding: 10px;
-  margin-left: 12px;
-  width: 57px;
-  margin-top: 3px;
-`;
-const Span = styled.span`
-  color: #ffffff;
-  font-size: 19px;
-  margin-top: 21px;
-  font-weight: 600;
-  font-family: "Raleway", sans-serif !important;
-  margin-left: -11px;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.19;
-`;
-const Input = styled.input`
-  background-color: #3d4270;
-  border-radius: 4px;
-  font-family: WorkSans-Roman !important;
-  color: #ffffff;
-  border: none;
-  height: 32px;
-  width: 40%;
-  margin-left: 33px;
-  margin-top: 18px;
-`;
-const Button = styled.button`
-  color: #ffffff;
-  height: 32px;
+const useStyles = makeStyles((theme) => ({
+  input: {
+    border: "none",
+    borderRadius: "4px",
+    // background: "url(/images/search.svg) no-repeat 15px",
+    border: "solid 1px #aab1ff",
+    width: "100%",
+    height: "40px",
+    marginRight: "7px",
+    color: "#09184b",
+    marginTop: "-9px",
+    backgroundSize: "25px",
+    paddingLeft: "8%",
+  },
+  // "@media (min-width: 400px) and (max-width: 1080px)": {
+  //   input: {
+  //     display: "flex !important",
+  //     width: "201px",
+  //     height: "33px",
+  //     justifyContent: "center",
+  //     alignItems: "center",
+  //   },
+  // },
+  button: {
+    backgroundColor: " #3366ff",
+    borderRadius: "4px",
+    color: "#ffffff",
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    border: "none",
+    fontSize: "15px",
+    marginTop: "-9px",
+    fontFamily: "Raleway,sans-serif !important",
+    fontWeight: "normal",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.17",
+    letterSpacing: "normal",
+    textAlign: "center",
+  },
+  span: {
+    marginTop: "16px",
+    fontFamily: "Raleway,sans-serif !important",
+    fontSize: "18px",
+    display: "flex",
+  },
+  no_of_tweets_archived: {
+    fontFamily: "Raleway,sans-serif !important",
+    marginRight: "4px",
+  },
+}));
 
-  width: 96px;
-  padding: 10px;
-  margin-top: 18px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #5760bc;
-  font-size: 15px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 0.28;
-  font-family: "IBM Plex Sans", sans-serif !important;
-`;
 const DesktopView = styled.div`
 @media (min-width: 0px) and (max-width: 767px) {
  display: none;
@@ -78,9 +75,40 @@ const MobileView = styled.div`
   display: none;
 }
 `;
-export default function HeaderComponent(props) {
-  const [inputValue, setInputValue] = useState("");
-  // console.log('props--',props?.archiveId)
+
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: #191d43;
+`;
+const Image = styled.img`
+  padding: 10px;
+  margin-left: 45px;
+  width: 57px;
+  margin-top: 3px;
+`;
+const MobileImage = styled.img`
+  padding: 10px;
+  margin-left: -10px;
+  width: 57px;
+  margin-top: 3px;
+`;
+const Span = styled.span`
+  color: #ffffff;
+  font-size: 19px;
+  margin-top: 21px;
+  font-weight: 600;
+  font-family: "Raleway", sans-serif !important;
+  margin-left: -11px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+`;
+
+
+export default function Headerconditional() {
+  const classes = useStyles();
   return (
     <>
       <DesktopView>
@@ -88,43 +116,41 @@ export default function HeaderComponent(props) {
           <Row>
             <Image src="/images/tweetarchive.svg" />
             <Span>TweetArchive</Span>
-
-            <Input
-              type="text"
-              readOnly={true}
-              // value={`http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/archive/`+props?.archiveId}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-              <CopyToClipboard style={{fontSize: 12}} text={inputValue}>
-              {/* text={`http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/archive/`+props?.archiveId} */}
-              <Button>Copy</Button>
-            </CopyToClipboard>
           </Row>
         </Container>
       </DesktopView>
 
       <MobileView>
         <Container>
-          <Row>
-            <MobileImage src="/images/tweetarchive.svg" />
-            <Span>TweetArchive</Span>
-          </Row>
-          <Column style={{ paddingBottom: '20px' }}>
+          <Grid item xs={12}>
             <Row>
-            <Input
-              type="text"
-              readOnly={true}
-              // value={`http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/archive/`+props?.archiveId}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <CopyToClipboard style={{fontSize: 12}} text={inputValue}>
-                   {/* text={`http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/archive/`+props?.archiveId} */}
-              <Button>Copy</Button>
-            </CopyToClipboard>
+              <MobileImage src="/images/tweetarchive.svg" />
+              <Span>TweetArchive</Span>
             </Row>
-          </Column>
+            <Column style={{ color: 'white' }}>
+
+            </Column>
+            <Column style={{ color: 'white', marginTop: '15px' }}>
+              <Row>
+                <input className={classes.input} type="text" />
+                <button className={classes.button} >
+                  Archive
+                </button>
+              </Row>
+            </Column>
+
+            <Column style={{ color: 'white' }}>
+              <Row>
+                <div className={classes.span}>
+                  <span className={classes.no_of_tweets_archived}>
+                    20,000 tweets have been archived
+                  </span>
+                
+                </div>
+              </Row>
+            </Column>
+
+          </Grid>
         </Container>
       </MobileView>
     </>
