@@ -591,12 +591,18 @@ export default function MainComponent(props) {
           }
           // console.log('obj------', data)
 
-          let newarray = arr.filter((element) => element !== "Click");
+          let newarray = arr.filter((element) => element !== "Click"
+            && element !== "bsc.BlocksScan.i"
+            && element !== 'Apothem.XinFinScan.com_X'
+            && element !== 'ether.XinFinScan.co'
+            && element !== 'ETH_FullNod'
+            && element !== 'ETH.BlocksScan.i'
+            && element !== 'BlocksScan.i'
+            && element !== 'Apothem.XinFinScan.co'
+          );
           // let ab = newarray.filter(elem => elem !== 'Apothem.XinFinScan.com_X')
           // let cd = ab.filter(elemen => elemen !== 'ether.XinFinScan.co')
-          setTimeout(() => {
-            setValue(newarray);
-          }, 10000);
+          setValue(newarray);
 
           // console.log("ip result---", newarray);
 
@@ -635,7 +641,7 @@ export default function MainComponent(props) {
   let savingData = props?.saveGraphdata
   let identity = props?.readSocket
   let writeIdentity = props?.Savesocket
-  let smallSavetweet= props?.tweetData
+  let smallSavetweet = props?.tweetData
   let smallSaveCount = props?.tweetCount
 
   return (
@@ -1129,7 +1135,7 @@ export default function MainComponent(props) {
                     : classes.savedReadTweetConatiner
                 }
               >
-                <SavedRead dark={dark} saveTweet={writeIdentity} smallSave={smallSavetweet} smallcount={smallSaveCount}/>
+                <SavedRead dark={dark} saveTweet={writeIdentity} smallSave={smallSavetweet} smallcount={smallSaveCount} />
               </Paper>
             </Grid>
           </Column>

@@ -473,7 +473,7 @@ export default function Aboutcomponent(props) {
                         }
                       >
                         The speed of the current and maximum transactions
-                        completed on the platform
+                        completed on the platform twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
@@ -502,6 +502,7 @@ export default function Aboutcomponent(props) {
                         }
                       >
                         Search your saved tweets even if they are deleted
+                        on the platform twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
@@ -518,7 +519,7 @@ export default function Aboutcomponent(props) {
                             : classes.all_head_text
                         }
                       >
-                        Tweet Archive
+                        Tweet Archive 
                       </span>
                     </Heading>
                     <Subheading>
@@ -530,7 +531,7 @@ export default function Aboutcomponent(props) {
                         }
                       >
                         Tweets are archived on the network and therefore are
-                        retrievable
+                        retrievable on twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>

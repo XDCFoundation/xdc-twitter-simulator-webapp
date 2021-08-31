@@ -27,19 +27,13 @@ class Routes extends BaseComponent {
 
   render() {
     // console.log('sock--',socket)
+    // console.log('sock--',readtweetSocket)
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router history={history}>
           <Switch>
-            {/*<Route exact path={"/sign-up"} component={SignUp} />*/}
-            {/* <Route exact path={"/savedtweets"} component={Saved}/>
-            <Route exact path={"/readtweets"} component={Read} /> */}
-            {/* <Route exact path={"/footer"} component={Footer} /> */}
             <Route exact path={"/list/:keyword"} component={Search} />
             <Route exact path={"/archive/:tweet"} component={TweetArchive} />
-            {/* <Route exact path={"/header"} component={Header} /> */}
-
-            {/* <Route exact path={"/adncvaedsearch"} component={Advanced} /> */}
             <Route exact path={"/about"} component={About}/>
             <Route exact path={"/"}  component={() => <Main savingSocket={socket} readingSocket={readtweetSocket} />} />
             <Redirect exact from="*" to="/" />

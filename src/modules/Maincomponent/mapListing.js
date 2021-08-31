@@ -158,22 +158,40 @@ export default function PinnedSubheaderList(props) {
 
                 {hashtag &&
                     hashtag.length >= 1 && hashtag.map((items, index) => {
+                        let volume = items?.tweet_volume
                         // console.log('index--',index)
                         return (
-                            <div style={props.dark ? { color: 'white' } : { color: 'black' }}>
+                            <>
+                                <div className={props.dark ? "listMap-light" : "listMap-dark"}>
 
+                                    <div style={{
+                                        fontSize: 12,
+                                        fontWeight: 600,
+                                        paddingLeft: '20px',
+                                        paddingTop: '2px',
+                                        marginLeft: '5px'
+                                    }}>
+                                        {index + 1 ? index + 1 : 'null'}. {items?.name || 0} &nbsp;
+                                        ({volume > 1000 ? parseInt(volume / 1000) + 'k' || 0 : volume || 0} tweets)
+                                    </div>
 
-                                <div style={{ fontSize: 12, fontWeight: 600, paddingLeft: '20px', paddingTop: '2px',marginLeft: '5px' }}>
-                                    {index + 1 ? index + 1 : 'null'}. {items?.name || 0}
+                                    <div style={{
+                                        fontSize: 12,
+                                        fontWeight: 600,
+                                        paddingLeft: '20px',
+                                        paddingTop: '2px',
+                                        marginRight: '20px',
+                                    }}>
+                                        {items?.countryName || 0}
+                                    </div>
+
                                 </div>
-
                                 <hr
                                     className={props.dark ?
                                         classes.hr_page_dark_mode : classes.hr_page
                                     }
                                 />
-
-                            </div>
+                            </>
                         )
 
                     })}

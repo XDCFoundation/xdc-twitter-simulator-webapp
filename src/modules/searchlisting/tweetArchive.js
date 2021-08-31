@@ -241,7 +241,7 @@ export default function TweetArchive() {
   // console.log('t---',date)
   // const colonIndex = value?.indexOf(":");
   // const atIndex = value?.indexOf("@") || 0;
-  // let handler = value?.slice(atIndex, 10) || 0;
+  // let handler = value?.slice(0, 10) || 0;
   // let name = handler?.split("@")[1] || 0;
   // let icon = name?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
   // let link = value?.split("https://")[1];
@@ -253,8 +253,10 @@ export default function TweetArchive() {
   // console.log('tm--', tweetTextMessage)
 
   let advanceValue = advanceSearch[0]?.text || 0
-  let advanceDate = moment(advanceSearch[0]?.addedOn).format('LL') || 0
-  let advanceTime = moment(advanceSearch[0]?.addedOn).format('LT') || 0
+  let advanceName = advanceSearch[0]?.name || 0
+  let advanceDate = moment(advanceSearch[0]?.createdAt).format('LL') || 0
+  let advanceTime = moment(advanceSearch[0]?.createdAt).format('LT') || 0
+  let advanceIcon = advanceName[0]?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
   // console.log('adv--',advanceDate)
   // console.log('advD--',advanceDate)
   // const advanceAtIndex = advanceValue?.indexOf("@");
@@ -285,11 +287,11 @@ export default function TweetArchive() {
                 <hr className={classes.hr_page} />
                 <Row>
                   <Avatar className={classes.avatar}>
-                    {/* {icon || 0} */}
+                    {advanceSearch ? advanceIcon : '-'}
                   </Avatar>
                   <Name >
                     <Row className={classes.span_tweet}>
-                      {/* {name || 0} */}
+                      {advanceSearch ? advanceName : '-'}
                     </Row>
                     <Row>
                       <Email>
@@ -307,19 +309,14 @@ export default function TweetArchive() {
                     </span>
                   </Tweetdata>
                 </Row>
-                {/* <Row className={classes.first_row}>
-                  <Imagedata >
-                    <img style={{ width: '100%', borderRadius: '10px' }} src="https://th.bing.com/th/id/OIP.sgPKPg5FwX8MKUlnFdtMuAHaDs?w=324&h=174&c=7&o=5&dpr=1.25&pid=1.7" />
-                  </Imagedata>
-                </Row> */}
                 <hr className={classes.hr_page} />
                 <Row className={classes.second_row}>
                   <Details>
                     <Time> &nbsp;&nbsp;&nbsp;&nbsp;
-                      {/* {search[0] ? (time ? time : 'Loading..') : (advanceTime ? advanceTime : 'Loading..')} */}
+                      {search ? (time ? time : 'Loading..') : (advanceTime ? advanceTime : 'Loading..')}
                       &emsp;</Time>
                     <Date>&nbsp;
-                      {/* {search[0] ? (date ? date : 'Loading..') : (advanceDate ? advanceDate : 'Loading..')} */}
+                      {search ? (date ? date : 'Loading..') : (advanceDate ? advanceDate : 'Loading..')}
                       &emsp;</Date>
                     {/* <Twitterwebapp>&nbsp;Twitter Web App&nbsp;.</Twitterwebapp> */}
                   </Details>
