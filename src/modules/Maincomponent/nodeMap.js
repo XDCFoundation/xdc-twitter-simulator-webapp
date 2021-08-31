@@ -15,14 +15,15 @@ const geoUrl = process.env.REACT_APP_NODES_MAP_URL
 const NodeChart = (props) => {
   const [node, setNode] = useState([]);
 
-  let ip = props.ipcount
-  // console.log('ip-------', ip.length)
+  let ip = props?.ipcount
+  // console.log('ip-------', ip)
 
-  ip.map(item => {
-    // console.log('item---',item)
-    setTimeout(() => {
+  useEffect(() => {
+    // let ip = props.ipcount
+    // console.log('pr---',ip)
+    ip.map((item) => {
       axios
-        .get(process.env.REACT_APP_NODE_LOCATIONS + item)
+        .get(process.env.REACT_APP_NODE_LOCATIONS +item)
         .then((res) => {
           var nodes = node
           nodes.push({ coords: [res.data.lon, res.data.lat] })
@@ -32,9 +33,11 @@ const NodeChart = (props) => {
         .catch((err) => {
           console.log(err);
         });
-    }, 2000);
+    })
+  }, [ip])
 
-  })
+  // console.log('propsip',props?.ipcount)
+
   return (
     <div>
 

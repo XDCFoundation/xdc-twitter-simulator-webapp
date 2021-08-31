@@ -21,6 +21,7 @@ import {
   responsiveFontSizes,
 } from "@material-ui/core/styles";
 import { useParams } from "react-router";
+import Loader from './loader';
 
 
 const Text = styled.div`
@@ -357,6 +358,7 @@ export default function Searchlist(props) {
 
   const [basic, setBasic] = useState({})
   const [advance, setAdvance] = useState({})
+  const [isLoading, setLoading] = useState(true)
   // console.log('prop..',props?.locations)
 
   useEffect(() => {
@@ -378,6 +380,7 @@ export default function Searchlist(props) {
           basicSearch = [];
         else basicSearch = res.data.responseData.responseData || 0;
         setBasic(basicSearch);
+        setLoading(false)
         // console.log('mysearch-------', res.data.responseData.responseData)
         // console.log('my url===',url)
       })
@@ -410,7 +413,6 @@ export default function Searchlist(props) {
       });
   };
 
-
   // let method = '@user'
 
   return (
@@ -439,7 +441,7 @@ export default function Searchlist(props) {
         </div>
 
         <Grid container spacing={6} className={classes.gridcontainer}>
-          <Grid style={{marginTop: '27px',marginLeft:'4px'}} item xs={7}>
+          <Grid style={{ marginTop: '27px', marginLeft: '4px' }} item xs={7}>
             <Paper
               className={props.dark ? classes.paper_dark_mode : classes.paper}
               elevation={0}
@@ -458,7 +460,8 @@ export default function Searchlist(props) {
                     Search Results
                   </Typography>
                 </Row>
-                {basic &&
+                
+                {isLoading ? <Loader /> : (basic &&
                   basic.length >= 1 &&
                   basic.map((response) => {
                     let value = response?.text || 0
@@ -472,12 +475,12 @@ export default function Searchlist(props) {
                     let timeFormat = moment(str) || 0;
                     let time = timeFormat.format("LT") || 0;
 
-                    // function shortenValue(b, amountL = 100, stars = 3) {
-                    //   return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                    //     // b?.length - 3,
-                    //     b?.length || 0
-                    //   )}`;
-                    // }
+                    function shortenValue(b, amountL = 100, stars = 3) {
+                      return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                        // b?.length - 3,
+                        b?.length || 0
+                      )}`;
+                    }
 
                     let userId = response.tweetId || 0
                     // console.log('myuser--',userId)
@@ -505,14 +508,14 @@ export default function Searchlist(props) {
                                 props.dark ? classes.time_dark_mode : classes.time
                               }
                             >
-                              {time}
+                              {time ? time : '-'}
                             </Paper>
                           </Row>
 
                           <Row>
                             <Column>
                               <Typography className={classes.email}>
-                                {author}
+                                {author ? author : '-'}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -524,7 +527,7 @@ export default function Searchlist(props) {
                                   }
                                   gutterBottom
                                 >
-                                  {value}
+                                  {value ? shortenValue(value) || 0 : '-'}
                                 </Paper>
                               </ThemeProvider>
                             </Column>
@@ -533,13 +536,15 @@ export default function Searchlist(props) {
                         </a>
                       </>
                     );
-                  })}
+                  })
+                )}
 
                 {advance &&
                   advance.length >= 1 &&
                   advance.map((response) => {
                     let value = response?.text || 0;
                     let author = response?.id || 0;
+                    let authorName = response?.name || 0;
                     // let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase() || 0
                     // console.log('resp2--', author)
                     // console.log('valuuuu', handle)
@@ -595,7 +600,7 @@ export default function Searchlist(props) {
                             <Column>
                               <Typography className={classes.email}>
                                 {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
-                                {author}
+                                {authorName}
                               </Typography>
                               <ThemeProvider theme={theme}>
                                 <Paper
@@ -630,7 +635,7 @@ export default function Searchlist(props) {
             </Paper>
           </Grid>
 
-          <Grid style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '20px', marginLeft: '25px' }} item xs={4}>
+          <Grid style={{ display: 'flex', flexDirection: 'column', padding: '20px', marginLeft: '25px' }} item xs={4}>
             <div >
               <div className={props.dark ? "writing-data-one-dark-mode" : "writing-data-one"}>Writing Data</div>
               <div>

@@ -1291,6 +1291,34 @@ input:focus {
   width: 24px;
 }
 
+.listMap-light {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+}
+
+.listMap-dark {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: black;
+}
+
+.hashtag-list {
+  font-size: 6;
+  padding-left: 20px;
+  padding-top: 2px;
+  margin-left: 5px
+}
+
+.country-list {
+  font-size: 6;
+  padding-left: 20px;
+  padding-top: 2px;
+  margin-right: 15px;
+}
+
 .loader {
   display: flex;
   justify-content: center;
@@ -1364,7 +1392,7 @@ input:focus {
     text-decoration: none !important;
     margin-bottom: 5px !important;
     margin-left: 18px !important;
-    animation: fadeInAnimation ease 2s !important;
+    animation: fadeInAnimation ease 4s !important;
     animation-iteration-count: inherit !important;
     animation-fill-mode: forwards !important;
 }
@@ -1384,7 +1412,7 @@ input:focus {
   text-decoration: none !important;
   margin-bottom: 5px !important;
   margin-left: 18px !important;
-  animation: fadeInAnimation ease 2s !important;
+  animation: fadeInAnimation ease 4s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -1411,7 +1439,7 @@ input:focus {
   color: #09184b !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
-  animation: fadeInAnimation ease 2s !important;
+  animation: fadeInAnimation ease 4s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -1431,7 +1459,7 @@ input:focus {
   background-color: #191d43 !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
-  animation: fadeInAnimation ease 2s !important;
+  animation: fadeInAnimation ease 4s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -1449,7 +1477,7 @@ input:focus {
   letter-spacing: normal !important;
   text-align: left !important;
   margin-left: 18px !important;
-  animation: fadeInAnimation ease 2s !important;
+  animation: fadeInAnimation ease 4s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -1469,6 +1497,9 @@ input:focus {
   text-align: left !important;
   margin-bottom: 5px !important;
   margin-left: 18px !important;
+  animation: fadeInAnimation ease 4s !important;
+  animation-iteration-count: inherit !important;
+  animation-fill-mode: forwards !important;
 }
 
 .read-text-animation{
@@ -1485,6 +1516,9 @@ input:focus {
   color: #09184b !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
+  animation: fadeInAnimation ease 4s !important;
+  animation-iteration-count: inherit !important;
+  animation-fill-mode: forwards !important;
 }
 .read-handle-animation{
   font-size: 11px !important;
@@ -1498,4 +1532,7 @@ input:focus {
   letter-spacing: normal !important;
   text-align: left !important;
   margin-left: 18px !important;
+  animation: fadeInAnimation ease 4s !important;
+  animation-iteration-count: inherit !important;
+  animation-fill-mode: forwards !important;
 }

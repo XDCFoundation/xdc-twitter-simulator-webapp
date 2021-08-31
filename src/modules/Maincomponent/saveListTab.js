@@ -325,19 +325,20 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {props?.saveTweetCount.totalTweetCount > 1000
-                    ? parseInt(props?.saveTweetCount.totalTweetCount / 1000) + "k"
-                    : props?.saveTweetCount.totalTweetCount}
+                  {props?.saveTweetCount?.totalTweetCount > 1000
+                    ? parseInt(props?.saveTweetCount?.totalTweetCount / 1000) + "k"
+                    : props?.saveTweetCount?.totalTweetCount}
                 </div>
               </Row>
               {props?.savetweetData &&
                 props?.savetweetData.length >= 1 &&
                 props?.savetweetData.map((response) => {
-                  let value = response.text || 0;
-                  let author = response.authorID || 0;
+                  let value = response?.text || 0;
+                  let author = response?.authorID || 0;
+                  let createTime = Number(response?.createdAt || 0)
                   let str = response.addedOn;
-                  let timeFormat = moment(str);
-                  let time = timeFormat.format("LT") || 0;
+                  let timeFormat = moment(createTime);
+                  let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 80, stars = 3) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
@@ -368,14 +369,14 @@ export default function ReadTweets(props) {
                             props.dark ? classes.time_dark_mode : classes.time
                           }
                         >
-                          {time}
+                          {time ? time : '-'}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {author}
+                            {author ? author : '-'}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -387,7 +388,7 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {shortenValue(value) || 0}
+                              {value ? shortenValue(value) || 0 : '-'}
                               {/* {shortenValue(tweetTextMessage)} */}
                             </Paper>
                           </ThemeProvider>
