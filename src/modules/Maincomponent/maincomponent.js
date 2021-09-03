@@ -16,7 +16,7 @@ import Tippy from "@tippyjs/react";
 import axios from "axios";
 import moment from "moment";
 import SavedRead from "./readSavedTweet";
-
+import socketClient from "socket.io-client";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
@@ -25,7 +25,6 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 const client = new W3CWebSocket(
   "wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0"
 );
-
 // import WebSocketCountNode from "./webSocket";
 const IconImg = styled.img`
   margin-left: 10px;
@@ -333,13 +332,13 @@ const useStyles = makeStyles((theme) => ({
   },
   top20: {
     color: "#09184b",
+    fontSize: '18px',
   },
   top20_dark_mode: {
     color: "white",
+    fontSize: '18px',
   },
   paperNode: {
-    // marginLeft: "3.7%",
-    // marginTop: "-9px",
     boxShadow: "none",
     borderRadius: "4px",
   },
@@ -351,7 +350,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "20px",
   },
   top: {
-    marginTop: "15px",
+    marginTop: "10.5px",
     marginRight: "9px",
     boxShadow: "none",
     width: '100%',
@@ -370,7 +369,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top_dark_mode: {
-    marginTop: "15px",
+    marginTop: "10.5px",
     marginRight: "9px",
     height: "95.2%",
     width: '98.5%',
@@ -523,25 +522,6 @@ export default function MainComponent(props) {
     getValue();
   }, []);
 
-  // useEffect(() => {
-  //   fetchCount();
-  // }, []);
-
-  //for count of tps:
-
-  // const fetchCount = () => {
-  //   axios
-  //     .get(
-  //       process.env.REACT_APP_BASE_URL_EXPLORER + process.env.REACT_APP_TPS_CALCULATE
-  //     )
-  //     .then((res) => {
-  //       setCount(res.data.responseData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   //for Max-Tps count:
 
   const fetchTps = () => {
@@ -643,6 +623,8 @@ export default function MainComponent(props) {
   let writeIdentity = props?.Savesocket
   let smallSavetweet = props?.tweetData
   let smallSaveCount = props?.tweetCount
+
+
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -955,7 +937,7 @@ export default function MainComponent(props) {
                 </div>
                 <span className="hover-data">
                   {" "}
-                  <MyResponsiveLine />{" "}
+                  <MyResponsiveLine writeMe={writeIdentity} writeGraph={savingData} />{" "}
                 </span>
               </Paper>
             </Grid>

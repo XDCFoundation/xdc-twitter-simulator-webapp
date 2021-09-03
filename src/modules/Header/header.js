@@ -513,7 +513,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/facebook.svg" alt=" " />
         <AnchorTag
-          href="https://www.facebook.com/XinFinHybridBlockchain/"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/"
           target="_blank"
         >
           Facebook
@@ -522,7 +522,7 @@ function RenderDropdown() {
       <Border></Border>
       <List>
         <ListImg src="../../images/twitter.svg" alt=" " />
-        <AnchorTag href="https://twitter.com/XinFin_Official" target="_blank">
+        <AnchorTag href="https://twitter.com/intent/tweet?url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/&text=TwitterArchiver" target="_blank">
           Twitter
         </AnchorTag>
       </List>
@@ -537,7 +537,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/linkedin.svg" alt=" " />
         <AnchorTag
-          href="https://www.linkedin.com/company/xinfin/"
+          href="https://www.linkedin.com/shareArticle?mini=true&url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/https://www.linkedin.com/shareArticle?mini=true&url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/"
           target="_blank"
         >
           Linkedin

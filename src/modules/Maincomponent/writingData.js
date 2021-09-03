@@ -47,90 +47,27 @@ const MyResponsiveLine = ({ data }) => (
   />
 )
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      blockSocketConnected: false
-    }
+export default function App(props) {
+  const [data, setData] = useState([])
+
+  // console.log('socky--', props?.writeGraph)
+  // setData(props?.writeGraph)
+
+  useEffect(() => {
+    writingGraph()
+  }, [props?.writeGraph]);
+
+  async function writingGraph() {
+      setData(props?.writeGraph)
   }
+// console.log('bat--',data)
 
-  async componentDidMount() {
-    await this.writing()
-    // console.log('this---', this?.props?.writeMe)
-    // this.socketData(this?.props?.writeMe)
-  }
-
-  // socketData(socket) {
-  //   let writingGraph = this.state.data;
-  //   socket.on("saving-speed-socket", (blockData, error) => {
-  //     console.log('>>>>>', blockData)
-  //     this.setState({ blockSocketConnected: true })
-
-  // let blockDataExist = blocks.findIndex((item) => {
-  //   return item.number == blockData.number;
-  // });
-  // blockData["class"] = "first-block-age last-block-transaction height2";
-  // if (blockDataExist == -1) {
-
-  // if (readingGraph.length >= 10)
-  //   readingGraph.pop();
-  // readingGraph.unshift(blockData);
-
-  // setTimeout(() => {
-  //   this.setState({
-  //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
-  //   })
-  // }, 500)
-
-  // this.setState({ data: writingGraph });
-
-  // if (error) {
-  //   console.log("hello error");
-  // }
-
-  // } (left comment)
-
-  //   });
-  // }
-
-  async writing() {
-    await axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
-      .then((result) => {
-        var arr = [{
-          id: "Write-graph",
-          data: []
-        }]
-        var resultData = []
-
-        result.data.responseData[0].map(items => {
-          // let firstAxis = items.responseTime / 1000 || 0
-          // let secondAxis = (items?.savedTweets == 0 ? 0 : firstAxis / items?.savedTweets) || 0
-          let firstAxis = items?.savedTweets / items?.responseTime
-          let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
-          resultData.push({
-            x: moment(items.saveStartTime * 1000).format('LT'),
-            y: secondAxis
-          })
-
-        })
-        let graphdata = resultData.reverse()
-        arr[0].data = graphdata
-        this.setState({ data: arr })
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  render() {
-    return (
+  return (
+    <>
       <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
-        <MyResponsiveLine data={this.state.data} />
+        <MyResponsiveLine data={data} />
       </div>
-    );
-  }
+    </>
+  );
 }
 

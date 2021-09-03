@@ -194,6 +194,7 @@ export default class App extends Component {
   };
 
   render() {
+    // console.log('tat--',this.state.data)
     return (
       <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>
         <ReadingData data={this.state.data} />

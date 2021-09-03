@@ -364,10 +364,9 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {/* {method}k */}
-                  {totaltweets.tweetsInDb > 1000
+                  {/* {totaltweets.tweetsInDb > 1000
                     ? parseInt(totaltweets.tweetsInDb / 1000) + "k"
-                    : totaltweets.tweetsInDb}
+                    : totaltweets.tweetsInDb} */}
                 </div>
               </Row>
               {readtweets &&
@@ -375,10 +374,10 @@ export default function ReadTweets(props) {
                 readtweets.map((response) => {
                   let value = response?.text || 0;
                   let author = response?.authorId || 0;
-                  let authorName = response?.name?.slice(0,10) || 0;
+                  let authorName = response?.name?.slice(0, 10) || 0;
                   let str = response.addedOn;
                   let timeFormat = moment(str);
-                  let time = timeFormat.format("LT") || 0;
+                  let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
@@ -417,7 +416,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authorName ? authorName : '-'}
+                          {authorName.length > 0 ? authorName + '..' : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper

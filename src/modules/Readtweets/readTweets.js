@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   content: {
-    fontSize: "11px",
+    fontSize: "14px",
     boxShadow: "none",
     border: "none",
     fontFamily: "Raleway",
@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   content_dark_mode: {
-    fontSize: "11px",
+    fontSize: "14px",
     color: "#09184b",
     boxShadow: "none",
     border: "none",
@@ -206,7 +206,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   email: {
-    fontSize: "11px",
+    fontSize: "14px",
     color: "#8F8FAF",
     // whiteSpace: "nowrap",
     fontFamily: "Raleway",
@@ -308,9 +308,10 @@ export default function ReadTweets(props) {
   let animationclass = props.animationTime?.[text]
   let textanimationClass = props.textclass?.[text]
   let handleanimationclass = props.handleclass?.[text]
+  let blockDarkanimationclass = props.blockDarkclass?.[text]
+  let textdarkanimationClass = props.textDarkclass?.[text]
   // console.log('texxx--',animationclass)
-  // let blockDarkanimationclass= props.blockDarkclass?.[text]
-  // let textdarkanimationClass = props.textDarkclass?.[text]
+
 
 
   return (
@@ -376,7 +377,7 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
 
-                  function shortenValue(b, amountL = 80, amountR = 3, stars = 3) {
+                  function shortenValue(b, amountL = 40, amountR = 3, stars = 3) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
@@ -404,11 +405,8 @@ export default function ReadTweets(props) {
                           {/* {authorName.length > 0 ? authorName : 'undefined'} */}
                         </Typography>
                         <Paper className=
-                          {props.dark ? classes.time_dark_mode :
+                          {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
                             (animationclass ? animationclass : classes.time)}
-                        // className={
-                        //   props.dark ? classes.time_dark_mode : classes.time
-                        // }
                         >
                           {time ? time : '-'}
                         </Paper>
@@ -417,17 +415,14 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
-                            {/* {author} */}
-                            {authorName.length > 0 ? authorName + '..' : 'undefined'}
+                            {authorName.length > 0 ? authorName + '..' : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
-                            <Paper className={props.dark ? classes.content_dark_mode : (textanimationClass ? textanimationClass : classes.content)}
+                            <Paper className=
+                              {props.dark ? (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
+                                (textanimationClass ? textanimationClass : classes.content)}
+
                               noWrap
-                              // className={
-                              //   props.dark
-                              //     ? classes.content_dark_mode
-                              //     : classes.content
-                              // }
                               gutterBottom
                             >
                               {value ? shortenValue(value) || 0 : '-'}

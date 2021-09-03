@@ -48,16 +48,15 @@ export default class Read extends BaseComponent {
       let handleAnimationClass = { [blockData.text]: "read-handle-animation" };
       this.setState({ handleAnimation: handleAnimationClass });
 
-      // let textDarkAnimationClass = { [blockData.text]: "text-animation-dark-mode" };
-      // this.setState({ textDarkAnimation: textDarkAnimationClass });
+      let textDarkAnimationClass = { [blockData.text]: "read-text-animation-dark-mode" };
+      this.setState({ textDarkAnimation: textDarkAnimationClass });
 
-      // let blockDarkAnimationClass = { [blockData.text]: "block-height-animation-dark-mode" };
-      // this.setState({ blockDarkAnimation: blockDarkAnimationClass });
+      let blockDarkAnimationClass = { [blockData.text]: "block-read-animation-dark-mode" };
+      this.setState({ blockDarkAnimation: blockDarkAnimationClass });
 
       setTimeout(() => {
         this.setState({
-          blockAnimation: {}, textAnimation: {}, handleAnimation: {},
-          //  textDarkAnimation: {}, blockDarkAnimation: {}
+          blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation:{}, blockDarkAnimation:{}
         })
       }, 500)
 
@@ -144,6 +143,8 @@ export default class Read extends BaseComponent {
           animationTime={this.state.blockAnimation}
           textclass={this.state.textAnimation}
           handleclass={this.state.handleAnimation}
+          textDarkclass={this.state.textDarkAnimation}
+          blockDarkclass={this.state.blockDarkAnimation}
           author={this.state.readtweets}
         />
       </div>

@@ -30,8 +30,8 @@ export default class Saved extends BaseComponent {
     socket.on("BlockChain-socket", (blockData, error) => {
       // console.log('>>>>>savetweet', blockData)
       this.setState({ blockSocketConnected: true })
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
+      // let blockDataExist = savingtweets.findIndex((item) => {
+      //   return item.text == blockData.text;
       // });
       // blockData["class"] = "first-block-age last-block-transaction height2";
       // if (blockDataExist == -1) {
@@ -81,12 +81,6 @@ export default class Saved extends BaseComponent {
       if (tweetsCount.length >= 10)
         tweetsCount.pop();
         tweetsCount.unshift(blockData);
-
-      // setTimeout(() => {
-      //   this.setState({
-      //      blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation:{}, blockDarkAnimation:{} 
-      //     })
-      // }, 500)
 
       this.setState({ savingtweetsCount: tweetsCount });
 
