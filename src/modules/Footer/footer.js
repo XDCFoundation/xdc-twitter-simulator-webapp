@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   linksitem: {
-    fontSize: "11px",
+    fontSize: "14px",
     fontweight: "normal",
     fontstretch: "normal",
     fontstyle: "normal",
@@ -180,7 +180,7 @@ export default function FooterComponent() {
                     >
                       <div className="link-text">
                         <div className={classes.otherlink}>
-                          <div style={{ fontSize: "13px" }}>Other Links</div>
+                          <div style={{ fontSize: "16px" }}>Other Links</div>
                         </div>
                         <div className={classes.links}>
                           <ul>
@@ -194,17 +194,6 @@ export default function FooterComponent() {
                               >
                                 {" "}
                                 Archive Tweet
-                              </a>
-                            </li>
-                            <li className={classes.linksitem}>
-                              <a
-                                style={{
-                                  color: "white",
-                                  textDecoration: "none",
-                                }}
-                                href="https://xinfin.org/share"
-                              >
-                                Share
                               </a>
                             </li>
                             <li className={classes.linksitem}>

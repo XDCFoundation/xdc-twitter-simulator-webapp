@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   content: {
-    fontSize: "11px",
+    fontSize: "14px",
     color: "#09184b",
     boxShadow: "none",
     border: "none",
@@ -143,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "18px",
   },
   content_dark_mode: {
-    fontSize: "11px",
+    fontSize: "14px",
     boxShadow: "none",
     border: "none",
     fontFamily: "Raleway",
@@ -192,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
   },
   email: {
-    fontSize: "11px",
+    fontSize: "14px",
     color: "#8F8FAF",
     whiteSpace: "nowrap",
     fontFamily: "Raleway",
@@ -273,6 +273,7 @@ export default function SavedTweets(props) {
   let handleanimationclass = props.handleclass?.[text]
   let blockDarkanimationclass = props.blockDarkclass?.[text]
   let textdarkanimationClass = props.textDarkclass?.[text]
+
   // console.log('texx--',textdarkanimationClass)
 
   return (
@@ -331,13 +332,16 @@ export default function SavedTweets(props) {
               </Row>
               {props.tweetData &&
                 props.tweetData.length >= 1 &&
-                props.tweetData.map((response) => {
+                props.tweetData.map((response, index) => {
                   let value = response?.text || 0;
                   let author = response?.authorID || 0;
                   let createTime = Number(response?.createdAt || 0)
                   let str = response.addedOn;
                   let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
+
+                  // let textAnimation = response?.text
+
 
                   function shortenValue(b, amountL = 80, stars = 3) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
@@ -364,8 +368,8 @@ export default function SavedTweets(props) {
                           {/* {response.blockNumber} */}
                         </Typography>
                         <Paper className=
-                          {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
-                            (animationclass ? animationclass : classes.time)}
+                          {props.dark ? (index==0 && blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
+                            (index==0 && animationclass ? animationclass : classes.time)}
                         >
                           {time ? time : '-'}
                         </Paper>
@@ -373,15 +377,15 @@ export default function SavedTweets(props) {
 
                       <Row>
                         <Column>
-                          <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
+                          <Typography className={index==0 && handleanimationclass ? handleanimationclass : classes.email}>
                             {author ? author : '-'}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
                               noWrap
                               className={props.dark ?
-                                (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
-                                (textanimationClass ? textanimationClass : classes.content)}
+                                (index==0 && textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
+                                (index==0 && textanimationClass ? textanimationClass : classes.content)}
 
                               gutterBottom
                             >

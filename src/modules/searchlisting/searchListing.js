@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import MyResponsiveLine from "../Maincomponent/writingData";
-import ReadingData from "../Maincomponent/readingData";
+import Writing from "./writegraphListingpage";
+import Reading from "./readgraphListingPage";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -349,6 +349,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Searchlist(props) {
   const classes = useStyles();
 
+  // console.log('sav--',props?.saveGraphdata)
+
   // useEffect(() => {
   //   (async () => {
   //     const result = await axios();
@@ -466,11 +468,6 @@ export default function Searchlist(props) {
                   basic.map((response) => {
                     let value = response?.text || 0
                     let author = response?.authorID || 0
-                    // console.log('resp--',userId)
-                    // const colonIndex = value.indexOf(":") || 0;
-                    // const atIndex = value.indexOf("@") || 0;
-                    // let handler = value.slice(atIndex, colonIndex) || 0;
-                    // let tweetTextMessage = value.split(":")[1];
                     let str = response?.addedOn || 0;
                     let timeFormat = moment(str) || 0;
                     let time = timeFormat.format("LT") || 0;
@@ -482,7 +479,7 @@ export default function Searchlist(props) {
                       )}`;
                     }
 
-                    let userId = response.tweetId || 0
+                    let userId = response?.tweetId || 0
                     // console.log('myuser--',userId)
 
                     return (
@@ -545,20 +542,9 @@ export default function Searchlist(props) {
                     let value = response?.text || 0;
                     let author = response?.id || 0;
                     let authorName = response?.name || 0;
-                    // let handle = author?.slice(0, author?.length).replace(/\s/g, "").toLowerCase() || 0
-                    // console.log('resp2--', author)
-                    // console.log('valuuuu', handle)
-                    // const colonIndex = value.indexOf(":");
-                    // const atIndex = value.indexOf("@");
-                    // let handler = value.slice(atIndex, colonIndex);
-                    // let tweetTextMessage = value.split(":")[1];
-                    // console.log('tt', tweetTextMessage)
                     let str = response?.addedOn || 0;
                     let timeFormat = moment(str) || 0;
                     let time = timeFormat.format("LT") || 0;
-                    // let hashtags = value.split('#')
-                    // console.log('hash---',hashtags)
-                    // let tweetTextMessage=value.text; 
 
                     function shortenValue(b, amountL = 80, stars = 3) {
                       return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
@@ -567,7 +553,7 @@ export default function Searchlist(props) {
                       )}`;
                     }
 
-                    let textId = response.id || 0
+                    let textId = response?.id || 0
                     // console.log('texttt--',textId)
                     return (
                       <>
@@ -662,7 +648,7 @@ export default function Searchlist(props) {
 
                   >
                     {" "}
-                    <span className="hover-data">  <MyResponsiveLine /> </span>
+                    <span className="hover-data"> <Writing write={props?.saveGraphdata}/> </span>
 
                   </div>
                 </Paper>
@@ -691,7 +677,7 @@ export default function Searchlist(props) {
                   >
                     {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
                   </div>
-                  <span className="hover-data">  <ReadingData /> </span>
+                  <span className="hover-data">  <Reading /> </span>
 
                 </Paper>
               </div>

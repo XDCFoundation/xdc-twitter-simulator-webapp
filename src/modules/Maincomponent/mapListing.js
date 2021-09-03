@@ -195,7 +195,6 @@ export default function PinnedSubheaderList(props) {
                         )
 
                     })}
-
             </div>
         </List>
 

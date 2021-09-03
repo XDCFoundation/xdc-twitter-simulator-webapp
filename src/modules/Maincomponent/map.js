@@ -45,7 +45,7 @@ export default function App(props) {
 
   return (
     <>
-      <MapContainer className='lightmap-style' center={[30, 10]} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
+      <MapContainer className='lightmap-style' center={[30, 10]} dragging={false} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
         <TileLayer noWrap={true}
 
           url={tileUrl}

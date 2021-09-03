@@ -14,6 +14,7 @@ export default class Main extends Component {
       dark: false,
       data: [],
       read: [],
+      result: [],
       saveData: [],
       save: [],
       savedTweets: [],
@@ -33,10 +34,11 @@ export default class Main extends Component {
     await this.fetchSavedTweets()
     await this.readingCount()
     await this.writingCount()
-    this.socketData(this.props?.savingSocket)
+    // await this.writing()
+    await this.socketData(this.props?.savingSocket)
   }
 
-  
+
   // Socket Connections:
 
   socketData(socket) {
@@ -231,50 +233,106 @@ export default class Main extends Component {
     }, 60000)
   };
 
+/* Socket Connection for Saving Graph */
+
+  socketData(socket) {
+    let writeGraph = this.state.saveData;
+    socket.on("saving-speed-socket", (val, error) => {
+      // console.log('>>>>val', val)
+      this.setState({ blockSocketConnected: true })
+
+      if (writeGraph.length >= 10)
+        writeGraph.pop();
+      writeGraph.unshift(val);
+
+      this.setState({ saveData: writeGraph });
+      var arr = [{
+        id: "Write-graph",
+        data: []
+      }]
+      var resultData = []
+
+      this.state.saveData.map(items => {
+        // console.log('api--', items)
+        let firstAxis = items?.savedTweets / items?.responseTime
+        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
+        resultData.push({
+          x: moment(items.saveStartTime * 1000).format('LT'),
+          y: secondAxis
+        })
+
+      })
+      function getSaveUnique(resultData, index) {
+
+        const saveunique = resultData
+          .map(e => e[index])
+          .map((e, i, final) => final.indexOf(e) === i && i)
+          .filter(e => resultData[e]).map(e => resultData[e]);
+
+        return saveunique;
+      }
+      let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
+      let savingnewData = savingGraphdata.slice(-1)
+      let savingfirstData = Object.values(savingnewData[0])
+      let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
+
+      this.setState({ save: savingSecondData })
+      
+      arr[0].data = getSaveUnique(resultData, 'x').reverse()
+      this.setState({ result: arr })
+    
+      // console.log('apiarray--', arr)
+
+      if (error) {
+        console.log("hello error");
+      }
+
+    });
+  }
+
   // For Saving Speed :
 
   async writingCount() {
     await axios
       .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
       .then((result) => {
+
+        this.setState({ saveData: result.data.responseData[0] })
         var arr = [{
           id: "Write-graph",
           data: []
         }]
         var resultData = []
 
-        result.data.responseData[0].map(items => {
-          // let firstAxis = items.responseTime / 1000 || 0
-          // let secondAxis = (items?.savedTweets == 0 ? 0 : firstAxis / items?.savedTweets) || 0
+        this.state.saveData.map(items => {
+          // console.log('api--', items)
           let firstAxis = items?.savedTweets / items?.responseTime
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
           resultData.push({
             x: moment(items.saveStartTime * 1000).format('LT'),
             y: secondAxis
           })
-
+  
         })
         function getSaveUnique(resultData, index) {
 
           const saveunique = resultData
             .map(e => e[index])
-
-            // store the keys of the saveunique objects
             .map((e, i, final) => final.indexOf(e) === i && i)
-
-            // eliminate the dead keys & store saveunique objects
             .filter(e => resultData[e]).map(e => resultData[e]);
-
+  
           return saveunique;
         }
         let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
         let savingnewData = savingGraphdata.slice(-1)
         let savingfirstData = Object.values(savingnewData[0])
         let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
-
+  
         this.setState({ save: savingSecondData })
-        arr[0].data = getSaveUnique(resultData, 'x')
-        this.setState({ saveData: arr })
+        arr[0].data = getSaveUnique(resultData, 'x').reverse()
+        this.setState({ result: arr })
+
+        // console.log('apiarray--',arr)
       })
       .catch((err) => {
         console.log(err);
@@ -283,6 +341,8 @@ export default class Main extends Component {
 
 
   render() {
+    // console.log('by', this.state.result)
+    // console.log('my', this.state.saveData)
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
@@ -294,7 +354,7 @@ export default class Main extends Component {
           read={this.state.read}
           data={this.state.data}
           save={this.state.save}
-          saveGraphdata={this.state.saveData}
+          saveGraphdata={this.state.result}
         />
         <FooterComponent />
       </div>
