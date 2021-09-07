@@ -20,12 +20,12 @@ import socketClient from "socket.io-client";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
-// import React, { Component } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 const client = new W3CWebSocket(
   "wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0"
 );
 // import WebSocketCountNode from "./webSocket";
+
 const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
@@ -46,10 +46,6 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     marginRight: "20px",
-    // marginLeft:"3%",
-    // boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
-    // // border: "solid 1px #e3e7eb",
-    // backgroundColor: "#E3E7EB",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     grid: {
@@ -62,10 +58,18 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "50px",
     marginLeft: "3%",
     boxShadow: "0 2px 15px 0 rgba(0, 0, 0, 0.1)",
-    // border: "solid 1px #e3e7eb",
     backgroundColor: "#E3E7EB",
-
   },
+
+  "@media (min-width: 1px) and (max-width: 766px)": {
+    grid2: {
+      marginTop: "50px",
+      marginLeft: "0%",
+      backgroundColor: "transparent",
+      boxShadow: 'none',
+    },
+  },
+
   grid3: {
     marginTop: "50px",
   },
@@ -178,6 +182,8 @@ const useStyles = makeStyles((theme) => ({
   "@media (min-width: 305px) and (max-width: 766px)": {
     map: {
       display: "block",
+      boxShadow: 'none',
+      border: '1px solid #E3E7EB',
     },
   },
   map_dark_mode: {
@@ -193,11 +199,13 @@ const useStyles = makeStyles((theme) => ({
   "@media (min-width: 304px) and (max-width: 766px)": {
     map_dark_mode: {
       display: "block",
+      boxShadow: 'none',
+
     },
   },
   node: {
     fontFamily: "Raleway",
-    fontSize: "14px",
+    fontSize: "18px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -224,7 +232,7 @@ const useStyles = makeStyles((theme) => ({
   },
   node_dark_mode: {
     fontFamily: "Raleway",
-    fontSize: "14px",
+    fontSize: "18px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -255,7 +263,7 @@ const useStyles = makeStyles((theme) => ({
   },
   maxTps: {
     fontFamily: "Raleway",
-    fontSize: "14px",
+    fontSize: "18px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -288,7 +296,7 @@ const useStyles = makeStyles((theme) => ({
   },
   maxTps_dark_mode: {
     fontFamily: "Raleway",
-    fontSize: "14px",
+    fontSize: "18px",
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
@@ -460,9 +468,6 @@ const Trending = styled.div`
 `;
 
 const SaveGraphTrend = styled.div`
-
-
-
   @media (min-width: 2001px) and (max-width: 2400px) {
     margin-top: 10px;
   }
@@ -470,15 +475,6 @@ const SaveGraphTrend = styled.div`
     margin-top: 10px;
   }
 `;
-const SavedGraphTrend = styled.div`
-  @media (min-width: 2001px) and (max-width: 2400px) {
-    margin-top: 10px;
-  }
-  @media (min-width: 2401px) and (max-width: 2600px) {
-    margin-top: 10px;
-  }
-`;
-
 const ReadGraphTrend = styled.div`
 
   @media (min-width: 2001px) and (max-width: 2400px) {
@@ -580,15 +576,10 @@ export default function MainComponent(props) {
             && element !== 'BlocksScan.i'
             && element !== 'Apothem.XinFinScan.co'
           );
-          // let ab = newarray.filter(elem => elem !== 'Apothem.XinFinScan.com_X')
-          // let cd = ab.filter(elemen => elemen !== 'ether.XinFinScan.co')
           setValue(newarray);
-
-          // console.log("ip result---", newarray);
 
           //for socket total nodes ---->
           let nodecount = Object.keys(test).length;
-          // console.log('nodecount-----', nodecount)
           setNodes(nodecount);
         }
       }
@@ -862,22 +853,8 @@ export default function MainComponent(props) {
               >
                 <Trending>
                   <MapTabs dark={dark} />
-                  <div>
-                    {/* {props.dark ? <DarkMap/> : <MapChart/>} */}
-
-                    {/* < MapChart dark={dark} /> */}
-                  </div>
                 </Trending>
               </Paper>
-              {/* <div className= "map-chart" elevation={0}>
-          
-       
-                <div  >
-                  < MapChart dark={dark} />
-                </div>
-           
-          
-            </div> */}
             </Grid>
 
             <Grid item xs={6} className={classes.grid3}>

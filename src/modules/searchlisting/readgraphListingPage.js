@@ -4,19 +4,16 @@ import "../../assets/styles/custom.css";
 import axios from "axios";
 import moment from "moment";
 
-// const point={}
 const toolTipElement = (props) => {
-  // console.log(props.point?.data?.x, "<<prop")
-  // console.log(props, "<<")
-  let stats = parseFloat(props.point?.data?.y)
+  let stats = parseFloat(props.point?.data?.y) || 0
+
   return (
-      <div>
-          <div className="Tooltip-graph">
-              <p className="Tooltip-graph-date">{props.point?.data?.x}</p>
-              <p className="Tooltip-graph-tx">{stats.toFixed(2)}/sec</p>
-          </div>
-          {/* <TriangleArrowDown /> */}
+    <div>
+      <div className="Tooltip-graph">
+        <p className="Tooltip-graph-date">{props.point?.data?.x || 0}</p>
+        <p className="Tooltip-graph-tx">{stats >= 1 ? stats.toFixed(2) || 0 : stats.toFixed(4) || 0}/sec</p>
       </div>
+    </div>
   )
 }
 
@@ -58,7 +55,7 @@ const ReadingData = ({ data }) => (
 export default function App(props) {
   const [data, setData] = useState([])
   // const [read, setRead] = useState({})
-//   console.log('myread---',props.readMe)
+  //   console.log('myread---',props.readMe)
 
   useEffect(() => {
     readingGraph()
@@ -73,11 +70,8 @@ export default function App(props) {
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
-        // console.log('result-----', result.data.responseData)
-        // setData(res.data.responseData);
         var arr = [{
           id: "Write-graph",
-          // color: "hsl(248, 70%, 50%)",
           data: []
         }]
         var resultData = []
@@ -107,7 +101,6 @@ export default function App(props) {
 
         //   console.log(getUnique(resultData,'x'))
         let graphdata = getUnique(resultData, 'x').reverse()
-        // console.log('graph----', graphdata)
 
         // To print the value of last object of y.
         // let newData = graphdata.slice(-1)
@@ -118,8 +111,6 @@ export default function App(props) {
         // console.log('second---',secondData)
         // setRead(secondData)
 
-
-        // console.log('graph--',graphdata)
         arr[0].data = graphdata
         // arr[0].data = resultData
         setData(arr)
@@ -130,10 +121,6 @@ export default function App(props) {
       });
 
   }
-
-
-  // let ex = read
-  // console.log('graph---',ex)
 
   return (
     <div style={{ height: 80, margin: '-5px', marginTop: '5px' }}>

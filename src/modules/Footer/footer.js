@@ -81,11 +81,13 @@ const useStyles = makeStyles((theme) => ({
     padding: "0",
     marginTop: "7px",
   },
+  
   followlinks: {
     listStyle: "none",
     marginTop: "5%",
     padding: "0",
   },
+ 
 
   linksitem: {
     fontSize: "14px",
@@ -99,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     marginRight: "15px",
   },
-
+ 
   followitem: {
     display: "inline-block",
     marginRight: "8px",
@@ -232,7 +234,7 @@ export default function FooterComponent() {
                     >
                       <div className="follow-text">
                         <div className={classes.followus}>
-                          <span style={{ fontSize: "13px" }}>
+                          <span style={{ fontSize: "16px" }}>
                             {" "}
                             Follow us on{" "}
                           </span>

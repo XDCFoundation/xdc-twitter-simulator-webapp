@@ -70,6 +70,7 @@ const SubContainer2 = styled.div`
 
 const SubContainer3 = styled.div`
   display: flex;
+  width: 100%;
   height: 100%;
   background-color: #2149B9;
   padding-left: 30px;
@@ -158,7 +159,7 @@ const MobSearch = styled.input`
   border: none;
   font-family: WorkSans-Roman;
   font-size: 10.5px;
-  color: #fff;
+  color: black;
   ::placeholder {
     color: #adb1d6;
     opacity: 1;
@@ -167,27 +168,27 @@ const MobSearch = styled.input`
 const Button = styled.button`
   background: #5582FF;
   display: flex;
+  width: 31px;
   height: 30px;
-  width: 30px;
   border: none;
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1px;
+
 `;
 
 const MobButton = styled.button`
   background: #5582FF;
   display: flex;
   height: 30px;
-  width: 20%;
+  width: 32px;
   border: none;
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1px;
+  margin-top: 2px;
 `;
 
 const Advancesearch = styled.button`
@@ -266,7 +267,21 @@ const UnorderedList = styled.ul`
   margin-left: 10px;
   border-radius: 4px;
   z-index: 1;
+
+  @media (min-width: 0px) and (max-width: 767px){
+  list-style-type: none;
+  background-color: #222864;
+  position: absolute;
+  bottom: 10%;
+  right: 14%;
+  padding-left: unset;
+  width: 140px;
+  border-radius: 4px;
+  }
 `;
+
+
+
 // const List = styled.li`
 //   margin-top: 4px;
 //   margin-bottom: 4px;
@@ -291,7 +306,6 @@ const Border = styled.div`
   border: solid 1px #353b73;
 `;
 const ArrowUpIcon = styled.span`
-  margin-left: 4px;
   color: #8992e2;
   font-size: 16px;
 `;
@@ -379,23 +393,37 @@ export default function HeaderComponent(props) {
             </button>
           </div>
         </div>
-
-        <SubContainer3>
-          &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <div style={{ padding: '0px 25px 0px 20px' }}>
           <About><a style={{ color: 'white', textDecoration: 'none' }} href="/about">About</a></About>
-          &nbsp;&nbsp;
+        </div>
+        &nbsp;
+        <div style={{ padding: '0px 25px 0px 20px' }}>
           <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
-          &nbsp;&nbsp;
-          <div style={{ marginLeft: '-25px' }}>
-            <FFButton />
+        </div>
+        &nbsp;
+
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '0px 25px 0px 20px' }}>
+          <div>
+            Share
           </div>
-          &nbsp;
+          <div>
+            <ShareButton />
+          </div>
+        </div>
+        &nbsp;
+
+        <div style={{ padding: '0px 25px 0px 20px' }}>
           <DrawerArchive>
             <a style={{ cursor: 'pointer', textDecoration: 'none' }} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
           </DrawerArchive>
-          &nbsp;&nbsp;
+        </div>
+        &nbsp;
+
+        <div style={{ padding: '0px 25px 0px 20px' }}>
           <DarkMode CheckMode={CheckMode} />
-        </SubContainer3>
+        </div>
+        &nbsp;
       </List>
       {/* <Divider /> */}
       {/* <List>
@@ -420,7 +448,7 @@ export default function HeaderComponent(props) {
             <a href="/">
               <Image src="../../images/logo.svg" alt="image" />
             </a>
-            <Search type="text" placeholder="Search by Handle name, Hash tag"  onChange={e => setKeyword(e.target.value)} />
+            <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
             <Button onClick={redirect}>
               <img
                 style={{ height: "20px", width: "20px" }}
@@ -481,8 +509,13 @@ export default function HeaderComponent(props) {
               </div>
             </div>
 
-            <Row >
-              <div style={{ display: 'flex', flexDirection: 'row', padding: '20px 25px 0px 40px' }}>
+            <Row style={{ width: '100%' }}>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                padding: '20px 25px 0px 40px',
+                width: '100%'
+              }}>
                 <MobSearch type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
                 <MobButton onClick={redirect}>
                   <img
@@ -496,7 +529,12 @@ export default function HeaderComponent(props) {
 
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
-            <Row style={{ display: 'flex', flexDirection: 'row', padding: '10px 0px 10px 35px' }}>
+            <Row style={{
+              display: 'flex',
+              flexDirection: 'row',
+              padding: '10px 0px 10px 35px',
+              width: '100%'
+            }}>
               <Advancesearch onClick={handleClickforadvancedsearch}>
                 Advance Search
               </Advancesearch>
@@ -560,14 +598,15 @@ function FFButton() {
   const [show, setShow] = useState(false);
 
   return (
-    <div class="share">
+    <div className="share">
       <button
         class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "18px", fontWeight: 300 }}
+        style={{ fontSize: "18px", fontWeight: 300, }}
       >
         Share
+
         {show ? (
           <ArrowUpIcon>
             <IoIosArrowUp />
@@ -577,9 +616,40 @@ function FFButton() {
             <IoIosArrowDown />
           </ArrowUpIcon>
         )}
+
         <span class="caret"></span>
       </button>
       {show && <RenderDropdown />}
     </div>
+
+  );
+}
+
+function ShareButton() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div className="share">
+      <button
+        class="dpdown"
+        type="button"
+        onClick={() => setShow(!show)}
+        style={{ fontSize: "18px", fontWeight: 300, }}
+      >
+        {show ? (
+          <ArrowUpIcon>
+            <IoIosArrowUp />
+          </ArrowUpIcon>
+        ) : (
+          <ArrowUpIcon>
+            <IoIosArrowDown />
+          </ArrowUpIcon>
+        )}
+
+        <span class="caret"></span>
+      </button>
+      {show && <RenderDropdown />}
+    </div>
+
   );
 }

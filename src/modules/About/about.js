@@ -133,12 +133,12 @@ const useStyles = makeStyles((theme) => ({
   },
   all_head_text: {
     color: "#09184b",
-    fontSize: '15px',
+    fontSize: '18px',
     fontWeight: 500
   },
   all_head_text_dark_mode: {
     color: "#d6d6d6",
-    fontSize: '15px',
+    fontSize: '18px',
     fontWeight: 500
 
   },
@@ -173,7 +173,7 @@ const Span = styled.span`
   color: #ffffff;
   position: absolute;
   top: 20%;
-  left: 11%;
+  left: 7%;
   @media (min-width: 1px) and (max-width: 399px) {
     font-family: Raleway, sans-serif;
     font-size: 11px;
@@ -205,7 +205,7 @@ const Span = styled.span`
 `;
 const Content = styled.span`
   font-family: Raleway, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -215,7 +215,7 @@ const Content = styled.span`
   color: #ffffff;
   position: absolute;
   top: 38%;
-  left: 11%;
+  left: 7%;
   @media (min-width: 0px) and (max-width: 399px) {
     display: none;
   }
@@ -275,7 +275,7 @@ export default function Aboutcomponent(props) {
               consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
               velit esse cillum dolore eu <br />
             </Content>
-            <Bannerimage src="/images/banner.png" />
+            <Bannerimage src={require('../About/Banner.png' )} />
           </div>
         </Grid>
 

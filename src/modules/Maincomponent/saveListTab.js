@@ -325,9 +325,9 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {props?.saveTweetCount?.totalTweetCount > 1000
-                    ? parseInt(props?.saveTweetCount?.totalTweetCount / 1000) + "k"
-                    : props?.saveTweetCount?.totalTweetCount}
+                  {props?.saveTweetCount?.blockchainTweetCount > 1000
+                    ? parseInt(props?.saveTweetCount?.blockchainTweetCount / 1000) + "k"
+                    : props?.saveTweetCount?.blockchainTweetCount}
                 </div>
               </Row>
               {props?.savetweetData &&
