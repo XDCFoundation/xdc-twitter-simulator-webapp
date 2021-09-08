@@ -340,7 +340,7 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
 
-                  function shortenValue(b, amountL = 80, stars = 3) {
+                  function shortenValue(b, amountL = 80, stars = 1) {
                     return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0

@@ -80,60 +80,45 @@ const SubContainer3 = styled.div`
 `;
 
 const Image = styled.img`
-  width: 160px;
-  // @media (max-width: 766px) {
-  //   width: 30px;
-  //   height: 25px;
-  //   margin-left: 0px;
-  // }
-  // @media (min-width: 767px) and (max-width: 900px) {
-  //   width: 35px;
-  //   height: 30px;
-  //   margin-left: 0px;
-  // }
-  // @media (min-width: 901px) and (max-width: 1100) {
-  //   width: 40px;
-  //   height: 35px;
-  //   margin-left: 8px;
-  // }
-  // @media (min-width: 1100px) {
-  //   width: 40px;
-  //   height: 35px;
-  //   margin-left: 12px;
-  // }
+width: 36px;
+height: 36px;
+margin-left: 10px;
+  
 `;
 const MobImage = styled.img`
  
-    // width: 30px;
-    // height: 25px;
+    width: 36px;
+    height: 36px;
     margin-left: 0px;
   
 `;
 const Span = styled.span`
-  font-size: 15px;
-  font-weight: 600;
-  font-family: Raleway;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.19;
-  letter-spacing: normal;
-  color: #fff;
-  margin-right: 10px;
-  margin-top: 2px;
+margin: 6px 0 5px 4px;
+font-family: Raleway;
+font-size: 21px;
+font-weight: 600;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.19;
+letter-spacing: normal;
+text-align: left;
+color: #fff;
 `;
+
+const MobSpan = styled.span`
+margin: 20px 0 0px 4px;
+font-family: Raleway;
+font-size: 18px;
+font-weight: 600;
+font-stretch: normal;
+font-style: normal;
+line-height: 1.19;
+letter-spacing: normal;
+text-align: left;
+color: #fff;
+`;
+
 const Search = styled.input`
-  // @media (max-width: 766px) {
-  //   width: 100px;
-  // }
-  // @media (min-width: 767px) and (max-width: 900px) {
-  //   width: 150px;
-  // }
-  // @media (min-width: 901px) and (max-width: 1100) {
-  //   width: 250px;
-  // }
-  // @media (min-width: 1100px) {
-  //   width: 250px;
-  // }
   height: 30px;
   width: 280px;
   margin: 0px 5px 0 16px;
@@ -381,11 +366,12 @@ export default function HeaderComponent(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 15px' }}>
           <div style={{ flexGrow: 1 }}  >
             <a href="/">
-              <MobImage src="../../images/logo.svg" alt="image" />
+              <MobImage src={require('../Header/TwitterLogo.png')} />
             </a>
+            <MobSpan>XDC Speed Test</MobSpan>
           </div>
           <div >
             <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(false)}>
@@ -445,9 +431,13 @@ export default function HeaderComponent(props) {
       <Display>
         <Container>
           <SubContainer1>
-            <a href="/">
+            {/* <a href="/">
               <Image src="../../images/logo.svg" alt="image" />
+            </a> */}
+            <a href="/">
+              <Image src={require('../Header/TwitterLogo.png')} />
             </a>
+            <Span>XDC Speed Test</Span>
             <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
             <Button onClick={redirect}>
               <img
@@ -498,9 +488,9 @@ export default function HeaderComponent(props) {
             <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
               <div style={{ flexGrow: 1 }}  >
                 <a href="/">
-                  <MobImage src="../../images/TwitterS.svg" alt="image" />
+                  <MobImage src={require('../Header/TwitterLogo.png')} />
                 </a>
-                <Span >Twitter D-App</Span>
+                <MobSpan>XDC Speed Test</MobSpan>
               </div>
               <div >
                 <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(true)}>

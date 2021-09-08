@@ -172,7 +172,13 @@ export default function PinnedSubheaderList(props) {
                                         marginLeft: '5px'
                                     }}>
                                         {index + 1 ? index + 1 : 'null'}. {items?.name || 0} &nbsp;
-                                        ({volume > 1000 ? parseInt(volume / 1000) + 'k' || 0 : volume || 0} tweets)
+                                        {/* ({volume > 1000 ? parseInt(volume / 1000) + 'k' || 0 : volume || 0} tweets) */}
+                                        {volume > 1000
+                                            ?
+                                            (volume == 0 ? ' ' : '(' + parseInt(volume / 1000) + 'k' + ' ' + 'tweets' + ')')
+                                            :
+                                            (!volume == 0 ? '(' + volume + 'k' + ' ' + 'tweets' + ')' : ' ')
+                                        }
                                     </div>
 
                                     <div style={{

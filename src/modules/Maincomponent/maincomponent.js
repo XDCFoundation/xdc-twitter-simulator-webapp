@@ -514,6 +514,7 @@ export default function MainComponent(props) {
       fetchTps();
     }, 60000);
   }, []);
+
   useEffect(() => {
     getValue();
   }, []);
@@ -610,12 +611,11 @@ export default function MainComponent(props) {
   let maxtpsCount = parseFloat(maxtpsvalue?.responseData).toFixed(2);
   let id = props?.read || 0
   let savingData = props?.saveGraphdata
+  let readingData = props?.readGraphdata
   let identity = props?.readSocket
   let writeIdentity = props?.Savesocket
   let smallSavetweet = props?.tweetData
   let smallSaveCount = props?.tweetCount
-
-
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -670,7 +670,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                       >
-                        {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">sec</span>
+                        {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">min</span>
                       </div>
                       <span className="hover-data">
                         {" "}
@@ -724,11 +724,11 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                       >
-                        {id?.length > 0 ? id : " - "} /<span className="fs-16">sec</span>
+                        {id?.length > 0 ? id : " - "} /<span className="fs-16">min</span>
                       </div>
                       <span className="hover-data">
                         {" "}
-                        <ReadingData readData={props?.data} readMe={identity} />{" "}
+                        <ReadingData readData={props?.data} readMe={identity} readGraph={readingData} />{" "}
                       </span>
                     </Paper>
                   </Grid>
@@ -910,7 +910,7 @@ export default function MainComponent(props) {
                   </Tippy>
                 </div>
                 <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                  {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">sec</span>
+                  {isNaN(tpsCount) ? "-" : tpsCount} /<span className="fs-16">min</span>
                 </div>
                 <span className="hover-data">
                   {" "}
@@ -962,7 +962,7 @@ export default function MainComponent(props) {
                 </div>
                 <span className="hover-data">
                   {" "}
-                  <ReadingData />{" "}
+                  <ReadingData readData={props?.data} readMe={identity} readGraph={readingData} />{" "}
                 </span>
               </Paper>
             </Grid>
