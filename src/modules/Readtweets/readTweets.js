@@ -221,7 +221,7 @@ const useStyles = makeStyles((theme) => ({
   },
   readtweet: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "22px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -235,7 +235,7 @@ const useStyles = makeStyles((theme) => ({
 
   readtweet_dark_mode: {
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "22px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",

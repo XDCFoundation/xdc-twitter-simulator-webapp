@@ -285,6 +285,12 @@ input:focus {
 .subscription-plan-card-shadow {
   box-shadow: 0px 3px 21px 0 rgba(0, 0, 0, 0.07);
 }
+/* .share{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+} */
+
 .savingSpeed {
   /* letter-spacing: normal;
   text-align: left;*/
@@ -564,6 +570,12 @@ input:focus {
 .link-grid-2 {
   display: flex;
   justify-content: center;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .link-grid-2 {
+    display: flex;
+    justify-content: flex-start;
+  }
 }
 
 .link-grid-3 {
@@ -879,8 +891,9 @@ input:focus {
 }
 
 .powered-text {
-  margin-top: 17px;
+  margin-top: 14px;
   margin-left: 10px;
+  font-size: 26px;
   letter-spacing: 0px;
   color: #FFFFFF;
   font-family: 'Raleway';
@@ -934,7 +947,7 @@ input:focus {
   }
   .follow-text {
     background-color: transparent;
-    margin-left: -110px;
+    margin-left: -40px;
   }
   .powered-paper {
     margin-left: -30px;
@@ -944,11 +957,11 @@ input:focus {
 @media (min-width: 300px) and (max-width: 599px) {
   .link-text {
     background-color: transparent;
-    margin-left: -67px;
+    margin-left: -57px;
   }
   .follow-text {
     background-color: transparent;
-    margin-left: -120px;
+    margin-left: -35px;
   }
   .powered-paper {
     margin-left: -63px;
@@ -956,6 +969,7 @@ input:focus {
   }
   .powered-text {
     margin-top: 0px;
+    font-size: 26px;
     margin-left: 5px;
     letter-spacing: 0.59px;
     margin-bottom: 14px;
@@ -965,7 +979,7 @@ input:focus {
 @media (min-width: 600px) and (max-width: 999px) {
   .link-text {
     background-color: transparent;
-    margin-left: -45px;
+    margin-left: -35px;
   }
   .powered-paper {
     margin-left: 0px;
@@ -974,11 +988,12 @@ input:focus {
 
   .follow-text {
     background-color: transparent;
-    margin-left: -56px;
+    margin-left: -90px;
   }
   .powered-text {
     margin-top: 0px;
     margin-left: 5px;
+    font-size: 26px;
     letter-spacing: 0.59px;
     margin-bottom: 14px;
   }
@@ -1257,21 +1272,40 @@ input:focus {
   }
 }
 
+.button {
+  background-color: #222864;
+  border-radius: 6px;
+  border-color: #222864;
+  color: white;
+  padding: 10px 14px 10px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 
 .empty-div {
   display: flex;
   flex-direction: row;
-  width: 10%;
-  /* height: 44px; */
-  margin-left: 12%;
+  margin-left: 10.2%;
   margin-top: 9px;
   padding: 14px 25.1px 14px 25px;
-  border-radius: 6px;
-  background-color: #222864;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .empty-div {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1%;
+    margin-top: 9px;
+    padding: 14px 25.1px 14px 25px;
+  }
 }
 
 .dashboard-name {
-  margin: 2px 0 0 7.1px;
+  margin: 6px 0 0 5px;
   font-family: Raleway;
   font-size: 15px;
   font-weight: 600;
@@ -1282,6 +1316,8 @@ input:focus {
   text-align: left;
   color: #ffffff;
 }
+
+
 .img-parent {
   margin-top: -5px;
   margin-left: -10px;

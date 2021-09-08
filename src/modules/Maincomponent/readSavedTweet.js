@@ -43,7 +43,7 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(1)}
           >
-            <span style={{ fontSize: 14 }}> Saved Tweets </span>
+            <span style={props.dark ? {fontSize: 14, color: 'white' } : {fontSize: 14, color: 'black'}}> Saved Tweets </span>
           </button>
           <button
             style={
@@ -62,7 +62,7 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(2)}
           >
-            <span style={{ fontSize: 14 }}> Read Tweets </span>
+            <span style={props.dark ? {fontSize: 14, color: 'white' } : {fontSize: 14, color: 'black'}}> Read Tweets </span>
           </button>
         </div>
       </div>

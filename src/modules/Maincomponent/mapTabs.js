@@ -46,9 +46,9 @@ function MapTabs(props) {
                     >
                         <span style={props.dark ?
                             {
-                                fontSize: 12,
+                                fontSize: 12, color: 'white'
                             } :
-                            { fontSize: 12}}> Map </span>
+                            { fontSize: 12, color: 'black'}}> Map </span>
                     </button>
                     <button style={props.dark ?
                         {
@@ -66,9 +66,9 @@ function MapTabs(props) {
                     >
                         <span style={props.dark ?
                             {
-                                fontSize: 12,
+                                fontSize: 12, color:'white'
                             } :
-                            { fontSize: 12 }}> List </span>
+                            { fontSize: 12 ,color:'black'}}> List </span>
                     </button>
                 </div>
             </div>

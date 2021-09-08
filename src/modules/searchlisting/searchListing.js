@@ -23,7 +23,6 @@ import {
 import { useParams } from "react-router";
 import Loader from './loader';
 
-
 const Text = styled.div`
   font-weight: 900;
   margin-bottom: 55px;
@@ -175,10 +174,42 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
     marginLeft: "18px",
   },
+  mob_list_time: {
+    color: "#8290a4",
+    boxShadow: "none",
+    position: "absolute",
+    right: "13%",
+    fontSize: "13px",
+    fontWeight: "normal",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.15",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#8290a4",
+    marginBottom: "5px",
+    marginLeft: "18px",
+  },
   time_dark_mode: {
     boxShadow: "none",
     position: "absolute",
     right: "44%",
+    fontSize: "13px",
+    fontWeight: "normal",
+    fontStretch: "normal",
+    fontStyle: "normal",
+    lineHeight: "1.15",
+    letterSpacing: "normal",
+    textAlign: "left",
+    color: "#8290a4",
+    backgroundColor: "#191d43",
+    marginBottom: "5px",
+    marginLeft: "18px",
+  },
+  mob_list_time_dark_mode: {
+    boxShadow: "none",
+    position: "absolute",
+    right: "13%",
     fontSize: "13px",
     fontWeight: "normal",
     fontStretch: "normal",
@@ -282,6 +313,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '5px',
     boxShadow: '0px 2px 30px #0000001A',
   },
+
   writing_paper_dark_mode: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -293,6 +325,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '5px',
     border: 'solid 1px #343965',
   },
+
   reading_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -338,13 +371,55 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
   gridcontainer: {
+    display: 'flex',
     width: "100%",
     paddingLeft: "10%",
     // paddingTop: "6%",
     paddingRight: "5%",
     paddingBottom: "6%",
   },
+
+  mob_view_Gridcontainer: {
+    display: 'grid',
+    width: "100%",
+    paddingBottom: "6%",
+  },
+
+  firstGrid: {
+    marginTop: '27px',
+    marginLeft: '4px',
+  },
+
+  graphsGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '20px',
+    marginLeft: '25px'
+  },
+  "@media (min-width: 1px) and (max-width: 767px)": {
+    graphsGrid: {
+      display: 'none'
+    }
+  },
+
 }));
+
+const DesktopView = styled.div`
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    display: visible;
+  }
+`;
+const MobileView = styled.div`
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: visible;
+  }
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
 
 export default function Searchlist(props) {
   const classes = useStyles();
@@ -427,266 +502,445 @@ export default function Searchlist(props) {
             }}
           />
         </Grid>
+
         <div className="empty-div">
-          <div className="img-parent">
-            <span style=
-              {{
-                color: 'white',
-                fontSize: 20
-              }}>
+          <button className="button">
+            <div>
               <HomeIcon />
-            </span>
-          </div>
-          <div className="dashboard-name">
+            </div>
+            <div className="dashboard-name">
             <a style={{ color: 'white', cursor: 'pointer', textDecoration: 'none' }} href='/'>Dashboard</a>
-          </div>
+            </div>
+          </button>
         </div>
 
-        <Grid container spacing={6} className={classes.gridcontainer}>
-          <Grid style={{ marginTop: '27px', marginLeft: '4px' }} item xs={7}>
-            <Paper
-              className={props.dark ? classes.paper_dark_mode : classes.paper}
-              elevation={0}
-            >
-              <Column>
-                <Row className={classes.row}>
-                  <Typography
+        <DesktopView>
+          <Grid container spacing={6} className={classes.gridcontainer}>
+            <Grid className={classes.firstGrid} item xs={7}>
+              <Paper
+                className={props.dark ? classes.paper_dark_mode : classes.paper}
+                elevation={0}
+              >
+                <Column>
+                  <Row className={classes.row}>
+                    <Typography
+                      className={
+                        props.dark
+                          ? classes.readtweet_dark_mode
+                          : classes.readtweet
+                      }
+                      variant="h5"
+                      style={{ whiteSpace: "nowrap" }}
+                    >
+                      Search Results
+                    </Typography>
+                  </Row>
+
+                  {isLoading ? <Loader /> : (basic &&
+                    basic.length >= 1 &&
+                    basic.map((response) => {
+                      let value = response?.text || 0
+                      let author = response?.authorID || 0
+                      let str = response?.addedOn || 0;
+                      let timeFormat = moment(str) || 0;
+                      let time = timeFormat.format("LT") || 0;
+
+                      function shortenValue(b, amountL = 40, stars = 3) {
+                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                          // b?.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
+
+                      let userId = response?.tweetId || 0
+                      // console.log('myuser--',userId)
+
+                      return (
+                        <>
+                          <hr
+                            className={
+                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                            }
+                          />
+                          <a style={{ textDecoration: 'none' }} href={'/archive/' + userId}>
+                            <Row>
+
+                              <Typography
+                                variant="h6"
+                                className={
+                                  props.dark ? classes.name_dark_mode : classes.name
+                                }
+                              >
+                                {/* Lisa ray */}
+                              </Typography>
+                              <Paper
+                                className={
+                                  props.dark ? classes.time_dark_mode : classes.time
+                                }
+                              >
+                                {time ? time : '-'}
+                              </Paper>
+                            </Row>
+
+                            <Row>
+                              <Column>
+                                <Typography className={classes.email}>
+                                  {author ? author : '-'}
+                                </Typography>
+                                <ThemeProvider theme={theme}>
+                                  <Paper
+                                    noWrap
+                                    className={
+                                      props.dark
+                                        ? classes.content_dark_mode
+                                        : classes.content
+                                    }
+                                    gutterBottom
+                                  >
+                                    {value ? shortenValue(value) || 0 : '-'}
+                                  </Paper>
+                                </ThemeProvider>
+                              </Column>
+
+                            </Row>
+                          </a>
+                        </>
+                      );
+                    })
+                  )}
+
+                  {advance &&
+                    advance.length >= 1 &&
+                    advance.map((response) => {
+                      let value = response?.text || 0;
+                      let author = response?.id || 0;
+                      let authorName = response?.name || 0;
+                      let str = response?.addedOn || 0;
+                      let timeFormat = moment(str) || 0;
+                      let time = timeFormat.format("LT") || 0;
+
+                      function shortenValue(b, amountL = 40, stars = 3) {
+                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                          // b.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
+
+                      let textId = response?.id || 0
+                      // console.log('texttt--',textId)
+                      return (
+                        <>
+                          <hr
+                            className={
+                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                            }
+                          />
+                          <a style={{ textDecoration: 'none' }} href={'/archive/' + textId}>
+                            <Row>
+                              <Typography
+                                variant="h6"
+                                className={
+                                  props.dark ? classes.name_dark_mode : classes.name
+                                }
+                              >
+
+                                {/* {author} */}
+                              </Typography>
+                              <Paper
+                                className={
+                                  props.dark ? classes.time_dark_mode : classes.time
+                                }
+                              >
+                                {time}
+                              </Paper>
+                            </Row>
+
+                            <Row>
+                              <Column>
+                                <Typography className={classes.email}>
+                                  {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
+                                  {authorName.length > 0 ? authorName + '..' : author}
+                                </Typography>
+                                <ThemeProvider theme={theme}>
+                                  <Paper
+                                    noWrap
+                                    className={
+                                      props.dark
+                                        ? classes.content_dark_mode
+                                        : classes.content
+                                    }
+                                    gutterBottom
+                                  >
+                                    {value ? shortenValue(value) : '-'}
+                                  </Paper>
+                                </ThemeProvider>
+                              </Column>
+                            </Row>
+                          </a>
+                        </>
+                      );
+                    })}
+                </Column>
+                <hr
+                  className={
+                    props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                  }
+                />
+                <br />
+                <br />
+                <br />
+
+
+              </Paper>
+            </Grid>
+
+            <Grid className={classes.graphsGrid} item xs={4}>
+              <div >
+                <div className={props.dark ? "writing-data-one-dark-mode" : "writing-data-one"}>Writing Data</div>
+                <div>
+                  <Paper elevation={0}
                     className={
                       props.dark
-                        ? classes.readtweet_dark_mode
-                        : classes.readtweet
-                    }
-                    variant="h5"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    Search Results
-                  </Typography>
-                </Row>
-                
-                {isLoading ? <Loader /> : (basic &&
-                  basic.length >= 1 &&
-                  basic.map((response) => {
-                    let value = response?.text || 0
-                    let author = response?.authorID || 0
-                    let str = response?.addedOn || 0;
-                    let timeFormat = moment(str) || 0;
-                    let time = timeFormat.format("LT") || 0;
-
-                    function shortenValue(b, amountL = 100, stars = 3) {
-                      return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                        // b?.length - 3,
-                        b?.length || 0
-                      )}`;
-                    }
-
-                    let userId = response?.tweetId || 0
-                    // console.log('myuser--',userId)
-
-                    return (
-                      <>
-                        <hr
-                          className={
-                            props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                          }
-                        />
-                        <a style={{ textDecoration: 'none' }} href={'/archive/' + userId}>
-                          <Row>
-
-                            <Typography
-                              variant="h6"
-                              className={
-                                props.dark ? classes.name_dark_mode : classes.name
-                              }
-                            >
-                              {/* Lisa ray */}
-                            </Typography>
-                            <Paper
-                              className={
-                                props.dark ? classes.time_dark_mode : classes.time
-                              }
-                            >
-                              {time ? time : '-'}
-                            </Paper>
-                          </Row>
-
-                          <Row>
-                            <Column>
-                              <Typography className={classes.email}>
-                                {author ? author : '-'}
-                              </Typography>
-                              <ThemeProvider theme={theme}>
-                                <Paper
-                                  noWrap
-                                  className={
-                                    props.dark
-                                      ? classes.content_dark_mode
-                                      : classes.content
-                                  }
-                                  gutterBottom
-                                >
-                                  {value ? shortenValue(value) || 0 : '-'}
-                                </Paper>
-                              </ThemeProvider>
-                            </Column>
-
-                          </Row>
-                        </a>
-                      </>
-                    );
-                  })
-                )}
-
-                {advance &&
-                  advance.length >= 1 &&
-                  advance.map((response) => {
-                    let value = response?.text || 0;
-                    let author = response?.id || 0;
-                    let authorName = response?.name || 0;
-                    let str = response?.addedOn || 0;
-                    let timeFormat = moment(str) || 0;
-                    let time = timeFormat.format("LT") || 0;
-
-                    function shortenValue(b, amountL = 80, stars = 3) {
-                      return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                        // b.length - 3,
-                        b?.length || 0
-                      )}`;
-                    }
-
-                    let textId = response?.id || 0
-                    // console.log('texttt--',textId)
-                    return (
-                      <>
-                        <hr
-                          className={
-                            props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                          }
-                        />
-                        <a style={{ textDecoration: 'none' }} href={'/archive/' + textId}>
-                          <Row>
-                            <Typography
-                              variant="h6"
-                              className={
-                                props.dark ? classes.name_dark_mode : classes.name
-                              }
-                            >
-
-                              {/* {author} */}
-                            </Typography>
-                            <Paper
-                              className={
-                                props.dark ? classes.time_dark_mode : classes.time
-                              }
-                            >
-                              {time}
-                            </Paper>
-                          </Row>
-
-                          <Row>
-                            <Column>
-                              <Typography className={classes.email}>
-                                {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
-                                {authorName}
-                              </Typography>
-                              <ThemeProvider theme={theme}>
-                                <Paper
-                                  noWrap
-                                  className={
-                                    props.dark
-                                      ? classes.content_dark_mode
-                                      : classes.content
-                                  }
-                                  gutterBottom
-                                >
-                                  {value ? shortenValue(value) : '-'}
-                                </Paper>
-                              </ThemeProvider>
-                            </Column>
-                          </Row>
-                        </a>
-                      </>
-                    );
-                  })}
-              </Column>
-              <hr
-                className={
-                  props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                }
-              />
-              <br />
-              <br />
-              <br />
-
-
-            </Paper>
-          </Grid>
-
-          <Grid style={{ display: 'flex', flexDirection: 'column', padding: '20px', marginLeft: '25px' }} item xs={4}>
-            <div >
-              <div className={props.dark ? "writing-data-one-dark-mode" : "writing-data-one"}>Writing Data</div>
-              <div>
-                <Paper elevation={0}
-                  className={
-                    props.dark
-                      ? classes.writing_paper_dark_mode
-                      : classes.writing_paper
-                  }
-                >
-                  <div
-                    className={
-                      props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
+                        ? classes.writing_paper_dark_mode
+                        : classes.writing_paper
                     }
                   >
-                    Saving Speed
-                  </div>
-                  <div
-                    className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
-                  >
-                    {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / sec
-                  </div>
-                  <div
+                    <div
+                      className={
+                        props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
+                      }
+                    >
+                      Saving Speed
+                    </div>
+                    <div
+                      className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
+                    >
+                      {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / sec
+                    </div>
+                    <div
 
-                  >
-                    {" "}
-                    <span className="hover-data"> <Writing write={props?.saveGraphdata}/> </span>
+                    >
+                      {" "}
+                      <span className="hover-data"> <Writing write={props?.saveGraphdata} /> </span>
 
-                  </div>
-                </Paper>
+                    </div>
+                  </Paper>
+                </div>
               </div>
-            </div>
 
-            <div>
-              <div className={props.dark ? "reading-data-one-dark-mode" : "reading-data-one"}>Reading Data</div>
               <div>
-                <Paper elevation={0}
-                  className={
-                    props.dark
-                      ? classes.reading_paper_dark_mode
-                      : classes.reading_paper
-                  }
-                >
-                  <div
+                <div className={props.dark ? "reading-data-one-dark-mode" : "reading-data-one"}>Reading Data</div>
+                <div>
+                  <Paper elevation={0}
                     className={
-                      props.dark ? "savingSpeed-dark-mode" : "savingSpeed"
+                      props.dark
+                        ? classes.reading_paper_dark_mode
+                        : classes.reading_paper
                     }
                   >
-                    Reading Tweet
-                  </div>
-                  <div
-                    className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
-                  >
-                    {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
-                  </div>
-                  <span className="hover-data">  <Reading /> </span>
+                    <div
+                      className={
+                        props.dark ? "savingSpeed-dark-mode" : "savingSpeed"
+                      }
+                    >
+                      Reading Tweet
+                    </div>
+                    <div
+                      className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
+                    >
+                      {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
+                    </div>
+                    <span className="hover-data">  <Reading /> </span>
 
-                </Paper>
+                  </Paper>
+                </div>
               </div>
-            </div>
-
-
-
+            </Grid>
           </Grid>
-        </Grid>
+        </DesktopView>
+
+        <MobileView>
+          <Grid container spacing={6} className={classes.mob_view_Gridcontainer}>
+            <Grid className={classes.firstGrid} item xs={12}>
+              <Paper
+                className={props.dark ? classes.paper_dark_mode : classes.paper}
+                elevation={0}
+              >
+                <Column>
+                  <Row className={classes.row}>
+                    <Typography
+                      className={
+                        props.dark
+                          ? classes.readtweet_dark_mode
+                          : classes.readtweet
+                      }
+                      variant="h5"
+                      style={{ whiteSpace: "nowrap" }}
+                    >
+                      Search Results
+                    </Typography>
+                  </Row>
+
+                  {basic &&
+                    basic.length >= 1 &&
+                    basic.map((response) => {
+                      let value = response?.text || 0
+                      let author = response?.authorID || 0
+                      let str = response?.addedOn || 0;
+                      let timeFormat = moment(str) || 0;
+                      let time = timeFormat.format("LT") || 0;
+
+                      function shortenValue(b, amountL = 40, stars = 3) {
+                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                          // b?.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
+
+                      let userId = response?.tweetId || 0
+                      // console.log('myuser--',userId)
+
+                      return (
+                        <>
+                          <hr
+                            className={
+                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                            }
+                          />
+                          <a style={{ textDecoration: 'none' }} href={'/archive/' + userId}>
+                            <Row>
+
+                              <Typography
+                                variant="h6"
+                                className={
+                                  props.dark ? classes.name_dark_mode : classes.name
+                                }
+                              >
+                                {/* Lisa ray */}
+                              </Typography>
+                              <Paper
+                                className={
+                                  props.dark ? classes.mob_list_time_dark_mode : classes.mob_list_time
+                                }
+                              >
+                                {time ? time : '-'}
+                              </Paper>
+                            </Row>
+
+                            <Row>
+                              <Column>
+                                <Typography className={classes.email}>
+                                {author}
+                                </Typography>
+                                <ThemeProvider theme={theme}>
+                                  <Paper
+                                    noWrap
+                                    className={
+                                      props.dark
+                                        ? classes.content_dark_mode
+                                        : classes.content
+                                    }
+                                    gutterBottom
+                                  >
+                                    {value ? shortenValue(value) || 0 : '-'}
+                                  </Paper>
+                                </ThemeProvider>
+                              </Column>
+
+                            </Row>
+                          </a>
+                        </>
+                      );
+                    })
+                  }
+
+                  {advance &&
+                    advance.length >= 1 &&
+                    advance.map((response) => {
+                      let value = response?.text || 0;
+                      let author = response?.id || 0;
+                      let authorName = response?.name || 0;
+                      let str = response?.addedOn || 0;
+                      let timeFormat = moment(str) || 0;
+                      let time = timeFormat.format("LT") || 0;
+
+                      function shortenValue(b, amountL = 40, stars = 3) {
+                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                          // b.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
+
+                      let textId = response?.id || 0
+                      // console.log('texttt--',textId)
+                      return (
+                        <>
+                          <hr
+                            className={
+                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                            }
+                          />
+                          <a style={{ textDecoration: 'none' }} href={'/archive/' + textId}>
+                            <Row>
+                              <Typography
+                                variant="h6"
+                                className={
+                                  props.dark ? classes.name_dark_mode : classes.name
+                                }
+                              >
+
+                                {/* {author} */}
+                              </Typography>
+                              <Paper
+                                className={
+                                  props.dark ? classes.mob_list_time_dark_mode : classes.mob_list_time
+                                }
+                              >
+                                {time}
+                              </Paper>
+                            </Row>
+
+                            <Row>
+                              <Column>
+                                <Typography className={classes.email}>
+                                  {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
+                                  {authorName.length > 0 ? authorName + '..' : author}
+                                </Typography>
+                                <ThemeProvider theme={theme}>
+                                  <Paper
+                                    noWrap
+                                    className={
+                                      props.dark
+                                        ? classes.content_dark_mode
+                                        : classes.content
+                                    }
+                                    gutterBottom
+                                  >
+                                    {value ? shortenValue(value) : '-'}
+                                  </Paper>
+                                </ThemeProvider>
+                              </Column>
+                            </Row>
+                          </a>
+                        </>
+                      );
+                    })}
+                </Column>
+                <hr
+                  className={
+                    props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                  }
+                />
+                <br />
+                <br />
+                <br />
+
+
+              </Paper>
+            </Grid>
+          </Grid>
+        </MobileView>
+
       </div>
     </div>
   );

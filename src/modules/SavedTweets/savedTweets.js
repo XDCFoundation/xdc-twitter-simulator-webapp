@@ -25,7 +25,7 @@ const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
   width: 14px;
-  margin-top: 3px;
+  margin-top: 8px;
 `;
 const theme = createMuiTheme({
   typography: {
@@ -208,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
   readtweet: {
     display: "flex",
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "22px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -222,7 +222,7 @@ const useStyles = makeStyles((theme) => ({
   readtweet_dark_mode: {
     display: "flex",
     fontFamily: "Raleway",
-    fontSize: "16px",
+    fontSize: "22px",
     fontWeight: "600",
     fontStretch: "normal",
     fontStyle: "normal",
@@ -325,9 +325,9 @@ export default function SavedTweets(props) {
                   {props?.savedCount[0] ? (props?.savedCount[0] > 1000
                     ? parseInt(props?.savedCount[0] / 1000) + "k"
                     : props.savedCount[0]) :
-                    (props?.tweetCount?.totalTweetCount) > 1000
-                      ? parseInt(props?.tweetCount?.totalTweetCount / 1000) + "k"
-                      : props?.tweetCount?.totalTweetCount}
+                    (props?.tweetCount?.blockchainTweetCount) > 1000
+                      ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) + "k"
+                      : props?.tweetCount?.blockchainTweetCount}
                 </Paper>
               </Row>
               {props.tweetData &&
