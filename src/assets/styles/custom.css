@@ -291,6 +291,24 @@ input:focus {
   width: 100%;
 } */
 
+.wordTruncating{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  padding-right: 35px;
+}
+
+.listingPagetruncating{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  padding-right: 50px;
+}
+
 .savingSpeed {
   /* letter-spacing: normal;
   text-align: left;*/
@@ -1556,7 +1574,7 @@ input:focus {
   animation-fill-mode: forwards !important;
 }
 .read-handle-animation{
-  font-size: 11px !important;
+  font-size: 14px !important;
   color: #8290a4 !important;
   font-family: Raleway !important;
   margin-bottom: 5px !important;

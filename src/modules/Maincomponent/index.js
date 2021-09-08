@@ -14,7 +14,9 @@ export default class Main extends Component {
       dark: false,
       data: [],
       read: [],
+      readResult: [],
       result: [],
+      readData: [],
       saveData: [],
       save: [],
       savedTweets: [],
@@ -36,10 +38,11 @@ export default class Main extends Component {
     await this.writingCount()
     // await this.writing()
     await this.socketData(this.props?.savingSocket)
+    await this.readsocketData(this.props?.readingSocket)
   }
 
 
-  // Socket Connections:
+  // Socket Connections :
 
   socketData(socket) {
     let savingtweets = this.state.savedTweets;
@@ -132,6 +135,65 @@ export default class Main extends Component {
     }, 10000)
   };
 
+
+/* Socket Connection for Read Graph */
+
+  readsocketData(socket) {
+    let readGraph = this.state.readData;
+    socket.on("read-speed-socket", (val, error) => {
+      // console.log('>>>>val', val)
+      this.setState({ blockSocketConnected: true })
+
+      if (readGraph.length >= 10)
+        readGraph.pop();
+      readGraph.unshift(val);
+
+      this.setState({ readData: readGraph });
+
+      var arr = [{
+        id: "Read-graph",
+        data: []
+      }]
+      var resultData = []
+
+      this.state.readData.map(items => {
+        let graphs = (1000*items.requestCount/items.responseTime)*60
+        resultData.push({
+          x: moment(items.startTime).format('LT'),
+          y: graphs
+        })
+
+      })
+      function getUnique(resultData, index) {
+
+        const unique = resultData
+          .map(e => e[index])
+
+          // store the keys of the unique objects
+          .map((e, i, final) => final.indexOf(e) === i && i)
+
+          // eliminate the dead keys & store unique objects
+          .filter(e => resultData[e]).map(e => resultData[e]);
+
+        return unique;
+      }
+      let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
+      let newData = graphdata.slice(-1)
+      let firstData = Object.values(newData[0])
+      let secondData = parseFloat(firstData[1]).toFixed(2)
+
+      this.setState({ read: secondData })
+
+      arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+      this.setState({ readResult: arr })
+
+      if (error) {
+        console.log("hello error");
+      }
+
+    });
+  }
+
   // for Reading Speed :
 
   async readingCount() {
@@ -140,100 +202,48 @@ export default class Main extends Component {
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
+
+        this.setState({ readData: result.data.responseData })
+
         var arr = [{
           id: "Write-graph",
           data: []
         }]
         var resultData = []
 
-        result.data.responseData.map(items => {
-          resultData.push({
-            x: moment(items.addedOn).format('LT'),
-            y: items.responseTime / items.requestCount
-          })
+        this.state.readData.map(items => {
+          let graphs = (1000*items.requestCount/items.responseTime)*60
+            resultData.push({
+              x: moment(items.startTime).format('LT'),
+              y: graphs
+            })
 
         })
         function getUnique(resultData, index) {
 
           const unique = resultData
             .map(e => e[index])
-
-            // store the keys of the unique objects
             .map((e, i, final) => final.indexOf(e) === i && i)
-
-            // eliminate the dead keys & store unique objects
             .filter(e => resultData[e]).map(e => resultData[e]);
 
           return unique;
         }
-        let graphdata = getUnique(resultData, 'x').reverse()
+        let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
         let newData = graphdata.slice(-1)
         let firstData = Object.values(newData[0])
-        let secondData = parseFloat(1000 / firstData[1]).toFixed(2)
+        let secondData = parseFloat(firstData[1]).toFixed(2)
 
         this.setState({ read: secondData })
 
-        arr[0].data = getUnique(resultData, 'x').reverse()
-        this.setState({ data: arr })
+        arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+        this.setState({ readResult: arr })
       })
       .catch((err) => {
         console.log(err);
       });
+  }
 
-    setInterval(async () => {
-      // if (!this.state.blockSocketConnected) {
-      await axios
-        .get(
-          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
-        )
-        .then((result) => {
-          var arr = [{
-            id: "Write-graph",
-            data: []
-          }]
-          var resultData = []
-
-          result.data.responseData.map(items => {
-
-            resultData.push({
-              x: moment(items.addedOn).format('LT'),
-              y: items.responseTime / items.requestCount
-            })
-
-          })
-          function getUnique(resultData, index) {
-
-            const unique = resultData
-              .map(e => e[index])
-
-              // store the keys of the unique objects
-              .map((e, i, final) => final.indexOf(e) === i && i)
-
-              // eliminate the dead keys & store unique objects
-              .filter(e => resultData[e]).map(e => resultData[e]);
-
-            return unique;
-          }
-          let graphdata = getUnique(resultData, 'x').reverse()
-          let newData = graphdata.slice(-1)
-          let firstData = Object.values(newData[0])
-          let secondData = parseFloat(1000 / firstData[1]).toFixed(2)
-
-          this.setState({ read: secondData })
-
-          // arr[0].data = getUnique(resultData, 'x').reverse()
-          // this.setState({ data: arr })
-
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      // }
-
-    }, 60000)
-  };
-
-/* Socket Connection for Saving Graph */
+  /* Socket Connection for Saving Graph */
 
   socketData(socket) {
     let writeGraph = this.state.saveData;
@@ -258,7 +268,7 @@ export default class Main extends Component {
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
         resultData.push({
           x: moment(items.saveStartTime * 1000).format('LT'),
-          y: secondAxis
+          y: secondAxis*60
         })
 
       })
@@ -277,10 +287,10 @@ export default class Main extends Component {
       let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
 
       this.setState({ save: savingSecondData })
-      
+
       arr[0].data = getSaveUnique(resultData, 'x').reverse()
       this.setState({ result: arr })
-    
+
       // console.log('apiarray--', arr)
 
       if (error) {
@@ -310,9 +320,9 @@ export default class Main extends Component {
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
           resultData.push({
             x: moment(items.saveStartTime * 1000).format('LT'),
-            y: secondAxis
+            y: secondAxis*60
           })
-  
+
         })
         function getSaveUnique(resultData, index) {
 
@@ -320,14 +330,14 @@ export default class Main extends Component {
             .map(e => e[index])
             .map((e, i, final) => final.indexOf(e) === i && i)
             .filter(e => resultData[e]).map(e => resultData[e]);
-  
+
           return saveunique;
         }
         let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
         let savingnewData = savingGraphdata.slice(-1)
         let savingfirstData = Object.values(savingnewData[0])
         let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
-  
+
         this.setState({ save: savingSecondData })
         arr[0].data = getSaveUnique(resultData, 'x').reverse()
         this.setState({ result: arr })
@@ -341,8 +351,8 @@ export default class Main extends Component {
 
 
   render() {
-    // console.log('by', this.state.result)
-    // console.log('my', this.state.saveData)
+    // console.log('by', this.state.readResult)
+    // console.log('my', this.state.readData)
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
@@ -351,10 +361,11 @@ export default class Main extends Component {
           readSocket={this.props.readingSocket}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}
-          read={this.state.read}
           data={this.state.data}
           save={this.state.save}
+          read={this.state.read}
           saveGraphdata={this.state.result}
+          readGraphdata={this.state.readResult}
         />
         <FooterComponent />
       </div>

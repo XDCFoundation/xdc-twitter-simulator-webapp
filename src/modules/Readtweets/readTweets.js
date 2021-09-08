@@ -376,16 +376,6 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
 
-
-                  function shortenValue(b, amountL = 40, amountR = 3, stars = 3) {
-                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                      // b.length - 3,
-                      b?.length || 0
-                    )}`;
-                  }
-
-
-
                   return (
                     <>
                       <hr
@@ -415,7 +405,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
-                            {authorName.length > 0 ? authorName + '..' : author}
+                            {authorName.length > 0 ? authorName : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper className=
@@ -425,7 +415,10 @@ export default function ReadTweets(props) {
                               noWrap
                               gutterBottom
                             >
-                              {value ? shortenValue(value) || 0 : '-'}
+                              {/* {value ? shortenValue(value) || 0 : '-'} */}
+                              <div className="wordTruncating">
+                                {value}
+                              </div>
                             </Paper>
                           </ThemeProvider>
                         </Column>

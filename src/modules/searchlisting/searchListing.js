@@ -424,19 +424,10 @@ const MobileView = styled.div`
 export default function Searchlist(props) {
   const classes = useStyles();
 
-  // console.log('sav--',props?.saveGraphdata)
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const result = await axios();
-  //     setData(result.data);
-  //   })();
-  // }, []);
-
   const [basic, setBasic] = useState({})
   const [advance, setAdvance] = useState({})
   const [isLoading, setLoading] = useState(true)
-  // console.log('prop..',props?.locations)
+
 
   useEffect(() => {
     Basicsearch();
@@ -458,8 +449,7 @@ export default function Searchlist(props) {
         else basicSearch = res.data.responseData.responseData || 0;
         setBasic(basicSearch);
         setLoading(false)
-        // console.log('mysearch-------', res.data.responseData.responseData)
-        // console.log('my url===',url)
+
       })
       .catch((err) => {
         console.log(err);
@@ -482,8 +472,7 @@ export default function Searchlist(props) {
           advanceSearch = [];
         else advanceSearch = res.data.responseData.responseData || 0;
         setAdvance(advanceSearch);
-        // console.log('myAdvancesearch-------', res.data.responseData.responseData)
-        // console.log('my url===',url)
+
       })
       .catch((err) => {
         console.log(err);
@@ -509,7 +498,7 @@ export default function Searchlist(props) {
               <HomeIcon />
             </div>
             <div className="dashboard-name">
-            <a style={{ color: 'white', cursor: 'pointer', textDecoration: 'none' }} href='/'>Dashboard</a>
+              <a style={{ color: 'white', cursor: 'pointer', textDecoration: 'none' }} href='/'>Dashboard</a>
             </div>
           </button>
         </div>
@@ -545,12 +534,6 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-                      function shortenValue(b, amountL = 40, stars = 3) {
-                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                          // b?.length - 3,
-                          b?.length || 0
-                        )}`;
-                      }
 
                       let userId = response?.tweetId || 0
                       // console.log('myuser--',userId)
@@ -597,7 +580,9 @@ export default function Searchlist(props) {
                                     }
                                     gutterBottom
                                   >
-                                    {value ? shortenValue(value) || 0 : '-'}
+                                    <div className="listingPagetruncating">
+                                      {value ? value : '-'}
+                                    </div>
                                   </Paper>
                                 </ThemeProvider>
                               </Column>
@@ -618,13 +603,6 @@ export default function Searchlist(props) {
                       let str = response?.addedOn || 0;
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
-
-                      function shortenValue(b, amountL = 40, stars = 3) {
-                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                          // b.length - 3,
-                          b?.length || 0
-                        )}`;
-                      }
 
                       let textId = response?.id || 0
                       // console.log('texttt--',textId)
@@ -659,7 +637,7 @@ export default function Searchlist(props) {
                               <Column>
                                 <Typography className={classes.email}>
                                   {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
-                                  {authorName.length > 0 ? authorName + '..' : author}
+                                  {authorName.length > 0 ? authorName : author}
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
@@ -671,7 +649,9 @@ export default function Searchlist(props) {
                                     }
                                     gutterBottom
                                   >
-                                    {value ? shortenValue(value) : '-'}
+                                    <div className="listingPagetruncating">
+                                      {value ? value : '-'}
+                                    </div>
                                   </Paper>
                                 </ThemeProvider>
                               </Column>
@@ -715,7 +695,7 @@ export default function Searchlist(props) {
                     <div
                       className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                     >
-                      {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / sec
+                      {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / min
                     </div>
                     <div
 
@@ -748,9 +728,9 @@ export default function Searchlist(props) {
                     <div
                       className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
                     >
-                      {(props?.list)?.length > 0 ? props?.list : ' - '}/sec
+                      {(props?.readSpeed)?.length > 0 ? props?.readSpeed : ' - '}/min
                     </div>
-                    <span className="hover-data">  <Reading /> </span>
+                    <span className="hover-data">  <Reading read={props?.readGraphdata}/> </span>
 
                   </Paper>
                 </div>
@@ -790,12 +770,6 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-                      function shortenValue(b, amountL = 40, stars = 3) {
-                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                          // b?.length - 3,
-                          b?.length || 0
-                        )}`;
-                      }
 
                       let userId = response?.tweetId || 0
                       // console.log('myuser--',userId)
@@ -830,7 +804,7 @@ export default function Searchlist(props) {
                             <Row>
                               <Column>
                                 <Typography className={classes.email}>
-                                {author}
+                                  {author}
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
@@ -842,7 +816,9 @@ export default function Searchlist(props) {
                                     }
                                     gutterBottom
                                   >
-                                    {value ? shortenValue(value) || 0 : '-'}
+                                    <div className="listingPagetruncating">
+                                      {value ? value : '-'}
+                                    </div>
                                   </Paper>
                                 </ThemeProvider>
                               </Column>
@@ -864,13 +840,7 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-                      function shortenValue(b, amountL = 40, stars = 3) {
-                        return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                          // b.length - 3,
-                          b?.length || 0
-                        )}`;
-                      }
-
+  
                       let textId = response?.id || 0
                       // console.log('texttt--',textId)
                       return (
@@ -916,7 +886,9 @@ export default function Searchlist(props) {
                                     }
                                     gutterBottom
                                   >
-                                    {value ? shortenValue(value) : '-'}
+                                    <div className="listingPagetruncating">
+                                      {value ? value : '-'}
+                                    </div>
                                   </Paper>
                                 </ThemeProvider>
                               </Column>

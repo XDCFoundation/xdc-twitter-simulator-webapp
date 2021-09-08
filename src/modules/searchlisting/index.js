@@ -8,6 +8,7 @@ import moment from 'moment';
 import socketClient from "socket.io-client";
 
 let saveSocketgraph = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3000/', { transports: ['websocket'] })
+let readSocketgraph = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3003/', { transports: ['websocket'] })
 
 // let keywords = this.props?.match?.params?.keyword
 
@@ -20,6 +21,7 @@ export default class Main extends Component {
       data: [],
       read: [],
       save: [],
+      readResult: [],
       result: [],
       saveData: [],
       keyword: this.props?.match?.params?.keyword?.split('&')[0],
@@ -39,6 +41,67 @@ export default class Main extends Component {
     await this.listreadingData()
     await this.writingSpeed()
     await this.socketData(saveSocketgraph)
+    await this.readsocketData(readSocketgraph)
+  }
+
+  /* Socket Connection for Read Graph */
+
+  readsocketData(socket) {
+    let readGraph = this.state.readData;
+    socket.on("read-speed-socket", (val, error) => {
+      // console.log('>>>>val', val)
+      this.setState({ blockSocketConnected: true })
+
+      if (readGraph.length >= 10)
+        readGraph.pop();
+      readGraph.unshift(val);
+
+      this.setState({ readData: readGraph });
+
+      var arr = [{
+        id: "Read-graph",
+        data: []
+      }]
+      var resultData = []
+
+      this.state.readData.map(items => {
+        let graphs = items.responseTime / items.requestCount
+        let secondGraph = graphs*60
+        resultData.push({
+          x: moment(items.addedOn).format('LT'),
+          y: secondGraph 
+        })
+
+      })
+      function getUnique(resultData, index) {
+
+        const unique = resultData
+          .map(e => e[index])
+
+          // store the keys of the unique objects
+          .map((e, i, final) => final.indexOf(e) === i && i)
+
+          // eliminate the dead keys & store unique objects
+          .filter(e => resultData[e]).map(e => resultData[e]);
+
+        return unique;
+      }
+      let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
+      let newData = graphdata.slice(-1)
+      let firstData = Object.values(newData[0])
+      let secondData = parseFloat(firstData[1]).toFixed(2)
+      // console.log('second---',secondData)
+
+      this.setState({ read: secondData })
+
+      arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+      this.setState({ readResult: arr })
+
+      if (error) {
+        console.log("hello error");
+      }
+
+    });
   }
 
   // For reading Speed in listing page: 
@@ -49,17 +112,21 @@ export default class Main extends Component {
         process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
+
+        this.setState({ readData: result.data.responseData })
+
         var arr = [{
           id: "Write-graph",
           data: []
         }]
         var resultData = []
 
-        result.data.responseData.map(items => {
-
+        this.state.readData.map(items => {
+          let graphs = items.responseTime / items.requestCount
+          let secondGraph = graphs*60
           resultData.push({
             x: moment(items.addedOn).format('LT'),
-            y: items.responseTime / items.requestCount
+            y: secondGraph 
           })
 
         })
@@ -67,24 +134,20 @@ export default class Main extends Component {
 
           const unique = resultData
             .map(e => e[index])
-
-            // store the keys of the unique objects
             .map((e, i, final) => final.indexOf(e) === i && i)
-
-            // eliminate the dead keys & store unique objects
             .filter(e => resultData[e]).map(e => resultData[e]);
 
           return unique;
         }
-        let graphdata = getUnique(resultData, 'x').reverse()
+        let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
         let newData = graphdata.slice(-1)
         let firstData = Object.values(newData[0])
-        let secondData = parseFloat(1000 / firstData[1]).toFixed(2)
-        // setRead(secondData)
+        let secondData = parseFloat(firstData[1]).toFixed(2)
+  
         this.setState({ read: secondData })
-        arr[0].data = getUnique(resultData, 'x').reverse()
-        // setData(arr)
-        this.setState({ data: arr })
+  
+        arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+        this.setState({ readResult: arr })
       })
       .catch((err) => {
         console.log(err);
@@ -117,7 +180,7 @@ export default class Main extends Component {
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
         resultData.push({
           x: moment(items.saveStartTime * 1000).format('LT'),
-          y: secondAxis
+          y: secondAxis * 60
         })
 
       })
@@ -169,7 +232,7 @@ export default class Main extends Component {
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
           resultData.push({
             x: moment(items.saveStartTime * 1000).format('LT'),
-            y: secondAxis
+            y: secondAxis * 60
           })
 
         })
@@ -202,8 +265,16 @@ export default class Main extends Component {
     return (
       <>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
-        <Searchlist dark={this.state.dark} locations={this.state.keyword} username={this.state.advname} hashname={this.state.advhash}
-          list={this.state.read} saveSpeed={this.state.save} saveGraphdata={this.state.result} />
+        <Searchlist
+          dark={this.state.dark}
+          locations={this.state.keyword}
+          username={this.state.advname}
+          hashname={this.state.advhash}
+          list={this.state.read}
+          readSpeed={this.state.read}
+          saveSpeed={this.state.save}
+          saveGraphdata={this.state.result}
+          readGraphdata={this.state.readResult} />
         <FooterComponent />
       </>
     );

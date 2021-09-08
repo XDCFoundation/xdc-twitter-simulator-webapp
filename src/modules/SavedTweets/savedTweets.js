@@ -342,13 +342,6 @@ export default function SavedTweets(props) {
 
                   // let textAnimation = response?.text
 
-
-                  function shortenValue(b, amountL = 80, stars = 3) {
-                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
-                      // b.length - 3,
-                      b?.length || 0
-                    )}`;
-                  }
                   return (
                     <React.Fragment key={author}>
                       <hr
@@ -368,8 +361,8 @@ export default function SavedTweets(props) {
                           {/* {response.blockNumber} */}
                         </Typography>
                         <Paper className=
-                          {props.dark ? (index==0 && blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
-                            (index==0 && animationclass ? animationclass : classes.time)}
+                          {props.dark ? (index == 0 && blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
+                            (index == 0 && animationclass ? animationclass : classes.time)}
                         >
                           {time ? time : '-'}
                         </Paper>
@@ -377,19 +370,21 @@ export default function SavedTweets(props) {
 
                       <Row>
                         <Column>
-                          <Typography className={index==0 && handleanimationclass ? handleanimationclass : classes.email}>
+                          <Typography className={index == 0 && handleanimationclass ? handleanimationclass : classes.email}>
                             {author ? author : '-'}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
                               noWrap
                               className={props.dark ?
-                                (index==0 && textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
-                                (index==0 && textanimationClass ? textanimationClass : classes.content)}
+                                (index == 0 && textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
+                                (index == 0 && textanimationClass ? textanimationClass : classes.content)}
 
                               gutterBottom
                             >
-                              {value ? shortenValue(value) || 0 : '-'}
+                              <div className="wordTruncating">
+                                {value}
+                              </div>
                             </Paper>
                           </ThemeProvider>
                         </Column>

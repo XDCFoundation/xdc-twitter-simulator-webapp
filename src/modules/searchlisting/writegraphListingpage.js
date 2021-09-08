@@ -12,7 +12,7 @@ const toolTipElement = (props) => {
     <div>
       <div className="Tooltip-graph">
         <p className="Tooltip-graph-date">{props.point?.data?.x || 0}</p>
-        <p className="Tooltip-graph-tx">{stats >=1 ? stats.toFixed(2) || 0: stats.toFixed(4) || 0}/sec</p>
+        <p className="Tooltip-graph-tx">{stats >=1 ? stats.toFixed(2) || 0: stats.toFixed(4) || 0}/min</p>
       </div>
     </div>
   )
