@@ -294,6 +294,7 @@ input:focus {
 .wordTruncating{
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: break-word;
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
@@ -650,6 +651,16 @@ input:focus {
   margin-top: 20px;
   margin-left: -24px;
 }
+@media (max-width: 600px){
+  .block {
+   margin-left: -16px;
+  }
+}
+@media (max-width: 601px) and (min-width: 767px){
+  .block {
+   margin-left: 0px;
+  }
+}
 @media (min-width: 1800px) and (max-width: 2100px){
   .block {
     width: 120%;
@@ -678,6 +689,12 @@ input:focus {
   margin-top: 20px;
   margin-left: -8px;
   opacity: 0.4;
+}
+@media (min-width: 0px) and (max-width: 766px){
+  .dark-block {
+    width: 104.5%;
+    margin-left: -0px;
+  }
 }
 @media (min-width: 767px) and (max-width: 1000px){
   .dark-block {
@@ -766,7 +783,6 @@ input:focus {
   background: #3366FF; 
 }
 
-
 @media (min-width: 767px) and (max-width: 1200px) {
   .active-tabs::before {
     width: 35.5px;
@@ -842,19 +858,38 @@ input:focus {
   background: #3366FF; 
 }
 
-@media (min-width: 300px) and (max-width: 500px) {
+@media (min-width: 300px) and (max-width: 400px) {
   .active-tabSavelist::before {
-    top: 60px;
+    top: 62px;
+    width: 60px;
+  }
+}
+@media (min-width: 401px) and (max-width: 500px) {
+  .active-tabSavelist::before {
+    top: 57px;
     width: 70px;
   }
 }
-@media (min-width: 500px) and (max-width: 600px) {
+@media (min-width: 501px) and (max-width: 600px) {
   .active-tabSavelist::before {
-    top: 55px;
+    top: 51px;
+    left: 8px;
     width: 70px;
   }
 }
-
+@media (min-width: 601px) and (max-width: 650px) {
+  .active-tabSavelist::before {
+    top: 47px;
+    width: 100px;
+  }
+}
+@media (min-width: 651px) and (max-width: 766px) {
+  .active-tabSavelist::before {
+    top: 39px;
+    left: 9px;
+    width: 100px;
+  }
+}
 .content {
   padding-top: 10px;
   background: white;
@@ -1194,6 +1229,20 @@ input:focus {
  margin-top: 8px;
  margin-left: -2px;
  background-color: transparent;
+}
+
+@media (max-width: 650px) {
+  .lightmap-style {
+    margin-left: 4px;
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 651px) and (max-width: 766px) {
+  .lightmap-style {
+    width: 125%;
+    margin-left: -10px;
+    margin-bottom: 20px;
+  }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .lightmap-style {

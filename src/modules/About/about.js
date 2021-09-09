@@ -266,7 +266,7 @@ export default function Aboutcomponent(props) {
       <Grid container spacing={0}>
         <Grid item xs={12}>
           <div className={classes.uppercomponent}>
-            <Span>About Twitter DApp</Span>
+            <Span>About XDC Speed Test</Span>
             <Content>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor <br /> incididunt ut labore et dolore magna aliqua.
@@ -294,7 +294,7 @@ export default function Aboutcomponent(props) {
               props.dark ? classes.twitterDapp_dark_mode : classes.twitterDapp
             }
           >
-            Twitter-D App features
+            XDC Speed Test features
           </Paper>
 
           <Grid container spacing={0} className={classes.imagegrid}>

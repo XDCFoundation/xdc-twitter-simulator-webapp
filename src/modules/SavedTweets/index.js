@@ -78,7 +78,7 @@ export default class Saved extends BaseComponent {
       // });
       // blockData["class"] = "first-block-age last-block-transaction height2";
       // if (blockDataExist == -1) {
-      if (tweetsCount.length >= 10)
+      if (tweetsCount.length >= 1)
         tweetsCount.pop();
         tweetsCount.unshift(blockData);
 

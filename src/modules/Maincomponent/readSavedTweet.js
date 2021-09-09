@@ -34,12 +34,12 @@ function MapTabs(props) {
             }
             className={
               props.dark
-                ? toggleState === 1
+                ? (toggleState === 1
                   ? "dark-tabSavelist active-tabSavelist"
-                  : "dark-tabSavelist"
-                : toggleState === 1
+                  : "dark-tabSavelist")
+                : (toggleState === 1
                 ? "tabSavelist active-tabSavelist"
-                : "tabSavelist"
+                : "tabSavelist")
             }
             onClick={() => toggleTab(1)}
           >

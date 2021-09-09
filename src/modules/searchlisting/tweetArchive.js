@@ -13,6 +13,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import FooterComponent from "../Footer/footer";
 import { Icon } from "@material-ui/core";
 import moment from 'moment';
+import Header from '../Header/header';
 
 
 const Container = styled.div`
@@ -254,7 +255,8 @@ export default function TweetArchive() {
 
   return (
     <>
-      <HeaderComponent archiveId={userId?.tweet} />
+      {/* <HeaderComponent archiveId={userId?.tweet} /> */}
+      <Header/>
       <br />
       <Grid xs={12} >
         <Mainbox >
