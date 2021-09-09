@@ -292,6 +292,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
+
   readTweetContainer: {
     marginTop: "0px",
   },

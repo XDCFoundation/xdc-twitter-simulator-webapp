@@ -803,7 +803,7 @@ export default function MainComponent(props) {
                             <IconImg src="../../images/ic.png" />
                           </Tippy>
                           <br />
-                          {isNaN(tpsCount) ? "-" : tpsCount} /{" "}
+                          {isNaN(tpsCount) ? "-" : parseFloat(tpsCount/60).toFixed(2)} /{" "}
                           {isNaN(maxtpsCount) ? "-" : maxtpsCount}
                         </div>
                         <div style={{ width: "50%", marginLeft: "5%" }}>

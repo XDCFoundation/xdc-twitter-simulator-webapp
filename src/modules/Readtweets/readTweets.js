@@ -376,6 +376,13 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
 
+                  function shortenValue(b, amountL = 80, stars = 1) {
+                    return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                      // b.length - 3,
+                      b?.length || 0
+                    )}`;
+                  }
+
                   return (
                     <>
                       <hr
@@ -417,7 +424,7 @@ export default function ReadTweets(props) {
                             >
                               {/* {value ? shortenValue(value) || 0 : '-'} */}
                               <div className="wordTruncating">
-                                {value}
+                                {shortenValue(value)}
                               </div>
                             </Paper>
                           </ThemeProvider>

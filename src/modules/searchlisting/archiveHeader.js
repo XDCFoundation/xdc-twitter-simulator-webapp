@@ -28,26 +28,16 @@ const DesktopView = styled.div`
 `;
 
 
-// const MobileView = styled.div`
-// @media (min-width: 0px) and (max-width: 767px) {
-//   display: visible;
-// }
-// @media (min-width: 768px) {
-//   display: none;
-// }
-// `;
-
-
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: #191d43;
+  height: 80px;
+  background-color: #2149B9;
 `;
 const Image = styled.img`
   padding: 10px;
-  margin-left: 45px;
+  margin-left: 55px;
   width: 57px;
-  margin-top: 3px;
+  margin-top: 10px;
 `;
 const MobileImage = styled.img`
   padding: 10px;
@@ -57,12 +47,11 @@ const MobileImage = styled.img`
 `;
 const Span = styled.span`
   color: #ffffff;
-  background-color: #191d43;
-  font-size: 19px;
-  margin-top: 21px;
+  background-color: #2149B9;
+  font-size: 21px;
+  margin-top: 26px;
   font-weight: 600;
   font-family: "Raleway", sans-serif !important;
-  margin-left: -11px;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.19;
@@ -75,23 +64,15 @@ export default function Headerconditional() {
     <>
       <DesktopView>
         <Container>
-          <Row>
-            <Image src="/images/tweetarchive.svg" />
-            <Span>TweetArchive</Span>
+          <Row >
+            <a href="/">
+              <Image src={require('../Header/TwitterLogo.png')} />
+            </a>
+            <Span>XDC Speed Test</Span>
           </Row>
         </Container>
       </DesktopView>
 
-      {/* <MobileView>
-        <Container>
-          <Grid item xs={12}>
-            <Row>
-              <MobileImage src="/images/tweetarchive.svg" />
-              <Span>TweetArchive</Span>
-            </Row>
-          </Grid>
-        </Container>
-      </MobileView> */}
     </>
   );
 }

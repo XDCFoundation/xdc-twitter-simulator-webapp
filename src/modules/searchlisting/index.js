@@ -65,37 +65,31 @@ export default class Main extends Component {
       var resultData = []
 
       this.state.readData.map(items => {
-        let graphs = items.responseTime / items.requestCount
-        let secondGraph = graphs*60
+        let graphs = (1000*items.requestCount/items.responseTime)*60
         resultData.push({
-          x: moment(items.addedOn).format('LT'),
-          y: secondGraph 
+          x: moment(items.startTime).format('LT'),
+          y: graphs
         })
 
-      })
-      function getUnique(resultData, index) {
+    })
+    function getUnique(resultData, index) {
 
-        const unique = resultData
-          .map(e => e[index])
+      const unique = resultData
+        .map(e => e[index])
+        .map((e, i, final) => final.indexOf(e) === i && i)
+        .filter(e => resultData[e]).map(e => resultData[e]);
 
-          // store the keys of the unique objects
-          .map((e, i, final) => final.indexOf(e) === i && i)
+      return unique;
+    }
+    let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
+    let newData = graphdata.slice(-1)
+    let firstData = Object.values(newData[0])
+    let secondData = parseFloat(firstData[1]).toFixed(2)
 
-          // eliminate the dead keys & store unique objects
-          .filter(e => resultData[e]).map(e => resultData[e]);
+    this.setState({ read: secondData })
 
-        return unique;
-      }
-      let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
-      let newData = graphdata.slice(-1)
-      let firstData = Object.values(newData[0])
-      let secondData = parseFloat(firstData[1]).toFixed(2)
-      // console.log('second---',secondData)
-
-      this.setState({ read: secondData })
-
-      arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
-      this.setState({ readResult: arr })
+    arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+    this.setState({ readResult: arr })
 
       if (error) {
         console.log("hello error");
@@ -122,12 +116,11 @@ export default class Main extends Component {
         var resultData = []
 
         this.state.readData.map(items => {
-          let graphs = items.responseTime / items.requestCount
-          let secondGraph = graphs*60
-          resultData.push({
-            x: moment(items.addedOn).format('LT'),
-            y: secondGraph 
-          })
+          let graphs = (1000*items.requestCount/items.responseTime)*60
+            resultData.push({
+              x: moment(items.startTime).format('LT'),
+              y: graphs
+            })
 
         })
         function getUnique(resultData, index) {
@@ -143,9 +136,9 @@ export default class Main extends Component {
         let newData = graphdata.slice(-1)
         let firstData = Object.values(newData[0])
         let secondData = parseFloat(firstData[1]).toFixed(2)
-  
+
         this.setState({ read: secondData })
-  
+
         arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
         this.setState({ readResult: arr })
       })

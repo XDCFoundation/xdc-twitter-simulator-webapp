@@ -26,6 +26,20 @@ const useStyles = makeStyles((theme) => ({
             display: 'none'
         }
     },
+    "@media (max-width: 630px)": {
+        root: {
+            width: '114%',
+            maxHeight: 355,
+            marginLeft: '-16px',
+        },
+    },
+    "@media (min-width: 630px) and (max-width: 766px)": {
+        root: {
+            width: '119%',
+            maxHeight: 355,
+            marginLeft: '-6px',
+        },
+    },
     "@media (min-width: 767px) and (max-width: 900px)": {
         root: {
             width: '114%',
@@ -66,6 +80,13 @@ const useStyles = makeStyles((theme) => ({
         '&::-webkit-scrollbar-thumb': {
             display: 'none'
         }
+    },
+    
+    "@media (min-width: 300px) and (max-width: 766px)": {
+        dark_root: {
+            width: '107%',
+            marginLeft: '-16px',
+        },
     },
     "@media (min-width: 767px) and (max-width: 1000px)": {
         dark_root: {

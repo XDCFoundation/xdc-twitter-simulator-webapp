@@ -341,9 +341,15 @@ export default function SavedTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   // let textAnimation = response?.text
+                  function shortenValue(b, amountL = 80, stars = 1) {
+                    return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                      // b.length - 3,
+                      b?.length || 0
+                    )}`;
+                  }
 
                   return (
-                    <React.Fragment key={author}>
+                    <React.Fragment >
                       <hr
                         className={
                           props.dark
@@ -383,8 +389,9 @@ export default function SavedTweets(props) {
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                                {value}
+                                {shortenValue(value)}
                               </div>
+                              
                             </Paper>
                           </ThemeProvider>
                         </Column>
