@@ -283,6 +283,7 @@ export default function ReadTweets(props) {
   const [authors, setAuthors] = useState({});
 
   // let handle = props?.author
+  // console.log('so--',props?.tweetreadData)
 
 
   useEffect(() => {
@@ -375,11 +376,12 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 80, stars = 1) {
-                    return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                    return `${b.length > 0 ? b?.slice(0, amountL) : '-'}${""?.repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
                   }
+
 
                   return (
                     <>
@@ -425,9 +427,9 @@ export default function ReadTweets(props) {
                               noWrap
                               gutterBottom
                             >
-                              {/* {value ? shortenValue(value) || 0 : '-'} */}
+
                               <div className="wordTruncating">
-                                {shortenValue(value)}
+                                {value.length > 0 ? shortenValue(value) || '-' : '-'}
                               </div>
                             </Paper>
                           </ThemeProvider>

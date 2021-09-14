@@ -514,8 +514,8 @@ export default function HeaderComponent(props) {
         <MobileContainer>
           <Grid item xs={12}>
 
-            <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
-              <div style={{ flexGrow: 1, marginLeft: '-5px' }}  >
+            <div className='headerfirstRow'>
+              <div className='menuRow'  >
                 <a href="/">
                   <MobImage src={require('../Header/TwitterLogo.png')} />
                 </a>
@@ -524,23 +524,17 @@ export default function HeaderComponent(props) {
                 </a>
               </div>
               <div >
-                <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(true)}>
+                <button className='hamMenuButton' onClick={() => setOpenHeader(true)}>
                   <MenuIcon />
                 </button>
               </div>
             </div>
 
-            <Row style={{ width: '100%' }}>
-              <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                padding: '20px 25px 0px 35px',
-                width: '100%'
-              }}>
+            <Row className = 'parentSecondhead'>
+              <div className='headerSecondRow' >
                 <MobSearch type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
                 <MobButton onClick={redirect}>
-                  <img
-                    style={{ height: "20px", width: "20px" }}
+                  <img className= 'searchMenuButton'
                     src="../../images/Search.svg"
                     alt=" "
                   />
