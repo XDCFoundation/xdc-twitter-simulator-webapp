@@ -190,6 +190,20 @@ const Advancesearch = styled.button`
   letter-spacing: 0.5px;
 `;
 
+const Mobadvancesearch = styled.button`
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  color: #7499FF;
+  margin-left: -4px;
+  //margin-top: 3px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+`;
+
 const About = styled.text`
   font-size: 18px;
   font-weight: 300;
@@ -252,17 +266,27 @@ const UnorderedList = styled.ul`
   margin-left: 10px;
   border-radius: 4px;
   z-index: 1;
-
   @media (min-width: 0px) and (max-width: 767px){
   list-style-type: none;
   background-color: #222864;
   position: absolute;
-  bottom: 10%;
+  bottom: 1%;
   right: 14%;
   padding-left: unset;
   width: 140px;
   border-radius: 4px;
   }
+  
+  @media (min-width: 768px) and (max-width: 1029px){
+    list-style-type: none;
+    background-color: #222864;
+    position: absolute;
+    bottom: 1%;
+    right: 6%;
+    padding-left: unset;
+    width: 140px;
+    border-radius: 4px;
+    }
 `;
 
 
@@ -299,7 +323,7 @@ const Display = styled.div`
   @media (min-width: 0px) and (max-width: 1030px) {
     display: none;
   }
-  @media (max-width: 1031px) {
+  @media (max-width: 1030px) {
     display: visible;
   }
 `;
@@ -307,10 +331,10 @@ const MobileResponsive = styled.div`
   @media (min-width: 0px) and (max-width: 767px) {
     display: visible;
   }
-  @media (min-width: 768px) and (max-width: 1030px) {
+  @media (min-width: 767px) and (max-width: 1030px) {
     display: visible;
   }
-  @media (min-width: 1031px) {
+  @media (min-width: 1030px) {
     display: none;
   }
 `;
@@ -371,8 +395,11 @@ export default function HeaderComponent(props) {
             <a href="/">
               <MobImage src={require('../Header/TwitterLogo.png')} />
             </a>
-            <MobSpan>XDC Speed Test</MobSpan>
+            <a href="/">
+              <MobSpan>XDC Speed Test</MobSpan>
+            </a>
           </div>
+
           <div >
             <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(false)}>
               <CloseIcon />
@@ -437,7 +464,9 @@ export default function HeaderComponent(props) {
             <a href="/">
               <Image src={require('../Header/TwitterLogo.png')} />
             </a>
-            <Span>XDC Speed Test</Span>
+            <a href="/">
+              <Span>XDC Speed Test</Span>
+            </a>
             <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
             <Button onClick={redirect}>
               <img
@@ -486,11 +515,13 @@ export default function HeaderComponent(props) {
           <Grid item xs={12}>
 
             <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 20px' }}>
-              <div style={{ flexGrow: 1 }}  >
+              <div style={{ flexGrow: 1, marginLeft: '-5px' }}  >
                 <a href="/">
                   <MobImage src={require('../Header/TwitterLogo.png')} />
                 </a>
-                <MobSpan>XDC Speed Test</MobSpan>
+                <a href="/">
+                  <MobSpan>XDC Speed Test</MobSpan>
+                </a>
               </div>
               <div >
                 <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(true)}>
@@ -503,7 +534,7 @@ export default function HeaderComponent(props) {
               <div style={{
                 display: 'flex',
                 flexDirection: 'row',
-                padding: '20px 25px 0px 40px',
+                padding: '20px 25px 0px 35px',
                 width: '100%'
               }}>
                 <MobSearch type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
@@ -525,9 +556,9 @@ export default function HeaderComponent(props) {
               padding: '10px 0px 10px 35px',
               width: '100%'
             }}>
-              <Advancesearch onClick={handleClickforadvancedsearch}>
+              <Mobadvancesearch onClick={handleClickforadvancedsearch}>
                 Advance Search
-              </Advancesearch>
+              </Mobadvancesearch>
             </Row>
           </Grid>
         </MobileContainer>
@@ -624,7 +655,7 @@ function ShareButton() {
         class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "18px", fontWeight: 300, }}
+        style={{ fontSize: "18px", fontWeight: 300, marginTop: '-10px' }}
       >
         {show ? (
           <ArrowUpIcon>

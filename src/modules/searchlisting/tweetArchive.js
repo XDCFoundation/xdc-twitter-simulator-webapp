@@ -232,9 +232,9 @@ export default function TweetArchive() {
   };
 
 
-  let value = search[0]?.text || 0
-  let time = moment(search[0]?.addedOn).format('LL') || 0
-  let date = moment(search[0]?.addedOn).format('LT') || 0
+  let value = search[0]?.text || 'undefined'
+  let time = moment(search[0]?.addedOn).format('LL') || 'undefined'
+  let date = moment(search[0]?.addedOn).format('LT') || 'undefined'
   // let handler = value?.slice(0, 10) || 0;
   // let name = handler?.split("@")[1] || 0;
   // let icon = name?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
@@ -242,11 +242,11 @@ export default function TweetArchive() {
   // let tweetTextMessage = value?.split(":")[1];
   // let dummyHandle = name?.slice(0, value?.length).replace(/\s/g, "").toLowerCase() || 0
 
-  let advanceValue = advanceSearch[0]?.text || 0
-  let advanceName = advanceSearch[0]?.name || 0
-  let advanceDate = moment(advanceSearch[0]?.createdAt).format('LL') || 0
-  let advanceTime = moment(advanceSearch[0]?.createdAt).format('LT') || 0
-  let advanceIcon = advanceName[0]?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
+  let advanceValue = advanceSearch[0]?.text || 'undefined'
+  let advanceName = advanceSearch[0]?.name || '-'
+  let advanceDate = moment(advanceSearch[0]?.createdAt).format('LL') || 'undefined'
+  let advanceTime = moment(advanceSearch[0]?.createdAt).format('LT') || 'undefined'
+  let advanceIcon = advanceName[0]?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || '-'
   // const advanceAtIndex = advanceValue?.indexOf("@");
   // let advanceHandler = advanceValue?.slice(advanceAtIndex, 10);
   // let advanceName = advanceHandler?.split("@")[1];

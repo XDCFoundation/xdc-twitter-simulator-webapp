@@ -282,24 +282,22 @@ export default function ReadTweets(props) {
 
   const [authors, setAuthors] = useState({});
 
-  // console.log('pr--', props?.author)
-  let authorDetails = props?.author
+  // let handle = props?.author
 
-  // authorDetails.map(item => {
 
-  // setTimeout(() => {
-  //   axios
-  //     .get(
-  //       process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + item?.authorId
-  //     )
-  //     .then((res) => {
-  //       setAuthors(res.data.responseData?.data[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, 1000);
-  // })
+  useEffect(() => {
+    userHandle();
+  }, [props?.author])
+
+
+  async function userHandle() {
+    if (props?.author && props?.author?.length >= 1) {
+      setAuthors(props?.author)
+    }
+    // console.log('pr--', props?.author)
+  }
+
+
   // let method = authors?.username
   // console.log('method------', method)
 
@@ -411,9 +409,14 @@ export default function ReadTweets(props) {
 
                       <Row>
                         <Column>
+
                           <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
-                            {authorName.length > 0 ? authorName : author}
+                            {/* {authorName.length > 0 ? authorName : author} */}
+                            {/* {author}<br/> */}
+                            {authors?.length > 0 ? '@' + (authors) : author}
                           </Typography>
+
+
                           <ThemeProvider theme={theme}>
                             <Paper className=
                               {props.dark ? (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :

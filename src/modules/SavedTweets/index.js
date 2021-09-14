@@ -15,6 +15,7 @@ export default class Saved extends BaseComponent {
       handleAnimation: {},
       textDarkAnimation: {},
       blockDarkAnimation: {},
+      authors: {},
 
       blockSocketConnected: false
     }
@@ -22,6 +23,7 @@ export default class Saved extends BaseComponent {
   async componentDidMount() {
 
     await this.fetchSavedTweets()
+    await this.userHandle()
     this.socketData(this.props?.saved)
     this.socketCount(this.props?.savingCount)
   }
@@ -37,7 +39,7 @@ export default class Saved extends BaseComponent {
       // if (blockDataExist == -1) {
       if (savingtweets.length >= 10)
         savingtweets.pop();
-        savingtweets.unshift(blockData);
+      savingtweets.unshift(blockData);
 
 
       let blockAnimationClass = { [blockData.text]: "block-height-animation" };
@@ -56,7 +58,7 @@ export default class Saved extends BaseComponent {
       this.setState({ blockDarkAnimation: blockDarkAnimationClass });
 
       setTimeout(() => {
-        this.setState({ blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation:{}, blockDarkAnimation:{} })
+        this.setState({ blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {} })
       }, 500)
 
       this.setState({ savedTweets: savingtweets });
@@ -80,7 +82,7 @@ export default class Saved extends BaseComponent {
       // if (blockDataExist == -1) {
       if (tweetsCount.length >= 1)
         tweetsCount.pop();
-        tweetsCount.unshift(blockData);
+      tweetsCount.unshift(blockData);
 
       this.setState({ savingtweetsCount: tweetsCount });
 
@@ -147,6 +149,24 @@ export default class Saved extends BaseComponent {
     }, 10000)
   };
 
+  async userHandle() {
+    (this.state?.savedTweets).map(item => {
+      let handle = item?.authorID || '-'
+      // console.log('items2--', handle)
+      axios
+        .get(
+          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+        )
+        .then((res) => {
+          // setAuthors(res.data.responseData?.data[0]);
+          this.setState({ authors: res?.data?.responseData?.data[0]?.username })
+          // console.log('save---', res.data.responseData?.data[0]?.username)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
 
   render() {
     // console.log("saveindexTweets------", this.state.savedTweets);
@@ -161,10 +181,11 @@ export default class Saved extends BaseComponent {
           savedCount={this.state.savingtweetsCount}
           animationTime={this.state.blockAnimation}
           textclass={this.state.textAnimation}
-          handleclass={this.state.handleAnimation} 
+          handleclass={this.state.handleAnimation}
           textDarkclass={this.state.textDarkAnimation}
           blockDarkclass={this.state.blockDarkAnimation}
-          />
+          author={this.state?.authors}
+        />
       </div>
     );
   }

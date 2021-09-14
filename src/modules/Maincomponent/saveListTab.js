@@ -279,18 +279,19 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
   },
   hr_page: {
-    width: "100%",
+    width: "104%",
     height: "0px",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
 
   hr_page_dark_mode: {
-    width: "100%",
+    width: "104%",
     height: "0px",
-    backgroundColor: "#8290a4",
-    marginTop: "0.5rem",
-    marginBottom: "0.5rem",
+    marginLeft: '-15px',
+    backgroundColor: "white",
+    marginTop: "0.7rem",
+    marginBottom: "0.7rem",
   },
 
   readTweetContainer: {
@@ -305,8 +306,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
+  const [authors, setAuthors] = useState({});
 
-  // console.log('propsave---',props?.savetweetData)
+  useEffect(() => {
+    userHandle();
+  }, [props?.user])
+
+
+  async function userHandle() {
+    if (props?.user && props?.user?.length >= 1) {
+      setAuthors(props?.user)
+    }
+
+    // console.log('pr--', props?.user)
+  }
+
+  // console.log('propsave---',props?.user)
 
   return (
     <Grid Container spacing={3}>
@@ -342,7 +357,7 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 80, stars = 1) {
-                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                    return `${b?.slice(0, amountL)}${" ".repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
@@ -377,7 +392,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {author ? author : '-'}
+                            {authors?.length > 0 ? '@' + (authors) : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -389,8 +404,9 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {value ? shortenValue(value) || 0 : '-'}
-                              {/* {shortenValue(tweetTextMessage)} */}
+                              <div className="wordTruncating">
+                                {value ? shortenValue(value) || 0 : '-'}
+                              </div>
                             </Paper>
                           </ThemeProvider>
                         </Column>

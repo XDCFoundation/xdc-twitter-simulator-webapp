@@ -428,6 +428,7 @@ export default function Searchlist(props) {
   const [advance, setAdvance] = useState({})
   const [isLoading, setLoading] = useState(true)
 
+  // console.log('pi---',props?.locations.split(' ')[0])
 
   useEffect(() => {
     Basicsearch();
@@ -436,7 +437,7 @@ export default function Searchlist(props) {
   const Basicsearch = () => {
 
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_BASIC_SEARCH + props?.locations)
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_BASIC_SEARCH + props?.locations.split(' ')[0])
       .then((res) => {
         let basicSearch = []
         if (
@@ -460,7 +461,7 @@ export default function Searchlist(props) {
   const Advancesearch = () => {
 
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ADVANCE_SEARCH + "name" + props?.username + "&keyword=" + props?.locations + "&hash=" + props?.hashname)
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ADVANCE_SEARCH + "name" + props?.username + "&keyword=" + props?.locations.split(' ')[0] + "&hash=" + props?.hashname)
       .then((res) => {
         let advanceSearch = []
         if (
@@ -538,6 +539,13 @@ export default function Searchlist(props) {
                       let userId = response?.tweetId || 0
                       // console.log('myuser--',userId)
 
+                      function shortenValue(b, amountL = 80, stars = 1) {
+                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                          // b.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
+
                       return (
                         <>
                           <hr
@@ -581,7 +589,7 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="listingPagetruncating">
-                                      {value ? value : '-'}
+                                      {value ? shortenValue(value) : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -600,12 +608,18 @@ export default function Searchlist(props) {
                       let value = response?.text || 0;
                       let author = response?.id || 0;
                       let authorName = response?.name || 0;
-                      let str = response?.addedOn || 0;
+                      let str = response?.createdAt || 0;
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0
                       // console.log('texttt--',textId)
+                      function shortenValue(b, amountL = 80, stars = 1) {
+                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                          // b.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
                       return (
                         <>
                           <hr
@@ -650,7 +664,7 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="listingPagetruncating">
-                                      {value ? value : '-'}
+                                      {value ? shortenValue(value) : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -730,7 +744,7 @@ export default function Searchlist(props) {
                     >
                       {(props?.readSpeed)?.length > 0 ? props?.readSpeed : ' - '}/min
                     </div>
-                    <span className="hover-data">  <Reading read={props?.readGraphdata}/> </span>
+                    <span className="hover-data">  <Reading read={props?.readGraphdata} /> </span>
 
                   </Paper>
                 </div>
@@ -774,6 +788,13 @@ export default function Searchlist(props) {
                       let userId = response?.tweetId || 0
                       // console.log('myuser--',userId)
 
+                      function shortenValue(b, amountL = 80, stars = 1) {
+                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                          // b.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
+
                       return (
                         <>
                           <hr
@@ -816,8 +837,8 @@ export default function Searchlist(props) {
                                     }
                                     gutterBottom
                                   >
-                                    <div className="listingPagetruncating">
-                                      {value ? value : '-'}
+                                    <div className="moblistingPagetruncating">
+                                      {value ? shortenValue(value) : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -836,13 +857,19 @@ export default function Searchlist(props) {
                       let value = response?.text || 0;
                       let author = response?.id || 0;
                       let authorName = response?.name || 0;
-                      let str = response?.addedOn || 0;
+                      let str = response?.createdAt || 0;
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-  
+
                       let textId = response?.id || 0
                       // console.log('texttt--',textId)
+                      function shortenValue(b, amountL = 80, stars = 1) {
+                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                          // b.length - 3,
+                          b?.length || 0
+                        )}`;
+                      }
                       return (
                         <>
                           <hr
@@ -886,8 +913,8 @@ export default function Searchlist(props) {
                                     }
                                     gutterBottom
                                   >
-                                    <div className="listingPagetruncating">
-                                      {value ? value : '-'}
+                                    <div className="moblistingPagetruncating">
+                                      {value ? shortenValue(value) : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>

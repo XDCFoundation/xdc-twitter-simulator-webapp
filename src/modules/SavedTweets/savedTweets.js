@@ -263,6 +263,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SavedTweets(props) {
   const classes = useStyles();
+  const [authors, setAuthors] = useState({});
+
+  useEffect(() => {
+    userHandle();
+  }, [props?.author])
+
+
+  async function userHandle() {
+    if (props?.author && props?.author?.length >= 1) {
+      setAuthors(props?.author)
+    }
+    // console.log('pr--', props?.author)
+  }
 
   // console.log('saveprop2--', props.savedCount[0])
   // console.log('saveprop2--', props.tweetCount.totalTweetCount)
@@ -377,7 +390,7 @@ export default function SavedTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={index == 0 && handleanimationclass ? handleanimationclass : classes.email}>
-                            {author ? author : '-'}
+                            {authors?.length > 0 ? '@' + (authors) : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -391,7 +404,7 @@ export default function SavedTweets(props) {
                               <div className="wordTruncating">
                                 {shortenValue(value)}
                               </div>
-                              
+
                             </Paper>
                           </ThemeProvider>
                         </Column>
