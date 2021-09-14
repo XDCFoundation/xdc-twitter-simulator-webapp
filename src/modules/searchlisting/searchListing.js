@@ -540,7 +540,7 @@ export default function Searchlist(props) {
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -589,7 +589,7 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="listingPagetruncating">
-                                      {value ? shortenValue(value) : '-'}
+                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -615,7 +615,7 @@ export default function Searchlist(props) {
                       let textId = response?.id || 0
                       // console.log('texttt--',textId)
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -664,7 +664,7 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="listingPagetruncating">
-                                      {value ? shortenValue(value) : '-'}
+                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -789,7 +789,7 @@ export default function Searchlist(props) {
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -838,7 +838,7 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="moblistingPagetruncating">
-                                      {value ? shortenValue(value) : '-'}
+                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -865,7 +865,7 @@ export default function Searchlist(props) {
                       let textId = response?.id || 0
                       // console.log('texttt--',textId)
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -914,7 +914,7 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="moblistingPagetruncating">
-                                      {value ? shortenValue(value) : '-'}
+                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>

@@ -355,7 +355,7 @@ export default function SavedTweets(props) {
 
                   // let textAnimation = response?.text
                   function shortenValue(b, amountL = 80, stars = 1) {
-                    return `${b?.slice(0, amountL)}${"".repeat(stars)}${b?.slice(
+                    return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
@@ -402,7 +402,7 @@ export default function SavedTweets(props) {
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                                {shortenValue(value)}
+                              {value.length > 0 ? shortenValue(value) || '-' : '-'}
                               </div>
 
                             </Paper>

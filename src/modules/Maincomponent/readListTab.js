@@ -328,7 +328,7 @@ export default function ReadTweets(props) {
   }
 
   // console.log('hey--',props?.readhandle)
-  // console.log('hey--',props?.readTweetCount)
+  // console.log('hey--',props?.readtweetData)
 
   return (
     <Grid Container spacing={3}>
@@ -364,7 +364,7 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
-                    return `${b?.slice(0, amountL)}${".".repeat(stars)}${b?.slice(
+                    return `${b?.slice(0, amountL)}${"."?.repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
@@ -413,7 +413,7 @@ export default function ReadTweets(props) {
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                                {value ? shortenValue(value) || 0 : '-'}
+                              {value.length > 0 ? shortenValue(value) || '-' : '-'}
                               </div>
                             </Paper>
                           </ThemeProvider>
