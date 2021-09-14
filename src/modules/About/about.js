@@ -10,7 +10,37 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const Bannerimage = styled.img`
   width: 100%;
   height: auto;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
+  @media (min-width: 700px){
+    display: visible;
+  }
 `;
+const MobBanner = styled.img`
+  width: 100%;
+  height: auto;
+
+  @media (max-width: 700px) {
+    display: visible;
+  }
+  @media (min-width: 700px){
+    display: none;
+  }
+`;
+const Insideimage = styled.img`
+  width: 80%;
+  height: auto;
+
+  @media (max-width: 700px) {
+    display: visible;
+  }
+  @media (min-width: 700px){
+    display: none;
+  }
+`;
+
 const useStyles = makeStyles((theme) => ({
   main: {},
   uppercomponent: {
@@ -26,12 +56,11 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "center",
-
     color: "#09184b",
     marginTop: "90px",
     backgroundColor: "#f5f6f9",
     boxShadow: "none",
-    paddingBottom: "6%",
+    paddingBottom: "3%",
   },
   twitterDapp_dark_mode: {
     fontFamily: "Raleway,sans-serif",
@@ -46,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "90px",
     backgroundColor: "#0d0e2d",
     boxShadow: "none",
-    paddingBottom: "6%",
+    paddingBottom: "3%",
   },
 
   paper: {
@@ -59,12 +88,26 @@ const useStyles = makeStyles((theme) => ({
   colorcontainer_dark_mode: {
     backgroundColor: "#0d0e2d",
   },
-  imagegrid: { width: "100%" },
+
   firstrow: {
     justifyContent: "center",
+    paddingBottom: '2%'
   },
-  "@media (min-width: 0px) and (max-width: 399px)": {
+  secondrow: {
+    // marginLeft: '20px',
+    justifyContent: "center",
+    paddingTop: "5%",
+    paddingBottom: "5%",
+  },
+  "@media (min-width: 0px) and (max-width: 499px)": {
     firstrow: {
+      display: "flex !important",
+      flexFlow: "row nowrap",
+      flexDirection: "column !important",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    secondrow: {
       display: "flex !important",
       flexFlow: "row nowrap",
       flexDirection: "column !important",
@@ -73,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  "@media (min-width: 400px) and (max-width: 1080px)": {
+  "@media (min-width: 500px) and (max-width: 767px)": {
     firstrow: {
       display: "flex !important",
       flexFlow: "row nowrap",
@@ -81,8 +124,28 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       alignItems: "center",
     },
+    secondrow: {
+      display: "flex !important",
+      flexFlow: "row nowrap",
+      flexDirection: "column !important",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
-  "@media (min-width: 1081px)" : {
+
+  "@media (min-width: 768px) and (max-width: 1079px)": {
+    firstrow: {
+      display: "grid !important",
+      justifyContent: "center !important",
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+    secondrow: {
+      display: "grid !important",
+      justifyContent: "center !important",
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    },
+  },
+  "@media (min-width: 1081px)": {
     firstrow: {
       display: "flex !important",
       flexFlow: "row nowrap",
@@ -90,46 +153,23 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       alignItems: "center",
     },
-  },
-  secondrow: {
-    justifyContent: "center",
-    paddingTop: "5%",
-    paddingBottom: "8%",
-  },
-  "@media (min-width: 1px) and (max-width: 399px)": {
-    secondrow: {
-      display: "flex !important",
-      flexFlow: "row nowrap",
-      flexDirection: "column !important",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  },
-  "@media (min-width: 400px) and (max-width: 1081px)": {
-    secondrow: {
-      display: "flex",
-      flexFlow: "row nowrap",
-      flexDirection: "column !important",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  },
-  "@media (min-width: 1082px)": {
     secondrow: {
       display: "flex",
       flexFlow: "row nowrap",
       gridGap: '45px',
+      marginLeft: '20px',
       justifyContent: "center",
       alignItems: "center",
     },
   },
+
   columnone: {
-    width: "90%",
-    marginTop: '40px'
+    padding: '30px',
+    // marginRight: '18px'
   },
   columntwo: {
-    width: "90%",
-    marginTop: '40px'
+    padding: '16px',
+    // width: "90%",
   },
   all_head_text: {
     color: "#09184b",
@@ -144,7 +184,7 @@ const useStyles = makeStyles((theme) => ({
   },
   alltext: {
     color: "#09184b",
-    fontSize: '12px',
+    fontSize: '13px',
     fontWeight: 700
   },
   alltext_dark_mode: {
@@ -153,6 +193,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700
 
   },
+
+  imagegrid: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+  },
+
+  imagesGrid: {
+    display: 'flex',
+    justifyContent: 'center',
+  }
 
 }));
 const Img = styled.img`
@@ -174,38 +225,39 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 7%;
-  @media (min-width: 1px) and (max-width: 399px) {
-    font-family: Raleway, sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.1;
-    letter-spacing: normal;
-    text-align: left;
-    color: #ffffff;
-    position: absolute;
-    top: 20%;
-    left: 5%;
+ 
+  @media (max-width: 430px){
+    font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.18;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  position: absolute;
+  top: 20px;
+  left: 25%;
   }
-  @media (min-width: 400px) and (max-width: 1080px) {
-    font-family: Raleway, sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.1;
-    letter-spacing: normal;
-    text-align: left;
-    color: #ffffff;
-    position: absolute;
-    top: 20%;
-    left: 5%;
+  @media (min-width: 430px) and (max-width: 700px) {
+    font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.18;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  position: absolute;
+  top: 20px;
+  left: 30%;
   }
 `;
 const Content = styled.span`
+  width: 50%;
+  height: 62%;
   font-family: Raleway, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -216,24 +268,42 @@ const Content = styled.span`
   position: absolute;
   top: 38%;
   left: 7%;
-  @media (min-width: 0px) and (max-width: 399px) {
-    display: none;
+
+  @media (max-width: 430px){
+    width: 90%;
+    height: 47%;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.78;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 50px;
   }
-  @media (min-width: 400px) and (max-width: 1080px) {
-    display: none;
-    // font-family: Raleway, sans-serif;
-    // font-size: 11px;
-    // font-weight: 500;
-    // font-stretch: normal;
-    // font-style: normal;
-    // line-height: 1.78;
-    // letter-spacing: normal;
-    // text-align: left;
-    // color: #ffffff;
-    // position: absolute;
-    // top: 38%;
-    // left: 5%;
+
+  @media (min-width: 430px) and (max-width: 700px){
+    width: 90%;
+    height: 47%;
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.78;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 10%;
   }
+  @media (min-width: 700px) {
+    overflow: hidden;
+  }
+
 `;
 
 const Heading = styled.span`
@@ -266,16 +336,26 @@ export default function Aboutcomponent(props) {
       <Grid container spacing={0}>
         <Grid item xs={12}>
           <div className={classes.uppercomponent}>
-            <Span>About XDC Speed Test</Span>
+            <Span>
+              About XDC Speed Test
+            </Span>
             <Content>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor <br /> incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud <br />
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud 
               exercitation ullamco laboris nisi ut aliquip ex ea commodo
               consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
-              velit esse cillum dolore eu <br />
+              velit esse cillum dolore eu <br /> consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
+           
             </Content>
-            <Bannerimage src={require('../About/Banner.png' )} />
+            <Bannerimage src={require('../About/Banner.png')} />
+            
+            <MobBanner src={require('../About/MainHeader.png')} />
+
+            <div className="mobSecondimage">
+              <Insideimage src={require('../About/Webshot.png')} />
+            </div>
+
           </div>
         </Grid>
 
@@ -300,7 +380,7 @@ export default function Aboutcomponent(props) {
           <Grid container spacing={0} className={classes.imagegrid}>
             <Column>
               <Row className={classes.firstrow}>
-                <Grid item xs={6} sm={3} md={2} className={classes.imagesGrid}>
+                <Grid style={{ display: 'flex', justifyContent: 'center' }} className={classes.imagesGrid}>
                   <Column className={classes.columnone}>
                     <Img src="/images/savingspeed.svg"></Img>
 
@@ -325,14 +405,14 @@ export default function Aboutcomponent(props) {
                         }
                       >
                         {" "}
-                        The saved tweets per second track the rate of
+                        The saved tweets per second track<br />the rate of
                         record-keeping
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
 
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columnone}>
                     <Img src="/images/readingspeed.svg"></Img>
 
@@ -355,13 +435,13 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        The read tweets per second track the rate of
+                        The read tweets per second track the<br /> rate of
                         record-keeping
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columnone}>
                     <Img src="/images/savedtweets.svg" />
 
@@ -384,14 +464,14 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Number of tweets saved in d-app platform
+                        Number of tweets saved in d-app<br /> platform
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columnone}>
-                    <Img src="/images/Read.svg" />
+                    <Img src="/images/ReadTweets.png" />
 
                     <Heading>
                       <span
@@ -412,7 +492,7 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Number of read tweets by d-app platform
+                        Number of read tweets by d-app<br /> platform
                       </span>
                     </Subheading>
                   </Column>
@@ -420,7 +500,7 @@ export default function Aboutcomponent(props) {
               </Row>
 
               <Row className={classes.secondrow}>
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/toptrending.svg" />
@@ -443,13 +523,13 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        This twitter decentralized application pertually records
-                        the top 20 hashtags on twitter on to the XDC.
+                        This twitter decentralized<br /> application pertually records
+                        the top<br />  20 hashtags on twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/currentmax.svg" />
@@ -472,13 +552,13 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        The speed of the current and maximum transactions
-                        completed on the platform twitter on to the XDC.
+                        The speed of the current<br />  and maximum transactions
+                        completed on the <br /> platform twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/Searchabc.svg" />
@@ -501,13 +581,13 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Search your saved tweets even if they are deleted
-                        on the platform twitter on to the XDC.
+                        Search your saved tweets<br />  even if they are deleted
+                        on the platform<br />  twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid item xs={6} sm={3} md={2}>
+                <Grid >
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/tweetarchiveimg.webp"></Img>
@@ -519,7 +599,7 @@ export default function Aboutcomponent(props) {
                             : classes.all_head_text
                         }
                       >
-                        Tweet Archive 
+                        Tweet Archive
                       </span>
                     </Heading>
                     <Subheading>
@@ -530,13 +610,14 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Tweets are archived on the network and therefore are
-                        retrievable on twitter on to the XDC.
+                        Tweets are archived on<br />  the network and therefore are
+                        retrievable<br />  on twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
               </Row>
+
             </Column>
           </Grid>
         </Grid>

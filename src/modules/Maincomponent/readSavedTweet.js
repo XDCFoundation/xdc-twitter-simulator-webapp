@@ -3,10 +3,15 @@ import React from "react";
 import "../../assets/styles/custom.css";
 import SaveListTab from "./saveListTab";
 import ReadListTab from "./readListTab";
+import SavedTweets from "../SavedTweets/savedTweets";
+import ReadTweets from "../Readtweets/readTweets";
+
 
 function MapTabs(props) {
 
   const [toggleState, setToggleState] = useState(1);
+
+  // console.log('prev--',props?.savehand)
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -48,8 +53,8 @@ function MapTabs(props) {
           <button
             style={
               props.dark
-                ? { border: "transparent", backgroundColor: "#191d43" }
-                : { border: "transparent", backgroundColor: "white" }
+                ? { border: "transparent", backgroundColor: "#191d43",marginLeft: '4px' }
+                : { border: "transparent", backgroundColor: "white",marginLeft: '4px'}
             }
             className={
               props.dark
@@ -79,7 +84,9 @@ function MapTabs(props) {
               : "content"
           }
         >
-          <SaveListTab dark={dark} savetweetTable={props?.saveTweet} savetweetData={props?.smallSave} saveTweetCount={props?.smallcount}/>
+          <SaveListTab dark={dark} savetweetTable={props?.saveTweet} savetweetData={props?.smallSave} saveTweetCount={props?.smallcount}
+            user={props?.saveUser}
+          />
         </div>
 
         <div
@@ -94,7 +101,7 @@ function MapTabs(props) {
           }
         >
           <div>
-            <ReadListTab dark={dark} />
+            <ReadListTab dark={dark} readhandle={props?.readUser} readtweetData={props?.smallRead} readTweetCount={props?.countRead}/>
           </div>
         </div>
       </div>

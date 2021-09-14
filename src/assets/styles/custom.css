@@ -304,11 +304,21 @@ input:focus {
 .listingPagetruncating{
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: break-word;
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
   padding-right: 50px;
 }
+.moblistingPagetruncating{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 
 .savingSpeed {
   /* letter-spacing: normal;
@@ -479,7 +489,7 @@ input:focus {
 .writing-data {
   margin-left: 8%;
   /*margin-top: -10px;*/
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -492,7 +502,7 @@ input:focus {
 .writing-data-dark-mode {
   margin-left: 8%;
   /*margin-top: -10px;*/
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -528,7 +538,7 @@ input:focus {
 .reading-data {
   margin-left: 3%;
   /*margin-top: -10px;*/
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -541,7 +551,7 @@ input:focus {
 .reading-data-dark-mode {
   margin-left: 3%;
   /*margin-top: -10px;*/
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -857,7 +867,11 @@ input:focus {
   opacity: 1;
   background: #3366FF; 
 }
-
+@media (min-width: 0px) and (max-width: 300px) {
+  .active-tabSavelist::before {
+    display: none;
+  }
+}
 @media (min-width: 300px) and (max-width: 400px) {
   .active-tabSavelist::before {
     top: 62px;
@@ -1237,14 +1251,23 @@ input:focus {
     margin-bottom: 20px;
   }
 }
-@media (min-width: 651px) and (max-width: 766px) {
+@media (min-width: 651px) and (max-width: 768px) {
   .lightmap-style {
-    width: 125%;
+    width: 123%;
     margin-left: -10px;
     margin-bottom: 20px;
   }
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 950px) {
+  .lightmap-style {
+    width: 108%;
+    height: 365px;
+    margin-left: 4px;
+    z-index: 0;
+    background-color: transparent;
+  }
+}
+@media (min-width: 950px) and (max-width: 1024px) {
   .lightmap-style {
     width: 108%;
     height: 365px;
@@ -1420,6 +1443,14 @@ input:focus {
   padding-left: 20px;
   padding-top: 2px;
   margin-right: 15px;
+}
+
+.mobSecondimage{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  bottom: 1px;
 }
 
 .loader {

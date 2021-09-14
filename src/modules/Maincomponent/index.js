@@ -12,6 +12,8 @@ export default class Main extends Component {
     super(props);
     this.state = {
       dark: false,
+      authors: {},
+      readAuthors: {},
       data: [],
       read: [],
       readResult: [],
@@ -21,6 +23,8 @@ export default class Main extends Component {
       save: [],
       savedTweets: [],
       totalSaveTweet: [],
+      readtweets: [],
+      totaltweets: [],
       savingtweetsCount: [],
       blockSocketConnected: false
     }
@@ -34,9 +38,12 @@ export default class Main extends Component {
 
   async componentDidMount() {
     await this.fetchSavedTweets()
+    await this.fetchReadTweets()
     await this.readingCount()
     await this.writingCount()
-    // await this.writing()
+    await this.savehandleUser()
+    await this.readhandleUser()
+    await this.fetchReadTweets()
     await this.socketData(this.props?.savingSocket)
     await this.readsocketData(this.props?.readingSocket)
   }
@@ -135,8 +142,104 @@ export default class Main extends Component {
     }, 10000)
   };
 
+  /** For read tweets */
 
-/* Socket Connection for Read Graph */
+  readsocketData(socket) {
+    let readingtweets = this.state.readtweets;
+    socket.on("read-tweets-socket", (blockData, error) => {
+      // console.log('>>>>>readtweet', blockData)
+      this.setState({ blockSocketConnected: true })
+
+      // let blockDataExist = blocks.findIndex((item) => {
+      //   return item.number == blockData.number;
+      // });
+      // blockData["class"] = "first-block-age last-block-transaction height2";
+      // if (blockDataExist == -1) {
+
+      if (readingtweets.length >= 10)
+        readingtweets.pop();
+      readingtweets.unshift(blockData);
+
+      // setTimeout(() => {
+      //   this.setState({
+      //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
+      //   })
+      // }, 500)
+
+      this.setState({ readtweets: readingtweets });
+
+      if (error) {
+        console.log("hello error");
+      }
+
+      // } (left comment)
+
+    });
+  }
+
+  /* Read tweets api */
+
+  async fetchReadTweets() {
+
+    await axios
+      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+
+      .then((res) => {
+        let tweetResponse;
+        let alltweets;
+        if (
+          !res &&
+          !res.data &&
+          !res.data.responseData &&
+          res.data.responseData.length <= 0
+        )
+          tweetResponse = [];
+        else tweetResponse = res.data.responseData[0];
+        alltweets = res.data.responseData[1];
+
+        this.setState({ readtweets: tweetResponse })
+        this.setState({ totaltweets: alltweets })
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+
+
+    setInterval(async () => {
+      if (!this.state.blockSocketConnected) {
+        await axios
+          .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+
+          .then((res) => {
+            let tweetResponse;
+            let alltweets;
+            if (
+              !res &&
+              !res.data &&
+              !res.data.responseData &&
+              res.data.responseData.length <= 0
+            )
+              tweetResponse = [];
+            else tweetResponse = res.data.responseData[0];
+            alltweets = res.data.responseData[1];
+
+            this.setState({ readtweets: tweetResponse })
+            this.setState({ totaltweets: alltweets })
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+    }, 10000)
+  };
+
+
+
+  /* Socket Connection for Read Graph */
 
   readsocketData(socket) {
     let readGraph = this.state.readData;
@@ -157,7 +260,7 @@ export default class Main extends Component {
       var resultData = []
 
       this.state.readData.map(items => {
-        let graphs = (1000*items.requestCount/items.responseTime)*60
+        let graphs = (1000 * items.requestCount / items.responseTime) * 60
         resultData.push({
           x: moment(items.startTime).format('LT'),
           y: graphs
@@ -177,14 +280,14 @@ export default class Main extends Component {
 
         return unique;
       }
-      let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
+      let graphdata = getUnique(resultData?.slice(0, 20), 'x').reverse()
       let newData = graphdata.slice(-1)
       let firstData = Object.values(newData[0])
       let secondData = parseFloat(firstData[1]).toFixed(2)
 
       this.setState({ read: secondData })
 
-      arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+      arr[0].data = getUnique(resultData.slice(0, 20), 'x').reverse()
       this.setState({ readResult: arr })
 
       if (error) {
@@ -212,11 +315,11 @@ export default class Main extends Component {
         var resultData = []
 
         this.state.readData.map(items => {
-          let graphs = (1000*items.requestCount/items.responseTime)*60
-            resultData.push({
-              x: moment(items.startTime).format('LT'),
-              y: graphs
-            })
+          let graphs = (1000 * items.requestCount / items.responseTime) * 60
+          resultData.push({
+            x: moment(items.startTime).format('LT'),
+            y: graphs
+          })
 
         })
         function getUnique(resultData, index) {
@@ -228,14 +331,14 @@ export default class Main extends Component {
 
           return unique;
         }
-        let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
+        let graphdata = getUnique(resultData?.slice(0, 20), 'x').reverse()
         let newData = graphdata.slice(-1)
         let firstData = Object.values(newData[0])
         let secondData = parseFloat(firstData[1]).toFixed(2)
 
         this.setState({ read: secondData })
 
-        arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
+        arr[0].data = getUnique(resultData.slice(0, 20), 'x').reverse()
         this.setState({ readResult: arr })
       })
       .catch((err) => {
@@ -268,7 +371,7 @@ export default class Main extends Component {
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
         resultData.push({
           x: moment(items.saveStartTime * 1000).format('LT'),
-          y: secondAxis*60
+          y: secondAxis * 60
         })
 
       })
@@ -320,7 +423,7 @@ export default class Main extends Component {
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
           resultData.push({
             x: moment(items.saveStartTime * 1000).format('LT'),
-            y: secondAxis*60
+            y: secondAxis * 60
           })
 
         })
@@ -349,10 +452,51 @@ export default class Main extends Component {
       });
   }
 
+  async savehandleUser() {
+
+    (this.state?.savedTweets).map(item => {
+      let handle = item?.authorID || '-'
+      // console.log('items2--', handle)
+      axios
+        .get(
+          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+        )
+        .then((res) => {
+          // setAuthors(res.data.responseData?.data[0]);
+          this.setState({ authors: res?.data?.responseData?.data[0]?.username })
+          // console.log('save---', res.data.responseData?.data[0]?.username)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+
+  };
+
+  async readhandleUser() {
+
+    (this.state?.readtweets).map(item => {
+      let handle = item?.authorId || '-'
+      // console.log('items--', handle)
+      axios
+        .get(
+          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+        )
+        .then((res) => {
+          // setAuthors(res.data.responseData?.data[0]);
+          this.setState({ readAuthors: res?.data?.responseData?.data[0]?.username })
+          // console.log('read---', res.data.responseData?.data[0]?.username)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+
+  };
 
   render() {
-    // console.log('by', this.state.readResult)
-    // console.log('my', this.state.readData)
+    // console.log('by', this.state.authors)
+    // console.log('my', this.state.readAuthors)
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
@@ -361,11 +505,15 @@ export default class Main extends Component {
           readSocket={this.props.readingSocket}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}
+          readtweetData={this.state.readtweets}
+          readtweetCount={this.state.totaltweets}
           data={this.state.data}
           save={this.state.save}
           read={this.state.read}
           saveGraphdata={this.state.result}
           readGraphdata={this.state.readResult}
+          saveAuthor={this.state?.authors}
+          readAuthor={this.state?.readAuthors}
         />
         <FooterComponent />
       </div>

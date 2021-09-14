@@ -15,10 +15,12 @@ export default class Read extends BaseComponent {
       handleAnimation: {},
       textDarkAnimation: {},
       blockDarkAnimation: {},
+      authors: {},
     }
   }
   async componentDidMount() {
     await this.fetchTweets()
+    await this.userHandle()
     this.socketData(this.props?.readed)
   }
 
@@ -36,7 +38,7 @@ export default class Read extends BaseComponent {
 
       if (readingtweets.length >= 10)
         readingtweets.pop();
-        readingtweets.unshift(blockData);
+      readingtweets.unshift(blockData);
 
 
       let blockAnimationClass = { [blockData.text]: "block-read-animation" };
@@ -56,7 +58,7 @@ export default class Read extends BaseComponent {
 
       setTimeout(() => {
         this.setState({
-          blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation:{}, blockDarkAnimation:{}
+          blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
         })
       }, 500)
 
@@ -131,6 +133,26 @@ export default class Read extends BaseComponent {
     }, 10000)
   };
 
+
+  async userHandle() {
+    (this.state?.readtweets).map(item => {
+      let handle = item?.authorId || 0
+      // console.log('items2--', handle)
+      axios
+        .get(
+          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+        )
+        .then((res) => {
+          // setAuthors(res.data.responseData?.data[0]);
+          this.setState({ authors: res?.data?.responseData?.data[0]?.username })
+          // console.log('hand---', res.data.responseData?.data[0]?.username)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
+
   render() {
     // console.log('this--',this.props?.readed)
     //   console.log("saveindexTweets------", this.state.readtweets);
@@ -145,7 +167,7 @@ export default class Read extends BaseComponent {
           handleclass={this.state.handleAnimation}
           textDarkclass={this.state.textDarkAnimation}
           blockDarkclass={this.state.blockDarkAnimation}
-          author={this.state.readtweets}
+          author={this.state?.authors}
         />
       </div>
     );

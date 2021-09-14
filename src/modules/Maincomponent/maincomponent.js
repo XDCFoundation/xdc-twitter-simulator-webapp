@@ -508,6 +508,8 @@ export default function MainComponent(props) {
   const [maxtpsvalue, setMaxtpsValue] = useState({});
   // const [count, setCount] = useState({});
 
+  // console.log('prev--',props?.saveAuthor)
+
   useEffect(() => {
     fetchTps();
     setInterval(() => {
@@ -576,6 +578,7 @@ export default function MainComponent(props) {
             && element !== 'ETH.BlocksScan.i'
             && element !== 'BlocksScan.i'
             && element !== 'Apothem.XinFinScan.co'
+            && element !== 'CRYPTERIUM_TES'
           );
           setValue(newarray);
 
@@ -616,6 +619,8 @@ export default function MainComponent(props) {
   let writeIdentity = props?.Savesocket
   let smallSavetweet = props?.tweetData
   let smallSaveCount = props?.tweetCount
+  let smallReadtweet = props?.readtweetData
+  let smallReadCount = props?.readtweetCount
 
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
@@ -626,12 +631,14 @@ export default function MainComponent(props) {
               <Row className="justify-space-between w-100">
                 <Row className="w-100">
                   <Grid item xs={6} className={classes.grid}>
-                    <Text
-                      className={
-                        dark ? "writing-data-dark-mode" : "writing-data"
-                      }
-                    >
-                      Writing Data
+                    <Text >
+                      <div
+                        className={
+                          dark ? "writing-data-dark-mode" : "writing-data"
+                        }
+                      >
+                        Writing Data
+                      </div>
                     </Text>
                     <Paper
                       className={
@@ -679,13 +686,15 @@ export default function MainComponent(props) {
                     </Paper>
                   </Grid>
 
-                  <Grid item xs={6} className>
-                    <Text
-                      className={
-                        dark ? "reading-data-dark-mode" : "reading-data"
-                      }
-                    >
-                      Reading Data
+                  <Grid item xs={6} >
+                    <Text>
+                      <div
+                        className={
+                          dark ? "reading-data-dark-mode" : "reading-data"
+                        }
+                      >
+                        Reading Data
+                      </div>
                     </Text>
                     <Paper
                       className={
@@ -803,7 +812,7 @@ export default function MainComponent(props) {
                             <IconImg src="../../images/ic.png" />
                           </Tippy>
                           <br />
-                          {isNaN(tpsCount) ? "-" : parseFloat(tpsCount/60).toFixed(2)} /{" "}
+                          {isNaN(tpsCount) ? "-" : parseFloat(tpsCount / 60).toFixed(2)} /{" "}
                           {isNaN(maxtpsCount) ? "-" : maxtpsCount}
                         </div>
                         <div style={{ width: "50%", marginLeft: "5%" }}>
@@ -876,11 +885,11 @@ export default function MainComponent(props) {
         <Grid item xs={12}>
           <Column>
             <Grid item xs={12} className={classes.grid}>
-              <Text
+              <div
                 className={dark ? "writing-data-dark-mode" : "writing-data"}
               >
                 Writing Data
-              </Text>
+              </div>
               <Paper
                 className={
                   dark ? classes.writingPaperDarkMode : classes.writingPaper
@@ -921,11 +930,11 @@ export default function MainComponent(props) {
           </Column>
           <Column>
             <Grid item xs={12} className={classes.readingData}>
-              <Text
+              <div
                 className={dark ? "reading-data-dark-mode" : "reading-data"}
               >
                 Reading Data
-              </Text>
+              </div>
               <Paper
                 className={
                   dark ? classes.readingPaperDarkMode : classes.readingPaper
@@ -958,7 +967,7 @@ export default function MainComponent(props) {
                   className={dark ? "readSpeed-dark-mode" : "readSpeed"}
                 >
                   {id?.length > 0 ? id : ' - '} /
-                  <span className="fs-16">sec</span>
+                  <span className="fs-16">min</span>
                 </div>
                 <span className="hover-data">
                   {" "}
@@ -1032,7 +1041,7 @@ export default function MainComponent(props) {
                       <IconImg src="../../images/ic.png" />
                     </Tippy>
                     <br />
-                    {isNaN(tpsCount) ? "-" : tpsCount} /{" "}
+                    {isNaN(tpsCount) ? "-" : parseFloat(tpsCount / 60).toFixed(2)} /{" "}
                     {isNaN(maxtpsCount) ? "-" : maxtpsCount}
                   </div>
                   <div style={{ width: "92%", marginLeft: "0%" }}>
@@ -1094,7 +1103,14 @@ export default function MainComponent(props) {
                     : classes.savedReadTweetConatiner
                 }
               >
-                <SavedRead dark={dark} saveTweet={writeIdentity} smallSave={smallSavetweet} smallcount={smallSaveCount} />
+                <SavedRead dark={dark}
+                  saveTweet={writeIdentity}
+                  saveUser={props?.saveAuthor}
+                  readUser={props?.readAuthor}
+                  smallSave={smallSavetweet}
+                  smallcount={smallSaveCount}
+                  smallRead={smallReadtweet}
+                  countRead={smallReadCount} />
               </Paper>
             </Grid>
           </Column>

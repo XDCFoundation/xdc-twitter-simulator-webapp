@@ -208,6 +208,7 @@ export default function PinnedSubheaderList(props) {
                                         paddingLeft: '20px',
                                         paddingTop: '2px',
                                         marginRight: '20px',
+                                        whiteSpace: 'nowrap'
                                     }}>
                                         {items?.countryName || 0}
                                     </div>

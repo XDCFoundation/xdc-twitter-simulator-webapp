@@ -288,17 +288,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "18px",
   },
   hr_page: {
-    width: "100%",
+    width: "104%",
     height: "0px",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
   hr_page_dark_mode: {
-    width: "100%",
+    width: "104%",
     height: "0px",
-    backgroundColor: "#8290a4",
-    marginTop: "0.5rem",
-    marginBottom: "0.5rem",
+    marginLeft: '-15px',
+    backgroundColor: "white",
+    marginTop: "0.7rem",
+    marginBottom: "0.7rem",
   },
   readTweetContainer: {
     marginTop: "0px",
@@ -312,39 +313,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  const [readtweets, setReadTweets] = useState([]);
-  const [totaltweets, setTotalTweets] = useState([]);
   const [authors, setAuthors] = useState({});
 
   useEffect(() => {
-    fetchTweets();
-  }, []);
-  const fetchTweets = () => {
-    axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+    userHandle();
+  }, [props?.readhandle])
 
-      .then((res) => {
-        let tweetResponse;
-        let alltweets;
-        if (
-          !res ||
-          !res.data ||
-          !res.data.responseData ||
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1];
-        setReadTweets(tweetResponse);
 
-        setTotalTweets(alltweets);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  async function userHandle() {
+    if (props?.readhandle && props?.readhandle?.length >= 1) {
+      setAuthors(props?.readhandle)
+    }
+    // console.log('pr--', props?.user)
+  }
 
-  let method = "@user";
+  // console.log('hey--',props?.readhandle)
+  // console.log('hey--',props?.readTweetCount)
 
   return (
     <Grid Container spacing={3}>
@@ -369,9 +353,9 @@ export default function ReadTweets(props) {
                     : totaltweets.tweetsInDb} */}
                 </div>
               </Row>
-              {readtweets &&
-                readtweets.length >= 1 &&
-                readtweets.map((response) => {
+              {props?.readtweetData &&
+                props?.readtweetData.length >= 1 &&
+                props?.readtweetData.map((response) => {
                   let value = response?.text || 0;
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 10) || 0;
@@ -416,7 +400,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                          {authorName.length > 0 ? authorName + '..' : author}
+                            {authors?.length > 0 ? '@' + (authors) : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -428,7 +412,9 @@ export default function ReadTweets(props) {
                               }
                               gutterBottom
                             >
-                              {value ? shortenValue(value) || 0 : '-'}
+                              <div className="wordTruncating">
+                                {value ? shortenValue(value) || 0 : '-'}
+                              </div>
                             </Paper>
                           </ThemeProvider>
                         </Column>
