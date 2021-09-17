@@ -11,9 +11,9 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
-import axios from 'axios';
-import moment from 'moment';
-import HomeIcon from '@material-ui/icons/Home';
+import axios from "axios";
+import moment from "moment";
+import HomeIcon from "@material-ui/icons/Home";
 
 import {
   createMuiTheme,
@@ -21,7 +21,7 @@ import {
   responsiveFontSizes,
 } from "@material-ui/core/styles";
 import { useParams } from "react-router";
-import Loader from './loader';
+import Loader from "./loader";
 
 const Text = styled.div`
   font-weight: 900;
@@ -34,33 +34,31 @@ const Text = styled.div`
   // const IconImg = styled.img
 `;
 
-const theme = createMuiTheme({
-
-});
+const theme = createMuiTheme({});
 
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "#f5f6f9",
   },
   main_dark_mode: {
-    backgroundColor: '#0d0e2d'
+    backgroundColor: "#0d0e2d",
   },
 
   paper: {
     color: theme.palette.text.secondary,
-    width: '100%',
-    marginLeft: '25px',
-    borderRadius: '5px',
-    boxShadow: '0px 2px 30px #0000001A',
+    width: "100%",
+    marginLeft: "25px",
+    borderRadius: "5px",
+    boxShadow: "0px 2px 30px #0000001A",
   },
   paper_dark_mode: {
     color: theme.palette.text.secondary,
-    width: '100%',
-    marginLeft: '25px',
+    width: "100%",
+    marginLeft: "25px",
     backgroundColor: "#191d43",
     color: "white",
-    borderRadius: '5px',
-    border: 'solid 1px #343965',
+    borderRadius: "5px",
+    border: "solid 1px #343965",
   },
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -277,7 +275,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "0px",
     backgroundColor: "#8290a4",
-    opacity: '0.3',
+    opacity: "0.3",
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
   },
@@ -307,11 +305,11 @@ const useStyles = makeStyles((theme) => ({
   writing_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    padding: '20px 14px 29.6px 26px',
+    padding: "20px 14px 29.6px 26px",
     color: theme.palette.text.secondary,
     marginTop: "15px",
-    borderRadius: '5px',
-    boxShadow: '0px 2px 30px #0000001A',
+    borderRadius: "5px",
+    boxShadow: "0px 2px 30px #0000001A",
   },
 
   writing_paper_dark_mode: {
@@ -320,20 +318,20 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
     color: "white",
-    padding: '20px 14px 29.6px 26px',
+    padding: "20px 14px 29.6px 26px",
     marginTop: "15px",
-    borderRadius: '5px',
-    border: 'solid 1px #343965',
+    borderRadius: "5px",
+    border: "solid 1px #343965",
   },
 
   reading_paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    padding: '20px 14px 29.6px 26px',
+    padding: "20px 14px 29.6px 26px",
     marginTop: "15px",
-    borderRadius: '5px',
-    boxShadow: '0px 2px 30px #0000001A',
+    borderRadius: "5px",
+    boxShadow: "0px 2px 30px #0000001A",
   },
   image: {
     width: "25px",
@@ -345,11 +343,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     backgroundColor: "#191d43",
-    padding: '20px 14px 29.6px 26px',
+    padding: "20px 14px 29.6px 26px",
     color: "white",
     marginTop: "15px",
-    borderRadius: '5px',
-    border: 'solid 1px #343965',
+    borderRadius: "5px",
+    border: "solid 1px #343965",
   },
   dashboardDiv: {
     display: "flex",
@@ -371,7 +369,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
   gridcontainer: {
-    display: 'flex',
+    display: "flex",
     width: "100%",
     paddingLeft: "10%",
     // paddingTop: "6%",
@@ -380,28 +378,27 @@ const useStyles = makeStyles((theme) => ({
   },
 
   mob_view_Gridcontainer: {
-    display: 'grid',
+    display: "grid",
     width: "100%",
     paddingBottom: "6%",
   },
 
   firstGrid: {
-    marginTop: '27px',
-    marginLeft: '4px',
+    marginTop: "27px",
+    marginLeft: "4px",
   },
 
   graphsGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '20px',
-    marginLeft: '25px'
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+    marginLeft: "25px",
   },
   "@media (min-width: 1px) and (max-width: 767px)": {
     graphsGrid: {
-      display: 'none'
-    }
+      display: "none",
+    },
   },
-
 }));
 
 const DesktopView = styled.div`
@@ -424,22 +421,36 @@ const MobileView = styled.div`
 export default function Searchlist(props) {
   const classes = useStyles();
 
-  const [basic, setBasic] = useState({})
-  const [advance, setAdvance] = useState({})
-  const [isLoading, setLoading] = useState(true)
+  const getMode = () => {
+    return JSON.parse(localStorage.getItem("mode")) || false;
+  };
+
+  const [dark, setMode] = useState(getMode());
+
+  const [basic, setBasic] = useState({});
+  const [advance, setAdvance] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
   // console.log('pi---',props?.locations.split(' ')[0])
+  useEffect(() => {
+    setMode(props.dark);
+    localStorage.setItem("mode", JSON.stringify(props.dark));
+  }, [props.dark]);
 
   useEffect(() => {
     Basicsearch();
     Advancesearch();
-  }, []);
-  const Basicsearch = () => {
+  }, [props?.locations.split(" ")[0]]);
 
+  const Basicsearch = () => {
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_BASIC_SEARCH + props?.locations.split(' ')[0])
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_BASIC_SEARCH +
+          props?.locations.split(" ")[0]
+      )
       .then((res) => {
-        let basicSearch = []
+        let basicSearch = [];
         if (
           !res &&
           !res.data &&
@@ -449,21 +460,27 @@ export default function Searchlist(props) {
           basicSearch = [];
         else basicSearch = res.data.responseData.responseData || 0;
         setBasic(basicSearch);
-        setLoading(false)
-
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-
   const Advancesearch = () => {
-
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_ADVANCE_SEARCH + "name" + props?.username + "&keyword=" + props?.locations.split(' ')[0] + "&hash=" + props?.hashname)
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_ADVANCE_SEARCH +
+          "name" +
+          props?.username +
+          "&keyword=" +
+          props?.locations.split(" ")[0] +
+          "&hash=" +
+          props?.hashname
+      )
       .then((res) => {
-        let advanceSearch = []
+        let advanceSearch = [];
         if (
           !res &&
           !res.data &&
@@ -473,7 +490,6 @@ export default function Searchlist(props) {
           advanceSearch = [];
         else advanceSearch = res.data.responseData.responseData || 0;
         setAdvance(advanceSearch);
-
       })
       .catch((err) => {
         console.log(err);
@@ -499,7 +515,16 @@ export default function Searchlist(props) {
               <HomeIcon />
             </div>
             <div className="dashboard-name">
-              <a style={{ color: 'white', cursor: 'pointer', textDecoration: 'none' }} href='/'>Dashboard</a>
+              <a
+                style={{
+                  color: "white",
+                  cursor: "pointer",
+                  textDecoration: "none",
+                }}
+                href="/"
+              >
+                Dashboard
+              </a>
             </div>
           </button>
         </div>
@@ -526,21 +551,25 @@ export default function Searchlist(props) {
                     </Typography>
                   </Row>
 
-                  {isLoading ? <Loader /> : (basic &&
+                  {isLoading ? (
+                    <Loader />
+                  ) : (
+                    basic &&
                     basic.length >= 1 &&
                     basic.map((response) => {
-                      let value = response?.text || 0
-                      let author = response?.authorID || 0
+                      let value = response?.text || 0;
+                      let author = response?.authorID || 0;
                       let str = response?.addedOn || 0;
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-
-                      let userId = response?.tweetId || 0
+                      let userId = response?.tweetId || 0;
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(
+                          stars
+                        )}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -550,33 +579,41 @@ export default function Searchlist(props) {
                         <>
                           <hr
                             className={
-                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                              props.dark
+                                ? classes.hr_page_dark_mode
+                                : classes.hr_page
                             }
                           />
-                          <a style={{ textDecoration: 'none' }} href={'/archive/' + userId}>
+                          <a
+                            style={{ textDecoration: "none" }}
+                            href={"/archive/" + userId}
+                          >
                             <Row>
-
                               <Typography
                                 variant="h6"
                                 className={
-                                  props.dark ? classes.name_dark_mode : classes.name
+                                  props.dark
+                                    ? classes.name_dark_mode
+                                    : classes.name
                                 }
                               >
                                 {/* Lisa ray */}
                               </Typography>
                               <Paper
                                 className={
-                                  props.dark ? classes.time_dark_mode : classes.time
+                                  props.dark
+                                    ? classes.time_dark_mode
+                                    : classes.time
                                 }
                               >
-                                {time ? time : '-'}
+                                {time ? time : "-"}
                               </Paper>
                             </Row>
 
                             <Row>
                               <Column>
                                 <Typography className={classes.email}>
-                                  {author ? author : '-'}
+                                  {author ? author : "-"}
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
@@ -589,12 +626,13 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="listingPagetruncating">
-                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                      {value.length > 0
+                                        ? shortenValue(value) || "-"
+                                        : "-"}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
                               </Column>
-
                             </Row>
                           </a>
                         </>
@@ -612,10 +650,12 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-                      let textId = response?.id || 0
+                      let textId = response?.id || 0;
                       // console.log('texttt--',textId)
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(
+                          stars
+                        )}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -624,23 +664,31 @@ export default function Searchlist(props) {
                         <>
                           <hr
                             className={
-                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                              props.dark
+                                ? classes.hr_page_dark_mode
+                                : classes.hr_page
                             }
                           />
-                          <a style={{ textDecoration: 'none' }} href={'/archive/' + textId}>
+                          <a
+                            style={{ textDecoration: "none" }}
+                            href={"/archive/" + textId}
+                          >
                             <Row>
                               <Typography
                                 variant="h6"
                                 className={
-                                  props.dark ? classes.name_dark_mode : classes.name
+                                  props.dark
+                                    ? classes.name_dark_mode
+                                    : classes.name
                                 }
                               >
-
                                 {/* {author} */}
                               </Typography>
                               <Paper
                                 className={
-                                  props.dark ? classes.time_dark_mode : classes.time
+                                  props.dark
+                                    ? classes.time_dark_mode
+                                    : classes.time
                                 }
                               >
                                 {time}
@@ -664,7 +712,9 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="listingPagetruncating">
-                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                      {value.length > 0
+                                        ? shortenValue(value) || "-"
+                                        : "-"}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -683,16 +733,23 @@ export default function Searchlist(props) {
                 <br />
                 <br />
                 <br />
-
-
               </Paper>
             </Grid>
 
             <Grid className={classes.graphsGrid} item xs={4}>
-              <div >
-                <div className={props.dark ? "writing-data-one-dark-mode" : "writing-data-one"}>Writing Data</div>
+              <div>
+                <div
+                  className={
+                    props.dark
+                      ? "writing-data-one-dark-mode"
+                      : "writing-data-one"
+                  }
+                >
+                  Writing Data
+                </div>
                 <div>
-                  <Paper elevation={0}
+                  <Paper
+                    elevation={0}
                     className={
                       props.dark
                         ? classes.writing_paper_dark_mode
@@ -701,31 +758,44 @@ export default function Searchlist(props) {
                   >
                     <div
                       className={
-                        props.dark ? "savingSpeed-one-dark-mode" : "savingSpeed-one"
+                        props.dark
+                          ? "savingSpeed-one-dark-mode"
+                          : "savingSpeed-one"
                       }
                     >
                       Saving Speed
                     </div>
                     <div
-                      className={props.dark ? "saveSpeed-dark-mode" : "saveSpeed"}
+                      className={
+                        props.dark ? "saveSpeed-dark-mode" : "saveSpeed"
+                      }
                     >
                       {isNaN(props?.saveSpeed) ? "-" : props?.saveSpeed} / min
                     </div>
-                    <div
-
-                    >
+                    <div>
                       {" "}
-                      <span className="hover-data"> <Writing write={props?.saveGraphdata} /> </span>
-
+                      <span className="hover-data">
+                        {" "}
+                        <Writing write={props?.saveGraphdata} />{" "}
+                      </span>
                     </div>
                   </Paper>
                 </div>
               </div>
 
               <div>
-                <div className={props.dark ? "reading-data-one-dark-mode" : "reading-data-one"}>Reading Data</div>
+                <div
+                  className={
+                    props.dark
+                      ? "reading-data-one-dark-mode"
+                      : "reading-data-one"
+                  }
+                >
+                  Reading Data
+                </div>
                 <div>
-                  <Paper elevation={0}
+                  <Paper
+                    elevation={0}
                     className={
                       props.dark
                         ? classes.reading_paper_dark_mode
@@ -740,12 +810,17 @@ export default function Searchlist(props) {
                       Reading Tweet
                     </div>
                     <div
-                      className={props.dark ? "readSpeed-dark-mode" : "readSpeed"}
+                      className={
+                        props.dark ? "readSpeed-dark-mode" : "readSpeed"
+                      }
                     >
-                      {(props?.readSpeed)?.length > 0 ? props?.readSpeed : ' - '}/min
+                      {props?.readSpeed?.length > 0 ? props?.readSpeed : " - "}
+                      /min
                     </div>
-                    <span className="hover-data">  <Reading read={props?.readGraphdata} /> </span>
-
+                    <span className="hover-data">
+                      {" "}
+                      <Reading read={props?.readGraphdata} />{" "}
+                    </span>
                   </Paper>
                 </div>
               </div>
@@ -754,7 +829,11 @@ export default function Searchlist(props) {
         </DesktopView>
 
         <MobileView>
-          <Grid container spacing={6} className={classes.mob_view_Gridcontainer}>
+          <Grid
+            container
+            spacing={6}
+            className={classes.mob_view_Gridcontainer}
+          >
             <Grid className={classes.firstGrid} item xs={12}>
               <Paper
                 className={props.dark ? classes.paper_dark_mode : classes.paper}
@@ -778,18 +857,19 @@ export default function Searchlist(props) {
                   {basic &&
                     basic.length >= 1 &&
                     basic.map((response) => {
-                      let value = response?.text || 0
-                      let author = response?.authorID || 0
+                      let value = response?.text || 0;
+                      let author = response?.authorID || 0;
                       let str = response?.addedOn || 0;
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-
-                      let userId = response?.tweetId || 0
+                      let userId = response?.tweetId || 0;
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(
+                          stars
+                        )}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -799,26 +879,34 @@ export default function Searchlist(props) {
                         <>
                           <hr
                             className={
-                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                              props.dark
+                                ? classes.hr_page_dark_mode
+                                : classes.hr_page
                             }
                           />
-                          <a style={{ textDecoration: 'none' }} href={'/archive/' + userId}>
+                          <a
+                            style={{ textDecoration: "none" }}
+                            href={"/archive/" + userId}
+                          >
                             <Row>
-
                               <Typography
                                 variant="h6"
                                 className={
-                                  props.dark ? classes.name_dark_mode : classes.name
+                                  props.dark
+                                    ? classes.name_dark_mode
+                                    : classes.name
                                 }
                               >
                                 {/* Lisa ray */}
                               </Typography>
                               <Paper
                                 className={
-                                  props.dark ? classes.mob_list_time_dark_mode : classes.mob_list_time
+                                  props.dark
+                                    ? classes.mob_list_time_dark_mode
+                                    : classes.mob_list_time
                                 }
                               >
-                                {time ? time : '-'}
+                                {time ? time : "-"}
                               </Paper>
                             </Row>
 
@@ -838,18 +926,18 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="moblistingPagetruncating">
-                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                      {value.length > 0
+                                        ? shortenValue(value) || "-"
+                                        : "-"}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
                               </Column>
-
                             </Row>
                           </a>
                         </>
                       );
-                    })
-                  }
+                    })}
 
                   {advance &&
                     advance.length >= 1 &&
@@ -861,11 +949,12 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-
-                      let textId = response?.id || 0
+                      let textId = response?.id || 0;
                       // console.log('texttt--',textId)
                       function shortenValue(b, amountL = 80, stars = 1) {
-                        return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
+                        return `${b?.slice(0, amountL)}${""?.repeat(
+                          stars
+                        )}${b?.slice(
                           // b.length - 3,
                           b?.length || 0
                         )}`;
@@ -874,23 +963,31 @@ export default function Searchlist(props) {
                         <>
                           <hr
                             className={
-                              props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                              props.dark
+                                ? classes.hr_page_dark_mode
+                                : classes.hr_page
                             }
                           />
-                          <a style={{ textDecoration: 'none' }} href={'/archive/' + textId}>
+                          <a
+                            style={{ textDecoration: "none" }}
+                            href={"/archive/" + textId}
+                          >
                             <Row>
                               <Typography
                                 variant="h6"
                                 className={
-                                  props.dark ? classes.name_dark_mode : classes.name
+                                  props.dark
+                                    ? classes.name_dark_mode
+                                    : classes.name
                                 }
                               >
-
                                 {/* {author} */}
                               </Typography>
                               <Paper
                                 className={
-                                  props.dark ? classes.mob_list_time_dark_mode : classes.mob_list_time
+                                  props.dark
+                                    ? classes.mob_list_time_dark_mode
+                                    : classes.mob_list_time
                                 }
                               >
                                 {time}
@@ -901,7 +998,9 @@ export default function Searchlist(props) {
                               <Column>
                                 <Typography className={classes.email}>
                                   {/* {handle.length > 0 ? '@' + handle || 0 : 'undefined'} */}
-                                  {authorName.length > 0 ? authorName + '..' : author}
+                                  {authorName.length > 0
+                                    ? authorName + ".."
+                                    : author}
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
@@ -914,7 +1013,9 @@ export default function Searchlist(props) {
                                     gutterBottom
                                   >
                                     <div className="moblistingPagetruncating">
-                                    {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                      {value.length > 0
+                                        ? shortenValue(value) || "-"
+                                        : "-"}
                                     </div>
                                   </Paper>
                                 </ThemeProvider>
@@ -933,13 +1034,10 @@ export default function Searchlist(props) {
                 <br />
                 <br />
                 <br />
-
-
               </Paper>
             </Grid>
           </Grid>
         </MobileView>
-
       </div>
     </div>
   );

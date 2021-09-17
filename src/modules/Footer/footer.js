@@ -25,15 +25,15 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(2),
-    color: theme.palette.text.secondary,
+    paddingBottom: "3%",
+    paddingTop: "3%",
+    backgroundColor: "#3E71FF",
     whiteSpace: "nowrap",
-    // backgroundColor: "#191d43",
     color: "#ffffff",
     fontSize: "16px",
     boxShadow: "none",
     border: "none",
-    backgroundImage:'url("../../images/footer.svg")'
+    backgroundImage: 'url("../../images/footer.svg")',
   },
 
   paperfooter: {
@@ -47,21 +47,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0px",
   },
 
-  // poweredpaper: {
-  //   backgroundColor: "#191d43",
-  //   color: "#ffffff",
-  //   fontSize: "20px",
-  //   marginTop: "12px",
-  //   boxShadow: "none",
-  //   borderRadius: "0px",
-  //  marginRight: '50px',
-  // },
   row: {
     marginTop: "1%",
   },
   root: {
-    // flexGrow: 1,
-    // padding: "20px 20px",
     width: "100%",
   },
 
@@ -81,13 +70,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "0",
     marginTop: "7px",
   },
-  
+
   followlinks: {
     listStyle: "none",
     marginTop: "5%",
     padding: "0",
   },
- 
 
   linksitem: {
     fontSize: "14px",
@@ -101,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     marginRight: "15px",
   },
- 
+
   followitem: {
     display: "inline-block",
     marginRight: "8px",
@@ -119,7 +107,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   otherlink: {
-    // marginLeft: '12.5%',
     marginTop: "4%",
     fontweight: "600",
     fontstretch: "normal",
@@ -130,68 +117,37 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
 }));
-// const ImgLogo = styled.img`
-
-// @media (max-width:766px){
-//   width: 42px;
-// height: 39px;
-// }
-//   @media (min-width:767px) and (max-width: 900px) {
-//     width: 50px;
-// height: 47px;
-//   }
-//   @media (min-width: 901px) and (max-width: 1100) {
-//     width: 20px;
-// height: 27px;
-//   }
-//   @media (min-width: 1100px) {
-//    width: 58px;
-// height: 55px;
-//   }
-// `;
 
 export default function FooterComponent() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-       
-      
       <Grid Container spacing={1}>
-     
         <Row>
-       
           <Grid item xs={12}>
-       
-            <Paper
-              className={classes.paper}
-              style={{
-                // padding: "3%",
-                paddingBottom: "3%",
-                paddingTop: "3%",
-                backgroundColor:"#3E71FF"
-              }}
-            >
-                 {/* <img  src="../../images/footer.svg"></img> */}
+            <Paper className={classes.paper}>
+              {/* <img  src="../../images/footer.svg"></img> */}
               <Row>
                 <div class="cards">
                   <Grid className="link-grid" item xs={12} sm={6} md={4}>
                     <Paper
                       className="link-grid-paper"
-                      style={{ background: "#3E71FF", marginLeft: "1px", background:"transparent" }}
+                      style={{
+                        background: "#3E71FF",
+                        marginLeft: "1px",
+                        background: "transparent",
+                      }}
                       elevation={0}
                     >
                       <div className="link-text">
                         <div className={classes.otherlink}>
-                          <div style={{ fontSize: "16px" }}>Other Links</div>
+                          <div className="footerTextitem">Other Links</div>
                         </div>
                         <div className={classes.links}>
                           <ul>
                             <li className={classes.linksitem}>
                               <a
-                                style={{
-                                  color: "white",
-                                  textDecoration: "none",
-                                }}
+                                className="footerLinks"
                                 href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
                               >
                                 {" "}
@@ -200,10 +156,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.linksitem}>
                               <a
-                                style={{
-                                  color: "white",
-                                  textDecoration: "none",
-                                }}
+                                className="footerLinks"
                                 href="https://xinfin.org/contactus"
                               >
                                 Contact us
@@ -211,10 +164,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.linksitem}>
                               <a
-                                style={{
-                                  color: "white",
-                                  textDecoration: "none",
-                                }}
+                                className="footerLinks"
                                 href="https://xinfin.org/privacy"
                               >
                                 Privacy Policy
@@ -229,22 +179,22 @@ export default function FooterComponent() {
                   <Grid className="link-grid-2" item xs={12} sm={4} md={3}>
                     <Paper
                       className="link-grid-paper-2"
-                      style={{ backgroundColor: "#3E71FF",background:"transparent" }}
+                      style={{
+                        backgroundColor: "#3E71FF",
+                        background: "transparent",
+                      }}
                       elevation={0}
                     >
                       <div className="follow-text">
                         <div className={classes.followus}>
-                          <span style={{ fontSize: "16px" }}>
-                            {" "}
-                            Follow us on{" "}
-                          </span>
+                          <span className="footerTextitem"> Follow us on </span>
                         </div>
                         <div>
                           <ul className={classes.followlinks}>
                             <li className={classes.followitem}>
                               <a href="https://twitter.com/XinFin_Official">
                                 <img
-                                  style={{ height: "20px", width: "20px" }}
+                                  className="footericonsLink"
                                   src="../../images/twitter.svg"
                                 />
                               </a>
@@ -253,7 +203,7 @@ export default function FooterComponent() {
                               {" "}
                               <a href="https://www.facebook.com/XinFinHybridBlockchain/">
                                 <img
-                                  style={{ height: "20px", width: "20px" }}
+                                  className="footericonsLink"
                                   src="../../images/facebook.svg"
                                 />
                               </a>
@@ -262,7 +212,7 @@ export default function FooterComponent() {
                               {" "}
                               <a href="https://github.com/XinFinorg">
                                 <img
-                                  style={{ height: "20px", width: "20px" }}
+                                  className="footericonsLink"
                                   src="../../images/github.svg"
                                 />
                               </a>
@@ -271,7 +221,8 @@ export default function FooterComponent() {
                               {" "}
                               <a href="https://www.linkedin.com/company/xinfin/">
                                 <img
-                                  style={{ height: "20px", width: "20px" }}
+                                  className="footericonsLink"
+                                  className="footericonsLink"
                                   src="../../images/linkedin.svg"
                                 />
                               </a>
@@ -280,7 +231,7 @@ export default function FooterComponent() {
                               {" "}
                               <a href="https://t.me/xinfintalk">
                                 <img
-                                  style={{ height: "20px", width: "20px" }}
+                                  className="footericonsLink"
                                   src="../../images/telegram.svg"
                                 />
                               </a>
@@ -289,7 +240,7 @@ export default function FooterComponent() {
                               {" "}
                               <a href="https://www.reddit.com/r/xinfin/">
                                 <img
-                                  style={{ height: "20px", width: "20px" }}
+                                  className="footericonsLink"
                                   src="../../images/reddit.svg"
                                 />
                               </a>
@@ -302,20 +253,23 @@ export default function FooterComponent() {
 
                   <Grid className="link-grid-3" item xs={12} sm={4} md={3}>
                     <Paper
-                      style={{ backgroundColor: "#3E71FF", marginLeft: "20px",background:"transparent" }}
+                      style={{
+                        backgroundColor: "#3E71FF",
+                        marginLeft: "20px",
+                        background: "transparent",
+                      }}
                       elevation={0}
                     >
                       <div className="powered-paper">
                         <a href="/">
                           <div>
-                          <img
-                            style={{ width: "55px", height: "55px" }}
-                            src="/images/XDC-Icon.svg"
-                          />
+                            <img
+                              className="footerXdcicon"
+                              src="/images/XDC-Icon.svg"
+                            />
                           </div>
                         </a>
                         <div className="powered-text">Powered By XDC</div>
-                        {/* style={{ marginLeft: '10px', letterSpacing: '0.59px' }} */}
                       </div>
                     </Paper>
                   </Grid>

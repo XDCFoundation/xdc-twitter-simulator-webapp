@@ -19,19 +19,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DesktopView = styled.div`
-@media (min-width: 0px) and (max-width: 767px) {
- display: visible;
-}
-@media (min-width: 768px) {
-  display: visible;
-}
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: visible;
+  }
+  @media (min-width: 768px) {
+    display: visible;
+  }
 `;
-
 
 const Container = styled.div`
   width: 100%;
   height: 80px;
-  background-color: #2149B9;
+  background-color: #2149b9;
 `;
 const Image = styled.img`
   padding: 10px;
@@ -47,7 +46,7 @@ const MobileImage = styled.img`
 `;
 const Span = styled.span`
   color: #ffffff;
-  background-color: #2149B9;
+  background-color: #2149b9;
   font-size: 21px;
   margin-top: 26px;
   font-weight: 600;
@@ -57,22 +56,20 @@ const Span = styled.span`
   line-height: 1.19;
 `;
 
-
 export default function Headerconditional() {
   const classes = useStyles();
   return (
     <>
       <DesktopView>
         <Container>
-          <Row >
+          <Row>
             <a href="/">
-              <Image src={require('../Header/TwitterLogo.png')} />
+              <Image src={require("../Header/TwitterLogo.png")} />
             </a>
             <Span>XDC Speed Test</Span>
           </Row>
         </Container>
       </DesktopView>
-
     </>
   );
 }

@@ -3,15 +3,18 @@ import BaseComponent from "../baseComponent";
 import FooterComponent from "../Footer/footer";
 import HeaderComponent from "../Header/header";
 import MainComponent from "./maincomponent";
-import axios from 'axios';
-import moment from 'moment';
+import axios from "axios";
+import moment from "moment";
 
 export default class Main extends Component {
+  getMode() {
+    return JSON.parse(localStorage.getItem("mode")) || false;
+  }
 
   constructor(props) {
     super(props);
     this.state = {
-      dark: false,
+      dark: this.getMode(),
       authors: {},
       readAuthors: {},
       data: [],
@@ -23,39 +26,40 @@ export default class Main extends Component {
       save: [],
       savedTweets: [],
       totalSaveTweet: [],
+      savingtweetsCount: [],
       readtweets: [],
       totaltweets: [],
-      savingtweetsCount: [],
-      blockSocketConnected: false
-    }
+      blockSocketConnected: false,
+    };
   }
 
-  dark = false
   CheckMode(mode) {
-    // console.log('hello--',mode ? "Dark" : "Light")
-    this.setState({ dark: mode })
+    this.setState({ dark: mode });
   }
 
   async componentDidMount() {
-    await this.fetchSavedTweets()
-    await this.fetchReadTweets()
-    await this.readingCount()
-    await this.writingCount()
-    await this.savehandleUser()
-    await this.readhandleUser()
-    await this.fetchReadTweets()
-    await this.socketData(this.props?.savingSocket)
-    await this.readsocketData(this.props?.readingSocket)
+    await this.fetchSavedTweets();
+    await this.fetchReadTweets();
+    await this.readingCount();
+    await this.writingCount();
+    await this.savehandleUser();
+    await this.readhandleUser();
+    await this.fetchReadTweets();
+    await this.socketData(this.props?.savingSocket);
+    await this.readsocketData(this.props?.readingSocket);
+    await this.socketCount(this.props?.readingSocket);
   }
 
+  async componentWillUpdate() {
+    localStorage.setItem("mode", JSON.stringify(this.state.dark));
+  }
 
   // Socket Connections :
 
   socketData(socket) {
     let savingtweets = this.state.savedTweets;
     socket.on("BlockChain-socket", (blockData, error) => {
-      // console.log('>>>>>savetweet', blockData)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
       // let blockDataExist = blocks.findIndex((item) => {
       //   return item.number == blockData.number;
@@ -63,10 +67,8 @@ export default class Main extends Component {
       // blockData["class"] = "first-block-age last-block-transaction height2";
       // if (blockDataExist == -1) {
 
-      if (savingtweets.length >= 10)
-        savingtweets.pop();
+      if (savingtweets.length >= 10) savingtweets.pop();
       savingtweets.unshift(blockData);
-
 
       // setTimeout(() => {
       //   this.setState({
@@ -81,15 +83,35 @@ export default class Main extends Component {
       }
 
       // }
-
     });
   }
 
-  // SaveTweets api: 
+  // For save count :
+
+  socketCount(socket) {
+    let tweetsCount = this.state.savingtweetsCount;
+    socket.on("tweet-count-socket", (blockData, error) => {
+      this.setState({ blockSocketConnected: true });
+
+      if (tweetsCount.length >= 1) tweetsCount.pop();
+      tweetsCount.unshift(blockData);
+
+      this.setState({ savingtweetsCount: tweetsCount });
+
+      if (error) {
+        console.log("hello error");
+      }
+    });
+  }
+
+  // SaveTweets api:
 
   async fetchSavedTweets() {
     axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET)
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_SAVED_TWEET
+      )
 
       .then((res) => {
         let tweetResponse;
@@ -104,9 +126,8 @@ export default class Main extends Component {
         else tweetResponse = res.data.responseData[0];
         allSaveTweets = res.data.responseData[1];
 
-        this.setState({ savedTweets: tweetResponse })
-        this.setState({ totalSaveTweet: allSaveTweets })
-
+        this.setState({ savedTweets: tweetResponse });
+        this.setState({ totalSaveTweet: allSaveTweets });
       })
       .catch((err) => {
         console.log(err);
@@ -115,7 +136,10 @@ export default class Main extends Component {
     setInterval(async () => {
       if (!this.state.blockSocketConnected) {
         await axios
-          .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET)
+          .get(
+            process.env.REACT_APP_BASE_URL_TWITTER +
+              process.env.REACT_APP_SAVED_TWEET
+          )
 
           .then((res) => {
             let tweetResponse;
@@ -130,17 +154,15 @@ export default class Main extends Component {
             else tweetResponse = res.data.responseData[0] || 0;
             allSaveTweets = res.data.responseData[1] || 0;
 
-            this.setState({ savedTweets: tweetResponse })
-            this.setState({ totalSaveTweet: allSaveTweets })
-
+            this.setState({ savedTweets: tweetResponse });
+            this.setState({ totalSaveTweet: allSaveTweets });
           })
           .catch((err) => {
             console.log(err);
           });
       }
-
-    }, 10000)
-  };
+    }, 10000);
+  }
 
   /** For read tweets */
 
@@ -148,7 +170,7 @@ export default class Main extends Component {
     let readingtweets = this.state.readtweets;
     socket.on("read-tweets-socket", (blockData, error) => {
       // console.log('>>>>>readtweet', blockData)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
       // let blockDataExist = blocks.findIndex((item) => {
       //   return item.number == blockData.number;
@@ -156,8 +178,7 @@ export default class Main extends Component {
       // blockData["class"] = "first-block-age last-block-transaction height2";
       // if (blockDataExist == -1) {
 
-      if (readingtweets.length >= 10)
-        readingtweets.pop();
+      if (readingtweets.length >= 10) readingtweets.pop();
       readingtweets.unshift(blockData);
 
       // setTimeout(() => {
@@ -173,16 +194,17 @@ export default class Main extends Component {
       }
 
       // } (left comment)
-
     });
   }
 
   /* Read tweets api */
 
   async fetchReadTweets() {
-
     await axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_READ_TWEET
+      )
 
       .then((res) => {
         let tweetResponse;
@@ -197,20 +219,20 @@ export default class Main extends Component {
         else tweetResponse = res.data.responseData[0];
         alltweets = res.data.responseData[1];
 
-        this.setState({ readtweets: tweetResponse })
-        this.setState({ totaltweets: alltweets })
-
+        this.setState({ readtweets: tweetResponse });
+        this.setState({ totaltweets: alltweets });
       })
       .catch((err) => {
         console.log(err);
       });
 
-
-
     setInterval(async () => {
       if (!this.state.blockSocketConnected) {
         await axios
-          .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+          .get(
+            process.env.REACT_APP_BASE_URL_TWITTER +
+              process.env.REACT_APP_READ_TWEET
+          )
 
           .then((res) => {
             let tweetResponse;
@@ -225,19 +247,15 @@ export default class Main extends Component {
             else tweetResponse = res.data.responseData[0];
             alltweets = res.data.responseData[1];
 
-            this.setState({ readtweets: tweetResponse })
-            this.setState({ totaltweets: alltweets })
-
+            this.setState({ readtweets: tweetResponse });
+            this.setState({ totaltweets: alltweets });
           })
           .catch((err) => {
             console.log(err);
           });
       }
-
-    }, 10000)
-  };
-
-
+    }, 10000);
+  }
 
   /* Socket Connection for Read Graph */
 
@@ -245,55 +263,54 @@ export default class Main extends Component {
     let readGraph = this.state.readData;
     socket.on("read-speed-socket", (val, error) => {
       // console.log('>>>>val', val)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
-      if (readGraph.length >= 10)
-        readGraph.pop();
+      if (readGraph.length >= 10) readGraph.pop();
       readGraph.unshift(val);
 
       this.setState({ readData: readGraph });
 
-      var arr = [{
-        id: "Read-graph",
-        data: []
-      }]
-      var resultData = []
+      var arr = [
+        {
+          id: "Read-graph",
+          data: [],
+        },
+      ];
+      var resultData = [];
 
-      this.state.readData.map(items => {
-        let graphs = (1000 * items.requestCount / items.responseTime) * 60
+      this.state.readData.map((items) => {
+        let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
         resultData.push({
-          x: moment(items.startTime).format('LT'),
-          y: graphs
-        })
-
-      })
+          x: moment(items.startTime).format("LT"),
+          y: graphs,
+        });
+      });
       function getUnique(resultData, index) {
-
         const unique = resultData
-          .map(e => e[index])
+          .map((e) => e[index])
 
           // store the keys of the unique objects
           .map((e, i, final) => final.indexOf(e) === i && i)
 
           // eliminate the dead keys & store unique objects
-          .filter(e => resultData[e]).map(e => resultData[e]);
+          .filter((e) => resultData[e])
+          .map((e) => resultData[e]);
 
         return unique;
       }
-      let graphdata = getUnique(resultData?.slice(0, 20), 'x').reverse()
-      let newData = graphdata.slice(-1)
-      let firstData = Object.values(newData[0])
-      let secondData = parseFloat(firstData[1]).toFixed(2)
+      let graphdata = getUnique(resultData?.slice(0, 20), "x").reverse();
+      let newData = graphdata.slice(-1);
+      let firstData = Object.values(newData[0]);
+      let secondData = parseFloat(firstData[1]).toFixed(2);
 
-      this.setState({ read: secondData })
+      this.setState({ read: secondData });
 
-      arr[0].data = getUnique(resultData.slice(0, 20), 'x').reverse()
-      this.setState({ readResult: arr })
+      arr[0].data = getUnique(resultData.slice(0, 20), "x").reverse();
+      this.setState({ readResult: arr });
 
       if (error) {
         console.log("hello error");
       }
-
     });
   }
 
@@ -302,44 +319,45 @@ export default class Main extends Component {
   async readingCount() {
     await axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
+        this.setState({ readData: result.data.responseData });
 
-        this.setState({ readData: result.data.responseData })
+        var arr = [
+          {
+            id: "Write-graph",
+            data: [],
+          },
+        ];
+        var resultData = [];
 
-        var arr = [{
-          id: "Write-graph",
-          data: []
-        }]
-        var resultData = []
-
-        this.state.readData.map(items => {
-          let graphs = (1000 * items.requestCount / items.responseTime) * 60
+        this.state.readData.map((items) => {
+          let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
           resultData.push({
-            x: moment(items.startTime).format('LT'),
-            y: graphs
-          })
-
-        })
+            x: moment(items.startTime).format("LT"),
+            y: graphs,
+          });
+        });
         function getUnique(resultData, index) {
-
           const unique = resultData
-            .map(e => e[index])
+            .map((e) => e[index])
             .map((e, i, final) => final.indexOf(e) === i && i)
-            .filter(e => resultData[e]).map(e => resultData[e]);
+            .filter((e) => resultData[e])
+            .map((e) => resultData[e]);
 
           return unique;
         }
-        let graphdata = getUnique(resultData?.slice(0, 20), 'x').reverse()
-        let newData = graphdata.slice(-1)
-        let firstData = Object.values(newData[0])
-        let secondData = parseFloat(firstData[1]).toFixed(2)
+        let graphdata = getUnique(resultData?.slice(0, 20), "x").reverse();
+        let newData = graphdata.slice(-1);
+        let firstData = Object.values(newData[0]);
+        let secondData = parseFloat(firstData[1]).toFixed(2);
 
-        this.setState({ read: secondData })
+        this.setState({ read: secondData });
 
-        arr[0].data = getUnique(resultData.slice(0, 20), 'x').reverse()
-        this.setState({ readResult: arr })
+        arr[0].data = getUnique(resultData.slice(0, 20), "x").reverse();
+        this.setState({ readResult: arr });
       })
       .catch((err) => {
         console.log(err);
@@ -352,54 +370,53 @@ export default class Main extends Component {
     let writeGraph = this.state.saveData;
     socket.on("saving-speed-socket", (val, error) => {
       // console.log('>>>>val', val)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
-      if (writeGraph.length >= 10)
-        writeGraph.pop();
+      if (writeGraph.length >= 10) writeGraph.pop();
       writeGraph.unshift(val);
 
       this.setState({ saveData: writeGraph });
-      var arr = [{
-        id: "Write-graph",
-        data: []
-      }]
-      var resultData = []
+      var arr = [
+        {
+          id: "Write-graph",
+          data: [],
+        },
+      ];
+      var resultData = [];
 
-      this.state.saveData.map(items => {
+      this.state.saveData.map((items) => {
         // console.log('api--', items)
-        let firstAxis = items?.savedTweets / items?.responseTime
-        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
+        let firstAxis = items?.savedTweets / items?.responseTime;
+        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
         resultData.push({
-          x: moment(items.saveStartTime * 1000).format('LT'),
-          y: secondAxis * 60
-        })
-
-      })
+          x: moment(items.saveStartTime * 1000).format("LT"),
+          y: secondAxis * 60,
+        });
+      });
       function getSaveUnique(resultData, index) {
-
         const saveunique = resultData
-          .map(e => e[index])
+          .map((e) => e[index])
           .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter(e => resultData[e]).map(e => resultData[e]);
+          .filter((e) => resultData[e])
+          .map((e) => resultData[e]);
 
         return saveunique;
       }
-      let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
-      let savingnewData = savingGraphdata.slice(-1)
-      let savingfirstData = Object.values(savingnewData[0])
-      let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
+      let savingGraphdata = getSaveUnique(resultData, "x").reverse();
+      let savingnewData = savingGraphdata.slice(-1);
+      let savingfirstData = Object.values(savingnewData[0]);
+      let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2);
 
-      this.setState({ save: savingSecondData })
+      this.setState({ save: savingSecondData });
 
-      arr[0].data = getSaveUnique(resultData, 'x').reverse()
-      this.setState({ result: arr })
+      arr[0].data = getSaveUnique(resultData, "x").reverse();
+      this.setState({ result: arr });
 
       // console.log('apiarray--', arr)
 
       if (error) {
         console.log("hello error");
       }
-
     });
   }
 
@@ -407,43 +424,46 @@ export default class Main extends Component {
 
   async writingCount() {
     await axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_SAVING_SPEED_DATA
+      )
       .then((result) => {
+        this.setState({ saveData: result.data.responseData[0] });
+        var arr = [
+          {
+            id: "Write-graph",
+            data: [],
+          },
+        ];
+        var resultData = [];
 
-        this.setState({ saveData: result.data.responseData[0] })
-        var arr = [{
-          id: "Write-graph",
-          data: []
-        }]
-        var resultData = []
-
-        this.state.saveData.map(items => {
+        this.state.saveData.map((items) => {
           // console.log('api--', items)
-          let firstAxis = items?.savedTweets / items?.responseTime
-          let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
+          let firstAxis = items?.savedTweets / items?.responseTime;
+          let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
           resultData.push({
-            x: moment(items.saveStartTime * 1000).format('LT'),
-            y: secondAxis * 60
-          })
-
-        })
+            x: moment(items.saveStartTime * 1000).format("LT"),
+            y: secondAxis * 60,
+          });
+        });
         function getSaveUnique(resultData, index) {
-
           const saveunique = resultData
-            .map(e => e[index])
+            .map((e) => e[index])
             .map((e, i, final) => final.indexOf(e) === i && i)
-            .filter(e => resultData[e]).map(e => resultData[e]);
+            .filter((e) => resultData[e])
+            .map((e) => resultData[e]);
 
           return saveunique;
         }
-        let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
-        let savingnewData = savingGraphdata.slice(-1)
-        let savingfirstData = Object.values(savingnewData[0])
-        let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
+        let savingGraphdata = getSaveUnique(resultData, "x").reverse();
+        let savingnewData = savingGraphdata.slice(-1);
+        let savingfirstData = Object.values(savingnewData[0]);
+        let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2);
 
-        this.setState({ save: savingSecondData })
-        arr[0].data = getSaveUnique(resultData, 'x').reverse()
-        this.setState({ result: arr })
+        this.setState({ save: savingSecondData });
+        arr[0].data = getSaveUnique(resultData, "x").reverse();
+        this.setState({ result: arr });
 
         // console.log('apiarray--',arr)
       })
@@ -453,55 +473,61 @@ export default class Main extends Component {
   }
 
   async savehandleUser() {
-
-    (this.state?.savedTweets).map(item => {
-      let handle = item?.authorID || '-'
+    (this.state?.savedTweets).map((item) => {
+      let handle = item?.authorID || "-";
       // console.log('items2--', handle)
       axios
         .get(
-          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+          process.env.REACT_APP_BASE_URL_TWITTER +
+            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
+            handle
         )
         .then((res) => {
           // setAuthors(res.data.responseData?.data[0]);
-          this.setState({ authors: res?.data?.responseData?.data[0]?.username })
+          this.setState({
+            authors: res?.data?.responseData?.data[0]?.username,
+          });
           // console.log('save---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
           console.log(err);
         });
     });
-
-  };
+  }
 
   async readhandleUser() {
-
-    (this.state?.readtweets).map(item => {
-      let handle = item?.authorId || '-'
+    (this.state?.readtweets).map((item) => {
+      let handle = item?.authorId || "-";
       // console.log('items--', handle)
       axios
         .get(
-          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+          process.env.REACT_APP_BASE_URL_TWITTER +
+            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
+            handle
         )
         .then((res) => {
           // setAuthors(res.data.responseData?.data[0]);
-          this.setState({ readAuthors: res?.data?.responseData?.data[0]?.username })
+          this.setState({
+            readAuthors: res?.data?.responseData?.data[0]?.username,
+          });
           // console.log('read---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
           console.log(err);
         });
     });
-
-  };
+  }
 
   render() {
     // console.log('by', this.state.authors)
-    // console.log('my', this.state.readAuthors)
+    // console.log('my', this.state.savingtweetsCount)
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
-        <MainComponent dark={this.state.dark}
+        <MainComponent
+          dark={this.state.dark}
           Savesocket={this.props.savingSocket}
+          saveCount={this.state.savingtweetsCount}
           readSocket={this.props.readingSocket}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}

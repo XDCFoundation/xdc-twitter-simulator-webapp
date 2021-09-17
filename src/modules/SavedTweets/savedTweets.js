@@ -18,7 +18,6 @@ import {
   responsiveFontSizes,
 } from "@material-ui/core/styles";
 
-
 // console.log('saved---',this.props.Socket)
 
 const IconImg = styled.img`
@@ -40,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     color: theme.palette.text.secondary,
     marginTop: "-5%",
-    border: '1px solid #E3E7EB',
-    borderRadius: '5px',
+    border: "1px solid #E3E7EB",
+    borderRadius: "5px",
     opacity: 1,
     height: "auto",
-    boxShadow: '0px 2px 30px #0000001A',
+    boxShadow: "0px 2px 30px #0000001A",
   },
 
   paper_dark_mode: {
@@ -54,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
-    borderRadius: '5px',
-    border: 'solid 1px #343965',
+    borderRadius: "5px",
+    border: "solid 1px #343965",
     // height: '784px',
   },
 
@@ -267,12 +266,17 @@ export default function SavedTweets(props) {
 
   useEffect(() => {
     userHandle();
-  }, [props?.author])
+  }, [props?.author]);
 
+  // console.log('fire--',props.tweetData);
+
+  useEffect(() => {
+    // console.log('fire--',props.tweetData);
+  }, [props?.tweetData]);
 
   async function userHandle() {
     if (props?.author && props?.author?.length >= 1) {
-      setAuthors(props?.author)
+      setAuthors(props?.author);
     }
     // console.log('pr--', props?.author)
   }
@@ -280,12 +284,12 @@ export default function SavedTweets(props) {
   // console.log('saveprop2--', props.savedCount[0])
   // console.log('saveprop2--', props.tweetCount.totalTweetCount)
 
-  let text = props.tweetData[0]?.text
-  let animationclass = props.animationTime?.[text]
-  let textanimationClass = props.textclass?.[text]
-  let handleanimationclass = props.handleclass?.[text]
-  let blockDarkanimationclass = props.blockDarkclass?.[text]
-  let textdarkanimationClass = props.textDarkclass?.[text]
+  let text = props.tweetData[0]?.text;
+  let animationclass = props.animationTime?.[text];
+  let textanimationClass = props.textclass?.[text];
+  let handleanimationclass = props.handleclass?.[text];
+  let blockDarkanimationclass = props.blockDarkclass?.[text];
+  let textdarkanimationClass = props.textDarkclass?.[text];
 
   // console.log('texx--',textdarkanimationClass)
 
@@ -335,34 +339,38 @@ export default function SavedTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {props?.savedCount[0] ? (props?.savedCount[0] > 1000
-                    ? parseInt(props?.savedCount[0] / 1000) + "k"
-                    : props.savedCount[0]) :
-                    (props?.tweetCount?.blockchainTweetCount) > 1000
-                      ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) + "k"
-                      : props?.tweetCount?.blockchainTweetCount}
+                  {props?.savedCount[0]
+                    ? props?.savedCount[0] > 1000
+                      ? parseInt(props?.savedCount[0] / 1000) + "k"
+                      : props.savedCount[0]
+                    : props?.tweetCount?.blockchainTweetCount > 1000
+                    ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) +
+                      "k"
+                    : props?.tweetCount?.blockchainTweetCount}
                 </Paper>
               </Row>
-              {props.tweetData &&
-                props.tweetData.length >= 1 &&
-                props.tweetData.map((response, index) => {
+              {props?.tweetData &&
+                props?.tweetData.length >= 1 &&
+                props?.tweetData.map((response, index) => {
                   let value = response?.text || 0;
                   let author = response?.authorID || 0;
-                  let createTime = Number(response?.createdAt || 0)
+                  let createTime = Number(response?.createdAt || 0);
                   let str = response.addedOn;
                   let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
 
                   // let textAnimation = response?.text
                   function shortenValue(b, amountL = 80, stars = 1) {
-                    return `${b?.slice(0, amountL)}${""?.repeat(stars)}${b?.slice(
+                    return `${b?.slice(0, amountL)}${""?.repeat(
+                      stars
+                    )}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
                   }
 
                   return (
-                    <React.Fragment >
+                    <React.Fragment>
                       <hr
                         className={
                           props.dark
@@ -379,32 +387,51 @@ export default function SavedTweets(props) {
                         >
                           {/* {response.blockNumber} */}
                         </Typography>
-                        <Paper className=
-                          {props.dark ? (index == 0 && blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
-                            (index == 0 && animationclass ? animationclass : classes.time)}
+                        <Paper
+                          className={
+                            props.dark
+                              ? index == 0 && blockDarkanimationclass
+                                ? blockDarkanimationclass
+                                : classes.time_dark_mode
+                              : index == 0 && animationclass
+                              ? animationclass
+                              : classes.time
+                          }
                         >
-                          {time ? time : '-'}
+                          {time ? time : "-"}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
-                          <Typography className={index == 0 && handleanimationclass ? handleanimationclass : classes.email}>
-                            {authors?.length > 0 ? '@' + (authors) : author}
+                          <Typography
+                            className={
+                              index == 0 && handleanimationclass
+                                ? handleanimationclass
+                                : classes.email
+                            }
+                          >
+                            {authors?.length > 0 ? "@" + authors : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
                               noWrap
-                              className={props.dark ?
-                                (index == 0 && textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
-                                (index == 0 && textanimationClass ? textanimationClass : classes.content)}
-
+                              className={
+                                props.dark
+                                  ? index == 0 && textdarkanimationClass
+                                    ? textdarkanimationClass
+                                    : classes.content_dark_mode
+                                  : index == 0 && textanimationClass
+                                  ? textanimationClass
+                                  : classes.content
+                              }
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                              {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                {value.length > 0
+                                  ? shortenValue(value) || "-"
+                                  : "-"}
                               </div>
-
                             </Paper>
                           </ThemeProvider>
                         </Column>
