@@ -11,7 +11,6 @@ import {
 } from "react-leaflet";
 import "../../assets/styles/custom.css";
 import axios from "axios";
-import { red } from "@material-ui/core/colors";
 
 export default function DarkMap() {
   const [hashtag, setHashtag] = useState([]);

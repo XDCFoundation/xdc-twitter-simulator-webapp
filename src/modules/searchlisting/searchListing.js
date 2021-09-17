@@ -27,11 +27,7 @@ const Text = styled.div`
   font-weight: 900;
   margin-bottom: 55px;
   margin-left: 3%;
-  fontfamily: "Raleway ,sans-serif !important";
-
-  /////////////////////new code
-
-  // const IconImg = styled.img
+  font-family: "Raleway ,sans-serif !important";
 `;
 
 const theme = createMuiTheme({});
@@ -431,7 +427,6 @@ export default function Searchlist(props) {
   const [advance, setAdvance] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  // console.log('pi---',props?.locations.split(' ')[0])
   useEffect(() => {
     setMode(props.dark);
     localStorage.setItem("mode", JSON.stringify(props.dark));
@@ -446,8 +441,8 @@ export default function Searchlist(props) {
     axios
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_BASIC_SEARCH +
-          props?.locations.split(" ")[0]
+        process.env.REACT_APP_BASIC_SEARCH +
+        props?.locations.split(" ")[0]
       )
       .then((res) => {
         let basicSearch = [];
@@ -471,13 +466,13 @@ export default function Searchlist(props) {
     axios
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_ADVANCE_SEARCH +
-          "name" +
-          props?.username +
-          "&keyword=" +
-          props?.locations.split(" ")[0] +
-          "&hash=" +
-          props?.hashname
+        process.env.REACT_APP_ADVANCE_SEARCH +
+        "name" +
+        props?.username +
+        "&keyword=" +
+        props?.locations.split(" ")[0] +
+        "&hash=" +
+        props?.hashname
       )
       .then((res) => {
         let advanceSearch = [];
@@ -617,13 +612,13 @@ export default function Searchlist(props) {
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
-                                    noWrap
+                                    // noWrap
                                     className={
                                       props.dark
                                         ? classes.content_dark_mode
                                         : classes.content
                                     }
-                                    gutterBottom
+                                    // gutterBottom
                                   >
                                     <div className="listingPagetruncating">
                                       {value.length > 0
@@ -703,13 +698,13 @@ export default function Searchlist(props) {
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
-                                    noWrap
+                                    // noWrap
                                     className={
                                       props.dark
                                         ? classes.content_dark_mode
                                         : classes.content
                                     }
-                                    gutterBottom
+                                    // gutterBottom
                                   >
                                     <div className="listingPagetruncating">
                                       {value.length > 0
@@ -917,13 +912,13 @@ export default function Searchlist(props) {
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
-                                    noWrap
+                                    // noWrap
                                     className={
                                       props.dark
                                         ? classes.content_dark_mode
                                         : classes.content
                                     }
-                                    gutterBottom
+                                    // gutterBottom
                                   >
                                     <div className="moblistingPagetruncating">
                                       {value.length > 0
@@ -1004,13 +999,13 @@ export default function Searchlist(props) {
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
-                                    noWrap
+                                    // noWrap
                                     className={
                                       props.dark
                                         ? classes.content_dark_mode
                                         : classes.content
                                     }
-                                    gutterBottom
+                                    // gutterBottom
                                   >
                                     <div className="moblistingPagetruncating">
                                       {value.length > 0

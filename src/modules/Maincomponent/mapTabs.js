@@ -28,65 +28,35 @@ function MapTabs(props) {
       <div className={props.dark ? "dark-block" : "block"}>
         <div className="bloc-tabs">
           <button
-            style={
+            className={
               props.dark
-                ? {
-                    border: "transparent",
-                    backgroundColor: "#191d43",
-                    marginLeft: "18px",
-                  }
-                : {
-                    border: "transparent",
-                    backgroundColor: "#ffffff",
-                    marginLeft: "18px",
-                  }
+                ? toggleState === 1
+                  ? "dark-tabs active-dark-tabs"
+                  : "dark-tabs"
+                : toggleState === 1
+                ? "tabs active-tabs"
+                : "tabs"
             }
-            className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(1)}
           >
-            <span
-              style={
-                props.dark
-                  ? {
-                      fontSize: 12,
-                      color: "white",
-                    }
-                  : { fontSize: 12, color: "black" }
-              }
-            >
-              {" "}
-              Map{" "}
+            <span className={props.dark ? "mapTab-dark-mode" : "mapTab-mode"}>
+              Map
             </span>
           </button>
           <button
-            style={
+            className={
               props.dark
-                ? {
-                    border: "transparent",
-                    backgroundColor: "#191d43",
-                    marginLeft: "15px",
-                  }
-                : {
-                    border: "transparent",
-                    backgroundColor: "white",
-                    marginLeft: "10px",
-                  }
+                ? toggleState === 2
+                  ? "dark-tabs-list active-dark-tabs-list"
+                  : "dark-tabs-list"
+                : toggleState === 2
+                ? "tabs-list active-tabs-list"
+                : "tabs-list"
             }
-            className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
             onClick={() => toggleTab(2)}
           >
-            <span
-              style={
-                props.dark
-                  ? {
-                      fontSize: 12,
-                      color: "white",
-                    }
-                  : { fontSize: 12, color: "black" }
-              }
-            >
-              {" "}
-              List{" "}
+            <span className={props.dark ? "listTab-dark-mode" : "listTab-mode"}>
+              List
             </span>
           </button>
         </div>
@@ -105,7 +75,6 @@ function MapTabs(props) {
           }
         >
           {props.dark ? <DarkMap dark={dark} /> : <MapChart dark={dark} />}
-          {/* <MapChart/> */}
         </div>
 
         <div
@@ -119,7 +88,6 @@ function MapTabs(props) {
               : "content"
           }
         >
-          {/* <List/> */}
           <div>
             <List dark={dark} />
           </div>

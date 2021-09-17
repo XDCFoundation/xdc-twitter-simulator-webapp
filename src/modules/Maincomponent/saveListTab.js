@@ -285,11 +285,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "0.5rem",
   },
 
-
   hr_page_dark_mode: {
     width: "104%",
     height: "0px",
-    marginLeft: '-15px',
+    marginLeft: "-15px",
     backgroundColor: "white",
     marginTop: "0.7rem",
     marginBottom: "0.7rem",
@@ -326,16 +325,15 @@ export default function ReadTweets(props) {
 
   useEffect(() => {
     userHandle();
-  }, [props?.user])
+  }, [props?.user]);
 
   useEffect(() => {
     // console.log('fire--',props.tweetData);
-  }, [props?.savetweetData, props?.saveCountData])
-
+  }, [props?.savetweetData, props?.saveCountData]);
 
   async function userHandle() {
     if (props?.user && props?.user?.length >= 1) {
-      setAuthors(props?.user)
+      setAuthors(props?.user);
     }
 
     // console.log('pr--', props?.user)
@@ -361,18 +359,15 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-
-                  {props?.saveCountData[0] ? (props?.saveCountData[0] > 1000
-                    ? parseInt(props?.saveCountData[0] / 1000) + "k"
-                    : props.savedCount[0]) :
-                    (props?.saveTweetCount?.blockchainTweetCount) > 1000
-                      ? parseInt(props?.saveTweetCount?.blockchainTweetCount / 1000) + "k"
-                      : props?.saveTweetCount?.blockchainTweetCount}
-
-
-                  {/* {props?.saveTweetCount?.blockchainTweetCount > 1000
-                    ? parseInt(props?.saveTweetCount?.blockchainTweetCount / 1000) + "k"
-                    : props?.saveTweetCount?.blockchainTweetCount} */}
+                  {props?.saveCountData[0]
+                    ? props?.saveCountData[0] > 1000
+                      ? parseInt(props?.saveCountData[0] / 1000) + "k"
+                      : props?.saveCountData[0]
+                    : props?.saveTweetCount?.blockchainTweetCount > 1000
+                    ? parseInt(
+                        props?.saveTweetCount?.blockchainTweetCount / 1000
+                      ) + "k"
+                    : props?.saveTweetCount?.blockchainTweetCount}
                 </div>
               </Row>
               {props?.savetweetData &&
@@ -380,13 +375,15 @@ export default function ReadTweets(props) {
                 props?.savetweetData.map((response) => {
                   let value = response?.text || 0;
                   let author = response?.authorID || 0;
-                  let createTime = Number(response?.createdAt || 0)
+                  let createTime = Number(response?.createdAt || 0);
                   let str = response.addedOn;
                   let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 80, stars = 1) {
-                    return `${b?.slice(0, amountL)}${" "?.repeat(stars)}${b?.slice(
+                    return `${b?.slice(0, amountL)}${" "?.repeat(
+                      stars
+                    )}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
@@ -414,14 +411,14 @@ export default function ReadTweets(props) {
                             props.dark ? classes.time_dark_mode : classes.time
                           }
                         >
-                          {time ? time : '-'}
+                          {time ? time : "-"}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authors?.length > 0 ? '@' + (authors) : author}
+                            {authors?.length > 0 ? "@" + authors : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -434,7 +431,9 @@ export default function ReadTweets(props) {
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                                {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                {value.length > 0
+                                  ? shortenValue(value) || "-"
+                                  : "-"}
                               </div>
                             </Paper>
                           </ThemeProvider>

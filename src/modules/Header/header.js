@@ -347,8 +347,11 @@ export default function HeaderComponent(props) {
   // var res = encodeURIComponent(uri);
   // console.log('mine---',res)
 
+  // let a = '#THR Great news and up 22% on the ASX overnight so this should be around 1.10p t'
+  // console.log('p--',encodeURIComponent(a.replace(/[^A-Z0-9]+/ig, "")))
+
   const redirect = () => {
-    history.push("/list/" + encodeURIComponent(keyword));
+    history.push("/list/" + encodeURIComponent(keyword?.replace('%', '')));
     window.location.reload();
   };
 
