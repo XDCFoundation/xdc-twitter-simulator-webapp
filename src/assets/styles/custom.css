@@ -805,7 +805,6 @@ input:focus {
 }
 
 .tabs {
-  /*padding-bottob5bac7m: 7px;*/
   color: #969696;
   text-align: center;
   width: 80%;
@@ -814,16 +813,36 @@ input:focus {
   font-size: 11px;
   background: #fff;
   cursor: pointer;
-  /*padding-left: 0px;*/
   display: flex;
   justify-content: center;
   font-weight: 600;
   letter-spacing: 0.65px;
+  border: transparent;
+  background-color: #ffffff;
+  margin-left: 18px;
+}
+
+.tabs-list {
+  color: #969696;
+  text-align: center;
+  width: 80%;
+  cursor: pointer;
+  position: relative;
+  font-size: 11px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 0.65px;
+  border: transparent;
+  background-color: #ffffff;
+  margin-left: 9px;
 }
 
 .dark-tabs {
   padding-bottom: 7px;
-  color: #969696;
+  color: white;
   background-color: #191d43;
   text-align: center;
   width: 80%;
@@ -835,6 +854,28 @@ input:focus {
   padding-left: 0px;
   font-weight: 600;
   letter-spacing: 0.65px;
+  border: transparent;
+  background-color: #191d43;
+  margin-left: 25px;
+}
+
+.dark-tabs-list {
+  padding-bottom: 7px;
+  color: white;
+  background-color: #191d43;
+  text-align: center;
+  width: 80%;
+  cursor: pointer;
+  position: relative;
+  font-size: 11px;
+  background: #fff;
+  cursor: pointer;
+  padding-left: 0px;
+  font-weight: 600;
+  letter-spacing: 0.65px;
+  border: transparent;
+  background-color: #191d43;
+  margin-left: 16px;
 }
 
 .active-tabs {
@@ -842,6 +883,39 @@ input:focus {
   color: #09184B;
   opacity: 1;
   font-weight: 600;
+  border: transparent;
+  background-color: #ffffff;
+  margin-left: 18px;
+}
+
+.active-tabs-list {
+  letter-spacing: 1px;
+  color: #09184B;
+  opacity: 1;
+  font-weight: 600;
+  border: transparent;
+  background-color: #ffffff;
+  margin-left: 9px;
+}
+
+.active-dark-tabs {
+  letter-spacing: 1px;
+  color: #09184B;
+  opacity: 1;
+  font-weight: 600;
+  border: transparent;
+  background-color: #191d43;
+  margin-left: 25px;
+}
+
+.active-dark-tabs-list {
+  letter-spacing: 1px;
+  color: #09184B;
+  opacity: 1;
+  font-weight: 600;
+  border: transparent;
+  background-color: #191d43;
+  margin-left: 16px;
 }
 
 .active-tabs::before {
@@ -859,8 +933,82 @@ input:focus {
   background: #3366FF; 
 }
 
+.active-tabs-list::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 91%;
+  left: 0%;
+  width: 28px;
+  margin-left: 5px;
+  height: 1px;
+  border: 1.8px solid #3366FF;
+  border-radius: 20px;
+  opacity: 1;
+  background: #3366FF; 
+}
+
+.active-dark-tabs::before {
+  content: "";
+  color: #ffffff;
+  display: block;
+  position: absolute;
+  top: 91%;
+  left: 0%;
+  width: 28px;
+  margin-left: -1px;
+  height: 1px;
+  border: 1.8px solid #3366FF;
+  border-radius: 20px;
+  opacity: 1;
+  background: #3366FF; 
+}
+
+.active-dark-tabs-list::before {
+  content: "";
+  color: #ffffff;
+  display: block;
+  position: absolute;
+  top: 91%;
+  left: 0%;
+  width: 28px;
+  margin-left: -1px;
+  height: 1px;
+  border: 1.8px solid #3366FF;
+  border-radius: 20px;
+  opacity: 1;
+  background: #3366FF; 
+}
+
 @media (min-width: 767px) and (max-width: 1200px) {
   .active-tabs::before {
+    width: 35.5px;
+    margin-left: 0px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+
+  .active-tabs-list::before {
+    width: 35.5px;
+    margin-left: 0px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+
+  .active-dark-tabs::before {
+    width: 35.5px;
+    margin-left: 0px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+
+  .active-dark-tabs-list::before {
     width: 35.5px;
     margin-left: 0px;
     height: 1px;
@@ -879,6 +1027,55 @@ input:focus {
     opacity: 1;
     background: #3366FF; 
   }
+
+  .active-tabs-list::before {
+    width: 35.5px;
+    margin-left: 2px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+
+  .active-dark-tabs::before {
+    width: 33.5px;
+    margin-left: -2px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+
+  .active-dark-tabs-list::before {
+    width: 33.5px;
+    margin-left: -2px;
+    height: 1px;
+    border: 1px solid #3366FF;
+    opacity: 1;
+    background: #3366FF; 
+  }
+}
+
+.mapTab-mode{
+  font-size: 12px;
+  color: black;
+}
+
+.mapTab-dark-mode{
+  font-size: 12px;
+  color: white;
+}
+
+
+.listTab-mode{
+  width: 20px;
+  font-size: 12px;
+  color: black;
+}
+
+.listTab-dark-mode{
+  font-size: 12px;
+  color: white;
 }
 
 .tabSavelist {
@@ -1048,6 +1245,18 @@ input:focus {
 }
 .content-tabs {
   margin-right: 18px;
+}
+
+.composableNodemap {
+  fill: #bdc1e5;
+  width: 100%;
+  height: 218px;
+}
+
+.composableNodeDarkmap {
+  fill: #293178;
+  width: 100%;
+  height: 218px;
 }
 
 .cards {

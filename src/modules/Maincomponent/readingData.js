@@ -3,7 +3,6 @@ import { ResponsiveLine } from "@nivo/line";
 import "../../assets/styles/custom.css";
 import axios from "axios";
 import moment from "moment";
-import { Component } from "react";
 
 const toolTipElement = (props) => {
   let stats = parseFloat(props.point?.data?.y || 0);

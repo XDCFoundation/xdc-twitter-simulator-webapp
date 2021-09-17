@@ -41,19 +41,7 @@ const NodeChart = (props) => {
   return (
     <div>
       <ComposableMap
-        style={
-          props.dark
-            ? {
-                fill: "#293178",
-                width: "100%",
-                height: "218px",
-              }
-            : {
-                fill: "#bdc1e5",
-                width: "100%",
-                height: "218px",
-              }
-        }
+        className={props.dark ? "composableNodeDarkmap" : "composableNodemap"}
       >
         {/* <ZoomableGroup zoom={1}> */}
         <Geographies geography={geoUrl}>
