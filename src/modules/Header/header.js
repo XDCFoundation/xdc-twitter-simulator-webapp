@@ -1,36 +1,43 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import "../styles/App.css";
 import DarkMode from "../components/DarkMode";
 import "../styles/App.css";
 import AdvanceSearch from "../Advancedsearch/advancedSearch";
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import clsx from 'clsx';
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import axios from 'axios';
+import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Row } from "react-bootstrap";
-import MenuIcon from '@material-ui/icons/Menu';
-import List from '@material-ui/core/List';
+import MenuIcon from "@material-ui/icons/Menu";
+import List from "@material-ui/core/List";
 // import Drawer from './drawer';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import CloseIcon from '@material-ui/icons/Close';
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles({
   list: {
     width: 250,
-    backgroundColor: '#2149B9',
-    color: 'white'
+    backgroundColor: "#2149B9",
+    color: "white",
   },
   fullList: {
-    width: 'auto',
+    width: "auto",
+  },
+  searchIcon: {
+    width: "20px",
+    height: "20px",
+  },
+  firstRow: {
+    flexGrow: 1,
   },
 });
 
@@ -38,7 +45,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   height: 80px;
-  background-color: #2149B9;
+  background-color: #2149b9;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
@@ -47,14 +54,14 @@ const MobileContainer = styled.div`
   width: 100%;
   display: flex;
   height: 100%;
-  background-color: #2149B9;
+  background-color: #2149b9;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
 `;
 const SubContainer1 = styled.div`
   display: flex;
-  background-color: #2149B9;
+  background-color: #2149b9;
   flex-flow: row nowrap;
   align-items: center;
   margin-left: 50px;
@@ -62,60 +69,57 @@ const SubContainer1 = styled.div`
 const SubContainer2 = styled.div`
   display: flex;
   height: 62px;
-  background-color: #2149B9;
+  background-color: #2149b9;
   flex-flow: row nowrap;
   align-items: center;
   margin-right: 60px;
 `;
 
-const SubContainer3 = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: #2149B9;
-  padding-left: 30px;
-  padding-bottom: 20px;
-  flex-direction: column;
-  align-items: flex-start;
-`;
+// const SubContainer3 = styled.div`
+//   display: flex;
+//   width: 100%;
+//   height: 100%;
+//   background-color: #2149b9;
+//   padding-left: 30px;
+//   padding-bottom: 20px;
+//   flex-direction: column;
+//   align-items: flex-start;
+// `;
 
 const Image = styled.img`
-width: 36px;
-height: 36px;
-margin-left: 10px;
-  
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
 `;
 const MobImage = styled.img`
- 
-    width: 36px;
-    height: 36px;
-    margin-left: 0px;
-  
+  width: 36px;
+  height: 36px;
+  margin-left: 0px;
 `;
 const Span = styled.span`
-margin: 6px 0 5px 4px;
-font-family: Raleway;
-font-size: 21px;
-font-weight: 600;
-font-stretch: normal;
-font-style: normal;
-line-height: 1.19;
-letter-spacing: normal;
-text-align: left;
-color: #fff;
+  margin: 6px 0 5px 4px;
+  font-family: Raleway;
+  font-size: 21px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
 `;
 
 const MobSpan = styled.span`
-margin: 20px 0 0px 4px;
-font-family: Raleway;
-font-size: 18px;
-font-weight: 600;
-font-stretch: normal;
-font-style: normal;
-line-height: 1.19;
-letter-spacing: normal;
-text-align: left;
-color: #fff;
+  margin: 20px 0 0px 4px;
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
 `;
 
 const Search = styled.input`
@@ -151,7 +155,7 @@ const MobSearch = styled.input`
   }
 `;
 const Button = styled.button`
-  background: #5582FF;
+  background: #5582ff;
   display: flex;
   width: 31px;
   height: 30px;
@@ -160,11 +164,10 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `;
 
 const MobButton = styled.button`
-  background: #5582FF;
+  background: #5582ff;
   display: flex;
   height: 30px;
   width: 32px;
@@ -180,7 +183,7 @@ const Advancesearch = styled.button`
   font-family: Raleway;
   font-size: 16px;
   font-weight: 400;
-  color: #7499FF;
+  color: #7499ff;
   margin-left: 4px;
   //margin-top: 3px;
   font-weight: 600;
@@ -194,7 +197,7 @@ const Mobadvancesearch = styled.button`
   font-family: Raleway;
   font-size: 16px;
   font-weight: 400;
-  color: #7499FF;
+  color: #7499ff;
   margin-left: -4px;
   //margin-top: 3px;
   font-weight: 600;
@@ -228,7 +231,7 @@ const Contact = styled.text`
 
 const Line = styled.div`
   height: 20px;
-  border: 1px solid #4971E3;
+  border: 1px solid #4971e3;
   margin-right: 4px;
   opacity: 1;
 `;
@@ -242,8 +245,8 @@ const Archive = styled.button`
   letter-spacing: 0.5px;
   margin-right: 10px;
   margin-left: 5px;
-  a{
-  color: #fff;
+  a {
+    color: #fff;
   }
 `;
 const DrawerArchive = styled.button`
@@ -266,18 +269,18 @@ const UnorderedList = styled.ul`
   margin-left: 10px;
   border-radius: 4px;
   z-index: 1;
-  @media (min-width: 0px) and (max-width: 767px){
-  list-style-type: none;
-  background-color: #222864;
-  position: absolute;
-  bottom: 1%;
-  right: 14%;
-  padding-left: unset;
-  width: 140px;
-  border-radius: 4px;
+  @media (min-width: 0px) and (max-width: 767px) {
+    list-style-type: none;
+    background-color: #222864;
+    position: absolute;
+    bottom: 1%;
+    right: 14%;
+    padding-left: unset;
+    width: 140px;
+    border-radius: 4px;
   }
-  
-  @media (min-width: 768px) and (max-width: 1029px){
+
+  @media (min-width: 768px) and (max-width: 1029px) {
     list-style-type: none;
     background-color: #222864;
     position: absolute;
@@ -286,10 +289,8 @@ const UnorderedList = styled.ul`
     padding-left: unset;
     width: 140px;
     border-radius: 4px;
-    }
+  }
 `;
-
-
 
 // const List = styled.li`
 //   margin-top: 4px;
@@ -303,7 +304,6 @@ const ListImg = styled.img`
   margin-left: 10px;
 `;
 const AnchorTag = styled.a`
-
   font-size: 13px;
   color: #ffffff;
   &:hover {
@@ -341,17 +341,16 @@ const MobileResponsive = styled.div`
 
 export default function HeaderComponent(props) {
   const history = useHistory();
-  const [keyword, setKeyword] = useState("")
+  const [keyword, setKeyword] = useState("");
 
   // var uri = keyword || 0
   // var res = encodeURIComponent(uri);
   // console.log('mine---',res)
 
   const redirect = () => {
-    history.push('/list/' + encodeURIComponent(keyword));
+    history.push("/list/" + encodeURIComponent(keyword));
     window.location.reload();
   };
-
 
   const CheckMode = (mode) => {
     props.CheckMode(mode);
@@ -370,10 +369,14 @@ export default function HeaderComponent(props) {
     bottom: false,
     right: false,
   });
-  const [openheader, setOpenHeader] = useState(false)
+  const [openheader, setOpenHeader] = useState(false);
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
 
@@ -383,71 +386,75 @@ export default function HeaderComponent(props) {
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        [classes.fullList]: anchor === "top" || anchor === "bottom",
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <div style={{ display: 'flex', flexDirection: 'row', padding: '10px 25px 0px 15px' }}>
-          <div style={{ flexGrow: 1 }}  >
+        <div className="headerlistFirstrow">
+          <div className={classes.firstRow}>
             <a href="/">
-              <MobImage src={require('../Header/TwitterLogo.png')} />
+              <MobImage src={require("../Header/TwitterLogo.png")} />
             </a>
             <a href="/">
               <MobSpan>XDC Speed Test</MobSpan>
             </a>
           </div>
 
-          <div >
-            <button style={{ backgroundColor: 'transparent', color: 'white', border: 'none' }} onClick={() => setOpenHeader(false)}>
+          <div>
+            <button
+              className="closeButton"
+              onClick={() => setOpenHeader(false)}
+            >
               <CloseIcon />
             </button>
           </div>
         </div>
         &nbsp;&nbsp;
-        <div style={{ padding: '0px 25px 0px 20px' }}>
-          <About><a style={{ color: 'white', textDecoration: 'none' }} href="/about">About</a></About>
+        <div className="headerlistCommonrows">
+          <About>
+            <a className='headerlinkStyle' href="/about">
+              About
+            </a>
+          </About>
         </div>
         &nbsp;
-        <div style={{ padding: '0px 25px 0px 20px' }}>
-          <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
+        <div className="headerlistCommonrows">
+          <Contact>
+            <a
+              className='headerlinkStyle'
+              href="https://xinfin.org/contactus"
+            >
+              Contact
+            </a>
+          </Contact>
         </div>
         &nbsp;
-
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '0px 25px 0px 20px' }}>
-          <div>
-            Share
-          </div>
+        <div className="headerlistSepraterow">
+          <div>Share</div>
           <div>
             <ShareButton />
           </div>
         </div>
         &nbsp;
-
-        <div style={{ padding: '0px 25px 0px 20px' }}>
+        <div className="headerlistCommonrows">
           <DrawerArchive>
-            <a style={{ cursor: 'pointer', textDecoration: 'none' }} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
+            <a
+              className='headerlinkStyle'
+              href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
+            >
+              Tweet Archive
+            </a>
           </DrawerArchive>
         </div>
         &nbsp;
-
-        <div style={{ padding: '0px 25px 0px 20px' }}>
+        <div className="headerlistCommonrows">
           <DarkMode CheckMode={CheckMode} />
         </div>
         &nbsp;
       </List>
-      {/* <Divider /> */}
-      {/* <List>
-        {['About', 'Share', 'TweetArchive'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
     </div>
   );
 
@@ -462,15 +469,19 @@ export default function HeaderComponent(props) {
               <Image src="../../images/logo.svg" alt="image" />
             </a> */}
             <a href="/">
-              <Image src={require('../Header/TwitterLogo.png')} />
+              <Image src={require("../Header/TwitterLogo.png")} />
             </a>
             <a href="/">
               <Span>XDC Speed Test</Span>
             </a>
-            <Search type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
+            <Search
+              type='text'
+              placeholder="Search by Handle name, Hash tag"
+              onChange={(e) => setKeyword(e.target.value)}
+            />
             <Button onClick={redirect}>
               <img
-                style={{ height: "20px", width: "20px" }}
+                className={classes.searchIcon}
                 src="../../images/Search.svg"
                 alt=" "
               />
@@ -482,59 +493,79 @@ export default function HeaderComponent(props) {
             </Advancesearch>
           </SubContainer1>
 
-
           <SubContainer2>
-            <About><a style={{ color: 'white', textDecoration: 'none' }} href="/about">About</a></About>
+            <About>
+              <a className='headerlinkStyle' href="/about">
+                About
+              </a>
+            </About>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <Contact><a style={{ color: 'white', textDecoration: 'none' }} href="https://xinfin.org/contactus">Contact</a></Contact>
+            <Contact>
+              <a
+                className='headerlinkStyle'
+                href="https://xinfin.org/contactus"
+              >
+                Contact
+              </a>
+            </Contact>
             <FFButton />
             <Line> </Line>
-            <Archive >
-              <a style={{ cursor: 'pointer', textDecoration: 'none' }} href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/">Tweet Archive</a>
+            <Archive>
+              <a
+                className='headerlinkStyle'
+                href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
+              >
+                Tweet Archive
+              </a>
             </Archive>
             <DarkMode CheckMode={CheckMode} />
           </SubContainer2>
-
         </Container>
       </Display>
 
       <MobileResponsive>
-
         <div>
           <SwipeableDrawer
-            anchor={'top'}
+            anchor={"top"}
             open={openheader}
-            onClose={toggleDrawer('top', false)}
-            onOpen={toggleDrawer('top', true)}
+            onClose={toggleDrawer("top", false)}
+            onOpen={toggleDrawer("top", true)}
           >
-            {list('top')}
+            {list("top")}
           </SwipeableDrawer>
         </div>
 
         <MobileContainer>
           <Grid item xs={12}>
-
-            <div className='headerfirstRow'>
-              <div className='menuRow'  >
+            <div className="headerfirstRow">
+              <div className="menuRow">
                 <a href="/">
-                  <MobImage src={require('../Header/TwitterLogo.png')} />
+                  <MobImage src={require("../Header/TwitterLogo.png")} />
                 </a>
                 <a href="/">
                   <MobSpan>XDC Speed Test</MobSpan>
                 </a>
               </div>
-              <div >
-                <button className='hamMenuButton' onClick={() => setOpenHeader(true)}>
+              <div>
+                <button
+                  className="hamMenuButton"
+                  onClick={() => setOpenHeader(true)}
+                >
                   <MenuIcon />
                 </button>
               </div>
             </div>
 
-            <Row className = 'parentSecondhead'>
-              <div className='headerSecondRow' >
-                <MobSearch type="text" placeholder="Search by Handle name, Hash tag" onChange={e => setKeyword(e.target.value)} />
+            <Row className="parentSecondhead">
+              <div className="headerSecondRow">
+                <MobSearch
+                  type="text"
+                  placeholder="Search by Handle name, Hash tag"
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
                 <MobButton onClick={redirect}>
-                  <img className= 'searchMenuButton'
+                  <img
+                    className="searchMenuButton"
                     src="../../images/Search.svg"
                     alt=" "
                   />
@@ -544,12 +575,7 @@ export default function HeaderComponent(props) {
 
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
-            <Row style={{
-              display: 'flex',
-              flexDirection: 'row',
-              padding: '10px 0px 10px 35px',
-              width: '100%'
-            }}>
+            <Row className="mobHeaderfirstrow">
               <Mobadvancesearch onClick={handleClickforadvancedsearch}>
                 Advance Search
               </Mobadvancesearch>
@@ -575,7 +601,10 @@ function RenderDropdown() {
       <Border></Border>
       <List>
         <ListImg src="../../images/twitter.svg" alt=" " />
-        <AnchorTag href="https://twitter.com/intent/tweet?url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/&text=TwitterArchiver" target="_blank">
+        <AnchorTag
+          href="https://twitter.com/intent/tweet?url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/&text=TwitterArchiver"
+          target="_blank"
+        >
           Twitter
         </AnchorTag>
       </List>
@@ -615,13 +644,12 @@ function FFButton() {
   return (
     <div className="share">
       <button
-        class="dpdown"
+        // class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "18px", fontWeight: 300, }}
+        className="headerFFbutton"
       >
         Share
-
         {show ? (
           <ArrowUpIcon>
             <IoIosArrowUp />
@@ -631,12 +659,10 @@ function FFButton() {
             <IoIosArrowDown />
           </ArrowUpIcon>
         )}
-
         <span class="caret"></span>
       </button>
       {show && <RenderDropdown />}
     </div>
-
   );
 }
 
@@ -646,10 +672,10 @@ function ShareButton() {
   return (
     <div className="share">
       <button
-        class="dpdown"
+        // class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
-        style={{ fontSize: "18px", fontWeight: 300, marginTop: '-10px' }}
+        className="headerSharebutton"
       >
         {show ? (
           <ArrowUpIcon>
@@ -665,6 +691,5 @@ function ShareButton() {
       </button>
       {show && <RenderDropdown />}
     </div>
-
   );
 }

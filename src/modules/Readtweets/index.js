@@ -1,5 +1,5 @@
 import BaseComponent from "../baseComponent";
-import axios from 'axios';
+import axios from "axios";
 import React from "react";
 import ReadTweets from "./readTweets";
 
@@ -16,19 +16,19 @@ export default class Read extends BaseComponent {
       textDarkAnimation: {},
       blockDarkAnimation: {},
       authors: {},
-    }
+    };
   }
   async componentDidMount() {
-    await this.fetchTweets()
-    await this.userHandle()
-    this.socketData(this.props?.readed)
+    await this.fetchTweets();
+    await this.userHandle();
+    this.socketData(this.props?.readed);
   }
 
   socketData(socket) {
     let readingtweets = this.state.readtweets;
     socket.on("read-tweets-socket", (blockData, error) => {
       // console.log('>>>>>readtweet', blockData)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
       // let blockDataExist = blocks.findIndex((item) => {
       //   return item.number == blockData.number;
@@ -36,10 +36,8 @@ export default class Read extends BaseComponent {
       // blockData["class"] = "first-block-age last-block-transaction height2";
       // if (blockDataExist == -1) {
 
-      if (readingtweets.length >= 10)
-        readingtweets.pop();
+      if (readingtweets.length >= 10) readingtweets.pop();
       readingtweets.unshift(blockData);
-
 
       let blockAnimationClass = { [blockData.text]: "block-read-animation" };
       this.setState({ blockAnimation: blockAnimationClass });
@@ -50,17 +48,25 @@ export default class Read extends BaseComponent {
       let handleAnimationClass = { [blockData.text]: "read-handle-animation" };
       this.setState({ handleAnimation: handleAnimationClass });
 
-      let textDarkAnimationClass = { [blockData.text]: "read-text-animation-dark-mode" };
+      let textDarkAnimationClass = {
+        [blockData.text]: "read-text-animation-dark-mode",
+      };
       this.setState({ textDarkAnimation: textDarkAnimationClass });
 
-      let blockDarkAnimationClass = { [blockData.text]: "block-read-animation-dark-mode" };
+      let blockDarkAnimationClass = {
+        [blockData.text]: "block-read-animation-dark-mode",
+      };
       this.setState({ blockDarkAnimation: blockDarkAnimationClass });
 
       setTimeout(() => {
         this.setState({
-          blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
-        })
-      }, 500)
+          blockAnimation: {},
+          textAnimation: {},
+          handleAnimation: {},
+          textDarkAnimation: {},
+          blockDarkAnimation: {},
+        });
+      }, 500);
 
       this.setState({ readtweets: readingtweets });
 
@@ -69,16 +75,15 @@ export default class Read extends BaseComponent {
       }
 
       // } (left comment)
-
     });
   }
 
-
-
   async fetchTweets() {
-
     await axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_READ_TWEET
+      )
 
       .then((res) => {
         let tweetResponse;
@@ -93,20 +98,20 @@ export default class Read extends BaseComponent {
         else tweetResponse = res.data.responseData[0];
         alltweets = res.data.responseData[1];
 
-        this.setState({ readtweets: tweetResponse })
-        this.setState({ totaltweets: alltweets })
-
+        this.setState({ readtweets: tweetResponse });
+        this.setState({ totaltweets: alltweets });
       })
       .catch((err) => {
         console.log(err);
       });
 
-
-
     setInterval(async () => {
       if (!this.state.blockSocketConnected) {
         await axios
-          .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_TWEET)
+          .get(
+            process.env.REACT_APP_BASE_URL_TWITTER +
+              process.env.REACT_APP_READ_TWEET
+          )
 
           .then((res) => {
             let tweetResponse;
@@ -121,37 +126,38 @@ export default class Read extends BaseComponent {
             else tweetResponse = res.data.responseData[0];
             alltweets = res.data.responseData[1];
 
-            this.setState({ readtweets: tweetResponse })
-            this.setState({ totaltweets: alltweets })
-
+            this.setState({ readtweets: tweetResponse });
+            this.setState({ totaltweets: alltweets });
           })
           .catch((err) => {
             console.log(err);
           });
       }
-
-    }, 10000)
-  };
-
+    }, 10000);
+  }
 
   async userHandle() {
-    (this.state?.readtweets).map(item => {
-      let handle = item?.authorId || 0
+    (this.state?.readtweets).map((item) => {
+      let handle = item?.authorId || 0;
       // console.log('items2--', handle)
       axios
         .get(
-          process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_USERNAME_BY_AUTHOR_ID + handle
+          process.env.REACT_APP_BASE_URL_TWITTER +
+            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
+            handle
         )
         .then((res) => {
           // setAuthors(res.data.responseData?.data[0]);
-          this.setState({ authors: res?.data?.responseData?.data[0]?.username })
+          this.setState({
+            authors: res?.data?.responseData?.data[0]?.username,
+          });
           // console.log('hand---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
           console.log(err);
         });
     });
-  };
+  }
 
   render() {
     // console.log('this--',this.props?.readed)
@@ -159,7 +165,8 @@ export default class Read extends BaseComponent {
     // console.log("saveCountTweets------", this.state.totaltweets);
     return (
       <div>
-        <ReadTweets dark={this.props.dark}
+        <ReadTweets
+          dark={this.props.dark}
           tweetreadData={this.state.readtweets}
           tweetreadCount={this.state.totaltweets}
           animationTime={this.state.blockAnimation}

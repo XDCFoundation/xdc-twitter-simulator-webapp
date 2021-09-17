@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Popup, Polyline, Marker, SVGOverlay, CircleMarker, Tooltip } from 'react-leaflet'
-import '../../assets/styles/custom.css';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Popup,
+  Polyline,
+  Marker,
+  SVGOverlay,
+  CircleMarker,
+  Tooltip,
+} from "react-leaflet";
+import "../../assets/styles/custom.css";
+import axios from "axios";
 import styled from "styled-components";
 
 export default function App(props) {
-  const [hashtag, setHashtag] = useState([])
+  const [hashtag, setHashtag] = useState([]);
 
-  const tileUrl = process.env.REACT_APP_TILEURL_LIGHT_MODE
+  const tileUrl = process.env.REACT_APP_TILEURL_LIGHT_MODE;
 
   useEffect(() => {
     trendingHash();
     setInterval(() => {
       trendingHash();
-    }, 60000)
-  }, [])
+    }, 60000);
+  }, []);
 
   function trendingHash() {
     axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_TRENDING_HASHTAG
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_TRENDING_HASHTAG
       )
       .then((res) => {
-        let mappingCoordinates = []
+        let mappingCoordinates = [];
         if (
           !res &&
           !res.data &&
@@ -30,8 +40,7 @@ export default function App(props) {
           res.data.responseData.length <= 0
         )
           mappingCoordinates = [];
-
-        else mappingCoordinates = res.data.responseData
+        else mappingCoordinates = res.data.responseData;
         setHashtag(mappingCoordinates);
 
         // console.log('locations---', res.data.responseData)
@@ -41,15 +50,19 @@ export default function App(props) {
       });
   }
 
-
-
   return (
     <>
-      <MapContainer className='lightmap-style' center={[30, 10]} dragging={false} zoom={1.5} scrollWheelZoom={true} zoomControl={false} maxZoom={16} minZoom={1}>
-        <TileLayer noWrap={true}
-
-          url={tileUrl}
-        />
+      <MapContainer
+        className="lightmap-style"
+        center={[30, 10]}
+        dragging={false}
+        zoom={1.5}
+        scrollWheelZoom={true}
+        zoomControl={false}
+        maxZoom={16}
+        minZoom={1}
+      >
+        <TileLayer noWrap={true} url={tileUrl} />
         {hashtag &&
           hashtag.length >= 1 &&
           hashtag.map((items, k) => {
@@ -57,12 +70,7 @@ export default function App(props) {
             return (
               <CircleMarker
                 key={k}
-                center={
-                  [
-                    items?.latitude || 0,
-                    items?.longitude || 0,
-                  ]
-                }
+                center={[items?.latitude || 0, items?.longitude || 0]}
                 radius={0}
                 fillOpacity={0.5}
                 stroke={false}
@@ -70,11 +78,10 @@ export default function App(props) {
                 <Tooltip opacity={0.5} permanent>
                   <span className="map-tip"> {items.name || 0} </span>
                 </Tooltip>
-
-              </CircleMarker>)
-          })
-        }
+              </CircleMarker>
+            );
+          })}
       </MapContainer>
     </>
-  )
+  );
 }

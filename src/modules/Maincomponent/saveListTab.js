@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "26px",
-    marginTop: "-14px",
+    marginTop: "-9px",
     marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
   },
-  "@media (min-width: 600px) and (max-width: 766px)": {
+  "@media (min-width: 500px) and (max-width: 766px)": {
     tweetnumber: {
       whiteSpace: "nowrap",
       boxShadow: "none",
@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "4.5%",
-    fontSize: "26px",
+    fontSize: "22px",
     marginTop: "-24px",
     marginRight: "17px",
     fontWeight: "600",
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#ffffff",
   },
-  "@media (min-width: 600px) and (max-width: 767px)": {
+  "@media (min-width: 500px) and (max-width: 766px)": {
     tweetnumber_dark_mode: {
       whiteSpace: "nowrap",
       boxShadow: "none",
@@ -285,6 +285,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "0.5rem",
   },
 
+
   hr_page_dark_mode: {
     width: "104%",
     height: "0px",
@@ -292,6 +293,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     marginTop: "0.7rem",
     marginBottom: "0.7rem",
+  },
+
+  "@media (max-width: 767px)": {
+    hr_page_dark_mode: {
+      backgroundColor: "white",
+    },
+  },
+
+  "@media (min-width: 360px) and (max-width: 440px)": {
+    hr_page: {
+      width: "107%",
+    },
+    hr_page_dark_mode: {
+      width: "107%",
+    },
   },
 
   readTweetContainer: {
@@ -311,6 +327,10 @@ export default function ReadTweets(props) {
   useEffect(() => {
     userHandle();
   }, [props?.user])
+
+  useEffect(() => {
+    // console.log('fire--',props.tweetData);
+  }, [props?.savetweetData, props?.saveCountData])
 
 
   async function userHandle() {
@@ -341,9 +361,18 @@ export default function ReadTweets(props) {
                       : classes.tweetnumber
                   }
                 >
-                  {props?.saveTweetCount?.blockchainTweetCount > 1000
+
+                  {props?.saveCountData[0] ? (props?.saveCountData[0] > 1000
+                    ? parseInt(props?.saveCountData[0] / 1000) + "k"
+                    : props.savedCount[0]) :
+                    (props?.saveTweetCount?.blockchainTweetCount) > 1000
+                      ? parseInt(props?.saveTweetCount?.blockchainTweetCount / 1000) + "k"
+                      : props?.saveTweetCount?.blockchainTweetCount}
+
+
+                  {/* {props?.saveTweetCount?.blockchainTweetCount > 1000
                     ? parseInt(props?.saveTweetCount?.blockchainTweetCount / 1000) + "k"
-                    : props?.saveTweetCount?.blockchainTweetCount}
+                    : props?.saveTweetCount?.blockchainTweetCount} */}
                 </div>
               </Row>
               {props?.savetweetData &&
@@ -405,7 +434,7 @@ export default function ReadTweets(props) {
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                              {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                {value.length > 0 ? shortenValue(value) || '-' : '-'}
                               </div>
                             </Paper>
                           </ThemeProvider>

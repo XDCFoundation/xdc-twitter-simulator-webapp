@@ -6,9 +6,7 @@ import ReadListTab from "./readListTab";
 import SavedTweets from "../SavedTweets/savedTweets";
 import ReadTweets from "../Readtweets/readTweets";
 
-
 function MapTabs(props) {
-
   const [toggleState, setToggleState] = useState(1);
 
   // console.log('prev--',props?.savehand)
@@ -28,7 +26,7 @@ function MapTabs(props) {
   }, [props.dark]);
 
   return (
-    <div>
+    <div className = {props.dark ? 'tableParent-darkMode' : 'tableParent'}>
       <div className={props.dark ? "dark-blocks" : "blocks"}>
         <div className="switch">
           <button
@@ -39,22 +37,33 @@ function MapTabs(props) {
             }
             className={
               props.dark
-                ? (toggleState === 1
+                ? toggleState === 1
                   ? "dark-tabSavelist active-tabSavelist"
-                  : "dark-tabSavelist")
-                : (toggleState === 1
+                  : "dark-tabSavelist"
+                : toggleState === 1
                 ? "tabSavelist active-tabSavelist"
-                : "tabSavelist")
+                : "tabSavelist"
             }
             onClick={() => toggleTab(1)}
           >
-            <span style={props.dark ? {fontSize: 14, color: 'white' } : {fontSize: 14, color: 'black'}}> Saved Tweets </span>
+            <span className = {props.dark ? 'saveTweetsName-darkMode' : 'saveTweetsName'} >
+              {" "}
+              Saved Tweets{" "}
+            </span>
           </button>
           <button
             style={
               props.dark
-                ? { border: "transparent", backgroundColor: "#191d43",marginLeft: '4px' }
-                : { border: "transparent", backgroundColor: "white",marginLeft: '4px'}
+                ? {
+                    border: "transparent",
+                    backgroundColor: "#191d43",
+                    marginLeft: "4px",
+                  }
+                : {
+                    border: "transparent",
+                    backgroundColor: "white",
+                    marginLeft: "4px",
+                  }
             }
             className={
               props.dark
@@ -67,7 +76,10 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(2)}
           >
-            <span style={props.dark ? {fontSize: 14, color: 'white' } : {fontSize: 14, color: 'black'}}> Read Tweets </span>
+            <span className = {props.dark ? 'readTweetsName-darkMode' : 'readTweetsName'}>
+              {" "}
+              Read Tweets{" "}
+            </span>
           </button>
         </div>
       </div>
@@ -84,7 +96,12 @@ function MapTabs(props) {
               : "content"
           }
         >
-          <SaveListTab dark={dark} savetweetTable={props?.saveTweet} savetweetData={props?.smallSave} saveTweetCount={props?.smallcount}
+          <SaveListTab
+            dark={dark}
+            savetweetTable={props?.saveTweet}
+            saveCountData={props?.savedCount}
+            savetweetData={props?.smallSave}
+            saveTweetCount={props?.smallcount}
             user={props?.saveUser}
           />
         </div>
@@ -101,7 +118,12 @@ function MapTabs(props) {
           }
         >
           <div>
-            <ReadListTab dark={dark} readhandle={props?.readUser} readtweetData={props?.smallRead} readTweetCount={props?.countRead}/>
+            <ReadListTab
+              dark={dark}
+              readhandle={props?.readUser}
+              readtweetData={props?.smallRead}
+              readTweetCount={props?.countRead}
+            />
           </div>
         </div>
       </div>

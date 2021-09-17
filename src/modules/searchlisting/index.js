@@ -3,45 +3,57 @@ import React, { useState, useEffect, Component } from "react";
 import Searchlist from "./searchListing";
 import HeaderComponent from "../Header/header";
 import FooterComponent from "../Footer/footer";
-import axios from 'axios';
-import moment from 'moment';
+import axios from "axios";
+import moment from "moment";
 import socketClient from "socket.io-client";
 
-let saveSocketgraph = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3000/', { transports: ['websocket'] })
-let readSocketgraph = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3003/', { transports: ['websocket'] })
+let saveSocketgraph = socketClient(
+  "http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3000/",
+  { transports: ["websocket"] }
+);
+let readSocketgraph = socketClient(
+  "http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3003/",
+  { transports: ["websocket"] }
+);
 
 // let keywords = this.props?.match?.params?.keyword
 
 export default class Main extends Component {
+  getMode() {
+    return JSON.parse(localStorage.getItem("mode")) || false;
+  }
 
   constructor(props) {
     super(props);
     this.state = {
-      dark: false,
+      dark: this.getMode(),
       data: [],
       read: [],
       save: [],
       readResult: [],
       result: [],
       saveData: [],
-      keyword: this.props?.match?.params?.keyword?.split('&')[0],
-      advhash: this.props?.match?.params?.keyword?.split('&')[1],
-      advname: this.props?.match?.params?.keyword?.split('&')[2],
-      blockSocketConnected: false
-    }
+      keyword: this.props?.match?.params?.keyword?.split("&")[0],
+      advhash: this.props?.match?.params?.keyword?.split("&")[1],
+      advname: this.props?.match?.params?.keyword?.split("&")[2],
+      blockSocketConnected: false,
+    };
   }
 
-  dark = false
   CheckMode(mode) {
     // console.log('hello--',mode ? "Dark" : "Light")
-    this.setState({ dark: mode })
+    this.setState({ dark: mode });
   }
 
   async componentDidMount() {
-    await this.listreadingData()
-    await this.writingSpeed()
-    await this.socketData(saveSocketgraph)
-    await this.readsocketData(readSocketgraph)
+    await this.listreadingData();
+    await this.writingSpeed();
+    await this.socketData(saveSocketgraph);
+    await this.readsocketData(readSocketgraph);
+  }
+
+  async componentWillUpdate() {
+    localStorage.setItem("mode", JSON.stringify(this.state.dark));
   }
 
   /* Socket Connection for Read Graph */
@@ -50,102 +62,101 @@ export default class Main extends Component {
     let readGraph = this.state.readData;
     socket.on("read-speed-socket", (val, error) => {
       // console.log('>>>>val', val)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
-      if (readGraph.length >= 10)
-        readGraph.pop();
+      if (readGraph.length >= 10) readGraph.pop();
       readGraph.unshift(val);
 
       this.setState({ readData: readGraph });
 
-      var arr = [{
-        id: "Read-graph",
-        data: []
-      }]
-      var resultData = []
+      var arr = [
+        {
+          id: "Read-graph",
+          data: [],
+        },
+      ];
+      var resultData = [];
 
-      this.state.readData.map(items => {
-        let graphs = (1000*items.requestCount/items.responseTime)*60
+      this.state.readData.map((items) => {
+        let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
         resultData.push({
-          x: moment(items.startTime).format('LT'),
-          y: graphs
-        })
+          x: moment(items.startTime).format("LT"),
+          y: graphs,
+        });
+      });
+      function getUnique(resultData, index) {
+        const unique = resultData
+          .map((e) => e[index])
+          .map((e, i, final) => final.indexOf(e) === i && i)
+          .filter((e) => resultData[e])
+          .map((e) => resultData[e]);
 
-    })
-    function getUnique(resultData, index) {
+        return unique;
+      }
+      let graphdata = getUnique(resultData?.slice(0, 20), "x").reverse();
+      let newData = graphdata.slice(-1);
+      let firstData = Object.values(newData[0]);
+      let secondData = parseFloat(firstData[1]).toFixed(2);
 
-      const unique = resultData
-        .map(e => e[index])
-        .map((e, i, final) => final.indexOf(e) === i && i)
-        .filter(e => resultData[e]).map(e => resultData[e]);
+      this.setState({ read: secondData });
 
-      return unique;
-    }
-    let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
-    let newData = graphdata.slice(-1)
-    let firstData = Object.values(newData[0])
-    let secondData = parseFloat(firstData[1]).toFixed(2)
-
-    this.setState({ read: secondData })
-
-    arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
-    this.setState({ readResult: arr })
+      arr[0].data = getUnique(resultData.slice(0, 20), "x").reverse();
+      this.setState({ readResult: arr });
 
       if (error) {
         console.log("hello error");
       }
-
     });
   }
 
-  // For reading Speed in listing page: 
+  // For reading Speed in listing page:
 
   async listreadingData() {
     await axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_READ_SPEED_DATA
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
+        this.setState({ readData: result.data.responseData });
 
-        this.setState({ readData: result.data.responseData })
+        var arr = [
+          {
+            id: "Write-graph",
+            data: [],
+          },
+        ];
+        var resultData = [];
 
-        var arr = [{
-          id: "Write-graph",
-          data: []
-        }]
-        var resultData = []
-
-        this.state.readData.map(items => {
-          let graphs = (1000*items.requestCount/items.responseTime)*60
-            resultData.push({
-              x: moment(items.startTime).format('LT'),
-              y: graphs
-            })
-
-        })
+        this.state.readData.map((items) => {
+          let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
+          resultData.push({
+            x: moment(items.startTime).format("LT"),
+            y: graphs,
+          });
+        });
         function getUnique(resultData, index) {
-
           const unique = resultData
-            .map(e => e[index])
+            .map((e) => e[index])
             .map((e, i, final) => final.indexOf(e) === i && i)
-            .filter(e => resultData[e]).map(e => resultData[e]);
+            .filter((e) => resultData[e])
+            .map((e) => resultData[e]);
 
           return unique;
         }
-        let graphdata = getUnique(resultData?.slice(0,20), 'x').reverse()
-        let newData = graphdata.slice(-1)
-        let firstData = Object.values(newData[0])
-        let secondData = parseFloat(firstData[1]).toFixed(2)
+        let graphdata = getUnique(resultData?.slice(0, 20), "x").reverse();
+        let newData = graphdata.slice(-1);
+        let firstData = Object.values(newData[0]);
+        let secondData = parseFloat(firstData[1]).toFixed(2);
 
-        this.setState({ read: secondData })
+        this.setState({ read: secondData });
 
-        arr[0].data = getUnique(resultData.slice(0,20), 'x').reverse()
-        this.setState({ readResult: arr })
+        arr[0].data = getUnique(resultData.slice(0, 20), "x").reverse();
+        this.setState({ readResult: arr });
       })
       .catch((err) => {
         console.log(err);
       });
-
   }
 
   /* Socket Connection for Saving Graph */
@@ -154,98 +165,100 @@ export default class Main extends Component {
     let writeGraph = this.state.saveData;
     socket.on("saving-speed-socket", (val, error) => {
       // console.log('>>>>val', val)
-      this.setState({ blockSocketConnected: true })
+      this.setState({ blockSocketConnected: true });
 
-      if (writeGraph.length >= 10)
-        writeGraph.pop();
+      if (writeGraph.length >= 10) writeGraph.pop();
       writeGraph.unshift(val);
 
       this.setState({ saveData: writeGraph });
-      var arr = [{
-        id: "Write-graph",
-        data: []
-      }]
-      var resultData = []
+      var arr = [
+        {
+          id: "Write-graph",
+          data: [],
+        },
+      ];
+      var resultData = [];
 
-      this.state.saveData.map(items => {
+      this.state.saveData.map((items) => {
         // console.log('api--', items)
-        let firstAxis = items?.savedTweets / items?.responseTime
-        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
+        let firstAxis = items?.savedTweets / items?.responseTime;
+        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
         resultData.push({
-          x: moment(items.saveStartTime * 1000).format('LT'),
-          y: secondAxis * 60
-        })
-
-      })
+          x: moment(items.saveStartTime * 1000).format("LT"),
+          y: secondAxis * 60,
+        });
+      });
       function getSaveUnique(resultData, index) {
-
         const saveunique = resultData
-          .map(e => e[index])
+          .map((e) => e[index])
           .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter(e => resultData[e]).map(e => resultData[e]);
+          .filter((e) => resultData[e])
+          .map((e) => resultData[e]);
 
         return saveunique;
       }
-      let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
-      let savingnewData = savingGraphdata.slice(-1)
-      let savingfirstData = Object.values(savingnewData[0])
-      let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
+      let savingGraphdata = getSaveUnique(resultData, "x").reverse();
+      let savingnewData = savingGraphdata.slice(-1);
+      let savingfirstData = Object.values(savingnewData[0]);
+      let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2);
 
-      this.setState({ save: savingSecondData })
+      this.setState({ save: savingSecondData });
 
-      arr[0].data = getSaveUnique(resultData, 'x').reverse()
-      this.setState({ result: arr })
+      arr[0].data = getSaveUnique(resultData, "x").reverse();
+      this.setState({ result: arr });
 
       // console.log('apiarray--', arr)
 
       if (error) {
         console.log("hello error");
       }
-
     });
   }
 
-  // For saving speed in listing page: 
+  // For saving speed in listing page:
 
   async writingSpeed() {
     await axios
-      .get(process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVING_SPEED_DATA)
+      .get(
+        process.env.REACT_APP_BASE_URL_TWITTER +
+          process.env.REACT_APP_SAVING_SPEED_DATA
+      )
       .then((result) => {
+        this.setState({ saveData: result.data.responseData[0] });
+        var arr = [
+          {
+            id: "Write-graph",
+            data: [],
+          },
+        ];
+        var resultData = [];
 
-        this.setState({ saveData: result.data.responseData[0] })
-        var arr = [{
-          id: "Write-graph",
-          data: []
-        }]
-        var resultData = []
-
-        this.state.saveData.map(items => {
+        this.state.saveData.map((items) => {
           // console.log('api--', items)
-          let firstAxis = items?.savedTweets / items?.responseTime
-          let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0
+          let firstAxis = items?.savedTweets / items?.responseTime;
+          let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
           resultData.push({
-            x: moment(items.saveStartTime * 1000).format('LT'),
-            y: secondAxis * 60
-          })
-
-        })
+            x: moment(items.saveStartTime * 1000).format("LT"),
+            y: secondAxis * 60,
+          });
+        });
         function getSaveUnique(resultData, index) {
-
           const saveunique = resultData
-            .map(e => e[index])
+            .map((e) => e[index])
             .map((e, i, final) => final.indexOf(e) === i && i)
-            .filter(e => resultData[e]).map(e => resultData[e]);
+            .filter((e) => resultData[e])
+            .map((e) => resultData[e]);
 
           return saveunique;
         }
-        let savingGraphdata = getSaveUnique(resultData, 'x').reverse()
-        let savingnewData = savingGraphdata.slice(-1)
-        let savingfirstData = Object.values(savingnewData[0])
-        let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2)
+        let savingGraphdata = getSaveUnique(resultData, "x").reverse();
+        let savingnewData = savingGraphdata.slice(-1);
+        let savingfirstData = Object.values(savingnewData[0]);
+        let savingSecondData = parseFloat(savingfirstData[1]).toFixed(2);
 
-        this.setState({ save: savingSecondData })
-        arr[0].data = getSaveUnique(resultData, 'x').reverse()
-        this.setState({ result: arr })
+        this.setState({ save: savingSecondData });
+        arr[0].data = getSaveUnique(resultData, "x").reverse();
+        this.setState({ result: arr });
 
         // console.log('apiarray--',arr)
       })
@@ -267,11 +280,10 @@ export default class Main extends Component {
           readSpeed={this.state.read}
           saveSpeed={this.state.save}
           saveGraphdata={this.state.result}
-          readGraphdata={this.state.readResult} />
+          readGraphdata={this.state.readResult}
+        />
         <FooterComponent />
       </>
     );
   }
 }
-
-

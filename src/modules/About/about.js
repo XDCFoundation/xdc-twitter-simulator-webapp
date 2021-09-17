@@ -14,7 +14,7 @@ const Bannerimage = styled.img`
   @media (max-width: 700px) {
     display: none;
   }
-  @media (min-width: 700px){
+  @media (min-width: 700px) {
     display: visible;
   }
 `;
@@ -25,7 +25,7 @@ const MobBanner = styled.img`
   @media (max-width: 700px) {
     display: visible;
   }
-  @media (min-width: 700px){
+  @media (min-width: 700px) {
     display: none;
   }
 `;
@@ -36,7 +36,7 @@ const Insideimage = styled.img`
   @media (max-width: 700px) {
     display: visible;
   }
-  @media (min-width: 700px){
+  @media (min-width: 700px) {
     display: none;
   }
 `;
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
 
   firstrow: {
     justifyContent: "center",
-    paddingBottom: '2%'
+    paddingBottom: "2%",
   },
   secondrow: {
     // marginLeft: '20px',
@@ -137,74 +137,71 @@ const useStyles = makeStyles((theme) => ({
     firstrow: {
       display: "grid !important",
       justifyContent: "center !important",
-      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridTemplateColumns: "repeat(2, 1fr)",
     },
     secondrow: {
       display: "grid !important",
       justifyContent: "center !important",
-      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridTemplateColumns: "repeat(2, 1fr)",
     },
   },
   "@media (min-width: 1081px)": {
     firstrow: {
       display: "flex !important",
       flexFlow: "row nowrap",
-      gridGap: '45px',
+      gridGap: "45px",
       justifyContent: "center",
       alignItems: "center",
     },
     secondrow: {
       display: "flex",
       flexFlow: "row nowrap",
-      gridGap: '45px',
-      marginLeft: '20px',
+      gridGap: "45px",
+      marginLeft: "20px",
       justifyContent: "center",
       alignItems: "center",
     },
   },
 
   columnone: {
-    padding: '30px',
+    padding: "30px",
     // marginRight: '18px'
   },
   columntwo: {
-    padding: '16px',
+    padding: "16px",
     // width: "90%",
   },
   all_head_text: {
     color: "#09184b",
-    fontSize: '18px',
-    fontWeight: 500
+    fontSize: "18px",
+    fontWeight: 500,
   },
   all_head_text_dark_mode: {
     color: "#d6d6d6",
-    fontSize: '18px',
-    fontWeight: 500
-
+    fontSize: "18px",
+    fontWeight: 500,
   },
   alltext: {
     color: "#09184b",
-    fontSize: '13px',
-    fontWeight: 700
+    fontSize: "13px",
+    fontWeight: 700,
   },
   alltext_dark_mode: {
     color: "#d6d6d6",
-    fontSize: '12px',
-    fontWeight: 700
-
+    fontSize: "12px",
+    fontWeight: 700,
   },
 
   imagegrid: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
   },
 
   imagesGrid: {
-    display: 'flex',
-    justifyContent: 'center',
-  }
-
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 const Img = styled.img`
   width: 100px;
@@ -225,32 +222,32 @@ const Span = styled.span`
   position: absolute;
   top: 20%;
   left: 7%;
- 
-  @media (max-width: 430px){
+
+  @media (max-width: 430px) {
     font-size: 15px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.18;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 20px;
-  left: 25%;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.18;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 20px;
+    left: 25%;
   }
   @media (min-width: 430px) and (max-width: 700px) {
     font-size: 20px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.18;
-  letter-spacing: normal;
-  text-align: left;
-  color: #ffffff;
-  position: absolute;
-  top: 20px;
-  left: 30%;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.18;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ffffff;
+    position: absolute;
+    top: 20px;
+    left: 30%;
   }
 `;
 const Content = styled.span`
@@ -269,7 +266,7 @@ const Content = styled.span`
   top: 38%;
   left: 7%;
 
-  @media (max-width: 430px){
+  @media (max-width: 430px) {
     width: 90%;
     height: 47%;
     overflow: hidden;
@@ -285,7 +282,7 @@ const Content = styled.span`
     top: 50px;
   }
 
-  @media (min-width: 430px) and (max-width: 700px){
+  @media (min-width: 430px) and (max-width: 700px) {
     width: 90%;
     height: 47%;
     overflow: hidden;
@@ -301,9 +298,9 @@ const Content = styled.span`
     top: 10%;
   }
   @media (min-width: 700px) {
+    height: 52%;
     overflow: hidden;
   }
-
 `;
 
 const Heading = styled.span`
@@ -336,26 +333,23 @@ export default function Aboutcomponent(props) {
       <Grid container spacing={0}>
         <Grid item xs={12}>
           <div className={classes.uppercomponent}>
-            <Span>
-              About XDC Speed Test
-            </Span>
+            <Span>About XDC Speed Test</Span>
             <Content>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud 
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
-              velit esse cillum dolore eu <br /> consequat. Duis aute irure <br /> dolor reprehenderit in voluptate
-           
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure <br />{" "}
+              dolor reprehenderit in voluptate velit esse cillum dolore eu{" "}
+              <br /> consequat. Duis aute irure <br /> dolor reprehenderit in
+              voluptate
             </Content>
-            <Bannerimage src={require('../About/Banner.png')} />
-            
-            <MobBanner src={require('../About/MainHeader.png')} />
+            <Bannerimage src={require("../About/Banner.png")} />
+
+            <MobBanner src={require("../About/MainHeader.png")} />
 
             <div className="mobSecondimage">
-              <Insideimage src={require('../About/Webshot.png')} />
+              <Insideimage src={require("../About/Webshot.png")} />
             </div>
-
           </div>
         </Grid>
 
@@ -380,7 +374,7 @@ export default function Aboutcomponent(props) {
           <Grid container spacing={0} className={classes.imagegrid}>
             <Column>
               <Row className={classes.firstrow}>
-                <Grid style={{ display: 'flex', justifyContent: 'center' }} className={classes.imagesGrid}>
+                <Grid className={classes.imagesGrid}>
                   <Column className={classes.columnone}>
                     <Img src="/images/savingspeed.svg"></Img>
 
@@ -405,14 +399,15 @@ export default function Aboutcomponent(props) {
                         }
                       >
                         {" "}
-                        The saved tweets per second track<br />the rate of
-                        record-keeping
+                        The saved tweets per second track
+                        <br />
+                        the rate of record-keeping
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
 
-                <Grid >
+                <Grid>
                   <Column className={classes.columnone}>
                     <Img src="/images/readingspeed.svg"></Img>
 
@@ -435,13 +430,13 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        The read tweets per second track the<br /> rate of
-                        record-keeping
+                        The read tweets per second track the
+                        <br /> rate of record-keeping
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid >
+                <Grid>
                   <Column className={classes.columnone}>
                     <Img src="/images/savedtweets.svg" />
 
@@ -464,12 +459,13 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Number of tweets saved in d-app<br /> platform
+                        Number of tweets saved in d-app
+                        <br /> platform
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid >
+                <Grid>
                   <Column className={classes.columnone}>
                     <Img src="/images/ReadTweets.png" />
 
@@ -492,7 +488,8 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Number of read tweets by d-app<br /> platform
+                        Number of read tweets by d-app
+                        <br /> platform
                       </span>
                     </Subheading>
                   </Column>
@@ -500,7 +497,7 @@ export default function Aboutcomponent(props) {
               </Row>
 
               <Row className={classes.secondrow}>
-                <Grid >
+                <Grid>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/toptrending.svg" />
@@ -523,13 +520,14 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        This twitter decentralized<br /> application pertually records
-                        the top<br />  20 hashtags on twitter on to the XDC.
+                        This twitter decentralized
+                        <br /> application pertually records the top
+                        <br /> 20 hashtags on twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid >
+                <Grid>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/currentmax.svg" />
@@ -552,13 +550,14 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        The speed of the current<br />  and maximum transactions
-                        completed on the <br /> platform twitter on to the XDC.
+                        The speed of the current
+                        <br /> and maximum transactions completed on the <br />{" "}
+                        platform twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid >
+                <Grid>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/Searchabc.svg" />
@@ -581,13 +580,14 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Search your saved tweets<br />  even if they are deleted
-                        on the platform<br />  twitter on to the XDC.
+                        Search your saved tweets
+                        <br /> even if they are deleted on the platform
+                        <br /> twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
-                <Grid >
+                <Grid>
                   <Column className={classes.columntwo}>
                     {" "}
                     <Img src="/images/tweetarchiveimg.webp"></Img>
@@ -610,14 +610,14 @@ export default function Aboutcomponent(props) {
                             : classes.alltext
                         }
                       >
-                        Tweets are archived on<br />  the network and therefore are
-                        retrievable<br />  on twitter on to the XDC.
+                        Tweets are archived on
+                        <br /> the network and therefore are retrievable
+                        <br /> on twitter on to the XDC.
                       </span>
                     </Subheading>
                   </Column>
                 </Grid>
               </Row>
-
             </Column>
           </Grid>
         </Grid>

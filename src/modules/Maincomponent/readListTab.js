@@ -296,11 +296,27 @@ const useStyles = makeStyles((theme) => ({
   hr_page_dark_mode: {
     width: "104%",
     height: "0px",
-    marginLeft: '-15px',
+    marginLeft: "-15px",
     backgroundColor: "white",
     marginTop: "0.7rem",
     marginBottom: "0.7rem",
   },
+
+  "@media (max-width: 767px)": {
+    hr_page_dark_mode: {
+      backgroundColor: "white",
+    },
+  },
+
+  "@media (min-width: 360px) and (max-width: 440px)": {
+    hr_page: {
+      width: "107%",
+    },
+    hr_page_dark_mode: {
+      width: "107%",
+    },
+  },
+
   readTweetContainer: {
     marginTop: "0px",
   },
@@ -317,12 +333,15 @@ export default function ReadTweets(props) {
 
   useEffect(() => {
     userHandle();
-  }, [props?.readhandle])
+  }, [props?.readhandle]);
 
+  useEffect(() => {
+    // console.log('fire--',props.tweetData);
+  }, [props?.readtweetData]);
 
   async function userHandle() {
     if (props?.readhandle && props?.readhandle?.length >= 1) {
-      setAuthors(props?.readhandle)
+      setAuthors(props?.readhandle);
     }
     // console.log('pr--', props?.user)
   }
@@ -363,8 +382,15 @@ export default function ReadTweets(props) {
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
 
-                  function shortenValue(b, amountL = 50, amountR = 3, stars = 3) {
-                    return `${b?.slice(0, amountL)}${"."?.repeat(stars)}${b?.slice(
+                  function shortenValue(
+                    b,
+                    amountL = 50,
+                    amountR = 3,
+                    stars = 3
+                  ) {
+                    return `${b?.slice(0, amountL)}${"."?.repeat(
+                      stars
+                    )}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
@@ -393,14 +419,14 @@ export default function ReadTweets(props) {
                             props.dark ? classes.time_dark_mode : classes.time
                           }
                         >
-                          {time ? time : '-'}
+                          {time ? time : "-"}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authors?.length > 0 ? '@' + (authors) : author}
+                            {authors?.length > 0 ? "@" + authors : author}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -413,7 +439,9 @@ export default function ReadTweets(props) {
                               gutterBottom
                             >
                               <div className="wordTruncating">
-                              {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                {value.length > 0
+                                  ? shortenValue(value) || "-"
+                                  : "-"}
                               </div>
                             </Paper>
                           </ThemeProvider>

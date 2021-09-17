@@ -35,18 +35,17 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    width: '100%',
+    width: "100%",
     color: theme.palette.text.secondary,
     marginTop: "-5.1%",
     marginRight: "1.5%",
     height: "auto",
-    boxShadow: '0px 2px 30px #0000001A',
-    border: '1px solid #E3E7EB',
-    borderRadius: '5px',
+    boxShadow: "0px 2px 30px #0000001A",
+    border: "1px solid #E3E7EB",
+    borderRadius: "5px",
     opacity: 1,
     // height: '784px',
   },
-
 
   paper_dark_mode: {
     color: theme.palette.text.secondary,
@@ -55,11 +54,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     height: "auto",
-    borderRadius: '5px',
-    border: 'solid 1px #343965',
+    borderRadius: "5px",
+    border: "solid 1px #343965",
     // height: '784px',
   },
-
 
   tweetnumber: {
     whiteSpace: "nowrap",
@@ -115,7 +113,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
     marginBottom: "5px",
-
   },
 
   name_dark_mode: {
@@ -272,7 +269,6 @@ const useStyles = makeStyles((theme) => ({
   "@media (min-width: 0px) and (max-width: 766px)": {
     readTweetContainer: {
       marginTop: "30px",
-
     },
   },
 }));
@@ -285,38 +281,42 @@ export default function ReadTweets(props) {
   // let handle = props?.author
   // console.log('so--',props?.tweetreadData)
 
-
   useEffect(() => {
     userHandle();
-  }, [props?.author])
+  }, [props?.author]);
 
+  useEffect(() => {
+    // console.log('fire--',props.tweetData);
+  }, [props.tweetreadData]);
 
   async function userHandle() {
     if (props?.author && props?.author?.length >= 1) {
-      setAuthors(props?.author)
+      setAuthors(props?.author);
     }
     // console.log('pr--', props?.author)
   }
 
-
   // let method = authors?.username
   // console.log('method------', method)
 
-
-  let text = props.tweetreadData[0]?.text
-  let animationclass = props.animationTime?.[text]
-  let textanimationClass = props.textclass?.[text]
-  let handleanimationclass = props.handleclass?.[text]
-  let blockDarkanimationclass = props.blockDarkclass?.[text]
-  let textdarkanimationClass = props.textDarkclass?.[text]
+  let text = props.tweetreadData[0]?.text;
+  let animationclass = props.animationTime?.[text];
+  let textanimationClass = props.textclass?.[text];
+  let handleanimationclass = props.handleclass?.[text];
+  let blockDarkanimationclass = props.blockDarkclass?.[text];
+  let textdarkanimationClass = props.textDarkclass?.[text];
   // console.log('texxx--',animationclass)
-
-
 
   return (
     <Grid Container spacing={3}>
       <Grid item xs={12}>
-        <div className={props.dark ? classes.readTweetContainer_dark_mode : classes.readTweetContainer}>
+        <div
+          className={
+            props.dark
+              ? classes.readTweetContainer_dark_mode
+              : classes.readTweetContainer
+          }
+        >
           <Paper
             className={props.dark ? classes.paper_dark_mode : classes.paper}
             elevation={0}
@@ -364,9 +364,9 @@ export default function ReadTweets(props) {
                     : props.tweetreadCount.tweetsInDb} */}
                 </Paper>
               </Row>
-              {props.tweetreadData &&
-                props.tweetreadData.length >= 1 &&
-                props.tweetreadData.map((response) => {
+              {props?.tweetreadData &&
+                props?.tweetreadData.length >= 1 &&
+                props?.tweetreadData.map((response) => {
                   let value = response?.text || 0;
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 10) || 0;
@@ -376,12 +376,13 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 80, stars = 1) {
-                    return `${b.length > 0 ? b?.slice(0, amountL) : '-'}${""?.repeat(stars)}${b?.slice(
+                    return `${
+                      b.length > 0 ? b?.slice(0, amountL) : "-"
+                    }${""?.repeat(stars)}${b?.slice(
                       // b.length - 3,
                       b?.length || 0
                     )}`;
                   }
-
 
                   return (
                     <>
@@ -401,35 +402,53 @@ export default function ReadTweets(props) {
                         >
                           {/* {authorName.length > 0 ? authorName : 'undefined'} */}
                         </Typography>
-                        <Paper className=
-                          {props.dark ? (blockDarkanimationclass ? blockDarkanimationclass : classes.time_dark_mode) :
-                            (animationclass ? animationclass : classes.time)}
+                        <Paper
+                          className={
+                            props.dark
+                              ? blockDarkanimationclass
+                                ? blockDarkanimationclass
+                                : classes.time_dark_mode
+                              : animationclass
+                              ? animationclass
+                              : classes.time
+                          }
                         >
-                          {time ? time : '-'}
+                          {time ? time : "-"}
                         </Paper>
                       </Row>
 
                       <Row>
                         <Column>
-
-                          <Typography className={handleanimationclass ? handleanimationclass : classes.email}>
+                          <Typography
+                            className={
+                              handleanimationclass
+                                ? handleanimationclass
+                                : classes.email
+                            }
+                          >
                             {/* {authorName.length > 0 ? authorName : author} */}
                             {/* {author}<br/> */}
-                            {authors?.length > 0 ? '@' + (authors) : author}
+                            {authors?.length > 0 ? "@" + authors : author}
                           </Typography>
 
-
                           <ThemeProvider theme={theme}>
-                            <Paper className=
-                              {props.dark ? (textdarkanimationClass ? textdarkanimationClass : classes.content_dark_mode) :
-                                (textanimationClass ? textanimationClass : classes.content)}
-
+                            <Paper
+                              className={
+                                props.dark
+                                  ? textdarkanimationClass
+                                    ? textdarkanimationClass
+                                    : classes.content_dark_mode
+                                  : textanimationClass
+                                  ? textanimationClass
+                                  : classes.content
+                              }
                               noWrap
                               gutterBottom
                             >
-
                               <div className="wordTruncating">
-                                {value.length > 0 ? shortenValue(value) || '-' : '-'}
+                                {value.length > 0
+                                  ? shortenValue(value) || "-"
+                                  : "-"}
                               </div>
                             </Paper>
                           </ThemeProvider>

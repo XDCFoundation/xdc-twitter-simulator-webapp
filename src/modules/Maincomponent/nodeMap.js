@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Nodes from "./webSocket"
+import Nodes from "./webSocket";
 
 import {
   ComposableMap,
@@ -10,12 +10,12 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 
-const geoUrl = process.env.REACT_APP_NODES_MAP_URL
+const geoUrl = process.env.REACT_APP_NODES_MAP_URL;
 
 const NodeChart = (props) => {
   const [node, setNode] = useState([]);
 
-  let ip = props?.ipcount
+  let ip = props?.ipcount;
   // console.log('ip-------', ip)
 
   useEffect(() => {
@@ -23,37 +23,36 @@ const NodeChart = (props) => {
     // console.log('pr---',ip)
     ip.map((item) => {
       axios
-        .get(process.env.REACT_APP_NODE_LOCATIONS +item)
+        .get(process.env.REACT_APP_NODE_LOCATIONS + item)
         .then((res) => {
-          var nodes = node
-          nodes.push({ coords: [res.data.lon, res.data.lat] })
+          var nodes = node;
+          nodes.push({ coords: [res.data.lon, res.data.lat] });
           // console.log('locations....', nodes)
           setNode(nodes);
         })
         .catch((err) => {
           console.log(err);
         });
-    })
-  }, [ip])
+    });
+  }, [ip]);
 
   // console.log('propsip',props?.ipcount)
 
   return (
     <div>
-
       <ComposableMap
         style={
           props.dark
             ? {
-              fill: "#293178",
-              width: '100%',
-              height: '218px'
-            }
+                fill: "#293178",
+                width: "100%",
+                height: "218px",
+              }
             : {
-              fill: "#bdc1e5",
-              width: '100%',
-              height: '218px'
-            }
+                fill: "#bdc1e5",
+                width: "100%",
+                height: "218px",
+              }
         }
       >
         {/* <ZoomableGroup zoom={1}> */}
@@ -78,8 +77,7 @@ const NodeChart = (props) => {
               <circle cx="12" cy="" r="9" />
             </g>
           </Marker>
-        ))
-        }
+        ))}
         {/* </ZoomableGroup> */}
       </ComposableMap>
     </div>
