@@ -27,7 +27,7 @@ const Text = styled.div`
   font-weight: 900;
   margin-bottom: 55px;
   margin-left: 3%;
-  fontfamily: "Raleway ,sans-serif !important";
+  font-family: "Raleway ,sans-serif !important";
 
   /////////////////////new code
 
