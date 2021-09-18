@@ -528,7 +528,7 @@ export default function MainComponent(props) {
     axios
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER +
-        process.env.REACT_APP_MAX_TPS_COUNT
+          process.env.REACT_APP_MAX_TPS_COUNT
       )
       .then((res) => {
         setMaxtpsValue(res.data);
@@ -582,7 +582,8 @@ export default function MainComponent(props) {
               element !== "ETH.BlocksScan.i" &&
               element !== "BlocksScan.i" &&
               element !== "Apothem.XinFinScan.co" &&
-              element !== "CRYPTERIUM_TES"
+              element !== "CRYPTERIUM_TES" &&
+              element !== "CRYPTERIUM_TEST_NOD"
           );
           setValue(newarray);
 
@@ -678,9 +679,7 @@ export default function MainComponent(props) {
                         className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                       >
                         {isNaN(tpsCount) ? "-" : tpsCount} /
-                        <span className="fs-16">
-                          min
-                        </span>
+                        <span className="fs-16">min</span>
                       </div>
                       <span className="hover-data">
                         {" "}

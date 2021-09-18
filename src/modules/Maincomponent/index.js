@@ -47,6 +47,7 @@ export default class Main extends Component {
     await this.fetchReadTweets();
     await this.socketData(this.props?.savingSocket);
     await this.readsocketData(this.props?.readingSocket);
+    await this.socketreadTweet(this.props?.readingSocket);
     await this.socketCount(this.props?.readingSocket);
   }
 
@@ -90,11 +91,12 @@ export default class Main extends Component {
 
   socketCount(socket) {
     let tweetsCount = this.state.savingtweetsCount;
-    socket.on("tweet-count-socket", (blockData, error) => {
+    socket.on("tweet-count-socket", (count, error) => {
+      // console.log('>>>count',count)
       this.setState({ blockSocketConnected: true });
 
       if (tweetsCount.length >= 1) tweetsCount.pop();
-      tweetsCount.unshift(blockData);
+      tweetsCount.unshift(count);
 
       this.setState({ savingtweetsCount: tweetsCount });
 
@@ -166,7 +168,7 @@ export default class Main extends Component {
 
   /** For read tweets */
 
-  readsocketData(socket) {
+  socketreadTweet(socket) {
     let readingtweets = this.state.readtweets;
     socket.on("read-tweets-socket", (blockData, error) => {
       // console.log('>>>>>readtweet', blockData)

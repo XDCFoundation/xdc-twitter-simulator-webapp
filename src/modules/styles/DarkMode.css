@@ -16,3 +16,23 @@
   filter: none;
   background: transparent url("../../images/light mode.svg") no-repeat center;
 }
+
+
+#lightMode {
+  background: transparent url("../../images/light mode.svg") no-repeat center;
+  width: 50px;
+  height: 22px;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+#lightMode:hover,
+#lightMode:focus {
+  filter: none;
+  cursor: pointer;
+}
+
+#lightMode.clicked {
+  filter: none;
+  background: transparent url("../../images/Darkmode.svg") no-repeat center;
+}

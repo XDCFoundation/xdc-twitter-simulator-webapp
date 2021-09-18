@@ -24,20 +24,20 @@ const DarkMode = (props) => {
       e.target.classList.remove(clickedClass);
       localStorage.setItem("theme", "light");
       theme = lightTheme;
-      props.CheckMode(true)
+      props.CheckMode(false);
     } else {
       body.classList.replace(lightTheme, darkTheme);
       e.target.classList.add(clickedClass);
       localStorage.setItem("theme", "dark");
       theme = darkTheme;
-      props.CheckMode(false)
+      props.CheckMode(true);
     }
   };
 
   return (
     <button
       className={theme === "dark" ? clickedClass : ""}
-      id="darkMode"
+      id="lightMode"
       onClick={(e) => switchTheme(e)}
     ></button>
   );

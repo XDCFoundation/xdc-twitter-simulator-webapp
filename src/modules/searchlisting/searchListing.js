@@ -248,6 +248,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     marginTop: "3%",
     marginLeft: "18px",
+    whiteSpace: "noWrap",
   },
   readtweet_dark_mode: {
     display: "flex",
@@ -262,6 +263,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     marginTop: "3%",
     marginLeft: "18px",
+    whiteSpace: "noWrap",
   },
 
   hr_page: {
@@ -445,8 +447,8 @@ export default function Searchlist(props) {
     axios
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER +
-        process.env.REACT_APP_BASIC_SEARCH +
-        props?.locations.split(" ")[0]
+          process.env.REACT_APP_BASIC_SEARCH +
+          props?.locations.split(" ")[0]
       )
       .then((res) => {
         let basicSearch = [];
@@ -470,13 +472,13 @@ export default function Searchlist(props) {
     axios
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER +
-        process.env.REACT_APP_ADVANCE_SEARCH +
-        "name" +
-        props?.username +
-        "&keyword=" +
-        props?.locations.split(" ")[0] +
-        "&hash=" +
-        props?.hashname
+          process.env.REACT_APP_ADVANCE_SEARCH +
+          "name" +
+          props?.username +
+          "&keyword=" +
+          props?.locations.split(" ")[0] +
+          "&hash=" +
+          props?.hashname
       )
       .then((res) => {
         let advanceSearch = [];
@@ -501,11 +503,7 @@ export default function Searchlist(props) {
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
         <Grid xs={2}>
-          <img
-            style={{
-              width: "5%",
-            }}
-          />
+          <img className="homeIcon" />
         </Grid>
 
         <div className="empty-div">
@@ -543,8 +541,8 @@ export default function Searchlist(props) {
                           ? classes.readtweet_dark_mode
                           : classes.readtweet
                       }
-                      variant="h5"
-                      style={{ whiteSpace: "nowrap" }}
+                      // variant="h5"
+                      // style={{ whiteSpace: "nowrap" }}
                     >
                       Search Results
                     </Typography>
@@ -846,8 +844,8 @@ export default function Searchlist(props) {
                           ? classes.readtweet_dark_mode
                           : classes.readtweet
                       }
-                      variant="h5"
-                      style={{ whiteSpace: "nowrap" }}
+                      // variant="h5"
+                      // style={{ whiteSpace: "nowrap" }}
                     >
                       Search Results
                     </Typography>

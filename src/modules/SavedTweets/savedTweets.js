@@ -217,6 +217,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     marginTop: "4%",
     marginLeft: "18px",
+    whiteSpace: "noWrap",
   },
   readtweet_dark_mode: {
     display: "flex",
@@ -231,6 +232,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     marginTop: "4%",
     marginLeft: "18px",
+    whiteSpace: "noWrap",
   },
 
   hr_page: {
@@ -307,8 +309,8 @@ export default function SavedTweets(props) {
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
-                  variant="h5"
-                  style={{ whiteSpace: "nowrap" }}
+                  // variant="h5"
+                  // style={{ whiteSpace: "nowrap" }}
                 >
                   Saved Tweets
                   <Tippy
@@ -316,13 +318,7 @@ export default function SavedTweets(props) {
                     theme={"light"}
                     maxWidth={"none"}
                     content={
-                      <span
-                        style={{
-                          color: "#0d0e2d",
-                          fontSize: "11px",
-                          fontWeight: "600",
-                        }}
-                      >
+                      <span className="tippyBlockstyle">
                         Number of tweets saved in d-app platform
                       </span>
                     }

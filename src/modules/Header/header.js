@@ -351,7 +351,7 @@ export default function HeaderComponent(props) {
   // console.log('p--',encodeURIComponent(a.replace(/[^A-Z0-9]+/ig, "")))
 
   const redirect = () => {
-    history.push("/list/" + encodeURIComponent(keyword?.replace('%', '')));
+    history.push("/list/" + encodeURIComponent(keyword?.replace("%", "")));
     window.location.reload();
   };
 
@@ -418,7 +418,7 @@ export default function HeaderComponent(props) {
         &nbsp;&nbsp;
         <div className="headerlistCommonrows">
           <About>
-            <a className='headerlinkStyle' href="/about">
+            <a className="headerlinkStyle" href="/about">
               About
             </a>
           </About>
@@ -426,10 +426,7 @@ export default function HeaderComponent(props) {
         &nbsp;
         <div className="headerlistCommonrows">
           <Contact>
-            <a
-              className='headerlinkStyle'
-              href="https://xinfin.org/contactus"
-            >
+            <a className="headerlinkStyle" href="https://xinfin.org/contactus">
               Contact
             </a>
           </Contact>
@@ -445,7 +442,7 @@ export default function HeaderComponent(props) {
         <div className="headerlistCommonrows">
           <DrawerArchive>
             <a
-              className='headerlinkStyle'
+              className="headerlinkStyle"
               href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
             >
               Tweet Archive
@@ -478,7 +475,7 @@ export default function HeaderComponent(props) {
               <Span>XDC Speed Test</Span>
             </a>
             <Search
-              type='text'
+              type="text"
               placeholder="Search by Handle name, Hash tag"
               onChange={(e) => setKeyword(e.target.value)}
             />
@@ -498,14 +495,14 @@ export default function HeaderComponent(props) {
 
           <SubContainer2>
             <About>
-              <a className='headerlinkStyle' href="/about">
+              <a className="headerlinkStyle" href="/about">
                 About
               </a>
             </About>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Contact>
               <a
-                className='headerlinkStyle'
+                className="headerlinkStyle"
                 href="https://xinfin.org/contactus"
               >
                 Contact
@@ -515,7 +512,7 @@ export default function HeaderComponent(props) {
             <Line> </Line>
             <Archive>
               <a
-                className='headerlinkStyle'
+                className="headerlinkStyle"
                 href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
               >
                 Tweet Archive

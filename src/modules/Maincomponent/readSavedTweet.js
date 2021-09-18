@@ -26,19 +26,14 @@ function MapTabs(props) {
   }, [props.dark]);
 
   return (
-    <div className = {props.dark ? 'tableParent-darkMode' : 'tableParent'}>
+    <div className={props.dark ? "tableParent-darkMode" : "tableParent"}>
       <div className={props.dark ? "dark-blocks" : "blocks"}>
         <div className="switch">
           <button
-            style={
-              props.dark
-                ? { border: "transparent", backgroundColor: "#191d43" }
-                : { border: "transparent", backgroundColor: "white" }
-            }
             className={
               props.dark
                 ? toggleState === 1
-                  ? "dark-tabSavelist active-tabSavelist"
+                  ? "dark-tabSavelist active-dark-tabSavelist"
                   : "dark-tabSavelist"
                 : toggleState === 1
                 ? "tabSavelist active-tabSavelist"
@@ -46,29 +41,20 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(1)}
           >
-            <span className = {props.dark ? 'saveTweetsName-darkMode' : 'saveTweetsName'} >
+            <span
+              className={
+                props.dark ? "saveTweetsName-darkMode" : "saveTweetsName"
+              }
+            >
               {" "}
               Saved Tweets{" "}
             </span>
           </button>
           <button
-            style={
-              props.dark
-                ? {
-                    border: "transparent",
-                    backgroundColor: "#191d43",
-                    marginLeft: "4px",
-                  }
-                : {
-                    border: "transparent",
-                    backgroundColor: "white",
-                    marginLeft: "4px",
-                  }
-            }
             className={
               props.dark
                 ? toggleState === 2
-                  ? "dark-tabSavelist active-tabSavelist"
+                  ? "dark-tabSavelist active-dark-tabSavelist"
                   : "dark-tabSavelist"
                 : toggleState === 2
                 ? "tabSavelist active-tabSavelist"
@@ -76,7 +62,11 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(2)}
           >
-            <span className = {props.dark ? 'readTweetsName-darkMode' : 'readTweetsName'}>
+            <span
+              className={
+                props.dark ? "readTweetsName-darkMode" : "readTweetsName"
+              }
+            >
               {" "}
               Read Tweets{" "}
             </span>
