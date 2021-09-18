@@ -228,6 +228,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#09184b",
     marginTop: "4%",
     marginLeft: "18px",
+    whiteSpace: "noWrap",
   },
 
   readtweet_dark_mode: {
@@ -242,6 +243,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     marginTop: "4%",
     marginLeft: "18px",
+    whiteSpace: "noWrap",
   },
   hr_page: {
     width: "100%",
@@ -327,8 +329,8 @@ export default function ReadTweets(props) {
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
-                  variant="h5"
-                  style={{ whiteSpace: "nowrap" }}
+                  // variant="h5"
+                  // style={{ whiteSpace: "nowrap" }}
                 >
                   Read Tweets
                   <Tippy
@@ -336,13 +338,7 @@ export default function ReadTweets(props) {
                     theme={"light"}
                     maxWidth={"none"}
                     content={
-                      <span
-                        style={{
-                          color: "#0d0e2d",
-                          fontSize: "11px",
-                          fontWeight: "600",
-                        }}
-                      >
+                      <span className="tippyBlockstyle">
                         Number of read tweets by d-app platform
                       </span>
                     }

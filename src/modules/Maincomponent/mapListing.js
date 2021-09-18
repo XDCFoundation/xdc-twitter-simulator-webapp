@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "115%",
     marginLeft: "-23px",
+    paddingTop: "16px",
     position: "relative",
     overflow: "auto",
     msOverflowStyle: "none",
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   dark_root: {
     width: "109.5%",
     marginLeft: "-23px",
+    paddingTop: "16px",
     position: "relative",
     overflow: "auto",
     msOverflowStyle: "none",

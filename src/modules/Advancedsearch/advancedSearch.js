@@ -207,11 +207,11 @@ export default function MaxWidthDialog(props) {
   // console.log('mine...',keys)
   // console.log('mine',hash)
   // console.log('mine...',name)
-  
+
   const redirect = () => {
     history.push(
       "/list/" +
-        encodeURIComponent(keys?.replace('%', '')) +
+        encodeURIComponent(keys?.replace("%", "")) +
         "&" +
         encodeURIComponent(hash) +
         "&" +

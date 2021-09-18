@@ -291,6 +291,14 @@ input:focus {
   width: 100%;
 } */
 
+.homeIcon{
+  width: 5%;
+}
+
+/* .listingpageLink {
+  text-decoration: none;
+} */
+
 .wordTruncating{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -748,7 +756,7 @@ input:focus {
   justify-content: space-between;
   display: flex;
   width: 102%;
-  height: 27px;
+  /* height: 27px; */
   margin-top: 0px;
   margin-left: 14px;
   padding-top: 15px;
@@ -787,11 +795,11 @@ input:focus {
 .dark-blocks {
   justify-content: space-between;
   display: flex;
-  width: 100%;
+  width: 102%;
+  /* height: 27px; */
+  margin-top: 0px;
+  margin-left: 14px;
   padding-top: 15px;
-  height: 22px;
-  margin-top: 20px;
-  margin-left: 15px;
 }
 
 .bloc-tabs {
@@ -1085,7 +1093,7 @@ input:focus {
   width: 80%;
   cursor: pointer;
   position: relative;
-  font-size: 11px;
+  font-size: 12px;
   background: #fff;
   cursor: pointer;
   /*padding-left: 0px;*/
@@ -1093,22 +1101,26 @@ input:focus {
   justify-content: center;
   font-weight: 600;
   letter-spacing: 0.65px;
+  border: transparent;
+  background-color: white;
 }
 
 .dark-tabSavelist {
   padding-bottom: 7px;
-  color: #969696;
+  color: white;
   background-color: #191d43;
   text-align: center;
   width: 80%;
   cursor: pointer;
   position: relative;
-  font-size: 11px;
+  font-size: 12px;
   background: #fff;
   cursor: pointer;
   padding-left: 0px;
   font-weight: 600;
   letter-spacing: 0.65px;
+  border: transparent;
+  background-color: #191d43;
 }
 
 .active-tabSavelist {
@@ -1116,6 +1128,17 @@ input:focus {
   color: #09184B;
   opacity: 1;
   font-weight: 600;
+  border: transparent;
+  background-color: white;
+}
+
+.active-dark-tabSavelist {
+  letter-spacing: 1px;
+  color: #09184B;
+  opacity: 1;
+  font-weight: 600;
+  border: transparent;
+  background-color: #191d43;
 }
 
 .active-tabSavelist::before {
@@ -1130,15 +1153,37 @@ input:focus {
   opacity: 1;
   background: #3366FF; 
 }
+
+.active-dark-tabSavelist::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 100px;
+  height: 1px;
+  border: 1px solid #3366FF;
+  border-radius: 20px;
+  opacity: 1;
+  background: #3366FF; 
+}
+
 @media (min-width: 0px) and (max-width: 300px) {
   .active-tabSavelist::before {
+    display: none;
+  }
+  .active-dark-tabSavelist::before {
     display: none;
   }
 }
 @media (min-width: 300px) and (max-width: 400px) {
   .active-tabSavelist::before {
-    top: 66px;
-    height: 2px;
+    top: 67px;
+    height: 3px;
+    width: 80px;
+  }
+  .active-dark-tabSavelist::before {
+    top: 75px;
+    height: 3px;
     width: 80px;
   }
 }
@@ -1147,12 +1192,22 @@ input:focus {
     top: 57px;
     width: 80px;
   }
+  .active-dark-tabSavelist::before {
+    top: 71px;
+    left: 6px;
+    width: 80px;
+  }
 }
 @media (min-width: 501px) and (max-width: 600px) {
   .active-tabSavelist::before {
-    top: 51px;
-    left: 8px;
-    width: 70px;
+    top: 53px;
+    left: 2px;
+    width: 89px;
+  }
+  .active-dark-tabSavelist::before {
+    top: 65px;
+    left: 1px;
+    width: 93px;
   }
 }
 @media (min-width: 601px) and (max-width: 650px) {
@@ -1160,16 +1215,25 @@ input:focus {
     top: 47px;
     width: 100px;
   }
-}
-@media (min-width: 651px) and (max-width: 766px) {
-  .active-tabSavelist::before {
-    top: 39px;
-    left: 9px;
+  .active-dark-tabSavelist::before {
+    top: 58px;
     width: 100px;
   }
 }
+@media (min-width: 651px) and (max-width: 766px) {
+  .active-tabSavelist::before {
+    top: 45px;
+    left: 2px;
+    width: 111px;
+  }
+  .active-dark-tabSavelist::before {
+    top: 56px;
+    left: 3px;
+    width: 105px;
+  }
+}
 .content {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   background: white;
   width: 100%;
   height: 100%;
@@ -1178,7 +1242,7 @@ input:focus {
 
 
 .dark-content {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   background: #191d43;
   width: 100%;
   height: 100%;
@@ -1516,15 +1580,16 @@ input:focus {
   width: 108%;
   height: 342px;
   z-index: 0;
- margin-top: 8px;
+ margin-top: 19px;
  margin-left: -2px;
  background-color: transparent;
 }
 
 @media (max-width: 650px) {
   .lightmap-style {
+    margin-top: 15px;
     margin-left: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 }
 @media (min-width: 651px) and (max-width: 768px) {
@@ -1598,9 +1663,17 @@ input:focus {
 
 .darkmap-style{
   width: 103%;
-  margin-top: 10px;
+  margin-top: 19px;
   height: 340px;
   z-index: 0;
+}
+@media (max-width: 640px) {
+  .darkmap-style {
+    width: 100%;
+    height: 345px;
+    margin-bottom: 10px;
+    z-index: 0;
+  }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .darkmap-style {
@@ -1779,26 +1852,30 @@ input:focus {
 }
 
 .saveTweetsName{
-  font-size: 14;
+  font-size: 12px;
   color: black;
+  white-space: nowrap;
 }
 
 .saveTweetsName-darkMode{
-  font-size: 14;
+  font-size: 12px;
   color: #ffffff;
+  white-space: nowrap;
 }
 
 .readTweetsName {
-  font-size: 14;
+  font-size: 12px;
   color: black;
+  white-space: nowrap;
 }
 
 .readTweetsName-darkMode {
-  font-size: 14;
+  font-size: 12px;
   color: #ffffff;
+  white-space: nowrap;
 }
 
-@media (max-width: 550px) {
+/* @media (max-width: 550px) {
   .saveTweetsName{
     white-space: nowrap;
   }
@@ -1814,7 +1891,7 @@ input:focus {
   .readTweetsName-darkMode {
     white-space: nowrap;
   }
-}
+} */
 
 .loader {
   display: flex;

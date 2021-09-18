@@ -336,7 +336,7 @@ export default function ReadTweets(props) {
   }, [props?.readhandle]);
 
   useEffect(() => {
-    // console.log('fire--',props.tweetData);
+    // console.log('hey--',props?.readtweetData)
   }, [props?.readtweetData]);
 
   async function userHandle() {
@@ -347,7 +347,6 @@ export default function ReadTweets(props) {
   }
 
   // console.log('hey--',props?.readhandle)
-  // console.log('hey--',props?.readtweetData)
 
   return (
     <Grid Container spacing={3}>
