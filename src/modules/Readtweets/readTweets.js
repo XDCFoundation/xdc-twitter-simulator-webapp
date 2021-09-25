@@ -362,8 +362,9 @@ export default function ReadTweets(props) {
               </Row>
               {props?.tweetreadData &&
                 props?.tweetreadData.length >= 1 &&
-                props?.tweetreadData.map((response) => {
-                  let value = response?.text || 0;
+                props?.tweetreadData.map((response, index) => {
+                  let textVal =  response?.text || 0
+                  let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 10) || 0;
 
@@ -389,7 +390,7 @@ export default function ReadTweets(props) {
                             : classes.hr_page
                         }
                       />
-                      <Row>
+                      <Row key={index}>
                         <Typography
                           variant="h6"
                           className={
@@ -438,8 +439,8 @@ export default function ReadTweets(props) {
                                   ? textanimationClass
                                   : classes.content
                               }
-                              noWrap
-                              gutterBottom
+                              // noWrap
+                              // gutterBottom
                             >
                               <div className="wordTruncating">
                                 {value.length > 0

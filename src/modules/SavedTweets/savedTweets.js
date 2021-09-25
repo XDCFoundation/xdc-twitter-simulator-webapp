@@ -348,7 +348,8 @@ export default function SavedTweets(props) {
               {props?.tweetData &&
                 props?.tweetData.length >= 1 &&
                 props?.tweetData.map((response, index) => {
-                  let value = response?.text || 0;
+                  let textVal =  response?.text || 0
+                  let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorID || 0;
                   let createTime = Number(response?.createdAt || 0);
                   let str = response.addedOn;
@@ -374,7 +375,7 @@ export default function SavedTweets(props) {
                             : classes.hr_page
                         }
                       />
-                      <Row>
+                      <Row key={index}>
                         <Typography
                           variant="h6"
                           className={
@@ -421,7 +422,7 @@ export default function SavedTweets(props) {
                                   ? textanimationClass
                                   : classes.content
                               }
-                              gutterBottom
+                          //  gutterBottom   
                             >
                               <div className="wordTruncating">
                                 {value.length > 0

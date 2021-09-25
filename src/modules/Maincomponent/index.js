@@ -280,7 +280,7 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.readData.map((items) => {
+      this.state.readData.map((items, index) => {
         let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
         resultData.push({
           x: moment(items.startTime).format("LT"),
@@ -335,7 +335,7 @@ export default class Main extends Component {
         ];
         var resultData = [];
 
-        this.state.readData.map((items) => {
+        this.state.readData.map((items, index) => {
           let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
           resultData.push({
             x: moment(items.startTime).format("LT"),
@@ -386,7 +386,7 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.saveData.map((items) => {
+      this.state.saveData.map((items, index) => {
         // console.log('api--', items)
         let firstAxis = items?.savedTweets / items?.responseTime;
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
@@ -440,7 +440,7 @@ export default class Main extends Component {
         ];
         var resultData = [];
 
-        this.state.saveData.map((items) => {
+        this.state.saveData.map((items, index) => {
           // console.log('api--', items)
           let firstAxis = items?.savedTweets / items?.responseTime;
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
@@ -475,7 +475,7 @@ export default class Main extends Component {
   }
 
   async savehandleUser() {
-    (this.state?.savedTweets).map((item) => {
+    (this.state?.savedTweets).map((item, index) => {
       let handle = item?.authorID || "-";
       // console.log('items2--', handle)
       axios
@@ -492,7 +492,12 @@ export default class Main extends Component {
           // console.log('save---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
-          console.log(err);
+          if (
+            this?.state?.authors &&
+            this?.state?.authors?.length == 0
+          ) {
+            console.log(err);
+          }
         });
     });
   }
@@ -515,7 +520,12 @@ export default class Main extends Component {
           // console.log('read---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
-          console.log(err);
+          if (
+            this?.state?.readAuthors &&
+            this?.state?.readAuthors?.length == 0
+          ) {
+            console.log(err);
+          }
         });
     });
   }

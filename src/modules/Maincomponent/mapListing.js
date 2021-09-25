@@ -177,7 +177,7 @@ export default function PinnedSubheaderList(props) {
             // console.log('index--',index)
             return (
               <>
-                <div className={props.dark ? "listMap-light" : "listMap-dark"}>
+                <div key={index} className={props.dark ? "listMap-light" : "listMap-dark"}>
                   <div className="hashtag-list">
                     {index + 1 ? index + 1 : "null"}. {items?.name || 0} &nbsp;
                     {volume > 1000

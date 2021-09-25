@@ -39,7 +39,17 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(1)}
           >
-            <span className={props.dark ? "mapTab-dark-mode" : "mapTab-mode"}>
+            <span
+              className={
+                props.dark
+                  ? toggleState === 1
+                    ? "mapTab-dark-selectedmode"
+                    : "mapTab-dark-nonselectedmode"
+                  : toggleState === 1
+                  ? "mapTab-selected-mode"
+                  : "mapTab-nonSelected-mode"
+              }
+            >
               Map
             </span>
           </button>
@@ -55,7 +65,17 @@ function MapTabs(props) {
             }
             onClick={() => toggleTab(2)}
           >
-            <span className={props.dark ? "listTab-dark-mode" : "listTab-mode"}>
+            <span
+              className={
+                props.dark
+                  ? toggleState === 2
+                    ? "listTab-dark-selectedmode"
+                    : "listTab-dark-nonselectedmode"
+                  : toggleState === 2
+                  ? "listTab-selected-mode"
+                  : "listTab-nonSelected-mode"
+              }
+            >
               List
             </span>
           </button>

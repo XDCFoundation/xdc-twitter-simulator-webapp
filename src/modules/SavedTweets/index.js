@@ -158,7 +158,7 @@ export default class Saved extends BaseComponent {
   }
 
   async userHandle() {
-    (this.state?.savedTweets).map((item) => {
+    (this.state?.savedTweets).map((item, index) => {
       let handle = item?.authorID || "-";
       // console.log('items2--', handle)
       axios
@@ -175,7 +175,12 @@ export default class Saved extends BaseComponent {
           // console.log('save---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
-          console.log(err);
+          if (
+            this?.state?.authors &&
+            this?.state?.authors?.length == 0
+          ) {
+            console.log(err);
+          }
         });
     });
   }
@@ -187,7 +192,7 @@ export default class Saved extends BaseComponent {
     // console.log('mycount--',this.state.savingtweetsCount)
     return (
       <div>
-        <SavedTweets
+        <SavedTweets 
           dark={this.props.dark}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}

@@ -246,7 +246,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "#09184b",
-    marginTop: "3%",
+    marginTop: "20px",
     marginLeft: "18px",
     whiteSpace: "noWrap",
   },
@@ -261,7 +261,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "normal",
     textAlign: "left",
     color: "white",
-    marginTop: "3%",
+    marginTop: "20px",
     marginLeft: "18px",
     whiteSpace: "noWrap",
   },
@@ -553,7 +553,7 @@ export default function Searchlist(props) {
                   ) : (
                     basic &&
                     basic.length >= 1 &&
-                    basic.map((response) => {
+                    basic.map((response, index) => {
                       let value = response?.text || 0;
                       let author = response?.authorID || 0;
                       let str = response?.addedOn || 0;
@@ -585,7 +585,7 @@ export default function Searchlist(props) {
                             style={{ textDecoration: "none" }}
                             href={"/archive/" + userId}
                           >
-                            <Row>
+                            <Row key={index}>
                               <Typography
                                 variant="h6"
                                 className={
@@ -639,7 +639,7 @@ export default function Searchlist(props) {
 
                   {advance &&
                     advance.length >= 1 &&
-                    advance.map((response) => {
+                    advance.map((response, index) => {
                       let value = response?.text || 0;
                       let author = response?.id || 0;
                       let authorName = response?.name || 0;
@@ -670,7 +670,7 @@ export default function Searchlist(props) {
                             style={{ textDecoration: "none" }}
                             href={"/archive/" + textId}
                           >
-                            <Row>
+                            <Row key={index}>
                               <Typography
                                 variant="h6"
                                 className={
@@ -853,7 +853,7 @@ export default function Searchlist(props) {
 
                   {basic &&
                     basic.length >= 1 &&
-                    basic.map((response) => {
+                    basic.map((response, index) => {
                       let value = response?.text || 0;
                       let author = response?.authorID || 0;
                       let str = response?.addedOn || 0;
@@ -885,7 +885,7 @@ export default function Searchlist(props) {
                             style={{ textDecoration: "none" }}
                             href={"/archive/" + userId}
                           >
-                            <Row>
+                            <Row key={index}>
                               <Typography
                                 variant="h6"
                                 className={
@@ -938,7 +938,7 @@ export default function Searchlist(props) {
 
                   {advance &&
                     advance.length >= 1 &&
-                    advance.map((response) => {
+                    advance.map((response, index) => {
                       let value = response?.text || 0;
                       let author = response?.id || 0;
                       let authorName = response?.name || 0;
@@ -969,7 +969,7 @@ export default function Searchlist(props) {
                             style={{ textDecoration: "none" }}
                             href={"/archive/" + textId}
                           >
-                            <Row>
+                            <Row key={index}>
                               <Typography
                                 variant="h6"
                                 className={

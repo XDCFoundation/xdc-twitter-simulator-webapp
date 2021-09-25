@@ -201,7 +201,10 @@ const useStyles = makeStyles((theme) => ({
   "@media (min-width: 304px) and (max-width: 766px)": {
     map_dark_mode: {
       display: "block",
-      boxShadow: "none",
+      backgroundColor: "#191d43",
+      boxShadow: "0px 2px 30px #0000001A",
+      border: "solid 1px #343965",
+      borderRadius: "5px",
     },
   },
   node: {
@@ -357,6 +360,14 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
     borderRadius: "4px",
     marginRight: "20px",
+  },
+  paper_dark_node: {
+    marginLeft: "20px",
+    marginTop: "-9px",
+    boxShadow: "none",
+    borderRadius: "4px",
+    marginRight: "20px",
+    backgroundColor: "#191d43",
   },
   top: {
     marginTop: "10.5px",
@@ -551,28 +562,8 @@ export default function MainComponent(props) {
           return;
         } else {
           test[msg.data.id] = msg.data.stats.active;
-
-          //for socket ip counts---->
-          let data = Object.keys(test);
-          var arr = [];
-          if (data) {
-            data.map((item) => {
-              if (item[item.length - 1] == ")") {
-                var start = item.lastIndexOf("(") + 1;
-                var end = item.length - 1;
-                var result = item.substring(start, end);
-                arr.push(result);
-              } else {
-                var start = item.lastIndexOf("-") + 1;
-                var end = item.length - 1;
-                var result = item.substr(start, end);
-                arr.push(result);
-              }
-            });
-          }
-          // console.log('obj------', data)
-
-          let newarray = arr.filter(
+          let newarray = Object.keys(test);
+          let data = newarray?.filter(
             (element) =>
               element !== "Click" &&
               element !== "bsc.BlocksScan.i" &&
@@ -583,9 +574,37 @@ export default function MainComponent(props) {
               element !== "BlocksScan.i" &&
               element !== "Apothem.XinFinScan.co" &&
               element !== "CRYPTERIUM_TES" &&
-              element !== "CRYPTERIUM_TEST_NOD"
+              element !== "CRYPTERIUM_TEST_NOD" &&
+              element !== "GoPlugins" &&
+              element !== "ETH_FullNode" &&
+              element !== "ETH.BlocksScan.io" &&
+              element !== "CRYPTERIUM_TEST" &&
+              element !== "CRYPTERIUM_TEST_NODE" &&
+              element !== "SoluLab-XinFin" &&
+              element !== "Apothem.XinFinScan.com"
           );
-          setValue(newarray);
+
+          var arr = [];
+          if (data) {
+            data.map((item) => {
+              if (item[item.length - 1] == ")") {
+                var start = item.lastIndexOf("(") + 1;
+                var end = item.length - 1;
+                var result = item.substring(start, end);
+                arr.push(result);
+              } else {
+                // var start = item.lastIndexOf("-") + 1;
+                // var end = item.length - 1;
+                // var result = item.substr(start, end);
+                var result = item?.split("_")[1];
+                arr.push(result);
+              }
+            });
+          }
+
+          let redundant = Array.from(new Set(arr));
+          // console.log("mian--", redundant);
+          setValue(redundant);
 
           //for socket total nodes ---->
           let nodecount = Object.keys(test).length;
@@ -602,6 +621,8 @@ export default function MainComponent(props) {
       }
     };
   };
+
+  useEffect(() => {}, [value]);
 
   //for Night mode-->
   const getMode = () => {
@@ -954,7 +975,13 @@ export default function MainComponent(props) {
 
           <Column>
             <Grid item xs={12} className={classes.grid2}>
-              <Paper classes={{ elevation1: classes.paper_node }}>
+              <Paper
+                classes={
+                  props.dark
+                    ? { elevation1: classes.paper_dark_node }
+                    : { elevation1: classes.paper_node }
+                }
+              >
                 <div
                   className={props.dark ? classes.map_dark_mode : classes.map}
                 >
@@ -970,8 +997,7 @@ export default function MainComponent(props) {
                       maxWidth={180}
                       content={
                         <span className="tippyBlockstyle">
-                          The saved tweets per second track the rate of
-                          record-keeping
+                          Current Active Nodes
                         </span>
                       }
                     >
