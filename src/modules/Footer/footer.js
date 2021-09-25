@@ -116,6 +116,10 @@ const useStyles = makeStyles((theme) => ({
     textalign: "left",
     color: "#ffffff",
   },
+
+  mainGrid: {
+    backgroundColor: '#3E71FF'
+  }
 }));
 
 export default function FooterComponent() {
@@ -124,10 +128,10 @@ export default function FooterComponent() {
     <div className={classes.root}>
       <Grid Container spacing={1}>
         <Row>
-          <Grid item xs={12}>
+          <Grid className={classes.mainGrid} item xs={12}>
             <Paper className={classes.paper}>
               {/* <img  src="../../images/footer.svg"></img> */}
-              <Row>
+              <Row style={{marginLeft: '18px'}}>
                 <div class="cards">
                   <Grid className="link-grid" item xs={12} sm={6} md={4}>
                     <Paper

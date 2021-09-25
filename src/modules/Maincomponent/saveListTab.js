@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
     align: "justify",
     position: "absolute",
     right: "4.5%",
-    fontSize: "26px",
-    marginTop: "-9px",
+    fontSize: "22px",
+    marginTop: "-12px",
     marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -69,25 +69,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     color: "#09184b",
   },
-  "@media (min-width: 500px) and (max-width: 766px)": {
-    tweetnumber: {
-      whiteSpace: "nowrap",
-      boxShadow: "none",
-      align: "justify",
-      position: "absolute",
-      right: "4.5%",
-      fontSize: "26px",
-      marginTop: "-9px",
-      marginRight: "17px",
-      fontWeight: "600",
-      fontStretch: "normal",
-      fontStyle: "normal",
-      lineHeight: "1.17",
-      letterSpacing: "normal",
-      textAlign: "left",
-      color: "#09184b",
-    },
-  },
   tweetnumber_dark_mode: {
     whiteSpace: "nowrap",
     boxShadow: "none",
@@ -95,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "4.5%",
     fontSize: "22px",
-    marginTop: "-24px",
+    marginTop: "-12px",
     marginRight: "17px",
     fontWeight: "600",
     fontStretch: "normal",
@@ -106,22 +87,15 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
   "@media (min-width: 500px) and (max-width: 766px)": {
-    tweetnumber_dark_mode: {
-      whiteSpace: "nowrap",
-      boxShadow: "none",
-      align: "justify",
-      position: "absolute",
-      right: "4.5%",
-      fontSize: "26px",
-      marginTop: "-10px",
+    tweetnumber: {
+      fontSize: "22px",
+      marginTop: "5px",
       marginRight: "17px",
-      fontWeight: "600",
-      fontStretch: "normal",
-      fontStyle: "normal",
-      lineHeight: "1.17",
-      letterSpacing: "normal",
-      textAlign: "left",
-      color: "#ffffff",
+    },
+    tweetnumber_dark_mode: {
+      fontSize: "22px",
+      marginTop: "5px",
+      marginRight: "17px",
     },
   },
 
@@ -289,14 +263,15 @@ const useStyles = makeStyles((theme) => ({
     width: "104%",
     height: "0px",
     marginLeft: "-15px",
-    backgroundColor: "white",
+    backgroundColor: "#C0C0C0",
     marginTop: "0.7rem",
     marginBottom: "0.7rem",
+    opacity: 0.2,
   },
 
   "@media (max-width: 767px)": {
     hr_page_dark_mode: {
-      backgroundColor: "white",
+      backgroundColor: "#C0C0C0",
     },
   },
 
@@ -372,8 +347,9 @@ export default function ReadTweets(props) {
               </Row>
               {props?.savetweetData &&
                 props?.savetweetData.length >= 1 &&
-                props?.savetweetData.map((response) => {
-                  let value = response?.text || 0;
+                props?.savetweetData.map((response, index) => {
+                  let textVal = response?.text || 0;
+                  let value = textVal?.replaceAll(/undefined/g, "") || 0;
                   let author = response?.authorID || 0;
                   let createTime = Number(response?.createdAt || 0);
                   let str = response.addedOn;
@@ -397,7 +373,7 @@ export default function ReadTweets(props) {
                             : classes.hr_page
                         }
                       />
-                      <Row>
+                      <Row key={index}>
                         <Typography
                           variant="h6"
                           className={
@@ -428,7 +404,7 @@ export default function ReadTweets(props) {
                                   ? classes.content_dark_mode
                                   : classes.content
                               }
-                              gutterBottom
+                              // gutterBottom
                             >
                               <div className="wordTruncating">
                                 {value.length > 0

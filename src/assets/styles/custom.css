@@ -756,10 +756,10 @@ input:focus {
   justify-content: space-between;
   display: flex;
   width: 102%;
-  /* height: 27px; */
+  height: 10px;
   margin-top: 0px;
   margin-left: 14px;
-  padding-top: 15px;
+  padding-top: 24px;
 }
 
 .dark-block {
@@ -796,10 +796,10 @@ input:focus {
   justify-content: space-between;
   display: flex;
   width: 102%;
-  /* height: 27px; */
+  height: 10px;
   margin-top: 0px;
   margin-left: 14px;
-  padding-top: 15px;
+  padding-top: 24px;
 }
 
 .bloc-tabs {
@@ -808,7 +808,7 @@ input:focus {
   /* background-color: #2149b9; */
 }
 .switch {
-  width: 37%;
+  /* width: 37%; */
   display: flex;
 }
 
@@ -1064,26 +1064,46 @@ input:focus {
   }
 }
 
-.mapTab-mode{
+.mapTab-selected-mode{
   font-size: 12px;
-  color: black;
+  color: #09184B;
 }
 
-.mapTab-dark-mode{
+.mapTab-nonSelected-mode{
+  font-size: 12px;
+  color: #969696;
+}
+
+.mapTab-dark-selectedmode{
   font-size: 12px;
   color: white;
 }
 
+.mapTab-dark-nonselectedmode{
+  font-size: 12px;
+  color: #999999;
+}
 
-.listTab-mode{
+.listTab-selected-mode{
   width: 20px;
   font-size: 12px;
-  color: black;
+  color: #09184B;
 }
 
-.listTab-dark-mode{
+.listTab-nonSelected-mode{
+  width: 20px;
+  font-size: 12px;
+  color: #969696;
+}
+
+.listTab-dark-selectedmode{
   font-size: 12px;
   color: white;
+}
+
+.listTab-dark-nonselectedmode{
+  font-size: 12px;
+  color: #999999;
 }
 
 .tabSavelist {
@@ -1161,10 +1181,10 @@ input:focus {
   top: 40px;
   width: 100px;
   height: 1px;
-  border: 1px solid #3366FF;
+  border: 1px solid #FFFFFF;
   border-radius: 20px;
   opacity: 1;
-  background: #3366FF; 
+  background: #FFFFFF; 
 }
 
 @media (min-width: 0px) and (max-width: 300px) {
@@ -1177,59 +1197,64 @@ input:focus {
 }
 @media (min-width: 300px) and (max-width: 400px) {
   .active-tabSavelist::before {
-    top: 67px;
+    top: 46px;
+    left: 4px;
     height: 3px;
-    width: 80px;
+    width: 89px;
   }
   .active-dark-tabSavelist::before {
-    top: 75px;
+    top: 49px;
     height: 3px;
-    width: 80px;
+    width: 86px;
   }
 }
 @media (min-width: 401px) and (max-width: 500px) {
   .active-tabSavelist::before {
-    top: 57px;
-    width: 80px;
+    top: 39px;
+    height: 3px;
+    left: 6px;
+    width: 88px;
   }
   .active-dark-tabSavelist::before {
-    top: 71px;
-    left: 6px;
-    width: 80px;
+    top: 43px;
+    left: 0px;
+    width: 88px;
   }
 }
 @media (min-width: 501px) and (max-width: 600px) {
   .active-tabSavelist::before {
-    top: 53px;
-    left: 2px;
+    top: 34px;
+    left: 5px;
+    height: 3px;
     width: 89px;
   }
   .active-dark-tabSavelist::before {
-    top: 65px;
+    top: 35px;
     left: 1px;
-    width: 93px;
+    width: 85px;
   }
 }
 @media (min-width: 601px) and (max-width: 650px) {
   .active-tabSavelist::before {
-    top: 47px;
-    width: 100px;
+    top: 28px;
+    height: 3px;
+    width: 88px;
   }
   .active-dark-tabSavelist::before {
-    top: 58px;
-    width: 100px;
+    top: 30px;
+    width: 90px;
   }
 }
 @media (min-width: 651px) and (max-width: 766px) {
   .active-tabSavelist::before {
-    top: 45px;
-    left: 2px;
-    width: 111px;
+    top: 22px;
+    left: 4px;
+    width: 94px;
   }
   .active-dark-tabSavelist::before {
-    top: 56px;
-    left: 3px;
-    width: 105px;
+    top: 29px;
+    left: 0px;
+    width: 88px;
   }
 }
 .content {
@@ -1420,7 +1445,7 @@ input:focus {
     /* width : 100%; */
     margin: 0 auto;
     display: grid;
-    margin-left: 10%;
+    margin-left: 11%;
     /* grid-gap: 5rem; */
     justify-content: space-between;
   }
@@ -1587,6 +1612,7 @@ input:focus {
 
 @media (max-width: 650px) {
   .lightmap-style {
+    width: 114%;
     margin-top: 15px;
     margin-left: 4px;
     margin-bottom: 15px;
@@ -1851,27 +1877,52 @@ input:focus {
   bottom: 1px;
 }
 
-.saveTweetsName{
+.saveTweets-selected-Name{
   font-size: 12px;
-  color: black;
+  color: #09184B;
+  white-space: nowrap;
+}
+.saveTweets-nonselected-Name{
+  font-size: 12px;
+  color: #969696;
   white-space: nowrap;
 }
 
-.saveTweetsName-darkMode{
+.saveTweetsName-selected-darkMode{
   font-size: 12px;
   color: #ffffff;
   white-space: nowrap;
 }
 
-.readTweetsName {
+.saveTweetsName-nonselected-darkMode{
   font-size: 12px;
-  color: black;
+  color: #969696;
   white-space: nowrap;
 }
 
-.readTweetsName-darkMode {
+.readTweets-selected-Name {
   font-size: 12px;
+  color: #09184B;;
+  white-space: nowrap;
+}
+
+.readTweets-nonselected-Name {
+  font-size: 12px;
+  color: #969696;
+  white-space: nowrap;
+}
+
+.readTweetsName-selected-darkMode {
+  font-size: 12px;
+  margin-left: 3px;
   color: #ffffff;
+  white-space: nowrap;
+}
+
+.readTweetsName-nonselected-darkMode {
+  font-size: 12px;
+  margin-left: 3px;
+  color: #969696;
   white-space: nowrap;
 }
 

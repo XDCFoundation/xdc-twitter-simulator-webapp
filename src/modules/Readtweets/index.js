@@ -137,7 +137,7 @@ export default class Read extends BaseComponent {
   }
 
   async userHandle() {
-    (this.state?.readtweets).map((item) => {
+    (this.state?.readtweets).map((item, index) => {
       let handle = item?.authorId || 0;
       // console.log('items2--', handle)
       axios
@@ -154,7 +154,12 @@ export default class Read extends BaseComponent {
           // console.log('hand---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
-          console.log(err);
+          if (
+            this?.state?.authors &&
+            this?.state?.authors?.length == 0
+          ) {
+            console.log(err);
+          }
         });
     });
   }
@@ -165,7 +170,7 @@ export default class Read extends BaseComponent {
     // console.log("saveCountTweets------", this.state.totaltweets);
     return (
       <div>
-        <ReadTweets
+        <ReadTweets 
           dark={this.props.dark}
           tweetreadData={this.state.readtweets}
           tweetreadCount={this.state.totaltweets}

@@ -113,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column !important",
       justifyContent: "center",
       alignItems: "center",
+      gridRowGap: "32px",
     },
   },
 
@@ -130,6 +131,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column !important",
       justifyContent: "center",
       alignItems: "center",
+      gridRowGap: "32px",
     },
   },
 
@@ -143,6 +145,7 @@ const useStyles = makeStyles((theme) => ({
       display: "grid !important",
       justifyContent: "center !important",
       gridTemplateColumns: "repeat(2, 1fr)",
+      gridRowGap: "32px",
     },
   },
   "@media (min-width: 1081px)": {
@@ -335,13 +338,12 @@ export default function Aboutcomponent(props) {
           <div className={classes.uppercomponent}>
             <Span>About XDC Speed Test</Span>
             <Content>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure <br />{" "}
-              dolor reprehenderit in voluptate velit esse cillum dolore eu{" "}
-              <br /> consequat. Duis aute irure <br /> dolor reprehenderit in
-              voluptate
+              XDC Speed Tester demonstrates the speed of the XinFin blockchain
+              network.
+              <br />
+              Using Twitter API the tweets mapped to the top twenty trending{" "}
+              <br />
+              hashtags are fetched and stored in the blockchain network.
             </Content>
             <Bannerimage src={require("../About/Banner.png")} />
 

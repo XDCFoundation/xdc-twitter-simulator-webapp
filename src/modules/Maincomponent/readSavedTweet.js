@@ -43,7 +43,13 @@ function MapTabs(props) {
           >
             <span
               className={
-                props.dark ? "saveTweetsName-darkMode" : "saveTweetsName"
+                props.dark
+                  ? toggleState === 1
+                    ? "saveTweetsName-selected-darkMode"
+                    : "saveTweetsName-nonselected-darkMode"
+                  : toggleState === 1
+                  ? "saveTweets-selected-Name"
+                  : "saveTweets-nonselected-Name"
               }
             >
               {" "}
@@ -64,7 +70,13 @@ function MapTabs(props) {
           >
             <span
               className={
-                props.dark ? "readTweetsName-darkMode" : "readTweetsName"
+                props.dark
+                  ? toggleState === 2
+                    ? "readTweetsName-selected-darkMode"
+                    : "readTweetsName-nonselected-darkMode"
+                  : toggleState === 2
+                  ? "readTweets-selected-Name"
+                  : "readTweets-nonselected-Name"
               }
             >
               {" "}
