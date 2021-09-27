@@ -349,7 +349,7 @@ export default function SavedTweets(props) {
                 props?.tweetData.length >= 1 &&
                 props?.tweetData.map((response, index) => {
                   let textVal =  response?.text || 0
-                  let value = textVal?.replaceAll(/undefined/g, '') || 0
+                  // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorID || 0;
                   let createTime = Number(response?.createdAt || 0);
                   let str = response.addedOn;
@@ -425,8 +425,8 @@ export default function SavedTweets(props) {
                           //  gutterBottom   
                             >
                               <div className="wordTruncating">
-                                {value.length > 0
-                                  ? shortenValue(value) || "-"
+                                {textVal.length > 0
+                                  ? shortenValue(textVal) || "-"
                                   : "-"}
                               </div>
                             </Paper>

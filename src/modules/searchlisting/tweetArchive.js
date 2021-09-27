@@ -233,8 +233,11 @@ export default function TweetArchive() {
   };
 
   let value = search[0]?.text || "undefined";
-  let time = moment(search[0]?.addedOn).format("LL") || "undefined";
-  let date = moment(search[0]?.addedOn).format("LT") || "undefined";
+  let createBasicTime = search[0]?.createdAt || "-";
+  let date = moment(createBasicTime).format("LL");
+  let time = moment(createBasicTime).format("LT");
+  // let time = moment(search[0]?.addedOn).format("LL") || "undefined";
+  // let date = moment(search[0]?.addedOn).format("LT") || "undefined";
   // let handler = value?.slice(0, 10) || 0;
   // let name = handler?.split("@")[1] || 0;
   // let icon = name?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
@@ -244,10 +247,9 @@ export default function TweetArchive() {
 
   let advanceValue = advanceSearch[0]?.text || "undefined";
   let advanceName = advanceSearch[0]?.name || "-";
-  let advanceDate =
-    moment(advanceSearch[0]?.createdAt).format("LL") || "undefined";
-  let advanceTime =
-    moment(advanceSearch[0]?.createdAt).format("LT") || "undefined";
+  let createAdvanceTime = advanceSearch[0]?.createdAt || "-";
+  let advanceDate = moment(createAdvanceTime).format("LL");
+  let advanceTime = moment(createAdvanceTime).format("LT");
   let advanceIcon =
     advanceName[0]
       ?.split(" ")
@@ -299,12 +301,12 @@ export default function TweetArchive() {
                 <Row>
                   <Tweetdata>
                     <span className={classes.span_tweet}>
-                      {search[0]
-                        ? value
-                          ? value
-                          : "Loading..."
-                        : advanceValue
+                      {advanceSearch[0]
                         ? advanceValue
+                          ? advanceValue
+                          : "Loading..."
+                        : value
+                        ? value
                         : "Loading..."}
                     </span>
                   </Tweetdata>
@@ -315,23 +317,23 @@ export default function TweetArchive() {
                     <Time>
                       {" "}
                       &nbsp;&nbsp;&nbsp;&nbsp;
-                      {search
-                        ? time
-                          ? time
-                          : "Loading.."
-                        : advanceTime
+                      {advanceSearch
                         ? advanceTime
+                          ? advanceTime
+                          : "Loading.."
+                        : time
+                        ? time
                         : "Loading.."}
                       &emsp;
                     </Time>
                     <Date>
                       &nbsp;
-                      {search
-                        ? date
-                          ? date
-                          : "Loading.."
-                        : advanceDate
+                      {advanceSearch
                         ? advanceDate
+                          ? advanceDate
+                          : "Loading.."
+                        : date
+                        ? date
                         : "Loading.."}
                       &emsp;
                     </Date>
