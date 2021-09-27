@@ -376,7 +376,7 @@ export default function ReadTweets(props) {
                 props?.readtweetData.length >= 1 &&
                 props?.readtweetData.map((response, index) => {
                   let textVal =  response?.text || 0
-                  let value = textVal?.replaceAll(/undefined/g, '') || 0
+                  // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 10) || 0;
                   let str = response.addedOn;
@@ -439,9 +439,9 @@ export default function ReadTweets(props) {
                               }
                               // gutterBottom
                             >
-                              <div className="wordTruncating">
-                                {value.length > 0
-                                  ? shortenValue(value) || "-"
+                             <div className="wordTruncating">
+                                {textVal.length > 0
+                                  ? shortenValue(textVal) || "-"
                                   : "-"}
                               </div>
                             </Paper>

@@ -338,7 +338,7 @@ export default function Aboutcomponent(props) {
           <div className={classes.uppercomponent}>
             <Span>About XDC Speed Test</Span>
             <Content>
-              XDC Speed Tester demonstrates the speed of the XinFin blockchain
+              XDC Speed Tester demonstrates the speed of the XDC blockchain
               network.
               <br />
               Using Twitter API the tweets mapped to the top twenty trending{" "}

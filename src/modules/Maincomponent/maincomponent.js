@@ -622,8 +622,6 @@ export default function MainComponent(props) {
     };
   };
 
-  useEffect(() => {}, [value]);
-
   //for Night mode-->
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
