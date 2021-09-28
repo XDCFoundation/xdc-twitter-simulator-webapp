@@ -14,5 +14,5 @@ RUN rm -rf /var/www/html/temp
 
 RUN chmod 777 -R /var/www/html/
 
-EXPOSE 90
+EXPOSE 80
 CMD ["/usr/sbin/apache2ctl", "-D",  "FOREGROUND"]
