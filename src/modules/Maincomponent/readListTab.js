@@ -330,24 +330,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  const [authors, setAuthors] = useState({});
+  // const [authors, setAuthors] = useState({});
 
-  useEffect(() => {
-    userHandle();
-  }, [props?.readhandle]);
+  // useEffect(() => {
+  //   userHandle();
+  // }, [props?.readhandle]);
 
   useEffect(() => {
     // console.log('hey--',props?.readtweetData)
   }, [props?.readtweetData]);
 
-  async function userHandle() {
-    if (props?.readhandle && props?.readhandle?.length >= 1) {
-      setAuthors(props?.readhandle);
-    }
-    // console.log('pr--', props?.user)
-  }
-
-  // console.log('hey--',props?.readhandle)
+  // async function userHandle() {
+  //   if (props?.readhandle && props?.readhandle?.length >= 1) {
+  //     setAuthors(props?.readhandle);
+  //   }
+  // }
 
   return (
     <Grid Container spacing={3}>
@@ -375,13 +372,14 @@ export default function ReadTweets(props) {
               {props?.readtweetData &&
                 props?.readtweetData.length >= 1 &&
                 props?.readtweetData.map((response, index) => {
-                  let textVal =  response?.text || 0
+                  let textVal = response?.text || 0;
                   // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 10) || 0;
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
+                  // console.log('name--',authorName)
 
                   function shortenValue(
                     b,
@@ -427,7 +425,10 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authors?.length > 0 ? "@" + authors : author}
+                            {authorName.length > 0
+                              ? "@" + authorName
+                              : author || "-"}
+                            {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper
@@ -439,7 +440,7 @@ export default function ReadTweets(props) {
                               }
                               // gutterBottom
                             >
-                             <div className="wordTruncating">
+                              <div className="wordTruncating">
                                 {textVal.length > 0
                                   ? shortenValue(textVal) || "-"
                                   : "-"}

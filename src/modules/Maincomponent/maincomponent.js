@@ -21,8 +21,11 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+// const client = new W3CWebSocket(
+//   "wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0"
+// );
 const client = new W3CWebSocket(
-  "wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0"
+  "wss://stats1.xinfin.network/primus/?_primuscb=1632728208629-0"
 );
 // import WebSocketCountNode from "./webSocket";
 
@@ -30,7 +33,13 @@ const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
   width: 14px;
-  // margin-top: 2px;
+  margin-top: 8px;
+  @media (min-width: 0px) and (max-width: 768px) {
+    margin-top: 0px;
+  }
+  @media (min-width: 768px) and (max-width: 1464px) {
+    margin-top: 6px;
+  }
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -518,6 +527,7 @@ export default function MainComponent(props) {
   const [value, setValue] = useState([]);
   const [nodes, setNodes] = useState([]);
   const [maxtpsvalue, setMaxtpsValue] = useState({});
+  const [ipAddress, setipAddress] = useState([]);
   // const [count, setCount] = useState({});
 
   // console.log('prev--',props?.saveAuthor)
@@ -565,45 +575,49 @@ export default function MainComponent(props) {
           let newarray = Object.keys(test);
           let data = newarray?.filter(
             (element) =>
-              element !== "Click" &&
-              element !== "bsc.BlocksScan.i" &&
-              element !== "Apothem.XinFinScan.com_X" &&
-              element !== "ether.XinFinScan.co" &&
-              element !== "ETH_FullNod" &&
-              element !== "ETH.BlocksScan.i" &&
-              element !== "BlocksScan.i" &&
-              element !== "Apothem.XinFinScan.co" &&
-              element !== "CRYPTERIUM_TES" &&
-              element !== "CRYPTERIUM_TEST_NOD" &&
-              element !== "GoPlugins" &&
-              element !== "ETH_FullNode" &&
-              element !== "ETH.BlocksScan.io" &&
-              element !== "CRYPTERIUM_TEST" &&
-              element !== "CRYPTERIUM_TEST_NODE" &&
-              element !== "SoluLab-XinFin" &&
-              element !== "Apothem.XinFinScan.com"
+              element !== "BuzzNjay1(45.77.253.122)" &&
+              element !== "FreeWallet-FullNode" &&
+              element !== "VoxoV013" &&
+              element !== "FreeWallet-FullNode" &&
+              element !== "VoxoV012" &&
+              element !== "XF" &&
+              element !== "AnilChinchawale" &&
+              element !== "XDC.BlocksScan.io" &&
+              element !== "AtIndSoft" &&
+              element !== "XDC.Network" &&
+              element !== "xxxddd-Linux-XinFin-Network-One-Click" &&
+              element !==
+                "flux-mac-Workstation-Linux-XinFin-Network-One-Click" &&
+              element !== "M88NPARTNERSLLC(88.99.191.124)" &&
+              element !== "CryptosAndTokens.com" &&
+              element !== "CCNode" &&
+              element !== "NT-XinFin-Network-One-Click" &&
+              element !== "Bella-Linux-XinFin-Network-One-Click" &&
+              element !== "rr3016ub20xdc-Linux-XinFin-Network-One-Click"
           );
 
           var arr = [];
           if (data) {
             data.map((item) => {
-              if (item[item.length - 1] == ")") {
-                var start = item.lastIndexOf("(") + 1;
-                var end = item.length - 1;
-                var result = item.substring(start, end);
-                arr.push(result);
-              } else {
-                // var start = item.lastIndexOf("-") + 1;
-                // var end = item.length - 1;
-                // var result = item.substr(start, end);
-                var result = item?.split("_")[1];
-                arr.push(result);
+              let ipFilter = item?.split("_")?.reverse()[0];
+
+              function ValidateIPaddress() {
+                if (
+                  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+                    ipFilter
+                  )
+                ) {
+                  return true;
+                }
+                // console.log("ip Not found");
+                return false;
+              }
+              if (ValidateIPaddress()) {
+                arr.push(ipFilter);
               }
             });
           }
-
           let redundant = Array.from(new Set(arr));
-          // console.log("mian--", redundant);
           setValue(redundant);
 
           //for socket total nodes ---->
@@ -780,20 +794,21 @@ export default function MainComponent(props) {
                             props.dark ? classes.node_dark_mode : classes.node
                           }
                         >
-                          Nodes
-                          <Tippy
-                            placement={"top"}
-                            theme={"light"}
-                            maxWidth={180}
-                            content={
-                              <span className="tippyBlockstyle">
-                                Current Active Nodes
-                              </span>
-                            }
-                          >
-                            <IconImg src="../../images/ic.png" />
-                          </Tippy>
-                          <br />
+                          <div className="tippyAdjustments">
+                            Nodes
+                            <Tippy
+                              placement={"top"}
+                              theme={"light"}
+                              maxWidth={180}
+                              content={
+                                <span className="tippyBlockstyle">
+                                  Current Active Nodes
+                                </span>
+                              }
+                            >
+                              <IconImg src="../../images/ic.png" />
+                            </Tippy>
+                          </div>
                           {nodes}
                         </div>
                         <div
@@ -803,21 +818,22 @@ export default function MainComponent(props) {
                               : classes.maxTps
                           }
                         >
-                          Current/Max tps
-                          <Tippy
-                            placement={"top"}
-                            theme={"light"}
-                            maxWidth={220}
-                            content={
-                              <span className="tippyOtherblockStyle">
-                                The speed of the current and maximum
-                                transactions completed on the platform
-                              </span>
-                            }
-                          >
-                            <IconImg src="../../images/ic.png" />
-                          </Tippy>
-                          <br />
+                          <div className="tippyAdjustments">
+                            Current/Max tps
+                            <Tippy
+                              placement={"top"}
+                              theme={"light"}
+                              maxWidth={220}
+                              content={
+                                <span className="tippyOtherblockStyle">
+                                  The speed of the current and maximum
+                                  transactions completed on the platform
+                                </span>
+                              }
+                            >
+                              <IconImg src="../../images/ic.png" />
+                            </Tippy>
+                          </div>
                           {isNaN(tpsCount)
                             ? "-"
                             : parseFloat(tpsCount / 60).toFixed(2)}{" "}

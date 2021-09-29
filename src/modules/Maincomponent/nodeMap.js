@@ -17,11 +17,13 @@ export default function NodeChart(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    // console.log('ch--',props?.ipcount)
     if (props?.ipcount && props?.ipcount?.length >= 1) {
       (props?.ipcount).map((item, index) => {
         // console.log("prop--", item);
         setData(item);
       });
+
       axios
         .get(process.env.REACT_APP_NODE_LOCATIONS + data)
         .then((res) => {

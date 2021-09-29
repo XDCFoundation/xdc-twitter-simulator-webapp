@@ -16,7 +16,7 @@ export default class Main extends Component {
     this.state = {
       dark: this.getMode(),
       authors: {},
-      readAuthors: {},
+      // readAuthors: {},
       data: [],
       read: [],
       readResult: [],
@@ -43,7 +43,7 @@ export default class Main extends Component {
     await this.readingCount();
     await this.writingCount();
     await this.savehandleUser();
-    await this.readhandleUser();
+    // await this.readhandleUser();
     await this.fetchReadTweets();
     await this.socketData(this.props?.savingSocket);
     await this.readsocketData(this.props?.readingSocket);
@@ -492,47 +492,42 @@ export default class Main extends Component {
           // console.log('save---', res.data.responseData?.data[0]?.username)
         })
         .catch((err) => {
-          if (
-            this?.state?.authors &&
-            this?.state?.authors?.length == 0
-          ) {
+          if (this?.state?.authors && this?.state?.authors?.length == 0) {
             console.log(err);
           }
         });
     });
   }
 
-  async readhandleUser() {
-    (this.state?.readtweets).map((item) => {
-      let handle = item?.authorId || "-";
-      // console.log('items--', handle)
-      axios
-        .get(
-          process.env.REACT_APP_BASE_URL_TWITTER +
-            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-            handle
-        )
-        .then((res) => {
-          // setAuthors(res.data.responseData?.data[0]);
-          this.setState({
-            readAuthors: res?.data?.responseData?.data[0]?.username,
-          });
-          // console.log('read---', res.data.responseData?.data[0]?.username)
-        })
-        .catch((err) => {
-          if (
-            this?.state?.readAuthors &&
-            this?.state?.readAuthors?.length == 0
-          ) {
-            console.log(err);
-          }
-        });
-    });
-  }
+  // async readhandleUser() {
+  //   (this.state?.readtweets).map((item) => {
+  //     let handle = item?.authorId || "-";
+  //     // console.log('items--', handle)
+  //     axios
+  //       .get(
+  //         process.env.REACT_APP_BASE_URL_TWITTER +
+  //           process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
+  //           handle
+  //       )
+  //       .then((res) => {
+  //         // setAuthors(res.data.responseData?.data[0]);
+  //         this.setState({
+  //           readAuthors: res?.data?.responseData?.data[0]?.username,
+  //         });
+  //         // console.log('read---', res.data.responseData?.data[0]?.username)
+  //       })
+  //       .catch((err) => {
+  //         if (
+  //           this?.state?.readAuthors &&
+  //           this?.state?.readAuthors?.length == 0
+  //         ) {
+  //           console.log(err);
+  //         }
+  //       });
+  //   });
+  // }
 
   render() {
-    // console.log('by', this.state.authors)
-    // console.log('my', this.state.savingtweetsCount)
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
@@ -551,7 +546,7 @@ export default class Main extends Component {
           saveGraphdata={this.state.result}
           readGraphdata={this.state.readResult}
           saveAuthor={this.state?.authors}
-          readAuthor={this.state?.readAuthors}
+          // readAuthor={this.state?.readAuthors}
         />
         <FooterComponent />
       </div>

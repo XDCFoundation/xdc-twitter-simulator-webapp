@@ -14,7 +14,11 @@ const Bannerimage = styled.img`
   @media (max-width: 700px) {
     display: none;
   }
-  @media (min-width: 700px) {
+  @media (min-width: 700px) and (max-width: 950px) {
+    display: visible;
+    height: 200px;
+  }
+  @media (min-width: 950px) {
     display: visible;
   }
 `;
@@ -302,6 +306,7 @@ const Content = styled.span`
   }
   @media (min-width: 700px) {
     height: 52%;
+    margin-top: 10px;
     overflow: hidden;
   }
 `;
@@ -340,9 +345,9 @@ export default function Aboutcomponent(props) {
             <Content>
               XDC Speed Tester demonstrates the speed of the XDC blockchain
               network.
-              <br />
+              {/* <br /> */}
               Using Twitter API the tweets mapped to the top twenty trending{" "}
-              <br />
+              {/* <br /> */}
               hashtags are fetched and stored in the blockchain network.
             </Content>
             <Bannerimage src={require("../About/Banner.png")} />

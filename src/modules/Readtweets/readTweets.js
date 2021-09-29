@@ -295,7 +295,6 @@ export default function ReadTweets(props) {
     if (props?.author && props?.author?.length >= 1) {
       setAuthors(props?.author);
     }
-    // console.log('pr--', props?.author)
   }
 
   // let method = authors?.username
@@ -363,16 +362,17 @@ export default function ReadTweets(props) {
               {props?.tweetreadData &&
                 props?.tweetreadData.length >= 1 &&
                 props?.tweetreadData.map((response, index) => {
-                  let textVal =  response?.text || 0
+                  let textVal = response?.text || 0;
                   // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorId || 0;
-                  let authorName = response?.name?.slice(0, 10) || 0;
+                  let authorName = response?.name?.slice(0, 20) || 0;
+                  // console.log('name--',authorName)
 
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
 
-                  function shortenValue(b, amountL = 80, stars = 1) {
+                  function shortenValue(b, amountL = 60, stars = 1) {
                     return `${
                       b.length > 0 ? b?.slice(0, amountL) : "-"
                     }${""?.repeat(stars)}${b?.slice(
@@ -423,9 +423,13 @@ export default function ReadTweets(props) {
                                 : classes.email
                             }
                           >
-                            {/* {authorName.length > 0 ? authorName : author} */}
+                            <div className="wordTruncating">
+                            {authorName.length > 0
+                              ? "@" + authorName
+                              : author || "-"}
+                              </div>
                             {/* {author}<br/> */}
-                            {authors?.length > 0 ? "@" + authors : author}
+                            {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>
 
                           <ThemeProvider theme={theme}>
