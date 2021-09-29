@@ -299,6 +299,11 @@ input:focus {
   text-decoration: none;
 } */
 
+.tippyAdjustments{
+  display: flex;
+  flex-direction: row;
+}
+
 .wordTruncating{
   overflow: hidden;
   text-overflow: ellipsis;
