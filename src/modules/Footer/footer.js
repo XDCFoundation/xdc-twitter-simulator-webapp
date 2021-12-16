@@ -196,7 +196,7 @@ export default function FooterComponent() {
                         <div>
                           <ul className={classes.followlinks}>
                             <li className={classes.followitem}>
-                              <a href="https://twitter.com/XinFin_Official">
+                              <a href="https://twitter.com/xdcfoundation">
                                 <img
                                   className="footericonsLink"
                                   src="../../images/twitter.svg"
@@ -205,7 +205,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://www.facebook.com/XinFinHybridBlockchain/">
+                              <a href="https://www.facebook.com/XDCFoundation/">
                                 <img
                                   className="footericonsLink"
                                   src="../../images/facebook.svg"
@@ -214,7 +214,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://github.com/XinFinorg">
+                              <a href="https://github.com/xdcfoundation">
                                 <img
                                   className="footericonsLink"
                                   src="../../images/github.svg"
@@ -223,7 +223,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://www.linkedin.com/company/xinfin/">
+                              <a href="https://www.linkedin.com/company/xdc-foundation/?trk=public_profile_topcard-current-company">
                                 <img
                                   className="footericonsLink"
                                   className="footericonsLink"
