@@ -302,6 +302,7 @@ input:focus {
 .tippyAdjustments{
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
 }
 
 .wordTruncating{
