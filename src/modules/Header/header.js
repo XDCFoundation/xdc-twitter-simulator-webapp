@@ -320,10 +320,10 @@ const ArrowUpIcon = styled.span`
 `;
 
 const Display = styled.div`
-  @media (min-width: 0px) and (max-width: 1030px) {
+  @media (min-width: 0px) and (max-width: 1250px) {
     display: none;
   }
-  @media (max-width: 1030px) {
+  @media (max-width: 1250px) {
     display: visible;
   }
 `;
@@ -331,10 +331,10 @@ const MobileResponsive = styled.div`
   @media (min-width: 0px) and (max-width: 767px) {
     display: visible;
   }
-  @media (min-width: 767px) and (max-width: 1030px) {
+  @media (min-width: 767px) and (max-width: 1250px) {
     display: visible;
   }
-  @media (min-width: 1030px) {
+  @media (min-width: 1250px) {
     display: none;
   }
 `;
