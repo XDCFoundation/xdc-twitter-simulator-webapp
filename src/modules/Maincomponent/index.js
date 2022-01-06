@@ -5,6 +5,7 @@ import HeaderComponent from "../Header/header";
 import MainComponent from "./maincomponent";
 import axios from "axios";
 import moment from "moment";
+import "../../services/socket";
 
 export default class Main extends Component {
   getMode() {
@@ -42,7 +43,7 @@ export default class Main extends Component {
     await this.fetchReadTweets();
     await this.readingCount();
     await this.writingCount();
-    await this.savehandleUser();
+    // await this.savehandleUser();
     // await this.readhandleUser();
     await this.fetchReadTweets();
     await this.socketData(this.props?.savingSocket);
@@ -474,30 +475,30 @@ export default class Main extends Component {
       });
   }
 
-  async savehandleUser() {
-    (this.state?.savedTweets).map((item, index) => {
-      let handle = item?.authorID || "-";
-      // console.log('items2--', handle)
-      axios
-        .get(
-          process.env.REACT_APP_BASE_URL_TWITTER +
-            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-            handle
-        )
-        .then((res) => {
-          // setAuthors(res.data.responseData?.data[0]);
-          this.setState({
-            authors: res?.data?.responseData?.data[0]?.username,
-          });
-          // console.log('save---', res.data.responseData?.data[0]?.username)
-        })
-        .catch((err) => {
-          if (this?.state?.authors && this?.state?.authors?.length == 0) {
-            console.log(err);
-          }
-        });
-    });
-  }
+  // async savehandleUser() {
+  //   (this.state?.savedTweets).map((item, index) => {
+  //     let handle = item?.authorID || "-";
+  //     // console.log('items2--', handle)
+  //     axios
+  //       .get(
+  //         process.env.REACT_APP_BASE_URL_TWITTER +
+  //           process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
+  //           handle
+  //       )
+  //       .then((res) => {
+       
+  //         this.setState({
+  //           authors: res?.data?.responseData?.data[0]?.username,
+  //         });
+  
+  //       })
+  //       .catch((err) => {
+  //         if (this?.state?.authors && this?.state?.authors?.length == 0) {
+  //           console.log(err);
+  //         }
+  //       });
+  //   });
+  // }
 
   // async readhandleUser() {
   //   (this.state?.readtweets).map((item) => {
@@ -545,7 +546,7 @@ export default class Main extends Component {
           read={this.state.read}
           saveGraphdata={this.state.result}
           readGraphdata={this.state.readResult}
-          saveAuthor={this.state?.authors}
+          // saveAuthor={this.state?.authors}
           // readAuthor={this.state?.readAuthors}
         />
         <FooterComponent />

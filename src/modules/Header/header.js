@@ -443,7 +443,7 @@ export default function HeaderComponent(props) {
           <DrawerArchive>
             <a
               className="headerlinkStyle"
-              href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
+              href="https://speedtest.xdc.org/"
             >
               Tweet Archive
             </a>
@@ -483,7 +483,7 @@ export default function HeaderComponent(props) {
               <img
                 className={classes.searchIcon}
                 src="../../images/Search.svg"
-                alt=" "
+                alt=""
               />
             </Button>
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
@@ -503,7 +503,7 @@ export default function HeaderComponent(props) {
             <Contact>
               <a
                 className="headerlinkStyle"
-                href="https://xinfin.org/contactus"
+                href="#"
               >
                 Contact
               </a>
@@ -513,7 +513,7 @@ export default function HeaderComponent(props) {
             <Archive>
               <a
                 className="headerlinkStyle"
-                href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
+                href="https://speedtest.xdc.org/"
               >
                 Tweet Archive
               </a>
@@ -592,7 +592,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/facebook.svg" alt=" " />
         <AnchorTag
-          href="https://www.facebook.com/sharer/sharer.php?u=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/"
+          href="#"
           target="_blank"
         >
           Facebook
@@ -602,7 +602,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/twitter.svg" alt=" " />
         <AnchorTag
-          href="https://twitter.com/intent/tweet?url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/&text=TwitterArchiver"
+          href="#"
           target="_blank"
         >
           Twitter
@@ -619,7 +619,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/linkedin.svg" alt=" " />
         <AnchorTag
-          href="https://www.linkedin.com/shareArticle?mini=true&url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/https://www.linkedin.com/shareArticle?mini=true&url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/"
+          href=""
           target="_blank"
         >
           Linkedin
@@ -628,7 +628,7 @@ function RenderDropdown() {
       <Border></Border>
       <List>
         <ListImg src="../../images/reddit.svg" alt=" " />
-        <AnchorTag href="https://www.reddit.com/r/xinfin/" target="_blank">
+        <AnchorTag href="#" target="_blank">
           Reddit
         </AnchorTag>
         <Border></Border>

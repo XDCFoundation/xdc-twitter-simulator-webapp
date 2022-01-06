@@ -104,7 +104,7 @@ function MapTabs(props) {
             saveCountData={props?.savedCount}
             savetweetData={props?.smallSave}
             saveTweetCount={props?.smallcount}
-            user={props?.saveUser}
+            // user={props?.saveUser}
           />
         </div>
 
@@ -122,7 +122,7 @@ function MapTabs(props) {
           <div>
             <ReadListTab
               dark={dark}
-              readhandle={props?.readUser}
+              // readhandle={props?.readUser}
               readtweetData={props?.smallRead}
               readTweetCount={props?.countRead}
             />

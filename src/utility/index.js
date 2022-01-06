@@ -1,5 +1,5 @@
 import "react-s-alert/dist/s-alert-default.css";
-import {history} from "../managers/history";
+import { history } from "../managers/history";
 import swal from "sweetalert";
 import Cookies from "universal-cookie";
 import React from "react";
@@ -57,13 +57,14 @@ const utility = {
     secondsToTime,
     getDateFormat,
     changeDateFormat,
-    getAggregatedPercWercQueryObject
+    getAggregatedPercWercQueryObject,
+    parseResponse,
 };
 export default utility;
 
 
 export const dispatchAction = (type, data) => {
-    return dispatch => dispatch({type, data});
+    return dispatch => dispatch({ type, data });
 };
 
 function trackEvent(event, eventData) {
@@ -151,6 +152,14 @@ function getHeader() {
     //     'device-id': sessionManager.getDataFromCookies(genericConstants.COOKIES_KEY.DEVICE_ID),
     //     'Content-Type': httpConstants.CONTENT_TYPE.APPLICATION_JSON
     // };
+}
+
+function parseResponse(promise) {
+    return promise
+        .then((data) => {
+            return [null, data];
+        })
+        .catch((err) => [err]);
 }
 
 function isNumber(n) {
@@ -258,58 +267,58 @@ function getActivityDateEpochRange(activityDate) {
     let day, start;
     switch (activityDate) {
         case "Today":
-            return {start: currentDate.getTime(), end: new Date().getTime()};
+            return { start: currentDate.getTime(), end: new Date().getTime() };
         case "Yesterday":
             day = new Date(currentDate);
             day.setDate(currentDate.getDate() - 1);
-            return {start: day.getTime(), end: currentDate.getTime()};
+            return { start: day.getTime(), end: currentDate.getTime() };
         case "Last seven days":
             day = new Date(currentDate);
             day.setDate(currentDate.getDate() - 7);
-            return {start: day.getTime(), end: currentDate.getTime()};
+            return { start: day.getTime(), end: currentDate.getTime() };
         case "Last fourteen days":
             day = new Date(currentDate);
             day.setDate(currentDate.getDate() - 14);
-            return {start: day.getTime(), end: currentDate.getTime()};
+            return { start: day.getTime(), end: currentDate.getTime() };
         case "Last twenty one days":
             day = new Date(currentDate);
             day.setDate(currentDate.getDate() - 21);
-            return {start: day.getTime(), end: currentDate.getTime()};
+            return { start: day.getTime(), end: currentDate.getTime() };
         case "Last Week":
             start = new Date(startDayEpochOfCurrentWeek);
             start.setDate(start.getDate() - 7);
-            return {start: start.getTime(), end: startDayEpochOfCurrentWeek};
+            return { start: start.getTime(), end: startDayEpochOfCurrentWeek };
         case "Last two weeks":
             start = new Date(startDayEpochOfCurrentWeek);
             start.setDate(start.getDate() - 14);
-            return {start: start.getTime(), end: startDayEpochOfCurrentWeek};
+            return { start: start.getTime(), end: startDayEpochOfCurrentWeek };
         case "Last three weeks":
             start = new Date(startDayEpochOfCurrentWeek);
             start.setDate(start.getDate() - 21);
-            return {start: start.getTime(), end: startDayEpochOfCurrentWeek};
+            return { start: start.getTime(), end: startDayEpochOfCurrentWeek };
         case "Last Month":
             start = new Date(startDayEpochOfCurrentMonth);
             start.setMonth(start.getMonth() - 1);
-            return {start: start.getTime(), end: startDayEpochOfCurrentMonth};
+            return { start: start.getTime(), end: startDayEpochOfCurrentMonth };
         case "Last Quarter":
             start = new Date(startDayEpochOfCurrentQuarter);
             start.setMonth(start.getMonth() - 3);
-            return {start: start.getTime(), end: startDayEpochOfCurrentQuarter};
+            return { start: start.getTime(), end: startDayEpochOfCurrentQuarter };
         case "Last Year":
             console.log(startDayEpochOfCurrentYear)
             start = new Date(startDayEpochOfCurrentYear);
             start.setFullYear(start.getFullYear() - 1);
-            return {start: start.getTime(), end: startDayEpochOfCurrentYear};
+            return { start: start.getTime(), end: startDayEpochOfCurrentYear };
         case "This Week":
-            return {start: startDayEpochOfCurrentWeek, end: endDayEpochOfCurrentWeek};
+            return { start: startDayEpochOfCurrentWeek, end: endDayEpochOfCurrentWeek };
         case "This Quarter":
-            return {start: startDayEpochOfCurrentQuarter, end: endDayEpochOfCurrentQuarter};
+            return { start: startDayEpochOfCurrentQuarter, end: endDayEpochOfCurrentQuarter };
         case "This Year":
-            return {start: startDayEpochOfCurrentYear, end: endDayEpochOfCurrentYear};
+            return { start: startDayEpochOfCurrentYear, end: endDayEpochOfCurrentYear };
         case "Current Month":
-            return {start: startDayEpochOfCurrentMonth, end: endDayEpochOfCurrentMonth};
+            return { start: startDayEpochOfCurrentMonth, end: endDayEpochOfCurrentMonth };
         default:
-            return {start: currentDate.getTime(), end: new Date().getTime()};
+            return { start: currentDate.getTime(), end: new Date().getTime() };
     }
 
 }
@@ -319,9 +328,9 @@ function getAddress(addressObj) {
         return "";
     return (
         <span>
-            {addressObj.addressLine1 ? addressObj.addressLine1 : `PO Box ${addressObj.poBoxNumber}`}<br/>
-            {addressObj.addressLine2 ? <span>{addressObj.addressLine2}<br/></span> : ''}
-            {addressObj.city}, {addressObj.state} {addressObj.zipCode}<br/>
+            {addressObj.addressLine1 ? addressObj.addressLine1 : `PO Box ${addressObj.poBoxNumber}`}<br />
+            {addressObj.addressLine2 ? <span>{addressObj.addressLine2}<br /></span> : ''}
+            {addressObj.city}, {addressObj.state} {addressObj.zipCode}<br />
             {addressObj.country}
         </span>
     )
@@ -582,8 +591,8 @@ function getLeaderBoardAggregatedQuery(propsOfComponent, skip = 0, limit = 0, ma
 
     //Match Object for the conditions-
     let feedType = [];
-    feedType.push({'entityData.feedType': 'ADD_RECOGNITION'});
-    feedType.push({'entityData.feedType': 'ADD_NOMINATION'});
+    feedType.push({ 'entityData.feedType': 'ADD_RECOGNITION' });
+    feedType.push({ 'entityData.feedType': 'ADD_NOMINATION' });
     matchObj['$or'] = feedType;
     matchObj['entityData.company.id'] = propsOfComponent.user.userDetails.company.id;
 
@@ -594,7 +603,7 @@ function getLeaderBoardAggregatedQuery(propsOfComponent, skip = 0, limit = 0, ma
                 '$map': {
                     'input': '$entityData.recipients',
                     'as': 'recipients',
-                    'in': {'k': 'userDetails', 'v': '$$recipients'}
+                    'in': { 'k': 'userDetails', 'v': '$$recipients' }
                 }
             }
         }
@@ -603,15 +612,15 @@ function getLeaderBoardAggregatedQuery(propsOfComponent, skip = 0, limit = 0, ma
     //Group object for grouping-
     let groupObj = {};
     groupObj._id = "$entityData.recipients._id";
-    groupObj.PERCBalance = {"$sum": "$entityData.PERCValue"};
-    groupObj.firstName = {"$first": "$entityData.recipients.name"};
+    groupObj.PERCBalance = { "$sum": "$entityData.PERCValue" };
+    groupObj.firstName = { "$first": "$entityData.recipients.name" };
 
-    queryObj.push({"$match": matchObj});
+    queryObj.push({ "$match": matchObj });
     // queryObj.push({"$addFields": addFieldObj});
-    queryObj.push({"$group": groupObj});
-    queryObj.push({"$sort": {'PERCBalance': -1}});
-    queryObj.push({"$limit": limit});
-    queryObj.push({"$skip": skip});
+    queryObj.push({ "$group": groupObj });
+    queryObj.push({ "$sort": { 'PERCBalance': -1 } });
+    queryObj.push({ "$limit": limit });
+    queryObj.push({ "$skip": skip });
 
     return queryObj;
 }
@@ -623,29 +632,29 @@ function getTopSenderAggregatedQuery(propsOfComponent, skip = 0, limit = 0, matc
 
     //Match Object for the conditions-
     let feedType = [];
-    feedType.push({'entityData.feedType': 'ADD_RECOGNITION'});
-    feedType.push({'entityData.feedType': 'ADD_NOMINATION'});
+    feedType.push({ 'entityData.feedType': 'ADD_RECOGNITION' });
+    feedType.push({ 'entityData.feedType': 'ADD_NOMINATION' });
     matchObj['$or'] = feedType;
     matchObj['entityData.company.id'] = propsOfComponent.user.userDetails.company.id;
 
     //Group object for grouping-
     let groupObj = {};
     groupObj._id = "$entityData.addedBy.email";
-    groupObj.PERCBalance = {"$sum": "$entityData.PERCValue"};
-    groupObj.firstName = {"$first": "$entityData.addedBy.name"};
+    groupObj.PERCBalance = { "$sum": "$entityData.PERCValue" };
+    groupObj.firstName = { "$first": "$entityData.addedBy.name" };
 
     //Group object for grouping-
     let sortObj = {};
     sortObj._id = "$recipient.userDetails.email";
 
-    queryObj.push({"$match": matchObj});
-    queryObj.push({"$group": groupObj});
+    queryObj.push({ "$match": matchObj });
+    queryObj.push({ "$group": groupObj });
 
     // queryObj.push({"$sort": {'PERCBalance':-1}});
 
-    queryObj.push({"$limit": limit});
-    queryObj.push({"$skip": skip});
-    queryObj.push({"$sort": {'PERCBalance': -1}});
+    queryObj.push({ "$limit": limit });
+    queryObj.push({ "$skip": skip });
+    queryObj.push({ "$sort": { 'PERCBalance': -1 } });
 
     return queryObj;
 }
@@ -691,7 +700,7 @@ function extractDate(date, getType) {
         case "YEAR":
             return new Date(date.toString()).getFullYear();
             break;
-        default :
+        default:
             return date;
     }
 
