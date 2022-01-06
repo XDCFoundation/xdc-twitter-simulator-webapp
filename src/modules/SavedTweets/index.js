@@ -22,7 +22,7 @@ export default class Saved extends BaseComponent {
   }
   async componentDidMount() {
     await this.fetchSavedTweets();
-    await this.userHandle();
+    // await this.userHandle();
     this.socketData(this.props?.saved);
     this.socketCount(this.props?.savingCount);
   }
@@ -157,33 +157,31 @@ export default class Saved extends BaseComponent {
     }, 10000);
   }
 
-  async userHandle() {
-    (this.state?.savedTweets).map((item, index) => {
-      let handle = item?.authorID || "-";
-      // console.log('items2--', handle)
-      axios
-        .get(
-          process.env.REACT_APP_BASE_URL_TWITTER +
-            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-            handle
-        )
-        .then((res) => {
-          // setAuthors(res.data.responseData?.data[0]);
-          this.setState({
-            authors: res?.data?.responseData?.data[0]?.username,
-          });
-          // console.log('save---', res.data.responseData?.data[0]?.username)
-        })
-        .catch((err) => {
-          if (
-            this?.state?.authors &&
-            this?.state?.authors?.length == 0
-          ) {
-            console.log(err);
-          }
-        });
-    });
-  }
+  // async userHandle() {
+  //   (this.state?.savedTweets).map((item, index) => {
+  //     let handle = item?.authorID || "-";
+  //     // console.log('items2--', handle)
+  //     axios
+  //       .get(
+  //         process.env.REACT_APP_BASE_URL_TWITTER +
+  //           process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
+  //           handle
+  //       )
+  //       .then((res) => {
+  //         this.setState({
+  //           authors: res?.data?.responseData?.data[0]?.username,
+  //         });
+  //       })
+  //       .catch((err) => {
+  //         if (
+  //           this?.state?.authors &&
+  //           this?.state?.authors?.length == 0
+  //         ) {
+  //           console.log(err);
+  //         }
+  //       });
+  //   });
+  // }
 
   render() {
     // console.log("saveindexTweets------", this.state.savedTweets);
@@ -202,7 +200,7 @@ export default class Saved extends BaseComponent {
           handleclass={this.state.handleAnimation}
           textDarkclass={this.state.textDarkAnimation}
           blockDarkclass={this.state.blockDarkAnimation}
-          author={this.state?.authors}
+          // author={this.state?.authors}
         />
       </div>
     );

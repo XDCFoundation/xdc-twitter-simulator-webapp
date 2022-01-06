@@ -266,22 +266,20 @@ export default function SavedTweets(props) {
   const classes = useStyles();
   const [authors, setAuthors] = useState({});
 
-  useEffect(() => {
-    userHandle();
-  }, [props?.author]);
+  // useEffect(() => {
+  //   userHandle();
+  // }, [props?.author]);
 
   // console.log('fire--',props.tweetData);
 
-  useEffect(() => {
-    // console.log('fire--',props.tweetData);
-  }, [props?.tweetData]);
+  // useEffect(() => {
+  // }, [props?.tweetData]);
 
-  async function userHandle() {
-    if (props?.author && props?.author?.length >= 1) {
-      setAuthors(props?.author);
-    }
-    // console.log('pr--', props?.author)
-  }
+  // async function userHandle() {
+  //   if (props?.author && props?.author?.length >= 1) {
+  //     setAuthors(props?.author);
+  //   }
+  // }
 
   // console.log('saveprop2--', props.savedCount[0])
   // console.log('saveprop2--', props.tweetCount.totalTweetCount)
@@ -408,7 +406,8 @@ export default function SavedTweets(props) {
                                 : classes.email
                             }
                           >
-                            {authors?.length > 0 ? "@" + authors : author}
+                            {author || ""}
+                            {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper

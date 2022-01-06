@@ -298,23 +298,21 @@ export default function ReadTweets(props) {
   const classes = useStyles();
   const [authors, setAuthors] = useState({});
 
-  useEffect(() => {
-    userHandle();
-  }, [props?.user]);
+  // useEffect(() => {
+  //   userHandle();
+  // }, [props?.user]);
 
   useEffect(() => {
     // console.log('fire--',props.tweetData);
   }, [props?.savetweetData, props?.saveCountData]);
 
-  async function userHandle() {
-    if (props?.user && props?.user?.length >= 1) {
-      setAuthors(props?.user);
-    }
+  // async function userHandle() {
+  //   if (props?.user && props?.user?.length >= 1) {
+  //     setAuthors(props?.user);
+  //   }
 
-    // console.log('pr--', props?.user)
-  }
+  // }
 
-  // console.log('propsave---',props?.user)
 
   return (
     <Grid Container spacing={3}>
@@ -394,7 +392,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authors?.length > 0 ? "@" + authors : author}
+                            {author || ""}
                           </Typography>
                           <ThemeProvider theme={theme}>
                             <Paper

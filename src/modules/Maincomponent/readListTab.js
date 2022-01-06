@@ -411,6 +411,7 @@ export default function ReadTweets(props) {
                             props.dark ? classes.name_dark_mode : classes.name
                           }
                         >
+                          {/* {author || ""} */}
                           {/* {author.length>0 ? author : 'undefined'} */}
                         </Typography>
                         <Paper

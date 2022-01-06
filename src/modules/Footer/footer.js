@@ -152,7 +152,7 @@ export default function FooterComponent() {
                             <li className={classes.linksitem}>
                               <a
                                 className="footerLinks"
-                                href="http://twitter-dev-1478211791.us-east-2.elb.amazonaws.com/"
+                                href="https://speedtest.xdc.org/"
                               >
                                 {" "}
                                 Archive Tweet
@@ -161,7 +161,7 @@ export default function FooterComponent() {
                             <li className={classes.linksitem}>
                               <a
                                 className="footerLinks"
-                                href="https://xinfin.org/contactus"
+                                href="#"
                               >
                                 Contact us
                               </a>
@@ -169,7 +169,7 @@ export default function FooterComponent() {
                             <li className={classes.linksitem}>
                               <a
                                 className="footerLinks"
-                                href="https://xinfin.org/privacy"
+                                href="#"
                               >
                                 Privacy Policy
                               </a>

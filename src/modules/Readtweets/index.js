@@ -20,7 +20,7 @@ export default class Read extends BaseComponent {
   }
   async componentDidMount() {
     await this.fetchTweets();
-    await this.userHandle();
+    // await this.userHandle();
     this.socketData(this.props?.readed);
   }
 

@@ -20,14 +20,10 @@ import socketClient from "socket.io-client";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
-// const client = new W3CWebSocket(
-//   "wss://stats1.apothem.network/primus/?_primuscb=1642861667080-0"
-// );
-const client = new W3CWebSocket(
-  "wss://stats1.xinfin.network/primus/?_primuscb=1632728208629-0"
-);
-// import WebSocketCountNode from "./webSocket";
+import _ from "lodash";
+import io from "socket.io-client";
+import { dispatchAction } from "../../utility";
+import { connect } from "react-redux";
 
 const IconImg = styled.img`
   margin-left: 10px;
@@ -522,12 +518,15 @@ const MobileResponsive = styled.div`
   }
 `;
 
-export default function MainComponent(props) {
+function MainComponent(props) {
   const classes = useStyles();
-  const [value, setValue] = useState([]);
-  const [nodes, setNodes] = useState([]);
+  // const [nodes, setNodes] = useState([]);
+  // const [newNode, setNewNode] = useState([]);
   const [maxtpsvalue, setMaxtpsValue] = useState({});
-  const [ipAddress, setipAddress] = useState([]);
+  // const [ipAddress, setipAddress] = useState([]);
+
+  let nodeLength = props?.stats?.markers?.length || 0
+
   // const [count, setCount] = useState({});
 
   // console.log('prev--',props?.saveAuthor)
@@ -537,10 +536,6 @@ export default function MainComponent(props) {
     setInterval(() => {
       fetchTps();
     }, 60000);
-  }, []);
-
-  useEffect(() => {
-    getValue();
   }, []);
 
   //for Max-Tps count:
@@ -557,83 +552,6 @@ export default function MainComponent(props) {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  //socket-Function ---->
-  const getValue = () => {
-    let test = {};
-    client.onopen = () => {
-      console.log("connect");
-    };
-    client.onmessage = async (event) => {
-      var msg = JSON.parse(event.data);
-      if (msg.action === "stats") {
-        if (msg.data.id in test) {
-          return;
-        } else {
-          test[msg.data.id] = msg.data.stats.active;
-          let newarray = Object.keys(test);
-          let data = newarray?.filter(
-            (element) =>
-              element !== "BuzzNjay1(45.77.253.122)" &&
-              element !== "FreeWallet-FullNode" &&
-              element !== "VoxoV013" &&
-              element !== "FreeWallet-FullNode" &&
-              element !== "VoxoV012" &&
-              element !== "XF" &&
-              element !== "AnilChinchawale" &&
-              element !== "XDC.BlocksScan.io" &&
-              element !== "AtIndSoft" &&
-              element !== "XDC.Network" &&
-              element !== "xxxddd-Linux-XinFin-Network-One-Click" &&
-              element !==
-                "flux-mac-Workstation-Linux-XinFin-Network-One-Click" &&
-              element !== "M88NPARTNERSLLC(88.99.191.124)" &&
-              element !== "CryptosAndTokens.com" &&
-              element !== "CCNode" &&
-              element !== "NT-XinFin-Network-One-Click" &&
-              element !== "Bella-Linux-XinFin-Network-One-Click" &&
-              element !== "rr3016ub20xdc-Linux-XinFin-Network-One-Click"
-          );
-
-          var arr = [];
-          if (data) {
-            data.map((item) => {
-              let ipFilter = item?.split("_")?.reverse()[0];
-
-              function ValidateIPaddress() {
-                if (
-                  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
-                    ipFilter
-                  )
-                ) {
-                  return true;
-                }
-                // console.log("ip Not found");
-                return false;
-              }
-              if (ValidateIPaddress()) {
-                arr.push(ipFilter);
-              }
-            });
-          }
-          let redundant = Array.from(new Set(arr));
-          setValue(redundant);
-
-          //for socket total nodes ---->
-          let nodecount = Object.keys(test).length;
-          setNodes(nodecount);
-        }
-      }
-    };
-    client.onclose = async (event) => {
-      if (event.wasClean) {
-        // console.log(`Number of Active Nodes = ${Object.keys(test).length}`);
-        setNodes(Object.keys(test).length);
-      } else {
-        console.log("[close] Connection died");
-      }
-    };
   };
 
   //for Night mode-->
@@ -809,7 +727,7 @@ export default function MainComponent(props) {
                               <IconImg src="../../images/ic.png" />
                             </Tippy>
                           </div>
-                          {nodes}
+                          {nodeLength}
                         </div>
                         <div
                           className={
@@ -841,7 +759,7 @@ export default function MainComponent(props) {
                         </div>
 
                         <div className="nodeMapBlock">
-                          <NodeChart dark={dark} ipcount={value} />
+                          <NodeChart dark={dark}/>
                         </div>
                       </div>
                     </Paper>
@@ -1018,7 +936,7 @@ export default function MainComponent(props) {
                       <IconImg src="../../images/ic.png" />
                     </Tippy>
                     <br />
-                    {nodes}
+                    {nodeLength}
                   </div>
                   <div
                     className={
@@ -1047,7 +965,7 @@ export default function MainComponent(props) {
                   </div>
 
                   <div className="mobNodeblock">
-                    <NodeChart dark={dark} ipcount={value} />
+                    <NodeChart dark={dark} />
                   </div>
                 </div>
               </Paper>
@@ -1097,8 +1015,8 @@ export default function MainComponent(props) {
                   dark={dark}
                   saveTweet={writeIdentity}
                   savedCount={props?.saveCount}
-                  saveUser={props?.saveAuthor}
-                  readUser={props?.readAuthor}
+                  // saveUser={props?.saveAuthor}
+                  // readUser={props?.readAuthor}
                   smallSave={smallSavetweet}
                   smallcount={smallSaveCount}
                   smallRead={smallReadtweet}
@@ -1112,3 +1030,7 @@ export default function MainComponent(props) {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return { stats: state.stats };
+  };
+  export default connect(mapStateToProps, { dispatchAction })(MainComponent);
