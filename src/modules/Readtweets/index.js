@@ -105,35 +105,35 @@ export default class Read extends BaseComponent {
         console.log(err);
       });
 
-    setInterval(async () => {
-      if (!this.state.blockSocketConnected) {
-        await axios
-          .get(
-            process.env.REACT_APP_BASE_URL_TWITTER +
-              process.env.REACT_APP_READ_TWEET
-          )
+    // setInterval(async () => {
+    //   if (!this.state.blockSocketConnected) {
+    //     await axios
+    //       .get(
+    //         process.env.REACT_APP_BASE_URL_TWITTER +
+    //           process.env.REACT_APP_READ_TWEET
+    //       )
 
-          .then((res) => {
-            let tweetResponse;
-            let alltweets;
-            if (
-              !res &&
-              !res.data &&
-              !res.data.responseData &&
-              res.data.responseData.length <= 0
-            )
-              tweetResponse = [];
-            else tweetResponse = res.data.responseData[0];
-            alltweets = res.data.responseData[1];
+    //       .then((res) => {
+    //         let tweetResponse;
+    //         let alltweets;
+    //         if (
+    //           !res &&
+    //           !res.data &&
+    //           !res.data.responseData &&
+    //           res.data.responseData.length <= 0
+    //         )
+    //           tweetResponse = [];
+    //         else tweetResponse = res.data.responseData[0];
+    //         alltweets = res.data.responseData[1];
 
-            this.setState({ readtweets: tweetResponse });
-            this.setState({ totaltweets: alltweets });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }, 10000);
+    //         this.setState({ readtweets: tweetResponse });
+    //         this.setState({ totaltweets: alltweets });
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    // }, 10000);
   }
 
   async userHandle() {

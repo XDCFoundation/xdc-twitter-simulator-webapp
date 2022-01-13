@@ -5,7 +5,7 @@ import {eventConstants} from '../constants';
 
 let nodesArr = [];
 
-const socket = io("http://52.15.80.60:3000/", {
+const socket = io("https://speedtest.xdc.org:3000/", {
   path: "/stats-data/",
   transports: ["websocket"],
   reconnection: true,

@@ -102,7 +102,7 @@ export default class Saved extends BaseComponent {
   async fetchSavedTweets() {
     await axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
+        process.env.REACT_APP_SPEED_TEST_URL +
           process.env.REACT_APP_SAVED_TWEET
       )
 
@@ -116,8 +116,8 @@ export default class Saved extends BaseComponent {
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-        else tweetResponse = res.data.responseData[0] || 0;
-        allSaveTweets = res.data.responseData[1] || 0;
+        else tweetResponse = res.data.responseData[0] || '';
+        allSaveTweets = res.data.responseData[1] || '';
 
         this.setState({ savedTweets: tweetResponse });
         this.setState({ totalSaveTweet: allSaveTweets });
@@ -126,62 +126,36 @@ export default class Saved extends BaseComponent {
         console.log(err);
       });
 
-    setInterval(async () => {
-      if (!this.state.blockSocketConnected) {
-        await axios
-          .get(
-            process.env.REACT_APP_BASE_URL_TWITTER +
-              process.env.REACT_APP_SAVED_TWEET
-          )
+    // setInterval(async () => {
+    //   if (!this.state.blockSocketConnected) {
+    //     await axios
+    //       .get(
+    //         process.env.REACT_APP_SPEED_TEST_URL +
+    //           process.env.REACT_APP_SAVED_TWEET
+    //       )
 
-          .then((res) => {
-            let tweetResponse;
-            let allSaveTweets;
-            if (
-              !res &&
-              !res.data &&
-              !res.data.responseData &&
-              res.data.responseData.length <= 0
-            )
-              tweetResponse = [];
-            else tweetResponse = res.data.responseData[0] || 0;
-            allSaveTweets = res.data.responseData[1] || 0;
+    //       .then((res) => {
+    //         let tweetResponse;
+    //         let allSaveTweets;
+    //         if (
+    //           !res &&
+    //           !res.data &&
+    //           !res.data.responseData &&
+    //           res.data.responseData.length <= 0
+    //         )
+    //           tweetResponse = [];
+    //         else tweetResponse = res.data.responseData[0] || 0;
+    //         allSaveTweets = res.data.responseData[1] || 0;
 
-            this.setState({ savedTweets: tweetResponse });
-            this.setState({ totalSaveTweet: allSaveTweets });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }, 10000);
+    //         this.setState({ savedTweets: tweetResponse });
+    //         this.setState({ totalSaveTweet: allSaveTweets });
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    // }, 10000);
   }
-
-  // async userHandle() {
-  //   (this.state?.savedTweets).map((item, index) => {
-  //     let handle = item?.authorID || "-";
-  //     // console.log('items2--', handle)
-  //     axios
-  //       .get(
-  //         process.env.REACT_APP_BASE_URL_TWITTER +
-  //           process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-  //           handle
-  //       )
-  //       .then((res) => {
-  //         this.setState({
-  //           authors: res?.data?.responseData?.data[0]?.username,
-  //         });
-  //       })
-  //       .catch((err) => {
-  //         if (
-  //           this?.state?.authors &&
-  //           this?.state?.authors?.length == 0
-  //         ) {
-  //           console.log(err);
-  //         }
-  //       });
-  //   });
-  // }
 
   render() {
     // console.log("saveindexTweets------", this.state.savedTweets);
