@@ -112,8 +112,7 @@ export default class Main extends Component {
   async fetchSavedTweets() {
     axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_SAVED_TWEET
+        process.env.REACT_APP_SPEED_TEST_URL + process.env.REACT_APP_SAVED_TWEET
       )
 
       .then((res) => {
@@ -136,35 +135,35 @@ export default class Main extends Component {
         console.log(err);
       });
 
-    setInterval(async () => {
-      if (!this.state.blockSocketConnected) {
-        await axios
-          .get(
-            process.env.REACT_APP_BASE_URL_TWITTER +
-              process.env.REACT_APP_SAVED_TWEET
-          )
+    // setInterval(async () => {
+    //   if (!this.state.blockSocketConnected) {
+    //     await axios
+    //       .get(
+    //         process.env.REACT_APP_SPEED_TEST_URL +
+    //           process.env.REACT_APP_SAVED_TWEET
+    //       )
 
-          .then((res) => {
-            let tweetResponse;
-            let allSaveTweets;
-            if (
-              !res &&
-              !res.data &&
-              !res.data.responseData &&
-              res.data.responseData.length <= 0
-            )
-              tweetResponse = [];
-            else tweetResponse = res.data.responseData[0] || 0;
-            allSaveTweets = res.data.responseData[1] || 0;
+    //       .then((res) => {
+    //         let tweetResponse;
+    //         let allSaveTweets;
+    //         if (
+    //           !res &&
+    //           !res.data &&
+    //           !res.data.responseData &&
+    //           res.data.responseData.length <= 0
+    //         )
+    //           tweetResponse = [];
+    //         else tweetResponse = res.data.responseData[0] || 0;
+    //         allSaveTweets = res.data.responseData[1] || 0;
 
-            this.setState({ savedTweets: tweetResponse });
-            this.setState({ totalSaveTweet: allSaveTweets });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }, 10000);
+    //         this.setState({ savedTweets: tweetResponse });
+    //         this.setState({ totalSaveTweet: allSaveTweets });
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    // }, 10000);
   }
 
   /** For read tweets */
@@ -229,35 +228,35 @@ export default class Main extends Component {
         console.log(err);
       });
 
-    setInterval(async () => {
-      if (!this.state.blockSocketConnected) {
-        await axios
-          .get(
-            process.env.REACT_APP_BASE_URL_TWITTER +
-              process.env.REACT_APP_READ_TWEET
-          )
+    // setInterval(async () => {
+    //   if (!this.state.blockSocketConnected) {
+    //     await axios
+    //       .get(
+    //         process.env.REACT_APP_BASE_URL_TWITTER +
+    //           process.env.REACT_APP_READ_TWEET
+    //       )
 
-          .then((res) => {
-            let tweetResponse;
-            let alltweets;
-            if (
-              !res &&
-              !res.data &&
-              !res.data.responseData &&
-              res.data.responseData.length <= 0
-            )
-              tweetResponse = [];
-            else tweetResponse = res.data.responseData[0];
-            alltweets = res.data.responseData[1];
+    //       .then((res) => {
+    //         let tweetResponse;
+    //         let alltweets;
+    //         if (
+    //           !res &&
+    //           !res.data &&
+    //           !res.data.responseData &&
+    //           res.data.responseData.length <= 0
+    //         )
+    //           tweetResponse = [];
+    //         else tweetResponse = res.data.responseData[0];
+    //         alltweets = res.data.responseData[1];
 
-            this.setState({ readtweets: tweetResponse });
-            this.setState({ totaltweets: alltweets });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }, 10000);
+    //         this.setState({ readtweets: tweetResponse });
+    //         this.setState({ totaltweets: alltweets });
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    // }, 10000);
   }
 
   /* Socket Connection for Read Graph */
@@ -486,11 +485,11 @@ export default class Main extends Component {
   //           handle
   //       )
   //       .then((res) => {
-       
+
   //         this.setState({
   //           authors: res?.data?.responseData?.data[0]?.username,
   //         });
-  
+
   //       })
   //       .catch((err) => {
   //         if (this?.state?.authors && this?.state?.authors?.length == 0) {

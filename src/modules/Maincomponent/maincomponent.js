@@ -193,6 +193,11 @@ const useStyles = makeStyles((theme) => ({
       border: "1px solid #E3E7EB",
     },
   },
+  "@media (min-width: 766px) and (max-width: 1024px)": {
+    map: {
+      flexFlow: "wrap",
+    },
+  },
   map_dark_mode: {
     display: "flex",
     flexDirection: "row",
@@ -520,16 +525,9 @@ const MobileResponsive = styled.div`
 
 function MainComponent(props) {
   const classes = useStyles();
-  // const [nodes, setNodes] = useState([]);
-  // const [newNode, setNewNode] = useState([]);
   const [maxtpsvalue, setMaxtpsValue] = useState({});
-  // const [ipAddress, setipAddress] = useState([]);
 
-  let nodeLength = props?.stats?.markers?.length || 0
-
-  // const [count, setCount] = useState({});
-
-  // console.log('prev--',props?.saveAuthor)
+  let nodeLength = props?.stats?.markers?.length || 0;
 
   useEffect(() => {
     fetchTps();
@@ -759,7 +757,7 @@ function MainComponent(props) {
                         </div>
 
                         <div className="nodeMapBlock">
-                          <NodeChart dark={dark}/>
+                          <NodeChart dark={dark} />
                         </div>
                       </div>
                     </Paper>
@@ -1032,5 +1030,5 @@ function MainComponent(props) {
 }
 const mapStateToProps = (state) => {
   return { stats: state.stats };
-  };
-  export default connect(mapStateToProps, { dispatchAction })(MainComponent);
+};
+export default connect(mapStateToProps, { dispatchAction })(MainComponent);

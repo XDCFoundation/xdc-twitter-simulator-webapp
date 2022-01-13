@@ -266,21 +266,6 @@ export default function SavedTweets(props) {
   const classes = useStyles();
   const [authors, setAuthors] = useState({});
 
-  // useEffect(() => {
-  //   userHandle();
-  // }, [props?.author]);
-
-  // console.log('fire--',props.tweetData);
-
-  // useEffect(() => {
-  // }, [props?.tweetData]);
-
-  // async function userHandle() {
-  //   if (props?.author && props?.author?.length >= 1) {
-  //     setAuthors(props?.author);
-  //   }
-  // }
-
   // console.log('saveprop2--', props.savedCount[0])
   // console.log('saveprop2--', props.tweetCount.totalTweetCount)
 
