@@ -217,6 +217,11 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "5px",
     },
   },
+  "@media (min-width: 766px) and (max-width: 1024px)": {
+    map_dark_mode: {
+      flexFlow: "wrap",
+    },
+  },
   node: {
     fontFamily: "Raleway",
     fontSize: "18px",
