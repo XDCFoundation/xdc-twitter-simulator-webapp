@@ -116,8 +116,8 @@ export default class Saved extends BaseComponent {
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-        else tweetResponse = res.data.responseData[0] || '';
-        allSaveTweets = res.data.responseData[1] || '';
+          else tweetResponse = res.data?.responseData?.response[0] || '';
+        allSaveTweets = res.data?.responseData?.response[1] || '';
 
         this.setState({ savedTweets: tweetResponse });
         this.setState({ totalSaveTweet: allSaveTweets });
