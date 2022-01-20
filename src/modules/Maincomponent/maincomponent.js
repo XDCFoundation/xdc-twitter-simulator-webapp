@@ -193,11 +193,6 @@ const useStyles = makeStyles((theme) => ({
       border: "1px solid #E3E7EB",
     },
   },
-  "@media (min-width: 766px) and (max-width: 1024px)": {
-    map: {
-      flexFlow: "wrap",
-    },
-  },
   map_dark_mode: {
     display: "flex",
     flexDirection: "row",
@@ -218,6 +213,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   "@media (min-width: 766px) and (max-width: 1024px)": {
+    map: {
+      flexFlow: "wrap",
+    },
     map_dark_mode: {
       flexFlow: "wrap",
     },

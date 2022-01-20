@@ -797,6 +797,12 @@ input:focus {
     margin: 10px 0px 0px 50px;
     height: 139px !important;
   }
+  .composableNodeDarkmap {
+    fill: #293178;
+    width: 100%;
+    margin: 10px 0px 0px 50px;
+    height: 139px !important;
+  }
 }
 @media (min-width: 1001px) and (max-width: 1400px){
   .dark-block {
