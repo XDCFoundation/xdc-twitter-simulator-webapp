@@ -131,7 +131,7 @@ export default function FooterComponent() {
           <Grid className={classes.mainGrid} item xs={12}>
             <Paper className={classes.paper}>
               {/* <img  src="../../images/footer.svg"></img> */}
-              <Row style={{marginLeft: '18px'}}>
+              <Row style={{ marginLeft: '18px' }}>
                 <div class="cards">
                   <Grid className="link-grid" item xs={12} sm={6} md={4}>
                     <Paper
@@ -151,8 +151,9 @@ export default function FooterComponent() {
                           <ul>
                             <li className={classes.linksitem}>
                               <a
+                                target="_blank"
                                 className="footerLinks"
-                                href="https://speedtest.xdc.org/"
+                                href="https://betatwitter.xdcroadmap.net/"
                               >
                                 {" "}
                                 Archive Tweet

@@ -442,8 +442,9 @@ export default function HeaderComponent(props) {
         <div className="headerlistCommonrows">
           <DrawerArchive>
             <a
+              target="_blank"
               className="headerlinkStyle"
-              href="https://speedtest.xdc.org/"
+              href="https://betatwitter.xdcroadmap.net/"
             >
               Tweet Archive
             </a>
@@ -512,8 +513,9 @@ export default function HeaderComponent(props) {
             <Line> </Line>
             <Archive>
               <a
+                target="_blank"
                 className="headerlinkStyle"
-                href="https://speedtest.xdc.org/"
+                href="https://betatwitter.xdcroadmap.net/"
               >
                 Tweet Archive
               </a>

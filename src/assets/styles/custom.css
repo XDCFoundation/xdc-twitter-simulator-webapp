@@ -473,6 +473,7 @@ input:focus {
   letter-spacing: normal;
   text-align: left;
   color: #68D0E2;
+  white-space: nowrap;
 }
 
 .readSpeed-dark-mode {
