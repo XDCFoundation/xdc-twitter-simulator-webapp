@@ -321,11 +321,11 @@ export default class Main extends Component {
   async readingCount() {
     await axios
       .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
+        process.env.REACT_APP_READ_SPEED_URL +
           process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
-        this.setState({ readData: result.data.responseData });
+        this.setState({ readData: result.data?.responseData?.response1 });
 
         var arr = [
           {
