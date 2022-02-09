@@ -13,6 +13,9 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
+import {
+  socialMediaLinks
+} from "../../constants";
 import zIndex from "@material-ui/core/styles/zIndex";
 
 const theme = createMuiTheme({
@@ -153,7 +156,7 @@ export default function FooterComponent() {
                               <a
                                 target="_blank"
                                 className="footerLinks"
-                                href="https://betatwitter.xdcroadmap.net/"
+                                href={socialMediaLinks.TWEET_ARCHIVE_LINK}
                               >
                                 {" "}
                                 Archive Tweet
@@ -197,7 +200,7 @@ export default function FooterComponent() {
                         <div>
                           <ul className={classes.followlinks}>
                             <li className={classes.followitem}>
-                              <a href="https://twitter.com/xdcfoundation">
+                              <a target="_blank" href={socialMediaLinks.TWITTER_LINK}>
                                 <img
                                   className="footericonsLink"
                                   src="../../images/twitter.svg"
@@ -206,7 +209,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://www.facebook.com/XDCFoundation/">
+                              <a target="_blank" href={socialMediaLinks.FACEBOOK_LINK}>
                                 <img
                                   className="footericonsLink"
                                   src="../../images/facebook.svg"
@@ -215,7 +218,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://github.com/xdcfoundation">
+                              <a target="_blank" href={socialMediaLinks.GITHUB_LINK}>
                                 <img
                                   className="footericonsLink"
                                   src="../../images/github.svg"
@@ -224,7 +227,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://www.linkedin.com/company/xdc-foundation/?trk=public_profile_topcard-current-company">
+                              <a target="_blank" href={socialMediaLinks.LINKED_LINK}>
                                 <img
                                   className="footericonsLink"
                                   className="footericonsLink"
@@ -234,7 +237,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://t.me/xinfintalk">
+                              <a target="_blank" href={socialMediaLinks.TELEGRAM_LINK}>
                                 <img
                                   className="footericonsLink"
                                   src="../../images/telegram.svg"
@@ -243,7 +246,7 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a href="https://www.reddit.com/r/xinfin/">
+                              <a target="_blank" href={socialMediaLinks.REDDIT_LINK}>
                                 <img
                                   className="footericonsLink"
                                   src="../../images/reddit.svg"

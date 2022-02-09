@@ -16,11 +16,9 @@ import { Row } from "react-bootstrap";
 import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
 // import Drawer from './drawer';
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import {
+  socialMediaLinks
+} from "../../constants";
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles({
@@ -426,7 +424,7 @@ export default function HeaderComponent(props) {
         &nbsp;
         <div className="headerlistCommonrows">
           <Contact>
-            <a className="headerlinkStyle" href="https://xinfin.org/contactus">
+            <a className="headerlinkStyle" href={socialMediaLinks.CONTACT_US_LINK}>
               Contact
             </a>
           </Contact>
@@ -444,7 +442,7 @@ export default function HeaderComponent(props) {
             <a
               target="_blank"
               className="headerlinkStyle"
-              href="https://betatwitter.xdcroadmap.net/"
+              href={socialMediaLinks.TWEET_ARCHIVE_LINK}
             >
               Tweet Archive
             </a>
@@ -515,7 +513,7 @@ export default function HeaderComponent(props) {
               <a
                 target="_blank"
                 className="headerlinkStyle"
-                href="https://betatwitter.xdcroadmap.net/"
+                href={socialMediaLinks.TWEET_ARCHIVE_LINK}
               >
                 Tweet Archive
               </a>
@@ -594,7 +592,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/facebook.svg" alt=" " />
         <AnchorTag
-          href="#"
+          href={socialMediaLinks.FACEBOOK_LINK}
           target="_blank"
         >
           Facebook
@@ -604,7 +602,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/twitter.svg" alt=" " />
         <AnchorTag
-          href="#"
+          href={socialMediaLinks.TWITTER_LINK}
           target="_blank"
         >
           Twitter
@@ -613,7 +611,7 @@ function RenderDropdown() {
       <Border></Border>
       <List>
         <ListImg src="../../images/telegram.svg" alt=" " />
-        <AnchorTag href="https://t.me/xinfintalk" target="_blank">
+        <AnchorTag href={socialMediaLinks.TELEGRAM_LINK} target="_blank">
           Telegram
         </AnchorTag>
       </List>
@@ -621,7 +619,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/linkedin.svg" alt=" " />
         <AnchorTag
-          href=""
+          href={socialMediaLinks.LINKED_LINK}
           target="_blank"
         >
           Linkedin
@@ -630,7 +628,7 @@ function RenderDropdown() {
       <Border></Border>
       <List>
         <ListImg src="../../images/reddit.svg" alt=" " />
-        <AnchorTag href="#" target="_blank">
+        <AnchorTag href={socialMediaLinks.REDDIT_LINK} target="_blank">
           Reddit
         </AnchorTag>
         <Border></Border>

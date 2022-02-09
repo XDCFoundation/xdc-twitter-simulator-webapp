@@ -474,59 +474,6 @@ export default class Main extends Component {
       });
   }
 
-  // async savehandleUser() {
-  //   (this.state?.savedTweets).map((item, index) => {
-  //     let handle = item?.authorID || "-";
-  //     // console.log('items2--', handle)
-  //     axios
-  //       .get(
-  //         process.env.REACT_APP_BASE_URL_TWITTER +
-  //           process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-  //           handle
-  //       )
-  //       .then((res) => {
-
-  //         this.setState({
-  //           authors: res?.data?.responseData?.data[0]?.username,
-  //         });
-
-  //       })
-  //       .catch((err) => {
-  //         if (this?.state?.authors && this?.state?.authors?.length == 0) {
-  //           console.log(err);
-  //         }
-  //       });
-  //   });
-  // }
-
-  // async readhandleUser() {
-  //   (this.state?.readtweets).map((item) => {
-  //     let handle = item?.authorId || "-";
-  //     // console.log('items--', handle)
-  //     axios
-  //       .get(
-  //         process.env.REACT_APP_BASE_URL_TWITTER +
-  //           process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-  //           handle
-  //       )
-  //       .then((res) => {
-  //         // setAuthors(res.data.responseData?.data[0]);
-  //         this.setState({
-  //           readAuthors: res?.data?.responseData?.data[0]?.username,
-  //         });
-  //         // console.log('read---', res.data.responseData?.data[0]?.username)
-  //       })
-  //       .catch((err) => {
-  //         if (
-  //           this?.state?.readAuthors &&
-  //           this?.state?.readAuthors?.length == 0
-  //         ) {
-  //           console.log(err);
-  //         }
-  //       });
-  //   });
-  // }
-
   render() {
     return (
       <div>
