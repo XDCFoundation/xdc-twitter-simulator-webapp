@@ -47,7 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
-    padding: "45px",
+    padding: "59px 68px 45px 65px",
+  },
+  root_dark_mode: {
+    flexGrow: 1,
+    padding: "59px 60px 45px 56px",
   },
   grid: {
     marginRight: "20px",
@@ -76,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   grid3: {
-    marginTop: "50px",
+    marginTop: "52px",
   },
 
   "@media (max-width: 766px)": {
@@ -89,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     marginLeft: "6%",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
     // height: "95.5%",
     borderRadius: "10px",
@@ -101,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     marginLeft: "0px",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
   },
   writing_paper_dark_mode: {
@@ -111,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     marginLeft: "6%",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
     borderRadius: "5px",
     boxShadow: "0px 2px 30px #0000001A",
@@ -124,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     marginLeft: "0px",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
     boxShadow: "0px 2px 30px #0000001A",
     border: "solid 1px #343965",
@@ -134,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     marginLeft: "5px",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
     // height: "95.5%",
     borderRadius: "10px",
@@ -146,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     marginLeft: "0px",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
   },
   reading_paper_dark_mode: {
@@ -156,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     marginLeft: "5px",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
     borderRadius: "5px",
     boxShadow: "0px 2px 30px #0000001A",
@@ -169,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
     color: "white",
     marginLeft: "0px",
-    marginTop: "10px",
+    marginTop: "18px",
     padding: "20px 14px 29.6px 26px",
     boxShadow: "0px 2px 30px #0000001A",
     border: "solid 1px #343965",
@@ -383,11 +387,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#191d43",
   },
   top: {
-    marginTop: "10.5px",
+    marginTop: "18px",
     marginRight: "9px",
     boxShadow: "none",
     width: "100%",
-    height: "95.2%",
+    height: "93.2%",
     boxShadow: "0px 2px 30px #0000001A",
     border: "1px solid #E3E7EB",
     borderRadius: "5px",
@@ -401,9 +405,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   top_dark_mode: {
-    marginTop: "10.5px",
+    marginTop: "18px",
     marginRight: "9px",
-    height: "95.2%",
+    height: "93.2%",
     width: "98.5%",
     backgroundColor: "#191d43",
     boxShadow: "0px 2px 30px #0000001A",
@@ -583,9 +587,9 @@ function MainComponent(props) {
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
       <Desktop>
-        <div className={classes.root}>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
+        <div className={dark ? classes.root_dark_mode : classes.root}>
+          <Grid  container spacing={3}>
+            <Grid style={{padding: '19px'}} item xs={6}>
               <Row className="justify-space-between w-100">
                 <Row className="w-100">
                   <Grid item xs={6} className={classes.grid}>
@@ -769,7 +773,7 @@ function MainComponent(props) {
               </Row>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid style={{padding: '19px'}} item xs={6}>
               <Text
                 className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
@@ -799,7 +803,7 @@ function MainComponent(props) {
               </Paper>
             </Grid>
 
-            <Grid item xs={6} className={classes.grid3}>
+            <Grid style={{padding: '19px'}} item xs={6} className={classes.grid3}>
               <SaveGraphTrend>
                 <SavedTweets
                   dark={dark}
@@ -808,7 +812,7 @@ function MainComponent(props) {
                 />
               </SaveGraphTrend>
             </Grid>
-            <Grid item xs={6} className={classes.grid3}>
+            <Grid style={{padding: '19px'}} item xs={6} className={classes.grid3}>
               <ReadGraphTrend>
                 <ReadTweets dark={dark} readed={props.readSocket} />
               </ReadGraphTrend>
@@ -973,7 +977,7 @@ function MainComponent(props) {
             </Grid>
           </Column>
           <Column>
-            <Grid item xs={12} className={classes.topTrend}>
+            <Grid  item xs={12} className={classes.topTrend}>
               <Text
                 className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
@@ -1003,7 +1007,7 @@ function MainComponent(props) {
               </Paper>
             </Grid>
           </Column>
-          <Column>
+          <Column >
             <Grid item xs={12} className={classes.grid3}>
               <Paper
                 className={
