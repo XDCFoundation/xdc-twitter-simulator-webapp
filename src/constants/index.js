@@ -28,7 +28,7 @@ export const socialMediaLinks = {
     TELEGRAM_LINK: "https://telegram.me/share/url?url=https://speedtest.xdc.org:90/&text=XDC%20Speed%20Test",
     LINKED_LINK: "https://www.linkedin.com/company/xdc-foundation?trk=public_profile_topcard-current-company",
     REDDIT_LINK: "http://www.reddit.com/submit?url=https://speedtest.xdc.org&title=The%20XDC%20Speed%20Test",
-    TWEET_ARCHIVE_LINK: "https://betatwitter.xdcroadmap.net/",
+    TWEET_ARCHIVE_LINK: "https://speedtest.xdc.org/",
     CONTACT_US_LINK: "https://xinfin.org/contactus",
     GITHUB_LINK: "https://github.com/XDCFoundation/",
 }

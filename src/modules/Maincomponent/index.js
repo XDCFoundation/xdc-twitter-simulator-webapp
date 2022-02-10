@@ -112,7 +112,7 @@ export default class Main extends Component {
   async fetchSavedTweets() {
     axios
       .get(
-        process.env.REACT_APP_SPEED_TEST_URL + process.env.REACT_APP_SAVED_TWEET
+        process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET
       )
 
       .then((res) => {
@@ -321,7 +321,7 @@ export default class Main extends Component {
   async readingCount() {
     await axios
       .get(
-        process.env.REACT_APP_READ_SPEED_URL +
+        process.env.REACT_APP_BASE_URL_TWITTER +
           process.env.REACT_APP_READ_SPEED_DATA
       )
       .then((result) => {
