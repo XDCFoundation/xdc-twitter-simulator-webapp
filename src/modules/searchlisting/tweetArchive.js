@@ -14,6 +14,7 @@ import FooterComponent from "../Footer/footer";
 import { Icon } from "@material-ui/core";
 import moment from "moment";
 import Header from "../Header/header";
+import Loader from "./loader";
 
 const Container = styled.div`
   width: 500px;
@@ -170,13 +171,16 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
   },
 }));
-export default function TweetArchive() {
+export default function TweetArchive(props) {
   const classes = useStyles();
   const [search, setSearch] = useState({});
   const [advanceSearch, setAdvancesearch] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
   const userId = useParams();
   const textId = useParams();
+
+  // console.log('pr--',props?.location)
 
   useEffect(() => {
     fetchbyBasicSearch();
@@ -202,6 +206,7 @@ export default function TweetArchive() {
           basicarchiveTweet = [];
         else basicarchiveTweet = res.data.responseData.responseData || 0;
         setSearch(basicarchiveTweet);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("error-----", err);
@@ -226,13 +231,14 @@ export default function TweetArchive() {
           advancearchiveTweet = [];
         else advancearchiveTweet = res.data.responseData.responseData || 0;
         setAdvancesearch(advancearchiveTweet);
+        setLoading(false);
       })
       .catch((err) => {
         console.log("error-----", err);
       });
   };
 
-  let value = search[0]?.text || "undefined";
+  let value = search[0]?.text || "";
   let createBasicTime = search[0]?.createdAt || "-";
   let date = moment(createBasicTime).format("LL");
   let time = moment(createBasicTime).format("LT");
@@ -245,7 +251,7 @@ export default function TweetArchive() {
   // let tweetTextMessage = value?.split(":")[1];
   // let dummyHandle = name?.slice(0, value?.length).replace(/\s/g, "").toLowerCase() || 0
 
-  let advanceValue = advanceSearch[0]?.text || "undefined";
+  let advanceValue = advanceSearch[0]?.text || "";
   let advanceName = advanceSearch[0]?.name || "-";
   let createAdvanceTime = advanceSearch[0]?.createdAt || "-";
   let advanceDate = moment(createAdvanceTime).format("LL");
@@ -268,83 +274,141 @@ export default function TweetArchive() {
       {/* <HeaderComponent archiveId={userId?.tweet} /> */}
       <Header />
       <br />
-      <Grid xs={12}>
-        <Mainbox>
-          <Row>
-            <Container>
-              <Column className={classes.mainColumn}>
-                <Row>
-                  <BackArrow>
-                    <a href="/">
-                      <ArrowBackIcon />
-                    </a>
-                  </BackArrow>
-                  <Heading className={classes.span_tweet}>
-                    <span className={classes.span_tweet}>Tweet</span>
-                  </Heading>
-                </Row>
-                <hr className={classes.hr_page} />
-                <Row>
-                  <Avatar className={classes.avatar}>
-                    {advanceSearch ? advanceIcon : "-"}
-                  </Avatar>
-                  <Name>
-                    <Row className={classes.span_tweet}>
-                      {advanceSearch ? advanceName : "-"}
-                    </Row>
-                    <Row>
-                      <Email>{/* {handler || 0} */}</Email>
-                    </Row>
-                  </Name>
-                </Row>
-                <br />
-                <Row>
-                  <Tweetdata>
-                    <span className={classes.span_tweet}>
-                      {advanceSearch[0]
-                        ? advanceValue
+      {isLoading ? (
+        <Grid xs={12}>
+          <Mainbox>
+            <Row>
+              <Container>
+                <Column className={classes.mainColumn}>
+                  <Row>
+                    {/* <BackArrow>
+                      <a href="/">
+                        <ArrowBackIcon />
+                      </a>
+                    </BackArrow> */}
+                    <Heading className={classes.span_tweet}>
+                      <span className={classes.span_tweet}>Tweet</span>
+                    </Heading>
+                  </Row>
+                  <hr className={classes.hr_page} />
+                  <Row>
+                    <Avatar className={classes.avatar}>-</Avatar>
+                    <Name>
+                      <Row className={classes.span_tweet}>{""}</Row>
+                      <Row>
+                        <Email>{""}</Email>
+                      </Row>
+                    </Name>
+                  </Row>
+                  <br />
+                  <Row>
+                    <Tweetdata>
+                      {""}
+                      <Loader />
+                      {""}
+                    </Tweetdata>
+                  </Row>
+                  <hr className={classes.hr_page} />
+                  <Row className={classes.second_row}>
+                    <Details>
+                      <Time>
+                        {" "}
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        {""}
+                        &emsp;
+                      </Time>
+                      <Date>
+                        &nbsp;
+                        {""}
+                        &emsp;
+                      </Date>
+                    </Details>
+                  </Row>
+                  <br />
+                </Column>
+              </Container>
+            </Row>
+          </Mainbox>
+        </Grid>
+      ) : (
+        <Grid xs={12}>
+          <Mainbox>
+            <Row>
+              <Container>
+                <Column className={classes.mainColumn}>
+                  <Row>
+                    {/* <BackArrow>
+                      <a href="/">
+                        <ArrowBackIcon />
+                      </a>
+                    </BackArrow> */}
+                    <Heading className={classes.span_tweet}>
+                      <span className={classes.span_tweet}>Tweet</span>
+                    </Heading>
+                  </Row>
+                  <hr className={classes.hr_page} />
+                  <Row>
+                    <Avatar className={classes.avatar}>
+                      {advanceSearch ? advanceIcon : "-"}
+                    </Avatar>
+                    <Name>
+                      <Row className={classes.span_tweet}>
+                        {advanceSearch ? advanceName : "-"}
+                      </Row>
+                      <Row>
+                        <Email>{/* {handler || 0} */}</Email>
+                      </Row>
+                    </Name>
+                  </Row>
+                  <br />
+                  <Row>
+                    <Tweetdata>
+                      <span className={classes.span_tweet}>
+                        {advanceSearch[0]
                           ? advanceValue
-                          : "Loading..."
-                        : value
-                        ? value
-                        : "Loading..."}
-                    </span>
-                  </Tweetdata>
-                </Row>
-                <hr className={classes.hr_page} />
-                <Row className={classes.second_row}>
-                  <Details>
-                    <Time>
-                      {" "}
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      {advanceSearch
-                        ? advanceTime
+                            ? advanceValue
+                            : "Loading..."
+                          : value
+                          ? value
+                          : "Loading..."}
+                      </span>
+                    </Tweetdata>
+                  </Row>
+                  <hr className={classes.hr_page} />
+                  <Row className={classes.second_row}>
+                    <Details>
+                      <Time>
+                        {" "}
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        {advanceSearch
                           ? advanceTime
-                          : "Loading.."
-                        : time
-                        ? time
-                        : "Loading.."}
-                      &emsp;
-                    </Time>
-                    <Date>
-                      &nbsp;
-                      {advanceSearch
-                        ? advanceDate
+                            ? advanceTime
+                            : "Loading.."
+                          : time
+                          ? time
+                          : "Loading.."}
+                        &emsp;
+                      </Time>
+                      <Date>
+                        &nbsp;
+                        {advanceSearch
                           ? advanceDate
-                          : "Loading.."
-                        : date
-                        ? date
-                        : "Loading.."}
-                      &emsp;
-                    </Date>
-                  </Details>
-                </Row>
-                <br />
-              </Column>
-            </Container>
-          </Row>
-        </Mainbox>
-      </Grid>
+                            ? advanceDate
+                            : "Loading.."
+                          : date
+                          ? date
+                          : "Loading.."}
+                        &emsp;
+                      </Date>
+                    </Details>
+                  </Row>
+                  <br />
+                </Column>
+              </Container>
+            </Row>
+          </Mainbox>
+        </Grid>
+      )}
       <br />
       <br />
     </>

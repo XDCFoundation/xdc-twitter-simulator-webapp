@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useLocation, useHistory } from "react";
+import React, { useState, useEffect, useLocation } from "react";
+import { useHistory } from "react-router";
 import { Row, Column } from "simple-flexbox";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
@@ -422,6 +423,7 @@ const MobileView = styled.div`
 
 export default function Searchlist(props) {
   const classes = useStyles();
+  const history = useHistory()
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
@@ -507,21 +509,21 @@ export default function Searchlist(props) {
         </Grid>
 
         <div className="empty-div">
-          <button className="button">
+          <button onClick={() => history.push('/')} className="button">
             <div>
               <HomeIcon />
             </div>
             <div className="dashboard-name">
-              <a
+              {/* <a
                 style={{
                   color: "white",
                   cursor: "pointer",
                   textDecoration: "none",
                 }}
                 href="/"
-              >
+              > */}
                 Dashboard
-              </a>
+              {/* </a> */}
             </div>
           </button>
         </div>

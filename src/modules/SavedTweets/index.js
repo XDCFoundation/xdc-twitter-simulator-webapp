@@ -102,7 +102,7 @@ export default class Saved extends BaseComponent {
   async fetchSavedTweets() {
     await axios
       .get(
-        process.env.REACT_APP_SPEED_TEST_URL +
+        process.env.REACT_APP_BASE_URL_TWITTER +
           process.env.REACT_APP_SAVED_TWEET
       )
 
