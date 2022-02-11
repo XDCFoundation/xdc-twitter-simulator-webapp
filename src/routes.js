@@ -19,8 +19,8 @@ import socketClient from "socket.io-client";
 
 import About from "./modules/About";
 
-let socket = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3000/',{transports: ['websocket']})
-let readtweetSocket = socketClient('http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3003/',{transports: ['websocket']})
+let socket = socketClient('https://speedtest.xdc.org:3001/',{transports: ['websocket']})
+let readtweetSocket = socketClient('https://speedtest.xdc.org:3003/',{transports: ['websocket']})
 
 class Routes extends BaseComponent {
   componentDidMount() {}

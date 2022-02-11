@@ -475,7 +475,7 @@ export default function Searchlist(props) {
       .get(
         process.env.REACT_APP_BASE_URL_TWITTER +
           process.env.REACT_APP_ADVANCE_SEARCH +
-          "name" +
+          "name=" +
           props?.username +
           "&keyword=" +
           props?.locations.split(" ")[0] +

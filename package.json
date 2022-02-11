@@ -51,6 +51,7 @@
   "scripts": {
     "start": "env-cmd .env.production react-scripts start",
     "production-build": "env-cmd .env.production react-scripts build",
+    "development-build": "env-cmd .env react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
