@@ -125,11 +125,11 @@ const Details = styled.div`
 const Mainbox = styled.div`
   display: flex;
   justify-content: center;
-  @media (min-width: 0px) and (max-width: 767px) {
+  /* @media (min-width: 0px) and (max-width: 767px) {
     width: 100%;
     padding-left: 10%;
     padding-right: 10%;
-  }
+  } */
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -169,6 +169,16 @@ const useStyles = makeStyles((theme) => ({
     color: "red",
     marginLeft: "auto",
     marginRight: "auto",
+  },
+  mainLoaderRow:{
+    display: 'flex',
+    flexFlow: 'row-nowrap',  
+  },
+  "@media (min-width: 0px) and (max-width: 766px)": {
+    mainLoaderRow:{
+      padding: '0px 76px',
+      width: '100%',
+    }
   },
 }));
 export default function TweetArchive(props) {
@@ -277,7 +287,7 @@ export default function TweetArchive(props) {
       {isLoading ? (
         <Grid xs={12}>
           <Mainbox>
-            <Row>
+            <Row className={classes.mainLoaderRow}>
               <Container>
                 <Column className={classes.mainColumn}>
                   <Row>

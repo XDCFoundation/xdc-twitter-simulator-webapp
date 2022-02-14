@@ -254,10 +254,26 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "0px",
     marginLeft: "3%",
   },
-  "@media (min-width: 0px) and (max-width: 766px)": {
+  "@media (min-width: 0px) and (max-width: 767px)": {
     savedTweetConatiner: {
       marginTop: "30px",
       marginLeft: "-24px",
+    },
+  },
+  "@media (min-width: 768px) and (max-width: 1350px)": {
+    time: {
+      right: "55.5%",
+    },
+    time_dark_mode: {
+      right: "55.5%",
+    },
+    tweetnumber: {
+      right: "54.5%",
+      padding: "9px 0 11px 0",
+    },
+    tweetnumber_dark_mode: {
+      right: "54.5%",
+      padding: "9px 0 11px 0",
     },
   },
 }));
