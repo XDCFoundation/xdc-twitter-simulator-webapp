@@ -37,7 +37,14 @@ const IconImg = styled.img`
     margin-top: 6px;
   }
 `;
-
+const EyeImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  @media (min-width: 0px) and (max-width: 768px) {
+    margin-top: 0px;
+  }
+`;
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "#f5f6f9",
@@ -53,6 +60,17 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: "59px 60px 45px 56px",
   },
+  "@media (min-width: 767px) and (max-width: 1400px)": {
+    root: {
+      flexGrow: 1,
+      padding: "59px 20px 45px 20px",
+    },
+    root_dark_mode: {
+      flexGrow: 1,
+      padding: "59px 15px 45px 11px",
+    },
+  },
+
   grid: {
     marginRight: "20px",
   },
@@ -531,6 +549,7 @@ const MobileResponsive = styled.div`
 `;
 
 function MainComponent(props) {
+  // console.log('e---',props.state)
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
 
@@ -581,7 +600,7 @@ function MainComponent(props) {
   let writeIdentity = props?.Savesocket;
   let smallSavetweet = props?.tweetData;
   let smallSaveCount = props?.tweetCount;
-  let smallReadtweet = props?.readtweetData;
+  let smallReadtweet = props?.state?.readtweets;
   let smallReadCount = props?.readtweetCount;
 
   return (
@@ -627,7 +646,7 @@ function MainComponent(props) {
                             </span>
                           }
                         >
-                          <IconImg src="../../images/ic.png" />
+                          <EyeImg src="../../images/ic.png" />
                         </Tippy>
                       </div>
 
@@ -682,7 +701,7 @@ function MainComponent(props) {
                             </span>
                           }
                         >
-                          <IconImg src="../../images/ic.png" />
+                          <EyeImg src="../../images/ic.png" />
                         </Tippy>
                       </div>
                       <div
@@ -790,7 +809,7 @@ function MainComponent(props) {
                     </span>
                   }
                 >
-                  <IconImg src="../../images/ic.png" />
+                  <EyeImg src="../../images/ic.png" />
                 </Tippy>
               </Text>
 

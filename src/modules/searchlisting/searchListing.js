@@ -423,7 +423,7 @@ const MobileView = styled.div`
 
 export default function Searchlist(props) {
   const classes = useStyles();
-  const history = useHistory()
+  const history = useHistory();
 
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
@@ -461,7 +461,7 @@ export default function Searchlist(props) {
           res.data.responseData.length <= 0
         )
           basicSearch = [];
-        else basicSearch = res.data.responseData.responseData || 0;
+        else basicSearch = res.data.responseData || "";
         setBasic(basicSearch);
         setLoading(false);
       })
@@ -491,14 +491,13 @@ export default function Searchlist(props) {
           res.data.responseData[0].length <= 0
         )
           advanceSearch = [];
-        else advanceSearch = res.data.responseData.responseData || 0;
+        else advanceSearch = res.data.responseData || "Not Found";
         setAdvance(advanceSearch);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
   // let method = '@user'
 
   return (
@@ -509,7 +508,7 @@ export default function Searchlist(props) {
         </Grid>
 
         <div className="empty-div">
-          <button onClick={() => history.push('/')} className="button">
+          <button onClick={() => history.push("/")} className="button">
             <div>
               <HomeIcon />
             </div>
@@ -522,7 +521,7 @@ export default function Searchlist(props) {
                 }}
                 href="/"
               > */}
-                Dashboard
+              Dashboard
               {/* </a> */}
             </div>
           </button>
@@ -556,13 +555,14 @@ export default function Searchlist(props) {
                     basic &&
                     basic.length >= 1 &&
                     basic.map((response, index) => {
-                      let value = response?.text || 0;
-                      let author = response?.authorID || 0;
-                      let str = response?.addedOn || 0;
-                      let timeFormat = moment(str) || 0;
-                      let time = timeFormat.format("LT") || 0;
+                      let value = response?.text || "";
+                      let authorName = response?.name || "";
+                      let author = response?.id || "";
+                      let str = response?.createdAt || "";
+                      let timeFormat = moment(str) || "";
+                      let time = timeFormat.format("LT") || "";
 
-                      let userId = response?.tweetId || 0;
+                      let textId = response?.id || 0;
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
@@ -585,7 +585,7 @@ export default function Searchlist(props) {
                           />
                           <a
                             style={{ textDecoration: "none" }}
-                            href={"/archive/" + userId}
+                            href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -612,7 +612,7 @@ export default function Searchlist(props) {
                             <Row>
                               <Column>
                                 <Typography className={classes.email}>
-                                  {author ? author : "-"}
+                                  {authorName.length > 0 ? authorName : author}
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper
@@ -857,8 +857,9 @@ export default function Searchlist(props) {
                     basic.length >= 1 &&
                     basic.map((response, index) => {
                       let value = response?.text || 0;
-                      let author = response?.authorID || 0;
-                      let str = response?.addedOn || 0;
+                      let author = response?.id || 0;
+                      let str = response?.createdAt || 0;
+                      let authorName = response?.name || 0;
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
@@ -912,7 +913,9 @@ export default function Searchlist(props) {
                             <Row>
                               <Column>
                                 <Typography className={classes.email}>
-                                  {author}
+                                  {authorName.length > 0
+                                    ? authorName + ".."
+                                    : author}
                                 </Typography>
                                 <ThemeProvider theme={theme}>
                                   <Paper

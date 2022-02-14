@@ -262,54 +262,56 @@ export default class Main extends Component {
   /* Socket Connection for Read Graph */
 
   readsocketData(socket) {
-    let readGraph = this.state.readData;
+    let readGraph = this.state.readData || "";
+    // console.log('res--',readGraph, readGraph?.length)
     socket.on("read-speed-socket", (val, error) => {
       // console.log('>>>>val', val)
       this.setState({ blockSocketConnected: true });
 
-      if (readGraph.length >= 10) readGraph.pop();
-      readGraph.unshift(val);
+      if (readGraph?.length >= 10)
+      {
+        readGraph.pop();
+        readGraph.unshift(val);
+        this.setState({ readData: readGraph });
 
-      this.setState({ readData: readGraph });
-
-      var arr = [
-        {
-          id: "Read-graph",
-          data: [],
-        },
-      ];
-      var resultData = [];
-
-      this.state.readData.map((items, index) => {
-        let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
-        resultData.push({
-          x: moment(items.startTime).format("LT"),
-          y: graphs,
+        var arr = [
+          {
+            id: "Read-graph",
+            data: [],
+          },
+        ];
+        var resultData = [];
+  
+        this.state.readData && this.state.readData.length >=1 && this.state.readData.map((items, index) => {
+          let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
+          resultData.push({
+            x: moment(items.startTime).format("LT"),
+            y: graphs,
+          });
         });
-      });
-      function getUnique(resultData, index) {
-        const unique = resultData
-          .map((e) => e[index])
-
-          // store the keys of the unique objects
-          .map((e, i, final) => final.indexOf(e) === i && i)
-
-          // eliminate the dead keys & store unique objects
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
-
-        return unique;
+        function getUnique(resultData, index) {
+          const unique = resultData
+            .map((e) => e[index])
+  
+            // store the keys of the unique objects
+            .map((e, i, final) => final.indexOf(e) === i && i)
+  
+            // eliminate the dead keys & store unique objects
+            .filter((e) => resultData[e])
+            .map((e) => resultData[e]);
+  
+          return unique;
+        }
+        let graphdata = getUnique(resultData?.slice(0, 20), "x").reverse();
+        let newData = graphdata.slice(-1);
+        let firstData = Object.values(newData[0]);
+        let secondData = parseFloat(firstData[1]).toFixed(2);
+  
+        this.setState({ read: secondData });
+  
+        arr[0].data = getUnique(resultData.slice(0, 20), "x").reverse();
+        this.setState({ readResult: arr });
       }
-      let graphdata = getUnique(resultData?.slice(0, 20), "x").reverse();
-      let newData = graphdata.slice(-1);
-      let firstData = Object.values(newData[0]);
-      let secondData = parseFloat(firstData[1]).toFixed(2);
-
-      this.setState({ read: secondData });
-
-      arr[0].data = getUnique(resultData.slice(0, 20), "x").reverse();
-      this.setState({ readResult: arr });
-
       if (error) {
         console.log("hello error");
       }
@@ -335,7 +337,7 @@ export default class Main extends Component {
         ];
         var resultData = [];
 
-        this.state.readData.map((items, index) => {
+        this.state.readData && this.state.readData.length >=1 && this.state.readData.map((items, index) => {
           let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
           resultData.push({
             x: moment(items.startTime).format("LT"),
@@ -474,18 +476,19 @@ export default class Main extends Component {
       });
   }
 
-  render() {
+  render() { 
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
         <MainComponent
           dark={this.state.dark}
+          state={this.state}
           Savesocket={this.props.savingSocket}
           saveCount={this.state.savingtweetsCount}
           readSocket={this.props.readingSocket}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}
-          readtweetData={this.state.readtweets}
+          // readtweetData={this.state.readtweets}
           readtweetCount={this.state.totaltweets}
           data={this.state.data}
           save={this.state.save}
