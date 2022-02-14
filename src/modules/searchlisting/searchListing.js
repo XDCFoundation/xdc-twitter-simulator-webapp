@@ -491,7 +491,7 @@ export default function Searchlist(props) {
           res.data.responseData[0].length <= 0
         )
           advanceSearch = [];
-        else advanceSearch = res.data.responseData || "Not Found";
+        else advanceSearch = res.data.responseData || "";
         setAdvance(advanceSearch);
       })
       .catch((err) => {
@@ -499,7 +499,8 @@ export default function Searchlist(props) {
       });
   };
   // let method = '@user'
-
+  // console.log("bas--", basic);
+  // console.log("adv--", advance);
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
@@ -551,6 +552,8 @@ export default function Searchlist(props) {
 
                   {isLoading ? (
                     <Loader />
+                  ) : basic?.length === 0 ? (
+                    <div className="table-data-message">No Data Found</div>
                   ) : (
                     basic &&
                     basic.length >= 1 &&
@@ -852,8 +855,13 @@ export default function Searchlist(props) {
                       Search Results
                     </Typography>
                   </Row>
-
-                  {basic &&
+                  {isLoading ? (
+                    <Loader />
+                  ) : (
+                    basic?.length === 0 ? (
+                    <div className="table-data-message">No Data Found</div>
+                  ) : (
+                    basic &&
                     basic.length >= 1 &&
                     basic.map((response, index) => {
                       let value = response?.text || 0;
@@ -863,7 +871,7 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-                      let userId = response?.tweetId || 0;
+                      let textId = response?.id || 0;
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
@@ -886,7 +894,7 @@ export default function Searchlist(props) {
                           />
                           <a
                             style={{ textDecoration: "none" }}
-                            href={"/archive/" + userId}
+                            href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -939,7 +947,8 @@ export default function Searchlist(props) {
                           </a>
                         </>
                       );
-                    })}
+                    })
+                  ))}
 
                   {advance &&
                     advance.length >= 1 &&

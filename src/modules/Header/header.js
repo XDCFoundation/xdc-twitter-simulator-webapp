@@ -592,7 +592,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/facebook.svg" alt=" " />
         <AnchorTag
-          href={socialMediaLinks.FACEBOOK_LINK}
+          href={socialMediaLinks.SHARE_FACEBOOK_LINK}
           target="_blank"
         >
           Facebook
@@ -602,7 +602,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/twitter.svg" alt=" " />
         <AnchorTag
-          href={socialMediaLinks.TWITTER_LINK}
+          href={socialMediaLinks.SHARE_TWITTER_LINK}
           target="_blank"
         >
           Twitter
@@ -619,7 +619,7 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/linkedin.svg" alt=" " />
         <AnchorTag
-          href={socialMediaLinks.LINKED_LINK}
+          href={socialMediaLinks.SHARE_LINKEDIN_LINK}
           target="_blank"
         >
           Linkedin

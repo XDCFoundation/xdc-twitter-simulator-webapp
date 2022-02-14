@@ -170,15 +170,21 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  mainLoaderRow:{
-    display: 'flex',
-    flexFlow: 'row-nowrap',  
+  mainLoaderRow: {
+    display: "flex",
+    flexFlow: "row-nowrap",
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
-    mainLoaderRow:{
-      padding: '0px 76px',
-      width: '100%',
-    }
+    mainLoaderRow: {
+      padding: "0px 76px",
+      width: "100%",
+    },
+  },
+  "@media (min-width: 2001px)": {
+    mainLoaderRow: {
+      width: '500px',
+      height: '100%',
+    },
   },
 }));
 export default function TweetArchive(props) {
