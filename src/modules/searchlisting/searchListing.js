@@ -553,7 +553,7 @@ export default function Searchlist(props) {
                   {isLoading ? (
                     <Loader />
                   ) : basic?.length === 0 ? (
-                    <div className="table-data-message">No Data Found</div>
+                    <div className="table-data-message">No Result Found</div>
                   ) : (
                     basic &&
                     basic.length >= 1 &&
@@ -859,7 +859,7 @@ export default function Searchlist(props) {
                     <Loader />
                   ) : (
                     basic?.length === 0 ? (
-                    <div className="table-data-message">No Data Found</div>
+                    <div className="table-data-message">No Result Found</div>
                   ) : (
                     basic &&
                     basic.length >= 1 &&
