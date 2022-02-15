@@ -513,18 +513,7 @@ export default function Searchlist(props) {
             <div>
               <HomeIcon />
             </div>
-            <div className="dashboard-name">
-              {/* <a
-                style={{
-                  color: "white",
-                  cursor: "pointer",
-                  textDecoration: "none",
-                }}
-                href="/"
-              > */}
-              Dashboard
-              {/* </a> */}
-            </div>
+            <div className="dashboard-name">Dashboard</div>
           </button>
         </div>
 
@@ -543,12 +532,20 @@ export default function Searchlist(props) {
                           ? classes.readtweet_dark_mode
                           : classes.readtweet
                       }
-                      // variant="h5"
-                      // style={{ whiteSpace: "nowrap" }}
                     >
                       Search Results
                     </Typography>
                   </Row>
+
+                  {isLoading ? (
+                    <hr
+                      className={
+                        props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                      }
+                    />
+                  ) : (
+                    ""
+                  )}
 
                   {isLoading ? (
                     <Loader />
@@ -566,7 +563,6 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || "";
 
                       let textId = response?.id || 0;
-                      // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
@@ -586,9 +582,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -636,7 +638,7 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })
@@ -671,9 +673,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -711,7 +719,6 @@ export default function Searchlist(props) {
                                         ? classes.content_dark_mode
                                         : classes.content
                                     }
-                                    // gutterBottom
                                   >
                                     <div className="listingPagetruncating">
                                       {value.length > 0
@@ -722,16 +729,20 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })}
                 </Column>
-                <hr
-                  className={
-                    props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                  }
-                />
+                {!isLoading ? (
+                  <hr
+                    className={
+                      props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                    }
+                  />
+                ) : (
+                  ""
+                )}
                 <br />
                 <br />
                 <br />
@@ -849,16 +860,13 @@ export default function Searchlist(props) {
                           ? classes.readtweet_dark_mode
                           : classes.readtweet
                       }
-                      // variant="h5"
-                      // style={{ whiteSpace: "nowrap" }}
                     >
                       Search Results
                     </Typography>
                   </Row>
                   {isLoading ? (
                     <Loader />
-                  ) : (
-                    basic?.length === 0 ? (
+                  ) : basic?.length === 0 ? (
                     <div className="table-data-message">No Result Found</div>
                   ) : (
                     basic &&
@@ -892,9 +900,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -944,11 +958,11 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })
-                  ))}
+                  )}
 
                   {advance &&
                     advance.length >= 1 &&
@@ -979,9 +993,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -1032,7 +1052,7 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })}

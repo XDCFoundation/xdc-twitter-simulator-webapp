@@ -180,54 +180,36 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
-  "@media (min-width: 2001px)": {
+  "@media (min-width: 2000px)": {
     mainLoaderRow: {
-      width: '500px',
-      height: '100%',
+      width: "500px",
+      height: "100%",
     },
   },
 }));
 export default function TweetArchive(props) {
   const classes = useStyles();
+  const textId = useParams();
   const [search, setSearch] = useState({});
   const [advanceSearch, setAdvancesearch] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  const userId = useParams();
-  const textId = useParams();
+  // mode: 
+  
+  const getMode = () => {
+    return JSON.parse(localStorage.getItem("mode")) || false;
+  };
+  const [dark, setMode] = useState(getMode());
 
-  // console.log('pr--',props?.location)
+  const CheckMode = (mode) => {
+    // console.log('hello--',mode ? "Dark" : "Light",mode)
+    localStorage.setItem("mode", mode);
+    setMode(mode)
+  }
 
-  useEffect(() => {
-    fetchbyBasicSearch();
-  }, []);
   useEffect(() => {
     fetchbyAdvanceSearch();
   }, []);
-  const fetchbyBasicSearch = () => {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET +
-          userId?.tweet
-      )
-      .then((res) => {
-        let basicarchiveTweet = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          basicarchiveTweet = [];
-        else basicarchiveTweet = res.data.responseData.responseData || 0;
-        setSearch(basicarchiveTweet);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("error-----", err);
-      });
-  };
 
   const fetchbyAdvanceSearch = () => {
     axios
@@ -237,6 +219,7 @@ export default function TweetArchive(props) {
           textId?.tweet
       )
       .then((res) => {
+        // console.log('res',res.data.responseData[0])
         let advancearchiveTweet = [];
         if (
           !res &&
@@ -245,12 +228,12 @@ export default function TweetArchive(props) {
           res.data.responseData[0].length <= 0
         )
           advancearchiveTweet = [];
-        else advancearchiveTweet = res.data.responseData.responseData || 0;
+        else advancearchiveTweet = res.data.responseData || 0;
         setAdvancesearch(advancearchiveTweet);
         setLoading(false);
       })
       .catch((err) => {
-        console.log("error-----", err);
+        console.log("er--", err);
       });
   };
 
@@ -258,14 +241,6 @@ export default function TweetArchive(props) {
   let createBasicTime = search[0]?.createdAt || "-";
   let date = moment(createBasicTime).format("LL");
   let time = moment(createBasicTime).format("LT");
-  // let time = moment(search[0]?.addedOn).format("LL") || "undefined";
-  // let date = moment(search[0]?.addedOn).format("LT") || "undefined";
-  // let handler = value?.slice(0, 10) || 0;
-  // let name = handler?.split("@")[1] || 0;
-  // let icon = name?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase() || 0
-  // let link = value?.split("https://")[1];
-  // let tweetTextMessage = value?.split(":")[1];
-  // let dummyHandle = name?.slice(0, value?.length).replace(/\s/g, "").toLowerCase() || 0
 
   let advanceValue = advanceSearch[0]?.text || "";
   let advanceName = advanceSearch[0]?.name || "-";
@@ -275,20 +250,19 @@ export default function TweetArchive(props) {
   let advanceIcon =
     advanceName[0]
       ?.split(" ")
-      .map((x) => x.charAt(0))
-      .join("")
-      .substr(0, 1)
-      .toUpperCase() || "-";
-  // const advanceAtIndex = advanceValue?.indexOf("@");
-  // let advanceHandler = advanceValue?.slice(advanceAtIndex, 10);
-  // let advanceName = advanceHandler?.split("@")[1];
-  // let advanceIcon = advanceName?.split(' ').map(x => x.charAt(0)).join('').substr(0, 1).toUpperCase()
-  // let advanceDummyHandle = advanceName?.slice(0, value?.length).replace(/\s/g, "").toLowerCase()
+      ?.map((x) => x.charAt(0))
+      ?.join("")
+      ?.substr(0, 1)
+      ?.toUpperCase() || "-";
+  let handle = "@"+ advanceName
+    ?.slice(0, advanceName?.length)
+    ?.replace(/\s/g, "")
+    ?.toLowerCase();
 
   return (
     <>
       {/* <HeaderComponent archiveId={userId?.tweet} /> */}
-      <Header />
+      <Header CheckMode={CheckMode} />
       <br />
       {isLoading ? (
         <Grid xs={12}>
@@ -349,7 +323,7 @@ export default function TweetArchive(props) {
       ) : (
         <Grid xs={12}>
           <Mainbox>
-            <Row>
+            <Row className={classes.mainLoaderRow}>
               <Container>
                 <Column className={classes.mainColumn}>
                   <Row>
@@ -372,7 +346,9 @@ export default function TweetArchive(props) {
                         {advanceSearch ? advanceName : "-"}
                       </Row>
                       <Row>
-                        <Email>{/* {handler || 0} */}</Email>
+                        <Email>
+                          {/* {advanceSearch ? handle : ""} */}
+                          </Email>
                       </Row>
                     </Name>
                   </Row>

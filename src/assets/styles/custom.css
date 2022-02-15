@@ -2068,6 +2068,11 @@ input:focus {
    border: none
 }
 
+.listing-content {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .parentSecondhead{
   width: 100%;
 }
