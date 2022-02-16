@@ -135,6 +135,9 @@ const Search = styled.input`
     color: #adb1d6;
     opacity: 1;
   }
+  :focus {
+    outline: none;
+  }
 `;
 const MobSearch = styled.input`
   width: 100%;
@@ -150,6 +153,9 @@ const MobSearch = styled.input`
   ::placeholder {
     color: #adb1d6;
     opacity: 1;
+  }
+  :focus {
+    outline: none;
   }
 `;
 const Button = styled.button`
@@ -477,6 +483,12 @@ export default function HeaderComponent(props) {
               type="text"
               placeholder="Search by Handle name, Hash tag"
               onChange={(e) => setKeyword(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setKeyword(e.target.value)
+                  redirect();
+                }
+              }}
             />
             <Button onClick={redirect}>
               <img
@@ -562,6 +574,12 @@ export default function HeaderComponent(props) {
                   type="text"
                   placeholder="Search by Handle name, Hash tag"
                   onChange={(e) => setKeyword(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      setKeyword(e.target.value)
+                      redirect();
+                    }
+                  }}
                 />
                 <MobButton onClick={redirect}>
                   <img
@@ -590,9 +608,9 @@ function RenderDropdown() {
   return (
     <UnorderedList>
       <List>
-        <ListImg src="../../images/facebook.svg" alt=" " />
+        <ListImg src="../../images/facebook.svg" alt="" />
         <AnchorTag
-          href={socialMediaLinks.FACEBOOK_LINK}
+          href={socialMediaLinks.SHARE_FACEBOOK_LINK}
           target="_blank"
         >
           Facebook
@@ -600,9 +618,9 @@ function RenderDropdown() {
       </List>
       <Border></Border>
       <List>
-        <ListImg src="../../images/twitter.svg" alt=" " />
+        <ListImg src="../../images/twitter.svg" alt="" />
         <AnchorTag
-          href={socialMediaLinks.TWITTER_LINK}
+          href={socialMediaLinks.SHARE_TWITTER_LINK}
           target="_blank"
         >
           Twitter
@@ -610,16 +628,16 @@ function RenderDropdown() {
       </List>
       <Border></Border>
       <List>
-        <ListImg src="../../images/telegram.svg" alt=" " />
+        <ListImg src="../../images/telegram.svg" alt="" />
         <AnchorTag href={socialMediaLinks.TELEGRAM_LINK} target="_blank">
           Telegram
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
-        <ListImg src="../../images/linkedin.svg" alt=" " />
+        <ListImg src="../../images/linkedin.svg" alt="" />
         <AnchorTag
-          href={socialMediaLinks.LINKED_LINK}
+          href={socialMediaLinks.SHARE_LINKEDIN_LINK}
           target="_blank"
         >
           Linkedin
@@ -627,7 +645,7 @@ function RenderDropdown() {
       </List>
       <Border></Border>
       <List>
-        <ListImg src="../../images/reddit.svg" alt=" " />
+        <ListImg src="../../images/reddit.svg" alt="" />
         <AnchorTag href={socialMediaLinks.REDDIT_LINK} target="_blank">
           Reddit
         </AnchorTag>

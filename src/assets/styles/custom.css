@@ -304,7 +304,10 @@ input:focus {
   flex-direction: row;
   white-space: nowrap;
 }
-
+.table-data-message{
+  display: flex;
+  justify-content: center;
+}
 .wordTruncating{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2063,6 +2066,11 @@ input:focus {
   background-color: transparent;
    color: white;
    border: none
+}
+
+.listing-content {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .parentSecondhead{

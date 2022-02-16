@@ -491,7 +491,7 @@ export default function Searchlist(props) {
           res.data.responseData[0].length <= 0
         )
           advanceSearch = [];
-        else advanceSearch = res.data.responseData || "Not Found";
+        else advanceSearch = res.data.responseData || "";
         setAdvance(advanceSearch);
       })
       .catch((err) => {
@@ -499,7 +499,8 @@ export default function Searchlist(props) {
       });
   };
   // let method = '@user'
-
+  // console.log("bas--", basic);
+  // console.log("adv--", advance);
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
@@ -512,18 +513,7 @@ export default function Searchlist(props) {
             <div>
               <HomeIcon />
             </div>
-            <div className="dashboard-name">
-              {/* <a
-                style={{
-                  color: "white",
-                  cursor: "pointer",
-                  textDecoration: "none",
-                }}
-                href="/"
-              > */}
-              Dashboard
-              {/* </a> */}
-            </div>
+            <div className="dashboard-name">Dashboard</div>
           </button>
         </div>
 
@@ -542,15 +532,25 @@ export default function Searchlist(props) {
                           ? classes.readtweet_dark_mode
                           : classes.readtweet
                       }
-                      // variant="h5"
-                      // style={{ whiteSpace: "nowrap" }}
                     >
                       Search Results
                     </Typography>
                   </Row>
 
                   {isLoading ? (
+                    <hr
+                      className={
+                        props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                      }
+                    />
+                  ) : (
+                    ""
+                  )}
+
+                  {isLoading ? (
                     <Loader />
+                  ) : basic?.length === 0 ? (
+                    <div className="table-data-message">No Result Found</div>
                   ) : (
                     basic &&
                     basic.length >= 1 &&
@@ -563,7 +563,6 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || "";
 
                       let textId = response?.id || 0;
-                      // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
@@ -583,9 +582,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -633,7 +638,7 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })
@@ -668,9 +673,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -708,7 +719,6 @@ export default function Searchlist(props) {
                                         ? classes.content_dark_mode
                                         : classes.content
                                     }
-                                    // gutterBottom
                                   >
                                     <div className="listingPagetruncating">
                                       {value.length > 0
@@ -719,16 +729,20 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })}
                 </Column>
-                <hr
-                  className={
-                    props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                  }
-                />
+                {!isLoading ? (
+                  <hr
+                    className={
+                      props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                    }
+                  />
+                ) : (
+                  ""
+                )}
                 <br />
                 <br />
                 <br />
@@ -846,14 +860,16 @@ export default function Searchlist(props) {
                           ? classes.readtweet_dark_mode
                           : classes.readtweet
                       }
-                      // variant="h5"
-                      // style={{ whiteSpace: "nowrap" }}
                     >
                       Search Results
                     </Typography>
                   </Row>
-
-                  {basic &&
+                  {isLoading ? (
+                    <Loader />
+                  ) : basic?.length === 0 ? (
+                    <div className="table-data-message">No Result Found</div>
+                  ) : (
+                    basic &&
                     basic.length >= 1 &&
                     basic.map((response, index) => {
                       let value = response?.text || 0;
@@ -863,7 +879,7 @@ export default function Searchlist(props) {
                       let timeFormat = moment(str) || 0;
                       let time = timeFormat.format("LT") || 0;
 
-                      let userId = response?.tweetId || 0;
+                      let textId = response?.id || 0;
                       // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
@@ -884,9 +900,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + userId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -936,10 +958,11 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
-                    })}
+                    })
+                  )}
 
                   {advance &&
                     advance.length >= 1 &&
@@ -970,9 +993,15 @@ export default function Searchlist(props) {
                                 : classes.hr_page
                             }
                           />
-                          <a
-                            style={{ textDecoration: "none" }}
-                            href={"/archive/" + textId}
+                          <div
+                            className="listing-content"
+                            onClick={() =>
+                              history.push({
+                                pathname: "/archive/" + textId,
+                                state: props.dark,
+                              })
+                            }
+                            // href={"/archive/" + textId}
                           >
                             <Row key={index}>
                               <Typography
@@ -1023,7 +1052,7 @@ export default function Searchlist(props) {
                                 </ThemeProvider>
                               </Column>
                             </Row>
-                          </a>
+                          </div>
                         </>
                       );
                     })}
