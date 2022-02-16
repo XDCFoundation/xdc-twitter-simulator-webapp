@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     overflow: "auto",
     msOverflowStyle: "none",
-    maxHeight: 355,
+    maxHeight: 413,
     "&::-webkit-scrollbar": {
       display: "none",
     },
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     overflow: "auto",
     msOverflowStyle: "none",
-    maxHeight: 355,
+    maxHeight: 413,
     "&::-webkit-scrollbar": {
       display: "none",
     },

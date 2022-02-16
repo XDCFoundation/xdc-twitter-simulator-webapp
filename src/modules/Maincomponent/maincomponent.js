@@ -24,6 +24,7 @@ import _ from "lodash";
 import io from "socket.io-client";
 import { dispatchAction } from "../../utility";
 import { connect } from "react-redux";
+import Speedometer from "./speedometer";
 
 const IconImg = styled.img`
   margin-left: 10px;
@@ -198,10 +199,11 @@ const useStyles = makeStyles((theme) => ({
   },
   map: {
     display: "flex",
+    justifyContent: "space-between",
     flexDirection: "row",
-    justifyContent: "spaceAround",
     height: "95.5%",
     width: "100%",
+    padding: "0 28px 0 0",
     marginTop: "-18px",
     boxShadow: "0px 2px 30px #0000001A",
     border: "1px solid #E3E7EB",
@@ -217,8 +219,9 @@ const useStyles = makeStyles((theme) => ({
   },
   map_dark_mode: {
     display: "flex",
+    justifyContent: "space-between",
     flexDirection: "row",
-    justifyContent: "spaceAround",
+    padding: "0 28px 0 0px",
     color: "white",
     marginTop: "-18px",
     backgroundColor: "#191d43",
@@ -248,11 +251,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
-    marginLeft: "20px",
+    marginLeft: "30px",
   },
   "@media (min-width: 301px) and (max-width: 766px)": {
     node: {
@@ -275,11 +278,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
-    marginLeft: "20px",
+    marginLeft: "30px",
     color: "white",
     backgroundColor: "#191d43",
   },
@@ -309,7 +312,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.17,
     letterSpacing: "normal",
     marginLeft: "5%",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
@@ -342,7 +345,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.17,
     letterSpacing: "normal",
     marginLeft: "5%",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
@@ -409,7 +412,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "9px",
     boxShadow: "none",
     width: "100%",
-    height: "93.2%",
+    height: "94.2%",
     boxShadow: "0px 2px 30px #0000001A",
     border: "1px solid #E3E7EB",
     borderRadius: "5px",
@@ -425,7 +428,7 @@ const useStyles = makeStyles((theme) => ({
   top_dark_mode: {
     marginTop: "18px",
     marginRight: "9px",
-    height: "93.2%",
+    height: "94.2%",
     width: "98.5%",
     backgroundColor: "#191d43",
     boxShadow: "0px 2px 30px #0000001A",
@@ -607,8 +610,8 @@ function MainComponent(props) {
     <div className={dark ? classes.main_dark_mode : classes.main}>
       <Desktop>
         <div className={dark ? classes.root_dark_mode : classes.root}>
-          <Grid  container spacing={3}>
-            <Grid style={{padding: '19px'}} item xs={6}>
+          <Grid container spacing={3}>
+            <Grid style={{ padding: "19px" }} item xs={6}>
               <Row className="justify-space-between w-100">
                 <Row className="w-100">
                   <Grid item xs={6} className={classes.grid}>
@@ -733,28 +736,6 @@ function MainComponent(props) {
                       >
                         <div
                           className={
-                            props.dark ? classes.node_dark_mode : classes.node
-                          }
-                        >
-                          <div className="tippyAdjustments">
-                            Nodes
-                            <Tippy
-                              placement={"top"}
-                              theme={"light"}
-                              maxWidth={180}
-                              content={
-                                <span className="tippyBlockstyle">
-                                  Current Active Nodes
-                                </span>
-                              }
-                            >
-                              <IconImg src="../../images/ic.png" />
-                            </Tippy>
-                          </div>
-                          {nodeLength}
-                        </div>
-                        <div
-                          className={
                             props.dark
                               ? classes.maxTps_dark_mode
                               : classes.maxTps
@@ -780,9 +761,35 @@ function MainComponent(props) {
                             ? "-"
                             : parseFloat(tpsCount / 60).toFixed(2)}{" "}
                           / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                          <div>
+                            <Speedometer tpsCount={parseFloat(tpsCount / 60).toFixed(2)}/>
+                          </div>
                         </div>
 
+                        {/* ll */}
                         <div className="nodeMapBlock">
+                          <div
+                            className={
+                              props.dark ? classes.node_dark_mode : classes.node
+                            }
+                          >
+                            <div className="tippyAdjustments">
+                              Nodes
+                              <Tippy
+                                placement={"top"}
+                                theme={"light"}
+                                maxWidth={180}
+                                content={
+                                  <span className="tippyBlockstyle">
+                                    Current Active Nodes
+                                  </span>
+                                }
+                              >
+                                <IconImg src="../../images/ic.png" />
+                              </Tippy>
+                            </div>
+                            {nodeLength}
+                          </div>
                           <NodeChart dark={dark} />
                         </div>
                       </div>
@@ -792,7 +799,7 @@ function MainComponent(props) {
               </Row>
             </Grid>
 
-            <Grid style={{padding: '19px'}} item xs={6}>
+            <Grid style={{ padding: "19px" }} item xs={6}>
               <Text
                 className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
@@ -822,7 +829,12 @@ function MainComponent(props) {
               </Paper>
             </Grid>
 
-            <Grid style={{padding: '19px'}} item xs={6} className={classes.grid3}>
+            <Grid
+              style={{ padding: "19px" }}
+              item
+              xs={6}
+              className={classes.grid3}
+            >
               <SaveGraphTrend>
                 <SavedTweets
                   dark={dark}
@@ -831,7 +843,12 @@ function MainComponent(props) {
                 />
               </SaveGraphTrend>
             </Grid>
-            <Grid style={{padding: '19px'}} item xs={6} className={classes.grid3}>
+            <Grid
+              style={{ padding: "19px" }}
+              item
+              xs={6}
+              className={classes.grid3}
+            >
               <ReadGraphTrend>
                 <ReadTweets dark={dark} readed={props.readSocket} />
               </ReadGraphTrend>
@@ -996,7 +1013,7 @@ function MainComponent(props) {
             </Grid>
           </Column>
           <Column>
-            <Grid  item xs={12} className={classes.topTrend}>
+            <Grid item xs={12} className={classes.topTrend}>
               <Text
                 className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
@@ -1026,7 +1043,7 @@ function MainComponent(props) {
               </Paper>
             </Grid>
           </Column>
-          <Column >
+          <Column>
             <Grid item xs={12} className={classes.grid3}>
               <Paper
                 className={
