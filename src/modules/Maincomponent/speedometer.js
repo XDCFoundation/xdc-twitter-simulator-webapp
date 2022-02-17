@@ -7,7 +7,8 @@ const MainDiv = styled.div`
 `;
 
 export default function Speedometer(props) {
-  let v = 290;
+  let val = props.tpsCount;
+  let mode = props.dark === true ? "white" : "black";
 
   return (
     <MainDiv>
@@ -16,17 +17,17 @@ export default function Speedometer(props) {
         height={137}
         forceRender={false}
         needleHeightRatio={0.6}
-        needleColor={"black"}
+        needleColor={mode}
         needleTransitionDuration={9000}
         needleTransition="easeQuadInOut"
         maxSegmentLabels={5}
         segments={5}
-        customSegmentStops={[0, 200, 400, 600, 800, 1000]}
+        customSegmentStops={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]}
         minValue={0}
-        maxValue={1000}
+        maxValue={0.6}
         ringWidth={20}
         segmentColors={["#68D0E2", "#68D0E2", "#68D0E2", "#D6E0FF", "#D6E0FF"]}
-        value={v}
+        value={val}
         currentValueText=" "
       ></ReactSpeedometer>
     </MainDiv>
