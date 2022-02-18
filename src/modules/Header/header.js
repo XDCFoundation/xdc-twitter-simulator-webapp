@@ -466,7 +466,7 @@ export default function HeaderComponent(props) {
           </About>
         </div>
         &nbsp;
-        <div className="headerlistCommonrows">
+        {/* <div className="headerlistCommonrows">
           <Contact>
             <a
               className="headerlinkStyle"
@@ -475,7 +475,7 @@ export default function HeaderComponent(props) {
               Contact
             </a>
           </Contact>
-        </div>
+        </div> */}
         &nbsp;
         <div className="headerlistSepraterow">
           <div>Share</div>
@@ -522,7 +522,7 @@ export default function HeaderComponent(props) {
             </a>
             <Search
               type="text"
-              placeholder="Search by Handle name, Hash tag"
+              placeholder="Search by keyword"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -551,12 +551,12 @@ export default function HeaderComponent(props) {
                 About
               </a>
             </About>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Contact>
               <a className="headerlinkStyle" href="#">
                 Contact
               </a>
-            </Contact>
+            </Contact> */}
             <FFButton />
             <Line> </Line>
             <Archive>
@@ -591,12 +591,12 @@ export default function HeaderComponent(props) {
                   About
                 </a>
               </About>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Contact>
                 <a className="headerlinkStyle" href="#">
                   Contact
                 </a>
-              </Contact>
+              </Contact> */}
               <FFButton />
               <Line> </Line>
               <Archive>
@@ -614,7 +614,7 @@ export default function HeaderComponent(props) {
           <SecondTabDiv>
             <Search
               type="text"
-              placeholder="Search by Handle name, Hash tag"
+              placeholder="Search by keyword"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -676,7 +676,7 @@ export default function HeaderComponent(props) {
               <div className="headerSecondRow">
                 <MobSearch
                   type="text"
-                  placeholder="Search by Handle name, Hash tag"
+                  placeholder="Search by keyword"
                   onChange={(e) => setKeyword(e.target.value)}
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {

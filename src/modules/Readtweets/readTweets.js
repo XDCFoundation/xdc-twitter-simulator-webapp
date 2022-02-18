@@ -278,27 +278,10 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
 
-  const [authors, setAuthors] = useState({});
-
-  // let handle = props?.author
-  // console.log('so--',props?.tweetreadData)
-
-  useEffect(() => {
-    userHandle();
-  }, [props?.author]);
-
   useEffect(() => {
     // console.log('fire--',props.tweetData);
   }, [props.tweetreadData]);
 
-  async function userHandle() {
-    if (props?.author && props?.author?.length >= 1) {
-      setAuthors(props?.author);
-    }
-  }
-
-  // let method = authors?.username
-  // console.log('method------', method)
 
   let text = props.tweetreadData[0]?.text;
   let animationclass = props.animationTime?.[text];
@@ -328,8 +311,6 @@ export default function ReadTweets(props) {
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
-                  // variant="h5"
-                  // style={{ whiteSpace: "nowrap" }}
                 >
                   Read Tweets
                   <Tippy
@@ -424,12 +405,10 @@ export default function ReadTweets(props) {
                             }
                           >
                             <div className="wordTruncating">
-                            {authorName.length > 0
+                            {authorName?.length > 0
                               ? "@" + authorName
                               : author || "-"}
                               </div>
-                            {/* {author}<br/> */}
-                            {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>
 
                           <ThemeProvider theme={theme}>

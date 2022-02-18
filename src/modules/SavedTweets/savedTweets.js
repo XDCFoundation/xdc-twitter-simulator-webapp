@@ -293,7 +293,7 @@ export default function SavedTweets(props) {
   let textdarkanimationClass = props.textDarkclass?.[text];
 
   // console.log('texx--',textdarkanimationClass)
-  let a = props?.tweetData?.sort((a, b) => a.createdAt.localeCompare(b.createdAt)) || "";
+  let a = props?.tweetData?.sort((a, b) => b.createdAt.localeCompare(a.createdAt)) || "";
 
   return (
     <Grid Container spacing={3}>

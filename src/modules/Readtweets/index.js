@@ -18,9 +18,9 @@ export default class Read extends BaseComponent {
       authors: {},
     };
   }
+
   async componentDidMount() {
     await this.fetchTweets();
-    // await this.userHandle();
     this.socketData(this.props?.readed);
   }
 
@@ -104,70 +104,9 @@ export default class Read extends BaseComponent {
       .catch((err) => {
         console.log(err);
       });
-
-    // setInterval(async () => {
-    //   if (!this.state.blockSocketConnected) {
-    //     await axios
-    //       .get(
-    //         process.env.REACT_APP_BASE_URL_TWITTER +
-    //           process.env.REACT_APP_READ_TWEET
-    //       )
-
-    //       .then((res) => {
-    //         let tweetResponse;
-    //         let alltweets;
-    //         if (
-    //           !res &&
-    //           !res.data &&
-    //           !res.data.responseData &&
-    //           res.data.responseData.length <= 0
-    //         )
-    //           tweetResponse = [];
-    //         else tweetResponse = res.data.responseData[0];
-    //         alltweets = res.data.responseData[1];
-
-    //         this.setState({ readtweets: tweetResponse });
-    //         this.setState({ totaltweets: alltweets });
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   }
-    // }, 10000);
-  }
-
-  async userHandle() {
-    (this.state?.readtweets).map((item, index) => {
-      let handle = item?.authorId || 0;
-      // console.log('items2--', handle)
-      axios
-        .get(
-          process.env.REACT_APP_BASE_URL_TWITTER +
-            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-            handle
-        )
-        .then((res) => {
-          // setAuthors(res.data.responseData?.data[0]);
-          this.setState({
-            authors: res?.data?.responseData?.data[0]?.username,
-          });
-          // console.log('hand---', res.data.responseData?.data[0]?.username)
-        })
-        .catch((err) => {
-          if (
-            this?.state?.authors &&
-            this?.state?.authors?.length == 0
-          ) {
-            console.log(err);
-          }
-        });
-    });
   }
 
   render() {
-    // console.log('this--',this.props?.readed)
-    //   console.log("saveindexTweets------", this.state.readtweets);
-    // console.log("saveCountTweets------", this.state.totaltweets);
     return (
       <div>
         <ReadTweets 
