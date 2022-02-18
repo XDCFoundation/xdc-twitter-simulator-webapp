@@ -78,7 +78,7 @@ function NodeChart(props) {
                   strokeLinejoin="round"
                   transform="translate(-12, -24)"
                 >
-                  <circle cx="12" cy="" r="9" />
+                  <circle cx="12" cy="0" r="9" />
                 </g>
               </Marker>
             ))}

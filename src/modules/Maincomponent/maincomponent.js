@@ -124,6 +124,12 @@ const ReloadImg = styled.img`
   width: 20px;
   height: 20px;
   margin-left: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -667,6 +673,27 @@ const TabResponsive = styled.div`
 function MainComponent(props) {
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
+  let tpsCount = props?.save;
+
+  const [steps, setSteps] = useState(1);
+  const [meterValue, setMeterValue] = useState();
+  const [clicks, setClicks] = useState("");
+
+  const click = () => {
+    setSteps(2);
+    setMeterValue(parseFloat(tpsCount / 60)?.toFixed(2) || 0);
+    setClicks(true);
+    setInterval(() => {
+      setClicks("");
+    }, 2000);
+  };
+  const secondClick = () => {
+    setSteps(1);
+    setClicks(true);
+    setInterval(() => {
+      setClicks("");
+    }, 2000);
+  };
 
   let nodeLength = props?.stats?.markers?.length || 0;
 
@@ -706,8 +733,8 @@ function MainComponent(props) {
   }, [props.dark]);
 
   // let tpsCount = (count.totalTransactions / 60).toFixed(1);
-  let tpsCount = props?.save;
-  let maxtpsCount = parseFloat(maxtpsvalue?.responseData).toFixed(2);
+
+  let maxtpsCount = parseFloat(maxtpsvalue?.responseData)?.toFixed(2);
   let id = props?.read || 0;
   let savingData = props?.saveGraphdata;
   let readingData = props?.readGraphdata;
@@ -879,12 +906,35 @@ function MainComponent(props) {
                             ? "-"
                             : parseFloat(tpsCount / 60).toFixed(2)}{" "}
                           / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
-                          <ReloadImg
-                            onClick={() => props.savingSpeed()}
-                            src="/images/reload-icon.svg"
-                          />
+                          {(() => {
+                            switch (steps) {
+                              case 1:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={click}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              case 2:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={secondClick}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              default:
+                                return;
+                            }
+                          })()}
                           <div>
                             <Speedometer
+                              clicks={clicks}
+                              steps={steps}
+                              meterValue={meterValue}
                               dark={dark}
                               tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
                             />
@@ -1098,12 +1148,35 @@ function MainComponent(props) {
                 </div>
                 {isNaN(tpsCount) ? "-" : parseFloat(tpsCount / 60).toFixed(2)} /{" "}
                 {isNaN(maxtpsCount) ? "-" : maxtpsCount}
-                <ReloadImg
-                  onClick={() => props.savingSpeed()}
-                  src="/images/reload-icon.svg"
-                />
+                {(() => {
+                  switch (steps) {
+                    case 1:
+                      return (
+                        <>
+                          <ReloadImg
+                            onClick={click}
+                            src="/images/reload-icon.svg"
+                          />
+                        </>
+                      );
+                    case 2:
+                      return (
+                        <>
+                          <ReloadImg
+                            onClick={secondClick}
+                            src="/images/reload-icon.svg"
+                          />
+                        </>
+                      );
+                    default:
+                      return;
+                  }
+                })()}
                 <div>
                   <Speedometer
+                    clicks={clicks}
+                    steps={steps}
+                    meterValue={meterValue}
                     dark={dark}
                     tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
                   />
@@ -1315,14 +1388,37 @@ function MainComponent(props) {
                             ? "-"
                             : parseFloat(tpsCount / 60).toFixed(2)}{" "}
                           / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
-                          <ReloadImg
-                            onClick={() => props.savingSpeed()}
-                            src="/images/reload-icon.svg"
-                          />
+                          {(() => {
+                            switch (steps) {
+                              case 1:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={click}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              case 2:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={secondClick}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              default:
+                                return;
+                            }
+                          })()}
                         </ActiveSpan>
                       </ActiveTpsColor>
                       <Meter>
                         <Speedometer
+                          clicks={clicks}
+                          steps={steps}
+                          meterValue={meterValue}
                           dark={dark}
                           tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
                         />
