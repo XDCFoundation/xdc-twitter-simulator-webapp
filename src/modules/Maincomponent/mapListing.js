@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     overflow: "auto",
     msOverflowStyle: "none",
-    maxHeight: 355,
+    maxHeight: 413,
     "&::-webkit-scrollbar": {
       display: "none",
     },
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     overflow: "auto",
     msOverflowStyle: "none",
-    maxHeight: 355,
+    maxHeight: 413,
     "&::-webkit-scrollbar": {
       display: "none",
     },
@@ -77,15 +77,17 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "-15px",
     },
   },
-  "@media (min-width: 767px) and (max-width: 1000px)": {
+  "@media (min-width: 768px) and (max-width: 1024px)": {
     root: {
+      width: '112%',
       marginLeft: "-15px",
     },
     dark_root: {
-      marginLeft: "-15px",
+      width: "107.5%",
+      marginLeft: '-18px'
     },
   },
-  "@media (min-width: 1000px) and (max-width: 1250px)": {
+  "@media (min-width: 1025px) and (max-width: 1250px)": {
     root: {
       marginLeft: "-15px",
     },

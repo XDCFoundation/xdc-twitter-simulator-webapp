@@ -29,7 +29,6 @@ export default class Saved extends BaseComponent {
   socketData(socket) {
     let savingtweets = this.state.savedTweets;
     socket.on("BlockChain-socket", (blockData, error) => {
-      // console.log('>>>>>savetweet', blockData)
       this.setState({ blockSocketConnected: true });
       // let blockDataExist = savingtweets.findIndex((item) => {
       //   return item.text == blockData.text;
@@ -126,42 +125,9 @@ export default class Saved extends BaseComponent {
         console.log(err);
       });
 
-    // setInterval(async () => {
-    //   if (!this.state.blockSocketConnected) {
-    //     await axios
-    //       .get(
-    //         process.env.REACT_APP_SPEED_TEST_URL +
-    //           process.env.REACT_APP_SAVED_TWEET
-    //       )
-
-    //       .then((res) => {
-    //         let tweetResponse;
-    //         let allSaveTweets;
-    //         if (
-    //           !res &&
-    //           !res.data &&
-    //           !res.data.responseData &&
-    //           res.data.responseData.length <= 0
-    //         )
-    //           tweetResponse = [];
-    //         else tweetResponse = res.data.responseData[0] || 0;
-    //         allSaveTweets = res.data.responseData[1] || 0;
-
-    //         this.setState({ savedTweets: tweetResponse });
-    //         this.setState({ totalSaveTweet: allSaveTweets });
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   }
-    // }, 10000);
   }
 
   render() {
-    // console.log("saveindexTweets------", this.state.savedTweets);
-    // console.log("saveCountTweets------", this.state.totalSaveTweet);
-    // console.log('saveprop---',this.props.savingCount)
-    // console.log('mycount--',this.state.savingtweetsCount)
     return (
       <div>
         <SavedTweets 

@@ -292,6 +292,11 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "30px",
     },
   },
+  "@media (min-width: 768px) and (max-width: 1024px)": {
+    readTweetContainer: {
+      marginTop: "54px",
+    },
+  },
 }));
 
 export default function ReadTweets(props) {

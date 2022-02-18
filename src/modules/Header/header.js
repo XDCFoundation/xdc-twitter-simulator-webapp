@@ -16,9 +16,7 @@ import { Row } from "react-bootstrap";
 import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
 // import Drawer from './drawer';
-import {
-  socialMediaLinks
-} from "../../constants";
+import { socialMediaLinks } from "../../constants";
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles({
@@ -47,6 +45,11 @@ const Container = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    height: 150px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 const MobileContainer = styled.div`
   width: 100%;
@@ -57,12 +60,28 @@ const MobileContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+const FirstTabDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  /* column-gap: 86px; */
+  padding-top: 10px;
+`;
+const SecondTabDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 25px 0 21px 0px;
+`;
 const SubContainer1 = styled.div`
   display: flex;
   background-color: #2149b9;
   flex-flow: row nowrap;
   align-items: center;
   margin-left: 50px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-left: 4px;
+  }
 `;
 const SubContainer2 = styled.div`
   display: flex;
@@ -71,6 +90,9 @@ const SubContainer2 = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   margin-right: 60px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-right: 19px;
+  }
 `;
 
 // const SubContainer3 = styled.div`
@@ -138,6 +160,10 @@ const Search = styled.input`
   :focus {
     outline: none;
   }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 561px;
+    height: 33px;
+  }
 `;
 const MobSearch = styled.input`
   width: 100%;
@@ -168,6 +194,10 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 42px;
+    height: 33px;
+  }
 `;
 
 const MobButton = styled.button`
@@ -324,10 +354,10 @@ const ArrowUpIcon = styled.span`
 `;
 
 const Display = styled.div`
-  @media (min-width: 0px) and (max-width: 1250px) {
+  @media (min-width: 0px) and (max-width: 1024px) {
     display: none;
   }
-  @media (max-width: 1250px) {
+  @media (min-width: 1025px) {
     display: visible;
   }
 `;
@@ -335,10 +365,18 @@ const MobileResponsive = styled.div`
   @media (min-width: 0px) and (max-width: 767px) {
     display: visible;
   }
-  @media (min-width: 767px) and (max-width: 1250px) {
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const TabResponsive = styled.div`
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: none;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
     display: visible;
   }
-  @media (min-width: 1250px) {
+  @media (min-width: 1025px) {
     display: none;
   }
 `;
@@ -430,7 +468,10 @@ export default function HeaderComponent(props) {
         &nbsp;
         <div className="headerlistCommonrows">
           <Contact>
-            <a className="headerlinkStyle" href={socialMediaLinks.CONTACT_US_LINK}>
+            <a
+              className="headerlinkStyle"
+              href={socialMediaLinks.CONTACT_US_LINK}
+            >
               Contact
             </a>
           </Contact>
@@ -485,7 +526,7 @@ export default function HeaderComponent(props) {
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
-                  setKeyword(e.target.value)
+                  setKeyword(e.target.value);
                   redirect();
                 }
               }}
@@ -512,10 +553,7 @@ export default function HeaderComponent(props) {
             </About>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Contact>
-              <a
-                className="headerlinkStyle"
-                href="#"
-              >
+              <a className="headerlinkStyle" href="#">
                 Contact
               </a>
             </Contact>
@@ -534,6 +572,72 @@ export default function HeaderComponent(props) {
           </SubContainer2>
         </Container>
       </Display>
+
+      <TabResponsive>
+        <Container>
+          <FirstTabDiv>
+            <SubContainer1>
+              <a href="/">
+                <Image src={require("../Header/TwitterLogo.png")} />
+              </a>
+              <a href="/">
+                <Span>XDC Speed Test</Span>
+              </a>
+            </SubContainer1>
+
+            <SubContainer2>
+              <About>
+                <a className="headerlinkStyle" href="/about">
+                  About
+                </a>
+              </About>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Contact>
+                <a className="headerlinkStyle" href="#">
+                  Contact
+                </a>
+              </Contact>
+              <FFButton />
+              <Line> </Line>
+              <Archive>
+                <a
+                  target="_blank"
+                  className="headerlinkStyle"
+                  href={socialMediaLinks.TWEET_ARCHIVE_LINK}
+                >
+                  Tweet Archive
+                </a>
+              </Archive>
+              <DarkMode CheckMode={CheckMode} />
+            </SubContainer2>
+          </FirstTabDiv>
+          <SecondTabDiv>
+            <Search
+              type="text"
+              placeholder="Search by Handle name, Hash tag"
+              onChange={(e) => setKeyword(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setKeyword(e.target.value);
+                  redirect();
+                }
+              }}
+            />
+            <Button onClick={redirect}>
+              <img
+                className={classes.searchIcon}
+                src="../../images/Search.svg"
+                alt=""
+              />
+            </Button>
+            {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
+
+            <Advancesearch onClick={handleClickforadvancedsearch}>
+              Advance Search
+            </Advancesearch>
+          </SecondTabDiv>
+        </Container>
+      </TabResponsive>
 
       <MobileResponsive>
         <div>
@@ -576,7 +680,7 @@ export default function HeaderComponent(props) {
                   onChange={(e) => setKeyword(e.target.value)}
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
-                      setKeyword(e.target.value)
+                      setKeyword(e.target.value);
                       redirect();
                     }
                   }}
@@ -609,20 +713,14 @@ function RenderDropdown() {
     <UnorderedList>
       <List>
         <ListImg src="../../images/facebook.svg" alt="" />
-        <AnchorTag
-          href={socialMediaLinks.SHARE_FACEBOOK_LINK}
-          target="_blank"
-        >
+        <AnchorTag href={socialMediaLinks.SHARE_FACEBOOK_LINK} target="_blank">
           Facebook
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/twitter.svg" alt="" />
-        <AnchorTag
-          href={socialMediaLinks.SHARE_TWITTER_LINK}
-          target="_blank"
-        >
+        <AnchorTag href={socialMediaLinks.SHARE_TWITTER_LINK} target="_blank">
           Twitter
         </AnchorTag>
       </List>
@@ -636,10 +734,7 @@ function RenderDropdown() {
       <Border></Border>
       <List>
         <ListImg src="../../images/linkedin.svg" alt="" />
-        <AnchorTag
-          href={socialMediaLinks.SHARE_LINKEDIN_LINK}
-          target="_blank"
-        >
+        <AnchorTag href={socialMediaLinks.SHARE_LINKEDIN_LINK} target="_blank">
           Linkedin
         </AnchorTag>
       </List>

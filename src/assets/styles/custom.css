@@ -353,10 +353,10 @@ input:focus {
   letter-spacing: normal;
 }
 
-.nodeMapBlock{
+/* .nodeMapBlock{
   width: 50%;
   margin-left: 5%;
-}
+} */
 
 .mobNodeblock{
   width: 92%;
@@ -790,12 +790,16 @@ input:focus {
     margin-left: -1px;
   }
 }
-@media (min-width: 767px) and (max-width: 1000px){
+@media (min-width: 768px) and (max-width: 1024px){
+  .block{
+    width: 108.5%;
+    margin-left: -14px;
+  }
   .dark-block {
-    width: 104%;
+    width: 104.5%;
     margin-left: 0px;
   }
-  .composableNodemap {
+  /* .composableNodemap {
     fill: #bdc1e5;
     width: 100%;
     margin: 10px 0px 0px 50px;
@@ -806,7 +810,7 @@ input:focus {
     width: 100%;
     margin: 10px 0px 0px 50px;
     height: 139px !important;
-  }
+  } */
 }
 @media (min-width: 1001px) and (max-width: 1400px){
   .dark-block {
@@ -1625,7 +1629,7 @@ input:focus {
 
 .lightmap-style{
   width: 108%;
-  height: 342px;
+  height: 410px;
   z-index: 0;
  margin-top: 19px;
  margin-left: -2px;
@@ -1654,62 +1658,63 @@ input:focus {
     margin-bottom: 20px;
   }
 }
-@media (min-width: 768px) and (max-width: 950px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .lightmap-style {
     width: 108%;
     height: 365px;
-    margin-left: 4px;
+    margin: 20px 0 20px -1px;
     z-index: 0;
     background-color: transparent;
   }
 }
-@media (min-width: 950px) and (max-width: 1024px) {
+/* @media (min-width: 950px) and (max-width: 1024px) {
   .lightmap-style {
     width: 108%;
     height: 365px;
-    margin-left: 4px;
+    margin-left: 0px;
     z-index: 0;
     background-color: transparent;
   }
-}
+} */
 @media (min-width: 1025px) and (max-width: 1200px) {
   .lightmap-style {
     width: 108%;
-    height: 350px;
+    height: 413px;
+    margin: 12px 10px 10px 1px;
     z-index: 0;
     background-color: transparent;
   }
 }
 @media (min-width: 1201px) and (max-width: 1400px) {
   .lightmap-style {
-    width: 108%;
-    height: 350px;
-    margin : 4px 4px 4px 4px;
+    width: 107%;
+    height: 413px;
+    margin: 18px 4px 4px 4px;
     z-index: 0;
     background-color: transparent;
   }
 }
 @media (min-width: 1600px) and (max-width: 1799px) {
   .lightmap-style {
-    width: 108%;
-    height: 345px;
+    width: 110%;
+    height: 410px;
     z-index: 0;
     background-color: transparent;
   }
 }
 @media (min-width: 1800px)  and (max-width: 2000px) {
   .lightmap-style {
-    width: 117%;
-    height: 345px;
+    width: 118%;
+    height: 410px;
     margin-left: -15px;
     z-index: 0;
     background-color: transparent;
   }
 }
-@media (min-width: 2001px) and (max-width: 2300px)  {
+@media (min-width: 2001px)  {
   .lightmap-style {
-    width: 125%;
-    height: 345px;
+    width: 123%;
+    height: 410px;
     margin-left: -15px;
     z-index: 0;
     background-color: transparent;
@@ -1717,9 +1722,9 @@ input:focus {
 }
 
 .darkmap-style{
-  width: 103%;
-  margin-top: 19px;
-  height: 340px;
+  width: 102.3%;
+  margin-top: 20px;
+  height: 408px;
   z-index: 0;
 }
 @media (max-width: 640px) and (orientation: portrait) {
@@ -1742,34 +1747,44 @@ input:focus {
   .darkmap-style {
     width: 100%;
     height: 345px;
+    margin: 23px 0 20px 10px;
     z-index: 0;
   }
 }
 @media (min-width: 1025px) and (max-width: 1200px) {
   .darkmap-style {
-    width: 100%;
-    height: 345px;
+    width: 101%;
+    height: 410px;
     z-index: 0;
   }
 }
 @media (min-width: 1201px) and (max-width: 1400px) {
   .darkmap-style {
     width: 102%;
-    height: 345px;
+    height: 410px;
     z-index: 0;
   }
 }
-@media (min-width: 1800px)  and (max-width: 2100px) {
+@media (min-width: 1600px) and (max-width: 1799px) {
+  .darkmap-style {
+    width: 105%;
+    height: 410px;
+    z-index: 0;
+  }
+}
+@media (min-width: 1800px)  and (max-width: 2000px) {
   .darkmap-style {
     width: 110%;
-    height: 345px;
+    height: 410px;
     z-index: 0;
+    margin: 19px 0px 16px -8px;
   }
 }
-@media (min-width: 2101px) and (max-width: 2300px)  {
+@media (min-width: 2001px)  {
   .darkmap-style {
-    width: 120%;
-    height: 345px;
+    width: 117%;
+    height: 410px;
+    margin: 19px 0 19px -12px;
     z-index: 0;
   }
 }

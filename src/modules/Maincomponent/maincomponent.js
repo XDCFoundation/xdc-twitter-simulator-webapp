@@ -24,6 +24,7 @@ import _ from "lodash";
 import io from "socket.io-client";
 import { dispatchAction } from "../../utility";
 import { connect } from "react-redux";
+import Speedometer from "./speedometer";
 
 const IconImg = styled.img`
   margin-left: 10px;
@@ -45,6 +46,92 @@ const EyeImg = styled.img`
     margin-top: 0px;
   }
 `;
+
+const MobParentSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TpsCount = styled.div`
+  text-align: left;
+  font: normal normal 600 18px/21px Raleway;
+  letter-spacing: 0px;
+  color: #09184b;
+  opacity: 1;
+  padding: 10px 0 0 13px;
+`;
+const TpsCountDark = styled.div`
+  text-align: left;
+  font: normal normal 600 18px/21px Raleway;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  padding: 10px 0 0 13px;
+`;
+const ActiveNodes = styled.div`
+  text-align: left;
+  font: normal normal 600 18px/21px Raleway;
+  color: #09184b;
+  opacity: 1;
+  padding: 10px 0 0 13px;
+`;
+const ActiveNodesDark = styled.div`
+  text-align: left;
+  font: normal normal 600 18px/21px Raleway;
+  color: #ffffff;
+  opacity: 1;
+  padding: 10px 0 0 13px;
+`;
+const Span = styled.div`
+  text-align: left;
+  color: #09184b;
+  opacity: 1;
+  padding-top: 4px;
+`;
+const SpanDark = styled.div`
+  text-align: left;
+  color: #ffffff;
+  opacity: 1;
+  padding-top: 6px;
+`;
+const Meter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -18px;
+  padding-bottom: 10px;
+`;
+const NodeSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const MainDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const FirstSection = styled.div`
+  width: 50%;
+  padding: 30px 0 0 18px;
+`;
+const SecondSection = styled.div`
+  width: 50%;
+`;
+const SecondMainDiv = styled.div`
+  padding: 49px 20px 0 20px;
+`;
+const ReloadImg = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+`;
+
 const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: "#f5f6f9",
@@ -60,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: "59px 60px 45px 56px",
   },
-  "@media (min-width: 767px) and (max-width: 1400px)": {
+  "@media (min-width: 768px) and (max-width: 1400px)": {
     root: {
       flexGrow: 1,
       padding: "59px 20px 45px 20px",
@@ -74,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     marginRight: "20px",
   },
-  "@media (min-width: 0px) and (max-width: 766px)": {
+  "@media (min-width: 0px) and (max-width: 767px)": {
     grid: {
       marginTop: "30px",
       marginRight: "20px",
@@ -88,7 +175,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#E3E7EB",
   },
 
-  "@media (min-width: 1px) and (max-width: 766px)": {
+  "@media (min-width: 1px) and (max-width: 767px)": {
     grid2: {
       marginTop: "50px",
       marginLeft: "0%",
@@ -101,7 +188,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "52px",
   },
 
-  "@media (max-width: 766px)": {
+  "@media (max-width: 767px)": {
     grid3: {
       marginTop: "1px",
     },
@@ -198,17 +285,18 @@ const useStyles = makeStyles((theme) => ({
   },
   map: {
     display: "flex",
+    justifyContent: "space-between",
     flexDirection: "row",
-    justifyContent: "spaceAround",
     height: "95.5%",
     width: "100%",
+    padding: "0 28px 0 0",
     marginTop: "-18px",
     boxShadow: "0px 2px 30px #0000001A",
     border: "1px solid #E3E7EB",
     borderRadius: "5px",
     opacity: 1,
   },
-  "@media (min-width: 305px) and (max-width: 766px)": {
+  "@media (min-width: 305px) and (max-width: 767px)": {
     map: {
       display: "block",
       boxShadow: "none",
@@ -217,15 +305,16 @@ const useStyles = makeStyles((theme) => ({
   },
   map_dark_mode: {
     display: "flex",
+    justifyContent: "space-between",
     flexDirection: "row",
-    justifyContent: "spaceAround",
+    padding: "0 28px 0 0px",
     color: "white",
     marginTop: "-18px",
     backgroundColor: "#191d43",
     boxShadow: "0px 2px 30px #0000001A",
     border: "solid 1px #343965",
   },
-  "@media (min-width: 304px) and (max-width: 766px)": {
+  "@media (min-width: 304px) and (max-width: 767px)": {
     map_dark_mode: {
       display: "block",
       backgroundColor: "#191d43",
@@ -234,12 +323,34 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "5px",
     },
   },
-  "@media (min-width: 766px) and (max-width: 1024px)": {
+  "@media (min-width: 768px) and (max-width: 1024px)": {
     map: {
-      flexFlow: "wrap",
+      display: "flex",
+      flexDirection: "row",
+      height: "95.5%",
+      width: "100%",
+      padding: "0 28px 0 0",
+      marginTop: "0px",
+      boxShadow: "0px 2px 30px #0000001A",
+      border: "1px solid #E3E7EB",
+      borderRadius: "5px",
+      opacity: 1,
     },
     map_dark_mode: {
-      flexFlow: "wrap",
+      display: "flex",
+      flexDirection: "row",
+      padding: "0 28px 0 0px",
+      color: "white",
+      marginTop: "0px",
+      backgroundColor: "#191d43",
+      boxShadow: "0px 2px 30px #0000001A",
+      border: "solid 1px #343965",
+    },
+    writingPaper: {
+      boxShadow: "0px 2px 30px #0000001A",
+    },
+    readingPaper: {
+      boxShadow: "0px 2px 30px #0000001A",
     },
   },
   node: {
@@ -248,13 +359,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
-    marginLeft: "20px",
+    marginLeft: "30px",
   },
-  "@media (min-width: 301px) and (max-width: 766px)": {
+  "@media (min-width: 301px) and (max-width: 767px)": {
     node: {
       fontFamily: "Raleway",
       fontSize: "14px",
@@ -275,15 +386,15 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     fontStretch: "normal",
     fontStyle: "normal",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
-    marginLeft: "20px",
+    marginLeft: "30px",
     color: "white",
     backgroundColor: "#191d43",
   },
-  "@media (min-width: 299px) and (max-width: 766px)": {
+  "@media (min-width: 299px) and (max-width: 767px)": {
     node_dark_mode: {
       fontFamily: "Raleway",
       fontSize: "14px",
@@ -309,12 +420,12 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.17,
     letterSpacing: "normal",
     marginLeft: "5%",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
   },
-  "@media (min-width: 302px) and (max-width: 766px)": {
+  "@media (min-width: 302px) and (max-width: 767px)": {
     maxTps: {
       fontFamily: "Raleway",
       fontSize: "14px",
@@ -342,14 +453,14 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.17,
     letterSpacing: "normal",
     marginLeft: "5%",
-    marginTop: "3%",
+    marginTop: "15px",
     lineHeight: 1.5,
     color: "#09184b",
     textAlign: "left",
     color: "white",
   },
 
-  "@media (min-width: 303px) and (max-width: 766px)": {
+  "@media (min-width: 303px) and (max-width: 767px)": {
     maxTps_dark_mode: {
       fontFamily: "Raleway",
       fontSize: "14px",
@@ -409,7 +520,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "9px",
     boxShadow: "none",
     width: "100%",
-    height: "93.2%",
+    height: "94.2%",
     boxShadow: "0px 2px 30px #0000001A",
     border: "1px solid #E3E7EB",
     borderRadius: "5px",
@@ -425,7 +536,7 @@ const useStyles = makeStyles((theme) => ({
   top_dark_mode: {
     marginTop: "18px",
     marginRight: "9px",
-    height: "93.2%",
+    height: "94.2%",
     width: "98.5%",
     backgroundColor: "#191d43",
     boxShadow: "0px 2px 30px #0000001A",
@@ -532,10 +643,10 @@ const ReadGraphTrend = styled.div`
   }
 `;
 const Desktop = styled.div`
-  @media (min-width: 0px) and (max-width: 767px) {
+  @media (min-width: 0px) and (max-width: 1024px) {
     display: none;
   }
-  @media (min-width: 767px) {
+  @media (min-width: 1025px) {
     display: visible;
   }
 `;
@@ -543,15 +654,46 @@ const MobileResponsive = styled.div`
   @media (min-width: 0px) and (max-width: 767px) {
     display: visible;
   }
-  @media (min-width: 767px) {
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const TabResponsive = styled.div`
+  @media (min-width: 0px) and (max-width: 767px) {
+    display: none;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display: visible;
+  }
+  @media (min-width: 1025px) {
     display: none;
   }
 `;
 
 function MainComponent(props) {
-  // console.log('e---',props.state)
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
+  let tpsCount = props?.save;
+
+  const [steps, setSteps] = useState(1);
+  const [meterValue, setMeterValue] = useState();
+  const [clicks, setClicks] = useState("");
+
+  const click = () => {
+    setSteps(2);
+    setMeterValue(parseFloat(tpsCount / 60)?.toFixed(2) || 0);
+    setClicks(true);
+    setInterval(() => {
+      setClicks("");
+    }, 2000);
+  };
+  const secondClick = () => {
+    setSteps(1);
+    setClicks(true);
+    setInterval(() => {
+      setClicks("");
+    }, 2000);
+  };
 
   let nodeLength = props?.stats?.markers?.length || 0;
 
@@ -591,8 +733,8 @@ function MainComponent(props) {
   }, [props.dark]);
 
   // let tpsCount = (count.totalTransactions / 60).toFixed(1);
-  let tpsCount = props?.save;
-  let maxtpsCount = parseFloat(maxtpsvalue?.responseData).toFixed(2);
+
+  let maxtpsCount = parseFloat(maxtpsvalue?.responseData)?.toFixed(2);
   let id = props?.read || 0;
   let savingData = props?.saveGraphdata;
   let readingData = props?.readGraphdata;
@@ -603,12 +745,18 @@ function MainComponent(props) {
   let smallReadtweet = props?.state?.readtweets;
   let smallReadCount = props?.readtweetCount;
 
+  // switch:
+
+  const ActiveNodeColor = dark ? ActiveNodesDark : ActiveNodes;
+  const ActiveTpsColor = dark ? TpsCountDark : TpsCount;
+  const ActiveSpan = dark ? SpanDark : Span;
+
   return (
     <div className={dark ? classes.main_dark_mode : classes.main}>
       <Desktop>
         <div className={dark ? classes.root_dark_mode : classes.root}>
-          <Grid  container spacing={3}>
-            <Grid style={{padding: '19px'}} item xs={6}>
+          <Grid container spacing={3}>
+            <Grid style={{ padding: "19px" }} item xs={6}>
               <Row className="justify-space-between w-100">
                 <Row className="w-100">
                   <Grid item xs={6} className={classes.grid}>
@@ -733,28 +881,6 @@ function MainComponent(props) {
                       >
                         <div
                           className={
-                            props.dark ? classes.node_dark_mode : classes.node
-                          }
-                        >
-                          <div className="tippyAdjustments">
-                            Nodes
-                            <Tippy
-                              placement={"top"}
-                              theme={"light"}
-                              maxWidth={180}
-                              content={
-                                <span className="tippyBlockstyle">
-                                  Current Active Nodes
-                                </span>
-                              }
-                            >
-                              <IconImg src="../../images/ic.png" />
-                            </Tippy>
-                          </div>
-                          {nodeLength}
-                        </div>
-                        <div
-                          className={
                             props.dark
                               ? classes.maxTps_dark_mode
                               : classes.maxTps
@@ -780,9 +906,65 @@ function MainComponent(props) {
                             ? "-"
                             : parseFloat(tpsCount / 60).toFixed(2)}{" "}
                           / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                          {(() => {
+                            switch (steps) {
+                              case 1:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={click}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              case 2:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={secondClick}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              default:
+                                return;
+                            }
+                          })()}
+                          <div>
+                            <Speedometer
+                              clicks={clicks}
+                              steps={steps}
+                              meterValue={meterValue}
+                              dark={dark}
+                              tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
+                            />
+                          </div>
                         </div>
 
+                        {/* ll */}
                         <div className="nodeMapBlock">
+                          <div
+                            className={
+                              props.dark ? classes.node_dark_mode : classes.node
+                            }
+                          >
+                            <div className="tippyAdjustments">
+                              Nodes
+                              <Tippy
+                                placement={"top"}
+                                theme={"light"}
+                                maxWidth={180}
+                                content={
+                                  <span className="tippyBlockstyle">
+                                    Current Active Nodes
+                                  </span>
+                                }
+                              >
+                                <IconImg src="../../images/ic.png" />
+                              </Tippy>
+                            </div>
+                            {nodeLength}
+                          </div>
                           <NodeChart dark={dark} />
                         </div>
                       </div>
@@ -792,7 +974,7 @@ function MainComponent(props) {
               </Row>
             </Grid>
 
-            <Grid style={{padding: '19px'}} item xs={6}>
+            <Grid style={{ padding: "19px" }} item xs={6}>
               <Text
                 className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
@@ -822,7 +1004,12 @@ function MainComponent(props) {
               </Paper>
             </Grid>
 
-            <Grid style={{padding: '19px'}} item xs={6} className={classes.grid3}>
+            <Grid
+              style={{ padding: "19px" }}
+              item
+              xs={6}
+              className={classes.grid3}
+            >
               <SaveGraphTrend>
                 <SavedTweets
                   dark={dark}
@@ -831,7 +1018,12 @@ function MainComponent(props) {
                 />
               </SaveGraphTrend>
             </Grid>
-            <Grid style={{padding: '19px'}} item xs={6} className={classes.grid3}>
+            <Grid
+              style={{ padding: "19px" }}
+              item
+              xs={6}
+              className={classes.grid3}
+            >
               <ReadGraphTrend>
                 <ReadTweets dark={dark} readed={props.readSocket} />
               </ReadGraphTrend>
@@ -839,6 +1031,238 @@ function MainComponent(props) {
           </Grid>
         </div>
       </Desktop>
+
+      <TabResponsive>
+        <MainDiv>
+          <FirstSection>
+            <Grid item xs={12} className={classes.grid}>
+              <div className={dark ? "writing-data-dark-mode" : "writing-data"}>
+                Writing Data
+              </div>
+              <Paper
+                className={
+                  dark ? classes.writingPaperDarkMode : classes.writingPaper
+                }
+                elevation={0}
+              >
+                <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>
+                  Saving Speed
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={200}
+                    content={
+                      <span className="tippyBlockstyle">
+                        The saved tweets per second track the rate of
+                        record-keeping
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
+                </div>
+
+                <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
+                  {isNaN(tpsCount) ? "-" : tpsCount} /
+                  <span className="fs-16">min</span>
+                </div>
+                <span className="hover-data">
+                  {" "}
+                  <MyResponsiveLine
+                    writeMe={writeIdentity}
+                    writeGraph={savingData}
+                  />{" "}
+                </span>
+              </Paper>
+            </Grid>
+          </FirstSection>
+
+          <SecondSection>
+            <Grid item xs={12} className={classes.readingData}>
+              <div className={dark ? "reading-data-dark-mode" : "reading-data"}>
+                Reading Data
+              </div>
+              <Paper
+                className={
+                  dark ? classes.readingPaperDarkMode : classes.readingPaper
+                }
+                elevation={0}
+              >
+                <div className={dark ? "savingSpeed-dark-mode" : "savingSpeed"}>
+                  Reading Speed
+                  <Tippy
+                    placement={"right"}
+                    theme={"light"}
+                    maxWidth={190}
+                    content={
+                      <span className="tippyBlockstyle">
+                        The read tweets per second track the rate of
+                        record-keeping
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
+                </div>
+
+                <div className={dark ? "readSpeed-dark-mode" : "readSpeed"}>
+                  {id?.length > 0 ? id : " - "} /
+                  <span className="fs-16">min</span>
+                </div>
+                <span className="hover-data">
+                  {" "}
+                  <ReadingData
+                    readData={props?.data}
+                    readMe={identity}
+                    readGraph={readingData}
+                  />{" "}
+                </span>
+              </Paper>
+            </Grid>
+          </SecondSection>
+        </MainDiv>
+
+        <SecondMainDiv>
+          <Paper classes={{ elevation1: classes.paperNode }}>
+            <div className={props.dark ? classes.map_dark_mode : classes.map}>
+              <div
+                className={
+                  props.dark ? classes.maxTps_dark_mode : classes.maxTps
+                }
+              >
+                <div className="tippyAdjustments">
+                  Current/Max tps
+                  <Tippy
+                    placement={"top"}
+                    theme={"light"}
+                    maxWidth={220}
+                    content={
+                      <span className="tippyOtherblockStyle">
+                        The speed of the current and maximum transactions
+                        completed on the platform
+                      </span>
+                    }
+                  >
+                    <IconImg src="../../images/ic.png" />
+                  </Tippy>
+                </div>
+                {isNaN(tpsCount) ? "-" : parseFloat(tpsCount / 60).toFixed(2)} /{" "}
+                {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                {(() => {
+                  switch (steps) {
+                    case 1:
+                      return (
+                        <>
+                          <ReloadImg
+                            onClick={click}
+                            src="/images/reload-icon.svg"
+                          />
+                        </>
+                      );
+                    case 2:
+                      return (
+                        <>
+                          <ReloadImg
+                            onClick={secondClick}
+                            src="/images/reload-icon.svg"
+                          />
+                        </>
+                      );
+                    default:
+                      return;
+                  }
+                })()}
+                <div>
+                  <Speedometer
+                    clicks={clicks}
+                    steps={steps}
+                    meterValue={meterValue}
+                    dark={dark}
+                    tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
+                  />
+                </div>
+              </div>
+
+              {/* ll */}
+              <div className="nodeMapBlock">
+                <div
+                  className={props.dark ? classes.node_dark_mode : classes.node}
+                >
+                  <div className="tippyAdjustments">
+                    Nodes
+                    <Tippy
+                      placement={"top"}
+                      theme={"light"}
+                      maxWidth={180}
+                      content={
+                        <span className="tippyBlockstyle">
+                          Current Active Nodes
+                        </span>
+                      }
+                    >
+                      <IconImg src="../../images/ic.png" />
+                    </Tippy>
+                  </div>
+                  {nodeLength}
+                </div>
+                <NodeChart dark={dark} />
+              </div>
+            </div>
+          </Paper>
+        </SecondMainDiv>
+
+        <Column>
+          <Grid item xs={12} className={classes.grid3}>
+            <Paper
+              className={
+                props.dark
+                  ? classes.savedReadTweetConatinerDark
+                  : classes.savedReadTweetConatiner
+              }
+            >
+              <SavedRead
+                dark={dark}
+                saveTweet={writeIdentity}
+                savedCount={props?.saveCount}
+                smallSave={smallSavetweet}
+                smallcount={smallSaveCount}
+                smallRead={smallReadtweet}
+                countRead={smallReadCount}
+              />
+            </Paper>
+          </Grid>
+        </Column>
+        <Column>
+          <Grid item xs={12} className={classes.topTrend}>
+            <Text
+              className={props.dark ? classes.top20_dark_mode : classes.top20}
+            >
+              Top 20 trending
+              <Tippy
+                placement={"top-start"}
+                theme={"light"}
+                maxWidth={340}
+                content={
+                  <span className="tippyOtherblockStyle">
+                    This twitter decentralized application pertually records the
+                    top 20 hashtags on Twitter on to the XDC Network blockchain.
+                  </span>
+                }
+              >
+                <IconImg src="../../images/ic.png" />
+              </Tippy>
+            </Text>
+
+            <Paper
+              className={props.dark ? classes.topDarkMode : classes.topMode}
+            >
+              <Trending>
+                <MapTabs dark={dark} />
+              </Trending>
+            </Paper>
+          </Grid>
+        </Column>
+      </TabResponsive>
 
       <MobileResponsive>
         <Grid item xs={12}>
@@ -941,62 +1365,97 @@ function MainComponent(props) {
                 <div
                   className={props.dark ? classes.map_dark_mode : classes.map}
                 >
-                  <div
-                    className={
-                      props.dark ? classes.node_dark_mode : classes.node
-                    }
-                  >
-                    Nodes
-                    <Tippy
-                      placement={"right"}
-                      theme={"light"}
-                      maxWidth={180}
-                      content={
-                        <span className="tippyBlockstyle">
-                          Current Active Nodes
-                        </span>
-                      }
-                    >
-                      <IconImg src="../../images/ic.png" />
-                    </Tippy>
-                    <br />
-                    {nodeLength}
-                  </div>
-                  <div
-                    className={
-                      props.dark ? classes.maxTps_dark_mode : classes.maxTps
-                    }
-                  >
-                    Current Max TPS
-                    <Tippy
-                      placement={"right"}
-                      theme={"light"}
-                      maxWidth={220}
-                      content={
-                        <span className="tippyOtherblockStyle">
-                          The speed of the current and maximum transactions
-                          completed on the platform
-                        </span>
-                      }
-                    >
-                      <IconImg src="../../images/ic.png" />
-                    </Tippy>
-                    <br />
-                    {isNaN(tpsCount)
-                      ? "-"
-                      : parseFloat(tpsCount / 60).toFixed(2)}{" "}
-                    / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
-                  </div>
+                  <MobParentSection>
+                    <div>
+                      <ActiveTpsColor>
+                        Current Tps
+                        <Tippy
+                          placement={"top"}
+                          theme={"light"}
+                          maxWidth={220}
+                          content={
+                            <span className="tippyOtherblockStyle">
+                              The speed of the current and maximum transactions
+                              completed on the platform
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
+                        <br />
+                        <ActiveSpan>
+                          {isNaN(tpsCount)
+                            ? "-"
+                            : parseFloat(tpsCount / 60).toFixed(2)}{" "}
+                          / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                          {(() => {
+                            switch (steps) {
+                              case 1:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={click}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              case 2:
+                                return (
+                                  <>
+                                    <ReloadImg
+                                      onClick={secondClick}
+                                      src="/images/reload-icon.svg"
+                                    />
+                                  </>
+                                );
+                              default:
+                                return;
+                            }
+                          })()}
+                        </ActiveSpan>
+                      </ActiveTpsColor>
+                      <Meter>
+                        <Speedometer
+                          clicks={clicks}
+                          steps={steps}
+                          meterValue={meterValue}
+                          dark={dark}
+                          tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
+                        />
+                      </Meter>
+                    </div>
 
-                  <div className="mobNodeblock">
-                    <NodeChart dark={dark} />
-                  </div>
+                    <div>
+                      <ActiveNodeColor>
+                        Nodes
+                        <Tippy
+                          placement={"top"}
+                          theme={"light"}
+                          maxWidth={180}
+                          content={
+                            <span className="tippyBlockstyle">
+                              Current Active Nodes
+                            </span>
+                          }
+                        >
+                          <IconImg src="../../images/ic.png" />
+                        </Tippy>
+                        <br />
+                        <ActiveSpan> {nodeLength}</ActiveSpan>
+                      </ActiveNodeColor>
+                      <NodeSection>
+                        <NodeChart dark={dark} />
+                      </NodeSection>
+                    </div>
+                  </MobParentSection>
+
+                  {/* {} */}
                 </div>
               </Paper>
             </Grid>
           </Column>
           <Column>
-            <Grid  item xs={12} className={classes.topTrend}>
+            <Grid item xs={12} className={classes.topTrend}>
               <Text
                 className={props.dark ? classes.top20_dark_mode : classes.top20}
               >
@@ -1026,7 +1485,7 @@ function MainComponent(props) {
               </Paper>
             </Grid>
           </Column>
-          <Column >
+          <Column>
             <Grid item xs={12} className={classes.grid3}>
               <Paper
                 className={

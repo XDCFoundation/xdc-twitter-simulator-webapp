@@ -8,11 +8,11 @@ import moment from "moment";
 import socketClient from "socket.io-client";
 
 let saveSocketgraph = socketClient(
-  "http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3000/",
+  "https://speedtest.xdc.org:3001/",
   { transports: ["websocket"] }
 );
 let readSocketgraph = socketClient(
-  "http://ec2-3-144-11-7.us-east-2.compute.amazonaws.com:3003/",
+    "https://speedtest.xdc.org:3003/",
   { transports: ["websocket"] }
 );
 
