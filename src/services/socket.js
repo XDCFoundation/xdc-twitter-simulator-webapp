@@ -2,6 +2,21 @@ import io from "socket.io-client";
 import _ from "lodash";
 import store from '../store';
 import {eventConstants} from '../constants';
+import socketClient from "socket.io-client";
+
+const SERVER = 'https://speedtest.xdc.org:3003/'
+var connection = socketClient(SERVER, { transports: ['websocket'] })
+
+let readTweets= []
+
+connection.on('read-tweets-socket', (val, err) => {
+  if (err) {
+    console.log(err)
+  }
+  else {
+    readTweets.push(val)
+  }
+})
 
 let nodesArr = [];
 
@@ -42,4 +57,5 @@ function updateActiveNodes(data) {
     }
   });
   store.dispatch({ type: eventConstants.UPDATE_MARKERS, data: marker });
+  store.dispatch({ type: eventConstants.UPDATE_READ_TWEETS, data: readTweets });
 }

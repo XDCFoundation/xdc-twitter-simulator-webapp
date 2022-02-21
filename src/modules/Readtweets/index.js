@@ -2,8 +2,10 @@ import BaseComponent from "../baseComponent";
 import axios from "axios";
 import React from "react";
 import ReadTweets from "./readTweets";
+import { dispatchAction } from "../../utility";
+import { connect } from "react-redux";
 
-export default class Read extends BaseComponent {
+class Read extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -124,3 +126,7 @@ export default class Read extends BaseComponent {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return { readData: state.readTweet.tweets };
+};
+export default connect(mapStateToProps, { dispatchAction })(Read);

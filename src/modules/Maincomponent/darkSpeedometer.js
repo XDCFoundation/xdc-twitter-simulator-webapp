@@ -6,9 +6,8 @@ const MainDiv = styled.div`
   margin: 50px 0 0 -10px;
 `;
 
-export default function Speedometer(props) {
+export default function DarkSpeedometer(props) {
   let val = props.tpsCount || 0;
-  let mode = props.dark === true ? "white" : "black";
 
   return (
     <MainDiv>
@@ -22,7 +21,7 @@ export default function Speedometer(props) {
                   height={137}
                   forceRender={props.clicks === true ? true : false}
                   needleHeightRatio={0.6}
-                  needleColor={"black"}
+                  needleColor={"#0000CD"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -32,11 +31,11 @@ export default function Speedometer(props) {
                   maxValue={0.6}
                   ringWidth={20}
                   segmentColors={[
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#D6E0FF",
-                    "#D6E0FF",
+                    "#7CFC00",
+                    "#7CFC00",
+                    "#7CFC00",
+                    "#191970",
+                    "#191970",
                   ]}
                   value={
                     props.meterValue === undefined ? val : props.meterValue
@@ -53,7 +52,7 @@ export default function Speedometer(props) {
                   height={137}
                   forceRender={props.clicks === true ? true : false}
                   needleHeightRatio={0.6}
-                  needleColor={"black"}
+                  needleColor={"#0000CD"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -63,11 +62,11 @@ export default function Speedometer(props) {
                   maxValue={0.6}
                   ringWidth={20}
                   segmentColors={[
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#D6E0FF",
-                    "#D6E0FF",
+                    "#7CFC00",
+                        "#7CFC00",
+                        "#7CFC00",
+                        "#191970",
+                        "#191970",
                   ]}
                   value={props.meterValue}
                   currentValueText=" "

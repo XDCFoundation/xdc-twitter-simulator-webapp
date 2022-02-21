@@ -77,7 +77,7 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.readData.map((items, index) => {
+      this.state.readData && this.state.readData.length >=1 && this.state.readData.map((items, index) => {
         let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
         resultData.push({
           x: moment(items.startTime).format("LT"),
@@ -128,7 +128,7 @@ export default class Main extends Component {
         ];
         var resultData = [];
 
-        this.state.readData.map((items, index) => {
+        this.state.readData && this.state.readData.length >=1 && this.state.readData.map((items, index) => {
           let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
           resultData.push({
             x: moment(items.startTime).format("LT"),
@@ -179,7 +179,7 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.saveData.map((items, index) => {
+      this.state.saveData && this.state.saveData.length >=1 && this.state.saveData.map((items, index) => {
         // console.log('api--', items)
         let firstAxis = items?.savedTweets / items?.responseTime;
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
@@ -233,7 +233,7 @@ export default class Main extends Component {
         ];
         var resultData = [];
 
-        this.state.saveData.map((items, index) => {
+        this.state.saveData && this.state.saveData.length >=1 && this.state.saveData.map((items, index) => {
           // console.log('api--', items)
           let firstAxis = items?.savedTweets / items?.responseTime;
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;

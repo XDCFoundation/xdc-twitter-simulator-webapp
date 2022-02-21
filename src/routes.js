@@ -20,7 +20,7 @@ import socketClient from "socket.io-client";
 import About from "./modules/About";
 
 let socket = socketClient('https://speedtest.xdc.org:3001/',{transports: ['websocket']})
-let readtweetSocket = socketClient('https://speedtest.xdc.org:3003/',{transports: ['websocket']})
+let readtweetSocket = socketClient('https://speedtest.xdc.or:3003/',{transports: ['websocket']})
 
 class Routes extends BaseComponent {
   componentDidMount() {}

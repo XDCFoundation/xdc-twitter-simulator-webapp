@@ -25,6 +25,7 @@ import io from "socket.io-client";
 import { dispatchAction } from "../../utility";
 import { connect } from "react-redux";
 import Speedometer from "./speedometer";
+import DarkSpeedometer from "./darkSpeedometer";
 
 const IconImg = styled.img`
   margin-left: 10px;
@@ -125,11 +126,6 @@ const ReloadImg = styled.img`
   height: 20px;
   margin-left: 10px;
   cursor: pointer;
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  }
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -911,19 +907,33 @@ function MainComponent(props) {
                               case 1:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={click}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               case 2:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={secondClick}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               default:
@@ -931,13 +941,27 @@ function MainComponent(props) {
                             }
                           })()}
                           <div>
-                            <Speedometer
-                              clicks={clicks}
-                              steps={steps}
-                              meterValue={meterValue}
-                              dark={dark}
-                              tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
-                            />
+                            {props.dark ? (
+                              <DarkSpeedometer
+                                clicks={clicks}
+                                steps={steps}
+                                meterValue={meterValue}
+                                dark={dark}
+                                tpsCount={
+                                  parseFloat(tpsCount / 60).toFixed(2) || ""
+                                }
+                              />
+                            ) : (
+                              <Speedometer
+                                clicks={clicks}
+                                steps={steps}
+                                meterValue={meterValue}
+                                dark={dark}
+                                tpsCount={
+                                  parseFloat(tpsCount / 60).toFixed(2) || ""
+                                }
+                              />
+                            )}
                           </div>
                         </div>
 
@@ -1153,19 +1177,33 @@ function MainComponent(props) {
                     case 1:
                       return (
                         <>
-                          <ReloadImg
-                            onClick={click}
-                            src="/images/reload-icon.svg"
-                          />
+                          {dark ? (
+                            <ReloadImg
+                              onClick={click}
+                              src="/images/Reload-white.svg"
+                            />
+                          ) : (
+                            <ReloadImg
+                              onClick={click}
+                              src="/images/Reload.svg"
+                            />
+                          )}
                         </>
                       );
                     case 2:
                       return (
                         <>
-                          <ReloadImg
-                            onClick={secondClick}
-                            src="/images/reload-icon.svg"
-                          />
+                          {dark ? (
+                            <ReloadImg
+                              onClick={secondClick}
+                              src="/images/Reload-white.svg"
+                            />
+                          ) : (
+                            <ReloadImg
+                              onClick={secondClick}
+                              src="/images/Reload.svg"
+                            />
+                          )}
                         </>
                       );
                     default:
@@ -1173,13 +1211,23 @@ function MainComponent(props) {
                   }
                 })()}
                 <div>
-                  <Speedometer
-                    clicks={clicks}
-                    steps={steps}
-                    meterValue={meterValue}
-                    dark={dark}
-                    tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
-                  />
+                  {props.dark ? (
+                    <DarkSpeedometer
+                      clicks={clicks}
+                      steps={steps}
+                      meterValue={meterValue}
+                      dark={dark}
+                      tpsCount={parseFloat(tpsCount / 60).toFixed(2) || ""}
+                    />
+                  ) : (
+                    <Speedometer
+                      clicks={clicks}
+                      steps={steps}
+                      meterValue={meterValue}
+                      dark={dark}
+                      tpsCount={parseFloat(tpsCount / 60).toFixed(2) || ""}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -1393,19 +1441,33 @@ function MainComponent(props) {
                               case 1:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={click}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               case 2:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={secondClick}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               default:
@@ -1415,13 +1477,27 @@ function MainComponent(props) {
                         </ActiveSpan>
                       </ActiveTpsColor>
                       <Meter>
-                        <Speedometer
-                          clicks={clicks}
-                          steps={steps}
-                          meterValue={meterValue}
-                          dark={dark}
-                          tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
-                        />
+                        {props.dark ? (
+                          <DarkSpeedometer
+                            clicks={clicks}
+                            steps={steps}
+                            meterValue={meterValue}
+                            dark={dark}
+                            tpsCount={
+                              parseFloat(tpsCount / 60).toFixed(2) || ""
+                            }
+                          />
+                        ) : (
+                          <Speedometer
+                            clicks={clicks}
+                            steps={steps}
+                            meterValue={meterValue}
+                            dark={dark}
+                            tpsCount={
+                              parseFloat(tpsCount / 60).toFixed(2) || ""
+                            }
+                          />
+                        )}
                       </Meter>
                     </div>
 

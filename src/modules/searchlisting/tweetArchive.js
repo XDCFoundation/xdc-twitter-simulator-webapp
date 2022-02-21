@@ -176,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     mainLoaderRow: {
-      padding: "0px 76px",
+      // padding: "0px 76px",
       width: "100%",
     },
   },
@@ -254,10 +254,7 @@ export default function TweetArchive(props) {
       ?.join("")
       ?.substr(0, 1)
       ?.toUpperCase() || "-";
-  let handle = "@"+ advanceName
-    ?.slice(0, advanceName?.length)
-    ?.replace(/\s/g, "")
-    ?.toLowerCase();
+  let advanceHandle = advanceSearch[0]?.username || ""
 
   return (
     <>
@@ -347,7 +344,7 @@ export default function TweetArchive(props) {
                       </Row>
                       <Row>
                         <Email>
-                          {/* {advanceSearch ? handle : ""} */}
+                          {advanceSearch ? "@"+advanceHandle : ""}
                           </Email>
                       </Row>
                     </Name>

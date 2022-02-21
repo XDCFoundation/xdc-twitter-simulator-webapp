@@ -38,4 +38,5 @@ export const socialMediaLinks = {
 
 export const eventConstants = {
     UPDATE_MARKERS: "UPDATE_MARKERS",
+    UPDATE_READ_TWEETS: "UPDATE_READ_TWEETS",
 }

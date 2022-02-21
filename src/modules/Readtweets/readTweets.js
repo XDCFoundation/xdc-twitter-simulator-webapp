@@ -12,6 +12,8 @@ import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import moment from "moment";
 import BigNumber from "bignumber.js";
+import { dispatchAction } from "../../utility";
+import { connect } from "react-redux";
 
 import {
   createMuiTheme,
@@ -275,7 +277,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ReadTweets(props) {
+function ReadTweets(props) {
   const classes = useStyles();
 
   useEffect(() => {
@@ -452,3 +454,7 @@ export default function ReadTweets(props) {
     </Grid>
   );
 }
+const mapStateToProps = (state) => {
+  return { readData: state.readTweet.tweets };
+};
+export default connect(mapStateToProps, { dispatchAction })(ReadTweets);

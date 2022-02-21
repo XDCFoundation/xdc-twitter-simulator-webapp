@@ -441,8 +441,19 @@ export default function Searchlist(props) {
   }, [props.dark]);
 
   useEffect(() => {
-    Basicsearch();
-    Advancesearch();
+    if (
+      props?.locations?.split(" ")[0]?.length === 0 &&
+      props.hashname?.length === 0 &&
+      props.username?.length === 0
+    ) {
+      return;
+    }
+    if (props.hashname?.length >= 1 || props.username?.length >= 1) {
+      Advancesearch();
+    } else {
+      Basicsearch();
+      Advancesearch();
+    }
   }, [props?.locations.split(" ")[0]]);
 
   const Basicsearch = () => {
@@ -493,6 +504,7 @@ export default function Searchlist(props) {
           advanceSearch = [];
         else advanceSearch = res.data.responseData || "";
         setAdvance(advanceSearch);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -536,8 +548,10 @@ export default function Searchlist(props) {
                       Search Results
                     </Typography>
                   </Row>
-
-                  {isLoading ? (
+                  {props.hashname?.length >= 1 ||
+                  props.username?.length >= 1 ? (
+                    ""
+                  ) : isLoading ? (
                     <hr
                       className={
                         props.dark ? classes.hr_page_dark_mode : classes.hr_page
@@ -547,7 +561,10 @@ export default function Searchlist(props) {
                     ""
                   )}
 
-                  {isLoading ? (
+                  {props.hashname?.length >= 1 ||
+                  props.username?.length >= 1 ? (
+                    ""
+                  ) : isLoading ? (
                     <Loader />
                   ) : basic?.length === 0 ? (
                     <div className="table-data-message">No Result Found</div>
@@ -734,15 +751,15 @@ export default function Searchlist(props) {
                       );
                     })}
                 </Column>
-                {!isLoading ? (
-                  <hr
-                    className={
-                      props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                    }
-                  />
-                ) : (
+                {/* {!isLoading ? ( */}
+                <hr
+                  className={
+                    props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                  }
+                />
+                {/* ) : (
                   ""
-                )}
+                )} */}
                 <br />
                 <br />
                 <br />
