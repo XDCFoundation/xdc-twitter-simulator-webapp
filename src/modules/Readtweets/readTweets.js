@@ -281,7 +281,6 @@ function ReadTweets(props) {
   const classes = useStyles();
 
   useEffect(() => {
-    // console.log('fire--',props.tweetData);
   }, [props.tweetreadData]);
 
 
@@ -291,7 +290,6 @@ function ReadTweets(props) {
   let handleanimationclass = props.handleclass?.[text];
   let blockDarkanimationclass = props.blockDarkclass?.[text];
   let textdarkanimationClass = props.textDarkclass?.[text];
-  // console.log('texxx--',animationclass)
 
   return (
     <Grid Container spacing={3}>
@@ -349,7 +347,6 @@ function ReadTweets(props) {
                   // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 20) || 0;
-                  // console.log('name--',authorName)
 
                   let str = response.addedOn;
                   let timeFormat = moment(str);
@@ -408,7 +405,7 @@ function ReadTweets(props) {
                           >
                             <div className="wordTruncating">
                             {authorName?.length > 0
-                              ? "@" + authorName
+                              ? authorName
                               : author || "-"}
                               </div>
                           </Typography>

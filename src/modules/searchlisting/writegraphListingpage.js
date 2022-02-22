@@ -58,7 +58,6 @@ const MyResponsiveLine = ({ data }) => (
 
 export default function App(props) {
   const [data, setData] = useState([]);
-  // console.log('it--',props?.write)
 
   useEffect(() => {
     writingGraph();
@@ -67,7 +66,6 @@ export default function App(props) {
   async function writingGraph() {
     setData(props?.write);
   }
-  // console.log('bat--',data)
 
   return (
     <>

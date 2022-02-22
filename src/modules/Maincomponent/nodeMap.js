@@ -20,37 +20,6 @@ import io from "socket.io-client";
 const geoUrl = process.env.REACT_APP_NODES_MAP_URL;
 
 function NodeChart(props) {
-  // console.log('pt----',props.stats.markers)
-  // const [newNode, setNewNode] = useState([])
-
-  // const socket = io("http://52.15.80.60:3000/", {
-  //   path: "/stats-data/",
-  //   transports: ["websocket"],
-  //   reconnection: true,
-  // });
-  // let nodess = [];
-  // socket.on("network-stats-nodes", function node(data) {
-  //   if (!_.isEmpty(data.nodes));
-  //   nodess = data.nodes;
-  //   // console.log("node--", nodess.length);
-
-  //   let marker = [];
-
-  //   nodess.forEach((node) => {
-  //     function swap(x, y) {
-  //       return [y, x];
-  //     }
-  //     if (node.geo !== null) {
-  //       marker.push({
-  //         coords: swap(node.geo.ll[0], node.geo.ll[1]),
-  //       });
-  //     }
-  //   });
-  //   setNewNode(marker);
-  // });
-
-  
-
   return (
     <>
       <div>
@@ -88,6 +57,6 @@ function NodeChart(props) {
   );
 }
 const mapStateToProps = (state) => {
-return { stats: state.stats };
+  return { stats: state.stats };
 };
 export default connect(mapStateToProps, { dispatchAction })(NodeChart);

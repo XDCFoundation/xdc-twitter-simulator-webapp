@@ -1,9 +1,16 @@
 import BaseComponent from "../baseComponent";
 import axios from "axios";
 import React from "react";
+import _ from "lodash";
 import ReadTweets from "./readTweets";
 import { dispatchAction } from "../../utility";
 import { connect } from "react-redux";
+import { eventConstants } from "../../constants";
+import socketClient from "socket.io-client";
+
+let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
+  transports: ["websocket"],
+});
 
 class Read extends BaseComponent {
   constructor(props) {
@@ -23,20 +30,13 @@ class Read extends BaseComponent {
 
   async componentDidMount() {
     await this.fetchTweets();
-    this.socketData(this.props?.readed);
+    await this.socketData(readtweetSocket);
   }
 
   socketData(socket) {
     let readingtweets = this.state.readtweets;
-    socket.on("read-tweets-socket", (blockData, error) => {
-      // console.log('>>>>>readtweet', blockData)
+    socket.on(eventConstants.READ_TWEETS_EVENT, (blockData, error) => {
       this.setState({ blockSocketConnected: true });
-
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
 
       if (readingtweets.length >= 10) readingtweets.pop();
       readingtweets.unshift(blockData);
@@ -73,7 +73,7 @@ class Read extends BaseComponent {
       this.setState({ readtweets: readingtweets });
 
       if (error) {
-        console.log("hello error");
+        return error
       }
 
       // } (left comment)
@@ -104,14 +104,14 @@ class Read extends BaseComponent {
         this.setState({ totaltweets: alltweets });
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   }
 
   render() {
     return (
       <div>
-        <ReadTweets 
+        <ReadTweets
           dark={this.props.dark}
           tweetreadData={this.state.readtweets}
           tweetreadCount={this.state.totaltweets}

@@ -477,7 +477,7 @@ export default function Searchlist(props) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   };
 
@@ -507,12 +507,10 @@ export default function Searchlist(props) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   };
   // let method = '@user'
-  // console.log("bas--", basic);
-  // console.log("adv--", advance);
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
@@ -672,7 +670,7 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                      // console.log('texttt--',textId)
+      
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
                           stars
@@ -897,7 +895,6 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                      // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
@@ -992,7 +989,7 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                      // console.log('texttt--',textId)
+                
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
                           stars

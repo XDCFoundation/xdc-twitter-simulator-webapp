@@ -56,8 +56,6 @@ const ReadingData = ({ data }) => (
 export default function App(props) {
   const [data, setData] = useState([]);
 
-  // console.log('read--',props?.readGraph)
-
   useEffect(() => {
     readingGraph();
   }, [props?.readGraph]);

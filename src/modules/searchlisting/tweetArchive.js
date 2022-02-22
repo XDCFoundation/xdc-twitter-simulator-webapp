@@ -37,14 +37,6 @@ const Heading = styled.span`
   font-size: 15px;
   padding-top: 3%;
   padding-left: 4%;
-  // box-sizing: border-box;
-  // width: 100%;
-  // border: solid #5B6DCD 1px;
-  // padding: 5px;
-  // border-top: none;
-  // border-right: none;
-  // border-bottom: visible;
-  // border-left: none;
 `;
 
 const BackArrow = styled.span`
@@ -194,18 +186,17 @@ export default function TweetArchive(props) {
   const [advanceSearch, setAdvancesearch] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  // mode: 
-  
+  // mode:
+
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
   };
   const [dark, setMode] = useState(getMode());
 
   const CheckMode = (mode) => {
-    // console.log('hello--',mode ? "Dark" : "Light",mode)
     localStorage.setItem("mode", mode);
-    setMode(mode)
-  }
+    setMode(mode);
+  };
 
   useEffect(() => {
     fetchbyAdvanceSearch();
@@ -219,7 +210,7 @@ export default function TweetArchive(props) {
           textId?.tweet
       )
       .then((res) => {
-        // console.log('res',res.data.responseData[0])
+      
         let advancearchiveTweet = [];
         if (
           !res &&
@@ -233,7 +224,7 @@ export default function TweetArchive(props) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log("er--", err);
+        return err
       });
   };
 
@@ -254,11 +245,10 @@ export default function TweetArchive(props) {
       ?.join("")
       ?.substr(0, 1)
       ?.toUpperCase() || "-";
-  let advanceHandle = advanceSearch[0]?.username || ""
+  let advanceHandle = advanceSearch[0]?.username || "";
 
   return (
     <>
-      {/* <HeaderComponent archiveId={userId?.tweet} /> */}
       <Header CheckMode={CheckMode} />
       <br />
       {isLoading ? (
@@ -268,11 +258,6 @@ export default function TweetArchive(props) {
               <Container>
                 <Column className={classes.mainColumn}>
                   <Row>
-                    {/* <BackArrow>
-                      <a href="/">
-                        <ArrowBackIcon />
-                      </a>
-                    </BackArrow> */}
                     <Heading className={classes.span_tweet}>
                       <span className={classes.span_tweet}>Tweet</span>
                     </Heading>
@@ -344,8 +329,8 @@ export default function TweetArchive(props) {
                       </Row>
                       <Row>
                         <Email>
-                          {advanceSearch ? "@"+advanceHandle : ""}
-                          </Email>
+                          {advanceSearch ? "@" + advanceHandle : ""}
+                        </Email>
                       </Row>
                     </Name>
                   </Row>

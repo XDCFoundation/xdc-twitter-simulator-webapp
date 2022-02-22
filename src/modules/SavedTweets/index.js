@@ -2,6 +2,16 @@ import BaseComponent from "../baseComponent";
 import React from "react";
 import SavedTweets from "./savedTweets";
 import axios from "axios";
+import { eventConstants } from "../../constants";
+import socketClient from "socket.io-client";
+
+let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
+  transports: ["websocket"],
+});
+let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
+  transports: ["websocket"],
+});
+
 
 export default class Saved extends BaseComponent {
   constructor(props) {
@@ -23,18 +33,14 @@ export default class Saved extends BaseComponent {
   async componentDidMount() {
     await this.fetchSavedTweets();
     // await this.userHandle();
-    this.socketData(this.props?.saved);
-    this.socketCount(this.props?.savingCount);
+    this.socketData(socket);
+    this.socketCount(readtweetSocket);
   }
   socketData(socket) {
     let savingtweets = this.state.savedTweets;
-    socket.on("BlockChain-socket", (blockData, error) => {
+    socket.on(eventConstants.SAVING_TWEETS_EVENT, (blockData, error) => {
       this.setState({ blockSocketConnected: true });
-      // let blockDataExist = savingtweets.findIndex((item) => {
-      //   return item.text == blockData.text;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
+
       if (savingtweets.length >= 10) savingtweets.pop();
       savingtweets.unshift(blockData);
 
@@ -70,7 +76,7 @@ export default class Saved extends BaseComponent {
       this.setState({ savedTweets: savingtweets });
 
       if (error) {
-        console.log("hello error");
+        return error
       }
       // }
     });
@@ -78,21 +84,16 @@ export default class Saved extends BaseComponent {
 
   socketCount(socket) {
     let tweetsCount = this.state.savingtweetsCount;
-    socket.on("tweet-count-socket", (blockData, error) => {
-      // console.log('>>>>>savecount', blockData)
+    socket.on(eventConstants.SAVE_COUNT_EVENT, (blockData, error) => {
       this.setState({ blockSocketConnected: true });
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
+
       if (tweetsCount.length >= 1) tweetsCount.pop();
       tweetsCount.unshift(blockData);
 
       this.setState({ savingtweetsCount: tweetsCount });
 
       if (error) {
-        console.log("hello error");
+        return error
       }
       // }
     });
@@ -115,22 +116,21 @@ export default class Saved extends BaseComponent {
           res.data.responseData.length <= 0
         )
           tweetResponse = [];
-          else tweetResponse = res.data?.responseData?.response[0] || '';
-        allSaveTweets = res.data?.responseData?.response[1] || '';
+        else tweetResponse = res.data?.responseData?.response[0] || "";
+        allSaveTweets = res.data?.responseData?.response[1] || "";
 
         this.setState({ savedTweets: tweetResponse });
         this.setState({ totalSaveTweet: allSaveTweets });
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
-
   }
 
   render() {
     return (
       <div>
-        <SavedTweets 
+        <SavedTweets
           dark={this.props.dark}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}

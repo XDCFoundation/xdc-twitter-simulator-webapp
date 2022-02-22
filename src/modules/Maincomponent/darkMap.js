@@ -42,10 +42,9 @@ export default function DarkMap() {
         else mappingCoordinates = res.data.responseData;
         setHashtag(mappingCoordinates);
 
-        // console.log('locations---', res.data.responseData)
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   }
   return (

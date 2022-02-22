@@ -5,14 +5,15 @@ import HeaderComponent from "../Header/header";
 import FooterComponent from "../Footer/footer";
 import axios from "axios";
 import moment from "moment";
+import { eventConstants } from "../../constants";
 import socketClient from "socket.io-client";
 
 let saveSocketgraph = socketClient(
-  "https://speedtest.xdc.org:3001/",
+  process.env.REACT_APP_SAVING_SOCKET,
   { transports: ["websocket"] }
 );
 let readSocketgraph = socketClient(
-    "https://speedtest.xdc.org:3003/",
+  process.env.REACT_APP_READING_SOCKET,
   { transports: ["websocket"] }
 );
 
@@ -41,7 +42,6 @@ export default class Main extends Component {
   }
 
   CheckMode(mode) {
-    // console.log('hello--',mode ? "Dark" : "Light")
     this.setState({ dark: mode });
   }
 
@@ -60,8 +60,8 @@ export default class Main extends Component {
 
   readsocketData(socket) {
     let readGraph = this.state.readData;
-    socket.on("read-speed-socket", (val, error) => {
-      // console.log('>>>>val', val)
+    socket.on(eventConstants.READ_GRAPH_EVENTS, (val, error) => {
+
       this.setState({ blockSocketConnected: true });
 
       if (readGraph.length >= 10) readGraph.pop();
@@ -104,7 +104,7 @@ export default class Main extends Component {
       this.setState({ readResult: arr });
 
       if (error) {
-        console.log("hello error");
+        return error
       }
     });
   }
@@ -155,7 +155,7 @@ export default class Main extends Component {
         this.setState({ readResult: arr });
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   }
 
@@ -163,8 +163,7 @@ export default class Main extends Component {
 
   socketData(socket) {
     let writeGraph = this.state.saveData;
-    socket.on("saving-speed-socket", (val, error) => {
-      // console.log('>>>>val', val)
+    socket.on(eventConstants.SAVING_GRAPH_EVENT, (val, error) => {
       this.setState({ blockSocketConnected: true });
 
       if (writeGraph.length >= 10) writeGraph.pop();
@@ -180,7 +179,6 @@ export default class Main extends Component {
       var resultData = [];
 
       this.state.saveData && this.state.saveData.length >=1 && this.state.saveData.map((items, index) => {
-        // console.log('api--', items)
         let firstAxis = items?.savedTweets / items?.responseTime;
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
         resultData.push({
@@ -207,10 +205,8 @@ export default class Main extends Component {
       arr[0].data = getSaveUnique(resultData, "x").reverse();
       this.setState({ result: arr });
 
-      // console.log('apiarray--', arr)
-
       if (error) {
-        console.log("hello error");
+        return error
       }
     });
   }
@@ -234,7 +230,6 @@ export default class Main extends Component {
         var resultData = [];
 
         this.state.saveData && this.state.saveData.length >=1 && this.state.saveData.map((items, index) => {
-          // console.log('api--', items)
           let firstAxis = items?.savedTweets / items?.responseTime;
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
           resultData.push({
@@ -260,10 +255,9 @@ export default class Main extends Component {
         arr[0].data = getSaveUnique(resultData, "x").reverse();
         this.setState({ result: arr });
 
-        // console.log('apiarray--',arr)
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   }
 

@@ -4,7 +4,6 @@ import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
-import DarkMap from "./darkMap";
 import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData";
@@ -712,7 +711,7 @@ function MainComponent(props) {
         setMaxtpsValue(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   };
 
@@ -1037,8 +1036,6 @@ function MainComponent(props) {
               <SaveGraphTrend>
                 <SavedTweets
                   dark={dark}
-                  saved={props.Savesocket}
-                  savingCount={props.readSocket}
                 />
               </SaveGraphTrend>
             </Grid>
@@ -1049,7 +1046,7 @@ function MainComponent(props) {
               className={classes.grid3}
             >
               <ReadGraphTrend>
-                <ReadTweets dark={dark} readed={props.readSocket} />
+                <ReadTweets dark={dark} />
               </ReadGraphTrend>
             </Grid>
           </Grid>

@@ -18,8 +18,6 @@ import {
   responsiveFontSizes,
 } from "@material-ui/core/styles";
 
-// console.log('saved---',this.props.Socket)
-
 const IconImg = styled.img`
   margin-left: 10px;
   height: 14px;
@@ -282,9 +280,6 @@ export default function SavedTweets(props) {
   const classes = useStyles();
   const [authors, setAuthors] = useState({});
 
-  // console.log('saveprop2--', props.savedCount[0])
-  // console.log('saveprop2--', props.tweetCount.totalTweetCount)
-
   let text = props.tweetData[0]?.text;
   let animationclass = props.animationTime?.[text];
   let textanimationClass = props.textclass?.[text];
@@ -292,7 +287,6 @@ export default function SavedTweets(props) {
   let blockDarkanimationclass = props.blockDarkclass?.[text];
   let textdarkanimationClass = props.textDarkclass?.[text];
 
-  // console.log('texx--',textdarkanimationClass)
   let a = props?.tweetData?.sort((a, b) => b.createdAt.localeCompare(a.createdAt)) || "";
 
   return (

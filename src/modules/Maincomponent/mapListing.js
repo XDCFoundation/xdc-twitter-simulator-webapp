@@ -166,7 +166,7 @@ export default function PinnedSubheaderList(props) {
         setHashtag(listCoordinates);
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   }
 
@@ -177,7 +177,6 @@ export default function PinnedSubheaderList(props) {
           hashtag.length >= 1 &&
           hashtag.map((items, index) => {
             let volume = items?.tweet_volume;
-            // console.log('index--',index)
             return (
               <>
                 <div

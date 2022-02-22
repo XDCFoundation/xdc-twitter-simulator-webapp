@@ -21,7 +21,7 @@ export default function DarkSpeedometer(props) {
                   height={137}
                   forceRender={props.clicks === true ? true : false}
                   needleHeightRatio={0.6}
-                  needleColor={"#0000CD"}
+                  needleColor={"#ffffff"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -31,9 +31,9 @@ export default function DarkSpeedometer(props) {
                   maxValue={0.6}
                   ringWidth={20}
                   segmentColors={[
-                    "#7CFC00",
-                    "#7CFC00",
-                    "#7CFC00",
+                    "#10c892",
+                    "#10c892",
+                    "#10c892",
                     "#191970",
                     "#191970",
                   ]}
@@ -52,7 +52,7 @@ export default function DarkSpeedometer(props) {
                   height={137}
                   forceRender={props.clicks === true ? true : false}
                   needleHeightRatio={0.6}
-                  needleColor={"#0000CD"}
+                  needleColor={"#ffffff"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -62,9 +62,9 @@ export default function DarkSpeedometer(props) {
                   maxValue={0.6}
                   ringWidth={20}
                   segmentColors={[
-                    "#7CFC00",
-                        "#7CFC00",
-                        "#7CFC00",
+                    "#10c892",
+                        "#10c892",
+                        "#10c892",
                         "#191970",
                         "#191970",
                   ]}

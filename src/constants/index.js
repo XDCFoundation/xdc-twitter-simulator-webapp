@@ -39,4 +39,14 @@ export const socialMediaLinks = {
 export const eventConstants = {
     UPDATE_MARKERS: "UPDATE_MARKERS",
     UPDATE_READ_TWEETS: "UPDATE_READ_TWEETS",
+    NODE_LOCATION_EVENT: "network-stats-nodes",
+    READ_TWEETS_EVENT: "read-tweets-socket",
+    SAVING_TWEETS_EVENT: "BlockChain-socket",
+    SAVE_COUNT_EVENT: "tweet-count-socket",
+    READ_GRAPH_EVENTS: "read-speed-socket",
+    SAVING_GRAPH_EVENT: "saving-speed-socket",
+}
+
+export const cookiesConstants = {
+    UPDATED_TWEETS: "read-tweets"
 }

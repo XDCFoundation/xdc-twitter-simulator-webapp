@@ -335,21 +335,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  // const [authors, setAuthors] = useState({});
-
-  // useEffect(() => {
-  //   userHandle();
-  // }, [props?.readhandle]);
 
   useEffect(() => {
-    // console.log('hey--',props?.readtweetData)
   }, [props?.readtweetData]);
 
-  // async function userHandle() {
-  //   if (props?.readhandle && props?.readhandle?.length >= 1) {
-  //     setAuthors(props?.readhandle);
-  //   }
-  // }
 
   return (
     <Grid Container spacing={3}>
@@ -384,7 +373,6 @@ export default function ReadTweets(props) {
                   let str = response.addedOn;
                   let timeFormat = moment(str);
                   let time = timeFormat?.format("LT") || 0;
-                  // console.log('name--',authorName)
 
                   function shortenValue(
                     b,
@@ -432,7 +420,7 @@ export default function ReadTweets(props) {
                         <Column>
                           <Typography className={classes.email}>
                             {authorName.length > 0
-                              ? "@" + authorName
+                              ? authorName
                               : author || "-"}
                             {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>

@@ -4,8 +4,18 @@ import FooterComponent from "../Footer/footer";
 import HeaderComponent from "../Header/header";
 import MainComponent from "./maincomponent";
 import axios from "axios";
+import _ from "lodash";
 import moment from "moment";
 import "../../services/socket";
+import {eventConstants} from '../../constants';
+import socketClient from "socket.io-client";
+
+let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
+  transports: ["websocket"],
+});
+let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
+  transports: ["websocket"],
+});
 
 export default class Main extends Component {
   getMode() {
@@ -17,7 +27,6 @@ export default class Main extends Component {
     this.state = {
       dark: this.getMode(),
       authors: {},
-      // readAuthors: {},
       data: [],
       read: [],
       readResult: [],
@@ -46,38 +55,26 @@ export default class Main extends Component {
     await this.fetchReadTweets();
     await this.readingCount();
     await this.writingCount();
-    await this.socketSaveTweetData(this.props.savingSocket);
-    await this.readsocketData(this.props?.readingSocket);
-    await this.socketreadTweet(this.props?.readingSocket);
-    await this.socketCount(this.props?.readingSocket);
+    await this.socketSaveTweetData(socket);
+    await this.readsocketData(readtweetSocket);
+    await this.socketreadTweet(readtweetSocket);
+    await this.socketCount(readtweetSocket);
   }
 
   // Socket Connections :
 
   socketSaveTweetData(socket) {
     let savingtweets = this.state.savedTweets;
-    socket.on("BlockChain-socket", (blockData, error) => {
+    socket.on(eventConstants.SAVING_TWEETS_EVENT, (blockData, error) => {
       this.setState({ blockSocketConnected: true });
-
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
 
       if (savingtweets.length >= 10) savingtweets.pop();
       savingtweets.unshift(blockData);
 
-      // setTimeout(() => {
-      //   this.setState({
-      //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
-      //   })
-      // }, 500)
-
       this.setState({ savedTweets: savingtweets });
 
       if (error) {
-        console.log("hello error");
+        return;
       }
 
       // }
@@ -88,8 +85,7 @@ export default class Main extends Component {
 
   socketCount(socket) {
     let tweetsCount = this.state.savingtweetsCount;
-    socket.on("tweet-count-socket", (count, error) => {
-      // console.log('>>>count',count)
+    socket.on(eventConstants.SAVE_COUNT_EVENT, (count, error) => {
       this.setState({ blockSocketConnected: true });
 
       if (tweetsCount.length >= 1) tweetsCount.pop();
@@ -98,7 +94,7 @@ export default class Main extends Component {
       this.setState({ savingtweetsCount: tweetsCount });
 
       if (error) {
-        console.log("hello error");
+        return error
       }
     });
   }
@@ -128,7 +124,7 @@ export default class Main extends Component {
         this.setState({ totalSaveTweet: allSaveTweets });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
 
   }
@@ -137,29 +133,16 @@ export default class Main extends Component {
 
   socketreadTweet(socket) {
     let readingtweets = this.state.readtweets;
-    socket.on("read-tweets-socket", (blockData, error) => {
-      // console.log('>>>>>readtweet', blockData)
+    socket.on(eventConstants.READ_TWEETS_EVENT, (blockData, error) => {
       this.setState({ blockSocketConnected: true });
-
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
 
       if (readingtweets.length >= 10) readingtweets.pop();
       readingtweets.unshift(blockData);
 
-      // setTimeout(() => {
-      //   this.setState({
-      //     blockAnimation: {}, textAnimation: {}, handleAnimation: {}, textDarkAnimation: {}, blockDarkAnimation: {}
-      //   })
-      // }, 500)
-
-      this.setState({ readtweets: readingtweets });
+      this.setState({ readtweets: readingtweets});
 
       if (error) {
-        console.log("hello error");
+       return error
       }
 
       // } (left comment)
@@ -192,7 +175,7 @@ export default class Main extends Component {
         this.setState({ totaltweets: alltweets });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
 
   }
@@ -201,9 +184,8 @@ export default class Main extends Component {
 
   readsocketData(socket) {
     let readGraph = this.state.readData || "";
-    // console.log('res--',readGraph, readGraph?.length)
-    socket.on("read-speed-socket", (val, error) => {
-      // console.log('>>>>val', val)
+    socket.on(eventConstants.READ_GRAPH_EVENTS, (val, error) => {
+
       this.setState({ blockSocketConnected: true });
 
       if (readGraph?.length >= 10)
@@ -251,7 +233,7 @@ export default class Main extends Component {
         this.setState({ readResult: arr });
       }
       if (error) {
-        console.log("hello error");
+        return error
       }
     });
   }
@@ -302,7 +284,7 @@ export default class Main extends Component {
         this.setState({ readResult: arr });
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   }
 
@@ -310,8 +292,7 @@ export default class Main extends Component {
 
   socketData(socket) {
     let writeGraph = this.state.saveData;
-    socket.on("saving-speed-socket", (val, error) => {
-      // console.log('>>>>val', val)
+    socket.on(eventConstants.SAVING_GRAPH_EVENT, (val, error) => {
       this.setState({ blockSocketConnected: true });
 
       if (writeGraph.length >= 10) writeGraph.pop();
@@ -327,7 +308,6 @@ export default class Main extends Component {
       var resultData = [];
 
       this.state.saveData.map((items, index) => {
-        // console.log('api--', items)
         let firstAxis = items?.savedTweets / items?.responseTime;
         let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
         resultData.push({
@@ -354,10 +334,8 @@ export default class Main extends Component {
       arr[0].data = getSaveUnique(resultData, "x").reverse();
       this.setState({ result: arr });
 
-      // console.log('apiarray--', arr)
-
       if (error) {
-        console.log("hello error");
+        return error
       }
     });
   }
@@ -381,7 +359,6 @@ export default class Main extends Component {
         var resultData = [];
 
         this.state.saveData.map((items, index) => {
-          // console.log('api--', items)
           let firstAxis = items?.savedTweets / items?.responseTime;
           let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
           resultData.push({
@@ -407,10 +384,9 @@ export default class Main extends Component {
         arr[0].data = getSaveUnique(resultData, "x").reverse();
         this.setState({ result: arr });
 
-        // console.log('apiarray--',arr)
       })
       .catch((err) => {
-        console.log(err);
+        return err
       });
   }
 
@@ -421,10 +397,7 @@ export default class Main extends Component {
         <MainComponent
           dark={this.state.dark}
           state={this.state}
-          savingSpeed={this.writingCount.bind(this)}
-          Savesocket={this.props.savingSocket}
           saveCount={this.state.savingtweetsCount}
-          readSocket={this.props.readingSocket}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}
           // readtweetData={this.state.readtweets}
@@ -434,8 +407,6 @@ export default class Main extends Component {
           read={this.state.read}
           saveGraphdata={this.state.result}
           readGraphdata={this.state.readResult}
-          // saveAuthor={this.state?.authors}
-          // readAuthor={this.state?.readAuthors}
         />
         <FooterComponent />
       </div>
