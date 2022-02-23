@@ -2223,7 +2223,7 @@ input:focus {
   text-align: left !important;
   margin-bottom: 5px !important;
   margin-left: 18px !important;
-  animation: fadeInAnimation ease 4s !important;
+  animation: fadeInAnimation ease 2s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -2242,7 +2242,7 @@ input:focus {
   color: #09184b !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
-  animation: fadeInAnimation ease 4s !important;
+  animation: fadeInAnimation ease 2s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -2258,7 +2258,7 @@ input:focus {
   letter-spacing: normal !important;
   text-align: left !important;
   margin-left: 18px !important;
-  animation: fadeInAnimation ease 4s !important;
+  animation: fadeInAnimation ease 2s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 }
@@ -2278,7 +2278,7 @@ input:focus {
   text-align: left !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
-  animation: fadeInAnimation ease 4s !important;
+  animation: fadeInAnimation ease 2s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 
@@ -2300,7 +2300,7 @@ input:focus {
   text-align: left !important;
   margin-bottom: 5px !important;
   margin-left: 18px !important;
-  animation: fadeInAnimation ease 4s !important;
+  animation: fadeInAnimation ease 2s !important;
   animation-iteration-count: inherit !important;
   animation-fill-mode: forwards !important;
 

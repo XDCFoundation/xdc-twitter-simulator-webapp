@@ -276,7 +276,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ReadTweets(props) {
+export default function ReadTweets(props) {
   const classes = useStyles();
 
   useEffect(() => {
@@ -450,7 +450,3 @@ function ReadTweets(props) {
     </Grid>
   );
 }
-const mapStateToProps = (state) => {
-  return { readData: state.readTweet.tweets };
-};
-export default connect(mapStateToProps, { dispatchAction })(ReadTweets);

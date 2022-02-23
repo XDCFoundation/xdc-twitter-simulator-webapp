@@ -6,15 +6,6 @@ import socketClient from "socket.io-client";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
 
-
-let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
-  transports: ["websocket"],
-});
-let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
-  transports: ["websocket"],
-});
-
-
 export default class Saved extends BaseComponent {
   constructor(props) {
     super(props);
@@ -34,8 +25,8 @@ export default class Saved extends BaseComponent {
   }
   async componentDidMount() {
     await this.fetchSavedTweets();
-    this.socketData(socket);
-    this.socketCount(readtweetSocket);
+    this.socketData(this.props.socket);
+    this.socketCount(this.props.readtweetSocket);
   }
   socketData(socket) {
     let savingtweets = this.state.savedTweets;

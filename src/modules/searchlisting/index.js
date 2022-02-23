@@ -9,18 +9,6 @@ import socketClient from "socket.io-client";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
 
-
-let saveSocketgraph = socketClient(
-  process.env.REACT_APP_SAVING_SOCKET,
-  { transports: ["websocket"] }
-);
-let readSocketgraph = socketClient(
-  process.env.REACT_APP_READING_SOCKET,
-  { transports: ["websocket"] }
-);
-
-// let keywords = this.props?.match?.params?.keyword
-
 export default class Main extends Component {
   getMode() {
     return JSON.parse(localStorage.getItem("mode")) || false;
@@ -50,8 +38,8 @@ export default class Main extends Component {
   async componentDidMount() {
     await this.listreadingData();
     await this.writingSpeed();
-    await this.socketData(saveSocketgraph);
-    await this.readsocketData(readSocketgraph);
+    await this.socketData(this.props.socket);
+    await this.readsocketData(this.props.readtweetSocket);
   }
 
   async componentWillUpdate() {
@@ -63,7 +51,6 @@ export default class Main extends Component {
   readsocketData(socket) {
     let readGraph = this.state.readData;
     socket.on(eventConstants.READ_GRAPH_EVENTS, (val, error) => {
-
       this.setState({ blockSocketConnected: true });
 
       if (readGraph.length >= 10) readGraph.pop();
