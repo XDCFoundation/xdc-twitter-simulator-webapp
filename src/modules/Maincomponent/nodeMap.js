@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Nodes from "./webSocket";
 import utility from "../../utility";
 import { LocationService } from "../../services";

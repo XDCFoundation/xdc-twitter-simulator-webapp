@@ -10,8 +10,9 @@ import {
   Tooltip,
 } from "react-leaflet";
 import "../../assets/styles/custom.css";
-import axios from "axios";
 import styled from "styled-components";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
 export default function App(props) {
   const [hashtag, setHashtag] = useState([]);
@@ -25,29 +26,14 @@ export default function App(props) {
     }, 60000);
   }, []);
 
-  function trendingHash() {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_TRENDING_HASHTAG
-      )
-      .then((res) => {
-        let mappingCoordinates = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          mappingCoordinates = [];
-        else mappingCoordinates = res.data.responseData;
-        setHashtag(mappingCoordinates);
-
-      })
-      .catch((err) => {
-        return err
-      });
-  }
+  const trendingHash = async () => {
+    const [err, res] = await Utils.parseResponse(TweetService.getMapHashtags());
+    if (err) {
+      return err;
+    } else {
+      setHashtag(res || "");
+    }
+  };
 
   return (
     <>

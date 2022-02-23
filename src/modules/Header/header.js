@@ -9,7 +9,6 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Row } from "react-bootstrap";

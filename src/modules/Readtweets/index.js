@@ -1,5 +1,4 @@
 import BaseComponent from "../baseComponent";
-import axios from "axios";
 import React from "react";
 import _ from "lodash";
 import ReadTweets from "./readTweets";
@@ -7,6 +6,8 @@ import { dispatchAction } from "../../utility";
 import { connect } from "react-redux";
 import { eventConstants } from "../../constants";
 import socketClient from "socket.io-client";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
 let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
   transports: ["websocket"],
@@ -73,40 +74,23 @@ class Read extends BaseComponent {
       this.setState({ readtweets: readingtweets });
 
       if (error) {
-        return error
+        return error;
       }
-
-      // } (left comment)
     });
   }
 
-  async fetchTweets() {
-    await axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_READ_TWEET
-      )
 
-      .then((res) => {
-        let tweetResponse;
-        let alltweets;
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1];
-
-        this.setState({ readtweets: tweetResponse });
-        this.setState({ totaltweets: alltweets });
-      })
-      .catch((err) => {
-        return err
-      });
-  }
+  fetchTweets = async () => {
+    const [err, res] = await Utils.parseResponse(
+      TweetService.getReadTweetList()
+    );
+    if (err) {
+      return err;
+    } else {
+      this.setState({ readtweets: res[0] || "" });
+      this.setState({ totaltweets: res[1] || "" });
+    }
+  };
 
   render() {
     return (

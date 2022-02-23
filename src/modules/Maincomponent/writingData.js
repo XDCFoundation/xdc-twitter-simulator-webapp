@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import "../../assets/styles/custom.css";
-import axios from "axios";
 import moment from "moment";
 import { Component } from "react";
 

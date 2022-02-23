@@ -1,9 +1,11 @@
 import BaseComponent from "../baseComponent";
 import React from "react";
 import SavedTweets from "./savedTweets";
-import axios from "axios";
 import { eventConstants } from "../../constants";
 import socketClient from "socket.io-client";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
+
 
 let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
   transports: ["websocket"],
@@ -32,7 +34,6 @@ export default class Saved extends BaseComponent {
   }
   async componentDidMount() {
     await this.fetchSavedTweets();
-    // await this.userHandle();
     this.socketData(socket);
     this.socketCount(readtweetSocket);
   }
@@ -99,33 +100,17 @@ export default class Saved extends BaseComponent {
     });
   }
 
-  async fetchSavedTweets() {
-    await axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_SAVED_TWEET
-      )
-
-      .then((res) => {
-        let tweetResponse;
-        let allSaveTweets;
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data?.responseData?.response[0] || "";
-        allSaveTweets = res.data?.responseData?.response[1] || "";
-
-        this.setState({ savedTweets: tweetResponse });
-        this.setState({ totalSaveTweet: allSaveTweets });
-      })
-      .catch((err) => {
-        return err
-      });
-  }
+  fetchSavedTweets = async () => {
+    const [err, res] = await Utils.parseResponse(
+      TweetService.getSaveTweetList()
+    );
+    if (err) {
+      return err;
+    } else {
+      this.setState({ savedTweets: res?.response[0] || "" });
+      this.setState({ totalSaveTweet: res?.response[1] || "" });
+    }
+  };
 
   render() {
     return (

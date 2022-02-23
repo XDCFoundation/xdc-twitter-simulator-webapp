@@ -4,10 +4,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import axios from "axios";
 import "../../assets/styles/custom.css";
 import { white } from "material-ui/styles/colors";
 import millify from "millify";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -147,28 +148,14 @@ export default function PinnedSubheaderList(props) {
     }, 60000);
   }, []);
 
-  async function hashtagsList() {
-    await axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_TRENDING_HASHTAG
-      )
-      .then((res) => {
-        let listCoordinates = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          listCoordinates = [];
-        else listCoordinates = res.data.responseData;
-        setHashtag(listCoordinates);
-      })
-      .catch((err) => {
-        return err
-      });
-  }
+  const hashtagsList = async () => {
+    const [err, res] = await Utils.parseResponse(TweetService.getMapHashtags());
+    if (err) {
+      return err;
+    } else {
+      setHashtag(res || "");
+    }
+  };
 
   return (
     <List className={props.dark ? classes.dark_root : classes.root}>
