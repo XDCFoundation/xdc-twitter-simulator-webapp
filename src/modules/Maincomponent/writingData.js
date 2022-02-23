@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import "../../assets/styles/custom.css";
-import axios from "axios";
 import moment from "moment";
 import { Component } from "react";
 
@@ -58,8 +57,6 @@ const MyResponsiveLine = ({ data }) => (
 
 export default function App(props) {
   const [data, setData] = useState([]);
-
-  // console.log('socky--', props?.writeGraph)
   // setData(props?.writeGraph)
 
   useEffect(() => {
@@ -69,7 +66,6 @@ export default function App(props) {
   async function writingGraph() {
     setData(props?.writeGraph);
   }
-  // console.log('bat--',data)
 
   return (
     <>

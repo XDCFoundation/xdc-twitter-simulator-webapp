@@ -4,9 +4,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import axios from "axios";
 import "../../assets/styles/custom.css";
 import { white } from "material-ui/styles/colors";
+import millify from "millify";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,12 +81,12 @@ const useStyles = makeStyles((theme) => ({
   },
   "@media (min-width: 768px) and (max-width: 1024px)": {
     root: {
-      width: '112%',
+      width: "112%",
       marginLeft: "-15px",
     },
     dark_root: {
       width: "107.5%",
-      marginLeft: '-18px'
+      marginLeft: "-18px",
     },
   },
   "@media (min-width: 1025px) and (max-width: 1250px)": {
@@ -146,28 +148,14 @@ export default function PinnedSubheaderList(props) {
     }, 60000);
   }, []);
 
-  async function hashtagsList() {
-    await axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_TRENDING_HASHTAG
-      )
-      .then((res) => {
-        let listCoordinates = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          listCoordinates = [];
-        else listCoordinates = res.data.responseData;
-        setHashtag(listCoordinates);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  const hashtagsList = async () => {
+    const [err, res] = await Utils.parseResponse(TweetService.getMapHashtags());
+    if (err) {
+      return err;
+    } else {
+      setHashtag(res || "");
+    }
+  };
 
   return (
     <List className={props.dark ? classes.dark_root : classes.root}>
@@ -176,24 +164,17 @@ export default function PinnedSubheaderList(props) {
           hashtag.length >= 1 &&
           hashtag.map((items, index) => {
             let volume = items?.tweet_volume;
-            // console.log('index--',index)
             return (
               <>
-                <div key={index} className={props.dark ? "listMap-light" : "listMap-dark"}>
+                <div
+                  key={index}
+                  className={props.dark ? "listMap-light" : "listMap-dark"}
+                >
                   <div className="hashtag-list">
                     {index + 1 ? index + 1 : "null"}. {items?.name || 0} &nbsp;
-                    {volume > 1000
-                      ? volume == 0
-                        ? " "
-                        : "(" +
-                          parseInt(volume / 1000) +
-                          "k" +
-                          " " +
-                          "tweets" +
-                          ")"
-                      : !volume == 0
-                      ? "(" + volume + "k" + " " + "tweets" + ")"
-                      : " "}
+                    {volume !== null
+                      ? "(" + millify(volume) + " " + "tweets" + ")"
+                      : ""}
                   </div>
 
                   <div className="country-list">

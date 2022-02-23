@@ -9,7 +9,6 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Row } from "react-bootstrap";
@@ -385,13 +384,6 @@ export default function HeaderComponent(props) {
   const history = useHistory();
   const [keyword, setKeyword] = useState("");
 
-  // var uri = keyword || 0
-  // var res = encodeURIComponent(uri);
-  // console.log('mine---',res)
-
-  // let a = '#THR Great news and up 22% on the ASX overnight so this should be around 1.10p t'
-  // console.log('p--',encodeURIComponent(a.replace(/[^A-Z0-9]+/ig, "")))
-
   const redirect = () => {
     history.push("/list/" + encodeURIComponent(keyword?.replace("%", "")));
     window.location.reload();
@@ -466,7 +458,7 @@ export default function HeaderComponent(props) {
           </About>
         </div>
         &nbsp;
-        <div className="headerlistCommonrows">
+        {/* <div className="headerlistCommonrows">
           <Contact>
             <a
               className="headerlinkStyle"
@@ -475,7 +467,7 @@ export default function HeaderComponent(props) {
               Contact
             </a>
           </Contact>
-        </div>
+        </div> */}
         &nbsp;
         <div className="headerlistSepraterow">
           <div>Share</div>
@@ -522,7 +514,7 @@ export default function HeaderComponent(props) {
             </a>
             <Search
               type="text"
-              placeholder="Search by Handle name, Hash tag"
+              placeholder="Search by keyword"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -551,12 +543,12 @@ export default function HeaderComponent(props) {
                 About
               </a>
             </About>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <Contact>
               <a className="headerlinkStyle" href="#">
                 Contact
               </a>
-            </Contact>
+            </Contact> */}
             <FFButton />
             <Line> </Line>
             <Archive>
@@ -591,12 +583,12 @@ export default function HeaderComponent(props) {
                   About
                 </a>
               </About>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Contact>
                 <a className="headerlinkStyle" href="#">
                   Contact
                 </a>
-              </Contact>
+              </Contact> */}
               <FFButton />
               <Line> </Line>
               <Archive>
@@ -614,7 +606,7 @@ export default function HeaderComponent(props) {
           <SecondTabDiv>
             <Search
               type="text"
-              placeholder="Search by Handle name, Hash tag"
+              placeholder="Search by keyword"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -676,7 +668,7 @@ export default function HeaderComponent(props) {
               <div className="headerSecondRow">
                 <MobSearch
                   type="text"
-                  placeholder="Search by Handle name, Hash tag"
+                  placeholder="Search by keyword"
                   onChange={(e) => setKeyword(e.target.value)}
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {

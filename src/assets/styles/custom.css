@@ -1415,14 +1415,14 @@ input:focus {
 @media (min-width: 300px) and (max-width: 599px) {
   .link-text {
     background-color: transparent;
-    margin-left: -57px;
+    margin-left: -108px;
   }
   .follow-text {
     background-color: transparent;
     margin-left: -35px;
   }
   .powered-paper {
-    margin-left: -63px;
+    margin-left: -30px;
     flex-direction: column-reverse;
   }
   .powered-text {
@@ -1437,7 +1437,7 @@ input:focus {
 @media (min-width: 600px) and (max-width: 999px) {
   .link-text {
     background-color: transparent;
-    margin-left: -35px;
+    margin-left: -123px;
   }
   .powered-paper {
     margin-left: 0px;

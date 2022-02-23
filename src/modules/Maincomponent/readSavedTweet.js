@@ -9,8 +9,6 @@ import ReadTweets from "../Readtweets/readTweets";
 function MapTabs(props) {
   const [toggleState, setToggleState] = useState(1);
 
-  // console.log('prev--',props?.savehand)
-
   const toggleTab = (index) => {
     setToggleState(index);
   };

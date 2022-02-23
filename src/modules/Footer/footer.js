@@ -162,14 +162,14 @@ export default function FooterComponent() {
                                 Archive Tweet
                               </a>
                             </li>
-                            <li className={classes.linksitem}>
+                            {/* <li className={classes.linksitem}>
                               <a
                                 className="footerLinks"
                                 href="#"
                               >
                                 Contact us
                               </a>
-                            </li>
+                            </li> */}
                             <li className={classes.linksitem}>
                               <a
                                 className="footerLinks"

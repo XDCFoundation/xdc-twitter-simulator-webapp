@@ -1,9 +1,19 @@
 import BaseComponent from "../baseComponent";
-import axios from "axios";
 import React from "react";
+import _ from "lodash";
 import ReadTweets from "./readTweets";
+import { dispatchAction } from "../../utility";
+import { connect } from "react-redux";
+import { eventConstants } from "../../constants";
+import socketClient from "socket.io-client";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
-export default class Read extends BaseComponent {
+let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
+  transports: ["websocket"],
+});
+
+class Read extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,23 +28,16 @@ export default class Read extends BaseComponent {
       authors: {},
     };
   }
+
   async componentDidMount() {
     await this.fetchTweets();
-    // await this.userHandle();
-    this.socketData(this.props?.readed);
+    await this.socketData(readtweetSocket);
   }
 
   socketData(socket) {
     let readingtweets = this.state.readtweets;
-    socket.on("read-tweets-socket", (blockData, error) => {
-      // console.log('>>>>>readtweet', blockData)
+    socket.on(eventConstants.READ_TWEETS_EVENT, (blockData, error) => {
       this.setState({ blockSocketConnected: true });
-
-      // let blockDataExist = blocks.findIndex((item) => {
-      //   return item.number == blockData.number;
-      // });
-      // blockData["class"] = "first-block-age last-block-transaction height2";
-      // if (blockDataExist == -1) {
 
       if (readingtweets.length >= 10) readingtweets.pop();
       readingtweets.unshift(blockData);
@@ -71,106 +74,28 @@ export default class Read extends BaseComponent {
       this.setState({ readtweets: readingtweets });
 
       if (error) {
-        console.log("hello error");
+        return error;
       }
-
-      // } (left comment)
     });
   }
 
-  async fetchTweets() {
-    await axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_READ_TWEET
-      )
 
-      .then((res) => {
-        let tweetResponse;
-        let alltweets;
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          tweetResponse = [];
-        else tweetResponse = res.data.responseData[0];
-        alltweets = res.data.responseData[1];
-
-        this.setState({ readtweets: tweetResponse });
-        this.setState({ totaltweets: alltweets });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    // setInterval(async () => {
-    //   if (!this.state.blockSocketConnected) {
-    //     await axios
-    //       .get(
-    //         process.env.REACT_APP_BASE_URL_TWITTER +
-    //           process.env.REACT_APP_READ_TWEET
-    //       )
-
-    //       .then((res) => {
-    //         let tweetResponse;
-    //         let alltweets;
-    //         if (
-    //           !res &&
-    //           !res.data &&
-    //           !res.data.responseData &&
-    //           res.data.responseData.length <= 0
-    //         )
-    //           tweetResponse = [];
-    //         else tweetResponse = res.data.responseData[0];
-    //         alltweets = res.data.responseData[1];
-
-    //         this.setState({ readtweets: tweetResponse });
-    //         this.setState({ totaltweets: alltweets });
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   }
-    // }, 10000);
-  }
-
-  async userHandle() {
-    (this.state?.readtweets).map((item, index) => {
-      let handle = item?.authorId || 0;
-      // console.log('items2--', handle)
-      axios
-        .get(
-          process.env.REACT_APP_BASE_URL_TWITTER +
-            process.env.REACT_APP_USERNAME_BY_AUTHOR_ID +
-            handle
-        )
-        .then((res) => {
-          // setAuthors(res.data.responseData?.data[0]);
-          this.setState({
-            authors: res?.data?.responseData?.data[0]?.username,
-          });
-          // console.log('hand---', res.data.responseData?.data[0]?.username)
-        })
-        .catch((err) => {
-          if (
-            this?.state?.authors &&
-            this?.state?.authors?.length == 0
-          ) {
-            console.log(err);
-          }
-        });
-    });
-  }
+  fetchTweets = async () => {
+    const [err, res] = await Utils.parseResponse(
+      TweetService.getReadTweetList()
+    );
+    if (err) {
+      return err;
+    } else {
+      this.setState({ readtweets: res[0] || "" });
+      this.setState({ totaltweets: res[1] || "" });
+    }
+  };
 
   render() {
-    // console.log('this--',this.props?.readed)
-    //   console.log("saveindexTweets------", this.state.readtweets);
-    // console.log("saveCountTweets------", this.state.totaltweets);
     return (
       <div>
-        <ReadTweets 
+        <ReadTweets
           dark={this.props.dark}
           tweetreadData={this.state.readtweets}
           tweetreadCount={this.state.totaltweets}
@@ -185,3 +110,7 @@ export default class Read extends BaseComponent {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return { readData: state.readTweet.tweets };
+};
+export default connect(mapStateToProps, { dispatchAction })(Read);

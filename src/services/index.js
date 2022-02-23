@@ -1,1 +1,1 @@
-export { default as LocationService } from "./location"
+export { default as TweetService } from "./tweetServices"

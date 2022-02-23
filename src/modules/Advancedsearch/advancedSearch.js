@@ -204,10 +204,6 @@ export default function MaxWidthDialog(props) {
   const [name, setName] = useState("");
   const [hash, setHash] = useState("");
 
-  // console.log('mine...',keys)
-  // console.log('mine',hash)
-  // console.log('mine...',name)
-
   const redirect = () => {
     history.push(
       "/list/" +

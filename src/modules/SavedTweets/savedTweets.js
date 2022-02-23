@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -17,8 +16,6 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-
-// console.log('saved---',this.props.Socket)
 
 const IconImg = styled.img`
   margin-left: 10px;
@@ -282,9 +279,6 @@ export default function SavedTweets(props) {
   const classes = useStyles();
   const [authors, setAuthors] = useState({});
 
-  // console.log('saveprop2--', props.savedCount[0])
-  // console.log('saveprop2--', props.tweetCount.totalTweetCount)
-
   let text = props.tweetData[0]?.text;
   let animationclass = props.animationTime?.[text];
   let textanimationClass = props.textclass?.[text];
@@ -292,8 +286,7 @@ export default function SavedTweets(props) {
   let blockDarkanimationclass = props.blockDarkclass?.[text];
   let textdarkanimationClass = props.textDarkclass?.[text];
 
-  // console.log('texx--',textdarkanimationClass)
-  let a = props?.tweetData?.sort((a, b) => a.createdAt.localeCompare(b.createdAt)) || "";
+  let a = props?.tweetData?.sort((a, b) => b.createdAt.localeCompare(a.createdAt)) || "";
 
   return (
     <Grid Container spacing={3}>

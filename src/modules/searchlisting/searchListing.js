@@ -12,9 +12,10 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
-import axios from "axios";
 import moment from "moment";
 import HomeIcon from "@material-ui/icons/Home";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
 import {
   createMuiTheme,
@@ -441,66 +442,51 @@ export default function Searchlist(props) {
   }, [props.dark]);
 
   useEffect(() => {
-    Basicsearch();
-    Advancesearch();
+    if (
+      props?.locations?.split(" ")[0]?.length === 0 &&
+      props.hashname?.length === 0 &&
+      props.username?.length === 0
+    ) {
+      return;
+    }
+    if (props.hashname?.length >= 1 || props.username?.length >= 1) {
+      Advancesearch();
+    } else {
+      Basicsearch();
+      Advancesearch();
+    }
   }, [props?.locations.split(" ")[0]]);
 
-  const Basicsearch = () => {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_BASIC_SEARCH +
-          props?.locations.split(" ")[0]
-      )
-      .then((res) => {
-        let basicSearch = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData.length <= 0
-        )
-          basicSearch = [];
-        else basicSearch = res.data.responseData || "";
-        setBasic(basicSearch);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const Basicsearch = async () => {
+    let data = props?.locations.split(" ")[0]
+    const [err, res] = await Utils.parseResponse(
+      TweetService.getBasicSearch(data)
+    );
+    if (err) {
+      return err;
+    } else {
+      setBasic(res || "")
+      setLoading(false);
+    }
   };
 
-  const Advancesearch = () => {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_ADVANCE_SEARCH +
-          "name=" +
-          props?.username +
-          "&keyword=" +
-          props?.locations.split(" ")[0] +
-          "&hash=" +
-          props?.hashname
-      )
-      .then((res) => {
-        let advanceSearch = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData[0].length <= 0
-        )
-          advanceSearch = [];
-        else advanceSearch = res.data.responseData || "";
-        setAdvance(advanceSearch);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const Advancesearch = async () => {
+    let data = {
+      username: props?.username,
+      keyword: props?.locations.split(" ")[0],
+      hash: props?.hashname
+    }
+    const [err, res] = await Utils.parseResponse(
+      TweetService.getAdvanceSearch(data)
+    );
+    if (err) {
+      return err;
+    } else {
+      setAdvance(res || "");
+      setLoading(false);
+    }
   };
-  // let method = '@user'
-  // console.log("bas--", basic);
-  // console.log("adv--", advance);
+
   return (
     <div className={props.dark ? classes.main_dark_mode : classes.main}>
       <div className={classes.root}>
@@ -536,8 +522,10 @@ export default function Searchlist(props) {
                       Search Results
                     </Typography>
                   </Row>
-
-                  {isLoading ? (
+                  {props.hashname?.length >= 1 ||
+                  props.username?.length >= 1 ? (
+                    ""
+                  ) : isLoading ? (
                     <hr
                       className={
                         props.dark ? classes.hr_page_dark_mode : classes.hr_page
@@ -547,7 +535,10 @@ export default function Searchlist(props) {
                     ""
                   )}
 
-                  {isLoading ? (
+                  {props.hashname?.length >= 1 ||
+                  props.username?.length >= 1 ? (
+                    ""
+                  ) : isLoading ? (
                     <Loader />
                   ) : basic?.length === 0 ? (
                     <div className="table-data-message">No Result Found</div>
@@ -655,7 +646,7 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                      // console.log('texttt--',textId)
+      
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
                           stars
@@ -734,15 +725,15 @@ export default function Searchlist(props) {
                       );
                     })}
                 </Column>
-                {!isLoading ? (
-                  <hr
-                    className={
-                      props.dark ? classes.hr_page_dark_mode : classes.hr_page
-                    }
-                  />
-                ) : (
+                {/* {!isLoading ? ( */}
+                <hr
+                  className={
+                    props.dark ? classes.hr_page_dark_mode : classes.hr_page
+                  }
+                />
+                {/* ) : (
                   ""
-                )}
+                )} */}
                 <br />
                 <br />
                 <br />
@@ -880,7 +871,6 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                      // console.log('myuser--',userId)
 
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
@@ -975,7 +965,7 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                      // console.log('texttt--',textId)
+                
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
                           stars

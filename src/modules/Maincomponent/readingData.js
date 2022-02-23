@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import "../../assets/styles/custom.css";
-import axios from "axios";
 import moment from "moment";
 
 const toolTipElement = (props) => {
@@ -55,8 +54,6 @@ const ReadingData = ({ data }) => (
 
 export default function App(props) {
   const [data, setData] = useState([]);
-
-  // console.log('read--',props?.readGraph)
 
   useEffect(() => {
     readingGraph();

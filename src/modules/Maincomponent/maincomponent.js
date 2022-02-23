@@ -4,7 +4,6 @@ import Paper from "@material-ui/core/Paper";
 import styled from "styled-components";
 import { Column, Row } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
-import DarkMap from "./darkMap";
 import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData";
@@ -13,18 +12,18 @@ import MapChart from "./map";
 import NodeChart from "./nodeMap";
 import MapTabs from "./mapTabs";
 import Tippy from "@tippyjs/react";
-import axios from "axios";
 import moment from "moment";
 import SavedRead from "./readSavedTweet";
-import socketClient from "socket.io-client";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import _ from "lodash";
-import io from "socket.io-client";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 import { dispatchAction } from "../../utility";
 import { connect } from "react-redux";
 import Speedometer from "./speedometer";
+import DarkSpeedometer from "./darkSpeedometer";
 
 const IconImg = styled.img`
   margin-left: 10px;
@@ -125,11 +124,6 @@ const ReloadImg = styled.img`
   height: 20px;
   margin-left: 10px;
   cursor: pointer;
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  }
 `;
 
 const useStyles = makeStyles((theme) => ({
@@ -706,18 +700,13 @@ function MainComponent(props) {
 
   //for Max-Tps count:
 
-  const fetchTps = () => {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_MAX_TPS_COUNT
-      )
-      .then((res) => {
-        setMaxtpsValue(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const fetchTps = async () => {
+    const [err, res] = await Utils.parseResponse(TweetService.getMaxTps());
+    if (err) {
+      return err;
+    } else {
+      setMaxtpsValue(res || "");
+    }
   };
 
   //for Night mode-->
@@ -734,7 +723,7 @@ function MainComponent(props) {
 
   // let tpsCount = (count.totalTransactions / 60).toFixed(1);
 
-  let maxtpsCount = parseFloat(maxtpsvalue?.responseData)?.toFixed(2);
+  let maxtpsCount = parseFloat(maxtpsvalue)?.toFixed(2);
   let id = props?.read || 0;
   let savingData = props?.saveGraphdata;
   let readingData = props?.readGraphdata;
@@ -911,19 +900,33 @@ function MainComponent(props) {
                               case 1:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={click}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               case 2:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={secondClick}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               default:
@@ -931,13 +934,27 @@ function MainComponent(props) {
                             }
                           })()}
                           <div>
-                            <Speedometer
-                              clicks={clicks}
-                              steps={steps}
-                              meterValue={meterValue}
-                              dark={dark}
-                              tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
-                            />
+                            {props.dark ? (
+                              <DarkSpeedometer
+                                clicks={clicks}
+                                steps={steps}
+                                meterValue={meterValue}
+                                dark={dark}
+                                tpsCount={
+                                  parseFloat(tpsCount / 60).toFixed(2) || ""
+                                }
+                              />
+                            ) : (
+                              <Speedometer
+                                clicks={clicks}
+                                steps={steps}
+                                meterValue={meterValue}
+                                dark={dark}
+                                tpsCount={
+                                  parseFloat(tpsCount / 60).toFixed(2) || ""
+                                }
+                              />
+                            )}
                           </div>
                         </div>
 
@@ -1013,8 +1030,6 @@ function MainComponent(props) {
               <SaveGraphTrend>
                 <SavedTweets
                   dark={dark}
-                  saved={props.Savesocket}
-                  savingCount={props.readSocket}
                 />
               </SaveGraphTrend>
             </Grid>
@@ -1025,7 +1040,7 @@ function MainComponent(props) {
               className={classes.grid3}
             >
               <ReadGraphTrend>
-                <ReadTweets dark={dark} readed={props.readSocket} />
+                <ReadTweets dark={dark} />
               </ReadGraphTrend>
             </Grid>
           </Grid>
@@ -1153,19 +1168,33 @@ function MainComponent(props) {
                     case 1:
                       return (
                         <>
-                          <ReloadImg
-                            onClick={click}
-                            src="/images/reload-icon.svg"
-                          />
+                          {dark ? (
+                            <ReloadImg
+                              onClick={click}
+                              src="/images/Reload-white.svg"
+                            />
+                          ) : (
+                            <ReloadImg
+                              onClick={click}
+                              src="/images/Reload.svg"
+                            />
+                          )}
                         </>
                       );
                     case 2:
                       return (
                         <>
-                          <ReloadImg
-                            onClick={secondClick}
-                            src="/images/reload-icon.svg"
-                          />
+                          {dark ? (
+                            <ReloadImg
+                              onClick={secondClick}
+                              src="/images/Reload-white.svg"
+                            />
+                          ) : (
+                            <ReloadImg
+                              onClick={secondClick}
+                              src="/images/Reload.svg"
+                            />
+                          )}
                         </>
                       );
                     default:
@@ -1173,13 +1202,23 @@ function MainComponent(props) {
                   }
                 })()}
                 <div>
-                  <Speedometer
-                    clicks={clicks}
-                    steps={steps}
-                    meterValue={meterValue}
-                    dark={dark}
-                    tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
-                  />
+                  {props.dark ? (
+                    <DarkSpeedometer
+                      clicks={clicks}
+                      steps={steps}
+                      meterValue={meterValue}
+                      dark={dark}
+                      tpsCount={parseFloat(tpsCount / 60).toFixed(2) || ""}
+                    />
+                  ) : (
+                    <Speedometer
+                      clicks={clicks}
+                      steps={steps}
+                      meterValue={meterValue}
+                      dark={dark}
+                      tpsCount={parseFloat(tpsCount / 60).toFixed(2) || ""}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -1393,19 +1432,33 @@ function MainComponent(props) {
                               case 1:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={click}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={click}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               case 2:
                                 return (
                                   <>
-                                    <ReloadImg
-                                      onClick={secondClick}
-                                      src="/images/reload-icon.svg"
-                                    />
+                                    {dark ? (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload-white.svg"
+                                      />
+                                    ) : (
+                                      <ReloadImg
+                                        onClick={secondClick}
+                                        src="/images/Reload.svg"
+                                      />
+                                    )}
                                   </>
                                 );
                               default:
@@ -1415,13 +1468,27 @@ function MainComponent(props) {
                         </ActiveSpan>
                       </ActiveTpsColor>
                       <Meter>
-                        <Speedometer
-                          clicks={clicks}
-                          steps={steps}
-                          meterValue={meterValue}
-                          dark={dark}
-                          tpsCount={parseFloat(tpsCount / 60).toFixed(2)}
-                        />
+                        {props.dark ? (
+                          <DarkSpeedometer
+                            clicks={clicks}
+                            steps={steps}
+                            meterValue={meterValue}
+                            dark={dark}
+                            tpsCount={
+                              parseFloat(tpsCount / 60).toFixed(2) || ""
+                            }
+                          />
+                        ) : (
+                          <Speedometer
+                            clicks={clicks}
+                            steps={steps}
+                            meterValue={meterValue}
+                            dark={dark}
+                            tpsCount={
+                              parseFloat(tpsCount / 60).toFixed(2) || ""
+                            }
+                          />
+                        )}
                       </Meter>
                     </div>
 

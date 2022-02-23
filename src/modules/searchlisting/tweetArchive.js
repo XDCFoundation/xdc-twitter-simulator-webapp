@@ -5,7 +5,6 @@ import { Row, Column } from "simple-flexbox";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import "../../assets/styles/custom.css";
 import HeaderComponent from "./archiveHeader";
@@ -15,6 +14,8 @@ import { Icon } from "@material-ui/core";
 import moment from "moment";
 import Header from "../Header/header";
 import Loader from "./loader";
+import Utils from "../../utility";
+import { TweetService } from "../../services/index";
 
 const Container = styled.div`
   width: 500px;
@@ -37,14 +38,6 @@ const Heading = styled.span`
   font-size: 15px;
   padding-top: 3%;
   padding-left: 4%;
-  // box-sizing: border-box;
-  // width: 100%;
-  // border: solid #5B6DCD 1px;
-  // padding: 5px;
-  // border-top: none;
-  // border-right: none;
-  // border-bottom: visible;
-  // border-left: none;
 `;
 
 const BackArrow = styled.span`
@@ -176,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
   },
   "@media (min-width: 0px) and (max-width: 766px)": {
     mainLoaderRow: {
-      padding: "0px 76px",
+      // padding: "0px 76px",
       width: "100%",
     },
   },
@@ -190,55 +183,40 @@ const useStyles = makeStyles((theme) => ({
 export default function TweetArchive(props) {
   const classes = useStyles();
   const textId = useParams();
-  const [search, setSearch] = useState({});
   const [advanceSearch, setAdvancesearch] = useState({});
   const [isLoading, setLoading] = useState(true);
 
-  // mode: 
-  
+  // mode:
+
   const getMode = () => {
     return JSON.parse(localStorage.getItem("mode")) || false;
   };
   const [dark, setMode] = useState(getMode());
 
   const CheckMode = (mode) => {
-    // console.log('hello--',mode ? "Dark" : "Light",mode)
     localStorage.setItem("mode", mode);
-    setMode(mode)
-  }
+    setMode(mode);
+  };
 
   useEffect(() => {
     fetchbyAdvanceSearch();
   }, []);
 
-  const fetchbyAdvanceSearch = () => {
-    axios
-      .get(
-        process.env.REACT_APP_BASE_URL_TWITTER +
-          process.env.REACT_APP_ARCHIVE_TWEET_FROM_TESTNET_FOR_ADVANCE_SEARCH +
-          textId?.tweet
-      )
-      .then((res) => {
-        // console.log('res',res.data.responseData[0])
-        let advancearchiveTweet = [];
-        if (
-          !res &&
-          !res.data &&
-          !res.data.responseData &&
-          res.data.responseData[0].length <= 0
-        )
-          advancearchiveTweet = [];
-        else advancearchiveTweet = res.data.responseData || 0;
-        setAdvancesearch(advancearchiveTweet);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("er--", err);
-      });
+  const fetchbyAdvanceSearch = async () => {
+    let data = textId?.tweet;
+    const [err, res] = await Utils.parseResponse(
+      TweetService.getTweetDetails(data)
+    );
+    if (err) {
+      return err;
+    } else {
+      setAdvancesearch(res || "");
+      setLoading(false);
+    }
   };
 
-  let value = search[0]?.text || "";
-  let createBasicTime = search[0]?.createdAt || "-";
+  // let value = search[0]?.text || "";
+  let createBasicTime = advanceSearch[0]?.createdAt || "-";
   let date = moment(createBasicTime).format("LL");
   let time = moment(createBasicTime).format("LT");
 
@@ -254,14 +232,10 @@ export default function TweetArchive(props) {
       ?.join("")
       ?.substr(0, 1)
       ?.toUpperCase() || "-";
-  let handle = "@"+ advanceName
-    ?.slice(0, advanceName?.length)
-    ?.replace(/\s/g, "")
-    ?.toLowerCase();
+  let advanceHandle = advanceSearch[0]?.username || "";
 
   return (
     <>
-      {/* <HeaderComponent archiveId={userId?.tweet} /> */}
       <Header CheckMode={CheckMode} />
       <br />
       {isLoading ? (
@@ -271,11 +245,6 @@ export default function TweetArchive(props) {
               <Container>
                 <Column className={classes.mainColumn}>
                   <Row>
-                    {/* <BackArrow>
-                      <a href="/">
-                        <ArrowBackIcon />
-                      </a>
-                    </BackArrow> */}
                     <Heading className={classes.span_tweet}>
                       <span className={classes.span_tweet}>Tweet</span>
                     </Heading>
@@ -347,8 +316,8 @@ export default function TweetArchive(props) {
                       </Row>
                       <Row>
                         <Email>
-                          {/* {advanceSearch ? handle : ""} */}
-                          </Email>
+                          {advanceSearch ? "@" + advanceHandle : ""}
+                        </Email>
                       </Row>
                     </Name>
                   </Row>
@@ -356,13 +325,7 @@ export default function TweetArchive(props) {
                   <Row>
                     <Tweetdata>
                       <span className={classes.span_tweet}>
-                        {advanceSearch[0]
-                          ? advanceValue
-                            ? advanceValue
-                            : "Loading..."
-                          : value
-                          ? value
-                          : "Loading..."}
+                        {advanceSearch?.length >= 1 ? advanceValue : ""}
                       </span>
                     </Tweetdata>
                   </Row>
@@ -372,13 +335,7 @@ export default function TweetArchive(props) {
                       <Time>
                         {" "}
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        {advanceSearch
-                          ? advanceTime
-                            ? advanceTime
-                            : "Loading.."
-                          : time
-                          ? time
-                          : "Loading.."}
+                        {advanceSearch.length >= 1 ? advanceTime : ""}
                         &emsp;
                       </Time>
                       <Date>

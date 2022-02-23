@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Row, Column } from "simple-flexbox";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,6 +11,8 @@ import "tippy.js/themes/light.css";
 import "../styles/App.css";
 import moment from "moment";
 import BigNumber from "bignumber.js";
+import { dispatchAction } from "../../utility";
+import { connect } from "react-redux";
 
 import {
   createMuiTheme,
@@ -275,30 +276,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ReadTweets(props) {
+function ReadTweets(props) {
   const classes = useStyles();
 
-  const [authors, setAuthors] = useState({});
-
-  // let handle = props?.author
-  // console.log('so--',props?.tweetreadData)
-
   useEffect(() => {
-    userHandle();
-  }, [props?.author]);
-
-  useEffect(() => {
-    // console.log('fire--',props.tweetData);
   }, [props.tweetreadData]);
 
-  async function userHandle() {
-    if (props?.author && props?.author?.length >= 1) {
-      setAuthors(props?.author);
-    }
-  }
-
-  // let method = authors?.username
-  // console.log('method------', method)
 
   let text = props.tweetreadData[0]?.text;
   let animationclass = props.animationTime?.[text];
@@ -306,7 +289,6 @@ export default function ReadTweets(props) {
   let handleanimationclass = props.handleclass?.[text];
   let blockDarkanimationclass = props.blockDarkclass?.[text];
   let textdarkanimationClass = props.textDarkclass?.[text];
-  // console.log('texxx--',animationclass)
 
   return (
     <Grid Container spacing={3}>
@@ -328,8 +310,6 @@ export default function ReadTweets(props) {
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
-                  // variant="h5"
-                  // style={{ whiteSpace: "nowrap" }}
                 >
                   Read Tweets
                   <Tippy
@@ -366,7 +346,6 @@ export default function ReadTweets(props) {
                   // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorId || 0;
                   let authorName = response?.name?.slice(0, 20) || 0;
-                  // console.log('name--',authorName)
 
                   let str = response.addedOn;
                   let timeFormat = moment(str);
@@ -424,12 +403,10 @@ export default function ReadTweets(props) {
                             }
                           >
                             <div className="wordTruncating">
-                            {authorName.length > 0
-                              ? "@" + authorName
+                            {authorName?.length > 0
+                              ? authorName
                               : author || "-"}
                               </div>
-                            {/* {author}<br/> */}
-                            {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>
 
                           <ThemeProvider theme={theme}>
@@ -473,3 +450,7 @@ export default function ReadTweets(props) {
     </Grid>
   );
 }
+const mapStateToProps = (state) => {
+  return { readData: state.readTweet.tweets };
+};
+export default connect(mapStateToProps, { dispatchAction })(ReadTweets);

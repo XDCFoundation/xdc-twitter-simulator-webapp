@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Row, Column } from "simple-flexbox";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
@@ -301,23 +300,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReadTweets(props) {
   const classes = useStyles();
-  const [authors, setAuthors] = useState({});
-
-  // useEffect(() => {
-  //   userHandle();
-  // }, [props?.user]);
 
   useEffect(() => {
-    // console.log('fire--',props.tweetData);
+  
   }, [props?.savetweetData, props?.saveCountData]);
-
-  // async function userHandle() {
-  //   if (props?.user && props?.user?.length >= 1) {
-  //     setAuthors(props?.user);
-  //   }
-
-  // }
-
 
   return (
     <Grid Container spacing={3}>
