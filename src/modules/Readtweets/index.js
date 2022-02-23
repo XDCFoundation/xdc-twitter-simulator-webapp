@@ -9,11 +9,7 @@ import socketClient from "socket.io-client";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
 
-let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
-  transports: ["websocket"],
-});
-
-class Read extends BaseComponent {
+export default class Read extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +27,7 @@ class Read extends BaseComponent {
 
   async componentDidMount() {
     await this.fetchTweets();
-    await this.socketData(readtweetSocket);
+    await this.socketData(this.props.readtweetSocket);
   }
 
   socketData(socket) {
@@ -110,7 +106,3 @@ class Read extends BaseComponent {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return { readData: state.readTweet.tweets };
-};
-export default connect(mapStateToProps, { dispatchAction })(Read);

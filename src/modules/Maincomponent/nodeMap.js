@@ -4,7 +4,7 @@ import utility from "../../utility";
 import { LocationService } from "../../services";
 import _ from "lodash";
 import { dispatchAction } from "../../utility";
-
+import {eventConstants} from '../../constants';
 import { connect } from "react-redux";
 
 import {
@@ -18,7 +18,11 @@ import io from "socket.io-client";
 
 const geoUrl = process.env.REACT_APP_NODES_MAP_URL;
 
-function NodeChart(props) {
+let nodesArr = [];
+
+export default function NodeChart(props) {
+  const marker = props.marker
+ 
   return (
     <>
       <div>
@@ -34,9 +38,9 @@ function NodeChart(props) {
             }
           </Geographies>
 
-          {props?.stats?.markers &&
-            props?.stats?.markers?.length >= 1 &&
-            props?.stats?.markers?.map((items, index) => (
+          {marker &&
+            marker?.length >= 1 &&
+            marker?.map((items, index) => (
               <Marker key={index} coordinates={items.coords}>
                 <g
                   fill="#10c892"
@@ -55,7 +59,3 @@ function NodeChart(props) {
     </>
   );
 }
-const mapStateToProps = (state) => {
-  return { stats: state.stats };
-};
-export default connect(mapStateToProps, { dispatchAction })(NodeChart);

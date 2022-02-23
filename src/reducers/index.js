@@ -4,5 +4,7 @@ import stats from './stats';
 import readTweet from './readTweets';
 
 export default combineReducers({
-    user,stats,readTweet
+    user,
+    // stats,
+    // readTweet
 });

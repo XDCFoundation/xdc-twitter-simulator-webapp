@@ -20,6 +20,19 @@ import socketClient from "socket.io-client";
 
 import About from "./modules/About";
 
+let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
+  transports: ["websocket"],
+});
+let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
+  transports: ["websocket"],
+});
+
+const nodesSocket = socketClient(process.env.REACT_APP_NODE_SOCKET, {
+  path: "/stats-data/",
+  transports: ["websocket"],
+  reconnection: true,
+});
+
 const Main = withRouter(lazy(() => import("./modules/Maincomponent")));
 const Search = withRouter(lazy(() => import("./modules/searchlisting")));
 const TweetArchive = withRouter(lazy(() => import("./modules/searchlisting/tweetArchive")))
@@ -33,13 +46,13 @@ class Routes extends BaseComponent {
         <Router history={history}>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <Route exact path={"/list/:keyword"} component={Search} />
+              <Route exact path={"/list/:keyword"} component={() => <Search socket={socket} readtweetSocket={readtweetSocket}/>} />
               <Route exact path={"/archive/:tweet"} component={TweetArchive} />
               <Route exact path={"/about"} component={About} />
               <Route
                 exact
                 path={"/"}
-                component={Main}
+                component={() => <Main nodesSocket={nodesSocket} socket={socket} readtweetSocket={readtweetSocket}/>}
               />
               <Redirect exact from="*" to="/" />
             </Switch>

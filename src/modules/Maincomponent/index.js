@@ -11,13 +11,6 @@ import socketClient from "socket.io-client";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
 
-let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
-  transports: ["websocket"],
-});
-let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
-  transports: ["websocket"],
-});
-
 export default class Main extends Component {
   getMode() {
     return JSON.parse(localStorage.getItem("mode")) || false;
@@ -40,6 +33,7 @@ export default class Main extends Component {
       savingtweetsCount: [],
       readtweets: [],
       totaltweets: [],
+      marker: [],
       blockSocketConnected: false,
     };
   }
@@ -52,14 +46,15 @@ export default class Main extends Component {
   }
 
   async componentDidMount() {
-    await this.fetchSavedTweets();
-    await this.fetchReadTweets();
-    await this.readingCount();
-    await this.writingCount();
-    await this.socketSaveTweetData(socket);
-    await this.readsocketData(readtweetSocket);
-    await this.socketreadTweet(readtweetSocket);
-    await this.socketCount(readtweetSocket);
+    this.fetchSavedTweets();
+    this.fetchReadTweets();
+    this.readingCount();
+    this.writingCount();
+    this.socketSaveTweetData(this.props.socket);
+    this.readsocketData(this.props.readtweetSocket);
+    this.socketreadTweet(this.props.readtweetSocket);
+    this.socketCount(this.props.readtweetSocket);
+    this.updateMapMarkers()
   }
 
   // Socket Connections :
@@ -353,6 +348,33 @@ export default class Main extends Component {
     }
   };
 
+
+  updateMapMarkers = () => {
+    try{
+      const _this = this
+      this.props.nodesSocket.on(eventConstants.NODE_LOCATION_EVENT, function node(data) {
+        if (!_.isEmpty(data.nodes) && data.nodes.length) 
+       {
+        let updatedMarker = [];
+      
+        data.nodes.forEach((node) => {
+          function swap(x, y) {
+            return [y, x];
+          }
+          if (node.geo !== null) {
+            updatedMarker.push({
+              coords: swap(node.geo.ll[0], node.geo.ll[1]),
+            });
+          }
+        });
+        _this.setState({marker: updatedMarker})
+       }
+      });
+    }catch(e){
+      this.setState({marker: []})
+    }
+  }
+
   render() {
     return (
       <div>
@@ -360,6 +382,8 @@ export default class Main extends Component {
         <MainComponent
           dark={this.state.dark}
           state={this.state}
+          socket={this.props.socket}
+          readtweetSocket={this.props.readtweetSocket}
           saveCount={this.state.savingtweetsCount}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}

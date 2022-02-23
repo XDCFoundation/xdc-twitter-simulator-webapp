@@ -664,7 +664,7 @@ const TabResponsive = styled.div`
   }
 `;
 
-function MainComponent(props) {
+export default function MainComponent(props) {
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
   let tpsCount = props?.save;
@@ -689,7 +689,8 @@ function MainComponent(props) {
     }, 2000);
   };
 
-  let nodeLength = props?.stats?.markers?.length || 0;
+  let nodeLength =
+    props.state?.marker?.length > 0 ? props.state?.marker?.length + 1 : 0;
 
   useEffect(() => {
     fetchTps();
@@ -982,7 +983,7 @@ function MainComponent(props) {
                             </div>
                             {nodeLength}
                           </div>
-                          <NodeChart dark={dark} />
+                          <NodeChart marker={props.state?.marker} dark={dark} />
                         </div>
                       </div>
                     </Paper>
@@ -1030,6 +1031,8 @@ function MainComponent(props) {
               <SaveGraphTrend>
                 <SavedTweets
                   dark={dark}
+                  readtweetSocket={props.readtweetSocket}
+                  socket={props.socket}
                 />
               </SaveGraphTrend>
             </Grid>
@@ -1040,7 +1043,11 @@ function MainComponent(props) {
               className={classes.grid3}
             >
               <ReadGraphTrend>
-                <ReadTweets dark={dark} />
+                <ReadTweets
+                  dark={dark}
+                  readtweetSocket={props.readtweetSocket}
+                  socket={props.socket}
+                />
               </ReadGraphTrend>
             </Grid>
           </Grid>
@@ -1580,7 +1587,4 @@ function MainComponent(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return { stats: state.stats };
-};
-export default connect(mapStateToProps, { dispatchAction })(MainComponent);
+
