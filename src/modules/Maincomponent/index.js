@@ -34,6 +34,7 @@ export default class Main extends Component {
       readtweets: [],
       totaltweets: [],
       marker: [],
+      updatedMaxTps: "",
       blockSocketConnected: false,
     };
   }
@@ -46,15 +47,16 @@ export default class Main extends Component {
   }
 
   async componentDidMount() {
-    this.fetchSavedTweets();
-    this.fetchReadTweets();
-    this.readingCount();
-    this.writingCount();
+    await this.fetchSavedTweets();
+    await this.fetchReadTweets();
+    await this.readingCount();
+    await this.writingCount();
     this.socketSaveTweetData(this.props.socket);
     this.readsocketData(this.props.readtweetSocket);
     this.socketreadTweet(this.props.readtweetSocket);
     this.socketCount(this.props.readtweetSocket);
-    this.updateMapMarkers()
+    this.updateMapMarkers();
+    this.updateMaxTpsvalue();
   }
 
   // Socket Connections :
@@ -348,32 +350,53 @@ export default class Main extends Component {
     }
   };
 
+  // For Nodes :
 
   updateMapMarkers = () => {
-    try{
-      const _this = this
-      this.props.nodesSocket.on(eventConstants.NODE_LOCATION_EVENT, function node(data) {
-        if (!_.isEmpty(data.nodes) && data.nodes.length) 
-       {
-        let updatedMarker = [];
-      
-        data.nodes.forEach((node) => {
-          function swap(x, y) {
-            return [y, x];
-          }
-          if (node.geo !== null) {
-            updatedMarker.push({
-              coords: swap(node.geo.ll[0], node.geo.ll[1]),
+    try {
+      const _this = this;
+      this.props.nodesSocket.on(
+        eventConstants.NODE_LOCATION_EVENT,
+        function node(data) {
+          if (!_.isEmpty(data.nodes) && data.nodes.length) {
+            let updatedMarker = [];
+
+            data.nodes.forEach((node) => {
+              function swap(x, y) {
+                return [y, x];
+              }
+              if (node.geo !== null) {
+                updatedMarker.push({
+                  coords: swap(node.geo.ll[0], node.geo.ll[1]),
+                });
+              }
             });
+            _this.setState({ marker: updatedMarker });
           }
-        });
-        _this.setState({marker: updatedMarker})
-       }
-      });
-    }catch(e){
-      this.setState({marker: []})
+        }
+      );
+    } catch (e) {
+      this.setState({ marker: [] });
     }
-  }
+  };
+
+  updateMaxTpsvalue = () => {
+    try {
+      const _this = this;
+      let mainData;
+      this.props.nodesSocket.on("network-stats-data", function node(data) {
+        mainData = data.data?.transactions || 0;
+        if (!_.isEmpty(mainData) && mainData.length) {
+          let trimmed = mainData?.slice(30, 40);
+          let sum = trimmed?.reduce((a, b) => a + b, 0);
+          let avg = sum / 10;
+          _this.setState({ updatedMaxTps: avg });
+        }
+      });
+    } catch (e) {
+      this.setState({ updatedMaxTps: 0 });
+    }
+  };
 
   render() {
     return (
@@ -384,6 +407,7 @@ export default class Main extends Component {
           state={this.state}
           socket={this.props.socket}
           readtweetSocket={this.props.readtweetSocket}
+          update={ this.updateMaxTpsvalue.bind(this)}
           saveCount={this.state.savingtweetsCount}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}

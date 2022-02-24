@@ -665,13 +665,37 @@ const TabResponsive = styled.div`
 `;
 
 export default function MainComponent(props) {
+  let a;
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
-  let tpsCount = props?.save;
+  let tpsCount = Number(props?.save / 60) || 0;
+  let updatedTpsCount = tpsCount?.toFixed(2);
+
+  let currentTps =
+    props.state?.updatedMaxTps > updatedTpsCount
+      ? props.state?.updatedMaxTps
+      : updatedTpsCount;
 
   const [steps, setSteps] = useState(1);
   const [meterValue, setMeterValue] = useState();
   const [clicks, setClicks] = useState("");
+
+  const clickAfterSocket = () => {
+    setSteps(2);
+    props.update();
+    setClicks(true);
+    setInterval(() => {
+      setClicks("");
+    }, 2000);
+  };
+  const secondClickAfterSocket = () => {
+    setSteps(1);
+    setClicks(true);
+    props.update();
+    setInterval(() => {
+      setClicks("");
+    }, 2000);
+  };
 
   const click = () => {
     setSteps(2);
@@ -694,9 +718,6 @@ export default function MainComponent(props) {
 
   useEffect(() => {
     fetchTps();
-    setInterval(() => {
-      fetchTps();
-    }, 60000);
   }, []);
 
   //for Max-Tps count:
@@ -706,9 +727,15 @@ export default function MainComponent(props) {
     if (err) {
       return err;
     } else {
-      setMaxtpsValue(res || "");
+      setMaxtpsValue(res?.toFixed(2) || "");
     }
   };
+
+  useEffect(() => {
+    if (maxtpsvalue > 0 && props.state?.updatedMaxTps > maxtpsvalue) {
+      setMaxtpsValue(props.state?.updatedMaxTps);
+    }
+  }, [props]);
 
   //for Night mode-->
   const getMode = () => {
@@ -724,7 +751,8 @@ export default function MainComponent(props) {
 
   // let tpsCount = (count.totalTransactions / 60).toFixed(1);
 
-  let maxtpsCount = parseFloat(maxtpsvalue)?.toFixed(2);
+  let maxtpsCount = Number(maxtpsvalue)?.toFixed(2); // remove after tab and mob
+
   let id = props?.read || 0;
   let savingData = props?.saveGraphdata;
   let readingData = props?.readGraphdata;
@@ -892,10 +920,8 @@ export default function MainComponent(props) {
                               <IconImg src="../../images/ic.png" />
                             </Tippy>
                           </div>
-                          {isNaN(tpsCount)
-                            ? "-"
-                            : parseFloat(tpsCount / 60).toFixed(2)}{" "}
-                          / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                          {isNaN(currentTps) ? "-" : currentTps} /{" "}
+                          {isNaN(maxtpsvalue) ? "-" : maxtpsvalue}
                           {(() => {
                             switch (steps) {
                               case 1:
@@ -903,12 +929,12 @@ export default function MainComponent(props) {
                                   <>
                                     {dark ? (
                                       <ReloadImg
-                                        onClick={click}
+                                        onClick={clickAfterSocket}
                                         src="/images/Reload-white.svg"
                                       />
                                     ) : (
                                       <ReloadImg
-                                        onClick={click}
+                                        onClick={clickAfterSocket}
                                         src="/images/Reload.svg"
                                       />
                                     )}
@@ -919,12 +945,12 @@ export default function MainComponent(props) {
                                   <>
                                     {dark ? (
                                       <ReloadImg
-                                        onClick={secondClick}
+                                        onClick={secondClickAfterSocket}
                                         src="/images/Reload-white.svg"
                                       />
                                     ) : (
                                       <ReloadImg
-                                        onClick={secondClick}
+                                        onClick={secondClickAfterSocket}
                                         src="/images/Reload.svg"
                                       />
                                     )}
@@ -939,21 +965,15 @@ export default function MainComponent(props) {
                               <DarkSpeedometer
                                 clicks={clicks}
                                 steps={steps}
-                                meterValue={meterValue}
                                 dark={dark}
-                                tpsCount={
-                                  parseFloat(tpsCount / 60).toFixed(2) || ""
-                                }
+                                tpsCount={maxtpsvalue}
                               />
                             ) : (
                               <Speedometer
                                 clicks={clicks}
                                 steps={steps}
-                                meterValue={meterValue}
                                 dark={dark}
-                                tpsCount={
-                                  parseFloat(tpsCount / 60).toFixed(2) || ""
-                                }
+                                tpsCount={maxtpsvalue}
                               />
                             )}
                           </div>
@@ -1168,8 +1188,8 @@ export default function MainComponent(props) {
                     <IconImg src="../../images/ic.png" />
                   </Tippy>
                 </div>
-                {isNaN(tpsCount) ? "-" : parseFloat(tpsCount / 60).toFixed(2)} /{" "}
-                {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                {isNaN(currentTps) ? "-" : currentTps} /{" "}
+                {isNaN(maxtpsvalue) ? "-" : maxtpsvalue}
                 {(() => {
                   switch (steps) {
                     case 1:
@@ -1213,17 +1233,15 @@ export default function MainComponent(props) {
                     <DarkSpeedometer
                       clicks={clicks}
                       steps={steps}
-                      meterValue={meterValue}
                       dark={dark}
-                      tpsCount={parseFloat(tpsCount / 60).toFixed(2) || ""}
+                      tpsCount={maxtpsvalue}
                     />
                   ) : (
                     <Speedometer
                       clicks={clicks}
                       steps={steps}
-                      meterValue={meterValue}
                       dark={dark}
-                      tpsCount={parseFloat(tpsCount / 60).toFixed(2) || ""}
+                      tpsCount={maxtpsvalue}
                     />
                   )}
                 </div>
@@ -1251,7 +1269,7 @@ export default function MainComponent(props) {
                   </div>
                   {nodeLength}
                 </div>
-                <NodeChart dark={dark} />
+                <NodeChart dark={dark} marker={props.state?.marker} />
               </div>
             </div>
           </Paper>
@@ -1430,10 +1448,8 @@ export default function MainComponent(props) {
                         </Tippy>
                         <br />
                         <ActiveSpan>
-                          {isNaN(tpsCount)
-                            ? "-"
-                            : parseFloat(tpsCount / 60).toFixed(2)}{" "}
-                          / {isNaN(maxtpsCount) ? "-" : maxtpsCount}
+                          {isNaN(currentTps) ? "-" : currentTps} /{" "}
+                          {isNaN(maxtpsvalue) ? "-" : maxtpsvalue}
                           {(() => {
                             switch (steps) {
                               case 1:
@@ -1479,21 +1495,15 @@ export default function MainComponent(props) {
                           <DarkSpeedometer
                             clicks={clicks}
                             steps={steps}
-                            meterValue={meterValue}
                             dark={dark}
-                            tpsCount={
-                              parseFloat(tpsCount / 60).toFixed(2) || ""
-                            }
+                            tpsCount={maxtpsvalue}
                           />
                         ) : (
                           <Speedometer
                             clicks={clicks}
                             steps={steps}
-                            meterValue={meterValue}
                             dark={dark}
-                            tpsCount={
-                              parseFloat(tpsCount / 60).toFixed(2) || ""
-                            }
+                            tpsCount={maxtpsvalue}
                           />
                         )}
                       </Meter>
@@ -1518,7 +1528,7 @@ export default function MainComponent(props) {
                         <ActiveSpan> {nodeLength}</ActiveSpan>
                       </ActiveNodeColor>
                       <NodeSection>
-                        <NodeChart dark={dark} />
+                        <NodeChart dark={dark} marker={props.state?.marker} />
                       </NodeSection>
                     </div>
                   </MobParentSection>
@@ -1587,4 +1597,3 @@ export default function MainComponent(props) {
     </div>
   );
 }
-
