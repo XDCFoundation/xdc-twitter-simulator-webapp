@@ -54,7 +54,7 @@ export default function DarkSpeedometer(props) {
                     "#191970",
                     "#191970",
                   ]}
-                  value={val || 0}
+                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
                   currentValueText=" "
                 ></ReactSpeedometer>
               </>
@@ -83,7 +83,7 @@ export default function DarkSpeedometer(props) {
                     "#191970",
                     "#191970",
                   ]}
-                  value={val || 0}
+                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
                   currentValueText=" "
                 ></ReactSpeedometer>
               </>

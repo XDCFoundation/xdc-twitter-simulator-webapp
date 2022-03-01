@@ -665,7 +665,6 @@ const TabResponsive = styled.div`
 `;
 
 export default function MainComponent(props) {
-  let a;
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
   let tpsCount = Number(props?.save / 60) || 0;
@@ -677,7 +676,6 @@ export default function MainComponent(props) {
       : updatedTpsCount;
 
   const [steps, setSteps] = useState(1);
-  const [meterValue, setMeterValue] = useState();
   const [clicks, setClicks] = useState("");
 
   const clickAfterSocket = () => {
@@ -692,22 +690,6 @@ export default function MainComponent(props) {
     setSteps(1);
     setClicks(true);
     props.update();
-    setInterval(() => {
-      setClicks("");
-    }, 2000);
-  };
-
-  const click = () => {
-    setSteps(2);
-    setMeterValue(parseFloat(tpsCount / 60)?.toFixed(2) || 0);
-    setClicks(true);
-    setInterval(() => {
-      setClicks("");
-    }, 2000);
-  };
-  const secondClick = () => {
-    setSteps(1);
-    setClicks(true);
     setInterval(() => {
       setClicks("");
     }, 2000);
@@ -963,17 +945,21 @@ export default function MainComponent(props) {
                           <div>
                             {props.dark ? (
                               <DarkSpeedometer
+                                updatedMaxTps={props.state.updatedMaxTps}
                                 clicks={clicks}
                                 steps={steps}
                                 dark={dark}
                                 tpsCount={maxtpsvalue}
+                                currentTps={updatedTpsCount}
                               />
                             ) : (
                               <Speedometer
+                                updatedMaxTps={props.state.updatedMaxTps}
                                 clicks={clicks}
                                 steps={steps}
                                 dark={dark}
                                 tpsCount={maxtpsvalue}
+                                currentTps={updatedTpsCount}
                               />
                             )}
                           </div>
@@ -1197,12 +1183,12 @@ export default function MainComponent(props) {
                         <>
                           {dark ? (
                             <ReloadImg
-                              onClick={click}
+                              onClick={clickAfterSocket}
                               src="/images/Reload-white.svg"
                             />
                           ) : (
                             <ReloadImg
-                              onClick={click}
+                              onClick={clickAfterSocket}
                               src="/images/Reload.svg"
                             />
                           )}
@@ -1213,12 +1199,12 @@ export default function MainComponent(props) {
                         <>
                           {dark ? (
                             <ReloadImg
-                              onClick={secondClick}
+                              onClick={secondClickAfterSocket}
                               src="/images/Reload-white.svg"
                             />
                           ) : (
                             <ReloadImg
-                              onClick={secondClick}
+                              onClick={secondClickAfterSocket}
                               src="/images/Reload.svg"
                             />
                           )}
@@ -1231,17 +1217,21 @@ export default function MainComponent(props) {
                 <div>
                   {props.dark ? (
                     <DarkSpeedometer
+                      updatedMaxTps={props.state.updatedMaxTps}
                       clicks={clicks}
                       steps={steps}
                       dark={dark}
                       tpsCount={maxtpsvalue}
+                      currentTps={updatedTpsCount}
                     />
                   ) : (
                     <Speedometer
+                      updatedMaxTps={props.state.updatedMaxTps}
                       clicks={clicks}
                       steps={steps}
                       dark={dark}
                       tpsCount={maxtpsvalue}
+                      currentTps={updatedTpsCount}
                     />
                   )}
                 </div>
@@ -1457,12 +1447,12 @@ export default function MainComponent(props) {
                                   <>
                                     {dark ? (
                                       <ReloadImg
-                                        onClick={click}
+                                        onClick={clickAfterSocket}
                                         src="/images/Reload-white.svg"
                                       />
                                     ) : (
                                       <ReloadImg
-                                        onClick={click}
+                                        onClick={clickAfterSocket}
                                         src="/images/Reload.svg"
                                       />
                                     )}
@@ -1473,12 +1463,12 @@ export default function MainComponent(props) {
                                   <>
                                     {dark ? (
                                       <ReloadImg
-                                        onClick={secondClick}
+                                        onClick={secondClickAfterSocket}
                                         src="/images/Reload-white.svg"
                                       />
                                     ) : (
                                       <ReloadImg
-                                        onClick={secondClick}
+                                        onClick={secondClickAfterSocket}
                                         src="/images/Reload.svg"
                                       />
                                     )}
@@ -1493,17 +1483,21 @@ export default function MainComponent(props) {
                       <Meter>
                         {props.dark ? (
                           <DarkSpeedometer
+                            updatedMaxTps={props.state.updatedMaxTps}
                             clicks={clicks}
                             steps={steps}
                             dark={dark}
                             tpsCount={maxtpsvalue}
+                            currentTps={updatedTpsCount}
                           />
                         ) : (
                           <Speedometer
+                            updatedMaxTps={props.state.updatedMaxTps}
                             clicks={clicks}
                             steps={steps}
                             dark={dark}
                             tpsCount={maxtpsvalue}
+                            currentTps={updatedTpsCount}
                           />
                         )}
                       </Meter>

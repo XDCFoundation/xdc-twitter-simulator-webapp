@@ -54,7 +54,7 @@ export default function Speedometer(props) {
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
-                  value={val || 0}
+                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
                   currentValueText=" "
                 ></ReactSpeedometer>
               </>
@@ -83,7 +83,7 @@ export default function Speedometer(props) {
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
-                  value={val || 0}
+                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
                   currentValueText=" "
                 ></ReactSpeedometer>
               </>
