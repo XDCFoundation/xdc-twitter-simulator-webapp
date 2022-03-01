@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ReactSpeedometer from "react-d3-speedometer";
 
@@ -7,8 +7,24 @@ const MainDiv = styled.div`
 `;
 
 export default function Speedometer(props) {
-  let val = props.tpsCount || 0;
-  let mode = props.dark === true ? "white" : "black";
+  const [parameter, setParameter] = useState([0, 3, 6, 9, 12, 15, 18]);
+  const [maxValue, setMaxValue] = useState(18);
+
+  let val = Number(props.tpsCount)?.toFixed(2) || 0;
+
+  useEffect(() => {
+    if (val !== null && val !== undefined && val >= 0) {
+      parameterValue();
+    }
+  }, [val]);
+
+  function parameterValue() {
+    try {
+      let value = parseFloat(val) / 5;
+      setParameter([0, 1 * value, 2 * value, 3 * value, 4 * value, 5 * value]);
+      setMaxValue(5 * value);
+    } catch (e) {}
+  }
 
   return (
     <MainDiv>
@@ -20,16 +36,16 @@ export default function Speedometer(props) {
                 <ReactSpeedometer
                   width={213}
                   height={137}
-                  forceRender={props.clicks === true ? true : false}
+                  forceRender={true}
                   needleHeightRatio={0.6}
                   needleColor={"black"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
                   segments={5}
-                  customSegmentStops={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]}
+                  customSegmentStops={parameter}
                   minValue={0}
-                  maxValue={0.6}
+                  maxValue={maxValue}
                   ringWidth={20}
                   segmentColors={[
                     "#68D0E2",
@@ -38,9 +54,7 @@ export default function Speedometer(props) {
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
-                  value={
-                    props.meterValue === undefined ? val : props.meterValue
-                  }
+                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
                   currentValueText=" "
                 ></ReactSpeedometer>
               </>
@@ -51,16 +65,16 @@ export default function Speedometer(props) {
                 <ReactSpeedometer
                   width={213}
                   height={137}
-                  forceRender={props.clicks === true ? true : false}
+                  forceRender={true}
                   needleHeightRatio={0.6}
                   needleColor={"black"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
                   segments={5}
-                  customSegmentStops={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]}
+                  customSegmentStops={parameter}
                   minValue={0}
-                  maxValue={0.6}
+                  maxValue={maxValue}
                   ringWidth={20}
                   segmentColors={[
                     "#68D0E2",
@@ -69,7 +83,7 @@ export default function Speedometer(props) {
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
-                  value={props.meterValue}
+                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
                   currentValueText=" "
                 ></ReactSpeedometer>
               </>

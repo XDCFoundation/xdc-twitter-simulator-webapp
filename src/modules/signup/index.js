@@ -46,7 +46,7 @@ class Register extends BaseComponent {
     onLoginClicked = (event) => {
         event.preventDefault();
         if (this.validateLoginForm())
-            Utils.basicAlert("Badhiyaaaa")
+            Utils.basicAlert("")
     };
 
     render() {
