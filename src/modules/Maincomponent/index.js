@@ -386,12 +386,15 @@ export default class Main extends Component {
       let mainData;
       this.props.nodesSocket.on("network-stats-data", function node(data) {
         mainData = data.data?.transactions || 0;
-        if (!_.isEmpty(mainData) && mainData.length) {
-          let trimmed = mainData?.slice(30, 40);
-          let sum = trimmed?.reduce((a, b) => a + b, 0);
-          let avg = sum / 10;
-          _this.setState({ updatedMaxTps: avg });
-        }
+        setInterval(() => {
+          if (!_.isEmpty(mainData) && mainData.length) {
+            let trimmed = mainData?.slice(30, 40);
+            let sum = trimmed?.reduce((a, b) => a + b, 0);
+            let avg = sum / 10;
+            console.log("av--", avg);
+            _this.setState({ updatedMaxTps: avg });
+          }
+        }, 30000);
       });
     } catch (e) {
       this.setState({ updatedMaxTps: 0 });
@@ -399,6 +402,7 @@ export default class Main extends Component {
   };
 
   render() {
+    console.log("thi--", this.state.updatedMaxTps);
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
@@ -407,7 +411,7 @@ export default class Main extends Component {
           state={this.state}
           socket={this.props.socket}
           readtweetSocket={this.props.readtweetSocket}
-          update={ this.updateMaxTpsvalue.bind(this)}
+          update={this.updateMaxTpsvalue.bind(this)}
           saveCount={this.state.savingtweetsCount}
           tweetData={this.state.savedTweets}
           tweetCount={this.state.totalSaveTweet}
