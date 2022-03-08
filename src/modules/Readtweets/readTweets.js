@@ -318,7 +318,7 @@ export default function ReadTweets(props) {
                     maxWidth={"none"}
                     content={
                       <span className="tippyBlockstyle">
-                        Number of read tweets by d-app platform
+                        List of tweets read by the dApp
                       </span>
                     }
                   >
@@ -352,12 +352,11 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 60, stars = 1) {
-                    return `${
-                      b.length > 0 ? b?.slice(0, amountL) : "-"
-                    }${""?.repeat(stars)}${b?.slice(
-                      // b.length - 3,
-                      b?.length || 0
-                    )}`;
+                    return `${b.length > 0 ? b?.slice(0, amountL) : "-"
+                      }${""?.repeat(stars)}${b?.slice(
+                        // b.length - 3,
+                        b?.length || 0
+                      )}`;
                   }
 
                   return (
@@ -385,8 +384,8 @@ export default function ReadTweets(props) {
                                 ? blockDarkanimationclass
                                 : classes.time_dark_mode
                               : animationclass
-                              ? animationclass
-                              : classes.time
+                                ? animationclass
+                                : classes.time
                           }
                         >
                           {time ? time : "-"}
@@ -403,10 +402,10 @@ export default function ReadTweets(props) {
                             }
                           >
                             <div className="wordTruncating">
-                            {authorName?.length > 0
-                              ? authorName
-                              : author || "-"}
-                              </div>
+                              {authorName?.length > 0
+                                ? authorName
+                                : author || "-"}
+                            </div>
                           </Typography>
 
                           <ThemeProvider theme={theme}>
@@ -417,11 +416,11 @@ export default function ReadTweets(props) {
                                     ? textdarkanimationClass
                                     : classes.content_dark_mode
                                   : textanimationClass
-                                  ? textanimationClass
-                                  : classes.content
+                                    ? textanimationClass
+                                    : classes.content
                               }
-                              // noWrap
-                              // gutterBottom
+                            // noWrap
+                            // gutterBottom
                             >
                               <div className="wordTruncating">
                                 {textVal.length > 0

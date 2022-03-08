@@ -789,8 +789,7 @@ export default function MainComponent(props) {
                           maxWidth={200}
                           content={
                             <span className="tippyBlockstyle">
-                              The saved tweets per second track the rate of
-                              record-keeping
+                              Number of tweets saved per second
                             </span>
                           }
                         >
@@ -844,8 +843,7 @@ export default function MainComponent(props) {
                           maxWidth={190}
                           content={
                             <span className="tippyBlockstyle">
-                              The read tweets per second track the rate of
-                              record-keeping
+                              Number of tweets read per second
                             </span>
                           }
                         >
@@ -894,8 +892,7 @@ export default function MainComponent(props) {
                               maxWidth={220}
                               content={
                                 <span className="tippyOtherblockStyle">
-                                  The speed of the current and maximum
-                                  transactions completed on the platform
+                                  The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
                                 </span>
                               }
                             >
@@ -980,7 +977,7 @@ export default function MainComponent(props) {
                                 maxWidth={180}
                                 content={
                                   <span className="tippyBlockstyle">
-                                    Current Active Nodes
+                                    Number of active nodes
                                   </span>
                                 }
                               >
@@ -1009,9 +1006,7 @@ export default function MainComponent(props) {
                   maxWidth={340}
                   content={
                     <span className="tippyOtherblockStyle">
-                      This twitter decentralized application pertually records
-                      the top 20 hashtags on Twitter on to the XDC Network
-                      blockchain.
+                      Top 20 trending Twitter hashtags recorded on the XDC blockchain
                     </span>
                   }
                 >
@@ -1081,8 +1076,7 @@ export default function MainComponent(props) {
                     maxWidth={200}
                     content={
                       <span className="tippyBlockstyle">
-                        The saved tweets per second track the rate of
-                        record-keeping
+                        Number of tweets saved per second
                       </span>
                     }
                   >
@@ -1124,8 +1118,7 @@ export default function MainComponent(props) {
                     maxWidth={190}
                     content={
                       <span className="tippyBlockstyle">
-                        The read tweets per second track the rate of
-                        record-keeping
+                        Number of tweets read per second
                       </span>
                     }
                   >
@@ -1166,8 +1159,7 @@ export default function MainComponent(props) {
                     maxWidth={220}
                     content={
                       <span className="tippyOtherblockStyle">
-                        The speed of the current and maximum transactions
-                        completed on the platform
+                        The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
                       </span>
                     }
                   >
@@ -1250,7 +1242,7 @@ export default function MainComponent(props) {
                       maxWidth={180}
                       content={
                         <span className="tippyBlockstyle">
-                          Current Active Nodes
+                          Number of active nodes
                         </span>
                       }
                     >
@@ -1298,8 +1290,7 @@ export default function MainComponent(props) {
                 maxWidth={340}
                 content={
                   <span className="tippyOtherblockStyle">
-                    This twitter decentralized application pertually records the
-                    top 20 hashtags on Twitter on to the XDC Network blockchain.
+                    Top 20 trending Twitter hashtags recorded on the XDC blockchain
                   </span>
                 }
               >
@@ -1339,8 +1330,7 @@ export default function MainComponent(props) {
                     maxWidth={200}
                     content={
                       <span className="tippyBlockstyle">
-                        The saved tweets per second track the rate of
-                        record-keeping
+                        Number of tweets saved per second
                       </span>
                     }
                   >
@@ -1382,8 +1372,7 @@ export default function MainComponent(props) {
                     maxWidth={190}
                     content={
                       <span className="tippyBlockstyle">
-                        The read tweets per second track the rate of
-                        record-keeping
+                        Number of tweets read per second
                       </span>
                     }
                   >
@@ -1429,8 +1418,7 @@ export default function MainComponent(props) {
                           maxWidth={220}
                           content={
                             <span className="tippyOtherblockStyle">
-                              The speed of the current and maximum transactions
-                              completed on the platform
+                              The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
                             </span>
                           }
                         >
@@ -1512,7 +1500,7 @@ export default function MainComponent(props) {
                           maxWidth={180}
                           content={
                             <span className="tippyBlockstyle">
-                              Current Active Nodes
+                              Number of active nodes
                             </span>
                           }
                         >
@@ -1544,9 +1532,7 @@ export default function MainComponent(props) {
                   maxWidth={340}
                   content={
                     <span className="tippyOtherblockStyle">
-                      This twitter decentralized application pertually records
-                      the top 20 hashtags on Twitter on to the XDC Network
-                      blockchain.
+                      Top 20 trending Twitter hashtags recorded on the XDC blockchain
                     </span>
                   }
                 >
