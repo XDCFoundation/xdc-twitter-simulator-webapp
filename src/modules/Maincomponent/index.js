@@ -118,7 +118,6 @@ export default class Main extends Component {
 
       if (readingtweets.length >= 10) readingtweets.pop();
       readingtweets.unshift(blockData);
-
       this.setState({ readtweets: readingtweets });
 
       if (error) {
