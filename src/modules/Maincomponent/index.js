@@ -390,7 +390,6 @@ export default class Main extends Component {
             let trimmed = mainData?.slice(30, 40);
             let sum = trimmed?.reduce((a, b) => a + b, 0);
             let avg = sum / 10;
-            console.log("av--", avg);
             _this.setState({ updatedMaxTps: avg });
           }
         }, 30000);
@@ -401,7 +400,6 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log("thi--", this.state.updatedMaxTps);
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />
