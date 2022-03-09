@@ -20,10 +20,10 @@ export default function DarkSpeedometer(props) {
 
   function parameterValue() {
     try {
-      let value = parseFloat(val) / 5;
+      let value = Number((parseFloat(val) / 5).toFixed(2));
       setParameter([0, 1 * value, 2 * value, 3 * value, 4 * value, 5 * value]);
       setMaxValue(5 * value);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   return (

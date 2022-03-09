@@ -39,7 +39,7 @@ export default function DarkMap() {
       <MapContainer
         className="darkmap-style"
         center={[30, 10]}
-        dragging={false}
+        dragging={true}
         zoom={1.5}
         scrollWheelZoom={true}
         zoomControl={false}

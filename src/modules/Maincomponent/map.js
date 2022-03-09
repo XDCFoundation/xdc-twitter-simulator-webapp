@@ -40,7 +40,7 @@ export default function App(props) {
       <MapContainer
         className="lightmap-style"
         center={[30, 10]}
-        dragging={false}
+        dragging={true}
         zoom={1.5}
         scrollWheelZoom={true}
         zoomControl={false}
