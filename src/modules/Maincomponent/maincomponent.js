@@ -667,6 +667,7 @@ const TabResponsive = styled.div`
 export default function MainComponent(props) {
   const classes = useStyles();
   const [maxtpsvalue, setMaxtpsValue] = useState({});
+
   let tpsCount = Number(props?.save / 60) || 0;
   let updatedTpsCount = tpsCount?.toFixed(2);
 
@@ -800,7 +801,7 @@ export default function MainComponent(props) {
                       <div
                         className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}
                       >
-                        {isNaN(tpsCount) ? "-" : tpsCount} /
+                        {isNaN(props.state?.save) ? "-" : props.state?.save} /
                         <span className="fs-16">min</span>
                       </div>
                       <span className="hover-data">
@@ -1085,7 +1086,7 @@ export default function MainComponent(props) {
                 </div>
 
                 <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                  {isNaN(tpsCount) ? "-" : tpsCount} /
+                  {isNaN(props.state?.save) ? "-" : props.state?.save} /
                   <span className="fs-16">min</span>
                 </div>
                 <span className="hover-data">
@@ -1339,7 +1340,7 @@ export default function MainComponent(props) {
                 </div>
 
                 <div className={dark ? "saveSpeed-dark-mode" : "saveSpeed"}>
-                  {isNaN(tpsCount) ? "-" : tpsCount} /
+                  {isNaN(props.state?.save) ? "-" : props.state?.save} /
                   <span className="fs-16">min</span>
                 </div>
                 <span className="hover-data">
