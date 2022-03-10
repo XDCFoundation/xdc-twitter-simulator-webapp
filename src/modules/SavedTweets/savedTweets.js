@@ -319,7 +319,6 @@ export default function SavedTweets(props) {
                     <IconImg src="../../images/ic.png" />
                   </Tippy>
                 </Typography>
-
                 <Paper
                   variant="h5"
                   className={

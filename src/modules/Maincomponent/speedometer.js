@@ -40,7 +40,8 @@ export default function Speedometer(props) {
                   needleHeightRatio={0.6}
                   needleColor={"black"}
                   needleTransitionDuration={9000}
-                  needleTransition="easeElastic"
+                  // needleTransition="easeElastic"
+                  needleTransition="easeCircleInOut"
                   maxSegmentLabels={5}
                   segments={5}
                   customSegmentStops={parameter}
@@ -69,7 +70,8 @@ export default function Speedometer(props) {
                   needleHeightRatio={0.6}
                   needleColor={"black"}
                   needleTransitionDuration={9000}
-                  needleTransition="easeElastic"
+                  // needleTransition="easeElastic"
+                  needleTransition="easeCircleInOut"
                   maxSegmentLabels={5}
                   segments={5}
                   customSegmentStops={parameter}

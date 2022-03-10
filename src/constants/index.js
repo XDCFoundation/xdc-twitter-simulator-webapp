@@ -25,18 +25,18 @@ export const httpConstants = {
 export const socialMediaLinks = {
     FACEBOOK_LINK: "https://www.facebook.com/XDCFoundation",
     TWITTER_LINK: "https://twitter.com/XDCFoundation",
-    TELEGRAM_LINK: "https://telegram.me/share/url?url=https://speedtest.xdc.org:90/&text=XDC%20Speed%20Test",
+    TELEGRAM_LINK: "https://telegram.me/share/url?url=https://speedtest.xdc.org:90/&text=Talk on Telegram",
     LINKED_LINK: "https://www.linkedin.com/company/xdc-foundation?trk=public_profile_topcard-current-company",
-    REDDIT_LINK: "http://www.reddit.com/submit?url=https://speedtest.xdc.org&title=The%20XDC%20Speed%20Test",
+    REDDIT_LINK: "http://www.reddit.com/submit?url=https://speedtest.xdc.org&title=The%20XDC%20Speed%20Test/&text=Post on Reddit",
     TWEET_ARCHIVE_LINK: "https://speedtest.xdc.org/",
     CONTACT_US_LINK: "https://xinfin.org/contactus",
     GITHUB_LINK: "https://github.com/XDCFoundation/",
     // SHARE_FACEBOOK_LINK: "https://www.facebook.com/sharer/sharer.php?u=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/",
-    SHARE_FACEBOOK_LINK: "https://www.facebook.com/sharer/sharer.php?u=https://speedtest.xdc.org/",
+    SHARE_FACEBOOK_LINK: "https://www.facebook.com/sharer/sharer.php?u=https://speedtest.xdc.org/&text=Tell your Facebook friends about Speed Test",
     // SHARE_TWITTER_LINK: "https://twitter.com/intent/tweet?url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/&text=TwitterArchiver",
-    SHARE_TWITTER_LINK: "https://twitter.com/intent/tweet?url=https://speedtest.xdc.org/&text=XDC%20SpeedTest",
+    SHARE_TWITTER_LINK: "https://twitter.com/intent/tweet?url=https://speedtest.xdc.org/&text=Tweet on Twitter",
     // SHARE_LINKEDIN_LINK: "https://www.linkedin.com/shareArticle?mini=true&url=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/",
-    SHARE_LINKEDIN_LINK: "https://www.linkedin.com/shareArticle?mini=true&url=https://speedtest.xdc.org/",
+    SHARE_LINKEDIN_LINK: "https://www.linkedin.com/shareArticle?mini=true&url=https://speedtest.xdc.org/&text=Share on Linkedin",
 }
 
 export const eventConstants = {

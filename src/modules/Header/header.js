@@ -298,8 +298,7 @@ const UnorderedList = styled.ul`
   background-color: #222864;
   position: absolute;
   padding-left: unset;
-  padding-right: 5px;
-  // width: 140px;
+  width: 140px;
   margin-left: 10px;
   border-radius: 4px;
   z-index: 1;
@@ -311,7 +310,7 @@ const UnorderedList = styled.ul`
     right: 14%;
     padding-left: unset;
     padding-right: 5px;
-    // width: 140px;
+    width: 140px;
     border-radius: 4px;
   }
 
@@ -323,7 +322,7 @@ const UnorderedList = styled.ul`
     right: 6%;
     padding-left: unset;
     padding-right: 5px;
-    // width: 140px;
+    width: 140px;
     border-radius: 4px;
   }
 `;
@@ -709,35 +708,35 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/facebook.svg" alt="" />
         <AnchorTag href={socialMediaLinks.SHARE_FACEBOOK_LINK} target="_blank">
-          Tell your Facebook friends about Speed Test
+          Facebook
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/twitter.svg" alt="" />
         <AnchorTag href={socialMediaLinks.SHARE_TWITTER_LINK} target="_blank">
-          Tweet on Twitter
+          Twitter
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/telegram.svg" alt="" />
         <AnchorTag href={socialMediaLinks.TELEGRAM_LINK} target="_blank">
-          Talk on Telegram
+          Telegram
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/linkedin.svg" alt="" />
         <AnchorTag href={socialMediaLinks.SHARE_LINKEDIN_LINK} target="_blank">
-          Share on Linkedin
+          Linkedin
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/reddit.svg" alt="" />
         <AnchorTag href={socialMediaLinks.REDDIT_LINK} target="_blank">
-          Post on Reddit
+          Reddit
         </AnchorTag>
         <Border></Border>
         <br />
