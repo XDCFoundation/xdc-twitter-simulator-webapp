@@ -739,7 +739,6 @@ function RenderDropdown() {
         <AnchorTag href={socialMediaLinks.REDDIT_LINK} target="_blank">
           Post on Reddit
         </AnchorTag>
-        <Border></Border>
         <br />
       </List>
     </UnorderedList>
