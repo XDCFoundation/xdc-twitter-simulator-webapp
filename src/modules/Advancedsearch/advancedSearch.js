@@ -229,7 +229,7 @@ export default function MaxWidthDialog(props) {
         <DialogContent>
           <Column>
             <Row>
-              <Advanced>Advance search</Advanced>
+              <Advanced>Advanced search</Advanced>
               {/* <Img style={{ cursor: 'pointer', width: 30, height: 30, }} src="/images/cut.svg" onClick={props.clicked}>   </Img> */}
               <div className="cross-parent">
                 <div className="cross-image" onClick={props.clicked}>

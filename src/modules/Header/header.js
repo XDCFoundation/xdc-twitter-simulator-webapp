@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import "../styles/App.css";
@@ -536,7 +536,7 @@ export default function HeaderComponent(props) {
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
             <Advancesearch onClick={handleClickforadvancedsearch}>
-              Advance Search
+              Advanced Search
             </Advancesearch>
           </SubContainer1>
 
@@ -628,7 +628,7 @@ export default function HeaderComponent(props) {
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
             <Advancesearch onClick={handleClickforadvancedsearch}>
-              Advance Search
+              Advanced Search
             </Advancesearch>
           </SecondTabDiv>
         </Container>
@@ -694,7 +694,7 @@ export default function HeaderComponent(props) {
 
             <Row className="mobHeaderfirstrow">
               <Mobadvancesearch onClick={handleClickforadvancedsearch}>
-                Advance Search
+                Advanced Search
               </Mobadvancesearch>
             </Row>
           </Grid>
@@ -739,7 +739,6 @@ function RenderDropdown() {
         <AnchorTag href={socialMediaLinks.REDDIT_LINK} target="_blank">
           Post on Reddit
         </AnchorTag>
-        <Border></Border>
         <br />
       </List>
     </UnorderedList>
@@ -748,10 +747,21 @@ function RenderDropdown() {
 
 function FFButton() {
   const [show, setShow] = useState(false);
+  const btnRef = useRef();
+
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      console.log(e);
+      if (e.path[0] !== btnRef.current) setShow(false);
+    };
+    document.body.addEventListener("click", closeDropdown);
+    return () => document.body.removeEventListener("click", closeDropdown);
+  }, []);
 
   return (
     <div className="share">
       <button
+        ref={btnRef}
         // class="dpdown"
         type="button"
         onClick={() => setShow(!show)}
