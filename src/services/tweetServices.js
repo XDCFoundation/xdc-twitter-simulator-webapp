@@ -19,7 +19,7 @@ async function saveMaxTps(requestData) {
     process.env.REACT_APP_BASE_URL_TWITTER + httpConstants.API_END_POINT.SAVE_MAX_TPS;
 
 return httpService(
-    httpConstants.METHOD_TYPE.GET,
+    httpConstants.METHOD_TYPE.POST,
     { "Content-Type": httpConstants.CONTENT_TYPE.APPLICATION_JSON },
    requestData,
     url
