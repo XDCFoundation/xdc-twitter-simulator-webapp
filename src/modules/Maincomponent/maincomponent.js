@@ -696,8 +696,8 @@ export default function MainComponent(props) {
     }, 2000);
   };
 
-  let nodeLength =
-    props.state?.marker?.length > 0 ? props.state?.marker?.length + 1 : 0;
+  let nodeLength = props.state?.nodeCount ? props?.state?.nodeCount : 0;
+  console.log("martker,", props?.state?.nodeCount);
 
   useEffect(() => {
     fetchTps();
@@ -893,7 +893,9 @@ export default function MainComponent(props) {
                               maxWidth={220}
                               content={
                                 <span className="tippyOtherblockStyle">
-                                  The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
+                                  The current rate of transaction execution/
+                                  Maximum rate of transaction execution achieved
+                                  on the network
                                 </span>
                               }
                             >
@@ -1007,7 +1009,8 @@ export default function MainComponent(props) {
                   maxWidth={340}
                   content={
                     <span className="tippyOtherblockStyle">
-                      Top 20 trending Twitter hashtags recorded on the XDC blockchain
+                      Top 20 trending Twitter hashtags recorded on the XDC
+                      blockchain
                     </span>
                   }
                 >
@@ -1160,7 +1163,8 @@ export default function MainComponent(props) {
                     maxWidth={220}
                     content={
                       <span className="tippyOtherblockStyle">
-                        The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
+                        The current rate of transaction execution/ Maximum rate
+                        of transaction execution achieved on the network
                       </span>
                     }
                   >
@@ -1291,7 +1295,8 @@ export default function MainComponent(props) {
                 maxWidth={340}
                 content={
                   <span className="tippyOtherblockStyle">
-                    Top 20 trending Twitter hashtags recorded on the XDC blockchain
+                    Top 20 trending Twitter hashtags recorded on the XDC
+                    blockchain
                   </span>
                 }
               >
@@ -1419,7 +1424,9 @@ export default function MainComponent(props) {
                           maxWidth={220}
                           content={
                             <span className="tippyOtherblockStyle">
-                              The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
+                              The current rate of transaction execution/ Maximum
+                              rate of transaction execution achieved on the
+                              network
                             </span>
                           }
                         >
@@ -1533,7 +1540,8 @@ export default function MainComponent(props) {
                   maxWidth={340}
                   content={
                     <span className="tippyOtherblockStyle">
-                      Top 20 trending Twitter hashtags recorded on the XDC blockchain
+                      Top 20 trending Twitter hashtags recorded on the XDC
+                      blockchain
                     </span>
                   }
                 >

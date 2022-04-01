@@ -237,18 +237,7 @@ export default function FooterComponent() {
                                 />
                               </a>
                             </li>
-                            <li className={classes.followitem}>
-                              {" "}
-                              <a
-                                target="_blank"
-                                href={socialMediaLinks.TELEGRAM_LINK}
-                              >
-                                <img
-                                  className="footericonsLink"
-                                  src="../../images/telegram.svg"
-                                />
-                              </a>
-                            </li>
+
                             <li className={classes.followitem}>
                               {" "}
                               <a

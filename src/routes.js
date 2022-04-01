@@ -1,4 +1,4 @@
-import React,{ lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Router, Route, withRouter } from "react-router-dom";
 import Loader from "./modules/searchlisting/loader";
 import { Redirect, Switch } from "react-router";
@@ -35,7 +35,9 @@ const nodesSocket = socketClient(process.env.REACT_APP_NODE_SOCKET, {
 
 const Main = withRouter(lazy(() => import("./modules/Maincomponent")));
 const Search = withRouter(lazy(() => import("./modules/searchlisting")));
-const TweetArchive = withRouter(lazy(() => import("./modules/searchlisting/tweetArchive")))
+const TweetArchive = withRouter(
+  lazy(() => import("./modules/searchlisting/tweetArchive"))
+);
 
 class Routes extends BaseComponent {
   componentDidMount() {}
@@ -46,13 +48,25 @@ class Routes extends BaseComponent {
         <Router history={history}>
           <Suspense fallback={<Loader />}>
             <Switch>
-              <Route exact path={"/list/:keyword"} component={() => <Search socket={socket} readtweetSocket={readtweetSocket}/>} />
+              <Route
+                exact
+                path={"/list/:keyword"}
+                component={() => (
+                  <Search socket={socket} readtweetSocket={readtweetSocket} />
+                )}
+              />
               <Route exact path={"/archive/:tweet"} component={TweetArchive} />
               <Route exact path={"/about"} component={About} />
               <Route
                 exact
                 path={"/"}
-                component={() => <Main nodesSocket={nodesSocket} socket={socket} readtweetSocket={readtweetSocket}/>}
+                component={() => (
+                  <Main
+                    nodesSocket={nodesSocket}
+                    socket={socket}
+                    readtweetSocket={readtweetSocket}
+                  />
+                )}
               />
               <Redirect exact from="*" to="/" />
             </Switch>
