@@ -298,8 +298,8 @@ const UnorderedList = styled.ul`
   background-color: #222864;
   position: absolute;
   padding-left: unset;
-  padding-right: 5px;
-  // width: 140px;
+  padding-right: 15px;
+  width: 140px;
   margin-left: 10px;
   border-radius: 4px;
   z-index: 1;
@@ -348,7 +348,8 @@ const AnchorTag = styled.a`
   }
 `;
 const Border = styled.div`
-  border: solid 1px #353b73;
+  border: solid 0.1px #353b73;
+  width: 110.2%;
 `;
 const ArrowUpIcon = styled.span`
   color: #8992e2;
