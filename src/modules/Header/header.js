@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import "../styles/App.css";
@@ -536,7 +536,7 @@ export default function HeaderComponent(props) {
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
             <Advancesearch onClick={handleClickforadvancedsearch}>
-              Advance Search
+              Advanced Search
             </Advancesearch>
           </SubContainer1>
 
@@ -628,7 +628,7 @@ export default function HeaderComponent(props) {
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
             <Advancesearch onClick={handleClickforadvancedsearch}>
-              Advance Search
+              Advanced Search
             </Advancesearch>
           </SecondTabDiv>
         </Container>
@@ -694,7 +694,7 @@ export default function HeaderComponent(props) {
 
             <Row className="mobHeaderfirstrow">
               <Mobadvancesearch onClick={handleClickforadvancedsearch}>
-                Advance Search
+                Advanced Search
               </Mobadvancesearch>
             </Row>
           </Grid>
@@ -709,37 +709,36 @@ function RenderDropdown() {
       <List>
         <ListImg src="../../images/facebook.svg" alt="" />
         <AnchorTag href={socialMediaLinks.SHARE_FACEBOOK_LINK} target="_blank">
-          Tell your Facebook friends about Speed Test
+          Facebook
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/twitter.svg" alt="" />
         <AnchorTag href={socialMediaLinks.SHARE_TWITTER_LINK} target="_blank">
-          Tweet on Twitter
+          Twitter
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/telegram.svg" alt="" />
         <AnchorTag href={socialMediaLinks.TELEGRAM_LINK} target="_blank">
-          Talk on Telegram
+          Telegram
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/linkedin.svg" alt="" />
         <AnchorTag href={socialMediaLinks.SHARE_LINKEDIN_LINK} target="_blank">
-          Share on Linkedin
+          Linkedin
         </AnchorTag>
       </List>
       <Border></Border>
       <List>
         <ListImg src="../../images/reddit.svg" alt="" />
         <AnchorTag href={socialMediaLinks.REDDIT_LINK} target="_blank">
-          Post on Reddit
+          Reddit
         </AnchorTag>
-        <Border></Border>
         <br />
       </List>
     </UnorderedList>
@@ -748,10 +747,21 @@ function RenderDropdown() {
 
 function FFButton() {
   const [show, setShow] = useState(false);
+  const btnRef = useRef();
+
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      console.log(e);
+      if (e.path[0] !== btnRef.current) setShow(false);
+    };
+    document.body.addEventListener("click", closeDropdown);
+    return () => document.body.removeEventListener("click", closeDropdown);
+  }, []);
 
   return (
     <div className="share">
       <button
+        ref={btnRef}
         // class="dpdown"
         type="button"
         onClick={() => setShow(!show)}

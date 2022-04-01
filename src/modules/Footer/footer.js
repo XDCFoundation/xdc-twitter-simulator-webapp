@@ -13,9 +13,7 @@ import {
   ThemeProvider,
   responsiveFontSizes,
 } from "@material-ui/core/styles";
-import {
-  socialMediaLinks
-} from "../../constants";
+import { socialMediaLinks } from "../../constants";
 import zIndex from "@material-ui/core/styles/zIndex";
 
 const theme = createMuiTheme({
@@ -121,8 +119,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   mainGrid: {
-    backgroundColor: '#3E71FF'
-  }
+    backgroundColor: "#3E71FF",
+  },
 }));
 
 export default function FooterComponent() {
@@ -134,7 +132,7 @@ export default function FooterComponent() {
           <Grid className={classes.mainGrid} item xs={12}>
             <Paper className={classes.paper}>
               {/* <img  src="../../images/footer.svg"></img> */}
-              <Row style={{ marginLeft: '18px' }}>
+              <Row style={{ marginLeft: "18px" }}>
                 <div class="cards">
                   <Grid className="link-grid" item xs={12} sm={6} md={4}>
                     <Paper
@@ -170,14 +168,7 @@ export default function FooterComponent() {
                                 Contact us
                               </a>
                             </li> */}
-                            <li className={classes.linksitem}>
-                              <a
-                                className="footerLinks"
-                                href="#"
-                              >
-                                Privacy Policy
-                              </a>
-                            </li>
+                            <li className={classes.linksitem}></li>
                           </ul>
                         </div>
                       </div>
@@ -200,7 +191,10 @@ export default function FooterComponent() {
                         <div>
                           <ul className={classes.followlinks}>
                             <li className={classes.followitem}>
-                              <a target="_blank" href={socialMediaLinks.TWITTER_LINK}>
+                              <a
+                                target="_blank"
+                                href={socialMediaLinks.TWITTER_LINK}
+                              >
                                 <img
                                   className="footericonsLink"
                                   src="../../images/twitter.svg"
@@ -209,7 +203,10 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a target="_blank" href={socialMediaLinks.FACEBOOK_LINK}>
+                              <a
+                                target="_blank"
+                                href={socialMediaLinks.FACEBOOK_LINK}
+                              >
                                 <img
                                   className="footericonsLink"
                                   src="../../images/facebook.svg"
@@ -218,7 +215,10 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a target="_blank" href={socialMediaLinks.GITHUB_LINK}>
+                              <a
+                                target="_blank"
+                                href={socialMediaLinks.GITHUB_LINK}
+                              >
                                 <img
                                   className="footericonsLink"
                                   src="../../images/github.svg"
@@ -227,9 +227,11 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a target="_blank" href={socialMediaLinks.LINKED_LINK}>
+                              <a
+                                target="_blank"
+                                href={socialMediaLinks.LINKED_LINK}
+                              >
                                 <img
-                                  className="footericonsLink"
                                   className="footericonsLink"
                                   src="../../images/linkedin.svg"
                                 />
@@ -237,7 +239,10 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a target="_blank" href={socialMediaLinks.TELEGRAM_LINK}>
+                              <a
+                                target="_blank"
+                                href={socialMediaLinks.TELEGRAM_LINK}
+                              >
                                 <img
                                   className="footericonsLink"
                                   src="../../images/telegram.svg"
@@ -246,7 +251,10 @@ export default function FooterComponent() {
                             </li>
                             <li className={classes.followitem}>
                               {" "}
-                              <a target="_blank" href={socialMediaLinks.REDDIT_LINK}>
+                              <a
+                                target="_blank"
+                                href={socialMediaLinks.REDDIT_LINK}
+                              >
                                 <img
                                   className="footericonsLink"
                                   src="../../images/reddit.svg"
