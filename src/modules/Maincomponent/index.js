@@ -37,6 +37,7 @@ export default class Main extends Component {
       marker: [],
       updatedMaxTps: "",
       blockSocketConnected: false,
+      nodeCount: 0,
     };
   }
 
@@ -372,6 +373,11 @@ export default class Main extends Component {
               }
             });
             _this.setState({ marker: updatedMarker });
+            let nodesActive = 0;
+            nodesActive = _.filter(data.nodes, function (node) {
+              return node.stats.active === true;
+            }).length;
+            _this.setState({ nodeCount: nodesActive });
           }
         }
       );
@@ -397,6 +403,7 @@ export default class Main extends Component {
             const requestData = {
               tpsCount: avg,
             };
+
             const [error, response] = await Utils.parseResponse(
               tweetServices.saveMaxTps(requestData)
             );
