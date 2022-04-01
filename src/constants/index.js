@@ -26,15 +26,12 @@ export const httpConstants = {
 export const socialMediaLinks = {
   FACEBOOK_LINK:
     // "https://www.facebook.com/submit?url=https://speedtest.xdc.org&title=XDC%20SpeedTest",
-    "https://www.facebook.com/sharer.php?url=https://speedtest.xdc.org&quote=XDC%20SpeedTest",
+    "https://www.facebook.com/XDCFoundation",
 
   TWITTER_LINK: "https://twitter.com/XDCFoundation",
-  TELEGRAM_LINK:
-    "https://telegram.me/share/url?url=https://speedtest.xdc.org&text=XDC%20SpeedTest",
   LINKED_LINK:
     "https://www.linkedin.com/company/xdc-foundation?trk=public_profile_topcard-current-company",
-  REDDIT_LINK:
-    "http://www.reddit.com/submit?url=https://speedtest.xdc.org&title=XDC%20SpeedTest",
+  REDDIT_LINK: "https://www.reddit.com/r/XDC_Foundation/",
   TWEET_ARCHIVE_LINK: "https://speedtest.xdc.org/",
   CONTACT_US_LINK: "https://xinfin.org/contactus",
   GITHUB_LINK: "https://github.com/XDCFoundation/",
