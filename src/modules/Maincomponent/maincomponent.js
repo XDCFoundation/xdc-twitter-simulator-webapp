@@ -679,26 +679,30 @@ export default function MainComponent(props) {
 
   const [steps, setSteps] = useState(1);
   const [clicks, setClicks] = useState("");
+  const [forceRender, setForceRender] = useState(false);
 
   const clickAfterSocket = () => {
     setSteps(2);
-    props.update();
+    setForceRender(true);
     setClicks(true);
+    props.update();
     setInterval(() => {
       setClicks("");
-    }, 2000);
+      setForceRender(false);
+    }, 500);
   };
   const secondClickAfterSocket = () => {
     setSteps(1);
     setClicks(true);
+    setForceRender(true);
     props.update();
     setInterval(() => {
       setClicks("");
-    }, 2000);
+      setForceRender(false);
+    }, 500);
   };
 
   let nodeLength = props.state?.nodeCount ? props?.state?.nodeCount : 0;
-  console.log("martker,", props?.state?.nodeCount);
 
   useEffect(() => {
     fetchTps();
@@ -953,6 +957,7 @@ export default function MainComponent(props) {
                                 dark={dark}
                                 tpsCount={maxtpsvalue}
                                 currentTps={updatedTpsCount}
+                                forceRender={forceRender}
                               />
                             ) : (
                               <Speedometer
@@ -962,6 +967,7 @@ export default function MainComponent(props) {
                                 dark={dark}
                                 tpsCount={maxtpsvalue}
                                 currentTps={updatedTpsCount}
+                                forceRender={forceRender}
                               />
                             )}
                           </div>

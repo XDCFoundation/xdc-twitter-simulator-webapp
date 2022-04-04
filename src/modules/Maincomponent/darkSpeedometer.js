@@ -36,9 +36,9 @@ export default function DarkSpeedometer(props) {
                 <ReactSpeedometer
                   width={213}
                   height={137}
-                  forceRender={false}
+                  forceRender={props.forceRender}
                   needleHeightRatio={0.6}
-                  needleColor={"#3366ff"}
+                  needleColor={"white"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -67,7 +67,7 @@ export default function DarkSpeedometer(props) {
                 <ReactSpeedometer
                   width={213}
                   height={137}
-                  forceRender={false}
+                  forceRender={props.forceRender}
                   needleHeightRatio={0.6}
                   needleColor={"white"}
                   needleTransitionDuration={9000}

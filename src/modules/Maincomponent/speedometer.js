@@ -38,7 +38,7 @@ export default function Speedometer(props) {
                   height={137}
                   forceRender={false}
                   needleHeightRatio={0.6}
-                  needleColor={"#2149B9"}
+                  needleColor={"black"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -69,7 +69,7 @@ export default function Speedometer(props) {
                   height={137}
                   forceRender={false}
                   needleHeightRatio={0.6}
-                  needleColor={"#2149B9"}
+                  needleColor={"black"}
                   needleTransitionDuration={9000}
                   needleTransition="easeElastic"
                   maxSegmentLabels={5}
@@ -79,9 +79,9 @@ export default function Speedometer(props) {
                   maxValue={maxValue}
                   ringWidth={20}
                   segmentColors={[
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#68D0E2",
+                    "#3366FF",
+                    "#3366FF",
+                    "#3366FF",
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
