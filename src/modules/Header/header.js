@@ -50,11 +50,38 @@ const Container = styled.div`
     align-items: flex-start;
   }
 `;
+
+const DarkContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 80px;
+  background-color: #191d43;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    height: 150px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+
 const MobileContainer = styled.div`
   width: 100%;
   display: flex;
   height: 100%;
   background-color: #2149b9;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const DarkMobileContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 100%;
+  background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
@@ -82,10 +109,33 @@ const SubContainer1 = styled.div`
     margin-left: 4px;
   }
 `;
+
+const DarkSubContainer1 = styled.div`
+  display: flex;
+  background-color: #191d43;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: 50px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-left: 4px;
+  }
+`;
 const SubContainer2 = styled.div`
   display: flex;
   height: 62px;
   background-color: #2149b9;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-right: 60px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    margin-right: 19px;
+  }
+`;
+
+const DarkSubContainer2 = styled.div`
+  display: flex;
+  height: 62px;
+  background-color: #191d43;
   flex-flow: row nowrap;
   align-items: center;
   margin-right: 60px;
@@ -164,12 +214,57 @@ const Search = styled.input`
     height: 33px;
   }
 `;
+
+const DarkSearch = styled.input`
+  height: 30px;
+  width: 280px;
+  margin: 0px 5px 0 16px;
+  padding: 12px 18px 12px 12px;
+  background-color:#191d43;
+  border-radius: 2px;
+  border: none;
+  font-family: WorkSans-Roman;
+  font-size: 14px;
+  color: black;
+  ::placeholder {
+    color: #adb1d6;
+    opacity: 1;
+  }
+  :focus {
+    outline: none;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 561px;
+    height: 33px;
+  }
+`;
+
 const MobSearch = styled.input`
   width: 100%;
   height: 30px;
   margin: 2px 5px 0 2px;
   padding: 12px 70px 12px 12px;
   background-color: #fff;
+  border-radius: 2px;
+  border: none;
+  font-family: WorkSans-Roman;
+  font-size: 10.5px;
+  color: black;
+  ::placeholder {
+    color: #adb1d6;
+    opacity: 1;
+  }
+  :focus {
+    outline: none;
+  }
+`;
+
+const DarkMobSearch = styled.input`
+  width: 100%;
+  height: 30px;
+  margin: 2px 5px 0 2px;
+  padding: 12px 70px 12px 12px;
+  background-color: #191d43;
   border-radius: 2px;
   border: none;
   font-family: WorkSans-Roman;
@@ -199,8 +294,37 @@ const Button = styled.button`
   }
 `;
 
+const DarkButton = styled.button`
+  background: #3e49b8;
+  display: flex;
+  width: 31px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 42px;
+    height: 33px;
+  }
+`;
+
 const MobButton = styled.button`
   background: #5582ff;
+  display: flex;
+  height: 30px;
+  width: 32px;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+`;
+
+const DarkMobButton = styled.button`
+  background: #3e49b8;
   display: flex;
   height: 30px;
   width: 32px;
@@ -226,7 +350,36 @@ const Advancesearch = styled.button`
   letter-spacing: 0.5px;
 `;
 
+const DarkAdvancesearch = styled.button`
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  color: #a7afff;
+  margin-left: 4px;
+  //margin-top: 3px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+`;
+
+
 const Mobadvancesearch = styled.button`
+  font-family: Raleway;
+  font-size: 16px;
+  font-weight: 400;
+  color: #7499ff;
+  margin-left: -4px;
+  //margin-top: 3px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+`;
+
+const DarkMobadvancesearch = styled.button`
   font-family: Raleway;
   font-size: 16px;
   font-weight: 400;
@@ -393,8 +546,16 @@ export default function HeaderComponent(props) {
     window.location.reload();
   };
 
+  const getMode = () => {
+    return JSON.parse(localStorage.getItem("mode")) || false;
+  };
+
+  const [dark, setMode] = useState(getMode());
+
   const CheckMode = (mode) => {
     props.CheckMode(mode);
+    localStorage.setItem("mode", mode);
+    setMode(mode);
   };
 
   const [open, setOpen] = React.useState(false);
@@ -501,12 +662,23 @@ export default function HeaderComponent(props) {
   );
 
   // ....
+const ActiveContainer= dark===true?DarkContainer:Container;
+const ActiveSubContainer1= dark===true?DarkSubContainer1:SubContainer1;
+const ActiveSubContainer2= dark===true?DarkSubContainer2:SubContainer2;
+const ActiveAdvancesearch= dark===true?DarkAdvancesearch:Advancesearch;
+const ActiveSearch= dark===true?DarkSearch:Search;
+const ActiveButton= dark===true?DarkButton:Button;
+const ActiveMobileContainer= dark===true?DarkMobileContainer:MobileContainer;
+const ActiveMobSearch= dark===true?DarkMobSearch:MobSearch;
+const ActiveMobButton= dark===true?DarkMobButton:MobButton;
+
+
 
   return (
     <>
       <Display>
-        <Container>
-          <SubContainer1>
+        <ActiveContainer>
+          <ActiveSubContainer1>
             {/* <a href="/">
               <Image src="../../images/logo.svg" alt="image" />
             </a> */}
@@ -516,7 +688,7 @@ export default function HeaderComponent(props) {
             <a href="/">
               <Span>XDC Speed Test</Span>
             </a>
-            <Search
+            <ActiveSearch
               type="text"
               placeholder="Search by keyword"
               onChange={(e) => setKeyword(e.target.value)}
@@ -527,21 +699,21 @@ export default function HeaderComponent(props) {
                 }
               }}
             />
-            <Button onClick={redirect}>
+            <ActiveButton onClick={redirect}>
               <img
                 className={classes.searchIcon}
                 src="../../images/Search.svg"
                 alt=""
               />
-            </Button>
+            </ActiveButton>
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
-            <Advancesearch onClick={handleClickforadvancedsearch}>
+            <ActiveAdvancesearch onClick={handleClickforadvancedsearch}>
               Advanced Search
-            </Advancesearch>
-          </SubContainer1>
+            </ActiveAdvancesearch>
+          </ActiveSubContainer1>
 
-          <SubContainer2>
+          <ActiveSubContainer2>
             <About>
               <a className="headerlinkStyle" href="/about">
                 About
@@ -565,23 +737,23 @@ export default function HeaderComponent(props) {
               </a>
             </Archive>
             <DarkMode CheckMode={CheckMode} />
-          </SubContainer2>
-        </Container>
+          </ActiveSubContainer2>
+        </ActiveContainer>
       </Display>
 
       <TabResponsive>
-        <Container>
+        <ActiveContainer>
           <FirstTabDiv>
-            <SubContainer1>
+            <ActiveSubContainer1>
               <a href="/">
                 <Image src={require("../Header/TwitterLogo.png")} />
               </a>
               <a href="/">
                 <Span>XDC Speed Test</Span>
               </a>
-            </SubContainer1>
+            </ActiveSubContainer1>
 
-            <SubContainer2>
+            <ActiveSubContainer2>
               <About>
                 <a className="headerlinkStyle" href="/about">
                   About
@@ -605,10 +777,10 @@ export default function HeaderComponent(props) {
                 </a>
               </Archive>
               <DarkMode CheckMode={CheckMode} />
-            </SubContainer2>
+            </ActiveSubContainer2>
           </FirstTabDiv>
           <SecondTabDiv>
-            <Search
+            <ActiveSearch
               type="text"
               placeholder="Search by keyword"
               onChange={(e) => setKeyword(e.target.value)}
@@ -619,20 +791,20 @@ export default function HeaderComponent(props) {
                 }
               }}
             />
-            <Button onClick={redirect}>
+            <ActiveButton onClick={redirect}>
               <img
                 className={classes.searchIcon}
                 src="../../images/Search.svg"
                 alt=""
               />
-            </Button>
+            </ActiveButton>
             {open && <AdvanceSearch clicked={handleClickforadvancedsearch} />}
 
-            <Advancesearch onClick={handleClickforadvancedsearch}>
+            <ActiveAdvancesearch onClick={handleClickforadvancedsearch}>
               Advanced Search
-            </Advancesearch>
+            </ActiveAdvancesearch>
           </SecondTabDiv>
-        </Container>
+        </ActiveContainer>
       </TabResponsive>
 
       <MobileResponsive>
@@ -647,7 +819,7 @@ export default function HeaderComponent(props) {
           </SwipeableDrawer>
         </div>
 
-        <MobileContainer>
+        <ActiveMobileContainer>
           <Grid item xs={12}>
             <div className="headerfirstRow">
               <div className="menuRow">
@@ -670,7 +842,7 @@ export default function HeaderComponent(props) {
 
             <Row className="parentSecondhead">
               <div className="headerSecondRow">
-                <MobSearch
+                <ActiveMobSearch
                   type="text"
                   placeholder="Search by keyword"
                   onChange={(e) => setKeyword(e.target.value)}
@@ -681,13 +853,13 @@ export default function HeaderComponent(props) {
                     }
                   }}
                 />
-                <MobButton onClick={redirect}>
+                <ActiveMobButton onClick={redirect}>
                   <img
                     className="searchMenuButton"
                     src="../../images/Search.svg"
                     alt=" "
                   />
-                </MobButton>
+                </ActiveMobButton>
               </div>
             </Row>
 
@@ -699,7 +871,7 @@ export default function HeaderComponent(props) {
               </Mobadvancesearch>
             </Row>
           </Grid>
-        </MobileContainer>
+        </ActiveMobileContainer>
       </MobileResponsive>
     </>
   );
