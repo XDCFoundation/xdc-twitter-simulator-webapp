@@ -23,7 +23,7 @@ export default function DarkSpeedometer(props) {
       let value = Number((parseFloat(val) / 5).toFixed(2));
       setParameter([0, 1 * value, 2 * value, 3 * value, 4 * value, 5 * value]);
       setMaxValue(5 * value);
-    } catch (e) { }
+    } catch (e) {}
   }
 
   return (
@@ -34,58 +34,62 @@ export default function DarkSpeedometer(props) {
             return (
               <>
                 <ReactSpeedometer
-    width={213}
-    height={137}
-    forceRender={false}
-    needleHeightRatio={0.6}
-    needleColor={"white"}
-    needleTransitionDuration={9000}
-    needleTransition="easeElastic"
-    maxSegmentLabels={5}
-    segments={5}
-    customSegmentStops={parameter}
-    minValue={0}
-    maxValue={maxValue}
-    ringWidth={20}
-    segmentColors={[
-      "#10c892",
-      "#10c892",
-      "#10c892",
-      "#191970",
-      "#191970",
-    ]}
-    value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
-    currentValueText=" "
-    />
+                  width={213}
+                  height={137}
+                  forceRender={false}
+                  needleHeightRatio={0.6}
+                  needleColor={"#3366ff"}
+                  needleTransitionDuration={9000}
+                  needleTransition="easeElastic"
+                  maxSegmentLabels={5}
+                  segments={5}
+                  customSegmentStops={parameter}
+                  minValue={0}
+                  maxValue={maxValue}
+                  ringWidth={20}
+                  segmentColors={[
+                    "#3366ff",
+                    "#3366ff",
+                    "#3366ff",
+                    "#323291",
+                    "#323291",
+                  ]}
+                  value={
+                    props.updatedMaxTps ? props.updatedMaxTps : props.currentTps
+                  }
+                  currentValueText=" "
+                />
               </>
             );
           case 2:
             return (
               <>
                 <ReactSpeedometer
-    width={213}
-    height={137}
-    forceRender={false}
-    needleHeightRatio={0.6}
-    needleColor={"white"}
-    needleTransitionDuration={9000}
-    needleTransition="easeElastic"
-    maxSegmentLabels={5}
-    segments={5}
-    customSegmentStops={parameter}
-    minValue={0}
-    maxValue={maxValue}
-    ringWidth={20}
-    segmentColors={[
-      "#10c892",
-      "#10c892",
-      "#10c892",
-      "#191970",
-      "#191970",
-    ]}
-    value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
-    currentValueText=" "
-    />
+                  width={213}
+                  height={137}
+                  forceRender={false}
+                  needleHeightRatio={0.6}
+                  needleColor={"white"}
+                  needleTransitionDuration={9000}
+                  needleTransition="easeElastic"
+                  maxSegmentLabels={5}
+                  segments={5}
+                  customSegmentStops={parameter}
+                  minValue={0}
+                  maxValue={maxValue}
+                  ringWidth={20}
+                  segmentColors={[
+                    "#3366ff",
+                    "#3366ff",
+                    "#3366ff",
+                    "#323291",
+                    "#323291",
+                  ]}
+                  value={
+                    props.updatedMaxTps ? props.updatedMaxTps : props.currentTps
+                  }
+                  currentValueText=" "
+                />
               </>
             );
           default:
