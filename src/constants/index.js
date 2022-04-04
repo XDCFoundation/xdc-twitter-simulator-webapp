@@ -32,7 +32,7 @@ export const socialMediaLinks = {
   LINKED_LINK:
     "https://www.linkedin.com/company/xdc-foundation?trk=public_profile_topcard-current-company",
   REDDIT_LINK: "https://www.reddit.com/r/XDC_Foundation/",
-  TWEET_ARCHIVE_LINK: "https://speedtest.xdc.org/",
+  TWEET_ARCHIVE_LINK: "https://speedtest.xdc.org:444/",
   CONTACT_US_LINK: "https://xinfin.org/contactus",
   GITHUB_LINK: "https://github.com/XDCFoundation/",
   // SHARE_FACEBOOK_LINK: "https://www.facebook.com/sharer/sharer.php?u=http://simulator-dev-566612800.us-east-2.elb.amazonaws.com/",

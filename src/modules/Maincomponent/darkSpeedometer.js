@@ -34,58 +34,58 @@ export default function DarkSpeedometer(props) {
             return (
               <>
                 <ReactSpeedometer
-                  width={213}
-                  height={137}
-                  forceRender={true}
-                  needleHeightRatio={0.6}
-                  needleColor={"white"}
-                  needleTransitionDuration={9000}
-                  needleTransition="easeElastic"
-                  maxSegmentLabels={5}
-                  segments={5}
-                  customSegmentStops={parameter}
-                  minValue={0}
-                  maxValue={maxValue}
-                  ringWidth={20}
-                  segmentColors={[
-                    "#10c892",
-                    "#10c892",
-                    "#10c892",
-                    "#191970",
-                    "#191970",
-                  ]}
-                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
-                  currentValueText=" "
-                ></ReactSpeedometer>
+    width={213}
+    height={137}
+    forceRender={false}
+    needleHeightRatio={0.6}
+    needleColor={"white"}
+    needleTransitionDuration={9000}
+    needleTransition="easeElastic"
+    maxSegmentLabels={5}
+    segments={5}
+    customSegmentStops={parameter}
+    minValue={0}
+    maxValue={maxValue}
+    ringWidth={20}
+    segmentColors={[
+      "#10c892",
+      "#10c892",
+      "#10c892",
+      "#191970",
+      "#191970",
+    ]}
+    value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
+    currentValueText=" "
+    />
               </>
             );
           case 2:
             return (
               <>
                 <ReactSpeedometer
-                  width={213}
-                  height={137}
-                  forceRender={true}
-                  needleHeightRatio={0.6}
-                  needleColor={"white"}
-                  needleTransitionDuration={9000}
-                  needleTransition="easeElastic"
-                  maxSegmentLabels={5}
-                  segments={5}
-                  customSegmentStops={parameter}
-                  minValue={0}
-                  maxValue={maxValue}
-                  ringWidth={20}
-                  segmentColors={[
-                    "#10c892",
-                    "#10c892",
-                    "#10c892",
-                    "#191970",
-                    "#191970",
-                  ]}
-                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
-                  currentValueText=" "
-                ></ReactSpeedometer>
+    width={213}
+    height={137}
+    forceRender={false}
+    needleHeightRatio={0.6}
+    needleColor={"white"}
+    needleTransitionDuration={9000}
+    needleTransition="easeElastic"
+    maxSegmentLabels={5}
+    segments={5}
+    customSegmentStops={parameter}
+    minValue={0}
+    maxValue={maxValue}
+    ringWidth={20}
+    segmentColors={[
+      "#10c892",
+      "#10c892",
+      "#10c892",
+      "#191970",
+      "#191970",
+    ]}
+    value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
+    currentValueText=" "
+    />
               </>
             );
           default:
