@@ -79,7 +79,7 @@ const MyResponsiveLine = ({ data }) => (
     <svg>
       <defs>
         <linearGradient id="someGradientId" {...gradProps}>
-          <stop offset="50%" stopColor="#3366FF" />
+          <stop offset="80%" stopColor="#3366FF" />
           <stop offset="100%" stopColor="rgba(255,255,255,0)" />
         </linearGradient>
       </defs>

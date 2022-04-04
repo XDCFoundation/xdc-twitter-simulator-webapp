@@ -6,9 +6,8 @@ import moment from "moment";
 import { Component } from "react";
 
 const GraphSize = styled.div`
-  height: 88px;
+  height: 80px;
   width: auto;
-  margin-top: 1rem;
   [stroke="url(#someGradientId)"] {
     stroke: #3366ff;
   }

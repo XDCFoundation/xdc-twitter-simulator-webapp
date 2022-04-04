@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-5%",
     // marginLeft: "3.6%",
     backgroundColor: "#191d43",
-    color: "white",
+    color: "d6d6d6",
     height: "auto",
     borderRadius: "5px",
     border: "solid 1px #343965",
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.17",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "white",
+    color: "#d6d6d6",
     backgroundColor: "#191d43",
   },
   row: {
@@ -226,7 +226,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "white",
+    color: "#d6d6d6",
     marginTop: "4%",
     marginLeft: "18px",
     whiteSpace: "noWrap",
@@ -246,6 +246,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.4,
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
+    color: "#d6d6d6",
   },
   savedTweetConatiner: {
     marginTop: "0px",
@@ -286,7 +287,9 @@ export default function SavedTweets(props) {
   let blockDarkanimationclass = props.blockDarkclass?.[text];
   let textdarkanimationClass = props.textDarkclass?.[text];
 
-  let a = props?.tweetData?.sort((a, b) => b.createdAt.localeCompare(a.createdAt)) || "";
+  let a =
+    props?.tweetData?.sort((a, b) => b.createdAt.localeCompare(a.createdAt)) ||
+    "";
 
   return (
     <Grid Container spacing={3}>
@@ -302,8 +305,8 @@ export default function SavedTweets(props) {
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
-                // variant="h5"
-                // style={{ whiteSpace: "nowrap" }}
+                  // variant="h5"
+                  // style={{ whiteSpace: "nowrap" }}
                 >
                   Saved Tweets
                   <Tippy
@@ -333,15 +336,15 @@ export default function SavedTweets(props) {
                       ? parseInt(props?.savedCount[0] / 1000) + "k"
                       : props.savedCount[0]
                     : props?.tweetCount?.blockchainTweetCount > 1000
-                      ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) +
+                    ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) +
                       "k"
-                      : props?.tweetCount?.blockchainTweetCount}
+                    : props?.tweetCount?.blockchainTweetCount}
                 </Paper>
               </Row>
               {props?.tweetData &&
                 props?.tweetData.length >= 1 &&
                 props?.tweetData.map((response, index) => {
-                  let textVal = response?.text || 0
+                  let textVal = response?.text || 0;
                   // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorID || 0;
                   let createTime = Number(response?.createdAt || 0);
@@ -384,8 +387,8 @@ export default function SavedTweets(props) {
                                 ? blockDarkanimationclass
                                 : classes.time_dark_mode
                               : index == 0 && animationclass
-                                ? animationclass
-                                : classes.time
+                              ? animationclass
+                              : classes.time
                           }
                         >
                           {time ? time : "-"}
@@ -413,10 +416,10 @@ export default function SavedTweets(props) {
                                     ? textdarkanimationClass
                                     : classes.content_dark_mode
                                   : index == 0 && textanimationClass
-                                    ? textanimationClass
-                                    : classes.content
+                                  ? textanimationClass
+                                  : classes.content
                               }
-                            //  gutterBottom   
+                              //  gutterBottom
                             >
                               <div className="wordTruncating">
                                 {textVal.length > 0

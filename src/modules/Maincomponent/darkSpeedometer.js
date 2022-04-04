@@ -51,8 +51,8 @@ export default function DarkSpeedometer(props) {
                     "#3366ff",
                     "#3366ff",
                     "#3366ff",
-                    "#323291",
-                    "#323291",
+                    "#293178",
+                    "#293178",
                   ]}
                   value={
                     props.updatedMaxTps ? props.updatedMaxTps : props.currentTps
@@ -82,8 +82,8 @@ export default function DarkSpeedometer(props) {
                     "#3366ff",
                     "#3366ff",
                     "#3366ff",
-                    "#323291",
-                    "#323291",
+                    "#293178",
+                    "#293178",
                   ]}
                   value={
                     props.updatedMaxTps ? props.updatedMaxTps : props.currentTps
