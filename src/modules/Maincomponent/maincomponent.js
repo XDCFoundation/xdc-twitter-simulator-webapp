@@ -69,15 +69,15 @@ const TpsCountDark = styled.div`
 `;
 const ActiveNodes = styled.div`
   text-align: left;
-  font: normal normal 600 18px/21px Raleway;
+  font: normal normal bold 18px/38px Raleway;
   color: #09184b;
   opacity: 1;
   padding: 10px 0 0 13px;
 `;
 const ActiveNodesDark = styled.div`
   text-align: left;
-  font: normal normal 600 18px/21px Raleway;
-  color: #ffffff;
+  font: normal normal bold 18px/21px Raleway;
+  color: #d6d6d6;
   opacity: 1;
   padding: 10px 0 0 13px;
 `;
@@ -382,10 +382,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     marginTop: "15px",
     lineHeight: 1.5,
-    color: "#09184b",
+    color: "#d6d6d6",
     textAlign: "left",
     marginLeft: "30px",
-    color: "white",
+    // color: "white",
     backgroundColor: "#191d43",
   },
   "@media (min-width: 299px) and (max-width: 767px)": {
@@ -449,9 +449,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5%",
     marginTop: "15px",
     lineHeight: 1.5,
-    color: "#09184b",
+    color: "#d6d6d6",
     textAlign: "left",
-    color: "white",
+    // color: "white",
   },
 
   "@media (min-width: 303px) and (max-width: 767px)": {
@@ -487,7 +487,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "18px",
   },
   top20_dark_mode: {
-    color: "white",
+    color: "#d6d6d6",
     fontSize: "18px",
   },
   paperNode: {
@@ -565,6 +565,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "18px",
     marginLeft: "21px",
     backgroundColor: "#191d43",
+    color: "#d6d6d6",
   },
 }));
 
@@ -864,6 +865,7 @@ export default function MainComponent(props) {
                       <span className="hover-data">
                         {" "}
                         <ReadingData
+                          dark={dark}
                           readData={props?.data}
                           readMe={identity}
                           readGraph={readingData}
@@ -890,7 +892,7 @@ export default function MainComponent(props) {
                           }
                         >
                           <div className="tippyAdjustments">
-                            Current/Max tps
+                            Current/Max TPS
                             <Tippy
                               placement={"top"}
                               theme={"light"}
@@ -1162,7 +1164,7 @@ export default function MainComponent(props) {
                 }
               >
                 <div className="tippyAdjustments">
-                  Current/Max tps
+                  Current/Max TPS
                   <Tippy
                     placement={"top"}
                     theme={"light"}
