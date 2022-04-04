@@ -690,7 +690,7 @@ const ActiveMobButton= dark===true?DarkMobButton:MobButton;
             </a>
             <ActiveSearch
               type="text"
-              placeholder="Search by keyword"
+              placeholder="Search by Handle name, Hash tag"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -782,7 +782,7 @@ const ActiveMobButton= dark===true?DarkMobButton:MobButton;
           <SecondTabDiv>
             <ActiveSearch
               type="text"
-              placeholder="Search by keyword"
+              placeholder="Search by Handle name, Hash tag"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -844,7 +844,7 @@ const ActiveMobButton= dark===true?DarkMobButton:MobButton;
               <div className="headerSecondRow">
                 <ActiveMobSearch
                   type="text"
-                  placeholder="Search by keyword"
+                  placeholder="Search by Handle name, Hash tag"
                   onChange={(e) => setKeyword(e.target.value)}
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
