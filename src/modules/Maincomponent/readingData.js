@@ -17,7 +17,7 @@ const toolTipElement = (props) => {
   );
 };
 
-const ReadingData = ({ data, dark }) => (
+const ReadingData = ({ data }) => (
   <ResponsiveLine
     data={data}
     tooltip={toolTipElement}
