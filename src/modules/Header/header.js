@@ -66,7 +66,6 @@ const DarkContainer = styled.div`
   }
 `;
 
-
 const MobileContainer = styled.div`
   width: 100%;
   display: flex;
@@ -220,18 +219,26 @@ const DarkSearch = styled.input`
   width: 280px;
   margin: 0px 5px 0 16px;
   padding: 12px 18px 12px 12px;
-  background-color:#191d43;
+  background-color: #3d4270;
   border-radius: 2px;
   border: none;
   font-family: WorkSans-Roman;
   font-size: 14px;
-  color: black;
+  // color: black;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #adb1d6;
   ::placeholder {
     color: #adb1d6;
     opacity: 1;
   }
   :focus {
-    outline: none;
+    outline: #adb1d6;
   }
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 561px;
@@ -363,7 +370,6 @@ const DarkAdvancesearch = styled.button`
   text-decoration: none;
   letter-spacing: 0.5px;
 `;
-
 
 const Mobadvancesearch = styled.button`
   font-family: Raleway;
@@ -662,17 +668,16 @@ export default function HeaderComponent(props) {
   );
 
   // ....
-const ActiveContainer= dark===true?DarkContainer:Container;
-const ActiveSubContainer1= dark===true?DarkSubContainer1:SubContainer1;
-const ActiveSubContainer2= dark===true?DarkSubContainer2:SubContainer2;
-const ActiveAdvancesearch= dark===true?DarkAdvancesearch:Advancesearch;
-const ActiveSearch= dark===true?DarkSearch:Search;
-const ActiveButton= dark===true?DarkButton:Button;
-const ActiveMobileContainer= dark===true?DarkMobileContainer:MobileContainer;
-const ActiveMobSearch= dark===true?DarkMobSearch:MobSearch;
-const ActiveMobButton= dark===true?DarkMobButton:MobButton;
-
-
+  const ActiveContainer = dark === true ? DarkContainer : Container;
+  const ActiveSubContainer1 = dark === true ? DarkSubContainer1 : SubContainer1;
+  const ActiveSubContainer2 = dark === true ? DarkSubContainer2 : SubContainer2;
+  const ActiveAdvancesearch = dark === true ? DarkAdvancesearch : Advancesearch;
+  const ActiveSearch = dark === true ? DarkSearch : Search;
+  const ActiveButton = dark === true ? DarkButton : Button;
+  const ActiveMobileContainer =
+    dark === true ? DarkMobileContainer : MobileContainer;
+  const ActiveMobSearch = dark === true ? DarkMobSearch : MobSearch;
+  const ActiveMobButton = dark === true ? DarkMobButton : MobButton;
 
   return (
     <>
@@ -690,7 +695,7 @@ const ActiveMobButton= dark===true?DarkMobButton:MobButton;
             </a>
             <ActiveSearch
               type="text"
-              placeholder="Search by Handle name, Hash tag"
+              placeholder="Search by Keyword"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -782,7 +787,7 @@ const ActiveMobButton= dark===true?DarkMobButton:MobButton;
           <SecondTabDiv>
             <ActiveSearch
               type="text"
-              placeholder="Search by Handle name, Hash tag"
+              placeholder="Search by Keyword"
               onChange={(e) => setKeyword(e.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -844,7 +849,7 @@ const ActiveMobButton= dark===true?DarkMobButton:MobButton;
               <div className="headerSecondRow">
                 <ActiveMobSearch
                   type="text"
-                  placeholder="Search by Handle name, Hash tag"
+                  placeholder="Search by Keyword"
                   onChange={(e) => setKeyword(e.target.value)}
                   onKeyPress={(e) => {
                     if (e.key === "Enter") {
