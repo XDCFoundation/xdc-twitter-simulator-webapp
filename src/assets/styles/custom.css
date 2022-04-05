@@ -1416,7 +1416,7 @@ input:focus {
 @media (min-width: 300px) and (max-width: 599px) {
   .link-text {
     background-color: transparent;
-    margin-left: -108px;
+    margin-left: -175px;
   }
   .follow-text {
     background-color: transparent;
@@ -1438,7 +1438,7 @@ input:focus {
 @media (min-width: 600px) and (max-width: 999px) {
   .link-text {
     background-color: transparent;
-    margin-left: -123px;
+    margin-left: -180px;
   }
   .powered-paper {
     margin-left: 0px;
