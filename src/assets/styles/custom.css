@@ -652,6 +652,7 @@ input:focus {
 
 .footerXdcicon{
   width: 55px;
+  margin-left: -5px;
   height: 55px;
 }
 
@@ -1416,7 +1417,7 @@ input:focus {
 @media (min-width: 300px) and (max-width: 599px) {
   .link-text {
     background-color: transparent;
-    margin-left: -175px;
+    margin-left: -185px;
   }
   .follow-text {
     background-color: transparent;
@@ -1433,12 +1434,17 @@ input:focus {
     letter-spacing: 0.59px;
     margin-bottom: 14px;
   }
+  .footerXdcicon{
+    width: 55px;
+    margin-left: 2px;
+    height: 55px;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 999px) {
   .link-text {
     background-color: transparent;
-    margin-left: -180px;
+    margin-left: -196px;
   }
   .powered-paper {
     margin-left: 0px;
@@ -1451,7 +1457,7 @@ input:focus {
   }
   .powered-text {
     margin-top: 0px;
-    margin-left: 5px;
+    margin-left: -5px;
     font-size: 26px;
     letter-spacing: 0.59px;
     margin-bottom: 14px;
