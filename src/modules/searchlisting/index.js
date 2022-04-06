@@ -75,10 +75,10 @@ export default class Main extends Component {
         });
       function getUnique(resultData, index) {
         const unique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return unique;
       }
@@ -128,10 +128,10 @@ export default class Main extends Component {
         });
       function getUnique(resultData, index) {
         const unique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return unique;
       }
@@ -178,10 +178,10 @@ export default class Main extends Component {
         });
       function getSaveUnique(resultData, index) {
         const saveunique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return saveunique;
       }
@@ -230,10 +230,10 @@ export default class Main extends Component {
       });
       function getSaveUnique(resultData, index) {
         const saveunique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return saveunique;
       }
@@ -249,6 +249,7 @@ export default class Main extends Component {
   };
 
   render() {
+    console.log(this.props, "hello");
     return (
       <>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />

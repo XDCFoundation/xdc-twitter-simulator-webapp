@@ -89,14 +89,13 @@ const MyResponsiveLine = ({ data }) => (
 
 export default function App(props) {
   const [data, setData] = useState([]);
-  // setData(props?.writeGraph)
 
   useEffect(() => {
     writingGraph();
-  }, [props?.writeGraph]);
+  }, [props?.write]);
 
   async function writingGraph() {
-    setData(props?.writeGraph);
+    setData(props?.write);
   }
 
   return (

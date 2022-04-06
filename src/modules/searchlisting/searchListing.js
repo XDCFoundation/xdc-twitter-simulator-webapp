@@ -458,14 +458,14 @@ export default function Searchlist(props) {
   }, [props?.locations.split(" ")[0]]);
 
   const Basicsearch = async () => {
-    let data = props?.locations.split(" ")[0]
+    let data = props?.locations.split(" ")[0];
     const [err, res] = await Utils.parseResponse(
       TweetService.getBasicSearch(data)
     );
     if (err) {
       return err;
     } else {
-      setBasic(res || "")
+      setBasic(res || "");
       setLoading(false);
     }
   };
@@ -474,8 +474,8 @@ export default function Searchlist(props) {
     let data = {
       username: props?.username,
       keyword: props?.locations.split(" ")[0],
-      hash: props?.hashname
-    }
+      hash: props?.hashname,
+    };
     const [err, res] = await Utils.parseResponse(
       TweetService.getAdvanceSearch(data)
     );
@@ -646,7 +646,7 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-      
+
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
                           stars
@@ -965,7 +965,7 @@ export default function Searchlist(props) {
                       let time = timeFormat.format("LT") || 0;
 
                       let textId = response?.id || 0;
-                
+
                       function shortenValue(b, amountL = 80, stars = 1) {
                         return `${b?.slice(0, amountL)}${""?.repeat(
                           stars
