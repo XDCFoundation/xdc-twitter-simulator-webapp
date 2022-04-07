@@ -478,8 +478,8 @@ const UnorderedList = styled.ul`
     list-style-type: none;
     background-color: #222864;
     position: absolute;
-    bottom: 1%;
-    right: 6%;
+    // bottom: 1%;
+    // right: 6%;
     padding-left: unset;
     padding-right: 5px;
     // width: 140px;
