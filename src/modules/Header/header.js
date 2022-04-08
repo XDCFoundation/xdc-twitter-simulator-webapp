@@ -17,6 +17,7 @@ import List from "@material-ui/core/List";
 // import Drawer from './drawer';
 import { socialMediaLinks } from "../../constants";
 import CloseIcon from "@material-ui/icons/Close";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   list: {
@@ -167,6 +168,7 @@ const MobImage = styled.img`
 const Span = styled.span`
   margin: 6px 0 5px 4px;
   font-family: Raleway;
+  cursor: pointer;
   font-size: 21px;
   font-weight: 600;
   font-stretch: normal;
@@ -181,6 +183,7 @@ const MobSpan = styled.span`
   margin: 20px 0 0px 4px;
   font-family: Raleway;
   font-size: 18px;
+  cursor: pointer;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
@@ -610,9 +613,9 @@ export default function HeaderComponent(props) {
             <a href="/">
               <MobImage src={require("../Header/TwitterLogo.png")} />
             </a>
-            <a href="/">
-              <MobSpan>XDC Speed Test</MobSpan>
-            </a>
+            {/* <a href="/"> */}
+            <MobSpan>XDC Speed Test</MobSpan>
+            {/* </a>{" "} */}
           </div>
 
           <div>
@@ -694,9 +697,9 @@ export default function HeaderComponent(props) {
             <a href="/">
               <Image src={require("../Header/TwitterLogo.png")} />
             </a>
-            <a href="/">
-              <Span>XDC Speed Test</Span>
-            </a>
+            {/* <a href="/"> */}
+            <Span>XDC Speed Test</Span>
+            {/* </a> */}
             <ActiveSearch
               type="text"
               placeholder="Search by Keyword"
@@ -757,9 +760,9 @@ export default function HeaderComponent(props) {
               <a href="/">
                 <Image src={require("../Header/TwitterLogo.png")} />
               </a>
-              <a href="/">
-                <Span>XDC Speed Test</Span>
-              </a>
+              {/* <a href="/"> */}
+              <Span>XDC Speed Test</Span>
+              {/* </a> */}
             </ActiveSubContainer1>
 
             <ActiveSubContainer2>
@@ -835,9 +838,9 @@ export default function HeaderComponent(props) {
                 <a href="/">
                   <MobImage src={require("../Header/TwitterLogo.png")} />
                 </a>
-                <a href="/">
-                  <MobSpan>XDC Speed Test</MobSpan>
-                </a>
+                {/* <a href="/"> */}
+                <MobSpan>XDC Speed Test</MobSpan>
+                {/* </a> */}
               </div>
               <div>
                 <button
