@@ -3,8 +3,17 @@ import React from "react";
 import "../../assets/styles/custom.css";
 import SaveListTab from "./saveListTab";
 import ReadListTab from "./readListTab";
+import Tippy from "@tippyjs/react";
 import SavedTweets from "../SavedTweets/savedTweets";
 import ReadTweets from "../Readtweets/readTweets";
+import styled from "styled-components";
+
+const IconImg = styled.img`
+  margin-left: 4px;
+  height: 10px;
+  width: 10px;
+  margin-top: 1px;
+`;
 
 function MapTabs(props) {
   const [toggleState, setToggleState] = useState(1);
@@ -52,6 +61,18 @@ function MapTabs(props) {
             >
               {" "}
               Saved Tweets{" "}
+              <Tippy
+                placement={"right"}
+                theme={"light"}
+                maxWidth={"none"}
+                content={
+                  <span className="tippyBlockstyle">
+                    List of tweets read by the dApp
+                  </span>
+                }
+              >
+                <IconImg src="../../images/ic.png" />
+              </Tippy>
             </span>
           </button>
           <button
@@ -79,6 +100,18 @@ function MapTabs(props) {
             >
               {" "}
               Read Tweets{" "}
+              <Tippy
+                placement={"right"}
+                theme={"light"}
+                maxWidth={"none"}
+                content={
+                  <span className="tippyBlockstyle">
+                    List of tweets read by the dApp
+                  </span>
+                }
+              >
+                <IconImg src="../../images/ic.png" />
+              </Tippy>
             </span>
           </button>
         </div>

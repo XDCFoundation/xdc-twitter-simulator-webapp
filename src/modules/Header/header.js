@@ -509,6 +509,10 @@ const AnchorTag = styled.a`
 const Border = styled.div`
   border: solid 0.1px #353b73;
   width: 110.2%;
+  @media (min-width: 0px) and (max-width: 767px) {
+    border: solid 0.1px #353b73;
+    width: 102.2%;
+  }
 `;
 const ArrowUpIcon = styled.span`
   color: #8992e2;

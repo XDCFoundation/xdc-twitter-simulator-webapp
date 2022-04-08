@@ -37,12 +37,27 @@ const IconImg = styled.img`
     margin-top: 6px;
   }
 `;
+const ToolImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 8px;
+  @media (min-width: 0px) and (max-width: 768px) {
+    margin-top: 0px;
+  }
+  @media (min-width: 768px) and (max-width: 1464px) {
+    margin-top: 0px;
+  }
+`;
 const EyeImg = styled.img`
   margin-left: 10px;
   height: 14px;
   width: 14px;
   @media (min-width: 0px) and (max-width: 768px) {
     margin-top: 0px;
+  }
+  @media (min-width: 768px) and (max-width: 1464px) {
+    margin-top: 6px;
   }
 `;
 
@@ -894,7 +909,7 @@ export default function MainComponent(props) {
                           <div className="tippyAdjustments">
                             Current/Max TPS
                             <Tippy
-                              placement={"top"}
+                              placement={"right"}
                               theme={"light"}
                               maxWidth={220}
                               content={
@@ -983,7 +998,7 @@ export default function MainComponent(props) {
                             <div className="tippyAdjustments">
                               Nodes
                               <Tippy
-                                placement={"top"}
+                                placement={"right"}
                                 theme={"light"}
                                 maxWidth={180}
                                 content={
@@ -1092,7 +1107,7 @@ export default function MainComponent(props) {
                       </span>
                     }
                   >
-                    <IconImg src="../../images/ic.png" />
+                    <ToolImg src="../../images/ic.png" />
                   </Tippy>
                 </div>
 
@@ -1134,7 +1149,7 @@ export default function MainComponent(props) {
                       </span>
                     }
                   >
-                    <IconImg src="../../images/ic.png" />
+                    <ToolImg src="../../images/ic.png" />
                   </Tippy>
                 </div>
 
@@ -1166,7 +1181,7 @@ export default function MainComponent(props) {
                 <div className="tippyAdjustments">
                   Current/Max TPS
                   <Tippy
-                    placement={"top"}
+                    placement={"right"}
                     theme={"light"}
                     maxWidth={220}
                     content={
@@ -1250,7 +1265,7 @@ export default function MainComponent(props) {
                   <div className="tippyAdjustments">
                     Nodes
                     <Tippy
-                      placement={"top"}
+                      placement={"right"}
                       theme={"light"}
                       maxWidth={180}
                       content={
@@ -1298,7 +1313,7 @@ export default function MainComponent(props) {
             >
               Top 20 trending
               <Tippy
-                placement={"top-start"}
+                placement={"right"}
                 theme={"light"}
                 maxWidth={340}
                 content={
@@ -1427,7 +1442,7 @@ export default function MainComponent(props) {
                       <ActiveTpsColor>
                         Current Tps
                         <Tippy
-                          placement={"top"}
+                          placement={"right"}
                           theme={"light"}
                           maxWidth={220}
                           content={
@@ -1511,7 +1526,7 @@ export default function MainComponent(props) {
                       <ActiveNodeColor>
                         Nodes
                         <Tippy
-                          placement={"top"}
+                          placement={"right"}
                           theme={"light"}
                           maxWidth={180}
                           content={
@@ -1543,7 +1558,7 @@ export default function MainComponent(props) {
               >
                 Top 20 trending
                 <Tippy
-                  placement={"top-start"}
+                  placement={"right"}
                   theme={"light"}
                   maxWidth={340}
                   content={
