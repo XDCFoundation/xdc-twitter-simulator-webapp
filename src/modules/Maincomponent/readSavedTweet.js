@@ -62,12 +62,12 @@ function MapTabs(props) {
               {" "}
               Saved Tweets{" "}
               <Tippy
-                placement={"right"}
+                placement={"top"}
                 theme={"light"}
                 maxWidth={"none"}
                 content={
                   <span className="tippyBlockstyle">
-                    List of tweets read by the dApp
+                    List of tweets saved by the dApp
                   </span>
                 }
               >
@@ -101,7 +101,7 @@ function MapTabs(props) {
               {" "}
               Read Tweets{" "}
               <Tippy
-                placement={"right"}
+                placement={"top"}
                 theme={"light"}
                 maxWidth={"none"}
                 content={
