@@ -8,11 +8,11 @@ import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
-import MapChart from "./map";
+// import MapChart from "./map";
 import NodeChart from "./nodeMap";
 import MapTabs from "./mapTabs";
 import Tippy from "@tippyjs/react";
-import moment from "moment";
+// import moment from "moment";
 import SavedRead from "./readSavedTweet";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -20,8 +20,8 @@ import "../styles/App.css";
 import _ from "lodash";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
-import { dispatchAction } from "../../utility";
-import { connect } from "react-redux";
+// import { dispatchAction } from "../../utility";
+// import { connect } from "react-redux";
 import Speedometer from "./speedometer";
 import DarkSpeedometer from "./darkSpeedometer";
 
@@ -34,7 +34,7 @@ const IconImg = styled.img`
     margin-top: 0px;
   }
   @media (min-width: 768px) and (max-width: 1464px) {
-    margin-top: 6px;
+    margin-top: 8px;
   }
 `;
 const ToolImg = styled.img`
@@ -87,14 +87,14 @@ const ActiveNodes = styled.div`
   font: normal normal bold 18px/38px Raleway;
   color: #09184b;
   opacity: 1;
-  padding: 10px 0 0 13px;
+  padding: 10px 0 0 10px;
 `;
 const ActiveNodesDark = styled.div`
   text-align: left;
   font: normal normal bold 18px/21px Raleway;
   color: #d6d6d6;
   opacity: 1;
-  padding: 10px 0 0 13px;
+  padding: 10px 0 0 10px;
 `;
 const Span = styled.div`
   text-align: left;
@@ -1356,7 +1356,7 @@ export default function MainComponent(props) {
                   <Tippy
                     placement={"right"}
                     theme={"light"}
-                    maxWidth={200}
+                    maxWidth={180}
                     content={
                       <span className="tippyBlockstyle">
                         Number of tweets saved per second
@@ -1398,7 +1398,7 @@ export default function MainComponent(props) {
                   <Tippy
                     placement={"right"}
                     theme={"light"}
-                    maxWidth={190}
+                    maxWidth={170}
                     content={
                       <span className="tippyBlockstyle">
                         Number of tweets read per second
@@ -1444,7 +1444,7 @@ export default function MainComponent(props) {
                         <Tippy
                           placement={"right"}
                           theme={"light"}
-                          maxWidth={220}
+                          maxWidth={180}
                           content={
                             <span className="tippyOtherblockStyle">
                               The current rate of transaction execution/ Maximum
@@ -1560,7 +1560,7 @@ export default function MainComponent(props) {
                 <Tippy
                   placement={"right"}
                   theme={"light"}
-                  maxWidth={340}
+                  maxWidth={180}
                   content={
                     <span className="tippyOtherblockStyle">
                       Top 20 trending Twitter hashtags recorded on the XDC
