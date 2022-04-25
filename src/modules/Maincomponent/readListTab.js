@@ -282,7 +282,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "white",
+    color: "#d6d6d6",
     marginTop: "4%",
     marginLeft: "18px",
   },
@@ -335,9 +335,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
 
-  useEffect(() => {
-  }, [props?.readtweetData]);
-
+  useEffect(() => {}, [props?.readtweetData]);
 
   return (
     <Grid Container spacing={3}>
@@ -418,9 +416,7 @@ export default function ReadTweets(props) {
                       <Row>
                         <Column>
                           <Typography className={classes.email}>
-                            {authorName.length > 0
-                              ? authorName
-                              : author || "-"}
+                            {authorName.length > 0 ? authorName : author || "-"}
                             {/* {authors?.length > 0 ? "@" + authors : author} */}
                           </Typography>
                           <ThemeProvider theme={theme}>

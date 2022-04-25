@@ -1,11 +1,9 @@
-import BaseComponent from "../baseComponent";
 import React, { useState, useEffect, Component } from "react";
 import Searchlist from "./searchListing";
 import HeaderComponent from "../Header/header";
 import FooterComponent from "../Footer/footer";
 import moment from "moment";
 import { eventConstants } from "../../constants";
-import socketClient from "socket.io-client";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
 
@@ -66,19 +64,21 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.readData && this.state.readData.length >=1 && this.state.readData.map((items, index) => {
-        let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
-        resultData.push({
-          x: moment(items.startTime).format("LT"),
-          y: graphs,
+      this.state.readData &&
+        this.state.readData.length >= 1 &&
+        this.state.readData.forEach((items, index) => {
+          let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
+          resultData.push({
+            x: moment(items.startTime).format("LT"),
+            y: graphs,
+          });
         });
-      });
       function getUnique(resultData, index) {
         const unique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return unique;
       }
@@ -93,7 +93,7 @@ export default class Main extends Component {
       this.setState({ readResult: arr });
 
       if (error) {
-        return error
+        return error;
       }
     });
   }
@@ -119,7 +119,7 @@ export default class Main extends Component {
 
       this.state.readData &&
         this.state.readData.length >= 1 &&
-        this.state.readData.map((items, index) => {
+        this.state.readData.forEach((items, index) => {
           let graphs = ((1000 * items.requestCount) / items.responseTime) * 60;
           resultData.push({
             x: moment(items.startTime).format("LT"),
@@ -128,10 +128,10 @@ export default class Main extends Component {
         });
       function getUnique(resultData, index) {
         const unique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return unique;
       }
@@ -166,20 +166,22 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.saveData && this.state.saveData.length >=1 && this.state.saveData.map((items, index) => {
-        let firstAxis = items?.savedTweets / items?.responseTime;
-        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
-        resultData.push({
-          x: moment(items.saveStartTime * 1000).format("LT"),
-          y: secondAxis * 60,
+      this.state.saveData &&
+        this.state.saveData.length >= 1 &&
+        this.state.saveData.forEach((items, index) => {
+          let firstAxis = items?.savedTweets / items?.responseTime;
+          let secondAxis = (firstAxis === 0 ? 0 : firstAxis * 1000) || 0;
+          resultData.push({
+            x: moment(items.saveStartTime * 1000).format("LT"),
+            y: secondAxis * 60,
+          });
         });
-      });
       function getSaveUnique(resultData, index) {
         const saveunique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return saveunique;
       }
@@ -194,7 +196,7 @@ export default class Main extends Component {
       this.setState({ result: arr });
 
       if (error) {
-        return error
+        return error;
       }
     });
   }
@@ -218,9 +220,9 @@ export default class Main extends Component {
       ];
       var resultData = [];
 
-      this.state.saveData.map((items, index) => {
+      this.state.saveData.forEach((items, index) => {
         let firstAxis = items?.savedTweets / items?.responseTime;
-        let secondAxis = (firstAxis == 0 ? 0 : firstAxis * 1000) || 0;
+        let secondAxis = (firstAxis === 0 ? 0 : firstAxis * 1000) || 0;
         resultData.push({
           x: moment(items.saveStartTime * 1000).format("LT"),
           y: secondAxis * 60,
@@ -228,10 +230,10 @@ export default class Main extends Component {
       });
       function getSaveUnique(resultData, index) {
         const saveunique = resultData
-          .map((e) => e[index])
-          .map((e, i, final) => final.indexOf(e) === i && i)
-          .filter((e) => resultData[e])
-          .map((e) => resultData[e]);
+          ?.map((e) => e[index])
+          ?.map((e, i, final) => final.indexOf(e) === i && i)
+          ?.filter((e) => resultData[e])
+          ?.map((e) => resultData[e]);
 
         return saveunique;
       }
@@ -246,8 +248,8 @@ export default class Main extends Component {
     }
   };
 
-
   render() {
+    console.log(this.props, "hello");
     return (
       <>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />

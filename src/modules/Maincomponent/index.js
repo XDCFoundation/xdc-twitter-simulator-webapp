@@ -10,6 +10,7 @@ import { eventConstants } from "../../constants";
 import socketClient from "socket.io-client";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
+import tweetServices from "../../services/tweetServices";
 
 export default class Main extends Component {
   getMode() {
@@ -36,6 +37,7 @@ export default class Main extends Component {
       marker: [],
       updatedMaxTps: "",
       blockSocketConnected: false,
+      nodeCount: 0,
     };
   }
 
@@ -371,6 +373,11 @@ export default class Main extends Component {
               }
             });
             _this.setState({ marker: updatedMarker });
+            let nodesActive = 0;
+            nodesActive = _.filter(data.nodes, function (node) {
+              return node.stats.active === true;
+            }).length;
+            _this.setState({ nodeCount: nodesActive });
           }
         }
       );
@@ -379,19 +386,28 @@ export default class Main extends Component {
     }
   };
 
+  saveMaxTps = async (value) => {};
+
   updateMaxTpsvalue = () => {
     try {
       const _this = this;
       let mainData;
       this.props.nodesSocket.on("network-stats-data", function node(data) {
         mainData = data.data?.transactions || 0;
-        setInterval(() => {
+        setInterval(async () => {
           if (!_.isEmpty(mainData) && mainData.length) {
             let trimmed = mainData?.slice(30, 40);
             let sum = trimmed?.reduce((a, b) => a + b, 0);
             let avg = sum / 10;
-            console.log("av--", avg);
             _this.setState({ updatedMaxTps: avg });
+            const requestData = {
+              tpsCount: avg,
+            };
+
+            const [error, response] = await Utils.parseResponse(
+              tweetServices.saveMaxTps(requestData)
+            );
+            if (error) return;
           }
         }, 30000);
       });
@@ -401,7 +417,6 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log("thi--", this.state.updatedMaxTps);
     return (
       <div>
         <HeaderComponent CheckMode={this.CheckMode.bind(this)} />

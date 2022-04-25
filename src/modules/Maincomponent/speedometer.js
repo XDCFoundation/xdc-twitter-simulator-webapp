@@ -23,7 +23,7 @@ export default function Speedometer(props) {
       let value = Number((parseFloat(val) / 5).toFixed(2));
       setParameter([0, 1 * value, 2 * value, 3 * value, 4 * value, 5 * value]);
       setMaxValue(5 * value);
-    } catch (e) { }
+    } catch (e) {}
   }
 
   return (
@@ -36,7 +36,7 @@ export default function Speedometer(props) {
                 <ReactSpeedometer
                   width={213}
                   height={137}
-                  forceRender={true}
+                  forceRender={false}
                   needleHeightRatio={0.6}
                   needleColor={"black"}
                   needleTransitionDuration={9000}
@@ -49,15 +49,17 @@ export default function Speedometer(props) {
                   maxValue={maxValue}
                   ringWidth={20}
                   segmentColors={[
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#68D0E2",
+                    "#3366FF",
+                    "#3366FF",
+                    "#3366FF",
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
-                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
+                  value={
+                    props.updatedMaxTps ? props.updatedMaxTps : props.currentTps
+                  }
                   currentValueText=" "
-                ></ReactSpeedometer>
+                />
               </>
             );
           case 2:
@@ -66,7 +68,7 @@ export default function Speedometer(props) {
                 <ReactSpeedometer
                   width={213}
                   height={137}
-                  forceRender={true}
+                  forceRender={false}
                   needleHeightRatio={0.6}
                   needleColor={"black"}
                   needleTransitionDuration={9000}
@@ -79,15 +81,17 @@ export default function Speedometer(props) {
                   maxValue={maxValue}
                   ringWidth={20}
                   segmentColors={[
-                    "#68D0E2",
-                    "#68D0E2",
-                    "#68D0E2",
+                    "#3366FF",
+                    "#3366FF",
+                    "#3366FF",
                     "#D6E0FF",
                     "#D6E0FF",
                   ]}
-                  value={props.updatedMaxTps ? props.updatedMaxTps : props.currentTps}
+                  value={
+                    props.updatedMaxTps ? props.updatedMaxTps : props.currentTps
+                  }
                   currentValueText=" "
-                ></ReactSpeedometer>
+                />
               </>
             );
           default:

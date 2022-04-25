@@ -8,11 +8,11 @@ import SavedTweets from "../SavedTweets";
 import ReadTweets from "../Readtweets";
 import MyResponsiveLine from "./writingData";
 import ReadingData from "./readingData";
-import MapChart from "./map";
+// import MapChart from "./map";
 import NodeChart from "./nodeMap";
 import MapTabs from "./mapTabs";
 import Tippy from "@tippyjs/react";
-import moment from "moment";
+// import moment from "moment";
 import SavedRead from "./readSavedTweet";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -20,8 +20,8 @@ import "../styles/App.css";
 import _ from "lodash";
 import Utils from "../../utility";
 import { TweetService } from "../../services/index";
-import { dispatchAction } from "../../utility";
-import { connect } from "react-redux";
+// import { dispatchAction } from "../../utility";
+// import { connect } from "react-redux";
 import Speedometer from "./speedometer";
 import DarkSpeedometer from "./darkSpeedometer";
 
@@ -34,7 +34,19 @@ const IconImg = styled.img`
     margin-top: 0px;
   }
   @media (min-width: 768px) and (max-width: 1464px) {
-    margin-top: 6px;
+    margin-top: 8px;
+  }
+`;
+const ToolImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 8px;
+  @media (min-width: 0px) and (max-width: 768px) {
+    margin-top: 0px;
+  }
+  @media (min-width: 768px) and (max-width: 1464px) {
+    margin-top: 0px;
   }
 `;
 const EyeImg = styled.img`
@@ -43,6 +55,9 @@ const EyeImg = styled.img`
   width: 14px;
   @media (min-width: 0px) and (max-width: 768px) {
     margin-top: 0px;
+  }
+  @media (min-width: 768px) and (max-width: 1464px) {
+    margin-top: 6px;
   }
 `;
 
@@ -69,17 +84,17 @@ const TpsCountDark = styled.div`
 `;
 const ActiveNodes = styled.div`
   text-align: left;
-  font: normal normal 600 18px/21px Raleway;
+  font: normal normal bold 18px/38px Raleway;
   color: #09184b;
   opacity: 1;
-  padding: 10px 0 0 13px;
+  padding: 10px 0 0 10px;
 `;
 const ActiveNodesDark = styled.div`
   text-align: left;
-  font: normal normal 600 18px/21px Raleway;
-  color: #ffffff;
+  font: normal normal bold 18px/21px Raleway;
+  color: #d6d6d6;
   opacity: 1;
-  padding: 10px 0 0 13px;
+  padding: 10px 0 0 10px;
 `;
 const Span = styled.div`
   text-align: left;
@@ -382,10 +397,10 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     marginTop: "15px",
     lineHeight: 1.5,
-    color: "#09184b",
+    color: "#d6d6d6",
     textAlign: "left",
     marginLeft: "30px",
-    color: "white",
+    // color: "white",
     backgroundColor: "#191d43",
   },
   "@media (min-width: 299px) and (max-width: 767px)": {
@@ -449,9 +464,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5%",
     marginTop: "15px",
     lineHeight: 1.5,
-    color: "#09184b",
+    color: "#d6d6d6",
     textAlign: "left",
-    color: "white",
+    // color: "white",
   },
 
   "@media (min-width: 303px) and (max-width: 767px)": {
@@ -487,7 +502,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "18px",
   },
   top20_dark_mode: {
-    color: "white",
+    color: "#d6d6d6",
     fontSize: "18px",
   },
   paperNode: {
@@ -565,6 +580,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "18px",
     marginLeft: "21px",
     backgroundColor: "#191d43",
+    color: "#d6d6d6",
   },
 }));
 
@@ -678,26 +694,30 @@ export default function MainComponent(props) {
 
   const [steps, setSteps] = useState(1);
   const [clicks, setClicks] = useState("");
+  const [forceRender, setForceRender] = useState(false);
 
   const clickAfterSocket = () => {
     setSteps(2);
-    props.update();
+    setForceRender(true);
     setClicks(true);
+    props.update();
     setInterval(() => {
       setClicks("");
-    }, 2000);
+      setForceRender(false);
+    }, 500);
   };
   const secondClickAfterSocket = () => {
     setSteps(1);
     setClicks(true);
+    setForceRender(true);
     props.update();
     setInterval(() => {
       setClicks("");
-    }, 2000);
+      setForceRender(false);
+    }, 500);
   };
 
-  let nodeLength =
-    props.state?.marker?.length > 0 ? props.state?.marker?.length + 1 : 0;
+  let nodeLength = props.state?.nodeCount ? props?.state?.nodeCount : 0;
 
   useEffect(() => {
     fetchTps();
@@ -860,6 +880,7 @@ export default function MainComponent(props) {
                       <span className="hover-data">
                         {" "}
                         <ReadingData
+                          dark={dark}
                           readData={props?.data}
                           readMe={identity}
                           readGraph={readingData}
@@ -886,14 +907,16 @@ export default function MainComponent(props) {
                           }
                         >
                           <div className="tippyAdjustments">
-                            Current/Max tps
+                            Current/Max TPS
                             <Tippy
-                              placement={"top"}
+                              placement={"right"}
                               theme={"light"}
                               maxWidth={220}
                               content={
                                 <span className="tippyOtherblockStyle">
-                                  The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
+                                  The current rate of transaction execution/
+                                  Maximum rate of transaction execution achieved
+                                  on the network
                                 </span>
                               }
                             >
@@ -949,6 +972,7 @@ export default function MainComponent(props) {
                                 dark={dark}
                                 tpsCount={maxtpsvalue}
                                 currentTps={updatedTpsCount}
+                                forceRender={forceRender}
                               />
                             ) : (
                               <Speedometer
@@ -958,6 +982,7 @@ export default function MainComponent(props) {
                                 dark={dark}
                                 tpsCount={maxtpsvalue}
                                 currentTps={updatedTpsCount}
+                                forceRender={forceRender}
                               />
                             )}
                           </div>
@@ -973,7 +998,7 @@ export default function MainComponent(props) {
                             <div className="tippyAdjustments">
                               Nodes
                               <Tippy
-                                placement={"top"}
+                                placement={"right"}
                                 theme={"light"}
                                 maxWidth={180}
                                 content={
@@ -1007,7 +1032,8 @@ export default function MainComponent(props) {
                   maxWidth={340}
                   content={
                     <span className="tippyOtherblockStyle">
-                      Top 20 trending Twitter hashtags recorded on the XDC blockchain
+                      Top 20 trending Twitter hashtags recorded on the XDC
+                      blockchain
                     </span>
                   }
                 >
@@ -1081,7 +1107,7 @@ export default function MainComponent(props) {
                       </span>
                     }
                   >
-                    <IconImg src="../../images/ic.png" />
+                    <ToolImg src="../../images/ic.png" />
                   </Tippy>
                 </div>
 
@@ -1123,7 +1149,7 @@ export default function MainComponent(props) {
                       </span>
                     }
                   >
-                    <IconImg src="../../images/ic.png" />
+                    <ToolImg src="../../images/ic.png" />
                   </Tippy>
                 </div>
 
@@ -1153,14 +1179,15 @@ export default function MainComponent(props) {
                 }
               >
                 <div className="tippyAdjustments">
-                  Current/Max tps
+                  Current/Max TPS
                   <Tippy
-                    placement={"top"}
+                    placement={"right"}
                     theme={"light"}
                     maxWidth={220}
                     content={
                       <span className="tippyOtherblockStyle">
-                        The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
+                        The current rate of transaction execution/ Maximum rate
+                        of transaction execution achieved on the network
                       </span>
                     }
                   >
@@ -1238,7 +1265,7 @@ export default function MainComponent(props) {
                   <div className="tippyAdjustments">
                     Nodes
                     <Tippy
-                      placement={"top"}
+                      placement={"right"}
                       theme={"light"}
                       maxWidth={180}
                       content={
@@ -1286,12 +1313,13 @@ export default function MainComponent(props) {
             >
               Top 20 trending
               <Tippy
-                placement={"top-start"}
+                placement={"right"}
                 theme={"light"}
                 maxWidth={340}
                 content={
                   <span className="tippyOtherblockStyle">
-                    Top 20 trending Twitter hashtags recorded on the XDC blockchain
+                    Top 20 trending Twitter hashtags recorded on the XDC
+                    blockchain
                   </span>
                 }
               >
@@ -1328,7 +1356,7 @@ export default function MainComponent(props) {
                   <Tippy
                     placement={"right"}
                     theme={"light"}
-                    maxWidth={200}
+                    maxWidth={180}
                     content={
                       <span className="tippyBlockstyle">
                         Number of tweets saved per second
@@ -1370,7 +1398,7 @@ export default function MainComponent(props) {
                   <Tippy
                     placement={"right"}
                     theme={"light"}
-                    maxWidth={190}
+                    maxWidth={170}
                     content={
                       <span className="tippyBlockstyle">
                         Number of tweets read per second
@@ -1414,12 +1442,14 @@ export default function MainComponent(props) {
                       <ActiveTpsColor>
                         Current Tps
                         <Tippy
-                          placement={"top"}
+                          placement={"right"}
                           theme={"light"}
-                          maxWidth={220}
+                          maxWidth={180}
                           content={
                             <span className="tippyOtherblockStyle">
-                              The current rate of transaction execution/ Maximum rate of transaction execution achieved on the network
+                              The current rate of transaction execution/ Maximum
+                              rate of transaction execution achieved on the
+                              network
                             </span>
                           }
                         >
@@ -1496,7 +1526,7 @@ export default function MainComponent(props) {
                       <ActiveNodeColor>
                         Nodes
                         <Tippy
-                          placement={"top"}
+                          placement={"right"}
                           theme={"light"}
                           maxWidth={180}
                           content={
@@ -1528,12 +1558,13 @@ export default function MainComponent(props) {
               >
                 Top 20 trending
                 <Tippy
-                  placement={"top-start"}
+                  placement={"right"}
                   theme={"light"}
-                  maxWidth={340}
+                  maxWidth={180}
                   content={
                     <span className="tippyOtherblockStyle">
-                      Top 20 trending Twitter hashtags recorded on the XDC blockchain
+                      Top 20 trending Twitter hashtags recorded on the XDC
+                      blockchain
                     </span>
                   }
                 >

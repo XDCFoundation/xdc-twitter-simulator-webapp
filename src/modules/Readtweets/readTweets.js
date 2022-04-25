@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.17",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "white",
+    color: "#d6d6d6",
     backgroundColor: "#191d43",
   },
 
@@ -241,7 +241,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.18",
     letterSpacing: "normal",
     textAlign: "left",
-    color: "white",
+    color: "#d6d6d6",
     marginTop: "4%",
     marginLeft: "18px",
     whiteSpace: "noWrap",
@@ -279,9 +279,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ReadTweets(props) {
   const classes = useStyles();
 
-  useEffect(() => {
-  }, [props.tweetreadData]);
-
+  useEffect(() => {}, [props.tweetreadData]);
 
   let text = props.tweetreadData[0]?.text;
   let animationclass = props.animationTime?.[text];
@@ -352,11 +350,12 @@ export default function ReadTweets(props) {
                   let time = timeFormat?.format("LT") || 0;
 
                   function shortenValue(b, amountL = 60, stars = 1) {
-                    return `${b.length > 0 ? b?.slice(0, amountL) : "-"
-                      }${""?.repeat(stars)}${b?.slice(
-                        // b.length - 3,
-                        b?.length || 0
-                      )}`;
+                    return `${
+                      b.length > 0 ? b?.slice(0, amountL) : "-"
+                    }${""?.repeat(stars)}${b?.slice(
+                      // b.length - 3,
+                      b?.length || 0
+                    )}`;
                   }
 
                   return (
@@ -384,8 +383,8 @@ export default function ReadTweets(props) {
                                 ? blockDarkanimationclass
                                 : classes.time_dark_mode
                               : animationclass
-                                ? animationclass
-                                : classes.time
+                              ? animationclass
+                              : classes.time
                           }
                         >
                           {time ? time : "-"}
@@ -416,11 +415,11 @@ export default function ReadTweets(props) {
                                     ? textdarkanimationClass
                                     : classes.content_dark_mode
                                   : textanimationClass
-                                    ? textanimationClass
-                                    : classes.content
+                                  ? textanimationClass
+                                  : classes.content
                               }
-                            // noWrap
-                            // gutterBottom
+                              // noWrap
+                              // gutterBottom
                             >
                               <div className="wordTruncating">
                                 {textVal.length > 0

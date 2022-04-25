@@ -86,7 +86,7 @@ const Inputallwords = styled.input`
   border-radius: 5px;
   border: solid 1px #4a508a;
   width: 81%;
-  height: 41px;
+  height: 50px;
   color: #09184b;
   margin-left: 68px;
   margin-bottom: 15px;
@@ -109,7 +109,7 @@ const Inputhashtags = styled.input`
   width: 81%;
   padding: 14px;
   margin-left: 68px;
-  height: 41px;
+  height: 50px;
   font-size: 14px;
   color: #09184b;
 
@@ -140,7 +140,7 @@ const Button = styled.button`
   margin-top: 37px;
   padding-left: 34%;
   border: none;
-  height: 41px;
+  height: 50px;
   margin-bottom: 56px;
 
   @media (min-width: 0px) and (max-width: 767px) {
@@ -229,7 +229,7 @@ export default function MaxWidthDialog(props) {
         <DialogContent>
           <Column>
             <Row>
-              <Advanced>Advance search</Advanced>
+              <Advanced>Advanced search</Advanced>
               {/* <Img style={{ cursor: 'pointer', width: 30, height: 30, }} src="/images/cut.svg" onClick={props.clicked}>   </Img> */}
               <div className="cross-parent">
                 <div className="cross-image" onClick={props.clicked}>
@@ -247,11 +247,11 @@ export default function MaxWidthDialog(props) {
               placeholder="Hashtags"
               onChange={(e) => setHash(e.target.value)}
             />
-            <Accounts>Accounts</Accounts>
+            {/* <Accounts>Accounts</Accounts>
             <Inputfromtheseaccounts
               placeholder="From these accounts"
               onChange={(e) => setName(e.target.value)}
-            />
+            /> */}
             {/* <Inputtotheseaccounts placeholder="To these accounts" /> */}
             <Button onClick={redirect}>Search</Button>
           </Column>

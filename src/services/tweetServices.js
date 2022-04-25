@@ -11,8 +11,33 @@ export default {
   getMapHashtags,
   getTweetDetails,
   getMaxTps,
+  saveMaxTps
 };
 
+async function saveMaxTps(requestData) {
+  let url =
+    process.env.REACT_APP_BASE_URL_TWITTER + httpConstants.API_END_POINT.SAVE_MAX_TPS;
+
+return httpService(
+    httpConstants.METHOD_TYPE.POST,
+    { "Content-Type": httpConstants.CONTENT_TYPE.APPLICATION_JSON },
+   requestData,
+    url
+  )
+    .then((response) => {
+      if (
+        !response.success ||
+        response.responseCode !== 200 ||
+        !response.responseData ||
+        response.responseData.length === 0
+      )
+        return Promise.reject();
+      return Promise.resolve(response.responseData);
+    })
+    .catch(function (err) {
+      return Promise.reject(err);
+    });
+}
 async function getSaveTweetList() {
   let url =
     process.env.REACT_APP_BASE_URL_TWITTER + process.env.REACT_APP_SAVED_TWEET;

@@ -4,8 +4,8 @@ import { Row, Column } from "simple-flexbox";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+// import { useTheme } from "@material-ui/core/styles";
+// import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const Bannerimage = styled.img`
   width: 100%;
@@ -311,6 +311,12 @@ const Content = styled.span`
   }
 `;
 
+const IconImg = styled.img`
+  margin-left: 10px;
+  height: 14px;
+  width: 14px;
+  margin-top: 1px;
+`;
 const Heading = styled.span`
   font-family: Raleway, sans-serif;
   font-size: 18px;

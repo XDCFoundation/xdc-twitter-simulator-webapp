@@ -65,7 +65,7 @@ export default function App(props) {
 
   return (
     <div style={{ height: 80, margin: "-5px", marginTop: "5px" }}>
-      <ReadingData data={data} />
+      <ReadingData data={data} dark={props.dark} />
     </div>
   );
 }

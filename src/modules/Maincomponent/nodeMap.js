@@ -4,7 +4,7 @@ import utility from "../../utility";
 import { LocationService } from "../../services";
 import _ from "lodash";
 import { dispatchAction } from "../../utility";
-import {eventConstants} from '../../constants';
+import { eventConstants } from "../../constants";
 import { connect } from "react-redux";
 
 import {
@@ -21,8 +21,8 @@ const geoUrl = process.env.REACT_APP_NODES_MAP_URL;
 let nodesArr = [];
 
 export default function NodeChart(props) {
-  const marker = props.marker
- 
+  const marker = props.marker;
+
   return (
     <>
       <div>
@@ -43,8 +43,8 @@ export default function NodeChart(props) {
             marker?.map((items, index) => (
               <Marker key={index} coordinates={items.coords}>
                 <g
-                  fill="#10c892"
-                  stroke="#10c892"
+                  fill="#3366FF"
+                  stroke="#3366FF"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"

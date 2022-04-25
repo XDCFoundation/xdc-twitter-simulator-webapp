@@ -303,6 +303,7 @@ input:focus {
   display: flex;
   flex-direction: row;
   white-space: nowrap;
+  
 }
 .table-data-message{
   display: flex;
@@ -407,7 +408,7 @@ input:focus {
   line-height: 1.2;
   letter-spacing: normal;
   text-align: left;
-  color: white;
+  color: #d6d6d6;
   padding-bottom: 10px;
   margin-top: -8px;
 }
@@ -632,7 +633,7 @@ input:focus {
 }
 
 .hover-data {
-  color: #0d0e2d;
+  color: #0a0f9d;
 }
 
 .footerLinks {
@@ -651,6 +652,7 @@ input:focus {
 
 .footerXdcicon{
   width: 55px;
+  margin-left: -5px;
   height: 55px;
 }
 
@@ -1363,7 +1365,7 @@ input:focus {
 }
 
 .composableNodemap {
-  fill: #bdc1e5;
+  fill:#D6E0FF;
   width: 100%;
   height: 218px;
 }
@@ -1415,7 +1417,7 @@ input:focus {
 @media (min-width: 300px) and (max-width: 599px) {
   .link-text {
     background-color: transparent;
-    margin-left: -108px;
+    margin-left: -185px;
   }
   .follow-text {
     background-color: transparent;
@@ -1432,12 +1434,17 @@ input:focus {
     letter-spacing: 0.59px;
     margin-bottom: 14px;
   }
+  .footerXdcicon{
+    width: 55px;
+    margin-left: 2px;
+    height: 55px;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 999px) {
   .link-text {
     background-color: transparent;
-    margin-left: -123px;
+    margin-left: -196px;
   }
   .powered-paper {
     margin-left: 0px;
@@ -1450,7 +1457,7 @@ input:focus {
   }
   .powered-text {
     margin-top: 0px;
-    margin-left: 5px;
+    margin-left: -5px;
     font-size: 26px;
     letter-spacing: 0.59px;
     margin-bottom: 14px;
@@ -2181,7 +2188,7 @@ input:focus {
   line-height: 1.2 !important;
   letter-spacing: 0px !important;
   text-align: left !important;
-  color: white !important;
+  color: #d6d6d6 !important;
   background-color: #191d43 !important;
   margin-left: 18px !important;
   margin-right: 18px !important;
@@ -2264,7 +2271,7 @@ input:focus {
 }
 
 .read-text-animation-dark-mode{
-  color: white !important;
+  color: #d6d6d6 !important;
   background-color: #191d43 !important;
   font-size: 14px !important;
   box-shadow: none !important;
