@@ -305,8 +305,8 @@ export default function SavedTweets(props) {
                   className={
                     props.dark ? classes.readtweet_dark_mode : classes.readtweet
                   }
-                  // variant="h5"
-                  // style={{ whiteSpace: "nowrap" }}
+                // variant="h5"
+                // style={{ whiteSpace: "nowrap" }}
                 >
                   Saved Tweets
                   <Tippy
@@ -335,9 +335,9 @@ export default function SavedTweets(props) {
                       ? parseInt(props?.savedCount[0] / 1000) + "k"
                       : props.savedCount[0]
                     : props?.tweetCount?.blockchainTweetCount > 1000
-                    ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) +
+                      ? parseInt(props?.tweetCount?.blockchainTweetCount / 1000) +
                       "k"
-                    : props?.tweetCount?.blockchainTweetCount}
+                      : props?.tweetCount?.blockchainTweetCount}
                 </Paper>
               </Row>
               {props?.tweetData &&
@@ -346,7 +346,8 @@ export default function SavedTweets(props) {
                   let textVal = response?.text || 0;
                   // let value = textVal?.replaceAll(/undefined/g, '') || 0
                   let author = response?.authorID || 0;
-                  let createTime = Number(response?.createdAt || 0);
+                  // let createTime = Number(response?.createdAt || 0);
+                  let createTime = Number(response?.modifiedOn || 0);
                   let str = response.addedOn;
                   let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
@@ -386,8 +387,8 @@ export default function SavedTweets(props) {
                                 ? blockDarkanimationclass
                                 : classes.time_dark_mode
                               : index == 0 && animationclass
-                              ? animationclass
-                              : classes.time
+                                ? animationclass
+                                : classes.time
                           }
                         >
                           {time ? time : "-"}
@@ -415,10 +416,10 @@ export default function SavedTweets(props) {
                                     ? textdarkanimationClass
                                     : classes.content_dark_mode
                                   : index == 0 && textanimationClass
-                                  ? textanimationClass
-                                  : classes.content
+                                    ? textanimationClass
+                                    : classes.content
                               }
-                              //  gutterBottom
+                            //  gutterBottom
                             >
                               <div className="wordTruncating">
                                 {textVal.length > 0
