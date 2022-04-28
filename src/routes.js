@@ -23,7 +23,7 @@ import About from "./modules/About";
 let socket = socketClient(process.env.REACT_APP_SAVING_SOCKET, {
   transports: ["websocket"],
 });
-let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKET, {
+let readtweetSocket = socketClient(process.env.REACT_APP_READING_SOCKE, {
   transports: ["websocket"],
 });
 
@@ -40,7 +40,7 @@ const TweetArchive = withRouter(
 );
 
 class Routes extends BaseComponent {
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
     return (
