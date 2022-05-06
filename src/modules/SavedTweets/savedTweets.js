@@ -340,6 +340,7 @@ export default function SavedTweets(props) {
                       "k"
                     : props?.tweetCount?.blockchainTweetCount}
                 </Paper>
+                
               </Row>
               {props?.tweetData &&
                 props?.tweetData.length >= 1 &&
@@ -351,7 +352,7 @@ export default function SavedTweets(props) {
                   let str = response.addedOn;
                   let timeFormat = moment(createTime);
                   let time = timeFormat?.format("LT") || 0;
-
+                 
                   // let textAnimation = response?.text
                   function shortenValue(b, amountL = 80, stars = 1) {
                     return `${b?.slice(0, amountL)}${""?.repeat(
